@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mnuParar"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/parar_servicio"/>
+
+</menu>
+<!-- From: file:/Users/pedro/studio/PR091-BoundLocalService/app/src/main/res/menu/main.xml -->

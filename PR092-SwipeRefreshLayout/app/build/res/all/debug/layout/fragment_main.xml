@@ -1,0 +1,13 @@
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swlPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="es.iessaladillo.pedrojoya.pr092.MainFragment" >
+
+    <ListView
+        android:id="@+id/lstLista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</android.support.v4.widget.SwipeRefreshLayout><!-- From: file:/Users/pedro/studio/PR092-SwipeRefreshLayout/app/src/main/res/layout/fragment_main.xml -->
