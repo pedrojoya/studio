@@ -1,15 +1,15 @@
 package es.iessaladillo.pedrojoya.pr093.actividades;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
-import android.support.v4.content.LocalBroadcastManager;
+import android.os.Message;
+import android.os.Messenger;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -18,77 +18,96 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr093.R;
 import es.iessaladillo.pedrojoya.pr093.modelos.Cancion;
 import es.iessaladillo.pedrojoya.pr093.servicios.MusicaOnlineService;
-import es.iessaladillo.pedrojoya.pr093.servicios.MusicaOnlineService.LocalBinder;
 
 public class MainActivity extends Activity implements OnItemClickListener,
         OnClickListener {
 
     // Variables.
-    private ServiceConnection mConexion;
-    private MusicaOnlineService mServicio;
     private ArrayList<Cancion> mCanciones;
-    private LocalBroadcastManager mGestor;
-    private BroadcastReceiver mReceptor;
-    private IntentFilter mFiltro;
     private boolean mVinculado = false;
+    private Conexion mConexion;
+    private Messenger mEmisorMensajes;
+    private Messenger mReceptorMensajes;
+    public boolean mReproduciendo = false;
+    public int mPosCancionActual = -1;
 
     // Vistas.
     private ListView lstCanciones;
-    private ImageView imgAnterior;
-    private ImageView imgSiguiente;
     private ImageView imgPlay;
+
+    // Clase para la conexión.
+    private class Conexion implements ServiceConnection {
+
+        // Cuando se desconecta el servicio.
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+
+            mEmisorMensajes = null;
+            mVinculado = false;
+        }
+
+        // Cuando se completa la conexión.
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder binder) {
+            // Se crea el objeto emisor de mensajes al servicio.
+            mEmisorMensajes = new Messenger(binder);
+            // Se carga la lista de canciones en el servicio.
+            MusicaOnlineService.setLista(mEmisorMensajes, mCanciones);
+            mVinculado = true;
+            actualizarIU();
+        }
+    }
+
+    // Clase gestora de mensajes recibidos.
+    private class ReceptorMensajes extends Handler {
+
+        // Cuando se recibe un mensaje.
+        @Override
+        public void handleMessage(Message msg) {
+            // Dependiendo del mensaje.
+            switch (msg.what) {
+                case MusicaOnlineService.MSG_CANCION_ACTUAL:
+                    // Se selecciona en la lista la canci�n que se est� reproduciendo.
+                        mPosCancionActual = MusicaOnlineService.getPosCancionActual(msg);
+                        if (mPosCancionActual >= 0) {
+                            lstCanciones.setItemChecked(mPosCancionActual, true);
+                        }
+                    break;
+                case MusicaOnlineService.MSG_REPRODUCIENDO:
+                        mReproduciendo = MusicaOnlineService.isReproduciendo(msg);
+                        if (mReproduciendo) {
+                            imgPlay.setImageResource(android.R.drawable.ic_media_pause);
+                        } else {
+                            imgPlay.setImageResource(android.R.drawable.ic_media_play);
+                        }
+                    break;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getVistas();
-        // Se obtiene el gestor de receptores locales.
-        mGestor = LocalBroadcastManager.getInstance(this);
         // Se crea el receptor de mensajes desde el servicio.
-        mReceptor = new BroadcastReceiver() {
-            // Cuando se recibe el intent.
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                // Se actualiza la canción seleccionada
-                actualizarIU();
-            }
-        };
-        // Se crea el filtro para al receptor.
-        mFiltro = new IntentFilter(MusicaOnlineService.ACTION_PLAYING);
+        mReceptorMensajes = new Messenger(new ReceptorMensajes());
         // Se crea el objeto que representa la conexión con el servicio.
-        mConexion = new ServiceConnection() {
+        mConexion = new Conexion();
 
-            // Cuando se desconecta el servicio.
-            @Override
-            public void onServiceDisconnected(ComponentName arg0) {
-                mServicio = null;
-                mVinculado = false;
-            }
-
-            // Cuando se completa la conexión.
-            @Override
-            public void onServiceConnected(ComponentName className,
-                    IBinder binder) {
-                mVinculado = true;
-                // Se obtiene la referencia al servicio.
-                mServicio = ((LocalBinder) binder).getService();
-                // Se carga la lista de canciones en el servicio.
-                mServicio.setLista(mCanciones);
-                actualizarIU();
-            }
-        };
     }
 
     private void getVistas() {
-        imgAnterior = (ImageView) findViewById(R.id.imgAnterior);
+        ImageView imgAnterior = (ImageView) findViewById(R.id.imgAnterior);
         imgAnterior.setOnClickListener(this);
-        imgSiguiente = (ImageView) findViewById(R.id.imgSiguiente);
+        ImageView imgSiguiente = (ImageView) findViewById(R.id.imgSiguiente);
         imgSiguiente.setOnClickListener(this);
         imgPlay = (ImageView) findViewById(R.id.imgPlay);
         imgPlay.setOnClickListener(this);
@@ -102,63 +121,50 @@ public class MainActivity extends Activity implements OnItemClickListener,
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         // Se vincula el servicio.
         vincularServicio();
-        actualizarIU();
-        // Se registra el receptor en el gestor de receptores locales para dicha
-        // acción.
-        mGestor.registerReceiver(mReceptor, mFiltro);
     }
 
     private void vincularServicio() {
-        // Se crea el intent de vinculaci�n con el servicio.
-        Intent intentServicio = new Intent(getApplicationContext(),
-                MusicaOnlineService.class);
+
+        // Se obtiene el intent de vinculación con el servicio.
+        Intent intentServicio = MusicaOnlineService.getIntent(getApplicationContext(), mReceptorMensajes);
         // Se vincula el servicio.
         bindService(intentServicio, mConexion, Context.BIND_AUTO_CREATE);
     }
 
-    // Caundo se pausa la actividad.
     @Override
-    protected void onPause() {
-        // Se desregistra el receptor del gestor de receptores locales para
-        // dicha acci�n.
-        mGestor.unregisterReceiver(mReceptor);
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (!isChangingConfigurations()) {
-            desvincularServicio();
-        }
-        super.onDestroy();
+    protected void onStop() {
+//        desvincularServicio();
+        super.onStop();
     }
 
     private void desvincularServicio() {
         // Se desvincula del servicio.
         if (mVinculado) {
             unbindService(mConexion);
+            mConexion = null;
             mVinculado = false;
         }
     }
 
-    // Actualiza la IU seg�n el estado del servicio.
+    // Actualiza la IU según el estado del servicio.
     private void actualizarIU() {
         if (mVinculado) {
-            // Se selecciona en la lista la canci�n que se est� reproduciendo.
-            int posCancionActual = mServicio.getPosCancionActual();
-            if (posCancionActual >= 0) {
-                lstCanciones.setItemChecked(posCancionActual, true);
-            }
-            // Se actualiza el icono de reproducir / pausar.
-            if (mServicio.reproduciendo()) {
-                imgPlay.setImageResource(android.R.drawable.ic_media_pause);
-            }
+            // Se pregunta al servicio por la cancion actual.
+            MusicaOnlineService.askPosCancionActual(mEmisorMensajes);
+            // Se pregunta al servicio si está reproduciendo.
+            MusicaOnlineService.askIsReproduciendo(mEmisorMensajes);
         }
     }
+
 
     // Cuando se pulsa en una canci�n de la lista.
     @Override
@@ -170,7 +176,7 @@ public class MainActivity extends Activity implements OnItemClickListener,
     // Reproduce una canción. Recibe su posición en la lista.
     private void reproducirCancion(int position) {
         if (mVinculado) {
-            mServicio.reproducirCancion(position);
+            MusicaOnlineService.reproducirCancion(mEmisorMensajes, position);
         }
     }
 
@@ -178,15 +184,15 @@ public class MainActivity extends Activity implements OnItemClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-        case R.id.imgAnterior:
-            imgAnteriorOnClick();
-            break;
-        case R.id.imgSiguiente:
-            imgSiguienteOnClick();
-            break;
-        case R.id.imgPlay:
-            imgPlayOnClick();
-            break;
+            case R.id.imgAnterior:
+                imgAnteriorOnClick();
+                break;
+            case R.id.imgSiguiente:
+                imgSiguienteOnClick();
+                break;
+            case R.id.imgPlay:
+                imgPlayOnClick();
+                break;
         }
     }
 
@@ -194,32 +200,29 @@ public class MainActivity extends Activity implements OnItemClickListener,
     private void imgPlayOnClick() {
         if (mVinculado) {
             // Si estamos reproduciendo.
-            if (mServicio.reproduciendo()) {
+            if (mReproduciendo) {
                 // Se pausa la reproducción.
-                mServicio.pausarReproduccion();
-                // Se actualiza el icono al de reproducir.
-                imgPlay.setImageResource(android.R.drawable.ic_media_play);
+                MusicaOnlineService.pausarReproduccion(mEmisorMensajes);
             } else {
                 // Si se estaba reproduciendo ninguna canción que se ha pausado.
-                if (mServicio.getPosCancionActual() >= 0) {
+                if (mPosCancionActual >= 0) {
                     // Se continua la reproducción.
-                    mServicio.continuarReproduccion();
+                    MusicaOnlineService.continuarReproduccion(mEmisorMensajes);
                 } else {
                     // Se comienza la reproducción de la primera canción de la
                     // lista.
-                    mServicio.reproducirCancion(0);
+                    MusicaOnlineService.reproducirCancion(mEmisorMensajes, 0);
                 }
-                // Se actualiza el icono al de pausar.
-                imgPlay.setImageResource(android.R.drawable.ic_media_pause);
             }
         }
     }
+
 
     // Al pulsar sobre Siguiente.
     private void imgSiguienteOnClick() {
         // Se pasa a la siguiente canción.
         if (mVinculado) {
-            mServicio.siguienteCancion();
+            MusicaOnlineService.siguienteCancion(mEmisorMensajes);
         }
     }
 
@@ -227,7 +230,7 @@ public class MainActivity extends Activity implements OnItemClickListener,
     private void imgAnteriorOnClick() {
         // Se pasa a la canción anterior.
         if (mVinculado) {
-            mServicio.anteriorCancion();
+            MusicaOnlineService.anteriorCancion(mEmisorMensajes);
         }
     }
 
