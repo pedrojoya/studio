@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr093.servicios;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -28,17 +27,17 @@ public class MusicaOnlineService extends Service implements
     private static final int MSG_SIGUIENTE = 3;
     private static final int MSG_ANTERIOR = 4;
     private static final int MSG_ESTABLECER__LISTA = 5;
-    public static final int MSG_CANCION_ACTUAL = 6;
-    public static final int MSG_REPRODUCIENDO = 7;
+    public static final int MSG_ESTADO = 6;
     private static final String EXTRA_LISTA = "lista";
-    private static final String EXTRA_CLIENTE = "cliente";
+    public static final String ACTION_ESTADO = "estado";
+    public static final String EXTRA_POS_CANCION_ACTUAL = "posCancionActual";
+    public static final String EXTRA_REPRODUCIENDO = "isReproduciendo";
 
     // Variables.
     private MediaPlayer mReproductor;
     private ArrayList<Cancion> mCanciones;
     private int mPosCancionActual = -1;
-    private Messenger receptorMensajes;
-    private Messenger emisorMensajes;
+    private Messenger mReceptor;
 
     // Clase gestora de mensajes recibidos.
     private class ReceptorMensajes extends Handler {
@@ -55,12 +54,12 @@ public class MusicaOnlineService extends Service implements
                 case MSG_CONTINUAR:
                     // Se continua la reproducción.
                     continuarReproduccion();
-                    responderIsReproduciendo();
+                    broadcastEstado();
                     break;
                 case MSG_PAUSAR:
                     // Se pausa la reproducción.
                     pausarReproduccion();
-                    responderIsReproduciendo();
+                    broadcastEstado();
                     break;
                 case MSG_SIGUIENTE:
                     // Se pasa a la siguiente canción.
@@ -72,39 +71,30 @@ public class MusicaOnlineService extends Service implements
                     break;
                 case MSG_ESTABLECER__LISTA:
                     // Se establece la lista de reproducción.
-                    ArrayList<Cancion> lista = msg.getData().getParcelableArrayList(EXTRA_LISTA);
-                    setLista(lista);
+                    Bundle bundle = msg.getData();
+                    if (bundle != null) {
+                        ArrayList<Cancion> lista = bundle.getParcelableArrayList(EXTRA_LISTA);
+                        if (lista != null) {
+                            setLista(lista);
+                        }
+                    }
                     break;
-                case MSG_CANCION_ACTUAL:
+                case MSG_ESTADO:
                     // Se envía un mensaje de vuelta con la posición de la canción actual.
-                    responderGetPosCancionActual();
+                    broadcastEstado();
                     break;
-                case MSG_REPRODUCIENDO:
-                    // Se envía un mensaje de vuelta con un 1 si está reproduciendo.
-                    responderIsReproduciendo();
-                    break;
-
             }
         }
     }
 
     // API.
 
-    // Construye un intent para la conexión con servicio.
-    public static Intent getIntent(Context context, Messenger receptor) {
-        // Se crea el intent de vinculación con el servicio.
-        Intent intent = new Intent(context,
-                MusicaOnlineService.class);
-        intent.putExtra(EXTRA_CLIENTE, receptor);
-        return intent;
-    }
-
     // Envía un mensaje al servicio para establecer la lista de reproducción.
     public static void setLista(Messenger emisor, ArrayList<Cancion> lista) {
         Message mensaje = Message.obtain(null, MSG_ESTABLECER__LISTA);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(EXTRA_LISTA, lista);
         if (mensaje != null) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList(EXTRA_LISTA, lista);
             mensaje.setData(bundle);
             try {
                 emisor.send(mensaje);
@@ -130,46 +120,42 @@ public class MusicaOnlineService extends Service implements
     // Envía un mensaje al servicio para continuar la reproducción.
     public static void continuarReproduccion(Messenger emisor) {
         Message mensaje = Message.obtain(null, MSG_CONTINUAR);
-        try {
-            emisor.send(mensaje);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if (mensaje != null) {
+            try {
+                emisor.send(mensaje);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     // Envía un mensaje al servicio para pausar la reproducción.
     public static void pausarReproduccion(Messenger emisor) {
         Message mensaje = Message.obtain(null, MSG_PAUSAR);
-        try {
-            emisor.send(mensaje);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if (mensaje != null) {
+            try {
+                emisor.send(mensaje);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     // Envía un mensaje al servicio para reproducir la siguiente canción.
     public static void siguienteCancion(Messenger emisor) {
         Message mensaje = Message.obtain(null, MSG_SIGUIENTE);
-        try {
-            emisor.send(mensaje);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if (mensaje != null) {
+            try {
+                emisor.send(mensaje);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     // Envía un mensaje al servicio para reproducir la anterior canción.
     public static void anteriorCancion(Messenger emisor) {
         Message mensaje = Message.obtain(null, MSG_ANTERIOR);
-        try {
-            emisor.send(mensaje);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Envía un mensaje al servicio para solicitar si se está reproduciendo actualmente.
-    public static void askIsReproduciendo(Messenger emisor) {
-        Message mensaje = Message.obtain(null, MusicaOnlineService.MSG_REPRODUCIENDO);
         if (mensaje != null) {
             try {
                 emisor.send(mensaje);
@@ -179,9 +165,9 @@ public class MusicaOnlineService extends Service implements
         }
     }
 
-    // Envía un mensaje al servicio para obtener la canción actual.
-    public static void askPosCancionActual(Messenger emisor) {
-        Message mensaje = Message.obtain(null, MSG_CANCION_ACTUAL);
+    // Envía un mensaje al servicio para solicitar el estado.
+    public static void askEstado(Messenger emisor) {
+        Message mensaje = Message.obtain(null, MusicaOnlineService.MSG_ESTADO);
         if (mensaje != null) {
             try {
                 emisor.send(mensaje);
@@ -189,44 +175,17 @@ public class MusicaOnlineService extends Service implements
                 e.printStackTrace();
             }
         }
-    }
-
-    // Retorna la posición de la canción actual, en base al mensaje recibido.
-    public static int getPosCancionActual(Message mensaje) {
-        return mensaje.arg1;
-    }
-
-    // Retorna si se está reproduciendo alguna canción, en base al mensaje recibido.
-    public static boolean isReproduciendo(Message mensaje) {
-        return mensaje.arg1 != 0;
     }
 
     // FIN API.
 
     // MENSAJES DE RESPUESTA
 
-    private void responderIsReproduciendo() {
-        Message mensaje = Message.obtain(null, MSG_REPRODUCIENDO);
-        if (mensaje != null) {
-            mensaje.arg1 = reproduciendo()?1:0;
-            try {
-                emisorMensajes.send(mensaje);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void responderGetPosCancionActual() {
-        Message mensaje = Message.obtain(null, MSG_CANCION_ACTUAL);
-        if (mensaje != null) {
-            mensaje.arg1 = getPosCancionActual();
-            try {
-                emisorMensajes.send(mensaje);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
+    private void broadcastEstado() {
+        Intent intent = new Intent(ACTION_ESTADO);
+        intent.putExtra(EXTRA_POS_CANCION_ACTUAL, mPosCancionActual);
+        intent.putExtra(EXTRA_REPRODUCIENDO, isReproduciendo());
+        sendBroadcast(intent);
     }
 
     // FIN MENSAJES DE RESPUESTA
@@ -238,7 +197,7 @@ public class MusicaOnlineService extends Service implements
         // Se crea y configura el reproductor.
         mReproductor = new MediaPlayer();
         // Se crea un objeto Messenger asociado a un objeto gestor de mensajes recibidos.
-        receptorMensajes = new Messenger(new ReceptorMensajes());
+        mReceptor = new Messenger(new ReceptorMensajes());
     }
 
     // Al destruir el servicio.
@@ -280,23 +239,20 @@ public class MusicaOnlineService extends Service implements
         }
     }
 
+    // Cuando ya está preparada la reproducción de la canción.
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        // Se inicia la reproducción.
+        mediaPlayer.start();
+        // Se envía un broadcast con el estado a los cliente.
+        broadcastEstado();
+    }
+
     // Cuando se establece el vínculo.
     @Override
     public IBinder onBind(Intent intent) {
-        // Se obtiene del intent el messenger del cliente para que podamos enviarle mensajes.
-        emisorMensajes = (Messenger) intent.getParcelableExtra(EXTRA_CLIENTE);
         // Se retorna la interfaz de vinculación con el receptor de mensajes del servicio.
-        return receptorMensajes.getBinder();
-    }
-
-    // Cuando ya está preparada la reproducción de la canción.
-    @Override
-    public void onPrepared(MediaPlayer arg0) {
-        // Se inicia la reproducción.
-        mReproductor.start();
-        // Se envía un mensaje informativo al cliente.
-        responderGetPosCancionActual();
-        responderIsReproduciendo();
+        return mReceptor.getBinder();
     }
 
     // Cuando ha finalizado la reproducción de la canción.
@@ -333,8 +289,8 @@ public class MusicaOnlineService extends Service implements
         mReproductor.pause();
     }
 
-    // Retorna si está reproduciendo una canción.
-    private boolean reproduciendo() {
+    // Retorna si está isReproduciendo una canción.
+    private boolean isReproduciendo() {
         return mReproductor.isPlaying();
     }
 
@@ -348,11 +304,7 @@ public class MusicaOnlineService extends Service implements
         mCanciones = list;
     }
 
-    // Retorna el índice de la canción actual.
-    private int getPosCancionActual() {
-        return mPosCancionActual;
-    }
-
+/*
     public void keepAlive(boolean value) {
         if (value) startService(new Intent(getApplicationContext(), getClass()));
         else stopSelf();
@@ -365,7 +317,9 @@ public class MusicaOnlineService extends Service implements
 
     @Override
     public boolean onUnbind(Intent intent) {
+        keepAlive(true);
         return true;
     }
+*/
 
 }
