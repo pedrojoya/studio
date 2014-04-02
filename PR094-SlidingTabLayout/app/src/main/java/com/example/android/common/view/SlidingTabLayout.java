@@ -1,5 +1,3 @@
-package com.example.android.common.view;
-
 /*
  * Copyright (C) 2013 The Android Open Source Project
  *
@@ -16,141 +14,301 @@ package com.example.android.common.view;
  * limitations under the License.
  */
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+package com.example.android.common.view;
 
-import com.example.android.common.logger.Log;
-import com.example.android.common.view.SlidingTabLayout;
-
-import es.iessaladillo.pedrojoya.pr094.R;
-
-package com.example.android.slidingtabsbasic;
+        import android.content.Context;
+        import android.graphics.Typeface;
+        import android.os.Build;
+        import android.support.v4.view.PagerAdapter;
+        import android.support.v4.view.ViewPager;
+        import android.util.AttributeSet;
+        import android.util.TypedValue;
+        import android.view.Gravity;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.widget.HorizontalScrollView;
+        import android.widget.TextView;
 
 /**
- * A basic sample which shows how to use {@link com.example.android.common.view.SlidingTabLayout}
- * to display a custom {@link ViewPager} title strip which gives continuous feedback to the user
- * when scrolling.
+ * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
+ * the user's scroll progress.
+ * <p>
+ * To use the component, simply add it to your view hierarchy. Then in your
+ * {@link android.app.Activity} or {@link android.support.v4.app.Fragment} call
+ * {@link #setViewPager(ViewPager)} providing it the ViewPager this layout is being used for.
+ * <p>
+ * The colors can be customized in two ways. The first and simplest is to provide an array of colors
+ * via {@link #setSelectedIndicatorColors(int...)} and {@link #setDividerColors(int...)}. The
+ * alternative is via the {@link TabColorizer} interface which provides you complete control over
+ * which color is used for any individual position.
+ * <p>
+ * The views used as tabs can be customized by calling {@link #setCustomTabView(int, int)},
+ * providing the layout ID of your custom layout.
  */
-public class SlidingTabsBasicFragment extends Fragment {
-
-    static final String LOG_TAG = "SlidingTabsBasicFragment";
+public class SlidingTabLayout extends HorizontalScrollView {
 
     /**
-     * A custom {@link ViewPager} title strip which looks much like Tabs present in Android v4.0 and
-     * above, but is designed to give continuous feedback to the user when scrolling.
+     * Allows complete control over the colors drawn in the tab layout. Set with
+     * {@link #setCustomTabColorizer(TabColorizer)}.
      */
-    private SlidingTabLayout mSlidingTabLayout;
+    public interface TabColorizer {
 
-    /**
-     * A {@link ViewPager} which will be used in conjunction with the {@link SlidingTabLayout} above.
-     */
+        /**
+         * @return return the color of the indicator used when {@code position} is selected.
+         */
+        int getIndicatorColor(int position);
+
+        /**
+         * @return return the color of the divider drawn to the right of {@code position}.
+         */
+        int getDividerColor(int position);
+
+    }
+
+    private static final int TITLE_OFFSET_DIPS = 24;
+    private static final int TAB_VIEW_PADDING_DIPS = 16;
+    private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
+
+    private int mTitleOffset;
+
+    private int mTabViewLayoutId;
+    private int mTabViewTextViewId;
+
     private ViewPager mViewPager;
+    private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
 
-    /**
-     * Inflates the {@link View} which will be displayed by this {@link Fragment}, from the app's
-     * resources.
-     */
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sample, container, false);
+    private final SlidingTabStrip mTabStrip;
+
+    public SlidingTabLayout(Context context) {
+        this(context, null);
+    }
+
+    public SlidingTabLayout(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public SlidingTabLayout(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
+        // Disable the Scroll Bar
+        setHorizontalScrollBarEnabled(false);
+        // Make sure that the Tab Strips fills this View
+        setFillViewport(true);
+
+        mTitleOffset = (int) (TITLE_OFFSET_DIPS * getResources().getDisplayMetrics().density);
+
+        mTabStrip = new SlidingTabStrip(context);
+        addView(mTabStrip, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     }
 
     /**
-     * This is called after the {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)} has finished.
-     * Here we can pick out the {@link View}s we need to configure from the content view.
+     * Set the custom {@link TabColorizer} to be used.
      *
-     * We set the {@link ViewPager}'s adapter to be an instance of {@link SamplePagerAdapter}. The
-     * {@link SlidingTabLayout} is then given the {@link ViewPager} so that it can populate itself.
-     *
-     * @param view View created in {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}
+     * If you only require simple custmisation then you can use
+     * {@link #setSelectedIndicatorColors(int...)} and {@link #setDividerColors(int...)} to achieve
+     * similar effects.
      */
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        // Get the ViewPager and set it's PagerAdapter so that it can display items
-        mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new SamplePagerAdapter());
-
-        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
-        // it's PagerAdapter set.
-        mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
-        mSlidingTabLayout.setViewPager(mViewPager);
+    public void setCustomTabColorizer(TabColorizer tabColorizer) {
+        mTabStrip.setCustomTabColorizer(tabColorizer);
     }
 
     /**
-     * The {@link android.support.v4.view.PagerAdapter} used to display pages in this sample.
-     * The individual pages are simple and just display two lines of text. The important section of
-     * this class is the {@link #getPageTitle(int)} method which controls what is displayed in the
-     * {@link SlidingTabLayout}.
+     * Sets the colors to be used for indicating the selected tab. These colors are treated as a
+     * circular array. Providing one color will mean that all tabs are indicated with the same color.
      */
-    class SamplePagerAdapter extends PagerAdapter {
+    public void setSelectedIndicatorColors(int... colors) {
+        mTabStrip.setSelectedIndicatorColors(colors);
+    }
 
-        /**
-         * @return the number of pages to display
-         */
-        @Override
-        public int getCount() {
-            return 10;
+    /**
+     * Sets the colors to be used for tab dividers. These colors are treated as a circular array.
+     * Providing one color will mean that all tabs are indicated with the same color.
+     */
+    public void setDividerColors(int... colors) {
+        mTabStrip.setDividerColors(colors);
+    }
+
+    /**
+     * Set the {@link ViewPager.OnPageChangeListener}. When using {@link SlidingTabLayout} you are
+     * required to set any {@link ViewPager.OnPageChangeListener} through this method. This is so
+     * that the layout can update it's scroll position correctly.
+     *
+     * @see ViewPager#setOnPageChangeListener(ViewPager.OnPageChangeListener)
+     */
+    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+        mViewPagerPageChangeListener = listener;
+    }
+
+    /**
+     * Set the custom layout to be inflated for the tab views.
+     *
+     * @param layoutResId Layout id to be inflated
+     * @param textViewId id of the {@link TextView} in the inflated view
+     */
+    public void setCustomTabView(int layoutResId, int textViewId) {
+        mTabViewLayoutId = layoutResId;
+        mTabViewTextViewId = textViewId;
+    }
+
+    /**
+     * Sets the associated view pager. Note that the assumption here is that the pager content
+     * (number of tabs and tab titles) does not change after this call has been made.
+     */
+    public void setViewPager(ViewPager viewPager) {
+        mTabStrip.removeAllViews();
+
+        mViewPager = viewPager;
+        if (viewPager != null) {
+            viewPager.setOnPageChangeListener(new InternalViewPagerListener());
+            populateTabStrip();
+        }
+    }
+
+    /**
+     * Create a default view to be used for tabs. This is called if a custom tab view is not set via
+     * {@link #setCustomTabView(int, int)}.
+     */
+    protected TextView createDefaultTabView(Context context) {
+        TextView textView = new TextView(context);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
+        textView.setTypeface(Typeface.DEFAULT_BOLD);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            // If we're running on Honeycomb or newer, then we can use the Theme's
+            // selectableItemBackground to ensure that the View has a pressed state
+            TypedValue outValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
+                    outValue, true);
+            textView.setBackgroundResource(outValue.resourceId);
         }
 
-        /**
-         * @return true if the value returned from {@link #instantiateItem(ViewGroup, int)} is the
-         * same object as the {@link View} added to the {@link ViewPager}.
-         */
-        @Override
-        public boolean isViewFromObject(View view, Object o) {
-            return o == view;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            // If we're running on ICS or newer, enable all-caps to match the Action Bar tab style
+            textView.setAllCaps(true);
         }
 
-        /**
-         * Return the title of the item at {@code position}. This is important as what this method
-         * returns is what is displayed in the {@link SlidingTabLayout}.
-         * <p>
-         * Here we construct one using the position value, but for real application the title should
-         * refer to the item's contents.
-         */
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "Item " + (position + 1);
+        int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
+        textView.setPadding(padding, padding, padding, padding);
+
+        return textView;
+    }
+
+    private void populateTabStrip() {
+        final PagerAdapter adapter = mViewPager.getAdapter();
+        final View.OnClickListener tabClickListener = new TabClickListener();
+
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View tabView = null;
+            TextView tabTitleView = null;
+
+            if (mTabViewLayoutId != 0) {
+                // If there is a custom tab view layout id set, try and inflate it
+                tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
+                        false);
+                tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+            }
+
+            if (tabView == null) {
+                tabView = createDefaultTabView(getContext());
+            }
+
+            if (tabTitleView == null && TextView.class.isInstance(tabView)) {
+                tabTitleView = (TextView) tabView;
+            }
+
+            tabTitleView.setText(adapter.getPageTitle(i));
+            tabView.setOnClickListener(tabClickListener);
+
+            mTabStrip.addView(tabView);
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        if (mViewPager != null) {
+            scrollToTab(mViewPager.getCurrentItem(), 0);
+        }
+    }
+
+    private void scrollToTab(int tabIndex, int positionOffset) {
+        final int tabStripChildCount = mTabStrip.getChildCount();
+        if (tabStripChildCount == 0 || tabIndex < 0 || tabIndex >= tabStripChildCount) {
+            return;
         }
 
-        /**
-         * Instantiate the {@link View} which should be displayed at {@code position}. Here we
-         * inflate a layout from the apps resources and then change the text view to signify the position.
-         */
+        View selectedChild = mTabStrip.getChildAt(tabIndex);
+        if (selectedChild != null) {
+            int targetScrollX = selectedChild.getLeft() + positionOffset;
+
+            if (tabIndex > 0 || positionOffset > 0) {
+                // If we're not at the first child and are mid-scroll, make sure we obey the offset
+                targetScrollX -= mTitleOffset;
+            }
+
+            scrollTo(targetScrollX, 0);
+        }
+    }
+
+    private class InternalViewPagerListener implements ViewPager.OnPageChangeListener {
+        private int mScrollState;
+
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            // Inflate a new layout from our resources
-            View view = getActivity().getLayoutInflater().inflate(R.layout.pager_item,
-                    container, false);
-            // Add the newly created View to the ViewPager
-            container.addView(view);
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            int tabStripChildCount = mTabStrip.getChildCount();
+            if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
+                return;
+            }
 
-            // Retrieve a TextView from the inflated View, and update it's text
-            TextView title = (TextView) view.findViewById(R.id.item_title);
-            title.setText(String.valueOf(position + 1));
+            mTabStrip.onViewPagerPageChanged(position, positionOffset);
 
-            Log.i(LOG_TAG, "instantiateItem() [position: " + position + "]");
+            View selectedTitle = mTabStrip.getChildAt(position);
+            int extraOffset = (selectedTitle != null)
+                    ? (int) (positionOffset * selectedTitle.getWidth())
+                    : 0;
+            scrollToTab(position, extraOffset);
 
-            // Return the View
-            return view;
+            if (mViewPagerPageChangeListener != null) {
+                mViewPagerPageChangeListener.onPageScrolled(position, positionOffset,
+                        positionOffsetPixels);
+            }
         }
 
-        /**
-         * Destroy the item from the {@link ViewPager}. In our case this is simply removing the
-         * {@link View}.
-         */
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-            Log.i(LOG_TAG, "destroyItem() [position: " + position + "]");
+        public void onPageScrollStateChanged(int state) {
+            mScrollState = state;
+
+            if (mViewPagerPageChangeListener != null) {
+                mViewPagerPageChangeListener.onPageScrollStateChanged(state);
+            }
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
+                mTabStrip.onViewPagerPageChanged(position, 0f);
+                scrollToTab(position, 0);
+            }
+
+            if (mViewPagerPageChangeListener != null) {
+                mViewPagerPageChangeListener.onPageSelected(position);
+            }
         }
 
     }
+
+    private class TabClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            for (int i = 0; i < mTabStrip.getChildCount(); i++) {
+                if (v == mTabStrip.getChildAt(i)) {
+                    mViewPager.setCurrentItem(i);
+                    return;
+                }
+            }
+        }
+    }
+
 }
