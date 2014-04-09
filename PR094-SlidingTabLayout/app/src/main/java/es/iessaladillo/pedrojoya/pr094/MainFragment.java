@@ -20,11 +20,14 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Se obtiene la vista para el fragmento.
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        // Se configura el ViewPager.
         vpPaginador = (ViewPager) rootView.findViewById(R.id.vpPaginador);
         vpPaginador.setAdapter(new PaginasAdapter(getActivity(), getChildFragmentManager()));
+        // Se configura el SlidingTabLayout.
         stTabs = (SlidingTabLayout) rootView.findViewById(R.id.stTabs);
-        // stTabs.setCustomTabView(R.layout.tab_header, R.id.lblTab);
+        stTabs.setCustomTabView(R.layout.tab_header, R.id.lblTab);
         stTabs.setViewPager(vpPaginador);
         stTabs.setSelectedIndicatorColors(
                 getResources().getColor(R.color.color1),
@@ -33,7 +36,7 @@ public class MainFragment extends Fragment {
                 getResources().getColor(R.color.color4),
                 getResources().getColor(R.color.color5)
         );
-        // stTabs.setDividerColors(getResources().getColor(R.color.color2));
+        stTabs.setDividerColors(getResources().getColor(R.color.color2));
         return rootView;
     }
 }

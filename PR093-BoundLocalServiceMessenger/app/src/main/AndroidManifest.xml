@@ -18,7 +18,10 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".servicios.MusicaOnlineService">
+            android:name=".servicios.MusicaOnlineService"
+            android:exported="true"
+            android:process="remote"
+            >
         </service>
     </application>
 

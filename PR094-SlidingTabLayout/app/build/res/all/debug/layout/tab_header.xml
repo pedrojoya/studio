@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textColor="@color/color4"
+    android:textStyle="bold"
+    android:padding="15dp"
+    android:textAllCaps="true"
+    android:id="@+id/lblTab" />
+
+<!-- From: file:/Users/pedro/studio/PR094-SlidingTabLayout/app/src/main/res/layout/tab_header.xml -->

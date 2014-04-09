@@ -16,6 +16,7 @@
     <string name="parar">Parar</string>
     <string name="parar_servicio">Parar servicio</string>
     <string name="reproducir_pausar">Reproducir / Pausar</string>
+    <string name="servicio_musical_detenido">Servicio musical detenido</string>
     <string name="siguiente">Siguiente</string>
     <!-- From: file:/Users/pedro/studio/PR091-BoundLocalService/app/src/main/res/values/styles.xml -->
     <eat-comment />

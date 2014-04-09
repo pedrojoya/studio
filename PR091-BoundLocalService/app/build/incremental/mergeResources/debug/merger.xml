@@ -45,13 +45,15 @@
                 </string>
                 <string name="action_settings" >Settings
                 </string>
+                <string name="app_name" >Música online
+                </string>
                 <string name="parar" >Parar
                 </string>
-                <string name="app_name" >Música online
+                <string name="hello_world" >Hello world!
                 </string>
                 <string name="anterior" >Anterior
                 </string>
-                <string name="hello_world" >Hello world!
+                <string name="servicio_musical_detenido" >Servicio musical detenido
                 </string>
                 <string name="reproducir_pausar" >Reproducir / Pausar
                 </string>

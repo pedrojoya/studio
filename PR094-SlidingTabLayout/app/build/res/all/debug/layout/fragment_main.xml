@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="es.iessaladillo.pedrojoya.pr094.MainActivity$PlaceholderFragment">
+
+    <com.example.android.common.view.SlidingTabLayout
+        android:id="@+id/stTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.view.ViewPager xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/vpPaginador"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity" />
+
+</LinearLayout>
+<!-- From: file:/Users/pedro/studio/PR094-SlidingTabLayout/app/src/main/res/layout/fragment_main.xml -->

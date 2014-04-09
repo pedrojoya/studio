@@ -9,5 +9,6 @@
     <string name="reproducir_pausar">Reproducir / Pausar</string>
     <string name="parar">Parar</string>
     <string name="siguiente">Siguiente</string>
+    <string name="servicio_musical_detenido">Servicio musical detenido</string>
 
 </resources>
