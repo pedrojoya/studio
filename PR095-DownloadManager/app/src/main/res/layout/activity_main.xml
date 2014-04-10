@@ -7,7 +7,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/descargar"
+        android:text="@string/descargar_y_reproducir"
         android:id="@+id/btnDescargar"
         android:layout_centerInParent="true" />
 </RelativeLayout>

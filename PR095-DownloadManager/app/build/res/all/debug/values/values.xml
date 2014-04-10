@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/D:/Documents/GitHub/studio/PR095-DownloadManager/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/Documents/GitHub/studio/PR095-DownloadManager/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="action_settings">Settings</string>
     <string name="app_name">DownloadManager</string>
     <string name="descargar">Descargar</string>
-    <!-- From: file:/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/values/styles.xml -->
+    <string name="descargar_y_reproducir">Descargar y reproducir</string>
+    <!-- From: file:/D:/Documents/GitHub/studio/PR095-DownloadManager/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
