@@ -2,34 +2,39 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res" >
+        <source path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res" >
             <file
                 name="ic_launcher"
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\drawable-hdpi\ic_launcher.png"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/drawable-hdpi/ic_launcher.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\drawable-mdpi\ic_launcher.png"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/drawable-mdpi/ic_launcher.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\drawable-xhdpi\ic_launcher.png"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/drawable-xhdpi/ic_launcher.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\drawable-xxhdpi\ic_launcher.png"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/drawable-xxhdpi/ic_launcher.png"
                 qualifiers="xxhdpi"
                 type="drawable" />
             <file
                 name="activity_main"
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\layout\activity_main.xml"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/layout/activity_main.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\values\dimens.xml"
+                name="activity_main"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/menu/activity_main.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/values/dimens.xml"
                 qualifiers="" >
                 <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
@@ -37,7 +42,7 @@
                 </dimen>
             </file>
             <file
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\values\strings.xml"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/values/strings.xml"
                 qualifiers="" >
                 <string name="siguiente" >Siguiente
                 </string>
@@ -47,19 +52,21 @@
                 </string>
                 <string name="app_name" >DownloadManager
                 </string>
+                <string name="error" >Error en la descarga. Motivo: 
+                </string>
                 <string name="anterior" >Anterior
                 </string>
                 <string name="descargar" >Descargar
                 </string>
-                <string name="descargas" >Descargas
-                </string>
                 <string name="descargar_y_reproducir" >Descargar y reproducir
+                </string>
+                <string name="descargas" >Descargas
                 </string>
                 <string name="descargando" >Estamos descargando la canción...\nLa reproducción comenzará en breve
                 </string>
             </file>
             <file
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\values\styles.xml"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/values/styles.xml"
                 qualifiers="" >
 
                 <style
@@ -70,22 +77,17 @@
                 </style>
             </file>
             <file
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\values-w820dp\dimens.xml"
+                path="/Users/pedro/studio/PR095-DownloadManager/app/src/main/res/values-w820dp/dimens.xml"
                 qualifiers="w820dp" >
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
-            <file
-                name="activity_main"
-                path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\main\res\menu\activity_main.xml"
-                qualifiers=""
-                type="menu" />
         </source>
-        <source path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\build\res\rs\debug" />
-        <source path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\build\res\generated\debug" />
+        <source path="/Users/pedro/studio/PR095-DownloadManager/app/build/res/rs/debug" />
+        <source path="/Users/pedro/studio/PR095-DownloadManager/app/build/res/generated/debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="D:\Documents\GitHub\studio\PR095-DownloadManager\app\src\debug\res" />
+        <source path="/Users/pedro/studio/PR095-DownloadManager/app/src/debug/res" />
     </dataSet>
 
 </merger>

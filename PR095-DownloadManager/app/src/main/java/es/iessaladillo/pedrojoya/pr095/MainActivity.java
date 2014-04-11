@@ -54,52 +54,11 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
             @Override
             public void onReceive(Context context, Intent intent) {
-                // Se obtiene la acción del intent.
-                String accion = intent.getAction();
-                // Se obtiene el id de la descarga.
-                long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0);
-                // Se realiza la consulta para obtener los datos de la descarga.
-                DownloadManager.Query consulta = new DownloadManager.Query();
-                consulta.setFilterById(downloadId);
-                Cursor c = mGestor.query(consulta);
-                if (c != null) {
-                    if (c.moveToFirst()) {
-                        // Dependiendo del estado de la descarga.
-                        int estado = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
-                        switch (estado) {
-                            case DownloadManager.STATUS_SUCCESSFUL:
-                                // Se reproduce la canción a partir de su Uri local.
-                                String sUri = c.getString(
-                                        c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
-                                reproducir(sUri);
-                                break;
-                            case DownloadManager.STATUS_FAILED:
-                                // Se informe del error.
-                                String motivo = c.getString(
-                                        c.getColumnIndex(DownloadManager.COLUMN_REASON));
-                                informarError(motivo);
-                                break;
-                        }
-                    }
-                    // Se cierra el cursor.
-                    c.close();
-                }
+                comprobarDescarga(intent);
+
             }
+
         };
-    }
-
-    // Muestra la actividad estándar de descargas.
-    private void mostrarDescargas() {
-        // Se muestra la actividad estándar de descargas.
-        Intent i = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
-        startActivity(i);
-    }
-
-    @Override
-    protected void onDestroy() {
-        mReproductor.release();
-        mReproductor = null;
-        super.onDestroy();
     }
 
     // Obtiene e inicializa las vistas.
@@ -119,28 +78,6 @@ public class MainActivity extends Activity implements View.OnClickListener,
         lstCanciones.setOnItemClickListener(this);
     }
 
-    // Informa al usuario del motivo del error en la descarga.
-    private void informarError(String motivo) {
-        Toast.makeText(this, "Error: " + motivo, Toast.LENGTH_LONG).show();
-    }
-
-    // Reproduce el audio en base a la uri recibida.
-    private void reproducir(String sUri) {
-// Se crea el mReproductor.
-        try {
-            // Se establecen sus propiedades.
-            mReproductor.reset();
-            mReproductor.setDataSource(this, Uri.parse(sUri)); // Fuente.
-            mReproductor.setAudioStreamType(AudioManager.STREAM_MUSIC); // Música.
-            // La actividad actuará como listener cuando el mReproductor esté preparado.
-            mReproductor.setOnPreparedListener(this);
-            // Se prepara el mReproductor (asíncronamente)
-            mReproductor.prepareAsync();
-        } catch (Exception e) {
-            Log.d("Reproductor", "ERROR: " + e.getMessage());
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -155,6 +92,102 @@ public class MainActivity extends Activity implements View.OnClickListener,
         super.onPause();
         // Se quita el registro del recpetor.
         unregisterReceiver(mReceptor);
+    }
+
+    @Override
+    protected void onDestroy() {
+        mReproductor.release();
+        mReproductor = null;
+        super.onDestroy();
+    }
+
+
+    // Comprueba el estado de la descarga que se ha completado.
+    private void comprobarDescarga(Intent intent) {
+        // Se obtiene el id de la descarga.
+        long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0);
+        // Se realiza la consulta para obtener los datos de la descarga.
+        DownloadManager.Query consulta = new DownloadManager.Query();
+        consulta.setFilterById(downloadId);
+        Cursor c = mGestor.query(consulta);
+        // Se comprueba el registro resultante.
+        if (c != null) {
+            if (c.moveToFirst()) {
+                // Dependiendo del estado de la descarga.
+                int estado = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                switch (estado) {
+                    // Si ha ido bien.
+                    case DownloadManager.STATUS_SUCCESSFUL:
+                        // Se reproduce la canción a partir de su Uri local.
+                        String sUri = c.getString(
+                                c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                        reproducir(sUri);
+                        break;
+                    // Si se ha producido un error.
+                    case DownloadManager.STATUS_FAILED:
+                        // Se informa al usuario del error.
+                        String motivo = c.getString(
+                                c.getColumnIndex(DownloadManager.COLUMN_REASON));
+                        informarError(motivo);
+                        break;
+                }
+            }
+            // Se cierra el cursor.
+            c.close();
+        }
+    }
+
+    // Informa al usuario del motivo del error en la descarga.
+    private void informarError(String motivo) {
+        Toast.makeText(this, getString(R.string.error) + motivo, Toast.LENGTH_LONG).show();
+    }
+
+    // Cuando se pulsa en una canción de la lista.
+    @Override
+    public void onItemClick(AdapterView<?> lst, View v, int position, long id) {
+        // Se descarga la canción.
+        reproducirCancion(position);
+    }
+
+    // Trata de reproducir una canción, descargándola si es necesario.
+    private void reproducirCancion(int position) {
+        // Se establece la canción actual y se muestra en la lista.
+        mPosCancionActual = position;
+        lstCanciones.setItemChecked(position, true);
+        // Si la canción está disponible en local se reproduce y si no se descarga.
+        Cancion cancion = (Cancion)lstCanciones.getItemAtPosition(position);
+        File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+        File fichero = new File(directory, cancion.getNombre() + ".mp4");
+        if (fichero.exists()) {
+            reproducir(Uri.fromFile(fichero).toString());
+        }
+        else {
+            descargar(cancion);
+        }
+    }
+
+    // Reproduce el audio en base a la uri local recibida.
+    private void reproducir(String sUri) {
+        try {
+            // Se configura el reproductor.
+            mReproductor.reset();
+            mReproductor.setDataSource(this, Uri.parse(sUri));
+            mReproductor.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            // Se prepara la reproducción (asíncronamente)
+            mReproductor.setOnPreparedListener(this);
+            mReproductor.prepareAsync();
+        } catch (Exception e) {
+            Log.d("Reproductor", "ERROR: " + e.getMessage());
+        }
+    }
+
+    // Cuando ya está preparada la reproducción.
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        // Se inicia.
+        mReproductor.start();
+        // Se actualiza el icono del botón al de pausar.
+        imgPlay.setImageResource(android.R.drawable.ic_media_pause);
     }
 
     // Descarga una canción.
@@ -174,37 +207,8 @@ public class MainActivity extends Activity implements View.OnClickListener,
                 DownloadManager.Request.VISIBILITY_VISIBLE);
         // Se encola la solicitud.
         mGestor.enqueue(solicitud);
+        // Se informa al usuario.
         Toast.makeText(this, getString(R.string.descargando), Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onPrepared(MediaPlayer mediaPlayer) {
-        // Se inicia la reproducción.
-        mReproductor.start();
-        // Se actualiza el icono al de pausar.
-        imgPlay.setImageResource(android.R.drawable.ic_media_pause);
-    }
-
-    // Cuando se pulsa en una canción de la lista.
-    @Override
-    public void onItemClick(AdapterView<?> lst, View v, int position, long id) {
-        // Se descarga la canción.
-        reproducirCancion(position);
-    }
-
-    // Descarga la canción correspondiente a una posición.
-    private void reproducirCancion(int position) {
-        mPosCancionActual = position;
-        lstCanciones.setItemChecked(position, true);
-        Cancion cancion = (Cancion)lstCanciones.getItemAtPosition(position);
-        File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
-        File fichero = new File(directory, cancion.getNombre() + ".mp4");
-        if (fichero.exists()) {
-            reproducir(Uri.fromFile(fichero).toString());
-        }
-        else {
-            descargar(cancion);
-        }
     }
 
     // Cuando se pulsa en algún botón del panel.
@@ -251,22 +255,6 @@ public class MainActivity extends Activity implements View.OnClickListener,
         reproducirCancion((mPosCancionActual + 1) % lstCanciones.getCount());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.mnuDescargas:
-                mostrarDescargas();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
     // Al pulsar sobre Anterior.
     private void imgAnteriorOnClick() {
         int anterior;
@@ -279,6 +267,28 @@ public class MainActivity extends Activity implements View.OnClickListener,
             anterior = 0;
         }
         reproducirCancion(anterior);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnuDescargas:
+                mostrarDescargas();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Muestra la actividad estándar de descargas.
+    private void mostrarDescargas() {
+        Intent i = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
+        startActivity(i);
     }
 
     // Crea y retorna el ArrayList de canciones.

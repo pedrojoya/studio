@@ -10,5 +10,6 @@
     <string name="siguiente">Siguiente</string>
     <string name="descargando">Estamos descargando la canción...\nLa reproducción comenzará en breve</string>
     <string name="descargas">Descargas</string>
+    <string name="error">Error en la descarga. Motivo: </string>
 
 </resources>
