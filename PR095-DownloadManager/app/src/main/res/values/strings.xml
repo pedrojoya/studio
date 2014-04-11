@@ -5,5 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="descargar">Descargar</string>
     <string name="descargar_y_reproducir">Descargar y reproducir</string>
+    <string name="anterior">Anterior</string>
+    <string name="reproducir_o_pausar">Reproducir o pausar</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="descargando">Estamos descargando la canción...\nLa reproducción comenzará en breve</string>
+    <string name="descargas">Descargas</string>
 
 </resources>
