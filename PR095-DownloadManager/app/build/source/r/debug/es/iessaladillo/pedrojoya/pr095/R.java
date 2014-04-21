@@ -40,8 +40,9 @@ public final class R {
         public static final int descargar_y_reproducir=0x7f050005;
         public static final int descargas=0x7f050006;
         public static final int error=0x7f050007;
-        public static final int reproducir_o_pausar=0x7f050008;
-        public static final int siguiente=0x7f050009;
+        public static final int reproduciendo=0x7f050008;
+        public static final int reproducir_o_pausar=0x7f050009;
+        public static final int siguiente=0x7f05000a;
     }
     public static final class style {
         /**  Customize your theme here. 

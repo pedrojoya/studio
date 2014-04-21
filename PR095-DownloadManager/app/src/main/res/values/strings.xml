@@ -8,7 +8,8 @@
     <string name="anterior">Anterior</string>
     <string name="reproducir_o_pausar">Reproducir o pausar</string>
     <string name="siguiente">Siguiente</string>
-    <string name="descargando">Estamos descargando la canción...\nLa reproducción comenzará en breve</string>
+    <string name="descargando">Descargando...</string>
+    <string name="reproduciendo">Reproduciendo...</string>
     <string name="descargas">Descargas</string>
     <string name="error">Error en la descarga. Motivo: </string>
 

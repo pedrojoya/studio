@@ -30,6 +30,9 @@ public class MainActivity extends Activity implements View.OnClickListener,
         MediaPlayer.OnPreparedListener,
         AdapterView.OnItemClickListener {
 
+    // Constantes.
+    private static final String EXTENSION_ARCHIVO = ".mp4";
+
     // Variables.
     private DownloadManager mGestor;
     private BroadcastReceiver mReceptor;
@@ -54,8 +57,8 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
             @Override
             public void onReceive(Context context, Intent intent) {
+                // Se comprueba el estado de la descarga.
                 comprobarDescarga(intent);
-
             }
 
         };
@@ -96,6 +99,7 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
     @Override
     protected void onDestroy() {
+        // Se liberan los recursos asociados al reproductor.
         mReproductor.release();
         mReproductor = null;
         super.onDestroy();
@@ -116,14 +120,14 @@ public class MainActivity extends Activity implements View.OnClickListener,
                 // Dependiendo del estado de la descarga.
                 int estado = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
                 switch (estado) {
-                    // Si ha ido bien.
+                    // Si la descarga se ha realizado correctamente.
                     case DownloadManager.STATUS_SUCCESSFUL:
                         // Se reproduce la canción a partir de su Uri local.
                         String sUri = c.getString(
                                 c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
                         reproducir(sUri);
                         break;
-                    // Si se ha producido un error.
+                    // Si se ha producido un error en la descarga.
                     case DownloadManager.STATUS_FAILED:
                         // Se informa al usuario del error.
                         String motivo = c.getString(
@@ -154,15 +158,19 @@ public class MainActivity extends Activity implements View.OnClickListener,
         // Se establece la canción actual y se muestra en la lista.
         mPosCancionActual = position;
         lstCanciones.setItemChecked(position, true);
-        // Si la canción está disponible en local se reproduce y si no se descarga.
-        Cancion cancion = (Cancion)lstCanciones.getItemAtPosition(position);
-        File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
-        File fichero = new File(directory, cancion.getNombre() + ".mp4");
-        if (fichero.exists()) {
-            reproducir(Uri.fromFile(fichero).toString());
-        }
-        else {
-            descargar(cancion);
+        // Se comprueba si la canción está disponible en local.
+        Cancion cancion = (Cancion) lstCanciones.getItemAtPosition(position);
+        if (cancion != null) {
+            File directory = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_MUSIC);
+            File fichero = new File(directory, cancion.getNombre() + EXTENSION_ARCHIVO);
+            if (fichero.exists()) {
+                // Se reproduce.
+                reproducir(Uri.fromFile(fichero).toString());
+            } else {
+                // Se descarga.
+                descargar(cancion);
+            }
         }
     }
 
@@ -188,6 +196,8 @@ public class MainActivity extends Activity implements View.OnClickListener,
         mReproductor.start();
         // Se actualiza el icono del botón al de pausar.
         imgPlay.setImageResource(android.R.drawable.ic_media_pause);
+        // Se informa al usuario.
+        Toast.makeText(this, getString(R.string.reproduciendo), Toast.LENGTH_LONG).show();
     }
 
     // Descarga una canción.
@@ -198,8 +208,10 @@ public class MainActivity extends Activity implements View.OnClickListener,
         solicitud.setAllowedNetworkTypes(
                 DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
         solicitud.setAllowedOverRoaming(false);
-        solicitud.setDestinationInExternalPublicDir(Environment.DIRECTORY_MUSIC, cancion.getNombre() + ".mp4");
-        // solicitud.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, "carmen.mp4");
+        solicitud.setDestinationInExternalPublicDir(Environment.DIRECTORY_MUSIC,
+                cancion.getNombre() + EXTENSION_ARCHIVO);
+        // solicitud.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS,
+        //      cancion.getNombre() + EXTENSION_ARCHIVO);
         solicitud.setTitle(cancion.getNombre());
         solicitud.setDescription(cancion.getNombre() + "(" + cancion.getDuracion() + ")");
         solicitud.allowScanningByMediaScanner();
@@ -229,25 +241,25 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
     // Al pulsar sobre reproducir / pausar.
     private void imgPlayOnClick() {
-            // Si ya se está reproduciendo.
-            if (mPosCancionActual >= 0 && mReproductor.isPlaying()) {
-                // Se pausa la reproducción.
-                mReproductor.pause();
-                // Se actualiza el icono al de reproducir.
-                imgPlay.setImageResource(android.R.drawable.ic_media_play);
+        // Si ya se está reproduciendo.
+        if (mPosCancionActual >= 0 && mReproductor.isPlaying()) {
+            // Se pausa la reproducción.
+            mReproductor.pause();
+            // Se actualiza el icono al de reproducir.
+            imgPlay.setImageResource(android.R.drawable.ic_media_play);
+        } else {
+            // Si estábamos en pausa.
+            if (mPosCancionActual >= 0) {
+                // Se continua la reproducción.
+                mReproductor.start();
             } else {
-                // Si estábamos en pausa.
-                if (mPosCancionActual >= 0) {
-                    // Se continua la reproducción.
-                    mReproductor.start();
-                } else {
-                    // Se comienza la reproducción de la primera canción de la
-                    // lista.
-                    reproducirCancion(0);
-                }
-                // Se actualiza el icono al de pausar.
-                imgPlay.setImageResource(android.R.drawable.ic_media_pause);
+                // Se comienza la reproducción de la primera canción de la
+                // lista.
+                reproducirCancion(0);
             }
+            // Se actualiza el icono al de pausar.
+            imgPlay.setImageResource(android.R.drawable.ic_media_pause);
+        }
     }
 
     // Al pulsar sobre Siguiente.
@@ -279,6 +291,7 @@ public class MainActivity extends Activity implements View.OnClickListener,
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuDescargas:
+                // Se muesta la actividad estándar de descargas.
                 mostrarDescargas();
                 return true;
         }
