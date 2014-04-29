@@ -14,5 +14,10 @@
     <string name="actualizando">Actualizando...</string>
     <string name="de"> de </string>
     <string name="title_activity_resultado">ResultadoActivity</string>
+    <string name="enviar_texto">Enviar texto</string>
+    <string name="enviar">Enviar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="ver">Ver</string>
+    <string name="desde_actividad_principal">Desde la actividad principal</string>
 
 </resources>
