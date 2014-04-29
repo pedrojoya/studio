@@ -23,6 +23,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static final int NC_INBOX = 3;
     private static final int NC_PROGRESS = 4;
     private static final int NC_IND_PROGRESS = 5;
+    private static final int RC_BIG_TEXT_VIEW = 1;
+    private static final int RC_BIG_TEXT_SEND = 2;
+    private static final int RC_BIG_TEXT_DELETE = 3;
+    private static final int RC_BIG_PICTURE_VIEW = 4;
+    private static final int RC_INBOX_VIEW = 5;
+    private static final int RC_PROGRESS_VIEW = 6;
+    private static final int RC_IND_PROGRESS_VIEW = 7;
 
     // Variables a nivel de clase.
     private NotificationManager mGestor;
@@ -86,33 +93,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
             b.setLargeIcon(iconoGrande);
         }
         b.setSmallIcon(R.drawable.ic_calendar)
-                .setContentTitle("Content Title")
-                .setContentText("Content Text")
-                .setContentInfo("Content Info")
-                .setTicker("Ticker")
+                .setContentTitle(getString(R.string.content_title))
+                .setContentText(getString(R.string.content_text))
+                .setContentInfo(getString(R.string.content_info))
+                .setTicker(getString(R.string.ticker))
                 .setAutoCancel(true);
         // Se configuran los elementos para el modo expandido.
         NotificationCompat.BigTextStyle estilo = new NotificationCompat.BigTextStyle();
-        estilo.setBigContentTitle("Big Content Title")
-                .bigText("Big Text: Lorem ipsum dolor sit amet, consectetuer adipiscing " +
-                        "elit, sed diam " +
-                        "nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat " +
-                        "volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation " +
-                        "ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.")
-                .setSummaryText("Summary Text");
+        estilo.setBigContentTitle(getString(R.string.big_content_title))
+                .bigText(getString(R.string.big_text))
+                .setSummaryText(getString(R.string.summary_text));
         b.setStyle(estilo);
         // Se añade la acción de enviar.
-        Intent iEnviar = ResultadoActivity.createIntent(this, getString(R.string.enviar));
+        Intent iEnviar = new Intent(this, ResultadoActivity.class);
+        iEnviar.setAction(ResultadoActivity.ACTION_SEND);
         iEnviar.putExtra(ResultadoActivity.EXTRA_NOTIFICATION_CODE, NC_BIG_TEXT);
         PendingIntent piEnviar = getPendingIntentForRegularActivity(iEnviar);
         b.addAction(android.R.drawable.ic_menu_send, getString(R.string.enviar), piEnviar);
         // Se añade la acción de eliminar.
-        Intent iEliminar = ResultadoActivity.createIntent(this, getString(R.string.eliminar));
+        Intent iEliminar = new Intent(this, ResultadoActivity.class);
+        iEliminar.setAction(ResultadoActivity.ACTION_DELETE);
         iEliminar.putExtra(ResultadoActivity.EXTRA_NOTIFICATION_CODE, NC_BIG_TEXT);
         PendingIntent piEliminar = getPendingIntentForRegularActivity(iEliminar);
         b.addAction(android.R.drawable.ic_menu_delete, getString(R.string.eliminar), piEliminar);
         // Se añade la acción por defecto.
-        Intent iVer = ResultadoActivity.createIntent(this, getString(R.string.ver));
+        Intent iVer = new Intent(this, ResultadoActivity.class);
+        iVer.setAction(ResultadoActivity.ACTION_VIEW);
         PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
         b.setContentIntent(piVer);
         // Se realiza la notificación.
@@ -130,20 +136,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
             b.setLargeIcon(iconoGrande);
         }
         b.setSmallIcon(R.drawable.ic_calendar)
-                .setContentTitle("Content Title")
-                .setContentText("Content Text")
-                .setContentInfo("Content Info")
-                .setTicker("Ticker")
+                .setContentTitle(getString(R.string.content_title))
+                .setContentText(getString(R.string.content_text))
+                .setContentInfo(getString(R.string.content_info))
+                .setTicker(getString(R.string.ticker))
                 .setAutoCancel(true);
         // Se configuran los elementos para el modo expandido.
         NotificationCompat.BigPictureStyle estilo = new NotificationCompat.BigPictureStyle();
-        estilo.setBigContentTitle("Big Content Title")
+        estilo.setBigContentTitle(getString(R.string.big_content_title))
                 .bigPicture(BitmapFactory.decodeResource(getResources(),
                         R.drawable.sunset))
-                .setSummaryText("Summary Text");
+                .setSummaryText(getString(R.string.summary_text));
         b.setStyle(estilo);
         // Se añade la acción por defecto.
-        Intent iVer = ResultadoActivity.createIntent(this, getString(R.string.ver));
+        Intent iVer = new Intent(this, ResultadoActivity.class);
+        iVer.setAction(ResultadoActivity.ACTION_VIEW);
         PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
         b.setContentIntent(piVer);
         // Se realiza la notificación.
@@ -161,23 +168,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
             b.setLargeIcon(iconoGrande);
         }
         b.setSmallIcon(R.drawable.ic_calendar)
-                .setContentTitle("Content Title")
-                .setContentText("Content Text")
-                .setContentInfo("Content Info")
-                .setTicker("Ticker")
+                .setContentTitle(getString(R.string.content_title))
+                .setContentText(getString(R.string.content_text))
+                .setContentInfo(getString(R.string.content_info))
+                .setTicker(getString(R.string.ticker))
                 .setAutoCancel(true);
         // Se configuran los elementos para el modo expandido.
         NotificationCompat.InboxStyle estilo = new NotificationCompat.InboxStyle();
-        estilo.setBigContentTitle("Big Content Title")
-                .addLine("Line 1")
-                .addLine("Line 2")
-                .addLine("Line 3")
-                .addLine("Line 4")
-                .addLine("Line 5")
-                .setSummaryText("Summary Text");
+        estilo.setBigContentTitle(getString(R.string.big_content_title));
+        for (int i = 0; i < 5; i++) {
+            estilo.addLine(getString(R.string.line) + " " + (i + 1));
+        }
+        estilo.setSummaryText(getString(R.string.summary_text));
         b.setStyle(estilo);
         // Se añade la acción por defecto.
-        Intent iVer = ResultadoActivity.createIntent(this, getString(R.string.ver));
+        Intent iVer = new Intent(this, ResultadoActivity.class);
+        iVer.setAction(ResultadoActivity.ACTION_VIEW);
         PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
         b.setContentIntent(piVer);
         // Se realiza la notificación.
@@ -262,7 +268,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     .setProgress(0, 0, false)
                     .setAutoCancel(true);
             // Se añade la acción por defecto.
-            Intent iVer = ResultadoActivity.createIntent(MainActivity.this, getString(R.string.ver));
+            Intent iVer = new Intent(MainActivity.this, ResultadoActivity.class);
+            iVer.setAction(ResultadoActivity.ACTION_VIEW);
             PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
             mBuilder.setContentIntent(piVer);
             // Se muestra la notificación.
@@ -318,7 +325,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     .setProgress(0, 0, false)
                     .setAutoCancel(true);
             // Se añade la acción por defecto.
-            Intent iVer = ResultadoActivity.createIntent(MainActivity.this, getString(R.string.ver));
+            Intent iVer = new Intent(MainActivity.this, ResultadoActivity.class);
+            iVer.setAction(ResultadoActivity.ACTION_VIEW);
             PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
             mBuilder.setContentIntent(piVer);
             // Se muestra la notificación.
@@ -335,12 +343,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // Similar a llamar primero a addParentStack y luego a addNextIntent.
         pila.addNextIntentWithParentStack(intent);
         // Se retorna un PendingIntent que contiene la pila al completo.
-        return pila.getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT);
+        return pila.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     // Muestra la actividad de resultado.
     private void verResultado() {
-        Intent i = ResultadoActivity.createIntent(this, getString(R.string.desde_actividad_principal));
+        Intent i = new Intent(MainActivity.this, ResultadoActivity.class);
         startActivity(i);
     }
 

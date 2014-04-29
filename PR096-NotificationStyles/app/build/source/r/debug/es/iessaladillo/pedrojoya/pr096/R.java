@@ -1056,19 +1056,28 @@ containing a value of this type.
         public static final int actualizacion_de_datos=0x7f0a000e;
         public static final int actualizando=0x7f0a000f;
         public static final int app_name=0x7f0a0010;
-        public static final int big_picture_style=0x7f0a0011;
-        public static final int big_text_style=0x7f0a0012;
-        public static final int de=0x7f0a0013;
-        public static final int eliminar=0x7f0a0014;
-        public static final int enviar=0x7f0a0015;
-        public static final int enviar_texto=0x7f0a0016;
-        public static final int hello_world=0x7f0a0017;
-        public static final int inbox_style=0x7f0a0018;
-        public static final int operacion_finalizada=0x7f0a0019;
-        public static final int progreso_indeterminado=0x7f0a001a;
-        public static final int progress_bar=0x7f0a001b;
-        public static final int title_activity_resultado=0x7f0a001c;
-        public static final int ver=0x7f0a001d;
+        public static final int big_content_title=0x7f0a0011;
+        public static final int big_picture_style=0x7f0a0012;
+        public static final int big_text=0x7f0a0013;
+        public static final int big_text_style=0x7f0a0014;
+        public static final int content_info=0x7f0a0015;
+        public static final int content_text=0x7f0a0016;
+        public static final int content_title=0x7f0a0017;
+        public static final int de=0x7f0a0018;
+        public static final int desde_actividad_principal=0x7f0a0019;
+        public static final int eliminar=0x7f0a001a;
+        public static final int enviar=0x7f0a001b;
+        public static final int enviar_texto=0x7f0a001c;
+        public static final int hello_world=0x7f0a001d;
+        public static final int inbox_style=0x7f0a001e;
+        public static final int line=0x7f0a001f;
+        public static final int operacion_finalizada=0x7f0a0020;
+        public static final int progreso_indeterminado=0x7f0a0021;
+        public static final int progress_bar=0x7f0a0022;
+        public static final int summary_text=0x7f0a0023;
+        public static final int ticker=0x7f0a0024;
+        public static final int title_activity_resultado=0x7f0a0025;
+        public static final int ver=0x7f0a0026;
     }
     public static final class style {
         /**  Customize your theme here. 

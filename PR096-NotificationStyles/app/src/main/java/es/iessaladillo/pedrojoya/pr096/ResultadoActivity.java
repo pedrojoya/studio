@@ -10,32 +10,44 @@ import android.widget.TextView;
 
 public class ResultadoActivity extends Activity {
 
-    private static final String EXTRA_MENSAJE = "mensaje";
+    // Constantes.
     public static final String EXTRA_NOTIFICATION_CODE = "nc";
+    public static final String ACTION_VIEW = "es.iessaladillo.pedrojoya.pr096.action.VIEW";
+    public static final String ACTION_SEND = "es.iessaladillo.pedrojoya.pr096.action.SEND";
+    public static final String ACTION_DELETE = "es.iessaladillo.pedrojoya.pr096.action.DELETE";
 
+    // Al crear la actividad.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
         TextView lblMensaje = (TextView) findViewById(R.id.lblMensaje);
+        // Se obtiene el gestor de notificaciones por si hay que cancelar alguna.
+        NotificationManager gestor =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        // Se el intent con el que ha sido llamado.
         Intent i = getIntent();
         if (i != null) {
-            if (i.hasExtra(EXTRA_MENSAJE)) {
-                lblMensaje.setText(i.getStringExtra(EXTRA_MENSAJE));
+            // Dependiendo de la acción especificada.
+            String accion = i.getAction();
+            if (ACTION_SEND.equals(accion)) {
+                lblMensaje.setText(getString(R.string.enviar));
+                if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
+                    int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
+                    gestor.cancel(nc);
+                }
             }
-            if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
-                int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
-                NotificationManager gestor =
-                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                gestor.cancel(nc);
+            else if (ACTION_DELETE.equals(accion)) {
+                lblMensaje.setText(getString(R.string.eliminar));
+                if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
+                    int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
+                    gestor.cancel(nc);
+                }
+            }
+            else {
+                lblMensaje.setText(getString(R.string.ver));
             }
         }
-    }
-
-    public static Intent createIntent(Context contexto, String mensaje) {
-        Intent i = new Intent(contexto, ResultadoActivity.class);
-        i.putExtra(EXTRA_MENSAJE, mensaje);
-        return i;
     }
 
 }

@@ -19,5 +19,13 @@
     <string name="eliminar">Eliminar</string>
     <string name="ver">Ver</string>
     <string name="desde_actividad_principal">Desde la actividad principal</string>
+    <string name="content_title">Content Title</string>
+    <string name="content_text">Content Text</string>
+    <string name="content_info">Content Info</string>
+    <string name="ticker">Ticker</string>
+    <string name="big_text">Big Text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</string>
+    <string name="big_content_title">Big Content Title</string>
+    <string name="summary_text">Summary Text</string>
+    <string name="line">Line</string>
 
 </resources>

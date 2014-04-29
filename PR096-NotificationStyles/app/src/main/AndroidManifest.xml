@@ -23,6 +23,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="es.iessaladillo.pedrojoya.pr096.MainActivity" />
+            <intent-filter>
+                <action android:name="es.iessaladillo.pedrojoya.pr096.action.VIEW" />
+                <action android:name="es.iessaladillo.pedrojoya.pr096.action.SEND" />
+                <action android:name="es.iessaladillo.pedrojoya.pr096.action.DELETE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
