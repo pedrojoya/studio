@@ -9,6 +9,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:label="@string/title_activity_resultado" android:name="es.iessaladillo.pedrojoya.pr096.ResultadoActivity" android:parentActivityName="es.iessaladillo.pedrojoya.pr096.MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="es.iessaladillo.pedrojoya.pr096.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

@@ -46,6 +46,13 @@
         android:id="@+id/btnProgresoIndeterminado"
         android:layout_below="@+id/btnProgressBar"
         android:layout_marginTop="@dimen/activity_vertical_margin" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resultado"
+        android:id="@+id/btnResultado"
+        android:layout_below="@+id/btnProgresoIndeterminado"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
 </RelativeLayout>
 <!-- From: file:/Users/pedro/studio/PR096-NotificationStyles/app/src/main/res/layout/activity_main.xml -->

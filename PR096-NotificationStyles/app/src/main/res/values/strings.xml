@@ -9,5 +9,10 @@
     <string name="inbox_style">Inbox Style</string>
     <string name="progress_bar">Progress Bar</string>
     <string name="progreso_indeterminado">Progreso indeterminado</string>
+    <string name="operacion_finalizada">Operación finalizada</string>
+    <string name="actualizacion_de_datos">Actualización de datos</string>
+    <string name="actualizando">Actualizando...</string>
+    <string name="de"> de </string>
+    <string name="title_activity_resultado">ResultadoActivity</string>
 
 </resources>

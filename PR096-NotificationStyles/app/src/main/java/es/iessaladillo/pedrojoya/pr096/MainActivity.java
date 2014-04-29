@@ -1,24 +1,18 @@
 package es.iessaladillo.pedrojoya.pr096;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
-import java.security.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -49,6 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ((Button) findViewById(R.id.btnInboxStyle)).setOnClickListener(this);
         ((Button) findViewById(R.id.btnProgressBar)).setOnClickListener(this);
         ((Button) findViewById(R.id.btnProgresoIndeterminado)).setOnClickListener(this);
+        ((Button) findViewById(R.id.btnResultado)).setOnClickListener(this);
     }
 
     @Override
@@ -69,7 +64,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.btnProgresoIndeterminado:
                 notificarProgresoIndeterminado();
                 break;
+            case R.id.btnResultado:
+                goToResultado();
+                break;
         }
+    }
+
+    private void goToResultado() {
+        Intent i = ResultadoActivity.getIntent(this, "Vengo desde la actividad principal");
+        startActivity(i);
     }
 
     private NotificationCompat.Builder crearNotificacionSimple() {
@@ -136,86 +139,134 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void notificarProgressBar() {
-        // Se crea el constructor de notificaciones.
-        final NotificationCompat.Builder b = new NotificationCompat.Builder(this);
-        // Se configuran los elementos básicos de la notificación.
-        b.setSmallIcon(R.drawable.ic_calendar); // Icono pequeño.
-        // Al no especificar el icono grande se utiliza en su lugar el pequeño, que ya no se
-        // muestra abajo a la derecha.
-        b.setContentTitle("Content Title"); // Título (1ª línea).
-        b.setContentText("Content Text"); // Texto (2º línea).
-        // Ojo, no se puede poner SubText o ContentInfo, o no se mostrará la ProgressBar.
-        b.setTicker("Ticker");  // Ticker.
-        // Se crea e inicia un hilo secundario que actualiza la progress bar.
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        int incr;
-                        // Operación larga con 10 pasos.
-                        for (incr = 0; incr < 100; incr+=10) {
-                            // Se establece el progreso determinado con un máximo de 100.
-                            b.setProgress(100, incr, false);
-                            b.setContentInfo(incr + " %");
-                            // Se muestra (actualiza) la notificación.
-                            mGestor.notify(PROGRESS_BAR_NOTIF, b.build());
-                            // Se simula la duración del paso (1 segundo).
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        // Cuando la operación ha concluido se actualiza el Content Text.
-                        b.setContentText("Operación completada");
-                        // Se elimina la Progress Bar de la notificación (poniendo el límite a 0).
-                        b.setProgress(0, 0, false);
-                        b.setContentInfo("100 %");
-                        b.setTicker("Operación completada");
-                        // Se actualiza la notificación.
-                        mGestor.notify(PROGRESS_BAR_NOTIF, b.build());
-                    }
-                }
-        ).start();
+        // Se ejecuta la tarea asíncrona de actualización por pasos.
+        new ActualizacionPorPasosTask().execute();
     }
 
     private void notificarProgresoIndeterminado() {
-        // Se crea el constructor de notificaciones.
-        final NotificationCompat.Builder b = new NotificationCompat.Builder(this);
-        // Se configuran los elementos básicos de la notificación.
-        b.setSmallIcon(R.drawable.ic_calendar); // Icono pequeño.
-        b.setLargeIcon(((BitmapDrawable) getResources().getDrawable(R.drawable.ic_launcher))
-                .getBitmap()); // Icono grande.
-        b.setContentTitle("Content Title"); // Título (1ª línea).
-        b.setContentText("Content Text"); // Texto (2º línea).
-        // Ojo, no se puede poner SubText o ContentInfo, o no se mostrará la ProgressBar.
-        b.setTicker("Ticker");  // Ticker.
-        // Se crea e inicia un hilo secundario que actualiza la progress bar.
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        // Se muestra la progress bar indeterminada.
-                        b.setProgress(0, 0, true);
-                        // Se muestra la notificación.
-                        mGestor.notify(INDETERMINATE_PROGRESS_NOTIF, b.build());
-                        // Se simula la duración de la operación (10 segundos).
-                        try {
-                            Thread.sleep(10 * 1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        // Cuando la operación ha concluido se actualiza el Content Text.
-                        b.setContentText("Operación completada");
-                        // Se elimina la Progress Bar de la notificación (poniendola como
-                        // determinada con límite 0).
-                        b.setProgress(0, 0, false);
-                        b.setTicker("Operación completada");
-                        // Se actualiza la notificación.
-                        mGestor.notify(INDETERMINATE_PROGRESS_NOTIF, b.build());
-                    }
+        // Se ejecuta la tarea asíncrona de actualización por pasos.
+        new ActualizacionIndeterminadaTask().execute();
+    }
+
+    private class ActualizacionPorPasosTask extends AsyncTask<Void, Integer, Void> {
+
+        private static final int NUM_PASOS = 10;
+        NotificationCompat.Builder mBuilder;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            for (int i = 0; i < NUM_PASOS; i++) {
+                // Se simula la ejecución de un paso (1 segundo).
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-        ).start();
+                // Se publica el progreso.
+                publishProgress(i + 1);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Se muestra la notificación inicial.
+            mBuilder = new NotificationCompat.Builder(MainActivity.this);
+            mBuilder.setSmallIcon(R.drawable.ic_calendar)
+                    .setLargeIcon(((BitmapDrawable) getResources()
+                            .getDrawable(R.drawable.ic_launcher)).getBitmap())
+                    .setContentTitle(getString(R.string.actualizacion_de_datos))
+                    .setContentText(getString(R.string.actualizando))
+                    .setTicker(getString(R.string.actualizacion_de_datos))
+                    .setProgress(NUM_PASOS, 0, false);
+            mGestor.notify(PROGRESS_BAR_NOTIF, mBuilder.build());
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            int paso = values[0];
+            // Se actualiza la notificación.
+            mBuilder.setProgress(NUM_PASOS, paso, false)
+                    .setContentText(getString(R.string.actualizando) +
+                            " (" + paso + " " + getString(R.string.de) + " " + NUM_PASOS + ")");
+            mGestor.notify(PROGRESS_BAR_NOTIF, mBuilder.build());
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            // Se crea el intent que será enviado al pulsar la notificación.
+            Intent intent = ResultadoActivity.getIntent(MainActivity.this,
+                    getString(R.string.operacion_finalizada));
+            // Se muestra la notificación final.
+            mBuilder.setContentText(getString(R.string.operacion_finalizada))
+                    .setTicker(getString(R.string.operacion_finalizada))
+                    .setProgress(0, 0, false)
+                    .setContentIntent(getPendingIntentForRegularActivity(intent))
+                    .setAutoCancel(true);
+            mGestor.notify(PROGRESS_BAR_NOTIF, mBuilder.build());
+        }
+
+    }
+
+    private class ActualizacionIndeterminadaTask extends AsyncTask<Void, Void, Void> {
+
+        NotificationCompat.Builder mBuilder;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Se muestra la notificación inicial.
+            mBuilder = new NotificationCompat.Builder(MainActivity.this);
+            mBuilder.setSmallIcon(R.drawable.ic_calendar)
+                    .setLargeIcon(((BitmapDrawable) getResources()
+                            .getDrawable(R.drawable.ic_launcher)).getBitmap())
+                    .setContentTitle(getString(R.string.actualizacion_de_datos))
+                    .setContentText(getString(R.string.actualizando))
+                    .setTicker(getString(R.string.actualizacion_de_datos))
+                    .setProgress(0, 0, true);
+            mGestor.notify(INDETERMINATE_PROGRESS_NOTIF, mBuilder.build());
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // Se simula la ejecución de la operación (10 segundo).
+            try {
+                Thread.sleep(10 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            // Se crea el intent que será enviado al pulsar la notificación.
+            Intent intent = ResultadoActivity.getIntent(MainActivity.this,
+                    getString(R.string.operacion_finalizada));
+            // Se muestra la notificación final.
+            mBuilder.setContentText(getString(R.string.operacion_finalizada))
+                    .setTicker(getString(R.string.operacion_finalizada))
+                    .setProgress(0, 0, false)
+                    .setContentIntent(getPendingIntentForRegularActivity(intent))
+                    .setAutoCancel(true);
+            mGestor.notify(INDETERMINATE_PROGRESS_NOTIF, mBuilder.build());
+        }
+
+    }
+
+    // Crea un pending intent para la actividad normal. Recibe el intent que será enviado
+    // cuando se pulse sobre la notificación.
+    private PendingIntent getPendingIntentForRegularActivity(Intent intent) {
+        // Se crea la pila de navegación.
+        TaskStackBuilder pila = TaskStackBuilder.create(this);
+        // Similar a llamar primero a addParentStack y luego a addNextIntent.
+        pila.addNextIntentWithParentStack(intent);
+        // Se retorna un PendingIntent que contiene la pila al completo.
+        return pila.getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT);
     }
 
 }

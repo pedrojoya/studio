@@ -546,13 +546,18 @@
     <eat-comment />
 
     <string name="action_settings">Settings</string>
+    <string name="actualizacion_de_datos">Actualización de datos</string>
+    <string name="actualizando">Actualizando...</string>
     <string name="app_name">Notificaciones</string>
     <string name="big_picture_style">Big Picture Style</string>
     <string name="big_text_style">Big Text Style</string>
+    <string name="de"> de </string>
     <string name="hello_world">Hello world!</string>
     <string name="inbox_style">Inbox Style</string>
+    <string name="operacion_finalizada">Operación finalizada</string>
     <string name="progreso_indeterminado">Progreso indeterminado</string>
     <string name="progress_bar">Progress Bar</string>
+    <string name="title_activity_resultado">ResultadoActivity</string>
     <!-- From: file:/Users/pedro/studio/PR096-NotificationStyles/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
