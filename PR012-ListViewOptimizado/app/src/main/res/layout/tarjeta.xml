@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tarjeta_fondo"
+    tools:ignore="HardcodedText" >
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="@dimen/tarjeta_foto_width"
+        android:layout_height="@dimen/tarjeta_foto_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/foto_del_alumno"
+        android:src="@drawable/foto" />
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lblCiclo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imgFoto"
+        android:gravity="center"
+        android:padding="@dimen/tarjeta_nombre_padding"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tarjeta_divider_height"
+        android:layout_alignBottom="@+id/imgFoto"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/imgFoto"
+        android:background="@android:drawable/divider_horizontal_textfield" />
+
+    <TextView
+        android:id="@+id/lblCiclo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/divider"
+        android:layout_marginBottom="@dimen/tarjeta_margin"
+        android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/imgFoto"
+        android:background="@drawable/tag_fondo"
+        android:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/lblCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/divider"
+        android:layout_marginBottom="@dimen/tarjeta_margin"
+        android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/lblCiclo"
+        android:background="@drawable/tag_fondo"
+        android:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/lblEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/divider"
+        android:layout_marginBottom="@dimen/tarjeta_margin"
+        android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/lblCurso"
+        android:background="@drawable/edad_fondo_mayor"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/lblRepetidor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/tarjeta_repetidor_background"
+        android:paddingBottom="@dimen/tarjeta_repetidor_verticalPadding"
+        android:paddingLeft="@dimen/tarjeta_repetidor_horizontalPadding"
+        android:paddingRight="@dimen/tarjeta_repetidor_horizontalPadding"
+        android:paddingTop="@dimen/tarjeta_repetidor_verticalPadding"
+        android:rotation="-45"
+        android:text="REP"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tarjeta_repetidor_textSize"
+        android:translationX="@dimen/tarjeta_repetidor_translationX"
+        android:translationY="@dimen/tarjeta_repetidor_translationY"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/vCentroHorizontal"
+        android:layout_width="@dimen/tarjeta_margin"
+        android:layout_height="0dp"
+        android:layout_below="@+id/divider"
+        android:layout_centerHorizontal="true" />
+
+    <include
+        android:id="@+id/llModulo1"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        android:layout_toLeftOf="@+id/llModulo2"
+        layout="@layout/modulo" />
+
+    <include
+        android:id="@+id/llModulo2"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        android:layout_toLeftOf="@+id/vCentroHorizontal"
+        layout="@layout/modulo" />
+
+    <include
+        android:id="@+id/llModulo3"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/vCentroHorizontal"
+        layout="@layout/modulo" />
+
+    <include
+        android:id="@+id/llModulo4"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/llModulo3"
+        layout="@layout/modulo" />
+
+    <include
+        android:id="@+id/llModulo5"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/llModulo1"
+        android:layout_below="@+id/llModulo1"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        layout="@layout/modulo" />
+
+    <include
+        android:id="@+id/llModulo6"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/llModulo2"
+        android:layout_below="@+id/llModulo2"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/llModulo5"
+        layout="@layout/modulo" />
+
+    <include
+        android:id="@+id/llModulo7"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/llModulo3"
+        android:layout_below="@+id/llModulo3"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/llModulo6"
+        layout="@layout/modulo" />
+
+    <include
+        android:id="@+id/llModulo8"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/llModulo4"
+        android:layout_below="@+id/llModulo4"
+        android:layout_marginTop="@dimen/tarjeta_margin"
+        android:layout_toRightOf="@+id/llModulo7"
+        layout="@layout/modulo" />
+
+</RelativeLayout>

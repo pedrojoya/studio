@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/texto_background" >
+
+    <TextView
+        android:id="@+id/lblCabecera"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:text="@string/panel_de_mensajes" />
+
+    <ScrollView
+        android:id="@+id/scvTexto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llPanel"
+        android:layout_below="@+id/lblCabecera"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin" >
+
+        <TextView
+            android:id="@+id/lblTexto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#E5DAE6"
+        android:padding="@dimen/panel_padding" >
+
+        <EditText
+            android:id="@+id/txtMensaje"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:hint="@string/mensaje"
+            android:maxLines="5"
+            android:inputType="textMultiLine"
+            android:imeOptions="actionDone" >
+
+            <requestFocus />
+        </EditText>
+
+        <ImageView
+            android:id="@+id/btnEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/panel_padding"
+            android:src="@android:drawable/ic_menu_send"
+            android:padding="@dimen/button_padding"
+            android:clickable="true"
+            android:contentDescription="@string/enviar" />
+    </LinearLayout>
+
+</RelativeLayout>

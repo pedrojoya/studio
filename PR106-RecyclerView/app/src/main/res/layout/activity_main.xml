@@ -1,0 +1,60 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lstAlumnos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="56dp"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/lblNoHayAlumnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="@dimen/empty_drawablePadding"
+        android:drawableTop="@drawable/ic_no_hay_alumnos"
+        android:text="@string/no_hay_alumnos"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageButton
+        android:id="@+id/btnAgregar"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/add_button_margin"
+        android:layout_marginRight="@dimen/add_button_margin"
+        android:background="@drawable/oval"
+        android:contentDescription="@string/agregar"
+        android:elevation="@dimen/elevation_high"
+        android:padding="16dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_agregar"
+        android:stateListAnimator="@anim/button_elevation"
+        android:tint="@android:color/white" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="bottom"
+        android:background="@color/BottomBar"
+        >
+        <TextView
+            android:id="@+id/lblNumAlumnos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="16dp"
+            android:text="Alumnos de 2º CFGS DAM"
+            />
+
+    </FrameLayout>
+
+</FrameLayout>
+
+
+

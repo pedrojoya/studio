@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="editext_focused">#123849</color>
+    <color name="editext_notfocused">#4F849A</color>
+</resources>

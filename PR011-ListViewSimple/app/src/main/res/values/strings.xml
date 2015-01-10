@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ListView simple</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="title_activity_main">ListView simple</string>
+    <string name="listado_de_alumnos">Listado de Alumnos</string>
+    <string-array name="alumnos">
+        <item>Baldomero</item>
+        <item>Gervasio</item>
+        <item>Filomeno</item>
+        <item>Prudencio</item>
+        <item>Casimiro</item>
+        <item>Fulgencio</item>
+        <item>Genaro</item>
+        <item>Rigoberto</item>
+        <item>Atanasio</item>
+	</string-array>
+    <string name="ha_pulsado_sobre">"Ha pulsado sobre "</string>
+    <string name="nombre">(Nombre)</string>
+    <string name="agregar">Agregar</string>
+    <string name="no_hay_alumnos">No hay alumnos</string>
+</resources>

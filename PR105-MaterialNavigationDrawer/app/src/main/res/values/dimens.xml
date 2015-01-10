@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="statusBarPaddingTop">0dp</dimen>
+    <dimen name="navigation_drawer_paddingLeft">16dp</dimen>
+    <dimen name="navigation_drawer_paddingRight">16dp</dimen>
+    <dimen name="navigation_drawer_header_height">178dp</dimen>
+    <dimen name="navigation_drawer_header_textBox_height">56dp</dimen>
+    <dimen name="navigation_drawer_header_marginBottom">8dp</dimen>
+
+</resources>

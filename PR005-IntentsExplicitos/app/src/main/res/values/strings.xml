@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Intents Explícitos</string>
+    <string name="datos_alumno">Datos del alumno</string>
+    <string name="no_disponibles">(no disponibles)</string>
+    <string name="solicitar">Solicitar</string>
+    <string name="nombre">Nombre</string>
+    <string name="edad">Edad</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="nombre_completo">(nombre completo)</string>
+    <string name="edad_hint">(edad)</string>
+    
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScrollView</string>
+    <string name="enviar">Enviar</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="panel_de_mensajes">Panel de mensajes</string>
+</resources>

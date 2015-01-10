@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lblModulo"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/asignatura_fondo"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tarjeta_modulo_textSize" />
+
+    <TextView
+        android:id="@+id/lblNotaModulo"
+        android:layout_width="@dimen/tarjeta_modulo_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/nota_fondo"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</LinearLayout>

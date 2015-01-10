@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- MainActivity -->
+    <dimen name="panel_margin">8dp</dimen>
+    <!-- Boton -->
+    <dimen name="boton_cornersRadius">4dp</dimen>
+    <dimen name="boton_padding">4dp</dimen>
+    <dimen name="boton_size">48dp</dimen>
+    <!-- Divider -->
+    <dimen name="divider_height">2dp</dimen>
+    <dimen name="divider_padding">10dp</dimen>
+    <!-- ListDivider -->
+    <dimen name="listdivider_height">0.5dp</dimen>
+    <!-- Empty View -->
+    <dimen name="empty_drawablePadding">10dp</dimen>
+
+</resources>
