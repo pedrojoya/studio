@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Localidad -->
+    <EditTextPreference
+        android:key="@string/prefLocalidadKey"
+        android:title="Localidad"
+        android:defaultValue="Madrid"
+        android:selectAllOnFocus="true"
+        android:inputType="text"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <!-- Unidad de medida -->
+    <ListPreference
+        android:key="@string/prefUnidadKey"
+        android:title="Unidad de medida"
+        android:defaultValue="metric"
+        android:entries="@array/pref_unidad_entries"
+        android:entryValues="@array/pref_unidad_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+</PreferenceScreen>

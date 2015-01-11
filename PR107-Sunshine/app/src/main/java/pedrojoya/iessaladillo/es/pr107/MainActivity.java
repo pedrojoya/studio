@@ -1,12 +1,16 @@
 package pedrojoya.iessaladillo.es.pr107;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends ActionBarActivity implements ParteFragment.CallbackListener {
+public class MainActivity extends ActionBarActivity implements MeteoFragment.CallbackListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +20,10 @@ public class MainActivity extends ActionBarActivity implements ParteFragment.Cal
         // el fragmento principal.
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frlContenedor, ParteFragment.newInstance("Madrid"))
+                    .add(R.id.frlContenedor, MeteoFragment.newInstance("Madrid"))
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,14 +41,35 @@ public class MainActivity extends ActionBarActivity implements ParteFragment.Cal
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(getApplicationContext(), PreferenciasActivity.class));
+            return true;
+        }
+
+        if (id == R.id.mnuMapa) {
+            mostrarLocalidadEnMapa();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onItemClick(int item) {
+    private void mostrarLocalidadEnMapa() {
+        SharedPreferences preferencias = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String localidad = preferencias.getString(getString(R.string.prefLocalidadKey), "Madrid");
+        Uri geoLocalidad = Uri.parse("geo:0,0?").buildUpon()
+                .appendQueryParameter("q", localidad)
+                .build();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocalidad);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 
+    @Override
+    public void onItemClick(String item) {
+        Intent intent = new Intent(this, DetalleActivity.class);
+        intent.putExtra(DetalleActivity.EXTRA_DATOS, item);
+        startActivity(intent);
     }
 }

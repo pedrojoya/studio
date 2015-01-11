@@ -1,0 +1,14 @@
+<resources>
+    <string-array name="pref_unidad_entries">
+        <item>Sistema métrico</item>
+        <item>Sistema imperial</item>
+    </string-array>
+    <string-array name="pref_unidad_values">
+        <item>metric</item>
+        <item>imperial</item>
+    </string-array>
+    <string name="prefLocalidadKey">prefLocalidadKey</string>
+    <string name="prefUnidadKey">prefUnidadKey</string>
+    <string name="sistema_metrico_valor">metric</string>
+    <string name="sistema_imperial_valor">imperial</string>
+</resources>

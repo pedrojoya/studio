@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/lblParte"
+    android:id="@+id/lblMeteo"
     android:layout_width="match_parent"
     android:minHeight="?android:listPreferredItemHeight"
     android:gravity="center_vertical"
