@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.PR004;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -12,8 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -28,13 +27,13 @@ public class MainActivity extends Activity implements OnClickListener {
     // Obtiene e inicializa las vistas.
     private void getVistas() {
         // La actividad responderá al pulsar sobre cualquier botón.
-        ((Button) findViewById(R.id.btnNavegar)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnBuscar)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnLlamar)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnMarcar)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnMostrarMapa)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnBuscarMapa)).setOnClickListener(this);
-        ((Button) findViewById(R.id.btnMostrarContactos))
+        findViewById(R.id.btnNavegar).setOnClickListener(this);
+        findViewById(R.id.btnBuscar).setOnClickListener(this);
+        findViewById(R.id.btnLlamar).setOnClickListener(this);
+        findViewById(R.id.btnMarcar).setOnClickListener(this);
+        findViewById(R.id.btnMostrarMapa).setOnClickListener(this);
+        findViewById(R.id.btnBuscarMapa).setOnClickListener(this);
+        findViewById(R.id.btnMostrarContactos)
                 .setOnClickListener(this);
     }
 
@@ -126,7 +125,7 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     // Retorna si hay alguna actividad que pueda recibir el intent.
-    public boolean estaDisponible(Context ctx, Intent intent) {
+    private boolean estaDisponible(Context ctx, Intent intent) {
         final PackageManager gestorPaquetes = ctx.getPackageManager();
         List<ResolveInfo> listaApps = gestorPaquetes.queryIntentActivities(
                 intent, PackageManager.MATCH_DEFAULT_ONLY);

@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private void getVistas() {
         btnAceptar = (Button) findViewById(R.id.btnAceptar);
         btnAceptar.setOnClickListener(this);
-        ((Button) findViewById(R.id.btnCancelar)).setOnClickListener(this);
+        findViewById(R.id.btnCancelar).setOnClickListener(this);
         lblUsuario = (TextView) findViewById(R.id.lblUsuario);
         lblClave = (TextView) findViewById(R.id.lblClave);
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);

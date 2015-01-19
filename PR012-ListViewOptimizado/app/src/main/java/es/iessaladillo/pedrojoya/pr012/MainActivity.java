@@ -1,11 +1,5 @@
 package es.iessaladillo.pedrojoya.pr012;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -21,10 +15,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnItemClickListener {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-    // Vistas.
-    private ListView lstAlumnos;
+public class MainActivity extends Activity implements OnItemClickListener {
 
     // Al crear la actividad.
     @Override
@@ -37,8 +34,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
     // Obtiene e inicializa las vistas.
     private void getVistas() {
-        lstAlumnos = (ListView) this.findViewById(R.id.lstAlumnos);
-        lstAlumnos.setEmptyView((TextView) findViewById(R.id.lblEmpty));
+        ListView lstAlumnos = (ListView) this.findViewById(R.id.lstAlumnos);
+        lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
         // Se crea el ArrayList de datos.
         ArrayList<Alumno> alumnos = getDatos();
         // Se crea el adaptador y se asigna a la lista.
@@ -110,7 +107,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
         // Variables miembro.
         ArrayList<Alumno> alumnos;
-        LayoutInflater inflador;
+        final LayoutInflater inflador;
 
         // Constructor.
         public AdaptadorAlumno(Context contexto, ArrayList<Alumno> alumnos) {

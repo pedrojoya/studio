@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:background="#E5DAE6"
         android:padding="@dimen/panel_padding" >
 
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/panel_padding"
+            android:layout_marginStart="@dimen/panel_padding"
             android:src="@android:drawable/ic_menu_send"
             android:padding="@dimen/button_padding"
             android:clickable="true"

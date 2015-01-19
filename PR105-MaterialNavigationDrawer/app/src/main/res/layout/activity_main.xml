@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quillo que" />
+                tools:text="Quillo que" />
 
         </FrameLayout>
     </LinearLayout>

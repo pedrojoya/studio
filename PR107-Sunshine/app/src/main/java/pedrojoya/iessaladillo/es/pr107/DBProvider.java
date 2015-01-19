@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
-public class WeatherProvider extends ContentProvider {
+public class DBProvider extends ContentProvider {
 
      // The URI Matcher used by this content provider.
      private static final UriMatcher sUriMatcher = buildUriMatcher();
@@ -50,27 +50,27 @@ public class WeatherProvider extends ContentProvider {
                  DBContract.Meteo.NOMBRE_TABLA + " INNER JOIN " +
                          DBContract.Localidad.NOMBRE_TABLA +
                          " ON " + DBContract.Meteo.NOMBRE_TABLA +
-                         "." + DBContract.Meteo.COLUMN_LOC_KEY +
+                         "." + DBContract.Meteo.LOCALIDAD_ID +
                          " = " + DBContract.Localidad.NOMBRE_TABLA +
                          "." + DBContract.Localidad._ID);
      }
 
      private static final String sLocationSettingSelection =
              DBContract.Localidad.NOMBRE_TABLA+
-                     "." + DBContract.Localidad.COLUMN_LOCATION_SETTING + " = ? ";
+                     "." + DBContract.Localidad.TEXTO_CONSULTA + " = ? ";
      private static final String sLocationSettingWithStartDateSelection =
              DBContract.Localidad.NOMBRE_TABLA+
-                     "." + DBContract.Localidad.COLUMN_LOCATION_SETTING + " = ? AND " +
+                     "." + DBContract.Localidad.TEXTO_CONSULTA + " = ? AND " +
                      DBContract.Meteo.FECHA + " >= ? ";
 
      private static final String sLocationSettingAndDaySelection =
              DBContract.Localidad.NOMBRE_TABLA +
-                     "." + DBContract.Localidad.COLUMN_LOCATION_SETTING + " = ? AND " +
+                     "." + DBContract.Localidad.TEXTO_CONSULTA + " = ? AND " +
                      DBContract.Meteo.FECHA + " = ? ";
 
      private Cursor getWeatherByLocationSetting(Uri uri, String[] projection, String sortOrder) {
-         String locationSetting = DBContract.Meteo.getLocationSettingFromUri(uri);
-         String startDate = DBContract.Meteo.getStartDateFromUri(uri);
+         String locationSetting = DBContract.Meteo.getLocalidadDesdeUri(uri);
+         String startDate = DBContract.Meteo.getFechaInicioDesdeUri(uri);
 
          String[] selectionArgs;
          String selection;
@@ -95,8 +95,8 @@ public class WeatherProvider extends ContentProvider {
 
      private Cursor getWeatherByLocationSettingAndDate(
              Uri uri, String[] projection, String sortOrder) {
-         String locationSetting = DBContract.Meteo.getLocationSettingFromUri(uri);
-         String date = DBContract.Meteo.getDateFromUri(uri);
+         String locationSetting = DBContract.Meteo.getLocalidadDesdeUri(uri);
+         String date = DBContract.Meteo.getFechaDesdeUri(uri);
 
          return sWeatherByLocationSettingQueryBuilder.query(mOpenHelper.getReadableDatabase(),
                  projection,
@@ -194,7 +194,7 @@ public class WeatherProvider extends ContentProvider {
              case METEO: {
                  long _id = db.insert(DBContract.Meteo.NOMBRE_TABLA, null, values);
                  if ( _id > 0 )
-                     returnUri = DBContract.Meteo.buildWeatherUri(_id);
+                     returnUri = DBContract.Meteo.getMeteoUri(_id);
                  else
                      throw new SQLException("Failed to insert row into " + uri);
                  break;
@@ -202,7 +202,7 @@ public class WeatherProvider extends ContentProvider {
              case LOCALIDAD: {
                  long _id = db.insert(DBContract.Localidad.NOMBRE_TABLA, null, values);
                  if ( _id > 0 )
-                     returnUri = DBContract.Localidad.buildLocationUri(_id);
+                     returnUri = DBContract.Localidad.getLocalidadUri(_id);
                  else
                      throw new SQLException("Failed to insert row into " + uri);
                  break;

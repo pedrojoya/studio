@@ -18,8 +18,8 @@ public class MainActivity extends Activity implements OnClickListener {
     private int mEdad = AlumnoActivity.DEFAULT_EDAD;
 
     // Vistas.
-    Button btnSolicitar;
-    TextView lblDatos;
+    private Button btnSolicitar;
+    private TextView lblDatos;
 
     // Al crear la actividad.
     @Override

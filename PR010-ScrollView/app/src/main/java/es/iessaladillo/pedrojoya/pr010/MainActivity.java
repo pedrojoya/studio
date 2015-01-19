@@ -1,9 +1,5 @@
 package es.iessaladillo.pedrojoya.pr010;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +15,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class MainActivity extends Activity {
 
     // Vistas.
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     private ScrollView scvTexto;
 
     // Variables a nivel de clase.
-    SimpleDateFormat formateadorFechas;
+    private SimpleDateFormat formateadorFechas;
 
     // Al crear la actividad.
     @Override

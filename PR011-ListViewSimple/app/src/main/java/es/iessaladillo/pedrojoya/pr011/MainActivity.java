@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr011;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,11 +18,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity implements OnItemClickListener,
         OnClickListener {
 
-    // Vistas.
-    private ListView lstAlumnos;
     private EditText txtNombre;
 
     // Variables.
@@ -80,8 +78,8 @@ public class MainActivity extends Activity implements OnItemClickListener,
                 return false;
             }
         });
-        lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setEmptyView((TextView) findViewById(R.id.lblNoHayAlumnos));
+        ListView lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
+        lstAlumnos.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
         // Se obtienen los datos para el adaptador de la lista.
         // ArrayList<String> alumnos = new ArrayList<String>(
         // Arrays.asList(getResources().getStringArray(R.array.alumnos)));

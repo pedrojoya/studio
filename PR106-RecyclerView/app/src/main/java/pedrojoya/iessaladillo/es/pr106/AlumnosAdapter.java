@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -105,38 +106,45 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
             btnDown = (ImageButton) itemView.findViewById(R.id.btnDown);
             btnUp = (ImageButton) itemView.findViewById(R.id.btnUp);
-//            // Cuando se pulsa sobre el elemento.
-//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    // Se elimina el alumno.
-//                    removeItem(getPosition());
-//                    return true;
-//                }
-//            });
-//            // Cuando se pulsa sobre bajar.
-//            btnDown.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // Se mueve el alumno una posición hacia abajo.
-//                    int position = getPosition();
-//                    if (position < datos.size() - 1) {
-//                        swapItems(position, position + 1);
-//                    }
-//                }
-//            });
-//
-//            // Cuando se pulsa sobre subir.
-//            btnUp.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // Se mueve el alumno una posición hacia abajo.
-//                    int position = getPosition();
-//                    if (position > 0) {
-//                        swapItems(position, position - 1);
-//                    }
-//                }
-//            });
+            // Cuando se hace click sobre el elemento.
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, context.getString(R.string.ha_pulsado_sobre) + datos.get(getPosition()).getNombre(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            // Cuando se hace click largo sobre el elemento.
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    // Se elimina el alumno.
+                    removeItem(getPosition());
+                    return true;
+                }
+            });
+            // Cuando se pulsa sobre bajar.
+            btnDown.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Se mueve el alumno una posición hacia abajo.
+                    int position = getPosition();
+                    if (position < datos.size() - 1) {
+                        swapItems(position, position + 1);
+                    }
+                }
+            });
+
+            // Cuando se pulsa sobre subir.
+            btnUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Se mueve el alumno una posición hacia abajo.
+                    int position = getPosition();
+                    if (position > 0) {
+                        swapItems(position, position - 1);
+                    }
+                }
+            });
         }
 
     }

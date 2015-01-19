@@ -73,11 +73,9 @@ public class DBContract {
         public static final String CONTENT_ITEM_TYPE =
                 "vnd.android.cursor.item/" + CONTENT_AUTHORITY + "/" + PATH_LOCALIDAD;
 
-        /**
-         * TODO YOUR CODE BELOW HERE FOR QUIZ
-         * QUIZ - 4b - Adding LocationEntry with ID UriBuilder
-         * https://www.udacity.com/course/viewer#!/c-ud853/l-1576308909/e-1604969848/m-1604969849
-         **/
+        public static Uri getLocalidadUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
 
     }
 
@@ -121,33 +119,33 @@ public class DBContract {
         public static final String CONTENT_ITEM_TYPE =
                 "vnd.android.cursor.item/" + CONTENT_AUTHORITY + "/" + PATH_METEO;
 
-        public static Uri buildWeatherUri(long id) {
+        public static Uri getMeteoUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildWeatherLocation(String locationSetting) {
-            return CONTENT_URI.buildUpon().appendPath(locationSetting).build();
+        public static Uri getMeteoLocalidadUri(String localidad) {
+            return CONTENT_URI.buildUpon().appendPath(localidad).build();
         }
 
-        public static Uri buildWeatherLocationWithStartDate(
-                String locationSetting, String startDate) {
-            return CONTENT_URI.buildUpon().appendPath(locationSetting)
-                    .appendQueryParameter(FECHA, startDate).build();
+        public static Uri getMeteoLocalidadConFechaInicioUri(
+                String localidad, String fechaInicio) {
+            return CONTENT_URI.buildUpon().appendPath(localidad)
+                    .appendQueryParameter(FECHA, fechaInicio).build();
         }
 
-        public static Uri buildWeatherLocationWithDate(String locationSetting, String date) {
+        public static Uri getMeteoLocalidadConFecha(String locationSetting, String date) {
             return CONTENT_URI.buildUpon().appendPath(locationSetting).appendPath(date).build();
         }
 
-        public static String getLocationSettingFromUri(Uri uri) {
+        public static String getLocalidadDesdeUri(Uri uri) {
             return uri.getPathSegments().get(1);
         }
 
-        public static String getDateFromUri(Uri uri) {
+        public static String getFechaDesdeUri(Uri uri) {
             return uri.getPathSegments().get(2);
         }
 
-        public static String getStartDateFromUri(Uri uri) {
+        public static String getFechaInicioDesdeUri(Uri uri) {
             return uri.getQueryParameter(FECHA);
         }
     }

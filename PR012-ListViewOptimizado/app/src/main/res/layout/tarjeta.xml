@@ -11,6 +11,7 @@
         android:layout_width="@dimen/tarjeta_foto_width"
         android:layout_height="@dimen/tarjeta_foto_height"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:contentDescription="@string/foto_del_alumno"
         android:src="@drawable/foto" />
@@ -21,8 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/lblCiclo"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imgFoto"
+        android:layout_toEndOf="@+id/imgFoto"
         android:gravity="center"
         android:padding="@dimen/tarjeta_nombre_padding"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -34,7 +37,9 @@
         android:layout_height="@dimen/tarjeta_divider_height"
         android:layout_alignBottom="@+id/imgFoto"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/imgFoto"
+        android:layout_toEndOf="@+id/imgFoto"
         android:background="@android:drawable/divider_horizontal_textfield" />
 
     <TextView
@@ -44,7 +49,9 @@
         android:layout_above="@+id/divider"
         android:layout_marginBottom="@dimen/tarjeta_margin"
         android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_marginStart="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/imgFoto"
+        android:layout_toEndOf="@+id/imgFoto"
         android:background="@drawable/tag_fondo"
         android:textAllCaps="true" />
 
@@ -55,7 +62,9 @@
         android:layout_above="@+id/divider"
         android:layout_marginBottom="@dimen/tarjeta_margin"
         android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_marginStart="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/lblCiclo"
+        android:layout_toEndOf="@+id/lblCiclo"
         android:background="@drawable/tag_fondo"
         android:textAllCaps="true" />
 
@@ -66,7 +75,9 @@
         android:layout_above="@+id/divider"
         android:layout_marginBottom="@dimen/tarjeta_margin"
         android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_marginStart="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/lblCurso"
+        android:layout_toEndOf="@+id/lblCurso"
         android:background="@drawable/edad_fondo_mayor"
         android:textColor="@android:color/white" />
 
@@ -75,6 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@color/tarjeta_repetidor_background"
         android:paddingBottom="@dimen/tarjeta_repetidor_verticalPadding"
@@ -103,6 +115,7 @@
         android:layout_below="@+id/divider"
         android:layout_marginTop="@dimen/tarjeta_margin"
         android:layout_toLeftOf="@+id/llModulo2"
+        android:layout_toStartOf="@+id/llModulo2"
         layout="@layout/modulo" />
 
     <include
@@ -111,8 +124,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider"
         android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_marginStart="@dimen/tarjeta_margin"
         android:layout_marginTop="@dimen/tarjeta_margin"
         android:layout_toLeftOf="@+id/vCentroHorizontal"
+        android:layout_toStartOf="@+id/vCentroHorizontal"
         layout="@layout/modulo" />
 
     <include
@@ -122,6 +137,7 @@
         android:layout_below="@+id/divider"
         android:layout_marginTop="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/vCentroHorizontal"
+        android:layout_toEndOf="@+id/vCentroHorizontal"
         layout="@layout/modulo" />
 
     <include
@@ -130,8 +146,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider"
         android:layout_marginLeft="@dimen/tarjeta_margin"
+        android:layout_marginStart="@dimen/tarjeta_margin"
         android:layout_marginTop="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/llModulo3"
+        android:layout_toEndOf="@+id/llModulo3"
         layout="@layout/modulo" />
 
     <include
@@ -139,6 +157,7 @@
         android:layout_width="@dimen/tarjeta_modulo_width"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/llModulo1"
+        android:layout_alignStart="@+id/llModulo1"
         android:layout_below="@+id/llModulo1"
         android:layout_marginTop="@dimen/tarjeta_margin"
         layout="@layout/modulo" />
@@ -148,9 +167,11 @@
         android:layout_width="@dimen/tarjeta_modulo_width"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/llModulo2"
+        android:layout_alignStart="@+id/llModulo2"
         android:layout_below="@+id/llModulo2"
         android:layout_marginTop="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/llModulo5"
+        android:layout_toEndOf="@+id/llModulo5"
         layout="@layout/modulo" />
 
     <include
@@ -158,9 +179,11 @@
         android:layout_width="@dimen/tarjeta_modulo_width"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/llModulo3"
+        android:layout_alignStart="@+id/llModulo3"
         android:layout_below="@+id/llModulo3"
         android:layout_marginTop="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/llModulo6"
+        android:layout_toEndOf="@+id/llModulo6"
         layout="@layout/modulo" />
 
     <include
@@ -168,9 +191,11 @@
         android:layout_width="@dimen/tarjeta_modulo_width"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/llModulo4"
+        android:layout_alignStart="@+id/llModulo4"
         android:layout_below="@+id/llModulo4"
         android:layout_marginTop="@dimen/tarjeta_margin"
         android:layout_toRightOf="@+id/llModulo7"
+        android:layout_toEndOf="@+id/llModulo7"
         layout="@layout/modulo" />
 
 </RelativeLayout>

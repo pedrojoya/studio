@@ -3,7 +3,7 @@ package es.iessaladillo.pedrojoya.pr012;
 import java.util.HashMap;
 
 // Clase para modelar el alumno.
-public class Alumno {
+class Alumno {
     // Variables miembro.
     private int foto;
     private String nombre;

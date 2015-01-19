@@ -15,7 +15,6 @@ public class MainActivity extends Activity {
 
     // Vistas.
     private CheckBox chkEducado;
-    private Button btnSaludar;
     private EditText txtNombre;
 
     // Cuando se crea la actividad.
@@ -31,7 +30,7 @@ public class MainActivity extends Activity {
     private void getVistas() {
         // Se obtiene la referencia a las vistas.
         chkEducado = (CheckBox) this.findViewById(R.id.chkEducado);
-        btnSaludar = (Button) this.findViewById(R.id.btnSaludar);
+        Button btnSaludar = (Button) this.findViewById(R.id.btnSaludar);
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         // Se inicializan las vistas.
         chkEducado.setChecked(true);

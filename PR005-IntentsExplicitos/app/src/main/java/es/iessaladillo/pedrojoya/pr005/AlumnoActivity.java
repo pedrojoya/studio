@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class AlumnoActivity extends Activity {
@@ -16,8 +15,8 @@ public class AlumnoActivity extends Activity {
     public static final int DEFAULT_EDAD = 18;
 
     // Vistas.
-    EditText txtNombre;
-    EditText txtEdad;
+    private EditText txtNombre;
+    private EditText txtEdad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class AlumnoActivity extends Activity {
 
     // Obtiene e inicializa las vistas.
     private void getVistas() {
-        ((Button) this.findViewById(R.id.btnAceptar))
+        findViewById(R.id.btnAceptar)
                 .setOnClickListener(new OnClickListener() {
 
                     @Override

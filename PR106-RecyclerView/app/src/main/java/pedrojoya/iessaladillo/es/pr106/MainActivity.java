@@ -2,6 +2,7 @@ package pedrojoya.iessaladillo.es.pr106;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -35,38 +36,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         adaptador.setEmptyView((TextView) findViewById(R.id.lblNoHayAlumnos));
         lstAlumnos.setAdapter(adaptador);
         lstAlumnos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        lstAlumnos.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
         btnAgregar.setOnClickListener(this);
         lblNumAlumnos = (TextView) findViewById(R.id.lblNumAlumnos);
-        lstAlumnos.addOnItemTouchListener(new DragDropTouchListener(lstAlumnos, this) {
-            @Override
-            protected void onItemSwitch(RecyclerView recyclerView, int from, int to) {
-                adaptador.swapItems(from, to);
-                adaptador.notifyItemChanged(from);
-                adaptador.notifyItemChanged(to);
-            }
-
-            @Override
-            protected void onItemDrop(RecyclerView recyclerView, int position) {
-
-            }
-        });
-//        lstAlumnos.addOnItemTouchListener(new SwipeToDismissTouchListener(lstAlumnos, new SwipeToDismissTouchListener.DismissCallbacks() {
-//            @Override
-//            public SwipeToDismissTouchListener.SwipeDirection canDismiss(int position) {
-//                return SwipeToDismissTouchListener.SwipeDirection.RIGHT;
-//            }
-//
-//            @Override
-//            public void onDismiss(RecyclerView view, List<SwipeToDismissTouchListener.PendingDismissData> dismissData) {
-//                for (SwipeToDismissTouchListener.PendingDismissData data : dismissData) {
-//                    adaptador.removeItem(data.position);
-//                    adaptador.notifyItemRemoved(data.position);
-//                }
-//            }
-//        }));
     }
 
 

@@ -12,10 +12,10 @@ public class MainActivity extends Activity {
     private static final String STATE_LISTADO = "mListado";
 
     // Variables a nivel de clase.
-    String mListado = "";
+    private String mListado = "";
 
     // Vistas.
-    TextView lblListado;
+    private TextView lblListado;
 
     // Al crear la actividad.
     @Override
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         escribirLog(getString(R.string.onresume));
     }
 
-    // Al salvar la instancia por cambio de configuraci�n.
+    // Al salvar la instancia por cambio de configuración.
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
         escribirLog(getString(R.string.onsaveinstancestate));
     }
 
-    // Al restaurar la instancia despu�s de un cambio de configuraci�n.
+    // Al restaurar la instancia después de un cambio de configuración.
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
