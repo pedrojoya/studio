@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr109;
+package es.iessaladillo.pedrojoya.pr109.Model;
 
 public class Tarea {
     private String concepto;
