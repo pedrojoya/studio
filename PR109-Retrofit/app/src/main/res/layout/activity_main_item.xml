@@ -13,6 +13,10 @@
         android:textSize="16sp"
         tools:text="Fregar los platos"
         android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/lblHace"
+        android:layout_toStartOf="@+id/lblHace"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -29,9 +33,12 @@
         android:id="@+id/lblHace"
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:paddingTop="20dp"
         android:paddingRight="16dp"
-        android:textSize="10sp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="12sp"
         tools:text="hace 2 días"
         android:layout_height="wrap_content" />
 

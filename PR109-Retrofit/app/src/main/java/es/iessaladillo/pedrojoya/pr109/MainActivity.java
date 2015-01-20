@@ -3,22 +3,17 @@ package es.iessaladillo.pedrojoya.pr109;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
+
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import es.iessaladillo.pedrojoya.pr109.Adapters.TareasAdapter;
-import es.iessaladillo.pedrojoya.pr109.Model.Resultado;
 import es.iessaladillo.pedrojoya.pr109.Model.Tarea;
-import es.iessaladillo.pedrojoya.pr109.api.ApiClient;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import es.iessaladillo.pedrojoya.pr109.api.ApiService;
 
 
 public class MainActivity extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener {
@@ -28,7 +23,6 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
     @InjectView(R.id.swlPanel)
     SwipeRefreshLayout mSwlPanel;
 
-    private ApiClient.ApiInterface apiClient;
     private TareasAdapter adaptador;
 
     @Override
@@ -36,14 +30,13 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-        // Se obtiene el cliente para hacer las peticiones a la API.
-        apiClient = ApiClient.getApiClient();
         // Se inicializan las vistas.
         initVistas();
         // Se obtienen los datos.
         onRefresh();
     }
 
+    // Inicializa las vistas.
     private void initVistas() {
         mSwlPanel.setOnRefreshListener(this);
         mSwlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -55,53 +48,39 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
 
     }
 
-    private void getTareas() {
-        apiClient.listarTareas("-updatedAt", new Callback<Resultado<Tarea>>() {
-            @Override
-            public void success(Resultado<Tarea> resultadoTareas, Response response) {
-                // Se añaden las tareas al adaptador.
-                adaptador.clear();
-                for (Tarea tarea : resultadoTareas.getResults()) {
-                    adaptador.add(tarea);
-                }
-                // Se cancela la animación de refresco.
-                mSwlPanel.setRefreshing(false);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("Mia", "Error al obtener las tareas");
-            }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     // Cuando se hace swipe to refresh.
     @Override
     public void onRefresh() {
-        // Se obtienen las tareas y se carga el adaptador.
-        getTareas();
+        mSwlPanel.setRefreshing(true);
+        // Se envía al bus el evento de que se desea obtener la lista de tareas.
+        App.getEventBus().post(new ApiService.ListarTareasEvent());
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Se registra la actividad en el bus.
+        App.getEventBus().register(this);
+        // Se envía un evento de petición de la lista de tareas.
+        App.getEventBus().post(new ApiService.ListarTareasEvent());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // La actividad se desregistra del bus.
+        App.getEventBus().unregister(this);
+    }
+
+    // Cuando se produce el evento de que las tareas ya hayan sido obtenidas.
+    @Subscribe
+    public void onTareasListadas(ApiService.TareasListadasEvent event) {
+        // Se añaden las tareas al adaptador.
+        adaptador.clear();
+        adaptador.addAll(event.getTareas());
+        // Se cancela la animación de refresco.
+        mSwlPanel.setRefreshing(false);
+    }
+
 
 }

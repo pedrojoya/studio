@@ -44,7 +44,7 @@ public class TareasAdapter extends ArrayAdapter<Tarea> {
         contenedor.mLblConcepto.setText(tarea.getConcepto());
         contenedor.mLblResponsable.setText(tarea.getResponsable());
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        Date date = null;
+        Date date;
         try {
             date = df.parse(tarea.getUpdatedAt());
             long time = date.getTime();
