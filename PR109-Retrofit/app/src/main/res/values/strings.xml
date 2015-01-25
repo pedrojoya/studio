@@ -2,5 +2,11 @@
 <resources>
 
     <string name="app_name">Retrofit</string>
+    <string name="conectando_con_el_usuario">Conectando con el usuario</string>
+    <string name="conexion">Conexión</string>
+    <string name="nombre_usuario">Usuario</string>
+    <string name="clave">Clave</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="conectar">Conectarse</string>
 
 </resources>

@@ -1,305 +1,238 @@
 package es.iessaladillo.pedrojoya.pr109;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.support.v7.app.ActionBarActivity;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.squareup.otto.Subscribe;
 
+import org.apache.http.HttpStatus;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-/**
- * A login screen that offers login via email/password.
- */
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+import es.iessaladillo.pedrojoya.pr109.Model.UsuarioNuevo;
+import es.iessaladillo.pedrojoya.pr109.api.ApiService;
+import retrofit.RetrofitError;
+import retrofit.mime.TypedByteArray;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+public class LoginActivity extends ActionBarActivity {
 
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+    @InjectView(R.id.lblUsuario)
+    TextView mLblUsuario;
+    @InjectView(R.id.txtUsuario)
+    EditText mTxtUsuario;
+    @InjectView(R.id.lblClave)
+    TextView mLblClave;
+    @InjectView(R.id.txtClave)
+    EditText mTxtClave;
+    @InjectView(R.id.btnRegistrar)
+    Button mBtnRegistrar;
+    @InjectView(R.id.btnConectar)
+    Button mBtnConectar;
 
+    // Al crear la actividad.
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.inject(this);
+        // Se obtienen e inicializan las vistas.
+        initVistas();
+    }
 
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+    // Obtiene e inicializa las vistas.
+    private void initVistas() {
+        // Se cambia el color del TextView dependiendo de si el EditText
+        // correspondiente tiene el foco o no.
+        mTxtUsuario.setOnFocusChangeListener(new OnFocusChangeListener() {
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            // Al cambiar el foco.
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
+            public void onFocusChange(View v, boolean hasFocus) {
+                setColorSegunFoco(mLblUsuario, hasFocus);
             }
-        });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        });
+        mTxtClave.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+            // Al cambiar el foco.
             @Override
-            public void onClick(View view) {
-                attemptLogin();
+            public void onFocusChange(View v, boolean hasFocus) {
+                setColorSegunFoco(mLblClave, hasFocus);
             }
+
         });
+        // btnAceptar sólo accesible si hay datos en txtUsuario y txtClave.
+        mTxtUsuario.addTextChangedListener(new TextWatcher() {
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            // Después de haber cambiado el texto.
+            @Override
+            public void afterTextChanged(Editable s) {
+                // btnAceptar disponible sólo si hay datos.
+                checkDatos();
+                // lblUsuario visible sólo si txtUsuario tiene datos.
+                checkVisibility(mTxtUsuario, mLblUsuario);
+            }
+
+        });
+        mTxtClave.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            // Después de haber cambiado el texto.
+            @Override
+            public void afterTextChanged(Editable s) {
+                // btnAceptar disponible sólo si hay datos.
+                checkDatos();
+                // lblClave visible sólo si tiene datos.
+                checkVisibility(mTxtClave, mLblClave);
+            }
+
+        });
+        // Comprobaciones iniciales.
+        setColorSegunFoco(mLblUsuario, true);
+        checkDatos();
+        checkVisibility(mTxtClave, mLblClave);
+        checkVisibility(mTxtUsuario, mLblUsuario);
     }
 
-    private void populateAutoComplete() {
-        getLoaderManager().initLoader(0, null, this);
+    @OnClick(R.id.btnConectar)
+    public void conectar() {
+        App.getApiService().login(mTxtUsuario.getText().toString(), mTxtClave.getText().toString());
     }
 
+    @OnClick(R.id.btnRegistrar)
+    public void registrar() {
+        App.getApiService().signUp(new UsuarioNuevo(mTxtUsuario.getText().toString(), mTxtClave.getText().toString()));
+    }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    public void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
+    // Cuando se produce el evento de que el usuario ha hecho login.
+    @Subscribe
+    public void onUsuarioLoggedIn(ApiService.UsuarioLoggedInEvent event) {
+        mostrarPrincipal();
+    }
+
+    // Cuando se produce el evento de que el usuario se ha registrado correctamente (con login incluido).
+    @Subscribe
+    public void onUsuarioSignedUp(ApiService.UsuarioSignedUpEvent event) {
+        mostrarPrincipal();
+    }
+
+    // Si se ha producido un evento de error en la petición.
+    @Subscribe
+    public void onApiError(ApiService.ApiErrorEvent event) {
+        RetrofitError error = event.getError();
+        switch (error.getKind()) {
+            // Si hay un problema con la red.
+            case NETWORK:
+                Toast.makeText(this, "Comprueba que tienes internet", Toast.LENGTH_SHORT).show();
+                break;
+            case HTTP:
+                int status = error.getResponse().getStatus();
+                if (status == HttpStatus.SC_FORBIDDEN) {
+                    Toast.makeText(this, "Hay que estar logueado", Toast.LENGTH_SHORT).show();
+                }
+                else if (status == HttpStatus.SC_BAD_REQUEST) {
+                    try {
+                        JSONObject jError = new JSONObject(new String(((TypedByteArray)error.getResponse().getBody()).getBytes()));
+                        int code = jError.getInt("code");
+                        if (code == 202) {
+                            Toast.makeText(this, "Ese usuario ya existe", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else if (status == HttpStatus.SC_NOT_FOUND) {
+                    Toast.makeText(this, "Usuario desconocido", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                Log.d("Mia", error.getMessage());
+                break;
         }
+    }
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Se registra la actividad en el bus.
+        App.getEventBus().register(this);
+    }
 
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+    @Override
+    public void onPause() {
+        super.onPause();
+        // La actividad se desregistra del bus.
+        App.getEventBus().unregister(this);
+    }
 
-        boolean cancel = false;
-        View focusView = null;
+    // Activa o desactiva el botón de Aceptar dependiendo de si hay datos.
+    private void checkDatos() {
+        mBtnConectar.setEnabled(!TextUtils.isEmpty(mTxtUsuario.getText()
+                .toString())
+                && !TextUtils.isEmpty(mTxtClave.getText().toString()));
+    }
 
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
+    // TextView visible sólo si EditText tiene datos.
+    private void checkVisibility(EditText txt, TextView lbl) {
+        if (TextUtils.isEmpty(txt.getText().toString())) {
+            lbl.setVisibility(View.INVISIBLE);
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            lbl.setVisibility(View.VISIBLE);
         }
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
-    }
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    public void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
+    // Establece el color y estilo del TextView dependiendo de si el
+    // EditText correspondiente tiene el foco o no.
+    private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
+        if (hasFocus) {
+            lbl.setTextColor(getResources().getColor(R.color.edittext_focused));
+            lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            lbl.setTextColor(getResources()
+                    .getColor(R.color.edittext_notfocused));
+            lbl.setTypeface(Typeface.DEFAULT);
         }
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
+    // Muestra la actividad principal.
+    private void mostrarPrincipal() {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<String>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-
-        addEmailsToAutoComplete(emails);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
-
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
 }
 
 

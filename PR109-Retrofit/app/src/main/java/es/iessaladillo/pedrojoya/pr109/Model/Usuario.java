@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr109.Model;
 
+import android.text.TextUtils;
+
 public class Usuario {
     private String username;
     private String createdAt;
@@ -45,6 +47,10 @@ public class Usuario {
 
     public void setSessionToken(String sessionToken) {
         this.sessionToken = sessionToken;
+    }
+
+    public boolean isLoggedIn() {
+        return !TextUtils.isEmpty(sessionToken);
     }
 
 }

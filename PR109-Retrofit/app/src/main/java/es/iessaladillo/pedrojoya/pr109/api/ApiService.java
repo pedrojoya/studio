@@ -98,6 +98,15 @@ public class ApiService {
 
     // Evento: tarea borrada.
     public static class TareaDeletedEvent {
+        private final Tarea mTarea;
+
+        public TareaDeletedEvent(Tarea tarea) {
+            mTarea = tarea;
+        }
+
+        public Tarea getTarea() {
+            return mTarea;
+        }
     }
 
     // Evento: es necesario hacer login
@@ -212,15 +221,15 @@ public class ApiService {
     }
 
     // Solicita la eliminación de una tarea.
-    public void deleteTarea(String objectId) {
+    public void deleteTarea(final Tarea tarea) {
         Usuario usuario = App.getUsuario();
         if (usuario != null && !TextUtils.isEmpty(usuario.getSessionToken())) {
             // Se realiza la petición a través de Retrofit.
-            mApiClient.deleteTarea(usuario.getSessionToken(), objectId, new Callback<Tarea>() {
+            mApiClient.deleteTarea(usuario.getSessionToken(), tarea.getObjectId(), new Callback<Tarea>() {
                 @Override
-                public void success(Tarea tarea, Response response) {
+                public void success(Tarea t, Response response) {
                     // Se envía al bus el evento de que se ha eliminado la tarea.
-                    mBus.post(new TareaDeletedEvent());
+                    mBus.post(new TareaDeletedEvent(tarea));
                 }
 
                 @Override
