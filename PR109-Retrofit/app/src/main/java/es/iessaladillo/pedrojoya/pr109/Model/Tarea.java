@@ -1,5 +1,10 @@
 package es.iessaladillo.pedrojoya.pr109.Model;
 
+import android.text.TextUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Tarea {
     private String concepto;
     private String createdAt;
@@ -15,7 +20,13 @@ public class Tarea {
         this.updatedAt = updatedAt;
     }
 
-    public Tarea() {}
+    public Tarea(String concepto, String responsable) {
+        this.concepto = concepto;
+        this.responsable = responsable;
+    }
+
+    public Tarea() {
+    }
 
     public String getConcepto() {
         return concepto;
@@ -56,4 +67,5 @@ public class Tarea {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 }
