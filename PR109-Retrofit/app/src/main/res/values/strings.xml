@@ -8,5 +8,9 @@
     <string name="clave">Clave</string>
     <string name="registrarse">Registrarse</string>
     <string name="conectar">Conectarse</string>
+    <string name="tarea">Tarea</string>
+    <string name="concepto">Concepto</string>
+    <string name="responsable">Responsable</string>
+    <string name="guardar">Guardar</string>
 
 </resources>

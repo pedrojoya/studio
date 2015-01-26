@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-2d2f7c7ab52a2f26a523fc506a17651ffc4c1b1e.jar" />
+    </item>
+
+</items>

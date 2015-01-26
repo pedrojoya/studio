@@ -1,11 +1,9 @@
 package es.iessaladillo.pedrojoya.pr109.Model;
 
-import android.text.TextUtils;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class Tarea {
+public class Tarea implements Parcelable {
     private String concepto;
     private String createdAt;
     private String objectId;
@@ -68,4 +66,35 @@ public class Tarea {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.concepto);
+        dest.writeString(this.createdAt);
+        dest.writeString(this.objectId);
+        dest.writeString(this.responsable);
+        dest.writeString(this.updatedAt);
+    }
+
+    private Tarea(Parcel in) {
+        this.concepto = in.readString();
+        this.createdAt = in.readString();
+        this.objectId = in.readString();
+        this.responsable = in.readString();
+        this.updatedAt = in.readString();
+    }
+
+    public static final Parcelable.Creator<Tarea> CREATOR = new Parcelable.Creator<Tarea>() {
+        public Tarea createFromParcel(Parcel source) {
+            return new Tarea(source);
+        }
+
+        public Tarea[] newArray(int size) {
+            return new Tarea[size];
+        }
+    };
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <dimen name="activity_main_padding">16dp</dimen>
+    <dimen name="edittext_padding">12dp</dimen>
+    
+</resources>

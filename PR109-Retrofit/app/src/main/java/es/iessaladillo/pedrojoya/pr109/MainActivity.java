@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr109;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -46,7 +47,13 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
         ButterKnife.inject(this);
         // Se inicializan las vistas.
         initVistas();
+    }
+
+    private void checkUserLoggedIn() {
+        SharedPreferences preferencias = getSharedPreferences(LoginActivity.PREFS_USUARIO, MODE_PRIVATE);
         Usuario usuario = App.getUsuario();
+        usuario.setObjectId(preferencias.getString(LoginActivity.PREF_OBJECT_ID, ""));
+        usuario.setSessionToken(preferencias.getString(LoginActivity.PREF_SESSION_TOKEN, ""));
         if (usuario == null || !usuario.isLoggedIn()) {
             mostrarLogin();
         } else {
@@ -56,7 +63,9 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
     }
 
     private void mostrarLogin() {
-        startActivity(new Intent(this, LoginActivity.class));
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     // Inicializa las vistas.
@@ -139,14 +148,12 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
             @Override
             public void onItemClick(AdapterView<?> adaptador, View v,
                                     int position, long id) {
-                mostrarTarea((Tarea) mLstTareas.getItemAtPosition(position));
+                Intent intent = new Intent(getApplicationContext(), TareaActivity.class);
+                intent.putExtra(TareaActivity.EXTRA_TAREA, (Tarea) mLstTareas.getItemAtPosition(position));
+                startActivity(intent);
             }
         });
 
-    }
-
-    private void mostrarTarea(Tarea tarea) {
-        Toast.makeText(this, tarea.getConcepto(), Toast.LENGTH_SHORT).show();
     }
 
     // Cuando se hace swipe to refresh.
@@ -166,22 +173,23 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.mnuListar:
-                // Se solicita la lista de tareas.
-                App.getApiService().listTareas();
-                return true;
             case R.id.mnuAgregar:
                 // Se solicita agregar la tarea.
-                Tarea tarea = new Tarea("Estudiar", "Estudiante");
-                App.getApiService().createTarea(tarea);
+                startActivity(new Intent(this, TareaActivity.class));
                 return true;
-            case R.id.mnuActualizar:
-                // Se solicita agregar la tarea.
-                Tarea tareaUpdate = new Tarea("Estudia más", "Estudiante vago");
-                App.getApiService().updateTarea("L49ysm6li2", tareaUpdate);
+            case R.id.mnuLogout:
+                logout();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        SharedPreferences preferencias = getSharedPreferences(LoginActivity.PREFS_USUARIO, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.remove(LoginActivity.PREF_OBJECT_ID);
+        editor.remove(LoginActivity.PREF_SESSION_TOKEN);
+        mostrarLogin();
     }
 
     @Override
@@ -189,6 +197,7 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
         super.onResume();
         // Se registra la actividad en el bus.
         App.getEventBus().register(this);
+        checkUserLoggedIn();
     }
 
     @Override
@@ -236,7 +245,7 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
 
     @Subscribe
     public void onTareaCreada(ApiService.TareaCreatedEvent event) {
-        mAdaptador.add(event.getTarea());
+        mAdaptador.insert(event.getTarea(), 0);
         mAdaptador.notifyDataSetChanged();
     }
 
@@ -253,7 +262,7 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y
     // si debe quitarse la selección una vez obtenidos los elementos.
     private ArrayList<Tarea> getElementosSeleccionados(ListView lst,
-                                                        boolean uncheck) {
+                                                       boolean uncheck) {
         // ArrayList resultado.
         ArrayList<Tarea> datos = new ArrayList<Tarea>();
         // Se obtienen los elementos seleccionados de la lista.

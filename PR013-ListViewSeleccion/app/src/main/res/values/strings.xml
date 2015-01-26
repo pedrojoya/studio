@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">ListView de selección</string>
+    <string name="title_activity_main">ListView de selección</string>
+    <string name="caballo">¿De qué color es el caballo blanco de Santiago?</string>
+
+</resources>

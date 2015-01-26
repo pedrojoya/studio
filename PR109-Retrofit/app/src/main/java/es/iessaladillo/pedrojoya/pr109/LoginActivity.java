@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr109;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import es.iessaladillo.pedrojoya.pr109.Model.Usuario;
 import es.iessaladillo.pedrojoya.pr109.Model.UsuarioNuevo;
 import es.iessaladillo.pedrojoya.pr109.api.ApiService;
 import retrofit.RetrofitError;
@@ -31,13 +33,17 @@ import retrofit.mime.TypedByteArray;
 
 public class LoginActivity extends ActionBarActivity {
 
-    @InjectView(R.id.lblUsuario)
+    public static final String PREFS_USUARIO = "usuario";
+    public static final String PREF_OBJECT_ID = "objectId";
+    public static final String PREF_SESSION_TOKEN = "sessionToken";
+
+    @InjectView(R.id.lblConcepto)
     TextView mLblUsuario;
-    @InjectView(R.id.txtUsuario)
+    @InjectView(R.id.txtConcepto)
     EditText mTxtUsuario;
-    @InjectView(R.id.lblClave)
+    @InjectView(R.id.lblResponsable)
     TextView mLblClave;
-    @InjectView(R.id.txtClave)
+    @InjectView(R.id.txtResponsable)
     EditText mTxtClave;
     @InjectView(R.id.btnRegistrar)
     Button mBtnRegistrar;
@@ -92,7 +98,7 @@ public class LoginActivity extends ActionBarActivity {
             // Después de haber cambiado el texto.
             @Override
             public void afterTextChanged(Editable s) {
-                // btnAceptar disponible sólo si hay datos.
+                // Botones disponibles sólo si hay datos.
                 checkDatos();
                 // lblUsuario visible sólo si txtUsuario tiene datos.
                 checkVisibility(mTxtUsuario, mLblUsuario);
@@ -114,7 +120,7 @@ public class LoginActivity extends ActionBarActivity {
             // Después de haber cambiado el texto.
             @Override
             public void afterTextChanged(Editable s) {
-                // btnAceptar disponible sólo si hay datos.
+                // Botones disponibles sólo si hay datos.
                 checkDatos();
                 // lblClave visible sólo si tiene datos.
                 checkVisibility(mTxtClave, mLblClave);
@@ -141,13 +147,24 @@ public class LoginActivity extends ActionBarActivity {
     // Cuando se produce el evento de que el usuario ha hecho login.
     @Subscribe
     public void onUsuarioLoggedIn(ApiService.UsuarioLoggedInEvent event) {
+        guardarSesion();
         mostrarPrincipal();
     }
 
     // Cuando se produce el evento de que el usuario se ha registrado correctamente (con login incluido).
     @Subscribe
     public void onUsuarioSignedUp(ApiService.UsuarioSignedUpEvent event) {
+        guardarSesion();
         mostrarPrincipal();
+    }
+
+    private void guardarSesion() {
+        SharedPreferences preferencias =  getSharedPreferences(PREFS_USUARIO, MODE_PRIVATE);
+        Usuario usuario = App.getUsuario();
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.putString(PREF_OBJECT_ID, usuario.getObjectId());
+        editor.putString(PREF_SESSION_TOKEN, usuario.getSessionToken());
+        editor.commit();
     }
 
     // Si se ha producido un evento de error en la petición.
@@ -163,10 +180,9 @@ public class LoginActivity extends ActionBarActivity {
                 int status = error.getResponse().getStatus();
                 if (status == HttpStatus.SC_FORBIDDEN) {
                     Toast.makeText(this, "Hay que estar logueado", Toast.LENGTH_SHORT).show();
-                }
-                else if (status == HttpStatus.SC_BAD_REQUEST) {
+                } else if (status == HttpStatus.SC_BAD_REQUEST) {
                     try {
-                        JSONObject jError = new JSONObject(new String(((TypedByteArray)error.getResponse().getBody()).getBytes()));
+                        JSONObject jError = new JSONObject(new String(((TypedByteArray) error.getResponse().getBody()).getBytes()));
                         int code = jError.getInt("code");
                         if (code == 202) {
                             Toast.makeText(this, "Ese usuario ya existe", Toast.LENGTH_SHORT).show();
@@ -174,8 +190,7 @@ public class LoginActivity extends ActionBarActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-                else if (status == HttpStatus.SC_NOT_FOUND) {
+                } else if (status == HttpStatus.SC_NOT_FOUND) {
                     Toast.makeText(this, "Usuario desconocido", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -201,9 +216,9 @@ public class LoginActivity extends ActionBarActivity {
 
     // Activa o desactiva el botón de Aceptar dependiendo de si hay datos.
     private void checkDatos() {
-        mBtnConectar.setEnabled(!TextUtils.isEmpty(mTxtUsuario.getText()
-                .toString())
-                && !TextUtils.isEmpty(mTxtClave.getText().toString()));
+        boolean permitir = !TextUtils.isEmpty(mTxtUsuario.getText().toString()) && !TextUtils.isEmpty(mTxtClave.getText().toString());
+        mBtnConectar.setEnabled(permitir);
+        mBtnRegistrar.setEnabled(permitir);
     }
 
     // TextView visible sólo si EditText tiene datos.
@@ -230,7 +245,10 @@ public class LoginActivity extends ActionBarActivity {
 
     // Muestra la actividad principal.
     private void mostrarPrincipal() {
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    	<!-- Cuando el botón está deshabilitado -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/boton_cornersRadius" />
+            <solid android:color="@color/boton_disabled" />
+            <size android:height="@dimen/boton_height" android:width="@dimen/boton_width" />
+        </shape>
+    </item>
+
+    <!-- En el resto de estados -->
+    <item>
+        <!-- Lista de capas -->
+        <layer-list>
+            <!-- Capa de fondo -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/boton_cornersRadius" />
+                    <solid android:color="@color/pregunta_fondo" />
+                    <size android:height="@dimen/boton_height" 
+                        android:width="@dimen/boton_width" />
+                </shape>
+            </item>
+            <!-- Capa de anillo claro -->
+            <item android:bottom="@dimen/boton_central_layer_offset" 
+                android:left="@dimen/boton_central_layer_offset" 
+                android:right="@dimen/boton_central_layer_offset" 
+                android:top="@dimen/boton_central_layer_offset">
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/boton_cornersRadius" />
+                    <size android:height="@dimen/boton_central_layer_height" 
+                        android:width="@dimen/boton_central_layer_width" />
+                    <solid android:color="@color/activity_fondo" />
+                </shape>
+            </item>
+            <!-- Capa de primer plano -->
+            <item android:bottom="@dimen/boton_inner_layer_offset" 
+                android:left="@dimen/boton_inner_layer_offset" 
+                android:right="@dimen/boton_inner_layer_offset" 
+                android:top="@dimen/boton_inner_layer_offset">
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/boton_cornersRadius" />
+                    <size android:height="@dimen/boton_inner_layer_height" 
+                        android:width="@dimen/boton_inner_layer_width" />
+                    <gradient android:angle="0" android:endColor="@color/respuesta_fondo" 
+                        android:startColor="@color/pregunta_fondo" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

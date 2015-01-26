@@ -21,6 +21,8 @@ public class App extends Application {
         sEventBus = new Bus();
         // Se crea el servicio de conexión a la API.
         sApiService = new ApiService(sEventBus);
+        // Se crea el usuario.
+        sUsuario = new Usuario();
         // Se registra el servicio de la api en el bus.
         // sEventBus.register(apiService);
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Esquema de color -->
+    <color name="activity_fondo">#F0E2EC</color>
+    <color name="pregunta_fondo">#975B99</color>
+    <color name="respuesta_fondo">#611E63</color>
+    <color name="boton_disabled">#7A747A</color>
+    <color name="puntuacion_fondo_correcto">#64588C</color>
+    <color name="puntuacion_borde_correcto">#341F79</color>
+    <color name="puntuacion_fondo_incorrecto">#BF6F6F</color>
+    <color name="puntuacion_borde_incorrecto">#A62525</color>
+    
+</resources>

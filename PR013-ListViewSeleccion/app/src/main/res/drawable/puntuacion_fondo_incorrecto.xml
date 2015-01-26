@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval" >
+
+    <solid android:color="@color/puntuacion_fondo_incorrecto" />
+
+    <stroke
+        android:width="@dimen/puntuacion_borde_width"
+        android:color="@color/puntuacion_borde_incorrecto" />
+
+    <padding
+        android:bottom="@dimen/puntuacion_padding"
+        android:left="@dimen/puntuacion_padding"
+        android:right="@dimen/puntuacion_padding"
+        android:top="@dimen/puntuacion_padding" />
+
+</shape>

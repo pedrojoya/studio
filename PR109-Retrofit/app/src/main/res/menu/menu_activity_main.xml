@@ -2,34 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/mnuRegistrarse"
-        android:title="Registrarse"
-        android:icon="@android:drawable/ic_menu_edit"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/mnuLogin"
-        android:title="Login"
-        android:icon="@android:drawable/ic_menu_info_details"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/mnuListar"
-        android:title="Listar"
-        android:icon="@android:drawable/ic_menu_info_details"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/mnuAgregar"
         android:title="Agregar"
-        android:icon="@android:drawable/ic_input_add"
-        app:showAsAction="never" />
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom|withText" />
     <item
-        android:id="@+id/mnuActualizar"
-        android:title="Actualizar"
-        android:icon="@android:drawable/ic_menu_upload"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/mnuEliminar"
-        android:title="Eliminar"
-        android:icon="@android:drawable/ic_delete"
+        android:id="@+id/mnuLogout"
+        android:title="Logout"
+        android:icon="@android:drawable/ic_menu_more"
         app:showAsAction="never" />
 
 </menu>

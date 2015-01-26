@@ -172,7 +172,7 @@ public class ApiService {
     }
 
     // Solicita la creación de una tareas.
-    public void createTarea(Tarea tarea) {
+    public void createTarea(final Tarea tarea) {
         Usuario usuario = App.getUsuario();
         if (usuario != null && !TextUtils.isEmpty(usuario.getSessionToken())) {
             // Se configura el ACL de la tarea.
@@ -181,9 +181,12 @@ public class ApiService {
             // Se realiza la petición a través de Retrofit.
             mApiClient.createTarea(usuario.getSessionToken(), tareaACL, new Callback<Tarea>() {
                 @Override
-                public void success(Tarea tarea, Response response) {
+                public void success(Tarea t, Response response) {
                     // Se envía al bus el evento de que se ha creado la tarea.
-                    mBus.post(new TareaCreatedEvent(tarea));
+                    t.setUpdatedAt(t.getCreatedAt());
+                    t.setConcepto(tarea.getConcepto());
+                    t.setResponsable(tarea.getResponsable());
+                    mBus.post(new TareaCreatedEvent(t));
                 }
 
                 @Override
