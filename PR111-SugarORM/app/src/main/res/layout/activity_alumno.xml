@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/lblTitulo"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/alumno" />
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTitulo"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/edittext_padding"
+        android:paddingRight="@dimen/edittext_padding"
+        android:text="@string/nombre"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblNombre"
+        android:hint="@string/nombre"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:paddingTop="0dp"
+        android:singleLine="true">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/lblEdad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNombre"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/edittext_padding"
+        android:paddingRight="@dimen/edittext_padding"
+        android:text="@string/edad"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/txtEdad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblEdad"
+        android:hint="@string/edad"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:paddingTop="0dp"
+        android:singleLine="true" />
+
+</RelativeLayout>
+
