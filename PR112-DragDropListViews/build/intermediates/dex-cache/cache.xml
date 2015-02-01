@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/pedro/studio/PR112-DragDropListViews/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-28ef5ae80f16ed0a2d0276b168770c54a0109087.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR112-DragDropListViews/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/pedro/studio/PR112-DragDropListViews/app/build/intermediates/pre-dexed/debug/classes-369b511f5daee75d44255e9c0f5c29d609064a88.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR112-DragDropListViews/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/pedro/studio/PR112-DragDropListViews/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-986db54e09f8217ff98ede95043a9af5c89cf446.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR112-DragDropListViews/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/pedro/studio/PR112-DragDropListViews/app/build/intermediates/pre-dexed/debug/classes-1778e170b6b57f6cbea6397205876fc8fb229c46.jar" />
+    </item>
+
+</items>

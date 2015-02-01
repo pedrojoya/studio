@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="activity_background">#E8EAF6</color>
+    <color name="item_background_candidato">#F3E5F5</color>
+    <color name="item_background">#FFF</color>
+    <color name="list_background_candidato">#FCE4EC</color>
+</resources>
