@@ -1,0 +1,15 @@
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swlPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="es.iessaladillo.pedrojoya.pr109.MainActivity">
+
+    <ListView
+        android:id="@+id/lstTareas"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</android.support.v4.widget.SwipeRefreshLayout>

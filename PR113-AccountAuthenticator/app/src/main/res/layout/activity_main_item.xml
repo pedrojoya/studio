@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="?android:attr/activatedBackgroundIndicator"
+    android:layout_height="72dp">
+
+    <TextView
+        android:id="@+id/lblUsuario"
+        android:layout_width="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="20dp"
+        android:textSize="16sp"
+        tools:text="Fregar los platos"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/lblHace"
+        android:layout_toStartOf="@+id/lblHace"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lblClave"
+        android:layout_width="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_below="@+id/lblUsuario"
+        android:textSize="14sp"
+        tools:text="Baldomero"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lblHace"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="20dp"
+        android:paddingRight="16dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="12sp"
+        tools:text="hace 2 días"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

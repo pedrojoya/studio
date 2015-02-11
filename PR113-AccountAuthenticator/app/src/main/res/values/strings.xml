@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AccountAuthenticator</string>
+    <string name="conectando_con_el_usuario">Conectando con el usuario</string>
+    <string name="conexion">Conexión</string>
+    <string name="nombre_usuario">Usuario</string>
+    <string name="clave">Clave</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="conectar">Conectarse</string>
+    <string name="tarea">Tarea</string>
+    <string name="concepto">Concepto</string>
+    <string name="responsable">Responsable</string>
+    <string name="guardar">Guardar</string>
+    <string name="preferencias_de_tareas">Preferencias de Tareas</string>
+    <string name="tareas">Tareas</string>
+
+</resources>
