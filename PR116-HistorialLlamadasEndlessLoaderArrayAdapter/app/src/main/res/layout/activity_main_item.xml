@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Baldomero"
+        android:id="@+id/lblNombre"
+        android:layout_toLeftOf="@+id/lblFecha"
+        android:layout_toStartOf="@+id/lblFecha"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="666666666"
+        android:id="@+id/lblNumero"
+        android:layout_below="@+id/lblNombre"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/imgTipoLlamada"
+        android:layout_toRightOf="@+id/lblNumero"
+        android:layout_toEndOf="@+id/lblNumero"
+        android:layout_alignTop="@+id/lblNumero"
+        android:layout_alignBottom="@+id/lblNumero"
+        android:contentDescription="@string/tipo_de_llamada"
+        android:layout_marginLeft="@dimen/lblTipoLlamadaMarginLeft"
+        android:layout_marginStart="@dimen/lblTipoLlamadaMarginLeft"
+        android:src="@android:drawable/sym_call_incoming"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="22/3/2014"
+        android:id="@+id/lblFecha"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="22 m 15 s"
+        android:id="@+id/lblDuracion"
+        android:layout_alignTop="@+id/lblNumero"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
