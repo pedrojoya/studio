@@ -38,14 +38,15 @@ public class MainActivity extends ActionBarActivity {
         mFrlLeyenda = (FrameLayout) findViewById(R.id.frlLeyenda);
         mRlRaiz = (RelativeLayout) findViewById(R.id.rlRaiz);
 
+        // El proceso de drag and drop se inicará cuando se realice
+        // un click largo sobre la vista.
         mImgOrigen.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
-                v.startDrag(null,  // the data to be dragged
-                        myShadow,  // the drag shadow builder
-                        v,      // local data
-                        0          // flags (not currently used, set to 0)
+                v.startDrag(null,  // Datos a arrastrar
+                        new View.DragShadowBuilder(v),  // Sombra
+                        v,  // Se establece la vista como datos locales.
+                        0   // flags (sin uso)
                 );
                 // Se oculta la vista.
                 v.setVisibility(View.INVISIBLE);
@@ -53,14 +54,15 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        // El proceso de drag and drop se inicará cuando se realice
+        // un click largo sobre la vista.
         mLblLeyenda.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
-                v.startDrag(ClipData.newPlainText("Leyenda", mLblLeyenda.getText().toString()),  // the data to be dragged
-                        myShadow,  // the drag shadow builder
-                        v,      // local data
-                        0          // flags (not currently used, set to 0)
+                v.startDrag(ClipData.newPlainText("Leyenda", mLblLeyenda.getText().toString()),
+                        new View.DragShadowBuilder(v),
+                        v,
+                        0
                 );
                 // Se oculta la vista.
                 v.setVisibility(View.INVISIBLE);
@@ -68,9 +70,11 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        // Se prepara al receptor para recibir los eventos del drag and drop.
         mFrlCuadro.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View v, DragEvent event) {
+                // Dependiendo de la acción.
                 switch (event.getAction()) {
                     // Se ha iniciado la operación.
                     case DragEvent.ACTION_DRAG_STARTED:
@@ -89,11 +93,13 @@ public class MainActivity extends ActionBarActivity {
                     // La sombra de arrastre ha tocado los límites de la vista.
                     case DragEvent.ACTION_DRAG_ENTERED:
                         Log.d(getString(R.string.app_name), "frlCuadro: DragEntered");
+                        // Se cambia el color de fondo del posible receptor.
                         v.setBackgroundColor(getResources().getColor(R.color.cuadroCandidatoBackground));
                         break;
                     // La sombra de arrastre ha salido de los límites de la vista.
                     case DragEvent.ACTION_DRAG_EXITED:
                         Log.d(getString(R.string.app_name), "frlCuadro: DragExited");
+                        // Se restablece el color de fondo del candidato.
                         v.setBackgroundColor(getResources().getColor(R.color.cuadroBackground));
                         break;
                     // Si se deja caer sobre otra vista.
@@ -103,15 +109,19 @@ public class MainActivity extends ActionBarActivity {
                         View original = (View) event.getLocalState();
                         // Se quita de su padre.
                         ((ViewGroup) original.getParent()).removeView(original);
-                        // Se agrega al destino.
-                        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+                        // Se agrega al destino de manera que aparezca centrado..
+                        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                                FrameLayout.LayoutParams.WRAP_CONTENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
                         lp.gravity = Gravity.CENTER;
                         original.setLayoutParams(lp);
                         ((ViewGroup) v).addView(original);
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
                         Log.d(getString(R.string.app_name), "frlCuadro: DragEnded");
+                        // Se restablece el color orginal del destinatario.
                         v.setBackgroundColor(getResources().getColor(R.color.cuadroBackground));
+                        // Se vuelve a hacer visible la vista (importante que no sea inmediatamente)
                         final View arrastrada = (View) event.getLocalState();
                         if (arrastrada != null) {
                             v.post(new Runnable() {
@@ -223,25 +233,4 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
