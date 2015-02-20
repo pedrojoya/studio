@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr117.alarms;
+package es.iessaladillo.pedrojoya.pr117.sync;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -14,6 +14,7 @@ public class UTCTimeUpdateNeededAlarm {
 
     private static final int RC_UTCTIME_UPDATE_NEEDED = 1;
 
+    // Establece la alarma de actualización con un determinado intervalo de repetición.
     public static void set(Context context, int intervalo) {
         AlarmManager am = (AlarmManager) context
                 .getSystemService(Context.ALARM_SERVICE);

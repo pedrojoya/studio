@@ -9,7 +9,6 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,10 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import es.iessaladillo.pedrojoya.pr117.R;
-import es.iessaladillo.pedrojoya.pr117.alarms.UTCTimeUpdateNeededAlarm;
 import es.iessaladillo.pedrojoya.pr117.data.utctime.UtctimeColumns;
 import es.iessaladillo.pedrojoya.pr117.services.ApiService;
-
+import es.iessaladillo.pedrojoya.pr117.sync.UTCTimeUpdateNeededAlarm;
 
 public class MainActivity extends ActionBarActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -30,22 +28,29 @@ public class MainActivity extends ActionBarActivity implements
 
     private TextView mLblDatetime;
 
-    private LocalBroadcastManager mLocalBroadcastManager;
     private BroadcastReceiver mUTCTimeUpdatedReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getLoaderManager().initLoader(LOADER_ID, null, this);
+        // Se inicializan las vistas.
         initVistas();
+        // Se inicializa al cargador de datos.
+        getLoaderManager().initLoader(LOADER_ID, null, this);
+        // Se configura el receptor de mensajes desde el servicio de la API.
         configReceiver();
+        // Se establece la alarma de actualización de datos.
         UTCTimeUpdateNeededAlarm.set(getApplicationContext(), UTCTimeUpdateNeededAlarm.ALARM_INTERVAL);
     }
 
-    // Configura el receptor de mensajes.
+    // Obtiene e inicializa las vista.s
+    private void initVistas() {
+        mLblDatetime = (TextView) findViewById(R.id.lblDatetime);
+    }
+
+    // Configura el receptor de mensajes desde el servicio de la API.
     private void configReceiver() {
-        mLocalBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
         mUTCTimeUpdatedReceiver = new BroadcastReceiver() {
 
             @Override
@@ -56,10 +61,6 @@ public class MainActivity extends ActionBarActivity implements
                 abortBroadcast();
             }
         };
-    }
-
-    private void initVistas() {
-        mLblDatetime = (TextView) findViewById(R.id.lblDatetime);
     }
 
     @Override
@@ -77,6 +78,7 @@ public class MainActivity extends ActionBarActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    // Inicia el servicio de actualización de datos desde la API.
     public void refrescar() {
         Intent intent = new Intent(getApplicationContext(), ApiService.class);
         startService(intent);
@@ -85,29 +87,35 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+        // Se registra el receptor de mensajes desde el servicio de la API con una
+        // prioridad alta.
         IntentFilter filter = new IntentFilter(
                 ApiService.ACTION_UTCTIME_UPDATED);
-//        mLocalBroadcastManager.registerReceiver(mUTCTimeUpdatedReceiver, filter);
         filter.setPriority(PRIORIDAD_SUPERIOR);
         registerReceiver(mUTCTimeUpdatedReceiver, filter);
     }
 
     @Override
     protected void onPause() {
-//        mLocalBroadcastManager.unregisterReceiver(mUTCTimeUpdatedReceiver);
+        // Se quita del registro el receptor de mensajes desde el servicio de la API.
         unregisterReceiver(mUTCTimeUpdatedReceiver);
         super.onPause();
     }
 
+    // Cuando se debe crear el cargador de datos.
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        // Se crea y retorna un CursorLoader que carga todos los datos de la tabla Utctime
+        // a través del Content Provider.
         return new CursorLoader(this,
                 UtctimeColumns.CONTENT_URI, UtctimeColumns.ALL_COLUMNS,
                 null, null, null);
     }
 
+    // Cuando se terminan de cargar los datos del cargador.
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        // Se recorre el cursor y se escriben los datos.
         if (cursor != null) {
             cursor.moveToFirst();
             if (!cursor.isAfterLast()) {
@@ -117,6 +125,7 @@ public class MainActivity extends ActionBarActivity implements
         }
     }
 
+    // Cuando se resetea el cargador de datos.
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
     }

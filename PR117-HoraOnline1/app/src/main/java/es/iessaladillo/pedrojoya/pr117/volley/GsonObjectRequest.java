@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 
+// Petición de un objeto JSON que será procesado por la librería GSON.
 public class GsonObjectRequest<T> extends Request<T> {
 
     private final Response.Listener<T> listener;
@@ -23,6 +24,7 @@ public class GsonObjectRequest<T> extends Request<T> {
         this.gson = gson;
     }
 
+    // Procesa la respuesta.
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {

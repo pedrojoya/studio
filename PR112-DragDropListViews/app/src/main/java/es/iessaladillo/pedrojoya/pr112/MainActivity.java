@@ -27,8 +27,8 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
 
     // Modelo para los items de las listas.
     public class Item {
-        Drawable icono;
-        String texto;
+        final Drawable icono;
+        final String texto;
 
         Item(Drawable icono, String texto) {
             this.icono = icono;
@@ -38,8 +38,8 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
 
     // Modelo para la info de arrastre
     class DragInfo {
-        View vista;
-        Item item;
+        final View vista;
+        final Item item;
 
         DragInfo(View vista, Item item) {
             this.vista = vista;
@@ -57,11 +57,11 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
         }
 
         // Variables a nivel de clase.
-        private List<Item> datos;
+        private final ArrayList<Item> datos;
         private final LayoutInflater inflador;
 
         // Constructor.
-        Adaptador(Context context, List<Item> datos) {
+        Adaptador(Context context, ArrayList<Item> datos) {
             super(context, 0, datos);
             this.inflador = LayoutInflater.from(context);
             this.datos = datos;
@@ -88,15 +88,14 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
         }
 
         // Retorna el array de datos que maneja el adaptador.
-        public List<Item> getDatos() {
+        public ArrayList<Item> getDatos() {
             return datos;
         }
     }
 
     // Variables a nivel de clase
-    List<Item> mDatos1, mDatos2;
-    ListView mLst1, mLst2;
-    Adaptador mAdaptador1, mAdaptador2;
+    private ArrayList<Item> mDatos1;
+    private ArrayList<Item> mDatos2;
 
     // Al crear la actividad.
     @Override
@@ -114,12 +113,12 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
         cargarDatos();
         // Se configuran las listas. Se les crea un listener para cuando sean destinatarias
         // de una operación de drag & drop.
-        mLst1 = (ListView) findViewById(R.id.lst1);
-        mAdaptador1 = new Adaptador(this, mDatos1);
+        ListView mLst1 = (ListView) findViewById(R.id.lst1);
+        Adaptador mAdaptador1 = new Adaptador(this, mDatos1);
         mLst1.setAdapter(mAdaptador1);
         mLst1.setOnDragListener(new OnListDragListener());
-        mLst2 = (ListView) findViewById(R.id.lst2);
-        mAdaptador2 = new Adaptador(this, mDatos2);
+        ListView mLst2 = (ListView) findViewById(R.id.lst2);
+        Adaptador mAdaptador2 = new Adaptador(this, mDatos2);
         mLst2.setAdapter(mAdaptador2);
         mLst2.setOnDragListener(new OnListDragListener());
         // La operación de drag & drop se iniciará al hacer click largo sobre un elemento
@@ -142,7 +141,7 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
     }
 
 
-    class OnListDragListener implements OnDragListener {
+    private class OnListDragListener implements OnDragListener {
 
         @Override
         public boolean onDrag(View v, DragEvent event) {
@@ -196,7 +195,7 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
     // Listener de arrastre de un item de una lista.
     class OnItemDragListener implements OnDragListener {
 
-        Item item;
+        final Item item;
 
         OnItemDragListener(Item item) {
             this.item = item;

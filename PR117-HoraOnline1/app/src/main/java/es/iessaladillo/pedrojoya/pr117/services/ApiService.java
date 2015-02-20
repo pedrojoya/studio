@@ -20,6 +20,7 @@ import es.iessaladillo.pedrojoya.pr117.model.UTCTime;
 import es.iessaladillo.pedrojoya.pr117.volley.GsonObjectRequest;
 import es.iessaladillo.pedrojoya.pr117.volley.VolleyInstance;
 
+// Servicio de actualización desde la API.
 public class ApiService extends IntentService {
 
     private static final String SERVICE_NAME = "HoraOnline";
@@ -56,7 +57,7 @@ public class ApiService extends IntentService {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d(SERVICE_NAME, error.getMessage());
+                Log.d(SERVICE_NAME, error.toString());
             }
         };
         // Se crea la petición.
@@ -80,9 +81,10 @@ public class ApiService extends IntentService {
     // Envía un mensaje a quién corresponda de que los datos han sido actualizados.
     private void enviarBroadcast() {
         Intent intent = new Intent(ACTION_UTCTIME_UPDATED);
-//        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(
-//                intent);
-//        sendBroadcast(intent);
+        // Envía un broadcast ordenado, de manera que si la actiividad está en primer plano,
+        // su receptor registrado dinámico y que tiene más prioridad que el registrado estáticamente
+        // reciba primero el intent y pueda si lo desea abortar el broadcast para que el intent
+        // no sea recibido por el resto de receptores.
         sendOrderedBroadcast(intent, null);
     }
 

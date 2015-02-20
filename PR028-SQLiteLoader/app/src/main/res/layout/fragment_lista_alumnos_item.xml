@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/estados"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:paddingTop="5.0dip"
+        android:text="Nombre"
+        android:textSize="18.0sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/lblCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        tools:text="Curso"
+        android:textSize="14.0sp"
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/lblTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        tools:text="Telefono"
+        android:textSize="14.0sp"
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/lblDireccion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16.0dp"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        tools:text="Dirección"
+        android:textSize="14.0sp"
+        android:textStyle="italic" />
+</LinearLayout>

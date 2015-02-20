@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PR117-HoraOnline1</string>
+    <string name="app_name">Hora Online</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="refrescar">Refrescar</string>
+    <string name="hora_actualizada">Se ha actualizado la hora UTC en la base de datos</string>
+    <string name="hora_utc_actualizada">Hora UTC actualizada</string>
 
 </resources>

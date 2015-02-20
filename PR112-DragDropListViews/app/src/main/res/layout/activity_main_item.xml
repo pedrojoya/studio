@@ -12,6 +12,8 @@
         android:layout_gravity="center"
         android:layout_width="@dimen/icono_height"
         android:layout_marginRight="@dimen/icono_margen"
+        android:layout_marginEnd="@dimen/icono_margen"
+        android:contentDescription="@string/icono"
         android:src="@android:drawable/ic_menu_agenda"
         android:layout_height="@dimen/icono_height" />
 

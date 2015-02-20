@@ -11,6 +11,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+        <!-- Actividad principal -->
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name">
@@ -20,23 +21,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Servicio de interacción con la API -->
         <service android:name=".services.ApiService" />
+        <!-- Proveedor de contenidos -->
         <provider
             android:name="es.iessaladillo.pedrojoya.pr117.data.UTCTimeProvider"
             android:authorities="es.iessaladillo.pedrojoya.pr117.provider"
             android:exported="false" />
-        <receiver
-            android:name=".receivers.UTCTimeUpdatedReceiver" >
+        <!-- Receptor de que se ha actualizado la hora -->
+        <receiver android:name=".receivers.UTCTimeUpdatedReceiver">
             <intent-filter>
                 <action android:name="es.iessaladillo.pedrojoya.pr117.action.utctime_updated" />
             </intent-filter>
         </receiver>
+        <!-- Receptor de la alarma de que es necesario actualizar la hora -->
         <receiver
             android:name=".receivers.UTCTimeUpdateNeededReceiver"
             android:exported="false" />
+        <!-- Receptor de que se ha arrancado el dispositivo -->
         <receiver
             android:name=".receivers.BootReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

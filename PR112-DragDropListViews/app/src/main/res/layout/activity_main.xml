@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     android:padding="@dimen/activity_padding"
-    android:background="@color/activity_background"
     tools:context="com.example.es.iessaladillo.pedrojoya.pr112.MainActivity">
 
     <ListView
@@ -13,6 +13,7 @@
         android:layout_weight="1"
         android:background="@android:color/white"
         android:layout_marginRight="@dimen/lst_margin"
+        android:layout_marginEnd="@dimen/lst_margin"
         android:paddingBottom="@dimen/lst_padding"
         android:layout_height="wrap_content" />
 
@@ -21,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_marginLeft="@dimen/lst_margin"
+        android:layout_marginStart="@dimen/lst_margin"
         android:background="@android:color/white"
         android:paddingBottom="@dimen/lst_padding"
         android:layout_height="match_parent" />
