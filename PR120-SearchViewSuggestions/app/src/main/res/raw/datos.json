@@ -1,0 +1,135 @@
+[
+  {
+    "nombre": "Janet Curry",
+    "curso": "1º CFGM",
+    "telefono": "(803) 493-3041",
+    "direccion": "Glen Street 2760, Ferney",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Hawkins Malone",
+    "curso": "2º CFGM",
+    "telefono": "(930) 484-2405",
+    "direccion": "Varick Avenue 2567, Osage",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Francis Clayton",
+    "curso": "1º CFGS",
+    "telefono": "(902) 447-3702",
+    "direccion": "Middagh Street 2841, Marenisco",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Latasha Kramer",
+    "curso": "1º CFGS",
+    "telefono": "(876) 518-3316",
+    "direccion": "Aurelia Court 5778, Klagetoh",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Karin Frank",
+    "curso": "1º CFGM",
+    "telefono": "(859) 515-3246",
+    "direccion": "Midwood Street 3242, Volta",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Diane Patrick",
+    "curso": "2º CFGS",
+    "telefono": "(925) 427-2569",
+    "direccion": "Ira Court 2075, Oasis",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Luz Brewer",
+    "curso": "2º CFGS",
+    "telefono": "(967) 559-2671",
+    "direccion": "Quentin Street 8223, Linwood",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Rush Wooten",
+    "curso": "2º CFGM",
+    "telefono": "(990) 466-3887",
+    "direccion": "Sunnyside Court 6515, Nelson",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Ingrid Montgomery",
+    "curso": "1º CFGM",
+    "telefono": "(813) 481-2741",
+    "direccion": "Melba Court 195, Juarez",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Liliana Dickerson",
+    "curso": "1º CFGS",
+    "telefono": "(833) 527-3813",
+    "direccion": "Billings Place 6826, Jacumba",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Oneal Chaney",
+    "curso": "2º CFGM",
+    "telefono": "(841) 455-3154",
+    "direccion": "Bushwick Place 8156, Cassel",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Perkins Leon",
+    "curso": "2º CFGM",
+    "telefono": "(968) 522-2450",
+    "direccion": "Russell Street 2508, Tecolotito",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Helene Shaw",
+    "curso": "2º CFGM",
+    "telefono": "(990) 466-3195",
+    "direccion": "Taaffe Place 2722, Wakarusa",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Bette Good",
+    "curso": "2º CFGM",
+    "telefono": "(997) 415-2464",
+    "direccion": "Brown Street 7452, Garfield",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Hooper Acosta",
+    "curso": "1º CFGS",
+    "telefono": "(930) 440-2327",
+    "direccion": "Conway Street 7233, Oretta",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Charmaine Rhodes",
+    "curso": "1º CFGS",
+    "telefono": "(865) 548-2473",
+    "direccion": "Kermit Place 4691, Unionville",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Myers Tran",
+    "curso": "2º CFGS",
+    "telefono": "(806) 542-3635",
+    "direccion": "Glenwood Road 1884, Waterford",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "Marsha Wallace",
+    "curso": "2º CFGS",
+    "telefono": "(977) 539-3217",
+    "direccion": "Schenectady Avenue 7494, Konterra",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  },
+  {
+    "nombre": "James Meyer",
+    "curso": "1º CFGS",
+    "telefono": "(875) 491-2776",
+    "direccion": "Coventry Road 3524, Harborton",
+    "foto": "android.resource://es.iessaladillo.pedrojoya.pr120/drawable/ic_user"
+  }
+]

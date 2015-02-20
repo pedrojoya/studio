@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SearchView</string>
+    <string name="foto">Foto</string>
+    <string name="buscar">Buscar</string>
+    <string name="title_activity_busqueda">BusquedaActivity</string>
+    <string name="search_hint">(buscar)</string>
+    <string name="limpiar_historial_busqueda">Limpiar historial de búsqueda</string>
+
+</resources>
