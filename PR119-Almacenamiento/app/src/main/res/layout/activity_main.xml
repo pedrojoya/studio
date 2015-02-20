@@ -8,7 +8,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Interno"
+        android:text="@string/interno"
         android:id="@+id/btnInterno"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Externo privado"
+        android:text="@string/externo_privado"
         android:id="@+id/btnExternoPrivado"
         android:layout_below="@+id/btnInterno"
         android:layout_centerHorizontal="true"
@@ -25,7 +25,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Externo público"
+        android:text="@string/externo_publico"
         android:id="@+id/btnExternoPublico"
         android:layout_below="@+id/btnExternoPrivado"
         android:layout_centerHorizontal="true"
@@ -34,7 +34,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Caché interno"
+        android:text="@string/cache_interno"
         android:id="@+id/btnCacheInterno"
         android:layout_below="@+id/btnExternoPublico"
         android:layout_centerHorizontal="true"
@@ -43,7 +43,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Caché externo"
+        android:text="@string/cache_externo"
         android:id="@+id/btnCacheExterno"
         android:layout_below="@+id/btnCacheInterno"
         android:layout_centerHorizontal="true"

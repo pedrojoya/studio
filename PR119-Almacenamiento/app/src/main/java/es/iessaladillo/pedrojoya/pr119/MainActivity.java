@@ -1,12 +1,11 @@
 package es.iessaladillo.pedrojoya.pr119;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,8 +19,9 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-
 public class MainActivity extends ActionBarActivity {
+
+    private static final String FILE_NAME = "lorem.txt";
 
     @InjectView(R.id.btnInterno)
     Button mBtnInterno;
@@ -43,47 +43,44 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.btnInterno)
     public void interno() {
-        generar(R.raw.lorem, getFilesDir());
+        copiarRawFileTo(R.raw.lorem, getFilesDir(), FILE_NAME);
     }
 
     @OnClick(R.id.btnExternoPrivado)
     public void externoPrivado() {
-        String estadoSD = Environment.getExternalStorageState();
-        if (estadoSD.equals(Environment.MEDIA_MOUNTED)) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             // Se puede leer y escribir en la tarjeta SD.
-            generar(R.raw.lorem, getExternalFilesDir(Environment.DIRECTORY_MUSIC));
+            copiarRawFileTo(R.raw.lorem, getExternalFilesDir(Environment.DIRECTORY_MUSIC), FILE_NAME);
         }
     }
 
     @OnClick(R.id.btnExternoPublico)
     public void externoPublico() {
-        String estadoSD = Environment.getExternalStorageState();
-        if (estadoSD.equals(Environment.MEDIA_MOUNTED)) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             // Se puede leer y escribir en la tarjeta SD.
-            generar(R.raw.lorem,
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC));
+            copiarRawFileTo(R.raw.lorem,
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC), FILE_NAME);
         }
     }
 
     @OnClick(R.id.btnCacheInterno)
     public void cacheInterno() {
-        generar(R.raw.lorem, getCacheDir());
+        copiarRawFileTo(R.raw.lorem, getCacheDir(), FILE_NAME);
     }
 
     @OnClick(R.id.btnCacheExterno)
     public void cacheExterno() {
-        generar(R.raw.lorem, getExternalCacheDir());
+        copiarRawFileTo(R.raw.lorem, getExternalCacheDir(), FILE_NAME);
     }
 
-    private void generar(int resIdRawFile, File dir) {
+    private void copiarRawFileTo(int resIdRawFile, File dir, String name) {
         InputStream entrada = getResources().openRawResource(resIdRawFile);
         BufferedReader lector = new BufferedReader(new InputStreamReader(entrada));
         FileOutputStream salida;
         String linea= null;
         try {
-            File fichero = new File(dir, "lorem.txt");
-            fichero.createNewFile();
-            Toast.makeText(this, fichero.getPath().toString(), Toast.LENGTH_SHORT).show();
+            File fichero = new File(dir, name);
+            Log.d("Mia", fichero.getPath());
             salida = new FileOutputStream(fichero);
             PrintWriter escritor = new PrintWriter(salida);
             while ((linea = lector.readLine()) != null) {
@@ -93,7 +90,6 @@ public class MainActivity extends ActionBarActivity {
             salida.close();
             lector.close();
             entrada.close();
-            Toast.makeText(this, "Generado", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
