@@ -7,5 +7,19 @@
     <string name="title_activity_busqueda">BusquedaActivity</string>
     <string name="search_hint">(buscar)</string>
     <string name="limpiar_historial_busqueda">Limpiar historial de búsqueda</string>
+    <string name="title_activity_alumno">Alummo</string>
+    <string name="guardar">Guardar</string>
+    <string name="editar_alumno">Editar alumno</string>
+    <string name="agregar_alumno">Agregar alumno</string>
+    <string name="alumno_no_encontrado">Alumno no encontrado</string>
+    <string name="datos_obligatorios">No se han introducido datos obligatorios</string>
+    <string name="insercion_correcta">Se ha agregado correctamente</string>
+    <string name="insercion_incorrecta">Se ha producido un error al agregar el alumno</string>
+    <string name="actualizacion_correcta">La actualización se ha realizado correctamente</string>
+    <string name="actualizacion_incorrecta">Se ha producido un error al actualizar el alumno</string>
+    <string name="nombre">Nombre</string>
+    <string name="curso">Curso</string>
+    <string name="telefono">Teléfono</string>
+    <string name="direccion">Dirección</string>
 
 </resources>

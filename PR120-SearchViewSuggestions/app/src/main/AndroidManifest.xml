@@ -26,7 +26,14 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-
+        <activity
+            android:name="es.iessaladillo.pedrojoya.pr120.actividades.AlumnoActivity"
+            android:label="@string/title_activity_alumno"
+            android:parentActivityName=".actividades.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".actividades.MainActivity" />
+        </activity>
         <provider
             android:name=".datos.InstitutoProvider"
             android:authorities="es.iessaladillo.pedrojoya.pr120.provider" />

@@ -13,11 +13,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 import es.iessaladillo.pedrojoya.pr120.R;
 import es.iessaladillo.pedrojoya.pr120.datos.InstitutoContract;
 import es.iessaladillo.pedrojoya.pr120.datos.InstitutoProvider;
+import es.iessaladillo.pedrojoya.pr120.fragmentos.AlumnoFragment;
 import es.iessaladillo.pedrojoya.pr120.models.Alumno;
 
 
@@ -44,8 +44,8 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             // El usuario ha seleccionado una sugerencia.
             Uri uriAlumno = intent.getData();
-            String id = uriAlumno.getLastPathSegment();
-            Toast.makeText(this, uriAlumno.toString(), Toast.LENGTH_SHORT).show();
+            String idAlumno = uriAlumno.getLastPathSegment();
+            mostrarAlumno(Long.parseLong(idAlumno));
         }
     }
 
@@ -84,6 +84,15 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Cursor cursor = (Cursor) mLstResultados.getItemAtPosition(position);
         Alumno alumno = Alumno.fromCursor(cursor);
-        Toast.makeText(this, alumno.getNombre() + " - " + alumno.getCurso(), Toast.LENGTH_SHORT).show();
+        mostrarAlumno(alumno.getId());
     }
+
+    private void mostrarAlumno(long idAlumno) {
+        Intent intentAlumno = new Intent(this, AlumnoActivity.class);
+        intentAlumno.putExtra(AlumnoFragment.EXTRA_MODO, AlumnoFragment.MODO_EDITAR);
+        intentAlumno.putExtra(AlumnoFragment.EXTRA_ID, idAlumno);
+        startActivity(intentAlumno);
+        finish();
+    }
+
 }

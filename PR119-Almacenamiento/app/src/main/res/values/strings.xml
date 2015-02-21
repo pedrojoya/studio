@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PR119-Almacenamiento</string>
-    <string name="interno">Interno</string>
-    <string name="externo_privado">Externo privado</string>
-    <string name="externo_publico">Externo público</string>
-    <string name="cache_interno">Caché interno</string>
-    <string name="cache_externo">Caché externo</string>
+    <string name="app_name">Almacenamiento</string>
+    <string name="interno">Almacenamiento interno</string>
+    <string name="externo_propio">Almacenamiento externo propio</string>
+    <string name="externo_publico">Almacenamiento externo público</string>
+    <string name="cache_interno">Caché en almacenamiento interno</string>
+    <string name="cache_externo">Caché en almacenamiento externo</string>
+    <string name="fichero_origen">Fichero origen</string>
+    <string name="raw">res/raw/lorem.txt</string>
+    <string name="assets">/assets/audio.mp3</string>
+    <string name="carpeta_destino">Carpeta de destino</string>
+    <string name="crear_copia_de_archivo">Crear copia de archivo</string>
+    <string name="generado">Generado</string>
 
 </resources>
