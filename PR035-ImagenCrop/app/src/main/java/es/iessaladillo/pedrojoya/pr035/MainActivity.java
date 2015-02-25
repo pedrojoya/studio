@@ -33,7 +33,6 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
     private static final String PREF_PATH_FOTO = "prefPathFoto";
     private static final int OPTION_PICK = 0;
 
-    private String sPathFoto; // path foto mostrada en el ImageView (escalada y guardada en privado)
     private String sPathFotoOriginal; // path en el que se guarda la foto capturada.
     private String sNombreArchivo; // Nombre para guardar en privado la foto escalada.
 
@@ -44,32 +43,25 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imgFoto = (ImageView) findViewById(R.id.imgFoto);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         // Se lee de las preferencias el path del archivo con la foto escalada y privada
         // (si fuera una base de datos, leeríamos del registro correspondiente.
         SharedPreferences preferencias = getSharedPreferences(getString(R.string.app_name),
                 MODE_PRIVATE);
-        String path = preferencias.getString(PREF_PATH_FOTO, "");
-        if (!TextUtils.isEmpty(path)) {
-            sPathFoto = path;
+        String pathFoto = preferencias.getString(PREF_PATH_FOTO, "");
+        if (!TextUtils.isEmpty(pathFoto)) {
             // Se muestra en el ImageView.
-            imgFoto.setImageURI(Uri.fromFile(new File(sPathFoto)));
+            imgFoto.setImageURI(Uri.fromFile(new File(pathFoto)));
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+    // Guarda en preferencias el path de archivo mostrado en el ImageView.
+    private void guardarEnPreferencias(String path) {
         // Se almacena en las preferencias el path del archivo con la foto escalada y privada
         SharedPreferences preferencias = getSharedPreferences(getString(R.string.app_name),
                 MODE_PRIVATE);
         SharedPreferences.Editor editor = preferencias.edit();
-        editor.putString(PREF_PATH_FOTO, sPathFoto);
-        editor.commit();
+        editor.putString(PREF_PATH_FOTO, path);
+        editor.apply();
     }
 
     @Override
@@ -219,7 +211,7 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
                     if (archivo != null) {
                         if (guardarBitmapEnArchivo(bitmapFotoRecortada, archivo)) {
                             // Se almacena el path de la foto a mostrar en el ImageView.
-                            sPathFoto = archivo.getAbsolutePath();
+                            guardarEnPreferencias(archivo.getAbsolutePath());
                             // Se muestra la foto en el ImageView.
                             imgFoto.setImageBitmap(bitmapFotoRecortada);
                         }
@@ -313,7 +305,7 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
                 if (archivo != null) {
                     if (guardarBitmapEnArchivo(bitmapFoto, archivo)) {
                         // Se almacena el path de la foto a mostrar en el ImageView.
-                        sPathFoto = archivo.getAbsolutePath();
+                        guardarEnPreferencias(archivo.getAbsolutePath());
                         // Se muestra la foto en el ImageView.
                         imgFoto.setImageBitmap(bitmapFoto);
                     }
