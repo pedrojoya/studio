@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FaceCrop</string>
+    <string name="foto">Foto realizada por el usuario</string>
+    <string name="capturar_foto">Capturar foto</string>
+    <string name="elige_opcion">Elige opción</string>
+</resources>
