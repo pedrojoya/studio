@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.imagencapturaescalamediastore;
+package es.iessaladillo.pedrojoya.pr035;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +28,8 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
 
     private static final int RC_CAPTURAR_FOTO = 0;
     private static final int RC_SELECCIONAR_FOTO = 1;
+    private static final int RC_RECORTAR_FOTO = 2;
+
     private static final String PREF_PATH_FOTO = "prefPathFoto";
     private static final int OPTION_PICK = 0;
 
@@ -52,7 +54,7 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
         SharedPreferences preferencias = getSharedPreferences(getString(R.string.app_name),
                 MODE_PRIVATE);
         String path = preferencias.getString(PREF_PATH_FOTO, "");
-        if (!TextUtils.isEmpty(sPathFoto)) {
+        if (!TextUtils.isEmpty(path)) {
             sPathFoto = path;
             // Se muestra en el ImageView.
             imgFoto.setImageURI(Uri.fromFile(new File(sPathFoto)));
@@ -67,7 +69,7 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
                 MODE_PRIVATE);
         SharedPreferences.Editor editor = preferencias.edit();
         editor.putString(PREF_PATH_FOTO, sPathFoto);
-        editor.apply();
+        editor.commit();
     }
 
     @Override
@@ -123,6 +125,35 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
         }
     }
 
+    // Envía un intent implícito para recortar la imagen. Recibe el path de la foto a recortar.
+    // Si no es posible recortar, se llama a cargarImagenEscalada().
+    private void recortarImagen(String pathFoto) {
+        // Se guarda el nombre para uso posterior.
+        Intent i = new Intent("com.android.camera.action.CROP");
+        i.setDataAndType(Uri.fromFile(new File(pathFoto)), "image/*");
+        // Si hay alguna actividad que sepa realizar la acción de recortar.
+        if (i.resolveActivity(getPackageManager()) != null) {
+            i.putExtra("crop", "true");
+            // Ratio.
+            i.putExtra("aspectX",
+                    getResources().getDimensionPixelSize(R.dimen.ancho_visor));
+            i.putExtra("aspectY",
+                    getResources().getDimensionPixelSize(R.dimen.alto_visor));
+            // Tamaño de salida.
+            i.putExtra("outputX",
+                    getResources().getDimensionPixelSize(R.dimen.ancho_visor));
+            i.putExtra("outputY",
+                    getResources().getDimensionPixelSize(R.dimen.alto_visor));
+            i.putExtra("return-data", true);
+            // Inicio la actividad esperando el resultado.
+            startActivityForResult(i, RC_RECORTAR_FOTO);
+        }
+        else {
+            // Si no se puede recortar, se escala la imagen y se muestra.
+            cargarImagenEscalada(pathFoto);
+        }
+    }
+
     // Crea un archivo de foto con el nombre indicado en almacenamiento externo si es posible, o si
     // no en almacenamiento interno, y lo retorna. Retorna null si fallo.
     // Si publico es true -> en la carpeta pública de imágenes.
@@ -169,16 +200,30 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
                 case RC_CAPTURAR_FOTO:
                     // Se agrega la foto a la Galería
                     agregarFotoAGaleria(sPathFotoOriginal);
-                    // Se escala la foto, se almacena en archivo propio y se muestra en ImageView.
-                    cargarImagenEscalada(sPathFotoOriginal);
+                    // Se recorta la imagen.
+                    recortarImagen(sPathFotoOriginal);
                     break;
                 case RC_SELECCIONAR_FOTO:
                     // Se obtiene el path real a partir de la uri retornada por la galería.
                     Uri uriGaleria = intent.getData();
                     sPathFotoOriginal = getRealPath(uriGaleria);
-                    // Se escala la foto, se almacena en archivo propio y se muestra en ImageView.
-                    cargarImagenEscalada(sPathFotoOriginal);
+                    // Se recorta la imagen.
+                    recortarImagen(sPathFotoOriginal);
                     break;
+                case RC_RECORTAR_FOTO:
+                    // Se obtiene el bitmap resultante.
+                    Bitmap bitmapFotoRecortada = intent.getExtras().getParcelable(
+                            "data");
+                    // Se guarda la copia propia de la imagen.
+                    File archivo = crearArchivoFoto(sNombreArchivo, false);
+                    if (archivo != null) {
+                        if (guardarBitmapEnArchivo(bitmapFotoRecortada, archivo)) {
+                            // Se almacena el path de la foto a mostrar en el ImageView.
+                            sPathFoto = archivo.getAbsolutePath();
+                            // Se muestra la foto en el ImageView.
+                            imgFoto.setImageBitmap(bitmapFotoRecortada);
+                        }
+                    }
             }
         }
     }
@@ -215,6 +260,21 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
         // la foto en el ImageView.
         MostrarFotoAsyncTask tarea = new MostrarFotoAsyncTask();
         tarea.execute(pathFoto);
+    }
+
+    // Guarda el bitamp de la foto en un archivo. Retorna si ha ido bien.
+    private boolean guardarBitmapEnArchivo(Bitmap bitmapFoto, File archivo) {
+        try {
+            FileOutputStream flujoSalida = new FileOutputStream(
+                    archivo);
+            bitmapFoto.compress(Bitmap.CompressFormat.JPEG, 100, flujoSalida);
+            flujoSalida.flush();
+            flujoSalida.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // Cuando se selecciona una opción del diálogo PickOrCaptureDialogFragment.
@@ -261,7 +321,6 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
             }
         }
 
-
         // Escala la foto indicada, para ser mostarda en un visor determinado.
         // Retorna el bitmap correspondiente a la imagen escalada o null si
         // se ha producido un error.
@@ -287,20 +346,6 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
             }
         }
 
-        // Guarda el bitamp de la foto en un archivo. Retorna si ha ido bien.
-        private boolean guardarBitmapEnArchivo(Bitmap bitmapFoto, File archivo) {
-            try {
-                FileOutputStream flujoSalida = new FileOutputStream(
-                        archivo);
-                bitmapFoto.compress(Bitmap.CompressFormat.JPEG, 100, flujoSalida);
-                flujoSalida.flush();
-                flujoSalida.close();
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
     }
 
 
