@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Captura de vídeo</string>
+    <string name="video">Vídeo realizado por el usuario</string>
+    <string name="capturar_video">Capturar vídeo</string>
+    <string name="elige_opcion">Elige opción</string>
+</resources>

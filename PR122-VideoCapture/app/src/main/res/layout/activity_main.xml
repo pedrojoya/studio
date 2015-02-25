@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextureView
+        android:id="@+id/tvVideo"
+        android:layout_width="@dimen/ancho_visor"
+        android:layout_height="@dimen/alto_visor"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/video" />
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pick_or_capture_opciones">
+        <item>Seleccionar de la galería</item>
+        <item>Capturar vídeo</item>
+    </string-array>
+</resources>
