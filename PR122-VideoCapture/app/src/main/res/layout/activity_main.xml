@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlRaiz"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/lblSinVideo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:background="@color/fondo_sin_video" />
 
     <TextureView
         android:id="@+id/tvVideo"
-        android:layout_width="@dimen/ancho_visor"
-        android:layout_height="@dimen/alto_visor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:contentDescription="@string/video" />
 

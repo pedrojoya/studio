@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="ancho_visor">300dp</dimen>
-    <dimen name="alto_visor">200dp</dimen>
-</resources>

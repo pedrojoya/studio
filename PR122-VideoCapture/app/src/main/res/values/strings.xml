@@ -4,4 +4,5 @@
     <string name="video">Vídeo realizado por el usuario</string>
     <string name="capturar_video">Capturar vídeo</string>
     <string name="elige_opcion">Elige opción</string>
+    <string name="seleccione_un_video">No hay vídeo que reproducir.\nPulse el menú para seleccionarlo\nde la galería o para capturar uno</string>
 </resources>
