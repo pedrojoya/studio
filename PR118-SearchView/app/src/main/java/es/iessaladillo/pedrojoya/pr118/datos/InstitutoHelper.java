@@ -56,12 +56,16 @@ public class InstitutoHelper extends SQLiteOpenHelper {
 		db.execSQL(TBL_ALUMNO_CREATE);
 	}
 
-    public static String jsonFileFromRawFolderToString(int resId, Context context) throws IOException {
-        InputStream entrada = context.getResources().openRawResource(resId);
-        byte[] data = new byte[entrada.available()];
-        entrada.read(data);
-        entrada.close();
-        return new String(data);
+    private static String jsonFileFromRawFolderToString(int resId, Context context) throws IOException {
+        try {
+            InputStream entrada = context.getResources().openRawResource(resId);
+            byte[] data = new byte[entrada.available()];
+            entrada.read(data);
+            entrada.close();
+            return new String(data);
+        } catch (Exception e) {
+            return "";
+        }
     }
 
 }

@@ -3,7 +3,6 @@ package es.iessaladillo.pedrojoya.pr118.actividades;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.view.MenuItemCompat;
@@ -11,10 +10,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
+
+import java.lang.reflect.Field;
 
 import es.iessaladillo.pedrojoya.pr118.R;
 import es.iessaladillo.pedrojoya.pr118.datos.BusquedaProvider;
-import es.iessaladillo.pedrojoya.pr118.datos.InstitutoHelper;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,9 +24,9 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        InstitutoHelper helper = new InstitutoHelper(getApplicationContext());
-        SQLiteDatabase bd = helper.getWritableDatabase();
-        bd.close();
+        // Se activa el ítem de overflow en dispositivos con botón físico de
+        // menú.
+        overflowEnDispositivoConTeclaMenu();
     }
 
 
@@ -61,5 +62,20 @@ public class MainActivity extends ActionBarActivity {
                 BusquedaProvider.AUTHORITY, BusquedaProvider.MODE);
         // Se limpia el historial.
         suggestions.clearHistory();
+    }
+
+    // Activa el ítem de overflow en dispositivos con botón físico de menú.
+    private void overflowEnDispositivoConTeclaMenu() {
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class
+                    .getDeclaredField("sHasPermanentMenuKey");
+            if (menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            // Ignorar
+        }
     }
 }

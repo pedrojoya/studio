@@ -23,7 +23,7 @@ public class AlumnoFragment extends Fragment {
 	// Constantes.
 	public static final String EXTRA_MODO = "modo";
 	public static final String EXTRA_ID = "id";
-	public static final String MODO_AGREGAR = "AGREGAR";
+	private static final String MODO_AGREGAR = "AGREGAR";
 	public static final String MODO_EDITAR = "EDITAR";
 
 	// Variables a nivel de clase.

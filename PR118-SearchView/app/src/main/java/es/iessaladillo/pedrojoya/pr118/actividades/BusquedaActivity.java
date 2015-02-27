@@ -8,7 +8,6 @@ import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,10 +34,6 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setLogo(R.drawable.ic_launcher);
-        actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
         initVistas();
         // Se obtiene el intent y se verifica la acción.
         Intent intent = getIntent();
@@ -78,6 +73,7 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        // Se consultan los alumnos cuyo nombre contiene el término introducido.
         String criteria = InstitutoContract.Alumno.NOMBRE + " LIKE '%" + mTermino + "%'";
         return new CursorLoader(this, InstitutoProvider.CONTENT_URI_ALUMNOS, InstitutoContract.Alumno.TODOS, criteria, null, null);
     }

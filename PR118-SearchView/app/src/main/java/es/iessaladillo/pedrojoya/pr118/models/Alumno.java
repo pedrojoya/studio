@@ -38,9 +38,9 @@ public class Alumno {
     public Alumno(JSONObject objeto) {
         try {
             this.nombre = objeto.getString(InstitutoContract.Alumno.NOMBRE);
-            this.telefono = objeto.getString(InstitutoContract.Alumno.TELEFONO);;
-            this.curso = objeto.getString(InstitutoContract.Alumno.CURSO);;
-            this.direccion = objeto.getString(InstitutoContract.Alumno.DIRECCION);;
+            this.telefono = objeto.getString(InstitutoContract.Alumno.TELEFONO);
+            this.curso = objeto.getString(InstitutoContract.Alumno.CURSO);
+            this.direccion = objeto.getString(InstitutoContract.Alumno.DIRECCION);
         } catch (JSONException e) {
             e.printStackTrace();
         }

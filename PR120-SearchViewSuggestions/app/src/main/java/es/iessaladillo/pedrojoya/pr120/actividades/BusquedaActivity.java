@@ -24,25 +24,28 @@ import es.iessaladillo.pedrojoya.pr120.models.Alumno;
 public class BusquedaActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
 
     private static final int LOADER_BUSQUEDA = 1;
+
     private String mTermino;
+    private SimpleCursorAdapter mAdaptador;
 
     private ListView mLstResultados;
-    private SimpleCursorAdapter mAdaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
         initVistas();
-        // Se obtiene el intent y se verifica la acción.
+        // Se detecta la acción con la que ha sido llamada.
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            // Se obtiene el término.
+            // El usuario ha enviado un término de búsqueda, que usamos
+            // para llevarla a cabo.
             String termino = intent.getStringExtra(SearchManager.QUERY);
-            // Se realiza la búsqueda.
             buscar(termino);
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             // El usuario ha seleccionado una sugerencia.
+            // Recibimos la uri correspondiente para acceder a dicho alumno a través del
+            // content provider.
             Uri uriAlumno = intent.getData();
             String idAlumno = uriAlumno.getLastPathSegment();
             mostrarAlumno(Long.parseLong(idAlumno));
@@ -66,6 +69,7 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        // Se consultan los alumnos cuyo nombre contiene el término introducido.
         String criteria = InstitutoContract.Alumno.NOMBRE + " LIKE '%" + mTermino + "%'";
         return new CursorLoader(this, InstitutoProvider.CONTENT_URI_ALUMNOS, InstitutoContract.Alumno.TODOS, criteria, null, null);
     }
@@ -82,11 +86,14 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // Cuando se pulsa sobre un elemento de la lista se muestra la actividad
+        // con la ficha del alumno.
         Cursor cursor = (Cursor) mLstResultados.getItemAtPosition(position);
         Alumno alumno = Alumno.fromCursor(cursor);
         mostrarAlumno(alumno.getId());
     }
 
+    // Muestra la actividad con la ficha del alumno.
     private void mostrarAlumno(long idAlumno) {
         Intent intentAlumno = new Intent(this, AlumnoActivity.class);
         intentAlumno.putExtra(AlumnoFragment.EXTRA_MODO, AlumnoFragment.MODO_EDITAR);

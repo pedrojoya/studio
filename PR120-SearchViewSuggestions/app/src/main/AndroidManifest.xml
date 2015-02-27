@@ -36,7 +36,8 @@
         </activity>
         <provider
             android:name=".datos.InstitutoProvider"
-            android:authorities="es.iessaladillo.pedrojoya.pr120.provider" />
+            android:authorities="es.iessaladillo.pedrojoya.pr120.provider"
+            android:exported="false" />
     </application>
 
 </manifest>
