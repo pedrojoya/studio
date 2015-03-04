@@ -1,17 +1,17 @@
 package es.iessaladillo.pedrojoya.pr122;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.SurfaceTexture;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -19,50 +19,45 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.MediaController;
-import android.widget.TextView;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity implements
-        PickOrCaptureDialogFragment.Listener,
-        TextureView.SurfaceTextureListener, MediaController.MediaPlayerControl {
+        PickOrCaptureDialogFragment.Listener, MediaPlayer.OnPreparedListener, View.OnClickListener,
+        CustomVideoView.PlayPauseListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnInfoListener {
 
     private static final int RC_CAPTURAR_VIDEO = 0;
     private static final int RC_SELECCIONAR_VIDEO = 1;
-
     private static final String PREF_PATH_VIDEO = "prefPathVideo";
-    private static final int OPTION_PICK = 0;
-    private static final int DURACION_MAX_SEGUNDOS = 20;
-
     private static final String STATE_CURRENT_POSITION = "current_position";
+    private static final int OPTION_PICK = 0;
+    private static final int CALIDAD_MAX = 1;
+    private static final int DURACION_MAX_SEGUNDOS = 20;
 
     private String sPathVideoOriginal;
     private String sNombreArchivoPrivado;
+    private String mPathVideo;
     private int mPosicionInicial;
 
-    private TextureView mTvVideo;
-    private MediaPlayer mReproductor;
-    private Controles mControles;
+    private CustomVideoView mReproductor;
     private ActionBar mActionBar;
-    private TextView mLblSinVideo;
+    private MediaController mControles;
+    private ImageView mImgThumbnail;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,62 +65,46 @@ public class MainActivity extends ActionBarActivity implements
         setContentView(R.layout.activity_main);
         configActionBar();
         restaurarEstado(savedInstanceState);
-        configReproductor();
         initVistas();
+        configReproductor();
         restaurarPreferencias();
     }
 
     // Configura el reproductor.
     private void configReproductor() {
-        mReproductor = new MediaPlayer();
-        mReproductor.setLooping(false);
-        mReproductor.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        mReproductor = (CustomVideoView) this.findViewById(R.id.vvReproductor);
+        mControles = new MediaController(this) {
+            // Cuando se muestran los controles se muestra también la ActionBar.
             @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                actualizarDimensionesVisor();
-                mediaPlayer.seekTo(mPosicionInicial);
-                mControles.setEnabled(true);
-                mControles.show();
+            public void show() {
+                super.show();
+                mActionBar.show();
             }
-        });
-        mControles = new Controles(this);
-        mControles.setMediaPlayer(this);
-        mControles.setAnchorView(this.findViewById(R.id.rlRaiz));
-        mControles.setEnabled(true);
+            // Cuando se ocultan los controles se oculta también la ActionBar.
+            @Override
+            public void hide() {
+                super.hide();
+                mActionBar.hide();
+            }
+        };
+        mReproductor.setMediaController(mControles);
+        mReproductor.setOnPreparedListener(this);  // Está preparado para la reproducción.
+        mReproductor.setPlayPauseListener(this);  // Se reproduce / se pausa.
+        mReproductor.setOnCompletionListener(this);  // Termina la reproducción.
+        if (Build.VERSION.SDK_INT >= 17)
+            mReproductor.setOnInfoListener(this);  // Vídeo renderizado (evita fotograma en negro).
     }
 
-    // Restaura las preferencias (path de la copia privada del vídeo).
+    // Restaura las preferencias.
     private void restaurarPreferencias() {
-        // Se lee de las preferencias el path del archivo con el video recortado y privado.
         SharedPreferences preferencias = getSharedPreferences(getString(R.string.app_name),
                 MODE_PRIVATE);
-        String pathVideo = preferencias.getString(PREF_PATH_VIDEO, "");
-        if (!TextUtils.isEmpty(pathVideo)) {
-            cargarVideo(pathVideo);
-        }
-        else {
-            // No hay vídeo que mostrar, por lo que se tan sólo se muestra
-            // mensaje informativo.
-            mLblSinVideo.setText(R.string.seleccione_un_video);
-            mControles.setEnabled(false);
-        }
+        mPathVideo = preferencias.getString(PREF_PATH_VIDEO, "");
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        mTvVideo = (TextureView) findViewById(R.id.tvVideo);
-        // Al hacer click sobre el visor, se muestran los controles.
-        mTvVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mControles.isEnabled()) {
-                    mControles.show();
-                }
-            }
-        });
-        mTvVideo.setSurfaceTextureListener(this);
-        mLblSinVideo = (TextView) findViewById(R.id.lblSinVideo);
-        mLblSinVideo.setVisibility(View.VISIBLE);
+        mImgThumbnail = (ImageView) findViewById(R.id.imgThumbnail);
     }
 
     // Restaura el estado previo al cambio de configuración (posición inicial de reproducción).
@@ -146,40 +125,14 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public void onSaveInstanceState(Bundle outState) {
         // Se guarda la posición actual de reproducción.
-        outState.putInt(STATE_CURRENT_POSITION, mReproductor.getCurrentPosition());
-    }
-
-    // Actualiza las dimensiones del visor acorde al vídeo del reproductor.
-    private void actualizarDimensionesVisor() {
-        // Se obtiene la anchura y altura del vÌdeo y del visor.
-        int anchuraVideo = mReproductor.getVideoWidth();
-        int alturaVideo = mReproductor.getVideoHeight();
-        int anchuraVisor = mTvVideo.getWidth();
-        int alturaVisor = mTvVideo.getHeight();
-        // Se calculan las proporciones de anchura y altura y la ratio.
-        float proporcionAnchura = (float) anchuraVisor / (float) anchuraVideo;
-        float proporcionAltura = (float) alturaVisor / (float) alturaVideo;
-        float proporcionAspecto = (float) anchuraVideo / (float) alturaVideo;
-        // Se actualizan las dimensiones del visorObtenemos los par·metros de anchura y altura de la ventana de reproducciÛn.
-        ViewGroup.LayoutParams lp = mTvVideo.getLayoutParams();
-        ViewGroup.LayoutParams lp2 = mLblSinVideo.getLayoutParams();
-        if (proporcionAnchura > proporcionAltura) {
-            // Si es más ancho que alto, la altura es la que ya tiene y se actualiza el ancho
-            // manteniendo el ratio de aspecto.
-            lp.height = alturaVisor;
-            lp2.height = alturaVisor;
-            lp.width = (int) (alturaVisor * proporcionAspecto);
-            lp2.width = (int) (alturaVisor * proporcionAspecto);
+        // getCurrentPosition() no da valores correctos si el vídeo ha concluído su reproducción.
+        int pos;
+        if (mReproductor.isPlaying()) {
+            pos = mReproductor.getCurrentPosition();
         } else {
-            // Si es más alto que ancho, la anchura es la que ya tiene y se actualiza el alto
-            // manteniendo el ratio de aspecto.
-            lp.width = anchuraVisor;
-            lp2.width = anchuraVisor;
-            lp.height = (int) (anchuraVisor / proporcionAspecto);
-            lp2.height = (int) (anchuraVisor / proporcionAspecto);
+            pos = mPosicionInicial;
         }
-        mTvVideo.setLayoutParams(lp);
-        mLblSinVideo.setLayoutParams(lp2);
+        outState.putInt(STATE_CURRENT_POSITION, pos);
     }
 
     // Guarda en preferencias el path del vídeo.
@@ -205,12 +158,17 @@ public class MainActivity extends ActionBarActivity implements
             if (mReproductor.isPlaying()) {
                 mReproductor.pause();
             }
-            // Se muestra el fragmento de diálogo de opciones.
-            PickOrCaptureDialogFragment frgDialogo = new PickOrCaptureDialogFragment();
-            frgDialogo.show(this.getSupportFragmentManager(),
-                    "PickOrCaptureDialogFragment");
+            mostrarDialogo();
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Muestra el diálogo PickOrCaptureDialogFragment.
+    private void mostrarDialogo() {
+        PickOrCaptureDialogFragment frgDialogo = new PickOrCaptureDialogFragment();
+        frgDialogo.show(this.getSupportFragmentManager(),
+                "PickOrCaptureDialogFragment");
     }
 
     // Envía un intent implícito para seleccionar un vídeo de la galería.
@@ -246,21 +204,27 @@ public class MainActivity extends ActionBarActivity implements
                 // Se añade como extra del intent la uri donde debe guardarse.
                 i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(videoFile));
                 // Se establecen los extras de calidad y duración máxima.
-                i.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
+                i.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, CALIDAD_MAX);
                 i.putExtra(MediaStore.EXTRA_DURATION_LIMIT, DURACION_MAX_SEGUNDOS);
+                // Se deshabilita el sensor de orientación (evita errores al girar el dispositivo
+                // para hacer el vídeo y después retornar).
+                setRequestedOrientation(
+                        ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
                 startActivityForResult(i, RC_CAPTURAR_VIDEO);
             }
         }
     }
 
-    // Crea la copia privada del vídeo y la carga en el reproductor.
-    private void crearYCargarCopiaPrivada(String pathVideo) {
+    // Crea la copia privada del vídeo.
+    private void crearCopiaPrivada(String pathVideo) {
         File archivo = crearArchivoVideo(sNombreArchivoPrivado, false);
         if (archivo != null) {
             if (copiarArchivoBinario(new File(pathVideo), archivo)) {
+                // Se guarda en las preferencias el path del vídeo.
                 guardarEnPreferencias(archivo.getAbsolutePath());
+                // Se actualizan las variables a nivel de clase para mostrar el vídeo.
                 mPosicionInicial = 0;
-                cargarVideo(archivo.getAbsolutePath());
+                mPathVideo = archivo.getAbsolutePath();
             }
         }
     }
@@ -309,17 +273,22 @@ public class MainActivity extends ActionBarActivity implements
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case RC_CAPTURAR_VIDEO:
+                    Log.d("mia", sPathVideoOriginal);
                     // Se agrega el vídeo a la Galería
                     agregarVideoAGaleria(sPathVideoOriginal);
                     // Se crea la copia privada del vídeo y se carga.
-                    crearYCargarCopiaPrivada(sPathVideoOriginal);
+                    crearCopiaPrivada(sPathVideoOriginal);
+                    // Se vuelve a habilitar el sensor de orientación.
+                    setRequestedOrientation(
+                            ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                     break;
                 case RC_SELECCIONAR_VIDEO:
                     // Se obtiene el path real a partir de la uri retornada por la galería.
                     Uri uriGaleria = intent.getData();
                     sPathVideoOriginal = getRealPath(uriGaleria);
+                    Log.d("mia", sPathVideoOriginal);
                     // Se crea la copia privada del vídeo y se carga.
-                    crearYCargarCopiaPrivada(sPathVideoOriginal);
+                    crearCopiaPrivada(sPathVideoOriginal);
                     break;
             }
         }
@@ -356,7 +325,6 @@ public class MainActivity extends ActionBarActivity implements
         try {
             InputStream entrada = new FileInputStream(origen);
             BufferedInputStream lector = new BufferedInputStream(entrada);
-            Log.d(getString(R.string.app_name), destino.getPath());
             FileOutputStream salida = new FileOutputStream(destino);
             BufferedOutputStream escritor = new BufferedOutputStream(salida);
             byte[] array = new byte[1000];
@@ -376,18 +344,14 @@ public class MainActivity extends ActionBarActivity implements
 
     // Carga en el reproductor el vídeo con el path recibido.
     private void cargarVideo(final String path) {
-        try {
+        /** Para crear un bitmap de un vídeo.
             Bitmap thumb = ThumbnailUtils.createVideoThumbnail(path,
                     MediaStore.Images.Thumbnails.MINI_KIND);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(thumb);
-            mLblSinVideo.setBackgroundDrawable(bitmapDrawable);
-            mLblSinVideo.setText("");
-            mReproductor.reset();
-            mReproductor.setDataSource(path);
-            mReproductor.prepareAsync();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+         **/
+        // Se obtienen los metadatos del vídeo.
+        new GetMetadataTask().execute();
+        mReproductor.setVideoPath(path);
     }
 
     // Cuando se selecciona una opción del diálogo PickOrCaptureDialogFragment.
@@ -400,148 +364,143 @@ public class MainActivity extends ActionBarActivity implements
         }
     }
 
-    // Cuando la textura está disponible.
+    // Cuando la actividad pasa a primer plano.
     @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
-        // Se crea una superficio con esa textura y se le establece al reproductor.
-        Surface surface = new Surface(surfaceTexture);
-        try {
-            mReproductor.setSurface(surface);
-        } catch (Exception e) {
-            Log.d(getString(R.string.app_name), e.getMessage());
+    protected void onResume() {
+        super.onResume();
+        // Si hay vídeo que mostrar.
+        if (!TextUtils.isEmpty(mPathVideo)) {
+            // Se carga el vídeo en el reproductor.
+            cargarVideo(mPathVideo);
         }
     }
 
+    // Cuando el vídeo ya está cargado y listo para reproducirse.
     @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+    public void onPrepared(MediaPlayer mp) {
+        // Se actualizan las dimensiones del VideoView.
+        // actualizarDimensionesVisor(mp);
+        // Se muestran los controles.
+        mControles.show();
+        // Se coloca el vídeo en la posición idónea.
+        mReproductor.seekTo(mPosicionInicial);
     }
 
+    // Actualiza las dimensiones del visor acorde al vídeo a reproducir.
+    private void actualizarDimensionesVisor(MediaPlayer mp) {
+        // Se obtiene la anchura y altura del vÌdeo y del visor.
+        int anchuraVideo = mp.getVideoWidth();
+        int alturaVideo = mp.getVideoHeight();
+        int anchuraVisor = mReproductor.getWidth();
+        int alturaVisor = mReproductor.getHeight();
+        // Se calculan las proporciones de anchura y altura y la ratio.
+        float proporcionAnchura = (float) anchuraVisor / (float) anchuraVideo;
+        float proporcionAltura = (float) alturaVisor / (float) alturaVideo;
+        float proporcionAspecto = (float) anchuraVideo / (float) alturaVideo;
+        // Se actualizan las dimensiones del visorObtenemos los par·metros de anchura y altura de la ventana de reproducciÛn.
+        ViewGroup.LayoutParams lp = mReproductor.getLayoutParams();
+        ViewGroup.LayoutParams lp2 = mImgThumbnail.getLayoutParams();
+        if (proporcionAnchura > proporcionAltura) {
+            // Si es más ancho que alto, la altura es la que ya tiene y se actualiza el ancho
+            // manteniendo el ratio de aspecto.
+            lp.height = alturaVisor;
+            lp2.height = alturaVisor;
+            lp.width = (int) (alturaVisor * proporcionAspecto);
+            lp2.width = (int) (alturaVisor * proporcionAspecto);
+        } else {
+            // Si es más alto que ancho, la anchura es la que ya tiene y se actualiza el alto
+            // manteniendo el ratio de aspecto.
+            lp.width = anchuraVisor;
+            lp2.width = anchuraVisor;
+            lp.height = (int) (anchuraVisor / proporcionAspecto);
+            lp2.height = (int) (anchuraVisor / proporcionAspecto);
+        }
+        mReproductor.setLayoutParams(lp);
+        mImgThumbnail.setLayoutParams(lp2);
+    }
+
+    // Cuando se hace click sobre la miniatura.
     @Override
-    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+    public void onClick(View v) {
+        // Se muestran los controles.
+        mControles.show();
+    }
+
+    // Cuando comienza/continua la reproducción del vídeo.
+    @Override
+    public void onVideoPlay() {
+        // Se oculta la miniatura para que se vea el vídeo.
+        mImgThumbnail.setVisibility(View.INVISIBLE);
+    }
+
+    // Cuando se pausa el vídeo.
+    @Override
+    public void onVideoPause() {
+        // Se guarda la posición actual (que después será salvada si hay cambio de orientación)
+        // Evita el problema de que getCurrentPosition() no siempre devuelve lo que debiera si
+        // ha terminado de reproducirse el vídeo.
+        mPosicionInicial = mReproductor.getCurrentPosition();
+    }
+
+    // Cuando se termina la reproducción.
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        // Se vuelve a colocar al principio.
+        mReproductor.seekTo(0);
+        mPosicionInicial = 0;
+    }
+
+    // Sólo disponible a partir de API 17 (evita el parpadeo a negro de VideoView).
+    @Override
+    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+            // El vídeo ha empezado, se oculta el thumbnail.
+            mImgThumbnail.setVisibility(View.INVISIBLE);
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-    }
+    // Tarea asíncrona para obtener los metadatos del vídeo.
+    class GetMetadataTask extends AsyncTask<Void, Void, Bundle> {
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Se liberar todos los recursos asociados al reproductor.
-        if (mReproductor != null) {
-            mReproductor.stop();
-            mReproductor.release();
-            mReproductor = null;
-        }
-    }
+        private static final int MICROSEGUNDOS_EN_MILISEGUNDO = 1000;
+        private static final String KEY_FRAME = "frame";
+        private static final String KEY_DATE = "date";
+        private static final String KEY_DURATION = "duration";
+        private static final String KEY_VIDEO_WIDTH = "video_width";
+        private static final String KEY_VIDEO_HEIGHT = "video_height";
 
-    /**** Acciones de los Controles ****/
-    @Override
-    public void start() {
-        if (mReproductor != null) {
-            mReproductor.start();
-            mLblSinVideo.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    @Override
-    public void pause() {
-        if (mReproductor != null) {
-            mReproductor.pause();
-        }
-    }
-
-    @Override
-    public int getDuration() {
-        if (mReproductor != null) {
-            return mReproductor.getDuration();
-        }
-        else {
-            return 0;
-        }
-    }
-
-    @Override
-    public int getCurrentPosition() {
-        if (mReproductor != null) {
-            return mReproductor.getCurrentPosition();
-        }
-        else {
-            return 0;
-        }
-    }
-
-    @Override
-    public void seekTo(int pos) {
-        if (mReproductor != null) {
-            mReproductor.seekTo(pos);
-        }
-    }
-
-    @Override
-    public boolean isPlaying() {
-        if (mReproductor != null) {
-            return mReproductor.isPlaying();
-        }
-        else {
-            return false;
-        }
-    }
-
-    @Override
-    public int getBufferPercentage() {
-        return 0;
-    }
-
-    @Override
-    public boolean canPause() {
-        return true;
-    }
-
-    @Override
-    public boolean canSeekBackward() {
-        return true;
-    }
-
-    @Override
-    public boolean canSeekForward() {
-        return true;
-    }
-
-    @Override
-    public int getAudioSessionId() {
-        return 0;
-    }
-
-    // Clase que personaliza los Controles.
-    private class Controles extends MediaController {
-
-        public Controles(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        public Controles(Context context, boolean useFastForward) {
-            super(context, useFastForward);
-        }
-
-        public Controles(Context context) {
-            super(context);
+        @Override
+        protected Bundle doInBackground(Void... params) {
+            // Se obtienen los metadatos.
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            retriever.setDataSource(mPathVideo);
+            Bitmap frame = retriever.getFrameAtTime(mPosicionInicial * MICROSEGUNDOS_EN_MILISEGUNDO,
+                    MediaMetadataRetriever.OPTION_PREVIOUS_SYNC);
+            String date = retriever.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_DATE);
+            String duration = retriever.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_DURATION);
+            String width = retriever.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
+            String height = retriever.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
+            // Se retorna un bundle con los metadatos.
+            Bundle result = new Bundle();
+            result.putParcelable(KEY_FRAME, frame);
+            result.putString(KEY_DATE, date);
+            result.putString(KEY_DURATION, duration);
+            result.putString(KEY_VIDEO_WIDTH, width);
+            result.putString(KEY_VIDEO_HEIGHT, height);
+            return result;
         }
 
         @Override
-        public void hide() {
-            // Cuando se ocultan los controles se oculta también la action bar.
-            super.hide();
-            mActionBar.hide();
-        }
-
-        @Override
-        public void show() {
-            // Cuando se muestran los controles se muestra también la action bar.
-            super.show();
-            mActionBar.show();
+        protected void onPostExecute(Bundle bundle) {
+            // Se establece como thumbnail el frame y se hace visible.
+            mImgThumbnail.setImageBitmap((Bitmap) bundle.getParcelable(KEY_FRAME));
+            mImgThumbnail.setVisibility(View.VISIBLE);
         }
     }
-
 }

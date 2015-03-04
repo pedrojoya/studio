@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+    <!-- Tema de la aplicación -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- ActionBar superpuesta -->
         <item name="android:windowActionBarOverlay">true</item>
-        <!-- Support library compatibility -->
-        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item> <!-- Para librería compatibilidad -->
+        <!-- A pantalla completa -->
         <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

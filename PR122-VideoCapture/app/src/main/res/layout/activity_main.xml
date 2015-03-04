@@ -5,21 +5,20 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
-    <TextView
-        android:id="@+id/lblSinVideo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:background="@color/fondo_sin_video" />
-
-    <TextureView
-        android:id="@+id/tvVideo"
+    <es.iessaladillo.pedrojoya.pr122.CustomVideoView
+        android:id="@+id/vvReproductor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:contentDescription="@string/video" />
+
+    <ImageView
+        android:id="@+id/imgThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/video" />
+
 
 </RelativeLayout>
