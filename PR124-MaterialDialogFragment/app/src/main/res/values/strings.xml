@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">DialogFragment</string>
+    <string name="title_activity_main">DialogFragment</string>
+    <string name="datepicker">DatePicker</string>
+    <string name="ha_seleccionado">"Ha seleccionado: "</string>
+    <string name="timepicker">TimePicker</string>
+    <string name="alerta_de_pregunta_si_no">Alerta de pregunta Si/No</string>
+    <string name="eliminar_usuario">Eliminar usuario</string>
+    <string name="esta_seguro_de_que_quiere_eliminar_el_usuario">¿Está seguro de que quiere eliminar el usuario?</string>
+    <string name="si">Sí</string>
+    <string name="usuario_borrado">Usuario borrado</string>
+    <string name="no">No</string>
+    <string name="alerta_de_seleccion_simple">Alerta de selección simple</string>
+    <string-array name="turnos">
+        <item>Mañana</item>
+        <item>Tarde</item>
+        <item>Noche</item>
+    </string-array>
+    <string name="turno">Turno</string>
+    <string name="alerta_de_seleccion_directa">Alerta de selección directa</string>
+    <string name="alerta_de_seleccion_multiple">Alerta de selección múltiple</string>
+    <string name="no_ha_seleccionado_ningun_turno">No ha seleccionado ningún turno</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="conectar">Conectar</string>
+    <string name="alerta_personalizada">Alerta personalizada</string>
+    <string name="conexion">Conexión</string>
+    <string name="conectando">Conectando…</string>
+    <string name="alerta_con_adaptador">Alerta con adaptador</string>
+    <string name="arte_del_album">Arte del álbum</string>
+    <string name="album">Álbum</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="alerta_con_layout_propio">Alerta con layout propio</string>
+    <string name="login">Login</string>
+</resources>

@@ -9,6 +9,6 @@
         <!-- Color de acento (contraste) -->
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionModeBackground">@color/actionModeBackground</item>
+        <item name="actionMenuTextColor">@color/actionMenuTextColor</item>
     </style>
-
 </resources>

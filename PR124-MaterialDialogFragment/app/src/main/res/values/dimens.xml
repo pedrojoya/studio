@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- activity_main -->
+    <dimen name="activity_padding">10dp</dimen>
+    <dimen name="activity_marginBottom">10dp</dimen>
+    <!-- activity_main_item -->
+    <dimen name="item_padding">5dp</dimen>
+    <dimen name="item_fotoWidth">36dp</dimen>
+    <dimen name="item_fotoMarginRight">5dp</dimen>
+    <dimen name="item_tituloMarginBottom">2dp</dimen>
+    <!-- dialog_login -->
+    <dimen name="login_padding">10dp</dimen>
+    <dimen name="login_marginTop">10dp</dimen>
+
+    <!-- Flat button -->
+    <dimen name="btn_flat_corner_radius">1dp</dimen>
+    <dimen name="btn_flat_min_width">88dp</dimen>
+    <dimen name="btn_flat_min_height">36dp</dimen>
+    <dimen name="btn_flat_padding">8dp</dimen>
+    <dimen name="btn_flat_margin">4dp</dimen>
+
+</resources>

@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Tema base de la aplicación. Debe heredar de Theme.AppCompat -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Color de la ActionBar -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!-- Color de la barra de notificaciones -->
@@ -16,6 +16,10 @@
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <!-- Color secundario de texto (icono de navegación y overflow) -->
         <item name="android:textColorSecondary">@color/textColorSecundary</item>
+    </style>
+
+    <style name="AppTheme" parent="AppThemeBase">
+
     </style>
 
 </resources>

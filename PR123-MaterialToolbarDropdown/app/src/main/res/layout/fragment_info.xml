@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/lblTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/info_marginTop"
+        android:text="@string/art"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/lblGusta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTitulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/info_marginTop"
+        android:textSize="@dimen/lblGusta_textSize" />
+
+    <ImageButton
+        android:id="@+id/btnGusta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblGusta"
+        android:contentDescription="@string/me_gusta"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/info_marginTop"
+        android:background="@drawable/ic_megusta" />
+    
+</RelativeLayout>

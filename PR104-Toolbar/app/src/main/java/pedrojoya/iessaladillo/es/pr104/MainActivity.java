@@ -14,7 +14,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se indica que la ActionBar va a corresponder a un widget Toobar.
+        // Se indica que la ActionBar va a corresponder al widget Toobar.
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
     }
 

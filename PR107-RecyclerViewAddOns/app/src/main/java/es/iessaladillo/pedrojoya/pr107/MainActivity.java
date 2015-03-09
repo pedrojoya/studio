@@ -15,13 +15,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.software.shell.fab.ActionButton;
+
 import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener, ItemTouchListenerAdapter.RecyclerViewOnItemClickListener, ActionMode.Callback {
 
     private RecyclerView lstAlumnos;
-    private ImageButton btnAgregar;
+    private ActionButton btnAgregar;
     private AlumnosAdapter adaptador;
     private TextView lblNumAlumnos;
     private ActionMode actionMode;
@@ -45,10 +47,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         lstAlumnos.setAdapter(adaptador);
         lstAlumnos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstAlumnos.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
-        ViewCompat.setElevation(btnAgregar, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
+        btnAgregar = (ActionButton) findViewById(R.id.btnAgregar);
         btnAgregar.setOnClickListener(this);
-        ViewCompat.setElevation(findViewById(R.id.frlBottomBar), 0f);
         lblNumAlumnos = (TextView) findViewById(R.id.lblNumAlumnos);
         lstAlumnos.addOnItemTouchListener(new ItemTouchListenerAdapter(lstAlumnos, this));
         dragDropTouchListener = new DragDropTouchListener(lstAlumnos, this) {
@@ -80,6 +80,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             }
         });
         lstAlumnos.addOnItemTouchListener(swipeToDismissTouchListener);
+        lstAlumnos.setOnScrollListener(new HidingScrollListener() {
+            @Override
+            public void onHide() {
+                btnAgregar.hide();
+            }
+
+            @Override
+            public void onShow() {
+                btnAgregar.show();
+            }
+        });
     }
 
     @Override

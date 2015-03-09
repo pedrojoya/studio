@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F7F2E0"
+    android:padding="@dimen/item_padding">
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="@dimen/item_fotoWidth"
+        android:layout_height="@dimen/item_fotoWidth"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="@dimen/item_fotoMarginRight"
+        android:contentDescription="@string/arte_del_album" />
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/item_tituloMarginBottom"
+        android:layout_toRightOf="@+id/imgFoto"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/lblAnio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/lblNombre"
+        android:layout_toRightOf="@+id/imgFoto"
+        android:gravity="center|top"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
