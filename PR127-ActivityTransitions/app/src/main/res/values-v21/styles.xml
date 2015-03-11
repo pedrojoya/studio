@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema de la aplicación (api 21+) -->
+    <style name="AppTheme" parent="AppBaseTheme">
+    </style>
+
+</resources>
