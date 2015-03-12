@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">PR127-ActivityTransitions</string>
-
+    <string name="app_name">ActivityTransitions</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_otra">OtraActivity</string>

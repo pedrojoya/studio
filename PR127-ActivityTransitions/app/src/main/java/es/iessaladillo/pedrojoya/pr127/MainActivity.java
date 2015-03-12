@@ -9,31 +9,35 @@ import android.support.v7.app.ActionBarActivity;
 import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.TextView;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    private TextView lblCuadro;
+    private static final String FOTO_URL = "http://lorempixel.com/500/375/nature/1";
+
+    private ImageView imgCuadro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         super.onCreate(savedInstanceState);
-        configTransitions();
+        //configTransitions();
         setContentView(R.layout.activity_main);
-        lblCuadro = (TextView) findViewById(R.id.lblCuadro);
-        lblCuadro.setOnClickListener(new View.OnClickListener() {
+        imgCuadro = (ImageView) findViewById(R.id.imgFoto);
+        Picasso.with(this).load(FOTO_URL).into(imgCuadro);
+        imgCuadro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, OtraActivity.class);
+                intent.putExtra(OtraActivity.EXTRA_FOTO_URL, FOTO_URL);
                 ActivityCompat.startActivity(MainActivity.this, intent,
                         ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
-                                lblCuadro, OtraActivity.EXTRA_CUADRO)
+                                imgCuadro, OtraActivity.TN_CUADRO)
                                 .toBundle());
             }
         });
@@ -58,25 +62,4 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

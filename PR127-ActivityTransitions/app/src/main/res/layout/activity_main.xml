@@ -4,16 +4,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/lblCuadro"
-        android:text="@string/hello_world"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:background="@color/accent"
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="@dimen/thumbnail_width"
+        android:layout_height="@dimen/thumbnail_height"
         android:layout_centerInParent="true"
-        android:clickable="true"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="@color/icons" />
+        android:clickable="true" />
 
 </RelativeLayout>

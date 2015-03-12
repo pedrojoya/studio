@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">OverridePendingTransition</string>
+    <string name="soy_la_actividad_llamadora">Soy la Actividad llamadora.\nPulsa para ir a la otra actividad</string>
+    <string name="ir_a_otra_actividad">Ir a otra actividad</string>
+    <string name="title_activity_otra">OtraActivity</string>
+    <string name="soy_la_actividad_llamada">Soy la actividad llamada</string>
+</resources>
