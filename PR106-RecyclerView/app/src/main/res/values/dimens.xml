@@ -1,6 +1,4 @@
 <resources>
-    <!-- MainActivity -->
-    <dimen name="panel_margin">4dp</dimen>
     <!-- Empty View -->
     <dimen name="empty_drawablePadding">10dp</dimen>
     <!-- FAB -->
@@ -8,7 +6,26 @@
     <dimen name="fab_elevation_low">9dp</dimen>
     <dimen name="fab_elevation_high">12dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-
+    <dimen name="fab_shadowRadius">4dp</dimen>
+    <dimen name="fab_dy">1dp</dimen>
+    <!-- Toolbar -->
+    <dimen name="actionbar_height">56dp</dimen>
+    <dimen name="actionbar_elevation">4dp</dimen>
+    <!-- RecyclerView -->
+    <dimen name="list_paddingTop">8dp</dimen>
+    <!-- Panel inferior -->
+    <dimen name="panel_inferior_height">44dp</dimen>
+    <!-- Single line with avatar list item -->
+    <dimen name="single_line_tile_height">56dp</dimen>
+    <dimen name="single_line_avatar_width">48dp</dimen>
+    <dimen name="single_line_avatar_height">48dp</dimen>
+    <dimen name="single_line_avatar_marginBottom">4dp</dimen>
+    <dimen name="single_line_avatar_marginLeft">16dp</dimen>
+    <dimen name="single_line_avatar_marginTop">4dp</dimen>
+    <dimen name="single_line_text_paddingBottom">20dp</dimen>
+    <dimen name="single_line_text_paddingLeft">72dp</dimen>
+    <dimen name="single_line_text_paddingTop">20dp</dimen>
+    <dimen name="single_line_text_marginRight">16dp</dimen>
 
 
 </resources>

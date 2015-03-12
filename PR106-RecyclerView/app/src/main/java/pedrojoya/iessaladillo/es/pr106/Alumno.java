@@ -1,7 +1,7 @@
 package pedrojoya.iessaladillo.es.pr106;
 
 // Modelo Alumno.
-public class Alumno {
+class Alumno {
 
     private String nombre;
     private int edad;

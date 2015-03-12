@@ -3,7 +3,7 @@ package pedrojoya.iessaladillo.es.pr106;
 import java.util.ArrayList;
 
 // Simula un BD.
-public class DB {
+class DB {
 
     // Lista de alumnos.
     private static ArrayList<Alumno> datos;

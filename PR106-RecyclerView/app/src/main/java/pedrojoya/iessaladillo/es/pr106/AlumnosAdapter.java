@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Alumno> datos;
+    private final ArrayList<Alumno> datos;
     private final LayoutInflater inflater;
     private View emptyView;
     private OnItemLongClickListener onItemLongClickListener;
@@ -104,9 +103,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
-        TextView lblNombre;
-        ImageButton btnDown;
-        ImageButton btnUp;
+        final TextView lblNombre;
+        final ImageButton btnDown;
+        final ImageButton btnUp;
 
 
         // El constructor recibe la vista-fila.
