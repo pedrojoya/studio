@@ -2,14 +2,15 @@
 <resources>
 
     <string name="app_name">RecyclerView</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
     <string name="nombre">(Nombre)</string>
-    <string name="agregar">Agregar</string>
     <string name="listado_de_alumnos">Listado de Alumnos</string>
     <string name="bajar">Bajar</string>
     <string name="ha_pulsado_sobre">"Ha pulsado sobre "</string>
+    <string name="texto_panel">Alumnos de 2º CFGS DAM</string>
+    <string name="agregar_alumno">Agregar alumno</string>
+    <string name="foto_alumno">Foto del alumno</string>
 
 
 </resources>

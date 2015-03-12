@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FabStyle">
+        <item name="android:layout_width">?attr/actionBarSize</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@drawable/fab_background</item>
+        <item name="android:src">@drawable/ic_plus</item>
+        <item name="android:outlineProvider">background</item>
+        <item name="android:stateListAnimator">@anim/fab_elevation</item>
+    </style>
+
+</resources>

@@ -18,6 +18,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     private ArrayList<Alumno> datos;
     private final LayoutInflater inflater;
     private View emptyView;
+    private OnItemLongClickListener onItemLongClickListener;
+    private OnItemClickListener onItemClickListener;
 
     public AlumnosAdapter(Context context, ArrayList<Alumno> datos) {
         this.context = context;
@@ -91,6 +93,14 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         checkIfEmpty();
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+        this.onItemLongClickListener = listener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
@@ -110,18 +120,24 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, context.getString(R.string.ha_pulsado_sobre) + datos.get(getPosition()).getNombre(), Toast.LENGTH_SHORT).show();
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(v, datos.get(getPosition()), getPosition());
+                    }
                 }
             });
             // Cuando se hace click largo sobre el elemento.
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    // Se elimina el alumno.
-                    removeItem(getPosition());
-                    return true;
+                    if (onItemLongClickListener != null) {
+                        onItemLongClickListener.onItemLongClick(v, datos.get(getPosition()), getPosition());
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
             });
+
             // Cuando se pulsa sobre bajar.
             btnDown.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,6 +163,14 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             });
         }
 
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, Alumno alumno, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(View view, Alumno alumno, int position);
     }
 
 }
