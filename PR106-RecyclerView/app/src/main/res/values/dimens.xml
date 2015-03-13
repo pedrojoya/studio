@@ -9,10 +9,12 @@
     <dimen name="fab_shadowRadius">4dp</dimen>
     <dimen name="fab_dy">1dp</dimen>
     <!-- Toolbar -->
-    <dimen name="actionbar_height">56dp</dimen>
-    <dimen name="actionbar_elevation">4dp</dimen>
+    <dimen name="statusbar_height">0dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
     <!-- RecyclerView -->
     <dimen name="list_paddingTop">8dp</dimen>
+    <dimen name="list_paddingBottom">56dp</dimen>
     <!-- Panel inferior -->
     <dimen name="panel_inferior_height">44dp</dimen>
     <!-- Single line with avatar list item -->
@@ -26,6 +28,11 @@
     <dimen name="single_line_text_paddingLeft">72dp</dimen>
     <dimen name="single_line_text_paddingTop">20dp</dimen>
     <dimen name="single_line_text_marginRight">16dp</dimen>
-
+    <dimen name="single_line_secundary_icon_width">32dp</dimen>
+    <dimen name="single_line_secundary_icon_height">32dp</dimen>
+    <dimen name="single_line_secundary_icon_marginLeft">16dp</dimen>
+    <dimen name="single_line_secundary_icon_marginTop">12dp</dimen>
+    <dimen name="single_line_secundary_icon_marginBottom">12dp</dimen>
+    <dimen name="single_line_secundary_icon_marginRight">16dp</dimen>
 
 </resources>

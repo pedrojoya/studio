@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Tema de la aplicación (API 19+) -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- StatusBar transparente para que coja el color de la toolbar -->
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+
+    <!-- Estilo del FAB -->
     <style name="FabStyle">
         <item name="android:layout_width">?attr/actionBarSize</item>
         <item name="android:layout_height">?attr/actionBarSize</item>

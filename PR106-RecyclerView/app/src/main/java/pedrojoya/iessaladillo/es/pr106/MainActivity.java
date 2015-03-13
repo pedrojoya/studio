@@ -49,6 +49,7 @@ public class MainActivity extends ActionBarActivity implements AlumnosAdapter.On
                 agregarAlumno("Alumno " + DB.getNext());
             }
         });
+
     }
 
     // Agrega un alumno a la lista.

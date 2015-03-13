@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <!-- StatusBar para API 19 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_height"
+        android:background="@color/primary_dark" />
     <!-- Toolbar -->
     <include layout="@layout/toolbar" />
     <!-- Panel -->
@@ -14,7 +19,7 @@
             android:id="@+id/lstAlumnos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="@dimen/actionbar_height"
+            android:paddingBottom="@dimen/list_paddingBottom"
             android:paddingTop="@dimen/list_paddingTop" />
         <!-- Empty View -->
         <TextView

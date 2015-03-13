@@ -1,0 +1,7 @@
+<resources>
+    <!-- Tema de la aplicación (API 19+) -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- StatusBar transparente para que coja el color de la toolbar -->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+</resources>

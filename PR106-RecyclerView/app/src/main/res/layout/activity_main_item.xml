@@ -20,7 +20,6 @@
         android:layout_marginTop="@dimen/single_line_avatar_marginTop"
         android:src="@drawable/ic_user" />
 
-
     <TextView
         android:id="@+id/lblNombre"
         android:layout_width="wrap_content"
@@ -29,6 +28,7 @@
         android:paddingLeft="@dimen/single_line_text_paddingLeft"
         android:paddingTop="@dimen/single_line_text_paddingTop"
         android:layout_toLeftOf="@+id/btnUp"
+        android:layout_alignParentLeft="true"
         tools:text="Baldomero Llegate Ligero"
         android:layout_marginRight="@dimen/single_line_text_marginRight"
         android:layout_marginEnd="@dimen/single_line_text_marginRight"
@@ -36,14 +36,14 @@
 
     <ImageButton
         android:id="@+id/btnUp"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/single_line_secundary_icon_width"
+        android:layout_height="@dimen/single_line_secundary_icon_height"
         android:layout_alignWithParentIfMissing="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="@dimen/single_line_secundary_icon_marginLeft"
+        android:layout_marginTop="@dimen/single_line_secundary_icon_marginTop"
+        android:layout_marginBottom="@dimen/single_line_secundary_icon_marginBottom"
+        android:layout_marginRight="@dimen/single_line_secundary_icon_marginRight"
         android:layout_toLeftOf="@+id/btnDown"
         android:layout_toStartOf="@+id/btnDown"
         android:background="@android:color/transparent"
@@ -52,14 +52,13 @@
 
     <ImageButton
         android:id="@+id/btnDown"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/single_line_secundary_icon_width"
+        android:layout_height="@dimen/single_line_secundary_icon_height"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="@dimen/single_line_secundary_icon_marginTop"
+        android:layout_marginBottom="@dimen/single_line_secundary_icon_marginBottom"
+        android:layout_marginRight="@dimen/single_line_secundary_icon_marginRight"
         android:background="@android:color/transparent"
         android:contentDescription="@string/bajar"
         android:src="@drawable/ic_down" />
