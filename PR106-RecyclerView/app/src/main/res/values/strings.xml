@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">RecyclerView</string>
-    <string name="action_settings">Settings</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
     <string name="bajar">Bajar</string>
     <string name="ha_pulsado_sobre">"Ha pulsado sobre "</string>

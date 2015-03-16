@@ -5,5 +5,6 @@
     <string name="title_activity_main">ListView optimizado</string>
     <string name="listado_de_alumnos">Listado de alumnos</string>
     <string name="foto_del_alumno">Foto del alumno</string>
+    <string name="anios">años</string>
 
 </resources>

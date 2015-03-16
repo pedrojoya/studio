@@ -123,8 +123,6 @@ public class MainActivity extends Activity implements OnItemClickListener,
     private void agregarAlumno(String nombre) {
         // Se agrega el alumno.
         adaptador.add(nombre);
-        // Se fuerza el redibujado de los elementos.
-        adaptador.notifyDataSetChanged();
         // Se pone en blanco txtNombre.
         txtNombre.setText("");
         checkDatos(txtNombre.getText().toString());

@@ -46,16 +46,16 @@ public class MainActivity extends ActionBarActivity implements AlumnosAdapter.On
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                agregarAlumno("Alumno " + DB.getNext());
+                agregarAlumno(DB.getNextAlumno());
             }
         });
 
     }
 
     // Agrega un alumno a la lista.
-    private void agregarAlumno(String nombre) {
+    private void agregarAlumno(Alumno alumno) {
         // Se agrega el alumno.
-        mAdaptador.addItem(new Alumno(nombre));
+        mAdaptador.addItem(alumno);
         lstAlumnos.scrollToPosition(mAdaptador.getItemCount() - 1);
     }
 

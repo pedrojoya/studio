@@ -2,11 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-2d2f7c7ab52a2f26a523fc506a17651ffc4c1b1e.jar" />
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-7752ac30f3bbac505b8c4cebcb42b16dd8be6924.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-fb3cbc98e7b51f0a4aab0620fa92fe956db2e7f1.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-890b79a21f9c8426d2dead368e3366d82f215f51.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-c3d0ceeb9eb3e6001daffa4f07f9741d1a9eee82.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-28ef5ae80f16ed0a2d0276b168770c54a0109087.jar" />
     </item>
 
 </items>

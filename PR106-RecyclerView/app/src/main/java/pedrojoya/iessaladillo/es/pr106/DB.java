@@ -1,19 +1,21 @@
 package pedrojoya.iessaladillo.es.pr106;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 // Simula un BD.
 class DB {
 
     // Lista de alumnos.
-    private static ArrayList<Alumno> datos;
+    private static final ArrayList<Alumno> datos;
     private static int next = 1;
+    private static final Random aleatorio = new Random();
 
     // Inicialización.
     static {
         datos = new ArrayList<Alumno>();
         for (int i = 0; i < 5; i++) {
-            datos.add(new Alumno("Alumno " + (next++)));
+            datos.add(getNextAlumno());
         }
     }
 
@@ -36,8 +38,18 @@ class DB {
         return datos.size();
     }
 
-    public static int getNext() {
+    private static int getNext() {
         return next++;
+    }
+
+    public static Alumno getNextAlumno() {
+        int num = next++;
+        return new Alumno(
+                "Alumno " + num,
+                "c/ Su casa, nº " + num,
+                aleatorio.nextInt(9) + 20,
+                "http://lorempixel.com/100/100/abstract/" + (num%10 + 1) + "/"
+        );
     }
 
 }

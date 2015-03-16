@@ -17,6 +17,7 @@
         <item name="android:layout_width">?attr/actionBarSize</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@drawable/fab_background</item>
+        <item name="android:scaleType">center</item>
         <item name="android:src">@drawable/ic_plus</item>
     </style>
 
