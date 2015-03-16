@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.PR004;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -8,24 +7,25 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import java.util.List;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     // Al crear la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getVistas();
+        initVistas();
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
+    private void initVistas() {
         // La actividad responderá al pulsar sobre cualquier botón.
         findViewById(R.id.btnNavegar).setOnClickListener(this);
         findViewById(R.id.btnBuscar).setOnClickListener(this);

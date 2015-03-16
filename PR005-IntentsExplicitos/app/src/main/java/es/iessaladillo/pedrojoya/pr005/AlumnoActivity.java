@@ -1,13 +1,13 @@
 package es.iessaladillo.pedrojoya.pr005;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
-public class AlumnoActivity extends Activity {
+public class AlumnoActivity extends ActionBarActivity {
 
     // Constantes.
     public static final String EXTRA_NOMBRE = "nombre";

@@ -1,14 +1,14 @@
 package es.iessaladillo.pedrojoya.pr005;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     // Constantes.
     private static final int RC_ALUMNO = 1;
@@ -17,8 +17,6 @@ public class MainActivity extends Activity implements OnClickListener {
     private String mNombre = "";
     private int mEdad = AlumnoActivity.DEFAULT_EDAD;
 
-    // Vistas.
-    private Button btnSolicitar;
     private TextView lblDatos;
 
     // Al crear la actividad.
@@ -27,12 +25,12 @@ public class MainActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
-        btnSolicitar = (Button) this.findViewById(R.id.btnSolicitar);
+    private void initVistas() {
+        Button btnSolicitar = (Button) this.findViewById(R.id.btnSolicitar);
         // La actividad responderá al pulsar el botón.
         btnSolicitar.setOnClickListener(this);
         lblDatos = (TextView) this.findViewById(R.id.lblDatos);

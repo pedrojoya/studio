@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr008;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     // Vistas.
     private EditText txtUsuario;
@@ -159,11 +159,11 @@ public class MainActivity extends Activity implements OnClickListener {
     // EditText correspondiente tiene el foco o no.
     private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
         if (hasFocus) {
-            lbl.setTextColor(getResources().getColor(R.color.editext_focused));
+            lbl.setTextColor(getResources().getColor(R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
             lbl.setTextColor(getResources()
-                    .getColor(R.color.editext_notfocused));
+                    .getColor(R.color.primary_text));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }

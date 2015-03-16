@@ -1,11 +1,12 @@
 package es.iessaladillo.pedrojoya.pr006;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     // Constantes.
     private static final String LOG_PROYECTO = "CICLO";
@@ -64,7 +65,7 @@ public class MainActivity extends Activity {
 
     // Al restaurar la instancia después de un cambio de configuración.
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         // Se restaura el valor de mListado.
         mListado = savedInstanceState.getString(STATE_LISTADO);

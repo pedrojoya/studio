@@ -161,7 +161,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
                 public void onClick(View v) {
                     if (onItemClickListener != null) {
                         // Se informa al listener.
-                        onItemClickListener.onItemClick(v, datos.get(getPosition()), getPosition());
+                        onItemClickListener.onItemClick(v, datos.get(getAdapterPosition()),
+                                getAdapterPosition());
                     }
                 }
             });
@@ -171,7 +172,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
                 public boolean onLongClick(View v) {
                     if (onItemLongClickListener != null) {
                         // Se informa al listener.
-                        onItemLongClickListener.onItemLongClick(v, datos.get(getPosition()), getPosition());
+                        onItemLongClickListener.onItemLongClick(v, datos.get(getAdapterPosition()),
+                                getAdapterPosition());
                         return true;
                     } else {
                         return false;

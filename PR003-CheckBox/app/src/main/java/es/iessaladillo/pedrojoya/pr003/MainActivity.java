@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr003;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -11,7 +11,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     // Vistas.
     private CheckBox chkEducado;
@@ -23,11 +23,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
     }
 
     // Obtiene la referencia e inicializa las vistas.
-    private void getVistas() {
+    private void initVistas() {
         // Se obtiene la referencia a las vistas.
         chkEducado = (CheckBox) this.findViewById(R.id.chkEducado);
         Button btnSaludar = (Button) this.findViewById(R.id.btnSaludar);
