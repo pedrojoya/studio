@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr010;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     // Vistas.
     private EditText txtMensaje;
@@ -36,12 +36,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
         formateadorFechas = new SimpleDateFormat("HH:mm:ss",
                 Locale.getDefault());
     }
 
-    private void getVistas() {
+    // Obtiene e inicializa las vistas.
+    private void initVistas() {
         lblTexto = (TextView) findViewById(R.id.lblTexto);
         txtMensaje = (EditText) findViewById(R.id.txtMensaje);
         btnEnviar = (ImageView) findViewById(R.id.btnEnviar);

@@ -2,11 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
         jumboMode="false"
-        revision="21.1.1"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-2d2f7c7ab52a2f26a523fc506a17651ffc4c1b1e.jar" />
+        revision="22.0.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/classes-124ab52d710324b1c956ce1934a5ccd19dabaafe.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-76484ef445599a739500d4577eb0a2b32821424b.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/classes-329df82d14a6925e9c3e6c8b29d799d8a64a10a7.jar" />
     </item>
 
 </items>

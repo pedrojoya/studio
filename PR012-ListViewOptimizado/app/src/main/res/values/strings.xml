@@ -1,10 +1,11 @@
 <resources>
 
     <string name="app_name">ListView optimizado</string>
-    <string name="menu_settings">Ajustes</string>
     <string name="title_activity_main">ListView optimizado</string>
     <string name="listado_de_alumnos">Listado de alumnos</string>
     <string name="foto_del_alumno">Foto del alumno</string>
     <string name="anios">años</string>
+    <string name="Notas">Notas</string>
+    <string name="Llamar">Llamar</string>
 
 </resources>

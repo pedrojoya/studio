@@ -3,9 +3,9 @@ package es.iessaladillo.pedrojoya.pr013;
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements OnClickListener,
+public class MainActivity extends ActionBarActivity implements OnClickListener,
         OnItemClickListener {
 
     // Vistas.
@@ -44,11 +44,11 @@ public class MainActivity extends Activity implements OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
+    private void initVistas() {
         vContador = findViewById(R.id.vContador);
         lblPuntuacion = (TextView) findViewById(R.id.lblPuntuacion);
         btnComprobar = (Button) findViewById(R.id.btnComprobar);

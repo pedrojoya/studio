@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PR015-GridView</string>
+    <string name="title_activity_main">GridView</string>
+    <string name="concepto">Concepto</string>
+</resources>

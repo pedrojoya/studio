@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ListView simple</string>
-    <string name="menu_settings">Ajustes</string>
     <string name="title_activity_main">ListView simple</string>
     <string name="listado_de_alumnos">Listado de Alumnos</string>
     <string name="nombre">(Nombre)</string>

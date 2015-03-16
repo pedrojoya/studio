@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr011;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -20,7 +20,7 @@ import android.widget.TextView.OnEditorActionListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements OnItemClickListener,
+public class MainActivity extends ActionBarActivity implements OnItemClickListener,
         OnClickListener {
 
     private EditText txtNombre;
@@ -35,11 +35,11 @@ public class MainActivity extends Activity implements OnItemClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
+    private void initVistas() {
         btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
         btnAgregar.setOnClickListener(this);
         txtNombre = (EditText) findViewById(R.id.txtNombre);

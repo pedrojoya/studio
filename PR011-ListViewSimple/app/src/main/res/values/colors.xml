@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!-- Botón -->
-    <color name="boton_startColor">#3B535F</color>
-    <color name="boton_centerColor">#8AADBF</color>
-    <color name="boton_endColor">#3B535F</color>
-
-</resources>

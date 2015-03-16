@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/texto_background" >
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/lblCabecera"
@@ -35,8 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#E5DAE6"
+        android:background="@color/primary_light"
         android:padding="@dimen/panel_padding" >
 
         <EditText
@@ -46,7 +46,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:hint="@string/mensaje"
-            android:maxLines="5"
+            android:maxLines="@integer/txtMensaje_maxLines"
             android:inputType="textMultiLine"
             android:imeOptions="actionDone" >
 
@@ -58,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/panel_padding"
             android:layout_marginStart="@dimen/panel_padding"
             android:src="@android:drawable/ic_menu_send"
             android:padding="@dimen/button_padding"

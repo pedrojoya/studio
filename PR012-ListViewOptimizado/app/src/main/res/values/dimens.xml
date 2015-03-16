@@ -7,9 +7,6 @@
     <!-- Tarjeta -->
     <dimen name="tarjeta_foto_width">81dp</dimen>
     <dimen name="tarjeta_foto_height">108dp</dimen>
-    <dimen name="tarjeta_nombre_padding">4dp</dimen>
-    <dimen name="tarjeta_divider_height">1dp</dimen>
-    <dimen name="tarjeta_margin">5dp</dimen>
     <dimen name="tarjeta_repetidor_textSize">10sp</dimen>
     <dimen name="tarjeta_repetidor_verticalPadding">5dp</dimen>
     <dimen name="tarjeta_repetidor_horizontalPadding">40dp</dimen>

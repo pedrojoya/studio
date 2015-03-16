@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AlumnosAdapter extends ArrayAdapter<Alumno> {
+class AlumnosAdapter extends ArrayAdapter<Alumno> {
 
     // Variables miembro.
-    ArrayList<Alumno> alumnos;
-    final LayoutInflater inflador;
+    private final ArrayList<Alumno> alumnos;
+    private final LayoutInflater inflador;
 
     // Constructor.
     public AlumnosAdapter(Context contexto, ArrayList<Alumno> alumnos) {
@@ -49,7 +49,7 @@ public class AlumnosAdapter extends ArrayAdapter<Alumno> {
     }
 
     // Cuando se deben escribir los datos en la vista del elemento.
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    private void onBindViewHolder(ViewHolder holder, int position) {
         // Se obtiene el alumno que debe mostrar el elemento.
         Alumno alumno = alumnos.get(position);
         // Se escriben los datos del alumno en las vistas.

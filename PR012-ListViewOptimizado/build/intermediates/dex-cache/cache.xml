@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
         jumboMode="false"
-        revision="21.1.1"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-7752ac30f3bbac505b8c4cebcb42b16dd8be6924.jar" />
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-90b3c606a5aa443392aa2ff21e7b39dcf0463e30.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
         jumboMode="false"
-        revision="21.1.1"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-fb3cbc98e7b51f0a4aab0620fa92fe956db2e7f1.jar" />
+        revision="22.0.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
-        revision="21.1.1"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-890b79a21f9c8426d2dead368e3366d82f215f51.jar" />
+        revision="22.0.0"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-6098f2b49f0418d1687c38a84a2df27602a46832.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
         jumboMode="false"
-        revision="21.1.1"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-c3d0ceeb9eb3e6001daffa4f07f9741d1a9eee82.jar" />
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-8d50cc0374e21cf17c4f6ab6221d8913f2d64931.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/classes.jar"
         jumboMode="false"
-        revision="21.1.1"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-28ef5ae80f16ed0a2d0276b168770c54a0109087.jar" />
+        revision="22.0.0"
+        sha1="11842de6a309c447b3a3d60d73ad637a87c58994">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-7faa4a3592aa9bc64d00fc849ca3096d31480820.jar" />
     </item>
 
 </items>
