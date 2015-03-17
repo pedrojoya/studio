@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- activity_main_pais_collapsed -->
+    <dimen name="collapsed_padding">5dp</dimen>
+    <dimen name="collapsed_width">40dp</dimen>
+    <dimen name="collapsed_height">30dp</dimen>
+    <dimen name="imgBandera_marginRight">15dp</dimen>
+	<!-- activity_main_pais_expanded -->
+    <dimen name="expanded_padding">10dp</dimen>	    
+    <dimen name="expanded_width">150dp</dimen>
+    <dimen name="expanded_height">100dp</dimen>
+    <dimen name="lblPais_padding">4dp</dimen>	
+    <!-- activity_main -->    
+    <dimen name="activity_main_padding">10dp</dimen>	
+    <dimen name="spnPais_marginTop">2dp</dimen>
+    <!-- no_flag -->
+    <dimen name="noflag_strokeWidth">2dp</dimen>
+    <dimen name="info_padding">8dp</dimen>
+</resources>
