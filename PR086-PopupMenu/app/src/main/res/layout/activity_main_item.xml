@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/card_padding"
+        >
+
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            tools:text="Nombre"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lblCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblNombre"
+            tools:text="Curso"
+            android:textSize="@dimen/abc_text_size_subhead_material"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/lblTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblCurso"
+            tools:text="Telefono"
+            android:textSize="@dimen/abc_text_size_body_1_material" />
+
+        <TextView
+            android:id="@+id/lblDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblTelefono"
+            tools:text="Dirección"
+            android:textSize="@dimen/abc_text_size_body_1_material" />
+
+        <ImageView
+            android:id="@+id/imgPopupMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:contentDescription="@string/popup_menu"
+            android:src="@drawable/ic_overflow" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

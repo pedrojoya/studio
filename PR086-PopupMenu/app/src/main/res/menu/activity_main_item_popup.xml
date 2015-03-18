@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnuLlamar"
+        app:showAsAction="never"
+        android:title="@string/llamar"/>
+    <item
+        android:id="@+id/mnuEnviarMensaje"
+        app:showAsAction="never"
+        android:title="@string/enviar_mensaje" />
+
+</menu>

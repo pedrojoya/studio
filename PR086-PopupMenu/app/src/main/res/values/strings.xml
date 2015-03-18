@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PopupMenu</string>
+    <string name="llamar">Llamar</string>
+    <string name="enviar_mensaje">Enviar mensaje</string>
+    <string name="popup_menu">Popup menu</string>
+
+</resources>

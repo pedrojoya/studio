@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item 
+        android:id="@+id/mnuOriginal"
+        android:title="@string/original" />
+    <item 
+        android:id="@+id/mnuGrises"
+        android:title="@string/escala_de_grises" />
+    <item 
+        android:id="@+id/mnuSepia"
+        android:title="@string/sepia" />
+    <item 
+        android:id="@+id/mnuAzulado"
+        android:title="@string/azulado" />
+    <item 
+        android:id="@+id/mnuVerdoso"
+        android:title="@string/verdoso" />
+</menu>

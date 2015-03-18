@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Menú de opciones</string>
+    <string name="title_activity_main">Menú de opciones</string>
+    <string name="escala_de_grises">Escala de grises</string>
+    <string name="sepia">Sepia</string>
+    <string name="azulado">Azulado</string>
+    <string name="verdoso">Verdoso</string>
+    <string name="fotografia">Fotografía</string>
+    <string name="original">Original</string>
+</resources>
