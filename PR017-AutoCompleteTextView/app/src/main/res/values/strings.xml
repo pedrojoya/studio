@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PR017-AutoCompleteTextView</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">AutoCompleteTextView</string>
+    <string name="concepto">Concepto</string>
+    <string name="traducir">Traducir</string>
+    <string name="foto_del_concepto">Foto del concepto</string>
+    <string name="ingles">(inglés)</string>
+</resources>

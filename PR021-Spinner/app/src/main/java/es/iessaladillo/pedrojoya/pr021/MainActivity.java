@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr021;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener,
         OnItemSelectedListener {
@@ -53,6 +53,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener,
         paises.add(new Pais(R.drawable.nl, "Holanda"));
         paises.add(new Pais(R.drawable.ie, "Irlanda"));
         paises.add(new Pais(R.drawable.is, "Islandia"));
+        paises.add(new Pais(R.drawable.it, "Italia"));
         paises.add(new Pais(R.drawable.lt, "Lituania"));
         paises.add(new Pais(R.drawable.no, "Noruega"));
         paises.add(new Pais(R.drawable.pl, "Polonia"));

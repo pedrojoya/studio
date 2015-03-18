@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ExpandableListView</string>
+    <string name="alumno">Alumno</string>
+    <string name="curso">Curso</string>
+    <string name="title_activity_main">ExpandableListView</string>
+    <string name="expandir_contraer_grupo">Expandir / Contraer grupo</string>
+</resources>

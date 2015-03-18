@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr021;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 class PaisesAdapter extends BaseAdapter {
 
     // Variables.
-    private LayoutInflater mInflador;
-    private ArrayList<Pais> mPaises;
-    private Context mContexto;
+    private final LayoutInflater mInflador;
+    private final ArrayList<Pais> mPaises;
+    private final Context mContexto;
 
     // Constructor.
     public PaisesAdapter(Context contexto, ArrayList<Pais> paises) {

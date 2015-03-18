@@ -5,7 +5,7 @@ class Pais {
 
     // Propiedades.
     int banderaResId;
-    String nombre;
+    private String nombre;
 
     // Constructores.
     public Pais(int banderaResId, String nombre) {

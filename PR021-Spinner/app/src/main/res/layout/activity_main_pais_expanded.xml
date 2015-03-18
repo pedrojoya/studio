@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/expanded_width"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
-    >
+    android:orientation="horizontal"
+    android:padding="@dimen/collapsed_padding" >
 
     <ImageView
         android:id="@+id/imgBandera"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/expanded_height"
-        android:contentDescription="@string/bandera"
-        android:scaleType="centerCrop" />
+        android:layout_width="@dimen/collapsed_width"
+        android:layout_height="@dimen/collapsed_height"
+        android:layout_marginRight="@dimen/imgBandera_marginRight"
+        android:layout_marginEnd="@dimen/imgBandera_marginRight"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/bandera" />
 
     <TextView
         android:id="@+id/lblNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/abc_text_size_subhead_material"
-        android:padding="@dimen/info_padding"
-        android:gravity="center"
-        android:background="@color/accent"
-        android:textColor="@android:color/white" />
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:textAppearance="?android:textAppearanceMedium" />
 
 </LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:orientation="horizontal"
+        android:padding="@dimen/grupo_padding" >
+
+        <TextView
+            android:id="@+id/lblEncCiclo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/grupo_padding"
+            android:layout_marginEnd="@dimen/grupo_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgIndicador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/expandir_contraer_grupo"
+            android:src="@drawable/ic_action_navigation_expand" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llEncColumnas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/grupo_padding"
+        android:paddingRight="@dimen/grupo_padding" >
+
+        <TextView
+            android:id="@+id/lblEncNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/grupo_padding"
+            android:layout_marginEnd="@dimen/grupo_padding"
+            android:layout_weight="3"
+            android:background="@drawable/fondo_encabezado"
+            android:gravity="center_vertical"
+            android:text="@string/alumno"
+            android:paddingLeft="@dimen/encabezado_paddingLeft"
+            android:paddingStart="@dimen/encabezado_paddingLeft"
+            android:textAllCaps="true"
+            android:textColor="@color/primary_400"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lblEncCurso"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/fondo_encabezado"
+            android:gravity="center"
+            android:text="@string/curso"
+            android:textAllCaps="true"
+            android:textColor="@color/primary_400"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
