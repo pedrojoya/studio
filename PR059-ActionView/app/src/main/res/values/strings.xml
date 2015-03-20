@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PR059-ActionView</string>
+    <string name="activity_title">ActionView</string>
+    <string-array name="alumnos">
+        <item>Baldomero</item>
+        <item>Gervasio</item>
+        <item>Filomeno</item>
+        <item>Prudencio</item>
+        <item>Casimiro</item>
+        <item>Fulgencio</item>
+        <item>Genaro</item>
+        <item>Rigoberto</item>
+        <item>Atanasio</item>
+	</string-array>
+    <string name="ha_pulsado_sobre">"Ha pulsado sobre "</string>
+    <string name="buscar">Buscar</string>
+
+</resources>

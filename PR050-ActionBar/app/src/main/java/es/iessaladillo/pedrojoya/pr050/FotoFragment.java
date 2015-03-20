@@ -27,7 +27,7 @@ public class FotoFragment extends Fragment {
 
     private enum Efecto {
         ORIGINAL, GRISES, SEPIA, AZULADO, VERDOSO
-    };
+    }
 
     // Vistas.
     private ImageView imgFoto;
@@ -255,9 +255,9 @@ public class FotoFragment extends Fragment {
 
     // Retorna el bitmap recibo aplicándole el cambio de tono dado por la
     // intensidad recibida y el factor de cada color.
-    public static Bitmap efectoTono(Bitmap src, int intensidad,
-            double factorIntesidadRojo, double factorIntensidadVerde,
-            double factorIntensidadAzul) {
+    private static Bitmap efectoTono(Bitmap src, int intensidad,
+                                     double factorIntesidadRojo, double factorIntensidadVerde,
+                                     double factorIntensidadAzul) {
         // Constantes de factores.
         final double FACTOR_ROJO = 0.3;
         final double FACTOR_VERDE = 0.59;

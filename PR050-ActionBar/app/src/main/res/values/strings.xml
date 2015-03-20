@@ -16,5 +16,6 @@
     <string name="title_activity_preferencias">Preferencias</string>
     <string name="foto">Foto</string>
     <string name="_debe_implementar_fotofragment_listener">" debe implementar FotoFragment.Listener"</string>
+    <string name="_debe_implementar_infofragment_listener">debe implementar InfoFragment listener</string>
 
 </resources>

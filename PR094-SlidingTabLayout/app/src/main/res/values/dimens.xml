@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Toolbar -->
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <!-- fragment_pagina -->
+    <dimen name="pagina_textSize">120dp</dimen>
+    <!-- tab_header -->
+    <dimen name="header_textSize">14sp</dimen>
+    <dimen name="header_padding">15dp</dimen>
+    
+</resources>

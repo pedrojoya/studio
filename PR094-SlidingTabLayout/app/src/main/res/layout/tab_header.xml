@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/header_textSize"
+    android:textStyle="bold"
+    android:padding="@dimen/header_padding"
+    android:textAllCaps="true"
+    android:background="@drawable/tab_header_background"
+    android:textColor="@android:color/white"
+    android:id="@+id/lblTab" />
+

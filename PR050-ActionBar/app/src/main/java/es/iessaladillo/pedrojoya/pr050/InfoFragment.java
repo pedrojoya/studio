@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr050;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ public class InfoFragment extends Fragment {
         public void onFoto(int fotoResId);
     }
 
+    private Listener mListener;
+
     // Retorna la vista que debe mostrar el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +34,23 @@ public class InfoFragment extends Fragment {
         setHasOptionsMenu(true);
         super.onActivityCreated(savedInstanceState);
     }
+
+    // Cuando el fragmento se enlaza con la actividad.
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            // Establece la actividad como objeto mListener.
+            mListener = (Listener) activity;
+        } catch (ClassCastException e) {
+            // La actividad no implementa la interfaz.
+            throw new ClassCastException(
+                    activity.toString()
+                            + activity
+                            .getString(R.string._debe_implementar_infofragment_listener));
+        }
+    }
+
 
     // Cuando se crea el menú de opciones.
     @Override
@@ -48,7 +68,7 @@ public class InfoFragment extends Fragment {
         switch (item.getItemId()) {
         case R.id.mnuFoto:
             // Se simula la pulsación de atrás.
-            getActivity().onBackPressed();
+            mListener.onFoto(R.drawable.bench);
             break;
         default:
             // Se propaga el evento porque no ha sido resuelto.

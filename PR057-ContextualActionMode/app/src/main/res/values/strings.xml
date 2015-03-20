@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ContextualActionMode</string>
+    <string name="alumno">Alumno</string>
+    <string name="asignaturas">Asignaturas</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="de">" de "</string>
+    <string name="aprobar">Aprobar</string>
+    <string name="estas_aprobado">Estás aprobado</string>
+    <string name="felicidades">Felicidades</string>
+    <string name="has_aprobado">"Has aprobado: "</string>
+    <string name="asignaturas_eliminadas">" asignaturas eliminadas"</string>
+
+</resources>

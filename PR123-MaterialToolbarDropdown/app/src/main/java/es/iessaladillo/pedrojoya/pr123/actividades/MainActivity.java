@@ -55,11 +55,12 @@ public class MainActivity extends ActionBarActivity implements
         adaptador.setDropDownViewResource(R.layout.spinner_dropdown_item);
         // Se establece el adaptador y el listener para el spinner (que será la
         // propia actividad).
-        LayoutInflater inflador = LayoutInflater.from(getSupportActionBar().getThemedContext());
-        spnOpciones = (Spinner) inflador.inflate(R.layout.spinner, toolbar, false);
+        // LayoutInflater inflador = LayoutInflater.from(getSupportActionBar().getThemedContext());
+        // spnOpciones = (Spinner) inflador.inflate(R.layout.spinner, toolbar, false);
+        spnOpciones = (Spinner) findViewById(R.id.spn);
         spnOpciones.setOnItemSelectedListener(this);
         spnOpciones.setAdapter(adaptador);
-        toolbar.addView(spnOpciones);
+        // toolbar.addView(spnOpciones);
         // Si venimos de un estado anterior.
         if (savedInstanceState != null) {
             // Se coloca en la opción en la que estaba.
