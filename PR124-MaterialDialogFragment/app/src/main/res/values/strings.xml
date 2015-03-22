@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">DialogFragment</string>
-    <string name="title_activity_main">DialogFragment</string>
     <string name="datepicker">DatePicker</string>
     <string name="ha_seleccionado">"Ha seleccionado: "</string>
     <string name="timepicker">TimePicker</string>
@@ -24,13 +23,13 @@
     <string name="contrasena">Contraseña</string>
     <string name="cancelar">Cancelar</string>
     <string name="conectar">Conectar</string>
-    <string name="alerta_personalizada">Alerta personalizada</string>
-    <string name="conexion">Conexión</string>
     <string name="conectando">Conectando…</string>
     <string name="alerta_con_adaptador">Alerta con adaptador</string>
-    <string name="arte_del_album">Arte del álbum</string>
-    <string name="album">Álbum</string>
     <string name="aceptar">Aceptar</string>
     <string name="alerta_con_layout_propio">Alerta con layout propio</string>
     <string name="login">Login</string>
+    <string name="alumno">Alumno</string>
+    <string name="avatar_alumno">Avatar del alumno</string>
+    <string name="no_borrar">No quiere borrar el usuario</string>
+    <string name="neutral">Se ha pulsado el botón neutral</string>
 </resources>

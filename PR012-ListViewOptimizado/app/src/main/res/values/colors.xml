@@ -13,7 +13,6 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
     <!-- Tarjeta -->
-    <color name="tarjeta_strokeColor">#FFDDDDDD</color>    
     <color name="tarjeta_repetidor_background">#220000FF</color>
     <!-- Flat button -->
     <color name="btn_flat_pressed">#66999999</color>

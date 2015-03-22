@@ -29,13 +29,13 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         grdCuadricula = (GridView) this.findViewById(R.id.grdAlbumes);
         // Se crea el adaptador.
         grdCuadricula.setAdapter(new ConceptosAdapter(this, getDatos()));
-        // Establezco el listener para el onClick sobre la cuadr�cula.
+        // Establezco el listener para el onClick sobre la cuadrícula.
         grdCuadricula.setOnItemClickListener(this);
     }
 
     // Construye y retorna el ArrayList de conceptos.
     private ArrayList<Concepto> getDatos() {
-        ArrayList<Concepto> conceptos = new ArrayList<Concepto>();
+        ArrayList<Concepto> conceptos = new ArrayList<>();
         conceptos.add(new Concepto(R.drawable.animal, "Animal", "Animal"));
         conceptos.add(new Concepto(R.drawable.bridge, "Bridge", "Puente"));
         conceptos.add(new Concepto(R.drawable.flag, "Flag", "Bandera"));

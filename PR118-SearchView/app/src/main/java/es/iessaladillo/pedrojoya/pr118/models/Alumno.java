@@ -53,7 +53,7 @@ public class Alumno {
 		return id;
 	}
 
-	public void setId(long id) {
+	void setId(long id) {
 		this.id = id;
 	}
 
@@ -61,15 +61,15 @@ public class Alumno {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public String getTelefono() {
+	String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
@@ -77,15 +77,15 @@ public class Alumno {
 		return curso;
 	}
 
-	public void setCurso(String curso) {
+	void setCurso(String curso) {
 		this.curso = curso;
 	}
 
-	public String getDireccion() {
+	String getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(String direccion) {
+	void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 

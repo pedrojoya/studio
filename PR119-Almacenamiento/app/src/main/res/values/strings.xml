@@ -12,6 +12,6 @@
     <string name="assets">/assets/audio.mp3</string>
     <string name="carpeta_destino">Carpeta de destino</string>
     <string name="crear_copia_de_archivo">Crear copia de archivo</string>
-    <string name="generado">Generado</string>
+    <string name="generado">Generado </string>
 
 </resources>

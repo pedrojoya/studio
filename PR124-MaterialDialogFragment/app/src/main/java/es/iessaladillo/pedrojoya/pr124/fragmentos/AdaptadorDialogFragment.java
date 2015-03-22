@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr124.fragmentos;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,39 +8,41 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
+import java.util.ArrayList;
+
 import es.iessaladillo.pedrojoya.pr124.R;
-import es.iessaladillo.pedrojoya.pr124.adaptadores.AdaptadorAlbumes;
-import es.iessaladillo.pedrojoya.pr124.modelos.Album;
+import es.iessaladillo.pedrojoya.pr124.adaptadores.AlumnosAdapter;
+import es.iessaladillo.pedrojoya.pr124.modelos.Alumno;
 
 public class AdaptadorDialogFragment extends DialogFragment {
 
     // Variables.
     private AdaptadorDialogListener mListener = null;
-    private ArrayList<Album> mAlbumes;
+    private ArrayList<Alumno> mAlumnos;
 
-    // Interfaz p�blica para comunicaci�n con la actividad.
+    // Interfaz pública para comunicación con la actividad.
     public interface AdaptadorDialogListener {
-        public void onListItemClick(DialogFragment dialog, Album album);
+        public void onListItemClick(DialogFragment dialog, Alumno alumno);
     }
 
-    // Al crear el di�logo. Retorna el di�logo configurado.
+    // Al crear el diálogo. Retorna el diálogo configurado.
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
-        b.setTitle(R.string.album);
+        b.setTitle(R.string.alumno);
         b.setIcon(R.mipmap.ic_launcher);
         // Se crea el array de datos.
-        mAlbumes = getDatos();
+        mAlumnos = getDatos();
         // Se crea y asigna el adaptador.
-        AdaptadorAlbumes adaptador = new AdaptadorAlbumes(this.getActivity(),
+        AlumnosAdapter adaptador = new AlumnosAdapter(this.getActivity(),
                 getDatos());
         b.setAdapter(adaptador, new OnClickListener() {
             // Cuando se hace click sobre un elemento de la lista.
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Se notifica el evento al listener pas�ndole el �lbum pulsado.
+                // Se notifica el evento al listener pasándole el alumno pulsado.
                 mListener.onListItemClick(AdaptadorDialogFragment.this,
-                        mAlbumes.get(which));
+                        mAlumnos.get(which));
             }
         });
         // Se retorna el di�logo.
@@ -53,30 +53,27 @@ public class AdaptadorDialogFragment extends DialogFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        // Establece la actividad como listener de los eventos del di�logo.
+        // Establece la actividad como listener de los eventos del diálogo.
         try {
             mListener = (AdaptadorDialogListener) activity;
         } catch (ClassCastException e) {
-            // La actividad no implementa la interfaz, se lanza excepci�n.
+            // La actividad no implementa la interfaz, se lanza excepción.
             throw new ClassCastException(activity.toString()
                     + " debe implementar SeleccionDirectaDialogListener");
         }
     }
 
     // Retorna la lista de datos.
-    private ArrayList<Album> getDatos() {
-        ArrayList<Album> albumes = new ArrayList<Album>();
-        albumes.add(new Album(R.drawable.animal, "Veneno", "1977"));
-        albumes.add(new Album(R.drawable.art, "Ser� mec�nico por ti", "1981"));
-        albumes.add(new Album(R.drawable.bridge, "Echate un cantecito", "1992"));
-        albumes.add(new Album(R.drawable.flag, "Est� muy bien eso del cari�o",
-                "1995"));
-        albumes.add(new Album(R.drawable.food, "Punta Paloma", "1997"));
-        albumes.add(new Album(R.drawable.fruit, "Puro Veneno", "1998"));
-        albumes.add(new Album(R.drawable.furniture, "La familia pollo", "2000"));
-        albumes.add(new Album(R.drawable.glass, "Un ratito de gloria", "2001"));
-        albumes.add(new Album(R.drawable.plant, "El hombre invisible", "2005"));
-        return albumes;
+    private ArrayList<Alumno> getDatos() {
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            alumnos.add(new Alumno(
+                    "Alumno " + i,
+                    "c/ Su casa, nº " + i,
+                    i + 20,
+                    "http://lorempixel.com/100/100/abstract/" + i + "/"));
+        }
+        return alumnos;
     }
 
 }

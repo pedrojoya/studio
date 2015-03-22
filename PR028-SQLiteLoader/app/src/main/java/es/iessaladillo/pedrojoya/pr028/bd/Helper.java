@@ -19,18 +19,18 @@ public class Helper extends SQLiteOpenHelper {
 	// Constructor. Recibe el contexto.
 	public Helper(Context ctx) {
 		// Se llama al constructor del padre, que es quien realmente crea o
-		// actualiza la versión de BD si es necesario.
+		// actualiza la versiÃ³n de BD si es necesario.
 		super(ctx, BD.BD_NOMBRE, null, BD.BD_VERSION);
 	}
 
 	// Cuando es necesario crear la BD.
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// Ejecuto las sentencias SQL de creación de las tablas de la BD.
+		// Se ejecutan las sentencias SQL de creaciÃ³n de las tablas de la BD.
 		db.execSQL(TBL_ALUMNO_CREATE);
 	}
 
-	// Método de callback para cuando la BD debe se actualizada de versión
+	// MÃ©todo de callback para cuando la BD debe se actualizada de versiÃ³n
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// Se eliminan las tablas y se recrean de nuevo.

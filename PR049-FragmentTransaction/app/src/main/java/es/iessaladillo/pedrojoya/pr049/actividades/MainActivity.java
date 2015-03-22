@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity implements OnObraSelectedLis
             // Se muestra el detalle de la obra.
             mostrarFragmentoDetalle(obra, position);
         } else {
-            // Hay dos actividades. Se llama a la otra actividad pas�ndole la
+            // Hay dos actividades. Se llama a la otra actividad pasándole la
             // obra a mostrar (cuya clase debe implementar Parcelable).
             Intent i = new Intent(this, DetalleActivity.class);
             i.putExtra(DetalleFragment.EXTRA_OBRA, obra);
@@ -70,7 +70,7 @@ public class MainActivity extends ActionBarActivity implements OnObraSelectedLis
 
     // Carga el fragmento de detalle en el FrameLayout correspondiente.
     void mostrarFragmentoDetalle(Obra obra, int position) {
-        // Se crea una nueva instancia del fragmento de detalle pas�ndole la
+        // Se crea una nueva instancia del fragmento de detalle pasándole la
         // obra como parámetro.
         DetalleFragment frgDetalle = DetalleFragment
                 .newInstance(obra, position);

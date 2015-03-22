@@ -13,7 +13,7 @@ public class SiNoDialogFragment extends DialogFragment {
 
     private SiNoDialogListener listener = null;
 
-    // Interfaz p�blica para comunicaci�n con la actividad.
+    // Interfaz pública para comunicación con la actividad.
     public interface SiNoDialogListener {
         public void onPositiveButtonClick(DialogFragment dialog);
 
@@ -29,14 +29,14 @@ public class SiNoDialogFragment extends DialogFragment {
         b.setPositiveButton(R.string.si, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Notifico al listener pas�ndole el fragmento.
+                // Notifico al listener pasándole el fragmento.
                 listener.onPositiveButtonClick(SiNoDialogFragment.this);
             }
         });
         b.setNegativeButton(R.string.no, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Notifico al listener pas�ndole el fragmento.
+                // Notifico al listener pasándole el fragmento.
                 listener.onNegativeButtonClick(SiNoDialogFragment.this);
             }
         });

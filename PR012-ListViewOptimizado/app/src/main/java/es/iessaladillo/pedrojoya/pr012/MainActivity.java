@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 
     // Crea el ArrayList de datos.
     private ArrayList<Alumno> getDatos() {
-        ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+        ArrayList<Alumno> alumnos = new ArrayList<>();
         alumnos.add(new Alumno(R.drawable.foto1,
                 "Dolores Fuertes de Barriga", 22, "CFGS DAM", "2º", false));
         alumnos.add(new Alumno(R.drawable.foto2, "Baldomero LLégate Ligero", 17,

@@ -141,7 +141,7 @@ public class InstitutoProvider extends ContentProvider {
                 // Se crea un mapa de renombrado (AS) de los campos del SELECT, ya que debemos
                 // proporcionar los nombres que espera el SearchView.
                 String[] campos = new String[]{"ROWID", InstitutoContract.Alumno._ID, InstitutoContract.Alumno.NOMBRE, InstitutoContract.Alumno.CURSO, InstitutoContract.Alumno.FOTO};
-                HashMap<String, String> mapa = new HashMap<String, String>();
+                HashMap<String, String> mapa = new HashMap<>();
                 mapa.put("ROWID", BaseColumns._ID);
                 mapa.put(InstitutoContract.Alumno.NOMBRE,
                         InstitutoContract.Alumno.NOMBRE + " AS " + SearchManager.SUGGEST_COLUMN_TEXT_1);

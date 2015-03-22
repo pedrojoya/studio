@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="panel_margin">8dp</dimen>
+    <dimen name="empty_drawablePadding">10dp</dimen>
+
+</resources>

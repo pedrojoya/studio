@@ -45,7 +45,7 @@ public class AlumnoFragment extends Fragment {
 		cargarCursos();
 		// Se establece el modo en el que debe comportarse la actividad
 		// dependiendo del argumento recibido.
-		// Dependiendo de la acci�n.
+		// Dependiendo de la acción.
 		String modo = this.getArguments().getString(EXTRA_MODO);
 		if (modo.equals(MODO_EDITAR)) {
 			setModoEditar();
@@ -76,7 +76,7 @@ public class AlumnoFragment extends Fragment {
 		cargarAlumno(this.getArguments().getLong(EXTRA_ID));
 		// Se escriben los datos del alumno en las vistas correspondientes.
 		alumnoToVistas();
-		// Se actuliza el título de la actividad en relaci�n al modo.
+		// Se actuliza el título de la actividad en relación al modo.
 		getActivity().setTitle(R.string.editar_alumno);
 	}
 
@@ -86,13 +86,13 @@ public class AlumnoFragment extends Fragment {
 		modo = MODO_AGREGAR;
 		// Se crea un nuevo objeto Alumno vacío.
 		alumno = new Alumno();
-		// Se actualiza el t�tulo de la actividad en relaci�n al modo.
+		// Se actualiza el título de la actividad en relación al modo.
 		getActivity().setTitle(R.string.agregar_alumno);
 	}
 
 	// Carga los datos del alumno provenientes de la BD en el objeto Alumno.
 	private void cargarAlumno(long id) {
-		// Se consulta en la BD los datos del alumno a trav�s del content
+		// Se consulta en la BD los datos del alumno a través del content
 		// provider en un hilo diferente al hilo principal.
 		Uri uri = Uri.parse(InstitutoProvider.CONTENT_URI_ALUMNOS + "/"
 				+ id);

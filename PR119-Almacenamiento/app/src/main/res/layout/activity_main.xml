@@ -1,97 +1,102 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/fichero_origen"
-        android:id="@+id/lblFicheroOrigen"
-        style="?android:attr/listSeparatorTextViewStyle"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <RadioGroup
-        android:id="@+id/rgOrigen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_below="@+id/lblFicheroOrigen">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fichero_origen"
+            android:id="@+id/lblFicheroOrigen"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_alignParentTop="true" />
 
-        <RadioButton
+        <RadioGroup
+            android:id="@+id/rgOrigen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_below="@+id/lblFicheroOrigen">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/raw"
+                android:checked="true"
+                android:id="@+id/rbRaw" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/assets"
+                android:id="@+id/rbAssets" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/carpeta_destino"
+            android:id="@+id/lblCarpetaDestino"
+            android:layout_marginTop="@dimen/marginTop"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_below="@+id/rgOrigen" />
+
+        <RadioGroup
+            android:id="@+id/rgDestino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_below="@+id/lblCarpetaDestino">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/interno"
+                android:id="@+id/rbInterno" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/externo_propio"
+                android:id="@+id/rbExternoPropio" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/externo_publico"
+                android:checked="true"
+                android:id="@+id/rbExternoPublico" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cache_interno"
+                android:id="@+id/rbCacheInterno" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cache_externo"
+                android:id="@+id/rbCacheExterno" />
+        </RadioGroup>
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/raw"
-            android:checked="true"
-            android:id="@+id/rbRaw" />
+            android:text="@string/crear_copia_de_archivo"
+            android:id="@+id/btnCopiar"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_below="@+id/rgDestino"
+            android:layout_centerHorizontal="true" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/assets"
-            android:id="@+id/rbAssets" />
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/carpeta_destino"
-        android:id="@+id/lblCarpetaDestino"
-        android:layout_marginTop="@dimen/marginTop"
-        style="?android:attr/listSeparatorTextViewStyle"
-        android:layout_below="@+id/rgOrigen" />
-
-    <RadioGroup
-        android:id="@+id/rgDestino"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_below="@+id/lblCarpetaDestino">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/interno"
-            android:id="@+id/rbInterno" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/externo_propio"
-            android:id="@+id/rbExternoPropio" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/externo_publico"
-            android:checked="true"
-            android:id="@+id/rbExternoPublico" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cache_interno"
-            android:id="@+id/rbCacheInterno" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cache_externo"
-            android:id="@+id/rbCacheExterno" />
-    </RadioGroup>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/crear_copia_de_archivo"
-        android:id="@+id/btnCopiar"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_below="@+id/rgDestino"
-        android:layout_centerHorizontal="true" />
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

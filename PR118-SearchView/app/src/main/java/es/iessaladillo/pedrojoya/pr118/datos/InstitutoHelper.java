@@ -6,13 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import org.json.JSONArray;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import es.iessaladillo.pedrojoya.pr118.R;
 import es.iessaladillo.pedrojoya.pr118.models.Alumno;
 
-public class InstitutoHelper extends SQLiteOpenHelper {
+class InstitutoHelper extends SQLiteOpenHelper {
 
 	private static final String TBL_ALUMNO_CREATE = "create table "
 			+ InstitutoContract.Alumno.TABLA + "(" + InstitutoContract.Alumno._ID
@@ -56,7 +55,7 @@ public class InstitutoHelper extends SQLiteOpenHelper {
 		db.execSQL(TBL_ALUMNO_CREATE);
 	}
 
-    private static String jsonFileFromRawFolderToString(int resId, Context context) throws IOException {
+    private static String jsonFileFromRawFolderToString(int resId, Context context) {
         try {
             InputStream entrada = context.getResources().openRawResource(resId);
             byte[] data = new byte[entrada.available()];

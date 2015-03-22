@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         rlPanel = (RelativeLayout) findViewById(R.id.rlPanel);
-        ((ImageView) findViewById(R.id.imgFoto)).setOnClickListener(this);
+        findViewById(R.id.imgFoto).setOnClickListener(this);
         imgDetalle = (ImageView) findViewById(R.id.imgDetalle);
         imgDetalle.setOnClickListener(this);
         lblDetalle = (TextView) findViewById(R.id.lblDetalle);
@@ -59,7 +59,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     // Cambia la visibilidad del detalle.
     private void togglePanel() {
-        // Si no est� visible se hace visible o viceversa.
+        // Si no está visible se hace visible o viceversa.
         if (rlPanel.getVisibility() == View.GONE) {
             rlPanel.setVisibility(View.VISIBLE);
         } else {
@@ -69,8 +69,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     // Cambia la visibilidad del detalle.
     private void toggleDetalle() {
-        // Si no est� visible se hace visible o viceversa y se cambia el icono
-        // de expansi�n o contracci�n.
+        // Si no está visible se hace visible o viceversa y se cambia el icono
+        // de expansión o contracción.
         if (lblDetalle.getVisibility() == View.GONE) {
             lblDetalle.setVisibility(View.VISIBLE);
             imgDetalle.setImageResource(R.drawable.ic_action_navigation_expand);

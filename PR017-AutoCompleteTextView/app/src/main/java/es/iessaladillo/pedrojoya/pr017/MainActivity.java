@@ -65,7 +65,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             }
 
         });
-        // btnTraducir s�lo accesible si hay datos en txtConcepto.
+        // btnTraducir sólo accesible si hay datos en txtConcepto.
         txtConcepto.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -78,12 +78,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                     int after) {
             }
 
-            // Despu�s de haber cambiado el texto.
+            // Después de haber cambiado el texto.
             @Override
             public void afterTextChanged(Editable s) {
-                // btnAceptar disponible s�lo si hay datos.
+                // btnAceptar disponible sólo si hay datos.
                 checkDatos();
-                // lblUsuario visible s�lo si txtUsuario tiene datos.
+                // lblUsuario visible sólo si txtUsuario tiene datos.
                 checkVisibility(txtConcepto, lblConcepto);
                 if (TextUtils.isEmpty(s)) {
                     wvWeb.setVisibility(View.INVISIBLE);
@@ -99,13 +99,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     }
 
-    // Activa o desactiva el bot�n de Aceptar dependiendo de si hay datos.
+    // Activa o desactiva el botón de Aceptar dependiendo de si hay datos.
     private void checkDatos() {
         btnTraducir.setEnabled(!TextUtils.isEmpty(txtConcepto.getText()
                 .toString()));
     }
 
-    // TextView visible s�lo si EditText tiene datos.
+    // TextView visible sólo si EditText tiene datos.
     private void checkVisibility(EditText txt, View v) {
         if (TextUtils.isEmpty(txt.getText().toString())) {
             v.setVisibility(View.INVISIBLE);

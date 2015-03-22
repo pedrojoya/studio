@@ -6,8 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -18,11 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    private ImageView mImgOrigen;
     private TextView mLblLeyenda;
-    private FrameLayout mFrlCuadro;
-    private FrameLayout mFrlLeyenda;
-    private RelativeLayout mRlRaiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +26,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void initVistas() {
-        mImgOrigen = (ImageView) findViewById(R.id.imgOrigen);
+        ImageView mImgOrigen = (ImageView) findViewById(R.id.imgOrigen);
         mLblLeyenda = (TextView) findViewById(R.id.lblTitulo);
-        mFrlCuadro = (FrameLayout) findViewById(R.id.frlCuadro);
-        mFrlLeyenda = (FrameLayout) findViewById(R.id.frlLeyenda);
-        mRlRaiz = (RelativeLayout) findViewById(R.id.rlRaiz);
+        FrameLayout mFrlCuadro = (FrameLayout) findViewById(R.id.frlCuadro);
+        FrameLayout mFrlLeyenda = (FrameLayout) findViewById(R.id.frlLeyenda);
+        RelativeLayout mRlRaiz = (RelativeLayout) findViewById(R.id.rlRaiz);
 
         // El proceso de drag and drop se inicará cuando se realice
         // un click largo sobre la vista.

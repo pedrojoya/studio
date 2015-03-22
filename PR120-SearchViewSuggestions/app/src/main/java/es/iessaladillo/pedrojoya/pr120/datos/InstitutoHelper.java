@@ -7,7 +7,6 @@ import android.text.TextUtils;
 
 import org.json.JSONArray;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import es.iessaladillo.pedrojoya.pr120.R;
@@ -60,7 +59,7 @@ public class InstitutoHelper extends SQLiteOpenHelper {
         db.execSQL(TBL_ALUMNO_CREATE);
     }
 
-    private static String jsonFileFromRawFolderToString(int resId, Context context) throws IOException {
+    private static String jsonFileFromRawFolderToString(int resId, Context context) {
         try {
             InputStream entrada = context.getResources().openRawResource(resId);
             byte[] data = new byte[entrada.available()];

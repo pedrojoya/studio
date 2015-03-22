@@ -1,7 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="es.iessaladillo.pedrojoya.pr018"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="es.iessaladillo.pedrojoya.pr018" >
 
     <application
         android:icon="@mipmap/ic_launcher"

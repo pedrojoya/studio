@@ -10,8 +10,10 @@
         android:layout_height="@dimen/imgWidth"
         android:id="@+id/imgOrigen"
         android:layout_marginLeft="@dimen/margenLateral"
+        android:layout_marginStart="@dimen/margenLateral"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:contentDescription="@string/ciudad"
         android:src="@drawable/ciudad" />
 
     <TextView
@@ -19,6 +21,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/lblTitulo"
         android:layout_marginRight="@dimen/margenLateral"
+        android:layout_marginEnd="@dimen/margenLateral"
         android:layout_alignParentRight="true"
         android:text="@string/titulo"
         android:layout_alignParentEnd="true" />

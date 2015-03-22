@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr045;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
@@ -16,9 +15,6 @@ public class MainActivity extends ActionBarActivity {
     // Constantes.
     private static int NUM_PAGINAS = 5;
 
-    // Variables miembro.
-    private ViewPager vpPaginas;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         PaginasAdapter adaptador = new PaginasAdapter();
-        vpPaginas = (ViewPager) findViewById(R.id.vpPaginas);
+        ViewPager vpPaginas = (ViewPager) findViewById(R.id.vpPaginas);
         vpPaginas.setAdapter(adaptador);
         // Establece la página inicial a mostrar.
         vpPaginas.setCurrentItem(2);

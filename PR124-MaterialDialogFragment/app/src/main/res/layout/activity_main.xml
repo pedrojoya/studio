@@ -14,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/datepicker" />
 
         <Button
@@ -22,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/timepicker" />
 
         <Button
@@ -30,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/alerta_de_pregunta_si_no" />
 
         <Button
@@ -38,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/alerta_de_seleccion_directa" />
 
         <Button
@@ -46,7 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/alerta_de_seleccion_simple" />
 
         <Button
@@ -54,7 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/alerta_de_seleccion_multiple" />
 
         <Button
@@ -62,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/alerta_con_layout_propio" />
 
         <Button
@@ -70,7 +63,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_marginBottom"
-            style="@style/AppCompat.Button.Flat.Common"
             android:text="@string/alerta_con_adaptador" />
     </LinearLayout>
 

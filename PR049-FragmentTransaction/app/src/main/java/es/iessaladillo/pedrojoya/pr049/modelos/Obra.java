@@ -55,7 +55,7 @@ public class Obra implements Parcelable {
         this.anio = anio;
     }
 
-    // Desde aqu� para que sea Parcelable.
+    // Desde aquí para que sea Parcelable.
 
     // Constructor.
     private Obra(Parcel in) {
@@ -90,7 +90,7 @@ public class Obra implements Parcelable {
             return new Obra(in);
         }
 
-        // Crea un array de alumnos del tama�o pasado como par�metro.
+        // Crea un array de alumnos del tamaño pasado como parámetro.
         public Obra[] newArray(int size) {
             return new Obra[size];
         }

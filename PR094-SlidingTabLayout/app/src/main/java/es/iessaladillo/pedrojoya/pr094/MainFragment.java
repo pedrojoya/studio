@@ -12,9 +12,6 @@ import com.example.android.common.view.SlidingTabLayout;
 
 public class MainFragment extends Fragment {
 
-    private ViewPager vpPaginador;
-    private SlidingTabLayout stTabs;
-
     public MainFragment() {
     }
 
@@ -37,11 +34,11 @@ public class MainFragment extends Fragment {
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         // Se configura el ViewPager.
-        vpPaginador = (ViewPager) getView().findViewById(R.id.vpPaginador);
+        ViewPager vpPaginador = (ViewPager) getView().findViewById(R.id.vpPaginador);
         vpPaginador.setAdapter(new PaginasAdapter(getActivity(),
                 getChildFragmentManager()));
         // Se configura el SlidingTabLayout.
-        stTabs = (SlidingTabLayout) getView().findViewById(R.id.stTabs);
+        SlidingTabLayout stTabs = (SlidingTabLayout) getView().findViewById(R.id.stTabs);
         stTabs.setCustomTabView(R.layout.tab_header, R.id.lblTab);
         stTabs.setViewPager(vpPaginador);
         stTabs.setSelectedIndicatorColors(

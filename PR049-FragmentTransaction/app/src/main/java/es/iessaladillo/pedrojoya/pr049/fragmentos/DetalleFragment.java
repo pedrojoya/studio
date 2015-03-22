@@ -15,7 +15,7 @@ import es.iessaladillo.pedrojoya.pr049.modelos.Obra;
 
 public class DetalleFragment extends Fragment {
 
-    // Interfaz para notificaci�n de eventos desde el fragmento.
+    // Interfaz para notificación de eventos desde el fragmento.
     public interface OnDetalleShownListener {
         // Cuando se selecciona una obra.
         public void onDetalleShown(int position);

@@ -31,7 +31,7 @@ import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoContentProvider;
 public class ListaAlumnosFragment extends Fragment implements
         LoaderCallbacks<Cursor> {
 
-    // Interfaz de comunicaci�n con la actividad.
+    // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
         public void onAgregarAlumno();
 
@@ -57,7 +57,7 @@ public class ListaAlumnosFragment extends Fragment implements
         // Se configuran las vistas.
         lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
         RelativeLayout rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
-        // Si la lista est� vac�a se muestra un icono y un texto para que al
+        // Si la lista está vacía se muestra un icono y un texto para que al
         // pulsarlo se agregue un alumno.
         rlListaVacia.setOnClickListener(new OnClickListener() {
 
@@ -95,29 +95,28 @@ public class ListaAlumnosFragment extends Fragment implements
             public void onDestroyActionMode(ActionMode arg0) {
             }
 
-            // Al crear el modo de acci�n contextual.
+            // Al crear el modo de acción contextual.
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                // Se infla la especificaci�n del men� contextual en el
-                // men�.
+                // Se infla la especificación del menú contextual en el menú.
                 mode.getMenuInflater().inflate(R.menu.fragment_lista_alumnos,
                         menu);
                 // Se retorna que ya se ha gestionado el evento.
                 return true;
             }
 
-            // Al pulsar sobre un �tem del modo de acci�n contextual.
+            // Al pulsar sobre un ítem del modo de acción contextual.
             @Override
             public boolean onActionItemClicked(ActionMode modo, MenuItem item) {
                 // Dependiendo del elemento pulsado.
                 switch (item.getItemId()) {
                 case R.id.mnuAlumnoEliminar:
-                    // Si hay elementos seleccionados se pide confirmaci�n.
+                    // Si hay elementos seleccionados se pide confirmación.
                     if (lstAlumnos.getCheckedItemPositions().size() > 0) {
                         // Se almacena el modo contextual para poder cerrarlo
                         // una vez eliminados.
                         modoContextual = modo;
-                        // Se pide confirmaci�n.
+                        // Se pide confirmación.
                         listener.onConfirmarEliminarAlumnos();
                     }
                     break;
@@ -130,7 +129,7 @@ public class ListaAlumnosFragment extends Fragment implements
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
                     int position, long id, boolean checked) {
-                // Se actualiza el t�tulo de la action bar contextual.
+                // Se actualiza el título de la action bar contextual.
                 mode.setTitle(lstAlumnos.getCheckedItemCount() + "");
             }
         });
@@ -149,7 +148,7 @@ public class ListaAlumnosFragment extends Fragment implements
         // Se inicializa el cargador.
         gestor.initLoader(0, null, this);
         // Se establece un SimpleCursorAdapter como adaptador para la lista, que
-        // inicialmente manejar� un cursor nulo.
+        // inicialmente manejará un cursor nulo.
         String[] from = { BD.Alumno.NOMBRE, BD.Alumno.CURSO,
                 BD.Alumno.TELEFONO, BD.Alumno.DIRECCION };
         int[] to = { R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono,
@@ -176,21 +175,20 @@ public class ListaAlumnosFragment extends Fragment implements
     }
 
     // Elimina de la base de datos los alumnos seleccionados, actualiza el
-    // adaptador y cierra el modo de acci�n conextual.
+    // adaptador y cierra el modo de acción conextual.
     public void eliminarAlumnos() {
         // Se obtiene el array con las posiciones seleccionadas.
         SparseBooleanArray seleccionados = lstAlumnos.getCheckedItemPositions();
-        // Por cada selecci�n.
+        // Por cada selección.
         for (int i = 0; i < seleccionados.size(); i++) {
-            // Se obtiene la posici�n del elemento en el
-            // adaptador.
+            // Se obtiene la posición del elemento en el adaptador.
             int position = seleccionados.keyAt(i);
             // Si ha sido seleccionado
             if (seleccionados.valueAt(i)) {
                 // Se obtiene el alumo.
                 Cursor cursor = (Cursor) lstAlumnos.getItemAtPosition(position);
                 Alumno alu = Alumno.fromCursor(cursor);
-                // Se borra de la base de datos a trav�s del content provider.
+                // Se borra de la base de datos a través del content provider.
                 Uri uri = Uri
                         .parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS
                                 + "/" + alu.getId());
@@ -199,8 +197,6 @@ public class ListaAlumnosFragment extends Fragment implements
         }
         // Se finaliza el modo contextual.
         modoContextual.finish();
-        // Se resetea el cargador del cursor para que actualice la lista.
-        // gestor.restartLoader(0, null, this);
     }
 
     // Cuando se crea el cargador. Retorna el cargador del cursor.
@@ -218,16 +214,12 @@ public class ListaAlumnosFragment extends Fragment implements
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         // Se cambia el cursor del adaptador por el que tiene datos.
         adaptador.changeCursor(data);
-        // Inicialmente todos los elementos de la lista NO est�n seleccionados.
-        for (int i = 0; i < lstAlumnos.getCount(); i++) {
-            lstAlumnos.setItemChecked(i, false);
-        }
     }
 
     // Cuando se resetea el cargador.
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        // Se vac�a de datos el adaptador.
+        // Se vacía de datos el adaptador.
         adaptador.changeCursor(null);
     }
 }

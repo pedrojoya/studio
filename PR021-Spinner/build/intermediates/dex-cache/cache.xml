@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/classes-5978496a3618ab8e5b7246880cee7be5e4a70b31.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-131b1fc4e09b483ef78996fc05fcd12330a7a6a7.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/classes-6da801171a20108c825de5fd98325200ba8297d9.jar" />
+    </item>
+
+</items>

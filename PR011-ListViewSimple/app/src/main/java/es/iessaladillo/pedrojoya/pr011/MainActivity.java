@@ -83,9 +83,9 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         // Se obtienen los datos para el adaptador de la lista.
         // ArrayList<String> alumnos = new ArrayList<String>(
         // Arrays.asList(getResources().getStringArray(R.array.alumnos)));
-        ArrayList<String> alumnos = new ArrayList<String>();
+        ArrayList<String> alumnos = new ArrayList<>();
         // Se crea el adaptador ArrayAdapter con layout estándar.
-        adaptador = new ArrayAdapter<String>(this,
+        adaptador = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, alumnos);
         lstAlumnos.setAdapter(adaptador);
         // Se establece el listener para cuando se hace click en un item de la

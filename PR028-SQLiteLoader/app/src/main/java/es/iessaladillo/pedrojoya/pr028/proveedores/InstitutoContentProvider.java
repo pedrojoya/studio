@@ -29,7 +29,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // Constantes para la entidad Alumnos.
     private static final String BASE_PATH_ALUMNOS = "alumnos"; // Segmento path.
     public static final Uri CONTENT_URI_ALUMNOS = Uri.withAppendedPath(
-            CONTENT_URI_BASE, BASE_PATH_ALUMNOS); // Uri p�blica de acceso a
+            CONTENT_URI_BASE, BASE_PATH_ALUMNOS); // Uri pública de acceso a
                                                   // alumnos.
     private static final String MIME_TYPE_ALUMNOS = ContentResolver.CURSOR_DIR_BASE_TYPE
             + "/vnd.es.iessaladillo.instituto.alumnos"; // Tipo MIME alumnos.
@@ -40,8 +40,8 @@ public class InstitutoContentProvider extends ContentProvider {
     private static final int URI_TYPE_ALUMNOS_LIST = 10; // Tipo para alumnos.
     private static final int URI_TYPE_ALUMNOS_ID = 20; // Tipo para alumno.
 
-    // Se crea el validador de Uris, al que se le a�aden todas los tipos de uris
-    // considerados v�lidos.
+    // Se crea el validador de Uris, al que se le añaden todas los tipos de uris
+    // considerados válidos.
     private static final UriMatcher validadorURIs = new UriMatcher(
             UriMatcher.NO_MATCH);
     static {
@@ -78,8 +78,8 @@ public class InstitutoContentProvider extends ContentProvider {
         return true;
     }
 
-    // Retorna el cursor con el resultado de la consulta. Recibe los par�metros
-    // indicados en el m�todo query del ContentResolver.
+    // Retorna el cursor con el resultado de la consulta. Recibe los parámetros
+    // indicados en el método query del ContentResolver.
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
             String[] selectionArgs, String sortOrder) {
@@ -103,7 +103,7 @@ public class InstitutoContentProvider extends ContentProvider {
             checkColumns(BD.Alumno.TODOS, projection);
             // Se establece la tabla para la consulta.
             builder.setTables(BD.Alumno.TABLA);
-            // Se agrega al where la selecci�n de ese alumno.
+            // Se agrega al where la selección de ese alumno.
             builder.appendWhere(BD.Alumno._ID + " = "
                     + uri.getLastPathSegment());
             break;
@@ -118,12 +118,12 @@ public class InstitutoContentProvider extends ContentProvider {
         return cursor;
     }
 
-    // Retorna el n�mero de registros eliminados. Recibe los par�metros recibido
-    // por el m�todo delete del ContentResolver.
+    // Retorna el número de registros eliminados. Recibe los parámetros recibido
+    // por el método delete del ContentResolver.
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int filasBorradas;
-        // Se inicializa la selecci�n.
+        // Se inicializa la selección.
         String where = selection;
         // Se obtiene la base de datos.
         SQLiteDatabase bd = helper.getWritableDatabase();
@@ -135,7 +135,7 @@ public class InstitutoContentProvider extends ContentProvider {
             filasBorradas = bd.delete(BD.Alumno.TABLA, where, selectionArgs);
             break;
         case URI_TYPE_ALUMNOS_ID:
-            // Se agrega al where la selecci�n de ese alumno.
+            // Se agrega al where la selección de ese alumno.
             where = BD.Alumno._ID + "=" + uri.getLastPathSegment()
                     + (TextUtils.isEmpty(selection) ? "" : " and " + where);
             // Se realiza el borrado.
@@ -151,8 +151,8 @@ public class InstitutoContentProvider extends ContentProvider {
         return filasBorradas;
     }
 
-    // Retorna la uri del nuevo registro. Recibe los par�metros recibido por el
-    // m�todo insert del ContentResolver.
+    // Retorna la uri del nuevo registro. Recibe los parámetros recibido por el
+    // método insert del ContentResolver.
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         long id;
@@ -173,8 +173,8 @@ public class InstitutoContentProvider extends ContentProvider {
         return ContentUris.withAppendedId(uri, id);
     }
 
-    // Retorna el n�mero de registros actualizados. Recibe los par�metros
-    // recibidos por el m�todo update del ContentResolver.
+    // Retorna el número de registros actualizados. Recibe los parámetros
+    // recibidos por el método update del ContentResolver.
     @Override
     public int update(Uri uri, ContentValues values, String selection,
             String[] selectionArgs) {
@@ -191,7 +191,7 @@ public class InstitutoContentProvider extends ContentProvider {
                     selectionArgs);
             break;
         case URI_TYPE_ALUMNOS_ID:
-            // Se agrega al where la selecci�n de ese alumno.
+            // Se agrega al where la selección de ese alumno.
             where = BD.Alumno._ID + "=" + uri.getLastPathSegment()
                     + (TextUtils.isEmpty(selection) ? "" : " and " + where);
             filasActualizadas = bd.update(BD.Alumno.TABLA, values, where,
@@ -204,7 +204,7 @@ public class InstitutoContentProvider extends ContentProvider {
         if (filasActualizadas > 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
-        // Se retorna el n�mero de registros actualizados.
+        // Se retorna el número de registros actualizados.
         return filasActualizadas;
     }
 

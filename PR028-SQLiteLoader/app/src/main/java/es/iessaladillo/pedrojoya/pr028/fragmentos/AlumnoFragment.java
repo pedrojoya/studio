@@ -44,7 +44,7 @@ public class AlumnoFragment extends Fragment {
 		cargarCursos();
 		// Se establece el modo en el que debe comportarse la actividad
 		// dependiendo del argumento recibido.
-		// Dependiendo de la acción.
+		// Dependiendo de la acciÃ³n.
 		String modo = this.getArguments().getString(EXTRA_MODO);
 		if (modo.equals(MODO_EDITAR)) {
 			setModoEditar();
@@ -56,8 +56,8 @@ public class AlumnoFragment extends Fragment {
 
 	// Carga los cursos en el spinner.
 	private void cargarCursos() {
-		// Se crea un ArrayAdapter para el spinner, que use layouts estándar
-		// tanto para cuando no esté desplegado como para cuando sí lo esté. La
+		// Se crea un ArrayAdapter para el spinner, que use layouts estÃ¡ndar
+		// tanto para cuando no estÃ¡ desplegado como para cuando sÃ­ lo estÃ¡. La
 		// fuente de datos para el adaptador es un array de constantes de
 		// cadena.
 		adaptadorCursos = ArrayAdapter.createFromResource(this.getActivity(),
@@ -75,7 +75,7 @@ public class AlumnoFragment extends Fragment {
 		cargarAlumno(this.getArguments().getLong(EXTRA_ID));
 		// Se escriben los datos del alumno en las vistas correspondientes.
 		alumnoToVistas();
-		// Se actuliza el título de la actividad en relación al modo.
+		// Se actuliza el tÃ­tulo de la actividad en relaciÃ³n al modo.
 		getActivity().setTitle(R.string.editar_alumno);
 	}
 
@@ -83,15 +83,15 @@ public class AlumnoFragment extends Fragment {
 	private void setModoAgregar() {
 		// Se establece el modo Agregar.
 		modo = MODO_AGREGAR;
-		// Se crea un nuevo objeto Alumno vacío.
+		// Se crea un nuevo objeto Alumno vacÃ­o.
 		alumno = new Alumno();
-		// Se actualiza el título de la actividad en relación al modo.
+		// Se actualiza el tÃ­tulo de la actividad en relaciÃ³n al modo.
 		getActivity().setTitle(R.string.agregar_alumno);
 	}
 
 	// Carga los datos del alumno provenientes de la BD en el objeto Alumno.
 	private void cargarAlumno(long id) {
-		// Se consulta en la BD los datos del alumno a través del content
+		// Se consulta en la BD los datos del alumno a travÃ©s del content
 		// provider en un hilo diferente al hilo principal.
 		Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/"
 				+ id);
@@ -136,7 +136,7 @@ public class AlumnoFragment extends Fragment {
 
 	// Agrega un alumno a la base de datos.
 	private void agregarAlumno() {
-		// Realizo el insert a través del content provider. Como resultado se
+		// Realizo el insert a travÃ©s del content provider. Como resultado se
 		// obtiene la uri del alumno insertado, de la que se extrae su id.
 		Uri resultado = this
 				.getActivity()
@@ -162,8 +162,8 @@ public class AlumnoFragment extends Fragment {
 
 	// Actualiza un alumno en la base de datos.
 	private void actualizarAlumno() {
-		// Se realiza el update en la BD a través del content provider. Como
-		// resultado obtenemos el número de registros actualizados.
+		// Se realiza el update en la BD a travÃ©s del content provider. Como
+		// resultado obtenemos el nÃºmero de registros actualizados.
 		Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/"
 				+ alumno.getId());
 		if (this.getActivity().getContentResolver()

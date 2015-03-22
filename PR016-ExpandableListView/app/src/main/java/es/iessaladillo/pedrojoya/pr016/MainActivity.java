@@ -38,8 +38,8 @@ public class MainActivity extends ActionBarActivity implements OnChildClickListe
         lstAlumnos.setGroupIndicator(null);
         lstAlumnos.setChildIndicator(null);
         // Se obtienen los datos.
-        ArrayList<String> grupos = new ArrayList<String>();
-        ArrayList<ArrayList<Alumno>> hijos = new ArrayList<ArrayList<Alumno>>();
+        ArrayList<String> grupos = new ArrayList<>();
+        ArrayList<ArrayList<Alumno>> hijos = new ArrayList<>();
         fillDatos(grupos, hijos);
         // Se crea el adaptador para la lista y se establece.
         mAdaptador = new AdaptadorAlumnos(this, grupos, hijos);
@@ -54,13 +54,13 @@ public class MainActivity extends ActionBarActivity implements OnChildClickListe
     }
 
     // Obtiene los ArrayList de datos para grupos e hijos. Modifica los
-    // par�metros recibidos.
+    // parámetros recibidos.
     private void fillDatos(ArrayList<String> grupos,
             ArrayList<ArrayList<Alumno>> hijos) {
         ArrayList<Alumno> grupoActual;
         // Primer grupo.
         grupos.add("CFGM Sistemas Microinformáticos y Redes");
-        grupoActual = new ArrayList<Alumno>();
+        grupoActual = new ArrayList<>();
         grupoActual.add(new Alumno("Baldomero", 16, "CFGM", "2º"));
         grupoActual.add(new Alumno("Sergio", 27, "CFGM", "1º"));
         grupoActual.add(new Alumno("Atanasio", 17, "CFGM", "1º"));
@@ -70,7 +70,7 @@ public class MainActivity extends ActionBarActivity implements OnChildClickListe
         hijos.add(grupoActual);
         // Segundo grupo.
         grupos.add("CFGS Desarrollo de Aplicaciones Multiplataforma");
-        grupoActual = new ArrayList<Alumno>();
+        grupoActual = new ArrayList<>();
         grupoActual.add(new Alumno("Pedro", 22, "CFGS", "2º"));
         grupoActual.add(new Alumno("Pablo", 22, "CFGS", "2º"));
         grupoActual.add(new Alumno("Rodolfo", 21, "CFGS", "1º"));

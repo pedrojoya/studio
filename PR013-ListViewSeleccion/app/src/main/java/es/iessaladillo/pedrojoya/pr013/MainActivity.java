@@ -57,12 +57,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener,
         lblContador = (TextView) findViewById(R.id.lblContador);
         lstRespuestas = (ListView) this.findViewById(R.id.lstRespuestas);
         // Se crea y asigna el adaptador a la lista.
-        ArrayList<String> respuestas = new ArrayList<String>();
+        ArrayList<String> respuestas = new ArrayList<>();
         respuestas.add("Marrón");
         respuestas.add("Verde");
         respuestas.add("Blanco");
         respuestas.add("Negro");
-        mAdaptador = new ArrayAdapter<String>(this,
+        mAdaptador = new ArrayAdapter<>(this,
                 R.layout.activity_main_respuesta, R.id.lblRespuesta, respuestas);
         lstRespuestas.setAdapter(mAdaptador);
         // Se trata de una lista de selección simple.
@@ -91,8 +91,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener,
             public void onFinish() {
                 // Se finaliza la animación del fono del contador.
                 mAnimador.end();
-                // Se hace visible el botón de comprobación y se oculta el
-                // contador.
+                // Se hace visible el botón de comprobación y se oculta el contador.
                 btnComprobar.setVisibility(View.VISIBLE);
                 lblContador.setVisibility(View.GONE);
                 vContador.setVisibility(View.GONE);

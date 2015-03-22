@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">SlidingTabLayout</string>
-    <string name="icono">Icono</string>
     <string name="tab">Opción</string>
 
 </resources>

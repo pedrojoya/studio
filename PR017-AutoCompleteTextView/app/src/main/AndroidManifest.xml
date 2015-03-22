@@ -1,7 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="es.iessaladillo.pedrojoya.pr017"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="es.iessaladillo.pedrojoya.pr017" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 

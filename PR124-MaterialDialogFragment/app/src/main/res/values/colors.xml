@@ -5,8 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="bottomBarBackground">#7986CB</color>
-    <color name="activated">#C5CAE9</color>
 
     <!-- Colores para la Action Mode Contexual -->
     <color name="actionModeBackground">#757575</color>

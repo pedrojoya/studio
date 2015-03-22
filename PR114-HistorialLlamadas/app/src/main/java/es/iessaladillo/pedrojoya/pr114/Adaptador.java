@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr114;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.CallLog;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -29,12 +31,12 @@ class Adaptador extends SimpleCursorAdapter {
     public Adaptador(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
         mLayout = layout;
-        mFormateadorFechas = new SimpleDateFormat(FORMATO_FECHA_HORA);
+        mFormateadorFechas = new SimpleDateFormat(FORMATO_FECHA_HORA, Locale.getDefault());
     }
 
     // Cuando debe escribirse el registro en la vista-fila.
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(@NonNull View view, Context context, @NonNull Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
         String sNombre = cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.CACHED_NAME));
         if (TextUtils.isEmpty(sNombre)) {

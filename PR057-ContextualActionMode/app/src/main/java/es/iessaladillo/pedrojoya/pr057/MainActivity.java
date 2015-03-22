@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr057;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.SparseBooleanArray;
@@ -17,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -200,7 +200,7 @@ public class MainActivity extends ActionBarActivity {
 
                     }
                 });
-        // Un click simple ya activa el modo de acci�n contextual.
+        // Un click simple ya activa el modo de acción contextual.
         lstAsignaturas.setOnItemClickListener(new OnItemClickListener() {
 
             @Override

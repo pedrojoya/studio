@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">FrameLayout</string>
-    <string name="action_settings">Settings</string>
     <string name="foto_del_dia">Natural History Museum</string>
     <string name="abrir_detalle">Abrir detalle</string>
     <string name="detalle">Situado en South Kensington, Londres, el Museo de Historia Natural posee una variada colección con más de 70 millones de especímenes y objetos en colección, pertenecientes a varios campos de la historia natural. Las cinco colecciones más importantes son las correspondientes a las áreas de: botánica, entomología, mineralogía, paleontología y zoología.</string>

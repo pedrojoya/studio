@@ -67,27 +67,27 @@ public class MainActivity extends ActionBarActivity implements
         this.startActivity(i);
     }
 
-    // Muestra el fragmento de di�logo de confirmaci�n de eliminaci�n.
+    // Muestra el fragmento de diálogo de confirmación de eliminación.
     @Override
     public void onConfirmarEliminarAlumnos() {
         SiNoDialogFragment frgDialogo = new SiNoDialogFragment();
         frgDialogo.show(this.getSupportFragmentManager(), "SiNoDialogFragment");
     }
 
-    // Se confirma la eliminaci�n de los alumnos seleccionados.
+    // Se confirma la eliminación de los alumnos seleccionados.
     @Override
     public void onPositiveButtonClick(DialogFragment dialog) {
-        // Se llama al m�todo del fragmento para eliminar los alumnos
+        // Se llama al método del fragmento para eliminar los alumnos
         // seleccionados.
         ListaAlumnosFragment frgListaAlumnos = (ListaAlumnosFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.frgListaAlumnos);
         frgListaAlumnos.eliminarAlumnos();
     }
 
-    // No se confirma la eliminaci�n de los alumnos seleccionados.
+    // No se confirma la eliminación de los alumnos seleccionados.
     @Override
     public void onNegativeButtonClick(DialogFragment dialog) {
-        // M�todo requerido por la interfaz SiNoDialogListener.
+        // Método requerido por la interfaz SiNoDialogListener.
     }
 
 }

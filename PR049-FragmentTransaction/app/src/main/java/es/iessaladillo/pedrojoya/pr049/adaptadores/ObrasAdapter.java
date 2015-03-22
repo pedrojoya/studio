@@ -1,20 +1,20 @@
 package es.iessaladillo.pedrojoya.pr049.adaptadores;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
 import es.iessaladillo.pedrojoya.pr049.R;
 import es.iessaladillo.pedrojoya.pr049.modelos.Obra;
 
 public class ObrasAdapter extends ArrayAdapter<Obra> {
 
     // Variables.
-    private final Context mContexto;
     private final ArrayList<Obra> mDatos;
     private final LayoutInflater mInflador;
 
@@ -28,7 +28,6 @@ public class ObrasAdapter extends ArrayAdapter<Obra> {
     // Constructor.
     public ObrasAdapter(Context contexto, ArrayList<Obra> datos) {
         super(contexto, 0, datos);
-        this.mContexto = contexto;
         this.mDatos = datos;
         // Se obtiene un objeto inflador de layouts.
         mInflador = LayoutInflater.from(contexto);

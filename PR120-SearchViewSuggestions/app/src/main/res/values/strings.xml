@@ -6,7 +6,6 @@
     <string name="buscar">Buscar</string>
     <string name="title_activity_busqueda">BusquedaActivity</string>
     <string name="search_hint">(buscar)</string>
-    <string name="limpiar_historial_busqueda">Limpiar historial de búsqueda</string>
     <string name="title_activity_alumno">Alummo</string>
     <string name="guardar">Guardar</string>
     <string name="editar_alumno">Editar alumno</string>

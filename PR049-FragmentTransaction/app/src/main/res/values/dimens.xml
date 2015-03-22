@@ -1,8 +1,5 @@
 <resources>
     
-    <!-- fragment_lista -->
-    <dimen name="imgCabecera_height">180dp</dimen>
-    
     <!-- fragment_lista_item -->
     <dimen name="item_paddingTop">5dp</dimen>
     <dimen name="item_paddingLeft">10dp</dimen>

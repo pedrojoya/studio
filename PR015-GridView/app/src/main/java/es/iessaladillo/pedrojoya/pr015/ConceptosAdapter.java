@@ -12,12 +12,10 @@ import java.util.ArrayList;
 
 class ConceptosAdapter extends BaseAdapter {
 
-    private final Context contexto;
     private final ArrayList<Concepto> datos;
     private final LayoutInflater inflador;
 
     public ConceptosAdapter(Context contexto, ArrayList<Concepto> datos) {
-        this.contexto = contexto;
         this.datos = datos;
         // Se obtiene un objeto inflador de layouts.
         inflador = LayoutInflater.from(contexto);

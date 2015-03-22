@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr049.fragmentos;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -13,6 +11,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+
 import es.iessaladillo.pedrojoya.pr049.R;
 import es.iessaladillo.pedrojoya.pr049.adaptadores.ObrasAdapter;
 import es.iessaladillo.pedrojoya.pr049.modelos.Obra;
@@ -30,7 +31,6 @@ public class ListaFragment extends Fragment implements OnItemClickListener {
     private ImageView imgCabecera;
 
     private OnObraSelectedListener mListener;
-    private boolean mDosPaneles;
     private int mItemSeleccionado;
 
     // Cuando se crea el fragmento.
@@ -80,7 +80,7 @@ public class ListaFragment extends Fragment implements OnItemClickListener {
         // dos paneles.
         FrameLayout flDetalle = (FrameLayout) getActivity().findViewById(
                 R.id.flDetalle);
-        mDosPaneles = flDetalle != null
+        boolean mDosPaneles = flDetalle != null
                 && flDetalle.getVisibility() == View.VISIBLE;
         // El fragmento actuará como listener cuando se pulse sobre un elemento
         // de la lista.

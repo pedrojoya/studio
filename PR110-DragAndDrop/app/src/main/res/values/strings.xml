@@ -2,8 +2,7 @@
 <resources>
 
     <string name="app_name">DragAndDrop</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="titulo">La ciudad</string>
+    <string name="ciudad">Ciudad</string>
 
 </resources>
