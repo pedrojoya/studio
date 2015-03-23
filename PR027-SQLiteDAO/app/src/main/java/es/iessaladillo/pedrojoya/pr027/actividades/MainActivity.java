@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity implements
         // Se carga el fragmento.
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.flContenido, new ListaAlumnosFragment(), TAG_LISTA_FRAGMENT)
+                .replace(R.id.flContenido, new ListaAlumnosFragment(), TAG_LISTA_FRAGMENT)
                 .commit();
     }
 

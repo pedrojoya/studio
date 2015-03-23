@@ -8,7 +8,7 @@ import es.iessaladillo.pedrojoya.pr027.fragmentos.AlumnoFragment;
 
 public class AlumnoActivity extends ActionBarActivity {
 
-    AlumnoFragment frgAlumno;
+    private AlumnoFragment frgAlumno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

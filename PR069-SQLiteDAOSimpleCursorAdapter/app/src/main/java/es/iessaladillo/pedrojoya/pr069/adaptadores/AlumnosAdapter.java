@@ -1,0 +1,83 @@
+package es.iessaladillo.pedrojoya.pr069.adaptadores;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Random;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import es.iessaladillo.pedrojoya.pr069.R;
+import es.iessaladillo.pedrojoya.pr069.bd.Instituto;
+
+public class AlumnosAdapter extends SimpleCursorAdapter {
+
+    private static final String BASE_URL = "http://lorempixel.com/100/100/sports/";
+
+    private final int mLayout;
+    private final Context mContexto;
+    private final Random mAleatorio;
+
+    public AlumnosAdapter(Context context, int layout, Cursor c,
+                     String[] from, int[] to, int flags) {
+        super(context, layout, c, from, to, flags);
+        mContexto = context;
+        mLayout = layout;
+        mAleatorio = new Random();
+    }
+
+    // Cuando debe escribirse el registro en la vista-fila.
+    @Override
+    public void bindView(View view, Context context, Cursor cursor) {
+        ViewHolder holder = (ViewHolder) view.getTag();
+        holder.lblNombre.setText(cursor.getString(
+                cursor.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE)));
+        holder.lblCurso.setText(cursor.getString(
+                cursor.getColumnIndexOrThrow(Instituto.Alumno.CURSO)));
+        holder.lblDireccion.setText(cursor.getString(
+                cursor.getColumnIndexOrThrow(Instituto.Alumno.DIRECCION)));
+        Picasso.with(mContexto).load(BASE_URL + (mAleatorio.nextInt(10) + 1) + "/")
+                .into(holder.imgAvatar);
+
+    }
+
+    // Cuando se va a crear una nueva vista-fila (no es posible reciclar).
+    @Override
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        View vista = LayoutInflater.from(context).inflate(mLayout, parent, false);
+        vista.setTag(new ViewHolder(vista));
+        return vista;
+    }
+
+    // Contenedor de vistas para la vista-fila.
+    static class ViewHolder {
+
+        // El contenedor de vistas para un elemento de la lista debe contener...
+        private final CircleImageView imgAvatar;
+        private final TextView lblNombre;
+        private final TextView lblCurso;
+        private final TextView lblDireccion;
+
+        // El constructor recibe la vista-fila.
+        public ViewHolder(View itemView) {
+            // Se obtienen las vistas de la vista-fila.
+            imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
+            lblNombre = (TextView) itemView
+                    .findViewById(R.id.lblNombre);
+            lblCurso = (TextView) itemView
+                    .findViewById(R.id.lblCurso);
+            lblDireccion = (TextView) itemView
+                    .findViewById(R.id.lblDireccion);
+        }
+
+    }
+
+}

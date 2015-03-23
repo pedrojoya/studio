@@ -4,12 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class Helper extends SQLiteOpenHelper {
+class Helper extends SQLiteOpenHelper {
 
 	// Constantes de sentencias SQL.
 	private static final String TBL_ALUMNO_CREATE = "create table "
 			+ Instituto.Alumno.TABLA + "(" + Instituto.Alumno._ID
-			+ " integer primary key autoincrement, " + Instituto.Alumno.NOMBRE
+			+ " integer primary key autoincrement, " + Instituto.Alumno.AVATAR
+            + " text, " + Instituto.Alumno.NOMBRE
 			+ " text not null, " + Instituto.Alumno.CURSO + " text not null, "
 			+ Instituto.Alumno.TELEFONO + " text not null, "
 			+ Instituto.Alumno.DIRECCION + " text);";

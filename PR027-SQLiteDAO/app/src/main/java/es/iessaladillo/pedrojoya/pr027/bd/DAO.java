@@ -20,7 +20,7 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 public class DAO {
 
     // Variables a nivel de clase.
-    private Helper mHelper; // Ayudante para la creación y gestión de la BD.
+    private final Helper mHelper; // Ayudante para la creación y gestión de la BD.
 
     // Constructor. Recibe el contexto.
     public DAO(Context contexto) {
@@ -49,6 +49,7 @@ public class DAO {
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares campo-valor para realizar la inserción.
         ContentValues valores = new ContentValues();
+        valores.put(Instituto.Alumno.AVATAR, alumno.getAvatar());
         valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
         valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
         valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
@@ -83,6 +84,7 @@ public class DAO {
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares clave-valor con cada campo-valor.
         ContentValues valores = new ContentValues();
+        valores.put(Instituto.Alumno.AVATAR, alumno.getAvatar());
         valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
         valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
         valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
@@ -123,11 +125,9 @@ public class DAO {
     // consulta (puede ser null si no hay alumnos), ordenados alfabéticamente
     // por nombre.
     public Cursor queryAllAlumnos(SQLiteDatabase bd) {
-        // Se realiza la consulta
-        Cursor cursor =  bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
+        // Se realiza la consulta y se retorna el cursor.
+        return  bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
                 null, null, null, Instituto.Alumno.NOMBRE);
-        // Se retorna el cursor resultado.
-        return cursor;
     }
 
     // Consulta en la VD todos los alumnos. Retorna una lista de objeto Alumno,
@@ -135,7 +135,7 @@ public class DAO {
     public List<Alumno> getAllAlumnos() {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
-        List<Alumno> lista = new ArrayList<Alumno>();
+        List<Alumno> lista = new ArrayList<>();
         // Se consultan todos los alumnos en la BD y obtiene un cursor.
         Cursor cursor = this.queryAllAlumnos(bd);
         // Se convierte cada registro del cursor en un elemento de la lista.
@@ -162,6 +162,8 @@ public class DAO {
         Alumno alumno = new Alumno();
         alumno.setId(cursorAlumno.getLong(
                 cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno._ID)));
+        alumno.setAvatar(cursorAlumno.getString(
+                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.AVATAR)));
         alumno.setNombre(cursorAlumno.getString(
                 cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE)));
         alumno.setCurso(cursorAlumno.getString(

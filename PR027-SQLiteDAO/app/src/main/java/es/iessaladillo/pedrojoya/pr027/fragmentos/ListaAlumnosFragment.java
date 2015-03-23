@@ -167,10 +167,6 @@ public class ListaAlumnosFragment extends Fragment {
         // Se establece el adaptador para la lista (personalizado).
         lstAlumnos.setAdapter(new ListaAlumnosAdapter(getActivity(),
                 alumnos));
-        // Inicialmente todos los elementos de la lista NO están seleccionados.
-        for (int i = 0; i < lstAlumnos.getCount(); i++) {
-            lstAlumnos.setItemChecked(i, false);
-        }
     }
 
     // Cuando el fragmento es cargado en la actividad.

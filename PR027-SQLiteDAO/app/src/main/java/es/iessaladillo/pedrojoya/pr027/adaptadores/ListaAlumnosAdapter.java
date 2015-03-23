@@ -18,12 +18,10 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 // Clase interna privada para Adaptador.
 public class ListaAlumnosAdapter extends ArrayAdapter<Alumno> {
 
-    private static final String BASE_URL = "http://lorempixel.com/100/100/sports/";
-
     private final Context mContexto;
     // Variables miembro.
-	ArrayList<Alumno> mAlumnos; // Alumnos (datos).
-	LayoutInflater inflador; // Inflador de layout para la fila.
+    private final ArrayList<Alumno> mAlumnos; // Alumnos (datos).
+	private final LayoutInflater inflador; // Inflador de layout para la fila.
 
 	// Constructor.
 	public ListaAlumnosAdapter(Context contexto, ArrayList<Alumno> alumnos) {
@@ -65,7 +63,7 @@ public class ListaAlumnosAdapter extends ArrayAdapter<Alumno> {
         holder.lblNombre.setText(alumno.getNombre());
         holder.lblCurso.setText(alumno.getCurso());
         holder.lblDireccion.setText(alumno.getDireccion());
-        Picasso.with(mContexto).load(BASE_URL + ((position%10) + 1) + "/").into(holder.imgAvatar);
+        Picasso.with(mContexto).load(alumno.getAvatar()).into(holder.imgAvatar);
     }
 
     // Contenedor de vistas para la vista-fila.

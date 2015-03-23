@@ -2,53 +2,53 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/classes-782cd5cb94dac78a6759237b6df353d51aeb82ff.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/classes-2932d30a438dc016973d5c7559f772527a2e7e84.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jar="C:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-aeac0f872beecddb37c6d323742e769eaee52510.jar" />
+        <dex dex="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-3a0ed6896f3cc8eb1b504b46f3db0bcaa2ed257a.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.2/classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="803c4c913beac8f7980d680c725a40835d1d7c77">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/classes-9e062d91388e80d5d3fbf3da333fdb9a7733aa06.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jar="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-aa38b7fb6d129e1a52e280d45e64b5aed7b5120a.jar" />
+        <dex dex="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-66a6c6e479951f5d30936a66846399568716c856.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/classes.jar"
+        jar="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\pre-dexed\debug\classes-adf703d1ae960cb7f06092a532c879b395c66a0e.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\pre-dexed\debug\classes-e0919cc680a2907298209cd6b1a2bf857a5fa4df.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d9dd8d504358a13cde778c25cd9515bdffda856c.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.github.shell-software\fab\1.0.5\classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/classes-1dea6ee760470d748c51096455646958f739f535.jar" />
+        <dex dex="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\pre-dexed\debug\classes-bbfd39de064a8292ec34c4e626b686bfdd57d9bc.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.2.2\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="803c4c913beac8f7980d680c725a40835d1d7c77">
+        <dex dex="D:\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\pre-dexed\debug\classes-324450b22dc5df85c8bdc53c1cfb5c701f8e9460.jar" />
     </item>
 
 </items>

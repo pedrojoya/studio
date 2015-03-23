@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SQLiteDAOSimpleCursorAdapter</string>
+    <string name="sin_alumnado_agregue_un_alumno">No hay alumnos.\nPulse para agregar</string>
+    <string name="nombre">Nombre</string>
+    <string name="curso">Curso</string>
+    <string name="telefono">Teléfono</string>
+    <string name="direccion">Dirección</string>
+    <string name="agregar_alumno">Agregar</string>
+    <string name="editar_alumno">Actualizar</string>
+    <string name="eliminar_alumno">Eliminar</string>
+    <string name="datos_obligatorios">No ha introducido datos obligatorios</string>
+    <string name="insercion_correcta">El alumno se ha agregado correctamente</string>
+    <string name="insercion_incorrecta">Se ha producido un error al agregar el alumno</string>
+    <string name="actualizacion_correcta">El alumno se ha actualizado correctamente</string>
+    <string name="actualizacion_incorrecta">Se ha producido un error al actualizar el alumno</string>
+    <string name="alumno_no_encontrado">No se ha encontrado el alumno en la base de datos.</string>
+    <string name="no">No</string>
+    <string name="si">Sí</string>
+    <string name="title_activity_alumno">AlumnoActivity</string>
+    <string name="esta_seguro_de_eliminar_los_alumnos">¿Está seguro de eliminar los alumnos?</string>
+
+</resources>

@@ -2,23 +2,26 @@ package es.iessaladillo.pedrojoya.pr027.modelos;
 
 public class Alumno {
 
-    long id;
-    String nombre;
-    String telefono;
-    String curso;
-    String direccion;
+    private long id;
+    private String avatar;
+    private String nombre;
+    private String telefono;
+    private String curso;
+    private String direccion;
 
-    Alumno(long id, String nombre, String telefono, String curso,
+    Alumno(long id, String avatar, String nombre, String telefono, String curso,
             String direccion) {
         this.id = id;
+        this.avatar = avatar;
         this.nombre = nombre;
         this.telefono = telefono;
         this.curso = curso;
         this.direccion = direccion;
     }
 
-    public Alumno(String nombre, String telefono, String curso, String direccion) {
+    public Alumno(String avatar, String nombre, String telefono, String curso, String direccion) {
         this.id = 0;
+        this.avatar = avatar;
         this.nombre = nombre;
         this.telefono = telefono;
         this.curso = curso;
@@ -28,6 +31,7 @@ public class Alumno {
     public Alumno() {
         // Establezo los valores iniciales para las propiedades
         this.id = 0;
+        this.avatar = null;
         this.nombre = null;
         this.telefono = null;
         this.curso = null;
@@ -42,11 +46,18 @@ public class Alumno {
         this.id = id;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    // Getters y Setters de las propiedades.
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

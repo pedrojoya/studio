@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-3a0ed6896f3cc8eb1b504b46f3db0bcaa2ed257a.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\exploded-aar\com.github.shell-software\fab\1.0.5\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
+        <dex dex="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\pre-dexed\debug\classes-1e217ad1b39d8f207f39275bd081039f1578c413.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.2.2\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="803c4c913beac8f7980d680c725a40835d1d7c77">
+        <dex dex="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\pre-dexed\debug\classes-d1b85935460db0da65dc370198656230e2b96173.jar" />
+    </item>
+    <item
+        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d9dd8d504358a13cde778c25cd9515bdffda856c.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-13ad592dbeba5709f912796c94f87676fdddd370.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\pre-dexed\debug\classes-24272056e3292b1b897188783f140cfb7cf262b1.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="D:\Documents\GitHub\studio\PR069-SQLiteDAOSimpleCursorAdapter\app\build\intermediates\pre-dexed\debug\classes-4767e1de952b0e41d15f935ae97c0b50c1791218.jar" />
+    </item>
+
+</items>

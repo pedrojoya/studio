@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.software.shell.fab.ActionButton;
 
+import java.util.Random;
+
 import es.iessaladillo.pedrojoya.pr027.R;
 import es.iessaladillo.pedrojoya.pr027.bd.DAO;
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
@@ -35,6 +37,7 @@ public class AlumnoFragment extends Fragment {
     private Alumno alumno;
     private ArrayAdapter<CharSequence> adaptadorCursos;
     private ActionButton btnGuardar;
+    private Random mAleatorio;
 
     static public AlumnoFragment newInstance(String modo, long id) {
         AlumnoFragment frg = new AlumnoFragment();
@@ -67,6 +70,7 @@ public class AlumnoFragment extends Fragment {
         } else {
             setModoAgregar();
         }
+        mAleatorio = new Random();
     }
 
     // Carga los cursos en el spinner.
@@ -118,7 +122,7 @@ public class AlumnoFragment extends Fragment {
     }
 
     // Guarda el alumno en pantalla en la base de datos.
-    public void guardarAlumno() {
+    void guardarAlumno() {
         // Se llena el objeto Alumno con los datos de las vistas.
         vistasToAlumno();
         // Dependiendo del modo se inserta o actualiza el alumno (siempre y
@@ -205,6 +209,8 @@ public class AlumnoFragment extends Fragment {
 
     // Llena el objeto Alumno con los datos de las vistas.
     private void vistasToAlumno() {
+        final String BASE_URL = "http://lorempixel.com/100/100/sports/";
+        alumno.setAvatar(BASE_URL + (mAleatorio.nextInt(10) + 1) + "/");
         alumno.setNombre(txtNombre.getText().toString());
         alumno.setTelefono(txtTelefono.getText().toString());
         alumno.setDireccion(txtDireccion.getText().toString());
