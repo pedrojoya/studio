@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import es.iessaladillo.pedrojoya.pr028.R;
 
@@ -21,11 +22,12 @@ public class SiNoDialogFragment extends DialogFragment {
     }
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
         b.setTitle(R.string.eliminar_alumno);
         b.setMessage(R.string.esta_seguro_de_eliminar_los_alumnos);
-        b.setIcon(R.drawable.ic_launcher);
+        b.setIcon(R.mipmap.ic_launcher);
         b.setPositiveButton(R.string.si, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -46,11 +48,11 @@ public class SiNoDialogFragment extends DialogFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        // Establece la actividad como listener de los eventos del di�logo.
+        // Establece la actividad como listener de los eventos del diálogo.
         try {
             listener = (SiNoDialogListener) activity;
         } catch (ClassCastException e) {
-            // La actividad no implementa la interfaz, se lanza excepci�n.
+            // La actividad no implementa la interfaz, se lanza excepción.
             throw new ClassCastException(activity.toString()
                     + " debe implementar SiNoDialogListener");
         }

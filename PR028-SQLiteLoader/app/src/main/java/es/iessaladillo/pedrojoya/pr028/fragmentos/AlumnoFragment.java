@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr028.fragmentos;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.CursorLoader;
 import android.view.LayoutInflater;
@@ -12,8 +13,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.software.shell.fab.ActionButton;
+
+import java.util.Random;
+
 import es.iessaladillo.pedrojoya.pr028.R;
-import es.iessaladillo.pedrojoya.pr028.bd.BD;
+import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
 import es.iessaladillo.pedrojoya.pr028.modelos.Alumno;
 import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoContentProvider;
 
@@ -30,29 +36,46 @@ public class AlumnoFragment extends Fragment {
 	private EditText txtTelefono;
 	private EditText txtDireccion;
 	private Spinner spnCurso;
+    private ActionButton btnGuardar;
+
 	private String modo;
 	private Alumno alumno;
 	private ArrayAdapter<CharSequence> adaptadorCursos;
+    private Random mAleatorio;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_alumno, container, false);
-		// Se obtienen las referencias a las vistas.
-		getVistas(v);
-		// Se carga el spinner de cursos.
-		cargarCursos();
-		// Se establece el modo en el que debe comportarse la actividad
-		// dependiendo del argumento recibido.
-		// Dependiendo de la acción.
-		String modo = this.getArguments().getString(EXTRA_MODO);
-		if (modo.equals(MODO_EDITAR)) {
-			setModoEditar();
-		} else {
-			setModoAgregar();
-		}
-		return v;
-	}
+    static public AlumnoFragment newInstance(String modo, long id) {
+        AlumnoFragment frg = new AlumnoFragment();
+        Bundle argumentos = new Bundle();
+        argumentos.putString(EXTRA_MODO, modo);
+        argumentos.putLong(EXTRA_ID, id);
+        frg.setArguments(argumentos);
+        return frg;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_alumno, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // Se obtienen las referencias a las vistas.
+        initVistas(getView());
+        // Se carga el spinner de cursos.
+        cargarCursos();
+        // Se establece el mModo en el que debe comportarse la actividad
+        // dependiendo del argumento recibido.
+        // Dependiendo de la acción.
+        String modo = getArguments().getString(EXTRA_MODO);
+        if (modo.equals(MODO_EDITAR)) {
+            setModoEditar();
+        } else {
+            setModoAgregar();
+        }
+        mAleatorio = new Random();
+    }
 
 	// Carga los cursos en el spinner.
 	private void cargarCursos() {
@@ -96,7 +119,7 @@ public class AlumnoFragment extends Fragment {
 		Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/"
 				+ id);
 		CursorLoader cLoader = new CursorLoader(this.getActivity(), uri,
-				BD.Alumno.TODOS, null, null, null);
+				Instituto.Alumno.TODOS, null, null, null);
 		Cursor cursor = cLoader.loadInBackground();
 		// Si no se ha encontrado el alumno, se informa y se pasa al modo
 		// Agregar.
@@ -136,7 +159,8 @@ public class AlumnoFragment extends Fragment {
 
 	// Agrega un alumno a la base de datos.
 	private void agregarAlumno() {
-		// Realizo el insert a través del content provider. Como resultado se
+        alumno.setAvatar(getRandomAvatarUrl());
+        // Realizo el insert a través del content provider. Como resultado se
 		// obtiene la uri del alumno insertado, de la que se extrae su id.
 		Uri resultado = this
 				.getActivity()
@@ -171,7 +195,7 @@ public class AlumnoFragment extends Fragment {
 			Toast.makeText(this.getActivity(),
 					getString(R.string.actualizacion_correcta),
 					Toast.LENGTH_SHORT).show();
-			setModoEditar();
+			getActivity().finish();
 		} else {
 			Toast.makeText(this.getActivity(),
 					getString(R.string.actualizacion_incorrecta),
@@ -179,13 +203,20 @@ public class AlumnoFragment extends Fragment {
 		}
 	}
 
-	// Obtiene la referencia a las vistas del layout.
-	private void getVistas(View v) {
-		spnCurso = (Spinner) v.findViewById(R.id.spnCurso);
-		txtNombre = (EditText) v.findViewById(R.id.txtNombre);
-		txtTelefono = (EditText) v.findViewById(R.id.txtTelefono);
-		txtDireccion = (EditText) v.findViewById(R.id.txtDireccion);
-	}
+    // Obtiene la referencia a las vistas del layout.
+    private void initVistas(View v) {
+        spnCurso = (Spinner) v.findViewById(R.id.spnCurso);
+        txtNombre = (EditText) v.findViewById(R.id.txtNombre);
+        txtTelefono = (EditText) v.findViewById(R.id.txtTelefono);
+        txtDireccion = (EditText) v.findViewById(R.id.txtDireccion);
+        btnGuardar = (ActionButton) v.findViewById(R.id.btnGuardar);
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                guardarAlumno();
+            }
+        });
+    }
 
 	// Hace reset sobre el contenido de las vistas.
 	private void resetVistas() {
@@ -210,5 +241,14 @@ public class AlumnoFragment extends Fragment {
 		alumno.setDireccion(txtDireccion.getText().toString());
 		alumno.setCurso((String) spnCurso.getSelectedItem());
 	}
+
+    // Retorna una url aleatoria correspondiente a una imagen para el avatar.
+    private String getRandomAvatarUrl() {
+        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
+                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
+        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
+                (mAleatorio.nextInt(10) + 1) + "/";
+    }
 
 }

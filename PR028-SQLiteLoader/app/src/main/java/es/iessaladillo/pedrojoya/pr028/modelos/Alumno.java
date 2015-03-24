@@ -3,31 +3,30 @@ package es.iessaladillo.pedrojoya.pr028.modelos;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import es.iessaladillo.pedrojoya.pr028.bd.BD;
+import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
 
 public class Alumno {
 
-    // Propiedades.
     private long id;
+    private String avatar;
     private String nombre;
     private String telefono;
     private String curso;
     private String direccion;
 
-    // Constructores
-    Alumno(long id, String nombre, String telefono, String curso,
+    Alumno(long id, String avatar, String nombre, String telefono, String curso,
            String direccion) {
-        // Establezo los valores iniciales para las propiedades
         this.id = id;
+        this.avatar = avatar;
         this.nombre = nombre;
         this.telefono = telefono;
         this.curso = curso;
         this.direccion = direccion;
     }
 
-    public Alumno(String nombre, String telefono, String curso, String direccion) {
-        // Establezo los valores iniciales para las propiedades
+    public Alumno(String avatar, String nombre, String telefono, String curso, String direccion) {
         this.id = 0;
+        this.avatar = avatar;
         this.nombre = nombre;
         this.telefono = telefono;
         this.curso = curso;
@@ -37,6 +36,7 @@ public class Alumno {
     public Alumno() {
         // Establezo los valores iniciales para las propiedades
         this.id = 0;
+        this.avatar = null;
         this.nombre = null;
         this.telefono = null;
         this.curso = null;
@@ -51,11 +51,18 @@ public class Alumno {
         this.id = id;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    // Getters y Setters de las propiedades.
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -92,15 +99,17 @@ public class Alumno {
         // del registro actual del cursor.
         Alumno alumno = new Alumno();
         alumno.setId(cursorAlumno.getLong(cursorAlumno
-                .getColumnIndex(BD.Alumno._ID)));
+                .getColumnIndex(Instituto.Alumno._ID)));
+        alumno.setAvatar(cursorAlumno.getString(cursorAlumno
+                .getColumnIndex(Instituto.Alumno.AVATAR)));
         alumno.setNombre(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(BD.Alumno.NOMBRE)));
+                .getColumnIndex(Instituto.Alumno.NOMBRE)));
         alumno.setCurso(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(BD.Alumno.CURSO)));
+                .getColumnIndex(Instituto.Alumno.CURSO)));
         alumno.setTelefono(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(BD.Alumno.TELEFONO)));
+                .getColumnIndex(Instituto.Alumno.TELEFONO)));
         alumno.setDireccion(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(BD.Alumno.DIRECCION)));
+                .getColumnIndex(Instituto.Alumno.DIRECCION)));
         // Retorno el objeto Alumno.
         return alumno;
     }
@@ -109,11 +118,11 @@ public class Alumno {
     public static ContentValues toContentValues(Alumno alumno) {
         // Creamos un la lista de pares clave-valor con cada campo-valor.
         ContentValues valores = new ContentValues();
-        valores.put(BD.Alumno.NOMBRE, alumno.getNombre());
-        valores.put(BD.Alumno.CURSO, alumno.getCurso());
-        valores.put(BD.Alumno.TELEFONO, alumno.getTelefono());
-        valores.put(BD.Alumno.DIRECCION, alumno.getDireccion());
+        valores.put(Instituto.Alumno.AVATAR, alumno.getAvatar());
+        valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
+        valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
+        valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
+        valores.put(Instituto.Alumno.DIRECCION, alumno.getDireccion());
         return valores;
     }
-
 }

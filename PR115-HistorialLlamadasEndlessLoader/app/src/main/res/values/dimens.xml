@@ -1,3 +1,12 @@
 <resources>
-    <dimen name="lblTipoLlamadaMarginLeft">5dp</dimen>
+    <dimen name="three_lines_tile_height">88dp</dimen>
+    <dimen name="three_lines_text_paddingLeft">72dp</dimen>
+    <dimen name="three_lines_text_paddingRight">16dp</dimen>
+    <dimen name="three_lines_text_paddingTop">16dp</dimen>
+    <dimen name="three_lines_primary_text_textSize">16sp</dimen>
+    <dimen name="three_lines_secundary_text_textSize">14sp</dimen>
+    <dimen name="three_lines_text_paddingBottom">20dp</dimen>
+    <dimen name="three_lines_avatar_height">40dp</dimen>
+    <dimen name="three_lines_avatar_marginLeft">16dp</dimen>
+    <dimen name="three_lines_avatar_marginTop">20dp</dimen>
 </resources>

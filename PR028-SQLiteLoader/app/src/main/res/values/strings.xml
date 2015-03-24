@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Alumnado</string>
+    <string name="app_name">SQLiteLoader</string>
     <string name="sin_alumnado_agregue_un_alumno">No hay alumnos.\nPulse para agregar</string>
     <string name="nombre">Nombre</string>
     <string name="curso">Curso</string>
@@ -19,7 +19,6 @@
     <string name="no">No</string>
     <string name="si">Sí</string>
     <string name="title_activity_alumno">AlumnoActivity</string>
-    <string name="guardar">Guardar</string>
     <string name="esta_seguro_de_eliminar_los_alumnos">¿Está seguro de eliminar los alumnos?</string>
 
 </resources>

@@ -22,9 +22,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleCursorAdapter;
 import es.iessaladillo.pedrojoya.pr028.R;
-import es.iessaladillo.pedrojoya.pr028.bd.BD;
+import es.iessaladillo.pedrojoya.pr028.adaptadores.AlumnosAdapter;
+import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
 import es.iessaladillo.pedrojoya.pr028.modelos.Alumno;
 import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoContentProvider;
 
@@ -44,17 +44,20 @@ public class ListaAlumnosFragment extends Fragment implements
     private ListView lstAlumnos;
     private OnListaAlumnosFragmentListener listener;
     private ActionMode modoContextual;
-    private SimpleCursorAdapter adaptador;
+    private AlumnosAdapter adaptador;
     private LoaderManager gestor;
 
     // Retorna la vista que debe mostrar el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Se infla el layout que debe mostrar el fragmento.
-        View v = inflater.inflate(R.layout.fragment_lista_alumnos, container,
-                false);
-        // Se configuran las vistas.
+        // Se infla el layout y se retorna la vista que debe mostrar el fragmento.
+        return inflater.inflate(R.layout.fragment_lista_alumnos, container, false);
+        // Se obtienen e inicializan las vistas.
+    }
+
+    // Obtiene e inicializa las vistas.
+    private void initVistas(View v) {
         lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
         RelativeLayout rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
         // Si la lista está vacía se muestra un icono y un texto para que al
@@ -133,12 +136,20 @@ public class ListaAlumnosFragment extends Fragment implements
                 mode.setTitle(lstAlumnos.getCheckedItemCount() + "");
             }
         });
-        // Se retorna la vista a mostrar.
-        return v;
+        (v.findViewById(R.id.btnAgregar)).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Se informa al listener (actividad) de que se quiere agregar
+                // un alumno.
+                listener.onAgregarAlumno();
+            }
+        });
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        // Se obtienen e inicializan las vistas.
+        initVistas(getView());
         // Se carga la lista de alumnos.
         cargarAlumnos();
         super.onActivityCreated(savedInstanceState);
@@ -147,13 +158,12 @@ public class ListaAlumnosFragment extends Fragment implements
     private void cargarAlumnos() {
         // Se inicializa el cargador.
         gestor.initLoader(0, null, this);
-        // Se establece un SimpleCursorAdapter como adaptador para la lista, que
-        // inicialmente manejará un cursor nulo.
-        String[] from = { BD.Alumno.NOMBRE, BD.Alumno.CURSO,
-                BD.Alumno.TELEFONO, BD.Alumno.DIRECCION };
+        // Se establece el adaptador para la lista, que inicialmente manejará un cursor nulo.
+        String[] from = { Instituto.Alumno.NOMBRE, Instituto.Alumno.CURSO,
+                Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION };
         int[] to = { R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono,
                 R.id.lblDireccion };
-        adaptador = new SimpleCursorAdapter(this.getActivity(),
+        adaptador = new AlumnosAdapter(this.getActivity(),
                 R.layout.fragment_lista_alumnos_item, null, from, to, 0);
         lstAlumnos.setAdapter(adaptador);
     }
@@ -205,7 +215,7 @@ public class ListaAlumnosFragment extends Fragment implements
         // Se retorna el cargador del cursor. Se le pasa el contexto, la uri en
         // la que consultar los datos y las columnas a obtener.
         return new CursorLoader(getActivity(),
-                InstitutoContentProvider.CONTENT_URI_ALUMNOS, BD.Alumno.TODOS,
+                InstitutoContentProvider.CONTENT_URI_ALUMNOS, Instituto.Alumno.TODOS,
                 null, null, null);
     }
 

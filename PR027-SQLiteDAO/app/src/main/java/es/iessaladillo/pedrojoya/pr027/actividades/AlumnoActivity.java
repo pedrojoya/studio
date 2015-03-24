@@ -22,7 +22,7 @@ public class AlumnoActivity extends ActionBarActivity {
                 getIntent().getExtras().getLong(AlumnoFragment.EXTRA_ID));
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.flContenido, frgAlumno)
+                .replace(R.id.flContenido, frgAlumno)
                 .commit();
     }
 

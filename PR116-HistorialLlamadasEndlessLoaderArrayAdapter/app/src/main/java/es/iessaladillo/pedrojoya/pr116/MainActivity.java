@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-
+// El problema de esta implementación es que si se produce una nueva llamada, el loader no
+// es notificado, ya que está subscripto sólo a los últimos registros obtenidos, y la nueva
+// llamada sería la primera.
 public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int LIMIT = 10;

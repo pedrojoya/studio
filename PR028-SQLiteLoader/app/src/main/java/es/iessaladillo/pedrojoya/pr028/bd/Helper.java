@@ -8,19 +8,20 @@ public class Helper extends SQLiteOpenHelper {
 
 	// Constantes de sentencias SQL.
 	private static final String TBL_ALUMNO_CREATE = "create table "
-			+ BD.Alumno.TABLA + "(" + BD.Alumno._ID
-			+ " integer primary key autoincrement, " + BD.Alumno.NOMBRE
-			+ " text not null, " + BD.Alumno.CURSO + " text not null, "
-			+ BD.Alumno.TELEFONO + " text not null, "
-			+ BD.Alumno.DIRECCION + " text);";
+			+ Instituto.Alumno.TABLA + "(" + Instituto.Alumno._ID
+			+ " integer primary key autoincrement, " + Instituto.Alumno.AVATAR
+            + " text, " + Instituto.Alumno.NOMBRE
+			+ " text not null, " + Instituto.Alumno.CURSO + " text not null, "
+			+ Instituto.Alumno.TELEFONO + " text not null, "
+			+ Instituto.Alumno.DIRECCION + " text);";
 	private static final String TBL_ALUMNO_DROP = "drop table if exists "
-			+ BD.Alumno.TABLA;
+			+ Instituto.Alumno.TABLA;
 
 	// Constructor. Recibe el contexto.
 	public Helper(Context ctx) {
 		// Se llama al constructor del padre, que es quien realmente crea o
 		// actualiza la versión de BD si es necesario.
-		super(ctx, BD.BD_NOMBRE, null, BD.BD_VERSION);
+		super(ctx, Instituto.BD_NOMBRE, null, Instituto.BD_VERSION);
 	}
 
 	// Cuando es necesario crear la BD.
@@ -30,7 +31,7 @@ public class Helper extends SQLiteOpenHelper {
 		db.execSQL(TBL_ALUMNO_CREATE);
 	}
 
-	// Método de callback para cuando la BD debe se actualizada de versión
+	// Método de callback para cuando la BD debe ser actualizada de versión
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// Se eliminan las tablas y se recrean de nuevo.

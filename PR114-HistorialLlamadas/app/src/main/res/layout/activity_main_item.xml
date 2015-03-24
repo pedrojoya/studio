@@ -14,6 +14,7 @@
         android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
         android:background="@drawable/call_made_background"
         android:scaleType="center"
+        android:contentDescription="@string/tipo_de_llamada"
         android:layout_marginTop="@dimen/three_lines_avatar_marginTop"/>
 
     <TextView
@@ -38,6 +39,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/lblDuracion"
+        android:layout_toStartOf="@+id/lblDuracion"
         android:textSize="@dimen/three_lines_secundary_text_textSize" />
 
     <TextView

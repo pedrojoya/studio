@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import es.iessaladillo.pedrojoya.pr028.bd.BD;
+import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
 import es.iessaladillo.pedrojoya.pr028.bd.Helper;
 
 public class InstitutoContentProvider extends ContentProvider {
@@ -70,7 +70,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // private SQLiteDatabase bd;
     private Helper helper;
 
-    // Retorna si todo ha ido bien.
+    // Retorna si ha ido bien.
     @Override
     public boolean onCreate() {
         // Se crea el helper para el acceso a la bd.
@@ -93,18 +93,18 @@ public class InstitutoContentProvider extends ContentProvider {
         case URI_TYPE_ALUMNOS_LIST:
             // Se compueba si el llamador ha solicitado una columna que no
             // existe.
-            checkColumns(BD.Alumno.TODOS, projection);
+            checkColumns(Instituto.Alumno.TODOS, projection);
             // Se establece la tabla para la consulta.
-            builder.setTables(BD.Alumno.TABLA);
+            builder.setTables(Instituto.Alumno.TABLA);
             break;
         case URI_TYPE_ALUMNOS_ID:
             // Se compueba si el llamador ha solicitado una columna que no
             // existe.
-            checkColumns(BD.Alumno.TODOS, projection);
+            checkColumns(Instituto.Alumno.TODOS, projection);
             // Se establece la tabla para la consulta.
-            builder.setTables(BD.Alumno.TABLA);
+            builder.setTables(Instituto.Alumno.TABLA);
             // Se agrega al where la selección de ese alumno.
-            builder.appendWhere(BD.Alumno._ID + " = "
+            builder.appendWhere(Instituto.Alumno._ID + " = "
                     + uri.getLastPathSegment());
             break;
         default:
@@ -132,14 +132,14 @@ public class InstitutoContentProvider extends ContentProvider {
         switch (tipoURI) {
         case URI_TYPE_ALUMNOS_LIST:
             // Se realiza el borrado.
-            filasBorradas = bd.delete(BD.Alumno.TABLA, where, selectionArgs);
+            filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
             break;
         case URI_TYPE_ALUMNOS_ID:
             // Se agrega al where la selección de ese alumno.
-            where = BD.Alumno._ID + "=" + uri.getLastPathSegment()
+            where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
                     + (TextUtils.isEmpty(selection) ? "" : " and " + where);
             // Se realiza el borrado.
-            filasBorradas = bd.delete(BD.Alumno.TABLA, where, selectionArgs);
+            filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
             break;
         default:
             throw new IllegalArgumentException("URI desconocida: " + uri);
@@ -162,7 +162,7 @@ public class InstitutoContentProvider extends ContentProvider {
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
         case URI_TYPE_ALUMNOS_LIST:
-            id = bd.insert(BD.Alumno.TABLA, null, values);
+            id = bd.insert(Instituto.Alumno.TABLA, null, values);
             break;
         default:
             throw new IllegalArgumentException("URI desconocida: " + uri);
@@ -187,14 +187,14 @@ public class InstitutoContentProvider extends ContentProvider {
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
         case URI_TYPE_ALUMNOS_LIST:
-            filasActualizadas = bd.update(BD.Alumno.TABLA, values, where,
+            filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
                     selectionArgs);
             break;
         case URI_TYPE_ALUMNOS_ID:
             // Se agrega al where la selección de ese alumno.
-            where = BD.Alumno._ID + "=" + uri.getLastPathSegment()
+            where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
                     + (TextUtils.isEmpty(selection) ? "" : " and " + where);
-            filasActualizadas = bd.update(BD.Alumno.TABLA, values, where,
+            filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
                     selectionArgs);
             break;
         default:
@@ -208,14 +208,14 @@ public class InstitutoContentProvider extends ContentProvider {
         return filasActualizadas;
     }
 
-    // Comprueba si todas las columnas est�n entre las disponibles.
+    // Comprueba si todas las columnas están entre las disponibles.
     private void checkColumns(String[] disponibles, String[] columnas) {
         if (columnas != null) {
             HashSet<String> columnasSolicitadas = new HashSet<>(
                     Arrays.asList(columnas));
             HashSet<String> columnasDisponibles = new HashSet<>(
                     Arrays.asList(disponibles));
-            // Si hay alguna solicitada no disponible se lanza excepci�n.
+            // Si hay alguna solicitada no disponible se lanza excepción.
             if (!columnasDisponibles.containsAll(columnasSolicitadas)) {
                 throw new IllegalArgumentException(
                         "Se ha solicitado un campo desconocido");

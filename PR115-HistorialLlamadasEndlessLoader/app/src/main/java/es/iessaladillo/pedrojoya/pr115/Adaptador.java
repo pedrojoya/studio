@@ -49,20 +49,26 @@ class Adaptador extends SimpleCursorAdapter {
         Date fecha = new Date(cursor.getLong(cursor.getColumnIndexOrThrow(CallLog.Calls.DATE)));
         viewHolder.mLblFecha.setText(mFormateadorFechas.format(fecha));
         int resIdTipoLlamada;
+        int resIdFondoTipoLlamada;
         switch (cursor.getInt(cursor.getColumnIndexOrThrow(CallLog.Calls.TYPE))) {
             case CallLog.Calls.INCOMING_TYPE:
-                resIdTipoLlamada = android.R.drawable.sym_call_incoming;
+                resIdTipoLlamada = R.drawable.ic_call_received;
+                resIdFondoTipoLlamada = R.drawable.call_received_background;
                 break;
             case CallLog.Calls.MISSED_TYPE:
-                resIdTipoLlamada = android.R.drawable.sym_call_missed;
+                resIdTipoLlamada = R.drawable.ic_call_missed;
+                resIdFondoTipoLlamada = R.drawable.call_missed_background;
                 break;
             case CallLog.Calls.OUTGOING_TYPE:
-                resIdTipoLlamada = android.R.drawable.sym_call_outgoing;
+                resIdTipoLlamada = R.drawable.ic_call_made;
+                resIdFondoTipoLlamada = R.drawable.call_made_background;
                 break;
             default:
-                resIdTipoLlamada = android.R.drawable.sym_action_call;
+                resIdTipoLlamada = R.drawable.ic_call;
+                resIdFondoTipoLlamada = R.drawable.call_background;
                 break;
         }
+        viewHolder.mImgTipoLlamada.setBackgroundResource(resIdFondoTipoLlamada);
         viewHolder.mImgTipoLlamada.setImageResource(resIdTipoLlamada);
     }
 

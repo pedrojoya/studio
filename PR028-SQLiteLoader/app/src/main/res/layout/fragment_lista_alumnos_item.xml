@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/estados"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_background_selector"
+    android:minHeight="@dimen/three_lines_tile_height">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/three_lines_avatar_height"
+        android:layout_height="@dimen/three_lines_avatar_height"
+        android:layout_marginLeft="@dimen/three_lines_avatar_marginLeft"
+        android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
+        android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
+        app:border_width="1dp"
+        app:border_color="@color/accent" />
+
     <TextView
         android:id="@+id/lblNombre"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16.0dip"
-        android:paddingRight="16.0dip"
-        android:paddingTop="5.0dip"
-        android:text="Nombre"
-        android:textSize="18.0sp"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingTop="@dimen/three_lines_text_paddingTop"
+        tools:text="Nombre"
+        android:textSize="@dimen/three_lines_primary_text_textSize"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/lblCurso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16.0dip"
-        android:paddingRight="16.0dip"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
         tools:text="Curso"
-        android:textSize="14.0sp"
+        android:layout_below="@+id/lblNombre"
+        android:textSize="@dimen/three_lines_secundary_text_textSize"
         android:textStyle="italic" />
-    <TextView
-        android:id="@+id/lblTelefono"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16.0dip"
-        android:paddingRight="16.0dip"
-        tools:text="Telefono"
-        android:textSize="14.0sp"
-        android:textStyle="italic" />
+
     <TextView
         android:id="@+id/lblDireccion"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16.0dp"
-        android:paddingLeft="16.0dip"
-        android:paddingRight="16.0dip"
+        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
         tools:text="Dirección"
-        android:textSize="14.0sp"
-        android:textStyle="italic" />
-</LinearLayout>
+        android:layout_below="@+id/lblCurso"
+        android:textSize="@dimen/three_lines_secundary_text_textSize" />
+</RelativeLayout>

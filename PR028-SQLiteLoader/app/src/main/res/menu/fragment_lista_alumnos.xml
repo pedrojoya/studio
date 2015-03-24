@@ -5,7 +5,7 @@
         android:id="@+id/mnuAlumnoEliminar"
         android:orderInCategory="100"
         app:showAsAction="ifRoom|withText"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:icon="@drawable/ic_action_delete"
         android:title="@string/eliminar_alumno"/>
 
 </menu>

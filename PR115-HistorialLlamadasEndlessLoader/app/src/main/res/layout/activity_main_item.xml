@@ -2,58 +2,64 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:padding="10dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Baldomero"
-        android:id="@+id/lblNombre"
-        android:layout_toLeftOf="@+id/lblFecha"
-        android:layout_toStartOf="@+id/lblFecha"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="666666666"
-        android:id="@+id/lblNumero"
-        android:layout_below="@+id/lblNombre"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:minHeight="@dimen/three_lines_tile_height">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
         android:id="@+id/imgTipoLlamada"
-        android:layout_toRightOf="@+id/lblNumero"
-        android:layout_toEndOf="@+id/lblNumero"
-        android:layout_alignTop="@+id/lblNumero"
-        android:layout_alignBottom="@+id/lblNumero"
+        android:layout_width="@dimen/three_lines_avatar_height"
+        android:layout_height="@dimen/three_lines_avatar_height"
+        android:layout_marginLeft="@dimen/three_lines_avatar_marginLeft"
+        android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
+        android:background="@drawable/call_made_background"
+        android:scaleType="center"
         android:contentDescription="@string/tipo_de_llamada"
-        android:layout_marginLeft="@dimen/lblTipoLlamadaMarginLeft"
-        android:layout_marginStart="@dimen/lblTipoLlamadaMarginLeft"
-        android:src="@android:drawable/sym_call_incoming"/>
+        android:layout_marginTop="@dimen/three_lines_avatar_marginTop"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/lblNombre"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="22/3/2014"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingTop="@dimen/three_lines_text_paddingTop"
+        tools:text="Nombre"
+        android:textSize="@dimen/three_lines_primary_text_textSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lblNumero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        tools:text="666666666"
+        android:layout_below="@+id/lblNombre"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/lblDuracion"
+        android:textSize="@dimen/three_lines_secundary_text_textSize" />
+
+    <TextView
         android:id="@+id/lblFecha"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="22 m 15 s"
+        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:layout_below="@+id/lblNumero"
+        tools:text="23/03 18:45"
+        android:textSize="@dimen/three_lines_secundary_text_textSize" />
+    <TextView
         android:id="@+id/lblDuracion"
-        android:layout_alignTop="@+id/lblNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/lblNombre"
+        tools:text="22 m 15 s"
+        android:textSize="@dimen/three_lines_secundary_text_textSize" />
 </RelativeLayout>
