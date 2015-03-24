@@ -19,6 +19,6 @@
     <string name="no">No</string>
     <string name="si">Sí</string>
     <string name="title_activity_alumno">AlumnoActivity</string>
-    <string name="esta_seguro_de_eliminar_los_alumnos">¿Está seguro de eliminar los alumnos?</string>
+    <string name="esta_seguro_de_eliminar_los_alumnos">¿Está seguro de eliminar los alumnos seleccionados?</string>
 
 </resources>

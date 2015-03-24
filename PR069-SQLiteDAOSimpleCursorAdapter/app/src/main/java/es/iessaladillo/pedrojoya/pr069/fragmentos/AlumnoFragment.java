@@ -164,7 +164,7 @@ public class AlumnoFragment extends Fragment {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
-            setModoEditar();
+            getActivity().finish();
         } else {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_incorrecta),

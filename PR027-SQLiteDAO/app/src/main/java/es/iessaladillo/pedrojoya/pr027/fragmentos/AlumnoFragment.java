@@ -21,22 +21,21 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 
 public class AlumnoFragment extends Fragment {
 
-    // Constantes.
-    public static final String EXTRA_MODO = "modo";
+    public static final String EXTRA_MODO = "mModo";
     public static final String EXTRA_ID = "id";
     public static final String MODO_AGREGAR = "AGREGAR";
     public static final String MODO_EDITAR = "EDITAR";
 
-    // Variables a nivel de clase.
-    private DAO dao;
     private EditText txtNombre;
     private EditText txtTelefono;
     private EditText txtDireccion;
     private Spinner spnCurso;
-    private String modo;
-    private Alumno alumno;
-    private ArrayAdapter<CharSequence> adaptadorCursos;
     private ActionButton btnGuardar;
+
+    private DAO mDao;
+    private String mModo;
+    private Alumno mAlumno;
+    private ArrayAdapter<CharSequence> mAdaptadorCursos;
     private Random mAleatorio;
 
     static public AlumnoFragment newInstance(String modo, long id) {
@@ -61,7 +60,7 @@ public class AlumnoFragment extends Fragment {
         initVistas(getView());
         // Se carga el spinner de cursos.
         cargarCursos();
-        // Se establece el modo en el que debe comportarse la actividad
+        // Se establece el mModo en el que debe comportarse la actividad
         // dependiendo del argumento recibido.
         // Dependiendo de la acción.
         String modo = getArguments().getString(EXTRA_MODO);
@@ -79,57 +78,57 @@ public class AlumnoFragment extends Fragment {
         // tanto para cuando no está desplegado como para cuando sí lo esté. La
         // fuente de datos para el adaptador es un array de constantes de
         // cadena.
-        adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
+        mAdaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
                 R.array.cursos, android.R.layout.simple_spinner_item);
-        adaptadorCursos
+        mAdaptadorCursos
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnCurso.setAdapter(adaptadorCursos);
+        spnCurso.setAdapter(mAdaptadorCursos);
     }
 
-    // Realiza las operaciones iniciales necesarias en el modo Editar.
+    // Realiza las operaciones iniciales necesarias en el mModo Editar.
     private void setModoEditar() {
-        // Se establece el modo Editar.
-        modo = MODO_EDITAR;
-        // Se cargan los datos del alumno a partir del id recibido.
+        // Se establece el mModo Editar.
+        mModo = MODO_EDITAR;
+        // Se cargan los datos del mAlumno a partir del id recibido.
         cargarAlumno(getArguments().getLong(EXTRA_ID));
-        // Se escriben los datos del alumno en las vistas correspondientes.
+        // Se escriben los datos del mAlumno en las vistas correspondientes.
         alumnoToVistas();
-        // Se actuliza el título de la actividad en relación al modo.
+        // Se actuliza el título de la actividad en relación al mModo.
         getActivity().setTitle(R.string.editar_alumno);
     }
 
-    // Realiza las operaciones iniciales necesarias en el modo Agregar.
+    // Realiza las operaciones iniciales necesarias en el mModo Agregar.
     private void setModoAgregar() {
-        // Se establece el modo Agregar.
-        modo = MODO_AGREGAR;
+        // Se establece el mModo Agregar.
+        mModo = MODO_AGREGAR;
         // Se crea un nuevo objeto Alumno vacío.
-        alumno = new Alumno();
-        // Se actualiza el título de la actividad en relación al modo.
+        mAlumno = new Alumno();
+        // Se actualiza el título de la actividad en relación al mModo.
         getActivity().setTitle(R.string.agregar_alumno);
     }
 
-    // Carga los datos del alumno provenientes de la BD en el objeto Alumno.
+    // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(long id) {
-        // Se consulta en la BD los datos del alumno a través del objeto DAO.
-        alumno = (new DAO(getActivity())).queryAlumno(id);
-        // Si no se ha encontrado el alumno, se informa y se pasa al modo
+        // Se consulta en la BD los datos del mAlumno a través del objeto DAO.
+        mAlumno = (new DAO(getActivity())).queryAlumno(id);
+        // Si no se ha encontrado el mAlumno, se informa y se pasa al mModo
         // Agregar.
-        if (alumno == null) {
+        if (mAlumno == null) {
             Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
                     Toast.LENGTH_LONG).show();
             setModoAgregar();
         }
     }
 
-    // Guarda el alumno en pantalla en la base de datos.
+    // Guarda el mAlumno en pantalla en la base de datos.
     void guardarAlumno() {
         // Se llena el objeto Alumno con los datos de las vistas.
         vistasToAlumno();
-        // Dependiendo del modo se inserta o actualiza el alumno (siempre y
+        // Dependiendo del mModo se inserta o actualiza el mAlumno (siempre y
         // cuando se hayan introducido los datos obligatorios).
-        if (alumno.getNombre().length() > 0
-                && alumno.getTelefono().length() > 0) {
-            if (modo.equals(MODO_AGREGAR)) {
+        if (mAlumno.getNombre().length() > 0
+                && mAlumno.getTelefono().length() > 0) {
+            if (mModo.equals(MODO_AGREGAR)) {
                 agregarAlumno();
             } else {
                 actualizarAlumno();
@@ -141,13 +140,14 @@ public class AlumnoFragment extends Fragment {
         }
     }
 
-    // Agrega un alumno a la base de datos.
+    // Agrega un mAlumno a la base de datos.
     private void agregarAlumno() {
+        mAlumno.setAvatar(getRandomAvatarUrl());
         // Se realiza el insert a través del objeto DAO.
-        long id = (new DAO(getActivity())).createAlumno(alumno);
+        long id = (new DAO(getActivity())).createAlumno(mAlumno);
         // Se informa de si ha ido bien.
         if (id >= 0) {
-            alumno.setId(id);
+            mAlumno.setId(id);
             Toast.makeText(getActivity(),
                     getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
                     .show();
@@ -156,19 +156,19 @@ public class AlumnoFragment extends Fragment {
                     getString(R.string.insercion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
-        // Se resetean las vistas para poder agregar otro alumno (seguimos en
-        // modo Agregar).
+        // Se resetean las vistas para poder agregar otro mAlumno (seguimos en
+        // mModo Agregar).
         resetVistas();
     }
 
-    // Actualiza un alumno en la base de datos.
+    // Actualiza un mAlumno en la base de datos.
     private void actualizarAlumno() {
         // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
-        if ((new DAO(getActivity())).updateAlumno(alumno)) {
+        if ((new DAO(getActivity())).updateAlumno(mAlumno)) {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
-            setModoEditar();
+            getActivity().finish();
         } else {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_incorrecta),
@@ -200,21 +200,28 @@ public class AlumnoFragment extends Fragment {
 
     // Muestra los datos del objeto Alumno en las vistas.
     private void alumnoToVistas() {
-        txtNombre.setText(alumno.getNombre());
-        txtTelefono.setText(alumno.getTelefono());
-        txtDireccion.setText(alumno.getDireccion());
-        spnCurso.setSelection(adaptadorCursos.getPosition(alumno.getCurso()),
+        txtNombre.setText(mAlumno.getNombre());
+        txtTelefono.setText(mAlumno.getTelefono());
+        txtDireccion.setText(mAlumno.getDireccion());
+        spnCurso.setSelection(mAdaptadorCursos.getPosition(mAlumno.getCurso()),
                 true);
     }
 
     // Llena el objeto Alumno con los datos de las vistas.
     private void vistasToAlumno() {
-        final String BASE_URL = "http://lorempixel.com/100/100/sports/";
-        alumno.setAvatar(BASE_URL + (mAleatorio.nextInt(10) + 1) + "/");
-        alumno.setNombre(txtNombre.getText().toString());
-        alumno.setTelefono(txtTelefono.getText().toString());
-        alumno.setDireccion(txtDireccion.getText().toString());
-        alumno.setCurso((String) spnCurso.getSelectedItem());
+        mAlumno.setNombre(txtNombre.getText().toString());
+        mAlumno.setTelefono(txtTelefono.getText().toString());
+        mAlumno.setDireccion(txtDireccion.getText().toString());
+        mAlumno.setCurso((String) spnCurso.getSelectedItem());
+    }
+
+    // Retorna una url aleatoria correspondiente a una imagen para el avatar.
+    private String getRandomAvatarUrl() {
+        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
+                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
+        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
+                (mAleatorio.nextInt(10) + 1) + "/";
     }
 
 }

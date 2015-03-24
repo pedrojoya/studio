@@ -11,4 +11,7 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
+    <color name="missed_call">#F44336</color>
+    <color name="received_call">#009688</color>
+    <color name="made_call">#3F51B5</color>
 </resources>
