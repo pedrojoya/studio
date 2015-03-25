@@ -6,8 +6,7 @@
         android:id="@+id/mnuBuscar"
         android:title="@string/buscar"
         android:orderInCategory="100"
-        android:icon="@android:drawable/ic_search_category_default"
-        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/mnuLimpiar"
