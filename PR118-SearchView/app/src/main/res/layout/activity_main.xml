@@ -14,13 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/statusBar" />
-    <!-- Search Toolbar -->
-    <include
-        layout="@layout/search_toolbar"
-        android:id="@+id/searchToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/statusBar" />
     <!-- Panel -->
     <RelativeLayout
         android:layout_width="match_parent"
