@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RelojMultihilo</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="parar">Parar</string>
+
+</resources>
