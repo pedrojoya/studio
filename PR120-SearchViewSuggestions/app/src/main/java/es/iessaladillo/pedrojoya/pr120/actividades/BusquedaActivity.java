@@ -9,6 +9,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,7 +22,8 @@ import es.iessaladillo.pedrojoya.pr120.fragmentos.AlumnoFragment;
 import es.iessaladillo.pedrojoya.pr120.models.Alumno;
 
 
-public class BusquedaActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
+public class BusquedaActivity extends ActionBarActivity implements
+        LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
 
     private static final int LOADER_BUSQUEDA = 1;
 
@@ -34,6 +36,11 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
+        // La toolbar actuará como action bar.
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         initVistas();
         // Se detecta la acción con la que ha sido llamada.
         Intent intent = getIntent();

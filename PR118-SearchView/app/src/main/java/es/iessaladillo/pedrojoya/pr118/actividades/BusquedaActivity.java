@@ -30,15 +30,14 @@ public class BusquedaActivity extends ActionBarActivity implements LoaderManager
 
     private ListView mLstResultados;
     private SimpleCursorAdapter mAdaptador;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setNavigationIcon(R.drawable.ic_back);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         initVistas();
         // Se obtiene el intent y se verifica la acción.

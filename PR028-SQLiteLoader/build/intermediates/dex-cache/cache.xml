@@ -2,53 +2,53 @@
 <items version="2" >
 
     <item
-        jar="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-89cdc993d048464cfdb815397c62df32698fb883.jar" />
-    </item>
-    <item
-        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d9dd8d504358a13cde778c25cd9515bdffda856c.jar" />
-    </item>
-    <item
-        jar="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\pre-dexed\debug\classes-182e973943f1599f3d17d6bf9f6bade2e354a173.jar" />
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/classes-95a88f629ddde8f15825f4449c00fe7a9093a8ad.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="22.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\pre-dexed\debug\classes-9d68d264b066b3ce378bddbe752188995244d312.jar" />
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\exploded-aar\com.github.shell-software\fab\1.0.5\classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
-        <dex dex="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\pre-dexed\debug\classes-292bc2800b80292b1e83fda62f9bf6d2d3ea6aef.jar" />
-    </item>
-    <item
-        jar="C:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.5.2\ecf534dba3a8446ce84cbb797d314763be212a68\glide-3.5.2.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="ecf534dba3a8446ce84cbb797d314763be212a68">
-        <dex dex="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\pre-dexed\debug\glide-3.5.2-278d96e68d7efa4e7d3794d17bb6d42654382e8f.jar" />
-    </item>
-    <item
-        jar="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.2.2\classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.2/classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="803c4c913beac8f7980d680c725a40835d1d7c77">
-        <dex dex="D:\Documents\GitHub\studio\PR028-SQLiteLoader\app\build\intermediates\pre-dexed\debug\classes-63e523aa0c4be3569e852839c1cd08170cd0a140.jar" />
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/classes-1e0629407a3677beaaa00d70fb854a60b314a3cf.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/classes-785912b174b1e739f1ecc7d2dd1345caf4fe8ff4.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/classes-d4b2a692758a10735bddf45a23cdb23c7d3f7a64.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-d915a088f18990cad863c868b4bac048d96ea106.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.5.2/ecf534dba3a8446ce84cbb797d314763be212a68/glide-3.5.2.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="ecf534dba3a8446ce84cbb797d314763be212a68">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/glide-3.5.2-3d8867e1afbee80bd164973c1d5ece4caa099f88.jar" />
     </item>
 
 </items>

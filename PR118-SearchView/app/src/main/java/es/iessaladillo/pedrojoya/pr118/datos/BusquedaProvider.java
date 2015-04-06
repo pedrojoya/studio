@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr118.datos;
 
-
 import android.content.SearchRecentSuggestionsProvider;
 
 public class BusquedaProvider extends SearchRecentSuggestionsProvider {

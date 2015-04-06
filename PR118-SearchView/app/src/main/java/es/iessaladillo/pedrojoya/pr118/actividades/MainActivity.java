@@ -9,16 +9,9 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.lang.reflect.Field;
 
@@ -36,9 +29,9 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se activa el ítem de overflow en dispositivos con botón físico de
-        // menú.
+        // Se activa el ítem de overflow en dispositivos con botón físico de menú.
         overflowEnDispositivoConTeclaMenu();
+        // La toolbar actuará como action bar.
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_burger);
         setSupportActionBar(mToolbar);
@@ -49,19 +42,21 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         // Se obtiene y configura el SearchView en base al archivo XML de configuración.
         svBuscar = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.mnuBuscar));
-        mnuLimpiar = menu.findItem(R.id.mnuLimpiar);
         SearchManager gestorBusquedas = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         svBuscar.setSearchableInfo(gestorBusquedas.getSearchableInfo(
                 new ComponentName(this, BusquedaActivity.class)));
+        // Se crea y establece el Listener para cuando se expande o contrae el searchview.
+        mnuLimpiar = menu.findItem(R.id.mnuLimpiar);
         MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.mnuBuscar),
                 new MenuItemCompat.OnActionExpandListener() {
+                    // Cuando se expande.
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem menuItem) {
                         mnuLimpiar.setVisible(false);
                         mToolbar.setNavigationIcon(R.drawable.ic_back);
                         return true;
                     }
-
+                    // Cuando se colapsa.
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem menuItem) {
                         mToolbar.setNavigationIcon(R.drawable.ic_burger);
@@ -76,6 +71,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
+            // Se colapsa el searchview.
             svBuscar.onActionViewCollapsed();
             return true;
         }

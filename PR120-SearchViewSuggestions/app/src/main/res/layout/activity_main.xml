@@ -1,14 +1,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <ImageView
+    android:layout_height="match_parent">
+    <!-- StatusBar para API 19 -->
+    <View
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_height"
+        android:background="@color/primary_dark" />
+    <!-- Toolbar -->
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statusBar" />
+    <!-- Panel -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/foto"
-        android:contentDescription="@string/foto"
-        android:scaleType="centerCrop"
-        android:id="@+id/imgFoto" />
+        android:layout_below="@+id/toolbar">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/foto"
+            android:contentDescription="@string/foto"
+            android:scaleType="centerCrop"
+            android:id="@+id/imgFoto" />
+    </RelativeLayout>
 </RelativeLayout>
