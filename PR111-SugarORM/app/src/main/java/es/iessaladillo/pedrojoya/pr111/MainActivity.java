@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
     ListView mLstAlumnos;
     @InjectView(R.id.lblNoHayAlumnos)
     TextView mLblNoHayAlumnos;
+    @InjectView(R.id.rlListaVacia)
+    RelativeLayout rlListaVacia;
 
     private AlumnosAdapter mAdaptador;
 
@@ -42,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
     // Inicializa las vistas.
     private void initVistas() {
         mAdaptador = new AlumnosAdapter(this, new ArrayList<Alumno>());
-        mLstAlumnos.setEmptyView(mLblNoHayAlumnos);
+        mLstAlumnos.setEmptyView(rlListaVacia);
         mLstAlumnos.setAdapter(mAdaptador);
         mLstAlumnos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         // Se establece el listener para los eventos del modo de acción
@@ -110,38 +112,23 @@ public class MainActivity extends ActionBarActivity {
 
                     }
                 });
-        // Un click simple ya activa el modo de acción contextual.
+        // Cuando se hace click en un elemento de la lista.
         mLstAlumnos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adaptador, View v,
                                     int position, long id) {
+                // Se muestra la actividad de alumno, pasándole el alumno pulsado.
                 Intent intent = new Intent(getApplicationContext(), AlumnoActivity.class);
-                intent.putExtra(AlumnoActivity.EXTRA_TAREA, (Alumno) mLstAlumnos.getItemAtPosition(position));
+                intent.putExtra(AlumnoActivity.EXTRA_ALUMNO, (Alumno) mLstAlumnos.getItemAtPosition(position));
                 startActivity(intent);
             }
         });
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.mnuAgregar:
-                // Se muestra la actividad para agregar el alumno.
-                mostrarAgregar();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @OnClick(R.id.lblNoHayAlumnos)
+    // Cuando se pulsa el botón de Agregar o el icono de No hay alumnos.
+    @OnClick({R.id.rlListaVacia, R.id.btnAgregar})
     public void mostrarAgregar() {
         startActivity(new Intent(this, AlumnoActivity.class));
     }
@@ -153,6 +140,7 @@ public class MainActivity extends ActionBarActivity {
         cargarAlumnos();
     }
 
+    // Carga en la lista los alumnos de la base de datos.
     private void cargarAlumnos() {
         List<Alumno> alumnos = Alumno.listAll(Alumno.class);
         mAdaptador.clear();
@@ -162,9 +150,9 @@ public class MainActivity extends ActionBarActivity {
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y
     // si debe quitarse la selección una vez obtenidos los elementos.
     private ArrayList<Alumno> getElementosSeleccionados(ListView lst,
-                                                       boolean uncheck) {
+                                                        boolean uncheck) {
         // ArrayList resultado.
-        ArrayList<Alumno> datos = new ArrayList<Alumno>();
+        ArrayList<Alumno> datos = new ArrayList<>();
         // Se obtienen los elementos seleccionados de la lista.
         SparseBooleanArray selec = lst.getCheckedItemPositions();
         for (int i = 0; i < selec.size(); i++) {

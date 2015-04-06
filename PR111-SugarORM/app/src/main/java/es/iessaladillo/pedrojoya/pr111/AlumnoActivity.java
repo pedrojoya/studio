@@ -1,37 +1,50 @@
 package es.iessaladillo.pedrojoya.pr111;
 
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Editable;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.software.shell.fab.ActionButton;
+
+import java.util.Random;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 public class AlumnoActivity extends ActionBarActivity {
 
-    public static final String EXTRA_TAREA = "tarea";
-
-    @InjectView(R.id.lblNombre)
-    TextView mLblNombre;
+    public static final String EXTRA_ALUMNO = "tarea";
     @InjectView(R.id.txtNombre)
-    EditText mTxtNombre;
-    @InjectView(R.id.lblEdad)
-    TextView mLblEdad;
-    @InjectView(R.id.txtEdad)
-    EditText mTxtEdad;
+    EditText txtNombre;
+    @InjectView(R.id.spnCurso)
+    Spinner spnCurso;
+    @InjectView(R.id.txtTelefono)
+    EditText txtTelefono;
+    @InjectView(R.id.txtDireccion)
+    EditText txtDireccion;
+    @InjectView(R.id.btnGuardar)
+    ActionButton btnGuardar;
+    @InjectView(R.id.lblNombre)
+    TextView lblNombre;
+    @InjectView(R.id.lblCurso)
+    TextView lblCurso;
+    @InjectView(R.id.lblTelefono)
+    TextView lblTelefono;
+    @InjectView(R.id.lblDireccion)
+    TextView lblDireccion;
 
     private Alumno mAlumno;
-    private MenuItem mItemGuardar;
+    private ArrayAdapter<CharSequence> adaptadorCursos;
+    private Random mAleatorio;
 
     // Al crear la actividad.
     @Override
@@ -39,137 +52,90 @@ public class AlumnoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumno);
         ButterKnife.inject(this);
-        // Se obtiene la tarea con la que ha sido llamado (si la hay).
-        if (getIntent() != null && getIntent().hasExtra(EXTRA_TAREA)) {
-            mAlumno = (Alumno) getIntent().getParcelableExtra(EXTRA_TAREA);
+        // Se obtiene el alumno enviado como extra (si lo hay).
+        if (getIntent() != null && getIntent().hasExtra(EXTRA_ALUMNO)) {
+            mAlumno = (Alumno) getIntent().getParcelableExtra(EXTRA_ALUMNO);
             setTitle(R.string.modificar_alumno);
-        }
-        else {
+        } else {
             setTitle(R.string.agregar_alumno);
         }
+        // Se carga el spinner de cursos.
+        cargarCursos();
         // Se obtienen e inicializan las vistas.
         initVistas();
+        mAleatorio = new Random();
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        // Si tenemos tarea que mostrar, la mostramos.
+        // Si tenemos alumno que mostrar, la mostramos.
         if (mAlumno != null) {
-            mTxtNombre.setText(mAlumno.getNombre());
-            mTxtEdad.setText(mAlumno.getEdad() + "");
+            alumnoToVistas();
         }
         // Se cambia el color del TextView dependiendo de si el EditText
         // correspondiente tiene el foco o no.
-        mTxtNombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        txtNombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             // Al cambiar el foco.
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                setColorSegunFoco(mLblNombre, hasFocus);
+                setColorSegunFoco(lblNombre, hasFocus);
             }
 
         });
-        mTxtEdad.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        txtTelefono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             // Al cambiar el foco.
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                setColorSegunFoco(mLblEdad, hasFocus);
+                setColorSegunFoco(lblTelefono, hasFocus);
             }
 
         });
-        mTxtNombre.addTextChangedListener(new TextWatcher() {
+        txtDireccion.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
+            // Al cambiar el foco.
             @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            // Después de haber cambiado el texto.
-            @Override
-            public void afterTextChanged(Editable s) {
-                // Item de menú Guardar sólo visible si están todos los datos.
-                checkDatos();
-                // lblUsuario visible sólo si txtUsuario tiene datos.
-                checkVisibility(mTxtNombre, mLblNombre);
+            public void onFocusChange(View v, boolean hasFocus) {
+                setColorSegunFoco(lblDireccion, hasFocus);
             }
 
         });
-        mTxtEdad.addTextChangedListener(new TextWatcher() {
+        spnCurso.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
+            // Al cambiar el foco.
             @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            // Después de haber cambiado el texto.
-            @Override
-            public void afterTextChanged(Editable s) {
-                // Item de menú Guardar sólo visible si están todos los datos.
-                checkDatos();
-                // lblClave visible sólo si tiene datos.
-                checkVisibility(mTxtEdad, mLblEdad);
+            public void onFocusChange(View v, boolean hasFocus) {
+                setColorSegunFoco(lblCurso, hasFocus);
             }
 
         });
         // Comprobaciones iniciales.
-        setColorSegunFoco(mLblNombre, true);
-        checkVisibility(mTxtEdad, mLblEdad);
-        checkVisibility(mTxtNombre, mLblNombre);
+        setColorSegunFoco(lblNombre, true);
     }
 
-    public void agregar() {
-        if (!TextUtils.isEmpty(mTxtNombre.getText().toString()) && !TextUtils.isEmpty(mTxtEdad.getText().toString())) {
-            Alumno alumno = new Alumno(mTxtNombre.getText().toString(), Integer.parseInt(mTxtEdad.getText().toString()));
-            alumno.save();
+    // Agrega el alumno a la base de datos.
+    private void agregar() {
+        if (!TextUtils.isEmpty(txtNombre.getText().toString()) &&
+                !TextUtils.isEmpty(txtTelefono.getText().toString())) {
+            mAlumno = new Alumno();
+            mAlumno.setAvatar(getRandomAvatarUrl());
+            vistasToAlumno();
+            mAlumno.save();
             finish();
         } else {
-            Toast.makeText(this, "Debe introducir todos los datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nombre y teléfono son obligatorios", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void actualizar() {
-        if (!TextUtils.isEmpty(mTxtNombre.getText().toString()) && !TextUtils.isEmpty(mTxtEdad.getText().toString())) {
-            Alumno alumno = new Alumno(mTxtNombre.getText().toString(), Integer.parseInt(mTxtEdad.getText().toString()));
-            alumno.setId(mAlumno.getId());
-            alumno.save();
+    private void actualizar() {
+        if (!TextUtils.isEmpty(txtNombre.getText().toString()) &&
+                !TextUtils.isEmpty(txtTelefono.getText().toString())) {
+            vistasToAlumno();
+            mAlumno.save();
             finish();
         } else {
-            Toast.makeText(this, "Debe introducir todos los datos", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        checkDatos();
-    }
-
-    // Activa o desactiva el item de menú Guardar dependiendo de si hay datos.
-    private void checkDatos() {
-        if (mItemGuardar != null) {
-            mItemGuardar.setEnabled(!TextUtils.isEmpty(mTxtNombre.getText()
-                    .toString())
-                    && !TextUtils.isEmpty(mTxtEdad.getText().toString()));
-        }
-    }
-
-    // TextView visible sólo si EditText tiene datos.
-    private void checkVisibility(EditText txt, TextView lbl) {
-        if (TextUtils.isEmpty(txt.getText().toString())) {
-            lbl.setVisibility(View.INVISIBLE);
-        } else {
-            lbl.setVisibility(View.VISIBLE);
+            Toast.makeText(this, "Nombre y teléfono son obligatorios", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -177,35 +143,62 @@ public class AlumnoActivity extends ActionBarActivity {
     // EditText correspondiente tiene el foco o no.
     private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
         if (hasFocus) {
-            lbl.setTextColor(getResources().getColor(R.color.edittext_focused));
+            lbl.setTextColor(getResources().getColor(R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
             lbl.setTextColor(getResources()
-                    .getColor(R.color.edittext_notfocused));
+                    .getColor(R.color.accent_light));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_alumno, menu);
-        mItemGuardar = menu.findItem(R.id.mnuGuardar);
-        return super.onCreateOptionsMenu(menu);
+    // Cuando se pulsa sobre Guardar.
+    @OnClick(R.id.btnGuardar)
+    public void guardar() {
+        if (mAlumno == null) {
+            agregar();
+        } else {
+            actualizar();
+        }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.mnuGuardar:
-                // Dependiendo de si hay tarea o no.
-                if (mAlumno == null) {
-                    agregar();
-                } else {
-                    actualizar();
-                }
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+    // Muestra los datos del objeto Alumno en las vistas.
+    private void alumnoToVistas() {
+        txtNombre.setText(mAlumno.getNombre());
+        txtTelefono.setText(mAlumno.getTelefono());
+        txtDireccion.setText(mAlumno.getDireccion());
+        spnCurso.setSelection(adaptadorCursos.getPosition(mAlumno.getCurso()),
+                true);
+    }
+
+    // Carga los cursos en el spinner.
+    private void cargarCursos() {
+        // Se crea un ArrayAdapter para el spinner, que use layouts estándar
+        // tanto para cuando no está desplegado como para cuando sí lo está. La
+        // fuente de datos para el adaptador es un array de constantes de
+        // cadena.
+        adaptadorCursos = ArrayAdapter.createFromResource(this,
+                R.array.cursos, android.R.layout.simple_spinner_item);
+        adaptadorCursos
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnCurso.setAdapter(adaptadorCursos);
+    }
+
+    // Llena el objeto Alumno con los datos de las vistas.
+    private void vistasToAlumno() {
+        mAlumno.setNombre(txtNombre.getText().toString());
+        mAlumno.setTelefono(txtTelefono.getText().toString());
+        mAlumno.setDireccion(txtDireccion.getText().toString());
+        mAlumno.setCurso((String) spnCurso.getSelectedItem());
+    }
+
+    // Retorna una url aleatoria correspondiente a una imagen para el avatar.
+    private String getRandomAvatarUrl() {
+        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
+                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
+        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
+                (mAleatorio.nextInt(10) + 1) + "/";
     }
 
 }

@@ -6,16 +6,31 @@ import android.os.Parcelable;
 import com.orm.SugarRecord;
 
 public class Alumno extends SugarRecord<Alumno> implements Parcelable {
-    String nombre;
-    int edad;
 
-    public Alumno(String nombre, int edad) {
+    private String avatar;
+    private String nombre;
+    private String telefono;
+    private String curso;
+    private String direccion;
+
+    public Alumno(String avatar, String nombre, String telefono, String curso, String direccion) {
+        this.avatar = avatar;
         this.nombre = nombre;
-        this.edad = edad;
+        this.telefono = telefono;
+        this.curso = curso;
+        this.direccion = direccion;
     }
 
     // Es obligatorio dejar el constructor vacío.
     public Alumno() {
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getNombre() {
@@ -26,12 +41,28 @@ public class Alumno extends SugarRecord<Alumno> implements Parcelable {
         this.nombre = nombre;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     @Override
@@ -41,14 +72,20 @@ public class Alumno extends SugarRecord<Alumno> implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.avatar);
         dest.writeString(this.nombre);
-        dest.writeInt(this.edad);
+        dest.writeString(this.telefono);
+        dest.writeString(this.curso);
+        dest.writeString(this.direccion);
         dest.writeValue(this.id);
     }
 
     private Alumno(Parcel in) {
+        this.avatar = in.readString();
         this.nombre = in.readString();
-        this.edad = in.readInt();
+        this.telefono = in.readString();
+        this.curso = in.readString();
+        this.direccion = in.readString();
         this.id = (Long) in.readValue(Long.class.getClassLoader());
     }
 

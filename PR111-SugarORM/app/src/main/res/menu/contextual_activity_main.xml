@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mnuEliminar"
-        android:title="Eliminar"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/eliminar"
+        android:icon="@drawable/ic_action_delete"
         app:showAsAction="ifRoom|withText" />
 
 </menu>

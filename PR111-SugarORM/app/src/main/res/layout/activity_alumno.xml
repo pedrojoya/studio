@@ -1,64 +1,86 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/lblTitulo"
-        style="?android:attr/listSeparatorTextViewStyle"
+    <ScrollView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/fragment_alumno_padding">
+
+            <TextView
+                android:id="@+id/lblNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre" />
+
+            <EditText
+                android:id="@+id/txtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fragment_alumno_marginBottom"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblCurso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/curso" />
+
+            <Spinner
+                android:id="@+id/spnCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fragment_alumno_marginBottom" />
+
+            <TextView
+                android:id="@+id/lblTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/telefono" />
+
+            <EditText
+                android:id="@+id/txtTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fragment_alumno_marginBottom"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/lblDireccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/direccion" />
+
+            <EditText
+                android:id="@+id/txtDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fragment_alumno_marginBottom"
+                android:inputType="textPostalAddress" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.software.shell.fab.ActionButton
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="@string/alumno" />
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        fab:button_color="@color/accent"
+        fab:button_colorPressed="@color/accent_light"
+        fab:image="@drawable/fab_save_icon"
+        fab:show_animation="@anim/fab_roll_from_down"
+        fab:hide_animation="@anim/fab_roll_to_down" />
 
-    <TextView
-        android:id="@+id/lblNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lblTitulo"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/edittext_padding"
-        android:paddingRight="@dimen/edittext_padding"
-        android:text="@string/nombre"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <EditText
-        android:id="@+id/txtNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lblNombre"
-        android:hint="@string/nombre"
-        android:imeOptions="actionNext"
-        android:inputType="text"
-        android:paddingTop="0dp"
-        android:singleLine="true">
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/lblEdad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNombre"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/edittext_padding"
-        android:paddingRight="@dimen/edittext_padding"
-        android:text="@string/edad"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <EditText
-        android:id="@+id/txtEdad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lblEdad"
-        android:hint="@string/edad"
-        android:inputType="number"
-        android:imeOptions="actionDone"
-        android:paddingTop="0dp"
-        android:singleLine="true" />
-
-</RelativeLayout>
-
+</FrameLayout>

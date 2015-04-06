@@ -2,15 +2,15 @@
 <resources>
 
     <string name="app_name">SugarORM</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_alumno">Alumno</string>
-    <string name="alumno">Alumno</string>
     <string name="nombre">Nombre</string>
-    <string name="edad">Edad</string>
     <string name="guardar">Guardar</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
     <string name="modificar_alumno">Modificar alumno</string>
     <string name="agregar_alumno">Agregar alumno</string>
+    <string name="curso">Curso</string>
+    <string name="telefono">Telefono</string>
+    <string name="direccion">Dirección</string>
+    <string name="eliminar">Eliminar</string>
 
 </resources>
