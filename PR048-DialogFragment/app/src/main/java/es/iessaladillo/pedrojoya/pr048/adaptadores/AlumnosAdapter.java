@@ -67,7 +67,7 @@ public class AlumnosAdapter extends ArrayAdapter<Alumno> {
     }
 
     // Contenedor de vistas para la vista-fila.
-    public class ViewHolder {
+    static class ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
         private final ImageView imgAvatar;

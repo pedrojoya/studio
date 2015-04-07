@@ -15,13 +15,10 @@ class PaisesAdapter extends BaseAdapter {
     // Variables.
     private final LayoutInflater mInflador;
     private final ArrayList<Pais> mPaises;
-    private final Context mContexto;
 
     // Constructor.
     public PaisesAdapter(Context contexto, ArrayList<Pais> paises) {
-        mContexto = contexto;
         mPaises = paises;
-        // Se obtiene un objeto inflador de layouts.
         mInflador = LayoutInflater.from(contexto);
     }
 
@@ -77,7 +74,7 @@ class PaisesAdapter extends BaseAdapter {
     }
 
     // Contenedor de vistas para la vista-fila.
-    public class ViewHolder {
+    static class ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
         private final ImageView imgBandera;

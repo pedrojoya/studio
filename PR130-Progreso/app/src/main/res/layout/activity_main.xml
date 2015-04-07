@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical" >
+
+    <ProgressBar
+        android:id="@+id/prbBarra"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="10"
+        android:padding="4dip"
+        android:layout_centerHorizontal="true" 
+        android:layout_marginBottom="10dp"       
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btnIniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/prbBarra"
+        android:layout_marginBottom="10dp"       
+        android:text="@string/iniciar" />
+
+    <TextView
+        android:id="@+id/lblMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"        
+        android:text="@string/trabajando"
+        android:layout_marginBottom="10dp"       
+        android:layout_below="@+id/btnIniciar"
+        android:visibility="invisible" >
+    </TextView>
+
+    <ProgressBar
+        android:id="@+id/prbCirculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="10"
+        android:layout_centerHorizontal="true"        
+        android:layout_below="@+id/lblMensaje"
+        android:visibility="invisible" />
+    
+</RelativeLayout>

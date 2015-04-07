@@ -18,7 +18,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
 
     // Constructor.
     public AlumnosAdapter(Context contexto, ArrayList<Alumno> alumnos) {
-        super(contexto, R.layout.tarjeta, alumnos);
+        super(contexto, R.layout.activity_main_item, alumnos);
         this.alumnos = alumnos;
         // Se obtiene el objeto inflador de layouts.
         inflador = LayoutInflater.from(contexto);
@@ -31,7 +31,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         // Si no se puede reciclar.
         if (convertView == null) {
             // Se obtiene la vista-fila inflando el layout.
-            convertView = inflador.inflate(R.layout.tarjeta, parent, false);
+            convertView = inflador.inflate(R.layout.activity_main_item, parent, false);
             // Se crea el contenedor de vistas para la vista-fila.
             holder = new ViewHolder(convertView);
             // Se almacena el contenedor en la vista.

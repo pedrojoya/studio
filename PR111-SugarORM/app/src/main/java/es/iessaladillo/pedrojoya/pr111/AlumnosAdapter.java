@@ -16,14 +16,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 // Adaptador para la lista.
 class AlumnosAdapter extends ArrayAdapter<Alumno> {
 
-    private final Context mContexto;
     private final ArrayList<Alumno> mAlumnos;
     private final LayoutInflater mInflador;
 
     // Constructor.
     public AlumnosAdapter(Context contexto, ArrayList<Alumno> alumnos) {
         super(contexto, R.layout.activity_main_item, alumnos);
-        this.mContexto = contexto;
         mAlumnos = alumnos;
         mInflador = LayoutInflater.from(contexto);
     }
@@ -60,7 +58,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         holder.lblNombre.setText(alumno.getNombre());
         holder.lblCurso.setText(alumno.getCurso());
         holder.lblDireccion.setText(alumno.getDireccion());
-        Glide.with(mContexto).load(
+        Glide.with(getContext()).load(
                 alumno.getAvatar())
                 .into(holder.imgAvatar);
     }

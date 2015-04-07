@@ -62,7 +62,7 @@ public class Obra implements Parcelable {
         readFromParcel(in);
     }
 
-    // Implementaci�n por defecto.
+    // Implementación por defecto.
     public int describeContents() {
         return 0;
     }

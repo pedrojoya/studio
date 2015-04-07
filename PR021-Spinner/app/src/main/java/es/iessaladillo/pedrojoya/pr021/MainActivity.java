@@ -47,6 +47,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener,
                 getString(R.string.elija_un_pais)));
         paises.add(new Pais(R.drawable.de, "Alemania"));
         paises.add(new Pais(R.drawable.dk, "Dinamarca"));
+        paises.add(new Pais(R.drawable.es, "España"));
         paises.add(new Pais(R.drawable.fi, "Finlandia"));
         paises.add(new Pais(R.drawable.fr, "Francia"));
         paises.add(new Pais(R.drawable.gr, "Grecia"));
@@ -58,7 +59,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener,
         paises.add(new Pais(R.drawable.no, "Noruega"));
         paises.add(new Pais(R.drawable.pl, "Polonia"));
         paises.add(new Pais(R.drawable.pt, "Portugal"));
-        paises.add(new Pais(R.drawable.es, "España"));
         return paises;
     }
 
