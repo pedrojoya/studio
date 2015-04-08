@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Música online</string>
+    <string name="parar_servicio">Parar servicio</string>
+
+</resources>
