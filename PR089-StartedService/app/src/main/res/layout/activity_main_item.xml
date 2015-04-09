@@ -6,16 +6,15 @@
     android:background="@drawable/item_background_selector"
     android:minHeight="@dimen/three_lines_tile_height">
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/imgAvatar"
+    <ImageView
+        android:id="@+id/imgPlaying"
         android:layout_width="@dimen/three_lines_avatar_height"
         android:layout_height="@dimen/three_lines_avatar_height"
         android:layout_marginLeft="@dimen/three_lines_avatar_marginLeft"
         android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
         android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
-        android:background="@color/accent"
-        app:border_width="1dp"
-        app:border_color="@color/accent" />
+        android:scaleType="center"
+        android:src="@drawable/ic_action_play_arrow" />
 
     <TextView
         android:id="@+id/lblNombre"

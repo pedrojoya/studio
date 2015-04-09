@@ -5,26 +5,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import es.iessaladillo.pedrojoya.pr089.R;
 
 // Adaptador para la lista.
-class CancionesAdapter extends ArrayAdapter<Cancion> {
+public class CancionesAdapter extends ArrayAdapter<Cancion> {
 
     private final ArrayList<Cancion> mCanciones;
     private final LayoutInflater mInflador;
+    private final ListView mListView;
 
     // Constructor.
-    public CancionesAdapter(Context contexto, ArrayList<Cancion> canciones) {
+    public CancionesAdapter(Context contexto, ArrayList<Cancion> canciones, ListView lst) {
         super(contexto, R.layout.activity_main_item, canciones);
         mCanciones = canciones;
         mInflador = LayoutInflater.from(contexto);
+        mListView = lst;
     }
 
     // Retorna la vista que se debe "dibujar" para un determinado elemento.
@@ -59,6 +60,8 @@ class CancionesAdapter extends ArrayAdapter<Cancion> {
         holder.lblNombre.setText(cancion.getNombre());
         holder.lblDuracion.setText(cancion.getDuracion());
         holder.lblAutor.setText(cancion.getAutor());
+        holder.imgPlaying.setImageResource(
+                mListView.isItemChecked(position) ? R.drawable.ic_action_equalizer : R.drawable.ic_action_play_circle_outline);
     }
 
     // Contenedor de vistas para la vista-fila.
@@ -68,6 +71,7 @@ class CancionesAdapter extends ArrayAdapter<Cancion> {
         private final TextView lblNombre;
         private final TextView lblDuracion;
         private final TextView lblAutor;
+        private final ImageView imgPlaying;
 
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
@@ -78,6 +82,8 @@ class CancionesAdapter extends ArrayAdapter<Cancion> {
                     .findViewById(R.id.lblDuracion);
             lblAutor = (TextView) itemView
                     .findViewById(R.id.lblAutor);
+            imgPlaying = (ImageView) itemView
+                    .findViewById(R.id.imgPlaying);
         }
 
     }

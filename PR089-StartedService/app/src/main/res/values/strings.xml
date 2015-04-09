@@ -3,5 +3,6 @@
 
     <string name="app_name">Música online</string>
     <string name="parar_servicio">Parar servicio</string>
+    <string name="no_hay_canciones">No hay canciones</string>
 
 </resources>

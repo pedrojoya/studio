@@ -2,32 +2,39 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jar="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
+        <dex dex="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/pre-dexed/debug/classes-183aef6827646bb4602a7bf0e9c0c0d28510d657.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR089-StartedService\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d0c8c7d07711f6b418e2743591b7b76f5bf0a5c6.jar" />
+        <dex dex="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR089-StartedService\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR089-StartedService\app\build\intermediates\pre-dexed\debug\classes-5f07f66a07e770f3b2158afde7e3252561f713b5.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR089-StartedService\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jar="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR089-StartedService\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-6a8d43d85a7d6566029ac9c26de7a3b73fb9b224.jar" />
+        <dex dex="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-1bfe4f3bb1debed6ee8f48d91a2ea2c99ba2d352.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR089-StartedService\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jar="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR089-StartedService\app\build\intermediates\pre-dexed\debug\classes-956b8fd6a573fb996d54933a634e78881408a951.jar" />
+        <dex dex="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/pre-dexed/debug/classes-359292a9909277e663a098723fa2549c66bd1811.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/pedro/studio/PR089-StartedService/app/build/intermediates/pre-dexed/debug/classes-cf358d1af640c4399379a8708ffe0887b5430341.jar" />
     </item>
 
 </items>
