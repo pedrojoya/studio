@@ -55,7 +55,6 @@ public class MainActivity extends ActionBarActivity implements
             @Override
             public void onClick(View view) {
                 if (lstCanciones.getCheckedItemPosition() == AdapterView.INVALID_POSITION) {
-                    lstCanciones.setItemChecked(0, true);
                     reproducirCancion(0);
                 } else {
                     pararServicio();
@@ -80,6 +79,7 @@ public class MainActivity extends ActionBarActivity implements
 
     // Inicia el servicio para reproducir la canción y cambia aspecto visual.
     private void reproducirCancion(int position) {
+        lstCanciones.setItemChecked(position, true);
         // Se invalidan los datos paara que se actualice el icono en el elemento que deja de
         // estar reproduciendose y el que pasa a reproducirse.
         mAdaptador.notifyDataSetInvalidated();

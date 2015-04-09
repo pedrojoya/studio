@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_paddingTop">8dp</dimen>
+    <dimen name="list_paddingBottom">8dp</dimen>
+    <dimen name="single_line_tile_height">48dp</dimen>
+    <dimen name="single_line_text_paddingLeft">16dp</dimen>
+    <dimen name="single_line_text_paddingRight">16dp</dimen>
+    <dimen name="single_line_text_paddingTop">16dp</dimen>
+    <dimen name="single_line_primary_text_textSize">16sp</dimen>
+    <dimen name="single_line_text_paddingBottom">16dp</dimen>
+</resources>

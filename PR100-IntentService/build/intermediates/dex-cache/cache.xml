@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\exploded-aar\com.github.shell-software\fab\1.0.5\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\pre-dexed\debug\classes-22bd41c2c98aed9f0cc21b106d35a4a68d2c4392.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\pre-dexed\debug\classes-c924dcc6964c24bae423cf22c096cb0bbdc2fa3e.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c6d79137693d494dee16372d3921f919eb724ced">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\pre-dexed\debug\classes-22682587818152b60d5a5356d633e93c8cccddfc.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\exploded-aar\com.nispok\snackbar\2.10.6\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6d1edea3cbe69b54021aaeb32e43531d83732933">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\pre-dexed\debug\classes-dda7a7a976a759e6c06baa1a0085522af093308c.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\pre-dexed\debug\classes-db7a729774296a792b2c417af03a7f04eaa6dd3d.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-f0aaedfd805e4eb69df29b3db047bc5e99f8bc81.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR100-IntentService\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d0c8c7d07711f6b418e2743591b7b76f5bf0a5c6.jar" />
+    </item>
+
+</items>
