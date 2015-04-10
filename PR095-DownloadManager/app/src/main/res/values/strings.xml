@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DownloadManager</string>
+    <string name="action_settings">Settings</string>
+    <string name="descargar">Descargar</string>
+    <string name="descargar_y_reproducir">Descargar y reproducir</string>
+    <string name="anterior">Anterior</string>
+    <string name="reproducir_o_pausar">Reproducir o pausar</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="descargando">Descargando...</string>
+    <string name="reproduciendo">Reproduciendo...</string>
+    <string name="descargas">Descargas</string>
+    <string name="error">Error en la descarga. Motivo: </string>
+    <string name="no_hay_canciones">No hay canciones</string>
+    <string name="reproducir">Reproducir</string>
+
+</resources>
