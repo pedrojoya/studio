@@ -1,8 +1,5 @@
 package es.iessaladillo.pedrojoya.pr095.actividades;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,44 +9,63 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.nispok.snackbar.Snackbar;
-import com.nispok.snackbar.SnackbarManager;
-import com.nispok.snackbar.listeners.ActionClickListener;
+import com.software.shell.fab.ActionButton;
+
+import java.io.File;
+import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr095.R;
 import es.iessaladillo.pedrojoya.pr095.data.Cancion;
 import es.iessaladillo.pedrojoya.pr095.data.CancionesAdapter;
+import es.iessaladillo.pedrojoya.pr095.servicios.MusicaService;
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener,
-        AdapterView.OnItemClickListener {
+public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
-    private static final String EXTENSION_ARCHIVO = ".mp4";
+    public static final String EXTENSION_ARCHIVO = ".mp3";
 
-    private DownloadManager mGestor;
-    private BroadcastReceiver mReceptor;
-    private CancionesAdapter mAdaptador;
-
-    private ImageView imgPlay;
     private ListView lstCanciones;
+    private ActionButton btnPlayStop;
+
+    private DownloadManager mGestorDescargas;
+    private BroadcastReceiver mReceptorDescargaFinalizada;
+    private CancionesAdapter mAdaptador;
+    private Intent intentServicio;
+    private LocalBroadcastManager mGestorLocal;
+    private BroadcastReceiver mReceptorCancionFinalizada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initVistas();
-        // Se obtiene el gestor de descargas.
-        mGestor = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-        // Se crea el receptor de eventos relacionados con la descarga.
-        mReceptor = new BroadcastReceiver() {
+        intentServicio = new Intent(getApplicationContext(),
+                MusicaService.class);
+        // Se obtiene el mGestorLocal de receptores locales.
+        mGestorLocal = LocalBroadcastManager.getInstance(this);
+        // Se obtiene el gestor de descargas
+        mGestorDescargas = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        // Se crea el mReceptorCancionFinalizada de mensajes desde el servicio.
+        mReceptorCancionFinalizada = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // Se reproduce la siguiente canción.
+                int siguiente = (lstCanciones.getCheckedItemPosition() + 1)
+                        % lstCanciones.getCount();
+                reproducirCancion(siguiente);
+            }
+        };
+        // Se crea el mReceptorCancionFinalizada de eventos relacionados con la descarga.
+        mReceptorDescargaFinalizada = new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -68,23 +84,41 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         lstCanciones.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstCanciones.setOnItemClickListener(this);
         lstCanciones.setEmptyView(findViewById(R.id.rlListaVacia));
+        btnPlayStop = (ActionButton) findViewById(R.id.btnPlayStop);
+        btnPlayStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (lstCanciones.getCheckedItemPosition() == AdapterView.INVALID_POSITION) {
+                    reproducirCancion(0);
+                } else {
+                    pararServicio();
+                }
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Se crea el filtro con las acción de descarga finalizada.
-        IntentFilter filtro = new IntentFilter(
+        // Se registra en el gestor de receptores locales el receptor de canción finalizada.
+        IntentFilter filtroCompletada = new IntentFilter(MusicaService.ACTION_COMPLETADA);
+        mGestorLocal.registerReceiver(mReceptorCancionFinalizada, filtroCompletada);
+        // Se registra en el gestor general de receptores el receptor de descarga finalizada.
+        IntentFilter filtroDescargas = new IntentFilter(
                 DownloadManager.ACTION_DOWNLOAD_COMPLETE);
-        // Se registra el receptor.
-        registerReceiver(mReceptor, filtro);
+        registerReceiver(mReceptorDescargaFinalizada, filtroDescargas);
+        // Se muestra en el fab el icono adecuado.
+        btnPlayStop.setImageResource(lstCanciones.getCheckedItemPosition() ==
+                AdapterView.INVALID_POSITION ? R.drawable.fab_play : R.drawable.fab_stop);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Se quita el registro del recpetor.
-        unregisterReceiver(mReceptor);
+        // Se quita el registro del receptor de canción finalizada.
+        mGestorLocal.unregisterReceiver(mReceptorCancionFinalizada);
+        // Se quita el registro del receptor de descarga finalizada.
+        unregisterReceiver(mReceptorDescargaFinalizada);
     }
 
     // Comprueba el estado de la descarga que se ha completado.
@@ -95,7 +129,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // Se realiza la consulta para obtener los datos de la descarga.
         DownloadManager.Query consulta = new DownloadManager.Query();
         consulta.setFilterById(downloadId);
-        Cursor c = mGestor.query(consulta);
+        Cursor c = mGestorDescargas.query(consulta);
         // Se comprueba el registro resultante.
         if (c != null) {
             if (c.moveToFirst()) {
@@ -108,14 +142,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         // Se informa de la descarga permitiendo la reproducción.
                         String sUri = c.getString(c
                                 .getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
-                        informarDescarga(Uri.parse(sUri));
+                        // Se invalidan los datos para que se actualice el icono en el elemento.
+                        mAdaptador.notifyDataSetInvalidated();
+                        // Se reproduce la canción.
+                        reproducir(Uri.parse(sUri));
                         break;
                     // Si se ha producido un error en la descarga.
                     case DownloadManager.STATUS_FAILED:
                         // Se informa al usuario del error.
                         String motivo = c.getString(c
                                 .getColumnIndex(DownloadManager.COLUMN_REASON));
-                        informarError(motivo);
+                        mostrarToast(getString(R.string.error) + motivo);
                         break;
                 }
             }
@@ -127,14 +164,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     // Cuando se pulsa en una canción de la lista.
     @Override
     public void onItemClick(AdapterView<?> lst, View v, int position, long id) {
-        // Se descarga la canción.
-        descargarCancion(position);
+        // Se reproduce la canción, descargándola si es necesario.
+        reproducirCancion(position);
     }
 
-    // Trata de reproducir una canci�n, descarg�ndola si es necesario.
-    private void descargarCancion(int position) {
+    // Reproduce una canción, descargándola si es necesario.
+    private void reproducirCancion(int position) {
         lstCanciones.setItemChecked(position, true);
-        // Se comprueba si la canci�n est� disponible en local.
+        // Se invalidan los datos para que se actualice el icono en el elemento que deja de
+        // estar reproduciendose y el que pasa a reproducirse.
+        mAdaptador.notifyDataSetInvalidated();
+        // Se comprueba si la canción está disponible en local.
         Cancion cancion = (Cancion) lstCanciones.getItemAtPosition(position);
         if (cancion != null) {
             File directory = Environment
@@ -143,7 +183,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     + EXTENSION_ARCHIVO);
             if (fichero.exists()) {
                 // Se reproduce.
-                reproducir(Uri.fromFile(fichero).toString());
+                reproducir(Uri.fromFile(fichero));
             } else {
                 // Se descarga.
                 descargar(cancion);
@@ -151,7 +191,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    // Descarga una canci�n.
+    // Descarga una canción.
     private void descargar(Cancion cancion) {
         // Se crea la solicitud de descarga.
         DownloadManager.Request solicitud = new DownloadManager.Request(
@@ -172,10 +212,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         solicitud
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         // Se encola la solicitud.
-        mGestor.enqueue(solicitud);
+        mGestorDescargas.enqueue(solicitud);
         // Se informa al usuario.
-        Toast.makeText(this, getString(R.string.descargando), Toast.LENGTH_LONG)
-                .show();
+        mostrarToast(getString(R.string.descargando) + " " + cancion.getNombre());
     }
 
     @Override
@@ -188,7 +227,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuDescargas:
-                // Se muesta la actividad est�ndar de descargas.
+                // Se muesta la actividad estándar de descargas.
                 mostrarDescargas();
                 return true;
         }
@@ -201,34 +240,29 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         startActivity(i);
     }
 
-    // Muestra un snackbar con la opción de reproducir la canción.
-    private void informarDescarga(final Uri uri) {
-        SnackbarManager.show(
-                Snackbar.with(this)
-                        .text(getString(R.string.listado_exportado))
-                        .actionLabel(getString(R.string.abrir))
-                        .actionColorResource(R.color.accent)
-                        .actionListener(new ActionClickListener() {
-                            @Override
-                            public void onActionClicked(Snackbar snackbar) {
-                                reproducirCancion(uri);
-                            }
-                        })
-                        .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
-        );
+    // Muestra un toast con el mensaje.
+    private void mostrarToast(String mensaje) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
     }
 
-    // Muestra un snackbar con el mensaje de error.
-    private void informarError(String motivo) {
-        SnackbarManager.show(
-                Snackbar.with(this)
-                        .text(getString(R.string.error) + motivo)
-                        .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
-        );
+    private void reproducir(Uri uri) {
+        // Se invalidan los datos para que se actualice el icono en el elemento.
+        mAdaptador.notifyDataSetInvalidated();
+        File directory = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+        File fichero = new File(directory, uri.getLastPathSegment());
+        // Se inicia el servicio pasándole como extra la URL de la canción a reproducir.
+        intentServicio.putExtra(MusicaService.EXTRA_PATH_CANCION,
+                fichero.getAbsolutePath());
+        startService(intentServicio);
+        btnPlayStop.setImageResource(R.drawable.fab_stop);
     }
 
-    private void reproducirCancion(Uri uri) {
-
+    // Para el servicio y cambia el aspecto visual.
+    private void pararServicio() {
+        stopService(intentServicio);
+        lstCanciones.setItemChecked(lstCanciones.getCheckedItemPosition(), false);
+        btnPlayStop.setImageResource(R.drawable.fab_play);
     }
 
     // Crea y retorna el ArrayList de canciones.

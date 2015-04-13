@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Notificaciones</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="big_text_style">Big Text Style</string>
+    <string name="big_picture_style">Big Picture Style</string>
+    <string name="inbox_style">Inbox Style</string>
+    <string name="progress_bar">Progress Bar</string>
+    <string name="progreso_indeterminado">Progreso indeterminado</string>
+    <string name="operacion_finalizada">Operación finalizada</string>
+    <string name="actualizacion_de_datos">Actualización de datos</string>
+    <string name="actualizando">Actualizando...</string>
+    <string name="de"> de </string>
+    <string name="title_activity_resultado">ResultadoActivity</string>
+    <string name="enviar_texto">Enviar texto</string>
+    <string name="enviar">Enviar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="ver">Ver</string>
+    <string name="desde_actividad_principal">Desde la actividad principal</string>
+    <string name="content_title">Content Title</string>
+    <string name="content_text">Content Text</string>
+    <string name="content_info">Content Info</string>
+    <string name="ticker">Ticker</string>
+    <string name="big_text">Big Text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</string>
+    <string name="big_content_title">Big Content Title</string>
+    <string name="summary_text">Summary Text</string>
+    <string name="line">Line</string>
+
+</resources>

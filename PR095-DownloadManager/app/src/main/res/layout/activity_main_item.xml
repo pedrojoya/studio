@@ -7,7 +7,7 @@
     android:minHeight="@dimen/three_lines_tile_height">
 
     <ImageView
-        android:id="@+id/imgDownloading"
+        android:id="@+id/imgPlaying"
         android:layout_width="@dimen/three_lines_avatar_height"
         android:layout_height="@dimen/three_lines_avatar_height"
         android:layout_marginLeft="@dimen/three_lines_avatar_marginLeft"

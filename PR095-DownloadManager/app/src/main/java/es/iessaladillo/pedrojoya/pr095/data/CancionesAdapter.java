@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr095.data;
 
 import android.content.Context;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 
-import es.iessaladillo.pedrojoya.pr090.R;
+import es.iessaladillo.pedrojoya.pr095.R;
+import es.iessaladillo.pedrojoya.pr095.actividades.MainActivity;
 
 // Adaptador para la lista.
 public class CancionesAdapter extends ArrayAdapter<Cancion> {
@@ -60,8 +63,19 @@ public class CancionesAdapter extends ArrayAdapter<Cancion> {
         holder.lblNombre.setText(cancion.getNombre());
         holder.lblDuracion.setText(cancion.getDuracion());
         holder.lblAutor.setText(cancion.getAutor());
-        holder.imgPlaying.setImageResource(
-                mListView.isItemChecked(position) ? R.drawable.ic_action_equalizer : R.drawable.ic_action_play_circle_outline);
+        // Se obtiene el icono a mostrar.
+        File directory = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+        File fichero = new File(directory, cancion.getNombre()
+                + MainActivity.EXTENSION_ARCHIVO);
+        if (fichero.exists()) {
+            holder.imgPlaying.setImageResource(
+                    mListView.isItemChecked(position) ? R.drawable.ic_action_equalizer :
+                            R.drawable.ic_action_play_circle_outline);
+        }
+        else {
+            holder.imgPlaying.setImageResource(R.drawable.ic_action_file_download);
+        }
     }
 
     // Contenedor de vistas para la vista-fila.
