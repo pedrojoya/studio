@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr096;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -22,6 +23,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private static final int NC_INBOX = 3;
     private static final int NC_PROGRESS = 4;
     private static final int NC_IND_PROGRESS = 5;
+    private static final int NC_HEADS_UP = 6;
 
     // Variables a nivel de clase.
     private NotificationManager mGestor;
@@ -44,7 +46,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         findViewById(R.id.btnInboxStyle).setOnClickListener(this);
         findViewById(R.id.btnProgressBar).setOnClickListener(this);
         findViewById(R.id.btnProgresoIndeterminado).setOnClickListener(this);
-        findViewById(R.id.btnResultado).setOnClickListener(this);
+        findViewById(R.id.btnHeadsUp).setOnClickListener(this);
     }
 
     // Al hacer click sobre un botón.
@@ -52,24 +54,24 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View view) {
         // Dependiendo del botón pulsado.
         switch (view.getId()) {
-        case R.id.btnBigTextStyle:
-            notificarBigText();
-            break;
-        case R.id.btnBigPictureStyle:
-            notificarBigPicture();
-            break;
-        case R.id.btnInboxStyle:
-            notificarInbox();
-            break;
-        case R.id.btnProgressBar:
-            notificarProgressBar();
-            break;
-        case R.id.btnProgresoIndeterminado:
-            notificarIndeterminateProgressBar();
-            break;
-        case R.id.btnResultado:
-            verResultado();
-            break;
+            case R.id.btnBigTextStyle:
+                notificarBigText();
+                break;
+            case R.id.btnBigPictureStyle:
+                notificarBigPicture();
+                break;
+            case R.id.btnInboxStyle:
+                notificarInbox();
+                break;
+            case R.id.btnProgressBar:
+                notificarProgressBar();
+                break;
+            case R.id.btnProgresoIndeterminado:
+                notificarIndeterminateProgressBar();
+                break;
+            case R.id.btnHeadsUp:
+                notificarHeadsUp();
+                break;
         }
     }
 
@@ -222,7 +224,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             // Se muestra la notificación inicial.
             mBuilder = new NotificationCompat.Builder(MainActivity.this);
             BitmapDrawable recurso = (BitmapDrawable) getResources()
-                    .getDrawable(R.mipmap.ic_launcher, null);
+                    .getDrawable(R.mipmap.ic_launcher);
             if (recurso != null) {
                 Bitmap iconoGrande = recurso.getBitmap();
                 mBuilder.setLargeIcon(iconoGrande);
@@ -274,7 +276,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             // Se añade la acción por defecto.
             Intent iVer = new Intent(MainActivity.this, ResultadoActivity.class);
             iVer.setAction(ResultadoActivity.ACTION_VIEW);
-            PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
+            // PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
+            PendingIntent piVer = PendingIntent.getActivity(MainActivity
+                    .this, 0, iVer, 0);
             mBuilder.setContentIntent(piVer);
             // Se muestra la notificación.
             mGestor.notify(NC_PROGRESS, mBuilder.build());
@@ -296,7 +300,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             // Se muestra la notificación inicial.
             mBuilder = new NotificationCompat.Builder(MainActivity.this);
             BitmapDrawable recurso = (BitmapDrawable) getResources()
-                    .getDrawable(R.mipmap.ic_launcher, null);
+                    .getDrawable(R.mipmap.ic_launcher);
             if (recurso != null) {
                 Bitmap iconoGrande = recurso.getBitmap();
                 mBuilder.setLargeIcon(iconoGrande);
@@ -332,7 +336,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             // Se añade la acción por defecto.
             Intent iVer = new Intent(MainActivity.this, ResultadoActivity.class);
             iVer.setAction(ResultadoActivity.ACTION_VIEW);
-            PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
+            // PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
+            PendingIntent piVer = PendingIntent.getActivity(MainActivity
+                            .this, 0, iVer,
+                    0);
             mBuilder.setContentIntent(piVer);
             // Se muestra la notificación.
             mGestor.notify(NC_IND_PROGRESS, mBuilder.build());
@@ -340,6 +347,45 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     }
 
+    // Muestra una notificación heads-up.
+    private void notificarHeadsUp() {
+        // Se crea el constructor de notificaciones.
+        NotificationCompat.Builder b = new NotificationCompat.Builder(this);
+        // Se configuran los elementos básicos de la notificación.
+        BitmapDrawable recurso = (BitmapDrawable) getResources().getDrawable(
+                R.mipmap.ic_launcher);
+        if (recurso != null) {
+            Bitmap iconoGrande = recurso.getBitmap();
+            b.setLargeIcon(iconoGrande);
+        }
+        b.setSmallIcon(R.drawable.ic_calendar)
+                .setContentTitle(getString(R.string.content_title))
+                .setContentText(getString(R.string.content_text))
+                .setContentInfo(getString(R.string.content_info))
+                .setTicker(getString(R.string.ticker))
+                .setAutoCancel(true)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setDefaults(Notification.DEFAULT_SOUND | Notification
+                        .DEFAULT_LIGHTS);
+        // Se añade la acción de enviar.
+        Intent iResponder = new Intent(this, ResultadoActivity.class);
+        iResponder.setAction(ResultadoActivity.ACTION_ANSWER);
+        iResponder.putExtra(ResultadoActivity.EXTRA_NOTIFICATION_CODE, NC_HEADS_UP);
+        PendingIntent piResponder = PendingIntent.getActivity(this, 0,
+                iResponder, 0);
+        b.addAction(R.drawable.ic_send,
+                getString(R.string.responder), piResponder);
+        // Se añade la acción por defecto.
+        Intent iVer = new Intent(this, ResultadoActivity.class);
+        iVer.setAction(ResultadoActivity.ACTION_VIEW);
+        //PendingIntent piVer = getPendingIntentForRegularActivity(iVer);
+        PendingIntent piVer = PendingIntent.getActivity(this, 0, iVer, 0);
+        b.setContentIntent(piVer);
+        // Se realiza la notificación.
+        mGestor.notify(NC_HEADS_UP, b.build());
+    }
+
+/*
     // Crea un pending intent para la actividad normal. Recibe el intent que
     // será enviado
     // cuando se pulse sobre la notificación.
@@ -351,11 +397,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // Se retorna un PendingIntent que contiene la pila al completo.
         return pila.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
     }
-
-    // Muestra la actividad de resultado.
-    private void verResultado() {
-        Intent i = new Intent(MainActivity.this, ResultadoActivity.class);
-        startActivity(i);
-    }
+*/
 
 }

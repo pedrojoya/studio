@@ -12,9 +12,14 @@ public class ResultadoActivity extends ActionBarActivity {
 
     // Constantes.
     public static final String EXTRA_NOTIFICATION_CODE = "nc";
-    public static final String ACTION_VIEW = "es.iessaladillo.pedrojoya.pr096.action.VIEW";
-    public static final String ACTION_SEND = "es.iessaladillo.pedrojoya.pr096.action.SEND";
-    public static final String ACTION_DELETE = "es.iessaladillo.pedrojoya.pr096.action.DELETE";
+    public static final String ACTION_VIEW =
+            "es.iessaladillo.pedrojoya.pr096.action.VIEW";
+    public static final String ACTION_SEND =
+            "es.iessaladillo.pedrojoya.pr096.action.SEND";
+    public static final String ACTION_DELETE =
+            "es.iessaladillo.pedrojoya.pr096.action.DELETE";
+    public static final String ACTION_ANSWER =
+            "es.iessaladillo.pedrojoya.pr096.action.ANSWER";
 
     // Al crear la actividad.
     @Override
@@ -30,22 +35,31 @@ public class ResultadoActivity extends ActionBarActivity {
         if (i != null) {
             // Dependiendo de la acción especificada.
             String accion = i.getAction();
-            if (ACTION_SEND.equals(accion)) {
-                lblMensaje.setText(getString(R.string.enviar));
-                if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
-                    int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
-                    gestor.cancel(nc);
-                }
-            }
-            else if (ACTION_DELETE.equals(accion)) {
-                lblMensaje.setText(getString(R.string.eliminar));
-                if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
-                    int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
-                    gestor.cancel(nc);
-                }
-            }
-            else {
-                lblMensaje.setText(getString(R.string.ver));
+            switch (accion) {
+                case ACTION_SEND:
+                    lblMensaje.setText(getString(R.string.enviar));
+                    if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
+                        int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
+                        gestor.cancel(nc);
+                    }
+                    break;
+                case ACTION_DELETE:
+                    lblMensaje.setText(getString(R.string.eliminar));
+                    if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
+                        int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
+                        gestor.cancel(nc);
+                    }
+                    break;
+                case ACTION_ANSWER:
+                    lblMensaje.setText(getString(R.string.responder));
+                    if (i.hasExtra(EXTRA_NOTIFICATION_CODE)) {
+                        int nc = i.getIntExtra(EXTRA_NOTIFICATION_CODE, 0);
+                        gestor.cancel(nc);
+                    }
+                    break;
+                default:
+                    lblMensaje.setText(getString(R.string.ver));
+                    break;
             }
         }
     }
