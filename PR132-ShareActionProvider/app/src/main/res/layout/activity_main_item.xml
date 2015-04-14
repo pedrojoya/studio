@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:id="@android:id/text1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:minHeight="@dimen/single_line_tile_height"
+          android:paddingLeft="@dimen/single_line_text_paddingLeft"
+          android:paddingRight="@dimen/single_line_text_paddingRight"
+          android:paddingBottom="@dimen/single_line_text_paddingBottom"
+          android:paddingTop="@dimen/single_line_text_paddingTop"
+          tools:text="Nombre"
+          android:textSize="@dimen/single_line_primary_text_textSize"/>
