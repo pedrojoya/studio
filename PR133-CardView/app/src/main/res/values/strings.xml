@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PR133-CardView</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="cuenta">Cuenta</string>
+    <string name="Propina">Propina</string>
+    <string name="porcentaje">Porcentaje</string>
+</resources>
