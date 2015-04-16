@@ -1,5 +1,10 @@
 <resources>
-    <dimen name="tarjeta_padding">10dp</dimen>
+    <dimen name="tarjeta_padding">15dp</dimen>
     <dimen name="tarjeta_cardCornerRadius">5dp</dimen>
     <dimen name="tarjeta_cardElevation">5dp</dimen>
+    <dimen name="moneda_marginLeft">2dp</dimen>
+    <dimen name="etiqueta_marginBottom">2dp</dimen>
+    <dimen name="dato_marginBottom">10dp</dimen>
+    <dimen name="propina_marginLeft">10dp</dimen>
+    <dimen name="redondear_marginLeft">10dp</dimen>
 </resources>
