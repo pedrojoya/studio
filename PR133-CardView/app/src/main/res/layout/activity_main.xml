@@ -24,7 +24,6 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/cuenta"
                 android:id="@+id/lblCuenta"
-                android:textColor="@color/accent"
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/txtCuenta"/>
@@ -44,9 +43,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:digits="0123456789,"
                 android:ems="10"
                 android:id="@+id/txtCuenta"
-                android:text="256.57"
+                tools:text="256,57"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:gravity="right"
                 android:selectAllOnFocus="true"
@@ -62,7 +62,6 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/Propina"
                 android:id="@+id/lblPropina"
-                android:textColor="@color/accent"
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
                 android:layout_below="@+id/txtCuenta"
                 android:layout_alignRight="@+id/lblCuenta"
@@ -88,7 +87,7 @@
                 android:ems="5"
                 android:id="@+id/txtPropina"
                 android:focusable="false"
-                android:text="25.66"
+                tools:text="25,66"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_marginLeft="@dimen/propina_marginLeft"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
@@ -114,7 +113,6 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/porcentaje"
                 android:id="@+id/lblPorcentaje"
-                android:textColor="@color/accent"
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
                 android:layout_below="@+id/txtCuenta"
                 android:layout_alignTop="@+id/lblPropina"
@@ -127,7 +125,7 @@
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/txtPorcentaje"
-                android:text="10"
+                tools:text="10"
                 android:maxLength="3"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:selectAllOnFocus="true"
@@ -143,7 +141,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/total"
-                android:textColor="@color/accent"
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
                 android:id="@+id/lblTotal"
                 android:layout_below="@+id/txtPropina"
@@ -168,7 +165,7 @@
                 android:ems="10"
                 android:id="@+id/txtTotal"
                 android:focusable="false"
-                android:text="282.23"
+                tools:text="282,23"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
                 android:gravity="right"
@@ -182,11 +179,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/redondear"
-                android:id="@+id/btnRedondear"
+                android:id="@+id/btnRedondearTotal"
                 style="@style/AppCompat.Button.Flat.Common"
-                android:textColor="@color/accent"
                 android:layout_marginLeft="@dimen/redondear_marginLeft"
                 android:layout_below="@id/txtTotal"
+                android:textColor="@color/accent"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"/>
 
@@ -194,18 +191,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/limpiar"
-                android:id="@+id/btnLimpiar"
+                android:id="@+id/btnLimpiarTotal"
                 style="@style/AppCompat.Button.Flat.Common"
-                android:layout_alignBottom="@+id/btnRedondear"
-                android:layout_toLeftOf="@+id/btnRedondear"
-                android:layout_toStartOf="@+id/btnRedondear"/>
+                android:layout_alignBottom="@+id/btnRedondearTotal"
+                android:layout_toLeftOf="@+id/btnRedondearTotal"
+                android:layout_toStartOf="@+id/btnRedondearTotal"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         card_view:cardCornerRadius="@dimen/tarjeta_cardCornerRadius"
         card_view:cardElevation="@dimen/tarjeta_cardElevation"
         card_view:cardUseCompatPadding="true">
@@ -219,48 +216,88 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/comensales"
-                android:id="@+id/lblComensales"
-                android:textColor="@color/accent"
+                android:text="@string/por_comensal"
+                android:id="@+id/lblEscote"
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
-                android:layout_centerHorizontal="true"/>
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/txtEscote"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:text="€"
+                android:id="@+id/lblMonedaEscote"
+                android:layout_alignBaseline="@+id/txtEscote"
+                android:layout_marginLeft="@dimen/moneda_marginLeft"
+                android:layout_below="@+id/lblEscote"
+                android:layout_alignParentRight="true"
+                />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:ems="2"
+                android:ems="5"
+                android:id="@+id/txtEscote"
+                android:focusable="false"
+                tools:text="25,66"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_marginLeft="@dimen/propina_marginLeft"
+                android:layout_marginBottom="@dimen/dato_marginBottom"
+                android:gravity="right"
+                android:layout_below="@+id/lblEscote"
+                android:layout_toLeftOf="@+id/lblMonedaEscote"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/comensales"
+                android:id="@+id/lblComensales"
+                android:layout_marginBottom="@dimen/etiqueta_marginBottom"
+                android:layout_alignTop="@+id/lblEscote"
+                android:layout_toLeftOf="@+id/txtEscote"
+                android:layout_toStartOf="@+id/txtEscote"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
                 android:id="@+id/txtComensales"
-                android:text="2"
+                android:text="1"
                 android:maxLength="3"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:selectAllOnFocus="true"
-                android:gravity="center"
+                android:gravity="right"
                 android:layout_below="@+id/lblComensales"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
-                android:layout_marginLeft="@dimen/dato_marginBottom"
-                android:layout_marginRight="@dimen/dato_marginBottom"
-                android:layout_centerHorizontal="true"/>
+                android:layout_alignTop="@+id/txtEscote"
+                android:layout_toLeftOf="@+id/txtEscote"
+                android:layout_toStartOf="@+id/txtEscote"/>
 
-            <ImageButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imgMenos"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_action_keyboard_arrow_left"
-                android:layout_below="@+id/lblComensales"
-                android:layout_toLeftOf="@+id/txtComensales"
-                android:layout_alignTop="@+id/txtComensales"/>
+                android:text="@string/redondear"
+                android:id="@+id/btnRedondearEscote"
+                style="@style/AppCompat.Button.Flat.Common"
+                android:layout_marginLeft="@dimen/redondear_marginLeft"
+                android:layout_below="@id/txtEscote"
+                android:textColor="@color/accent"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
 
-            <ImageButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imgMas"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_action_keyboard_arrow_right"
-                android:layout_below="@+id/lblComensales"
-                android:layout_toRightOf="@+id/txtComensales"
-                android:layout_alignTop="@+id/txtComensales"/>
+                android:text="@string/limpiar"
+                android:id="@+id/btnLimpiarEscote"
+                style="@style/AppCompat.Button.Flat.Common"
+                android:layout_alignBottom="@+id/btnRedondearEscote"
+                android:layout_toLeftOf="@+id/btnRedondearEscote"
+                android:layout_toStartOf="@+id/btnRedondearEscote"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
