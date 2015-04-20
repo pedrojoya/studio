@@ -26,33 +26,38 @@
                 android:id="@+id/lblCuenta"
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
                 android:layout_alignParentTop="true"
-                android:layout_alignRight="@+id/txtCuenta"/>
+                android:layout_alignRight="@+id/txtCuenta"
+                android:layout_alignEnd="@+id/txtCuenta"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="€"
+                tools:text="€"
                 android:layout_marginLeft="@dimen/moneda_marginLeft"
+                android:layout_marginStart="@dimen/moneda_marginLeft"
                 android:id="@+id/lblMonedaCuenta"
                 android:layout_alignBaseline="@+id/txtCuenta"
                 android:layout_below="@+id/lblCuenta"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:digits="0123456789,"
                 android:ems="10"
                 android:id="@+id/txtCuenta"
                 tools:text="256,57"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:gravity="right"
+                android:gravity="end"
                 android:selectAllOnFocus="true"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
                 android:layout_below="@+id/lblCuenta"
                 android:layout_toLeftOf="@+id/lblMonedaCuenta"
+                android:layout_toStartOf="@+id/lblMonedaCuenta"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"/>
 
@@ -65,19 +70,21 @@
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
                 android:layout_below="@+id/txtCuenta"
                 android:layout_alignRight="@+id/lblCuenta"
-
+                android:layout_alignEnd="@+id/lblCuenta"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="€"
+                tools:text="€"
                 android:id="@+id/lblMonedaPropina"
                 android:layout_alignBaseline="@+id/txtPropina"
                 android:layout_marginLeft="@dimen/moneda_marginLeft"
+                android:layout_marginStart="@dimen/moneda_marginLeft"
                 android:layout_below="@+id/lblPropina"
                 android:layout_alignRight="@+id/lblMonedaCuenta"
+                android:layout_alignEnd="@+id/lblMonedaCuenta"
                 />
 
             <EditText
@@ -90,10 +97,13 @@
                 tools:text="25,66"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_marginLeft="@dimen/propina_marginLeft"
+                android:layout_marginStart="@dimen/propina_marginLeft"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
-                android:gravity="right"
+                android:gravity="end"
                 android:layout_below="@+id/lblPropina"
-                android:layout_toLeftOf="@+id/lblMonedaPropina"/>
+                android:layout_toLeftOf="@+id/lblMonedaPropina"
+                android:layout_toStartOf="@+id/lblMonedaPropina"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,6 +113,7 @@
                 android:id="@+id/lblMonedaPorcentaje"
                 android:layout_alignBaseline="@+id/txtPorcentaje"
                 android:layout_marginLeft="@dimen/moneda_marginLeft"
+                android:layout_marginStart="@dimen/moneda_marginLeft"
                 android:layout_alignTop="@+id/lblMonedaPropina"
                 android:layout_toLeftOf="@+id/txtPropina"
                 android:layout_toStartOf="@+id/txtPropina"/>
@@ -129,7 +140,7 @@
                 android:maxLength="3"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:selectAllOnFocus="true"
-                android:gravity="right"
+                android:gravity="end"
                 android:layout_below="@+id/lblPorcentaje"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
                 android:layout_alignTop="@+id/txtPropina"
@@ -145,18 +156,22 @@
                 android:id="@+id/lblTotal"
                 android:layout_below="@+id/txtPropina"
                 android:layout_alignRight="@+id/txtCuenta"
+                android:layout_alignEnd="@+id/txtCuenta"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="€"
+                tools:text="€"
                 android:layout_marginLeft="@dimen/moneda_marginLeft"
+                android:layout_marginStart="@dimen/moneda_marginLeft"
                 android:id="@+id/lblMonedaTotal"
                 android:layout_alignBaseline="@+id/txtTotal"
                 android:layout_below="@+id/lblTotal"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -168,10 +183,10 @@
                 tools:text="282,23"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
-                android:gravity="right"
-                android:editable="false"
+                android:gravity="end"
                 android:layout_below="@+id/lblTotal"
                 android:layout_toLeftOf="@+id/lblMonedaTotal"
+                android:layout_toStartOf="@+id/lblMonedaTotal"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"/>
 
@@ -182,6 +197,7 @@
                 android:id="@+id/btnRedondearTotal"
                 style="@style/AppCompat.Button.Flat.Common"
                 android:layout_marginLeft="@dimen/redondear_marginLeft"
+                android:layout_marginStart="@dimen/redondear_marginLeft"
                 android:layout_below="@id/txtTotal"
                 android:textColor="@color/accent"
                 android:layout_alignParentRight="true"
@@ -220,18 +236,22 @@
                 android:id="@+id/lblEscote"
                 android:layout_marginBottom="@dimen/etiqueta_marginBottom"
                 android:layout_alignParentTop="true"
-                android:layout_alignRight="@+id/txtEscote"/>
+                android:layout_alignRight="@+id/txtEscote"
+                android:layout_alignEnd="@+id/txtEscote"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="€"
+                tools:text="€"
                 android:id="@+id/lblMonedaEscote"
                 android:layout_alignBaseline="@+id/txtEscote"
                 android:layout_marginLeft="@dimen/moneda_marginLeft"
+                android:layout_marginStart="@dimen/moneda_marginLeft"
                 android:layout_below="@+id/lblEscote"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 />
 
             <EditText
@@ -244,10 +264,13 @@
                 tools:text="25,66"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:layout_marginLeft="@dimen/propina_marginLeft"
+                android:layout_marginStart="@dimen/propina_marginLeft"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
-                android:gravity="right"
+                android:gravity="end"
                 android:layout_below="@+id/lblEscote"
-                android:layout_toLeftOf="@+id/lblMonedaEscote"/>
+                android:layout_toLeftOf="@+id/lblMonedaEscote"
+                android:layout_toStartOf="@+id/lblMonedaEscote"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -266,11 +289,11 @@
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/txtComensales"
-                android:text="1"
+                tools:text="1"
                 android:maxLength="3"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:selectAllOnFocus="true"
-                android:gravity="right"
+                android:gravity="end"
                 android:layout_below="@+id/lblComensales"
                 android:layout_marginBottom="@dimen/dato_marginBottom"
                 android:layout_alignTop="@+id/txtEscote"
@@ -284,6 +307,7 @@
                 android:id="@+id/btnRedondearEscote"
                 style="@style/AppCompat.Button.Flat.Common"
                 android:layout_marginLeft="@dimen/redondear_marginLeft"
+                android:layout_marginStart="@dimen/redondear_marginLeft"
                 android:layout_below="@id/txtEscote"
                 android:textColor="@color/accent"
                 android:layout_alignParentRight="true"

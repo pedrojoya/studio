@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr133;
 
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -19,31 +20,33 @@ import java.util.Locale;
 public class MainActivity extends ActionBarActivity {
 
     private static final float DEFAULT_CUENTA = 0.00f;
-    private static final int DEFAULT_PORCENTAJE = 10;
+    private static final int DEFAULT_PORCENTAJE = 2;
     private static final int DEFAULT_COMENSALES = 1;
 
     private TextView lblCuenta;
     private EditText txtCuenta;
     private TextView lblPorcentaje;
     private EditText txtPorcentaje;
-    private TextView lblPropina;
     private EditText txtPropina;
-    private TextView lblTotal;
     private EditText txtTotal;
     private Button btnRedondearTotal;
-    private Button btnLimpiarTotal;
     private TextView lblComensales;
     private EditText txtComensales;
-    private TextView lblEscote;
     private EditText txtEscote;
-    private Button btnRedondearEscote;
-    private Button btnLimpiarEscote;
+
     private NumberFormat mFormateador;
+    private String mSimboloDecimal;
+    private String mSimboloMoneda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Se obtiene el símbolo decimal y el símbolo de mondeda de la configuración
+        // actual del dispositivo.
+        DecimalFormatSymbols decimalSymbols = new DecimalFormatSymbols();
+        mSimboloDecimal = decimalSymbols.getDecimalSeparator() + "";
+        mSimboloMoneda = decimalSymbols.getCurrencySymbol();
         mFormateador = NumberFormat.getInstance(Locale.getDefault());
         initVistas();
     }
@@ -69,7 +72,6 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-        // Sólo se pueden hacer operaciones si tenemos todos los datos.
         txtCuenta.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
@@ -84,14 +86,24 @@ public class MainActivity extends ActionBarActivity {
             // Después de haber cambiado el texto.
             @Override
             public void afterTextChanged(Editable s) {
+                // Si ha quedado vacío se pone el valor por defecto.
                 if (TextUtils.isEmpty(s.toString())) {
                     txtCuenta.setText(String.format(Locale.getDefault(), "%.2f",
                             DEFAULT_CUENTA));
                 }
-                // Comprobar si hay datos para hacer operaciones.
+                // Se sustituye el '.' por el símbolo decimal (la ',').
+                if (s.toString().contains(".") && !(".".equals(mSimboloDecimal))) {
+                    int position = txtCuenta.getSelectionStart();
+                    String reemplazo = s.toString().replace(".", mSimboloDecimal);
+                    txtCuenta.setText(reemplazo);
+                    txtCuenta.setSelection(position);
+                }
+                // Se realizan los cálculos
                 calcular();
             }
         });
+        TextView lblMonedaCuenta = (TextView) findViewById(R.id.lblMonedaCuenta);
+        lblMonedaCuenta.setText(mSimboloMoneda);
         lblPorcentaje = (TextView) findViewById(R.id.lblPorcentaje);
         txtPorcentaje = (EditText) findViewById(R.id.txtPorcentaje);
         txtPorcentaje.setSelectAllOnFocus(true);
@@ -105,7 +117,6 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-        // Sólo se pueden hacer operaciones si tenemos todos los datos.
         txtPorcentaje.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
@@ -120,17 +131,20 @@ public class MainActivity extends ActionBarActivity {
             // Después de haber cambiado el texto.
             @Override
             public void afterTextChanged(Editable s) {
+                // Si ha quedado vacío se pone el valor por defecto.
                 if (TextUtils.isEmpty(s.toString())) {
-                    txtPorcentaje.setText("0");
+                    txtPorcentaje.setText(DEFAULT_PORCENTAJE + "");
                 }
-                // Comprobar si hay datos para hacer operaciones.
+                // Se realizan los cálculos.
                 calcular();
             }
         });
-        lblPropina = (TextView) findViewById(R.id.lblPropina);
         txtPropina = (EditText) findViewById(R.id.txtPropina);
-        lblTotal = (TextView) findViewById(R.id.lblTotal);
+        TextView lblMonedaPropina = (TextView) findViewById(R.id.lblMonedaPropina);
+        lblMonedaPropina.setText(mSimboloMoneda);
         txtTotal = (EditText) findViewById(R.id.txtTotal);
+        TextView lblMonedaTotal = (TextView) findViewById(R.id.lblMonedaTotal);
+        lblMonedaTotal.setText(mSimboloMoneda);
         btnRedondearTotal = (Button) findViewById(R.id.btnRedondearTotal);
         btnRedondearTotal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,15 +152,14 @@ public class MainActivity extends ActionBarActivity {
                 redondearTotal();
             }
         });
-        btnLimpiarTotal = (Button) findViewById(R.id.btnLimpiarTotal);
+        Button btnLimpiarTotal = (Button) findViewById(R.id.btnLimpiarTotal);
         btnLimpiarTotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 limpiarTotal();
             }
         });
-
-
+        // Vistas de las segunda tarjeta.
         lblComensales = (TextView) findViewById(R.id.lblComensales);
         txtComensales = (EditText) findViewById(R.id.txtComensales);
         txtComensales.setSelectAllOnFocus(true);
@@ -160,7 +173,6 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-        // Sólo se pueden hacer operaciones si tenemos todos los datos.
         txtComensales.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
@@ -175,12 +187,15 @@ public class MainActivity extends ActionBarActivity {
             // Después de haber cambiado el texto.
             @Override
             public void afterTextChanged(Editable s) {
+                // Si ha quedado vacío se pone el valor por defecto.
                 if (TextUtils.isEmpty(s.toString())) {
                     txtComensales.setText(DEFAULT_COMENSALES + "");
                 } else {
                     try {
+                        // Se formatea.
                         int comensales = mFormateador.parse(s.toString())
                                 .intValue();
+                        // El número de comensales no puede ser 0.
                         if (comensales == 0) {
                             txtComensales.setText(DEFAULT_COMENSALES + "");
                         }
@@ -188,27 +203,27 @@ public class MainActivity extends ActionBarActivity {
                         e.printStackTrace();
                     }
                 }
-                // Comprobar si hay datos para hacer operaciones.
+                // Se realizan los cálculos.
                 calcular();
             }
         });
-        lblEscote = (TextView) findViewById(R.id.lblEscote);
         txtEscote = (EditText) findViewById(R.id.txtEscote);
-        btnRedondearEscote = (Button) findViewById(R.id.btnRedondearEscote);
+        TextView lblMonedaEscote = (TextView) findViewById(R.id.lblMonedaEscote);
+        lblMonedaEscote.setText(mSimboloMoneda);
+        Button btnRedondearEscote = (Button) findViewById(R.id.btnRedondearEscote);
         btnRedondearEscote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 redondearEscote();
             }
         });
-        btnLimpiarEscote = (Button) findViewById(R.id.btnLimpiarEscote);
+        Button btnLimpiarEscote = (Button) findViewById(R.id.btnLimpiarEscote);
         btnLimpiarEscote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 limpiarEscote();
             }
         });
-
         // Comprobaciones iniciales.
         limpiarTotal();
         limpiarEscote();
@@ -229,7 +244,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    // Redondea el total.
+    // Redondea el total y realiza el cálculo del escote por comensal.
     private void redondearTotal() {
         try {
             float total = (mFormateador.parse(txtTotal.getText()
@@ -250,8 +265,8 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    // Redondeo el escote por comensal.
     private void redondearEscote() {
-        float total = 0;
         try {
             float escote = (mFormateador.parse(txtEscote.getText()
                     .toString())).floatValue();
@@ -266,7 +281,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    // Limpia los campos de datos.
+    // Limpia los campos de datos de la primera tarjeta.
     private void limpiarTotal() {
         txtCuenta.setText(String.format(Locale.getDefault(), "%.2f",
                 DEFAULT_CUENTA));
@@ -274,77 +289,72 @@ public class MainActivity extends ActionBarActivity {
         txtCuenta.requestFocus();
     }
 
+    // Limpia los campos de datos de las segunda tarjeta.
     private void limpiarEscote() {
         txtComensales.setText(DEFAULT_COMENSALES + "");
     }
 
-    // Comprueba si tenemos todos los datos necesarios para hacer las
-    // operaciones y las lleva a cabo.
+    // Comprueba si tenemos todos los datos necesarios para hacer loss
+    // cálculos y los lleva a cabo.
     private void calcular() {
-            if (!TextUtils.isEmpty(txtCuenta.getText().toString()) &&
-                    !TextUtils.isEmpty(txtPorcentaje.getText().toString()) &&
-                    !TextUtils.isEmpty(txtComensales.getText().toString())) {
-                float cuenta = DEFAULT_CUENTA;
-                try {
-                    cuenta = (mFormateador.parse(txtCuenta.getText()
-                            .toString())).floatValue();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                float porcentaje = DEFAULT_PORCENTAJE;
-                try {
-                    porcentaje = (mFormateador.parse(txtPorcentaje.getText()
-                            .toString())).floatValue();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                float comensales = DEFAULT_COMENSALES;
-                try {
-                    comensales = (mFormateador.parse(txtComensales.getText()
-                            .toString())).floatValue();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                float propina = (cuenta * porcentaje) / 100;
-                float total = cuenta + propina;
-                float escote = total / comensales;
-                txtPropina.setText(String.format(Locale.getDefault(), "%.2f",
-                        propina));
-                txtTotal.setText(String.format(Locale.getDefault(), "%.2f",
-                        total));
-                txtEscote.setText(String.format(Locale.getDefault(), "%.2f",
-                        escote));
-                btnRedondearTotal.setEnabled(true);
-            } else {
-                btnRedondearTotal.setEnabled(false);
+        if (!TextUtils.isEmpty(txtCuenta.getText().toString()) &&
+                !TextUtils.isEmpty(txtPorcentaje.getText().toString()) &&
+                !TextUtils.isEmpty(txtComensales.getText().toString())) {
+            float cuenta = DEFAULT_CUENTA;
+            try {
+                cuenta = (mFormateador.parse(txtCuenta.getText()
+                        .toString())).floatValue();
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+            float porcentaje = DEFAULT_PORCENTAJE;
+            try {
+                porcentaje = (mFormateador.parse(txtPorcentaje.getText()
+                        .toString())).floatValue();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            float comensales = DEFAULT_COMENSALES;
+            try {
+                comensales = (mFormateador.parse(txtComensales.getText()
+                        .toString())).floatValue();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            float propina = (cuenta * porcentaje) / 100;
+            float total = cuenta + propina;
+            float escote = total / comensales;
+            txtPropina.setText(String.format(Locale.getDefault(), "%.2f",
+                    propina));
+            txtTotal.setText(String.format(Locale.getDefault(), "%.2f",
+                    total));
+            txtEscote.setText(String.format(Locale.getDefault(), "%.2f",
+                    escote));
+            btnRedondearTotal.setEnabled(true);
+        } else {
+            btnRedondearTotal.setEnabled(false);
+        }
     }
 
-    // Muestra el texto el edittext en formato moneda.
+    // Muestra el texto el EditText recibido en formato moneda.
     private void formatMoneda(EditText txt) {
         try {
             txt.setText(String.format(Locale.getDefault(), "%.2f",
                     (mFormateador.parse(txt.getText()
                             .toString())).floatValue()));
-        } catch (NumberFormatException e) {
-            txt.setText(String.format(Locale.getDefault(), "%.2f", DEFAULT_CUENTA));
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (NumberFormatException | ParseException e) {
             txt.setText(String.format(Locale.getDefault(), "%.2f", DEFAULT_CUENTA));
             e.printStackTrace();
         }
     }
 
-    // Muestra el texto el edittext en formato entero.
+    // Muestra el texto el EditText en formato entero.
     private void formatEntero(EditText txt) {
         try {
             txt.setText(String.format(Locale.getDefault(), "%d",
                     (mFormateador.parse(txt.getText()
                             .toString())).intValue()));
-        } catch (NumberFormatException e) {
-            txt.setText(String.format(Locale.getDefault(), "%d", 0));
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (NumberFormatException | ParseException e) {
             txt.setText(String.format(Locale.getDefault(), "%d", 0));
             e.printStackTrace();
         }
