@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Carga de la Bateria</string>
+    <string name="nivel_bateria">Nivel de carga</string>
+    <string name="cargando">Cargando</string>
+    <string name="por_usb">por USB</string>
+    <string name="conectado">conectado a la red eléctrica</string>
+</resources>

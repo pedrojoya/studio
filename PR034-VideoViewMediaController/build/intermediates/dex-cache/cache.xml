@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-fb53157b2f134f947862207183fe24786b708f95.jar" />
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\classes-588c7d1c722cb9fe4664776a01dbbb5aa9802446.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/classes-547889b973652af71f90074998c12b16872e6e66.jar" />
+        revision="22.0.0"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-e90024e8264230233629a61737aef242da5ae59b.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/classes-59546c236ffd1b663a649b0df8359543af69cf8e.jar" />
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\classes-d2e61b0142cd90e143aa02ff46cbba5841ea3bd4.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-28ef5ae80f16ed0a2d0276b168770c54a0109087.jar" />
+        revision="22.0.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d0c8c7d07711f6b418e2743591b7b76f5bf0a5c6.jar" />
     </item>
 
 </items>

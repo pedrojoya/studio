@@ -118,8 +118,7 @@ public class MainActivity extends ActionBarActivity implements PickOrCaptureDial
         }
     }
 
-    // Envía un intent implícito para recortar la imagen. Recibe el path de la foto a recortar.
-    // Si no es posible recortar, se llama a cargarImagenEscalada().
+    // Recorta la imagen detectando la cara.
     private void recortarImagen(String pathFoto) {
         FaceCropper faceCropper = new FaceCropper();
         faceCropper.setMaxFaces(1);

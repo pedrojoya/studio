@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="activity_padding">20dp</dimen>
+    <dimen name="progressbar_marginTop">8dp</dimen>
+</resources>
