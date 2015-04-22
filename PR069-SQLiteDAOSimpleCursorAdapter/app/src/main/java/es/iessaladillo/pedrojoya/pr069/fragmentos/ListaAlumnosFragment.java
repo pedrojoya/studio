@@ -2,11 +2,9 @@ package es.iessaladillo.pedrojoya.pr069.fragmentos;
 
 import android.app.Activity;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -42,7 +40,6 @@ public class ListaAlumnosFragment extends Fragment {
 
     // Variables miembro.
     private ListView lstAlumnos;
-    private RelativeLayout rlListaVacia;
     private OnListaAlumnosFragmentListener listener;
     private ActionMode modoContextual;
 
@@ -67,7 +64,7 @@ public class ListaAlumnosFragment extends Fragment {
     private void initVistas(View v) {
         // Se configuran las vistas.
         lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
-        rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
+        RelativeLayout rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
         // Si la lista está vacía se muestra un icono y un texto para que al
         // pulsarlo se agregue un alumno.
         rlListaVacia.setOnClickListener(new OnClickListener() {
@@ -141,7 +138,8 @@ public class ListaAlumnosFragment extends Fragment {
             // Al seleccionar un elemento de la lista.
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
-                                                  int position, long id, boolean checked) {
+                                                  int position,
+                                                  long id, boolean checked) {
                 // Se actualiza el título de la action bar contextual.
                 mode.setTitle(lstAlumnos.getCheckedItemCount() + "");
             }

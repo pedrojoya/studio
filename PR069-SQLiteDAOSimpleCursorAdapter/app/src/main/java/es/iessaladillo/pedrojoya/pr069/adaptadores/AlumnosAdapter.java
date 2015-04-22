@@ -20,14 +20,12 @@ import es.iessaladillo.pedrojoya.pr069.bd.Instituto;
 public class AlumnosAdapter extends SimpleCursorAdapter {
 
     private final int mLayout;
-    private final Context mContexto;
     private final Random mAleatorio;
-    private TextDrawable.IBuilder mDrawableBuilder;
+    private final TextDrawable.IBuilder mDrawableBuilder;
 
     public AlumnosAdapter(Context context, int layout, Cursor c,
                      String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
-        mContexto = context;
         mLayout = layout;
         mAleatorio = new Random();
         mDrawableBuilder = TextDrawable.builder()

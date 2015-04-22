@@ -3,7 +3,7 @@ package es.iessaladillo.pedrojoya.pr016;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity implements OnChildClickListener {
+public class MainActivity extends AppCompatActivity implements
+        OnChildClickListener {
 
     // Variables.
     private AdaptadorAlumnos mAdaptador;

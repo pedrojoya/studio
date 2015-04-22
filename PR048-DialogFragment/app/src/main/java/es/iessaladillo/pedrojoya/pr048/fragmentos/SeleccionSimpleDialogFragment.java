@@ -1,12 +1,13 @@
 package es.iessaladillo.pedrojoya.pr048.fragmentos;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 
 import es.iessaladillo.pedrojoya.pr048.R;
 
@@ -23,6 +24,7 @@ public class SeleccionSimpleDialogFragment extends DialogFragment {
 
     // Al crear el diálogo. Retorna el diálogo configurado.
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
         b.setTitle(R.string.turno);

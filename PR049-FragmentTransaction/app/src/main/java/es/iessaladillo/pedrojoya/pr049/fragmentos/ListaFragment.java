@@ -44,7 +44,7 @@ public class ListaFragment extends Fragment implements OnItemClickListener {
     // Retorna la vista que mostrará el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Se infla el layout del fragmento y se retorna la vista.
         return inflater.inflate(R.layout.fragment_lista, container, false);
     }
@@ -116,11 +116,13 @@ public class ListaFragment extends Fragment implements OnItemClickListener {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        imgCabecera = (ImageView) getView().findViewById(R.id.imgCabecera);
-        // Se crea el adaptador y se asigna al ListView.
-        lstObras = (ListView) getView().findViewById(R.id.lstObras);
-        ObrasAdapter mAdaptador = new ObrasAdapter(this.getActivity(), getDatos());
-        lstObras.setAdapter(mAdaptador);
+        if (getView() != null) {
+            imgCabecera = (ImageView) getView().findViewById(R.id.imgCabecera);
+            // Se crea el adaptador y se asigna al ListView.
+            lstObras = (ListView) getView().findViewById(R.id.lstObras);
+            ObrasAdapter mAdaptador = new ObrasAdapter(this.getActivity(), getDatos());
+            lstObras.setAdapter(mAdaptador);
+        }
     }
 
     // Retorna el ArrayList de datos para la lista.
@@ -148,7 +150,7 @@ public class ListaFragment extends Fragment implements OnItemClickListener {
     // Al pulsar sobre un elemento de la lista.
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
-            long id) {
+                            long id) {
         // Se pulsa sobre el item.
         pulsarItem(position);
     }

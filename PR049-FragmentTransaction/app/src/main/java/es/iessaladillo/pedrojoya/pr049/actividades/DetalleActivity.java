@@ -4,14 +4,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import es.iessaladillo.pedrojoya.pr049.R;
 import es.iessaladillo.pedrojoya.pr049.fragmentos.DetalleFragment;
 import es.iessaladillo.pedrojoya.pr049.modelos.Obra;
 
-public class DetalleActivity extends ActionBarActivity implements
+public class DetalleActivity extends AppCompatActivity implements
         DetalleFragment.OnDetalleShownListener {
 
     // Al crear la actividad.

@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 
 import java.util.Calendar;
@@ -16,6 +17,7 @@ public class DatePickerDialogFragment extends DialogFragment {
 
     // Al crear el diálogo. Retorna el diálogo configurado.
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Calendar calendario = Calendar.getInstance();
         return new DatePickerDialog(this.getActivity(),

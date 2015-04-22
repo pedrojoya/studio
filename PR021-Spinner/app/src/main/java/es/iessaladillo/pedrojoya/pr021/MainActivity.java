@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr021;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity implements OnClickListener,
+public class MainActivity extends AppCompatActivity implements
+        OnClickListener,
         OnItemSelectedListener {
 
-    // Vistas.
     private Spinner spnPais;
     private Button btnMostrar;
 
@@ -35,14 +35,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener,
         // Se crea el adaptador y se le asigna al spinner.
         PaisesAdapter adaptador = new PaisesAdapter(this, getPaises());
         spnPais.setAdapter(adaptador);
-
         // La actividad acutará como listener cuando se seleccione un elemento.
         spnPais.setOnItemSelectedListener(this);
     }
 
     // Obtiene el ArrayList de paises.
     private ArrayList<Pais> getPaises() {
-        ArrayList<Pais> paises = new ArrayList<Pais>();
+        ArrayList<Pais> paises = new ArrayList<>();
         paises.add(new Pais(R.drawable.no_flag,
                 getString(R.string.elija_un_pais)));
         paises.add(new Pais(R.drawable.de, "Alemania"));

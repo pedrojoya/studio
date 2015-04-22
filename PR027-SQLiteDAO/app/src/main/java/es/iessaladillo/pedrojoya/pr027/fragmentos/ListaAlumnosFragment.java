@@ -38,7 +38,6 @@ public class ListaAlumnosFragment extends Fragment {
 
     // Variables miembro.
     private ListView lstAlumnos;
-    private RelativeLayout rlListaVacia;
     private OnListaAlumnosFragmentListener listener;
     private ActionMode modoContextual;
 
@@ -63,7 +62,7 @@ public class ListaAlumnosFragment extends Fragment {
     private void initVistas(View v) {
         // Se configuran las vistas.
         lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
-        rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
+        RelativeLayout rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
         // Si la lista está vacía se muestra un icono y un texto para que al
         // pulsarlo se agregue un alumno.
         rlListaVacia.setOnClickListener(new OnClickListener() {

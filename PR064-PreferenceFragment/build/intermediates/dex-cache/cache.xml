@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR064-PreferenceFragment/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR064-PreferenceFragment\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/pedro/studio/PR064-PreferenceFragment/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-0884b64383f5479dc3a0bc88dc9c9c17dfddffea.jar" />
+        revision="22.0.1"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR064-PreferenceFragment\app\build\intermediates\pre-dexed\debug\classes-6b2b95fff320d9714eb095ba72c884633bd99de3.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR064-PreferenceFragment\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/pedro/studio/PR064-PreferenceFragment/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
+        revision="22.0.1"
+        sha1="983e2f375504bc04def18e709c35192afe92e65f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR064-PreferenceFragment\app\build\intermediates\pre-dexed\debug\classes-9d99d0a7aeedd32c609be8545ee2089cf92721cb.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR064-PreferenceFragment/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR064-PreferenceFragment\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/pedro/studio/PR064-PreferenceFragment/app/build/intermediates/pre-dexed/debug/classes-7d5f93abd7705aa3c8705626fd31ce751e74f131.jar" />
+        revision="22.0.1"
+        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR064-PreferenceFragment\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-89b304273b852b318debc1dd3e03571544b3c840.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR064-PreferenceFragment/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/pedro/studio/PR064-PreferenceFragment/app/build/intermediates/pre-dexed/debug/classes-b12402d91374daa18337081c21c8333b3fc24045.jar" />
+        revision="22.0.1"
+        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR064-PreferenceFragment\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-7a0e010d3a34f4facea2614a45246d96db5d393e.jar" />
     </item>
 
 </items>

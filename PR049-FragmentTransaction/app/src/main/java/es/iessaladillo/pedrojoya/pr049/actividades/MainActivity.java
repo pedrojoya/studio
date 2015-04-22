@@ -5,7 +5,7 @@ import android.app.FragmentManager.OnBackStackChangedListener;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -16,7 +16,8 @@ import es.iessaladillo.pedrojoya.pr049.fragmentos.ListaFragment;
 import es.iessaladillo.pedrojoya.pr049.fragmentos.ListaFragment.OnObraSelectedListener;
 import es.iessaladillo.pedrojoya.pr049.modelos.Obra;
 
-public class MainActivity extends ActionBarActivity implements OnObraSelectedListener,
+public class MainActivity extends AppCompatActivity implements
+        OnObraSelectedListener,
         OnDetalleShownListener, OnBackStackChangedListener {
 
     // Variables.

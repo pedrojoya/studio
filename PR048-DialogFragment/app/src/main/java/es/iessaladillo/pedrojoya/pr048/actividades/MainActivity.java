@@ -4,7 +4,7 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,7 +28,8 @@ import es.iessaladillo.pedrojoya.pr048.fragmentos.SiNoDialogFragment.SiNoDialogL
 import es.iessaladillo.pedrojoya.pr048.fragmentos.TimePickerDialogFragment;
 import es.iessaladillo.pedrojoya.pr048.modelos.Alumno;
 
-public class MainActivity extends ActionBarActivity implements OnDateSetListener,
+public class MainActivity extends AppCompatActivity implements
+        OnDateSetListener,
         OnTimeSetListener, SiNoDialogListener, SeleccionDirectaDialogListener,
         SeleccionSimpleDialogListener, SeleccionMultipleDialogListener,
         AdaptadorDialogListener, LoginDialogListener {

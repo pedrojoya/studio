@@ -3,7 +3,7 @@ package es.iessaladillo.pedrojoya.pr069.actividades;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr069.R;
 import es.iessaladillo.pedrojoya.pr069.fragmentos.AlumnoFragment;
@@ -12,7 +12,7 @@ import es.iessaladillo.pedrojoya.pr069.fragmentos.ListaAlumnosFragment.OnListaAl
 import es.iessaladillo.pedrojoya.pr069.fragmentos.SiNoDialogFragment;
 import es.iessaladillo.pedrojoya.pr069.fragmentos.SiNoDialogFragment.SiNoDialogListener;
 
-public class MainActivity extends ActionBarActivity implements
+public class MainActivity extends AppCompatActivity implements
         OnListaAlumnosFragmentListener, SiNoDialogListener {
 
     private static final String TAG_LISTA_FRAGMENT = "ListaAlumnosFragment";

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 
 import java.util.Calendar;
@@ -16,6 +17,7 @@ public class TimePickerDialogFragment extends DialogFragment {
 
     // Al crear el diálogo. Retorna el diálogo configurado.
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Calendar calendario = Calendar.getInstance();
         return new TimePickerDialog(this.getActivity(),

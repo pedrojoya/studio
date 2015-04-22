@@ -2,11 +2,11 @@ package es.iessaladillo.pedrojoya.pr006;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     // Constantes.
     private static final String LOG_PROYECTO = "CICLO";

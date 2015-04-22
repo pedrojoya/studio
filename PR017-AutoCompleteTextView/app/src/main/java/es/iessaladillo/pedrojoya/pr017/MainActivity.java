@@ -2,7 +2,7 @@ package es.iessaladillo.pedrojoya.pr017;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -18,7 +18,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity implements OnClickListener {
+public class MainActivity extends AppCompatActivity implements
+        OnClickListener {
 
     // Constantes.
     private static final String URL_BASE = "http://www.wordreference.com/es/translation.asp?tranword=";
@@ -129,7 +130,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     // Construye y retorna el ArrayList de conceptos.
     private ArrayList<Concepto> getDatos() {
-        ArrayList<Concepto> conceptos = new ArrayList<Concepto>();
+        ArrayList<Concepto> conceptos = new ArrayList<>();
         conceptos.add(new Concepto(R.drawable.animal, "Animal", "Animal"));
         conceptos.add(new Concepto(R.drawable.bridge, "Bridge", "Puente"));
         conceptos.add(new Concepto(R.drawable.flag, "Flag", "Bandera"));

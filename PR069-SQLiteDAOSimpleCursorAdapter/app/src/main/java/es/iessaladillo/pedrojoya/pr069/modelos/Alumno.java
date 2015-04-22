@@ -8,23 +8,6 @@ public class Alumno {
     private String curso;
     private String direccion;
 
-    Alumno(long id, String nombre, String telefono, String curso,
-           String direccion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.curso = curso;
-        this.direccion = direccion;
-    }
-
-    public Alumno(String nombre, String telefono, String curso, String direccion) {
-        this.id = 0;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.curso = curso;
-        this.direccion = direccion;
-    }
-
     public Alumno() {
         // Establezo los valores iniciales para las propiedades
         this.id = 0;

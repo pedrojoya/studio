@@ -25,8 +25,6 @@ public class AlumnoFragment extends Fragment {
     public static final String MODO_AGREGAR = "AGREGAR";
     public static final String MODO_EDITAR = "EDITAR";
 
-    // Variables a nivel de clase.
-    private DAO dao;
     private EditText txtNombre;
     private EditText txtTelefono;
     private EditText txtDireccion;
@@ -34,7 +32,6 @@ public class AlumnoFragment extends Fragment {
     private String modo;
     private Alumno alumno;
     private ArrayAdapter<CharSequence> adaptadorCursos;
-    private ActionButton btnGuardar;
 
     static public AlumnoFragment newInstance(String modo, long id) {
         AlumnoFragment frg = new AlumnoFragment();
@@ -47,7 +44,7 @@ public class AlumnoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_alumno, container, false);
     }
 
@@ -55,7 +52,7 @@ public class AlumnoFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Se obtienen las referencias a las vistas.
-        initVistas(getView());
+        initVistas();
         // Se carga el spinner de cursos.
         cargarCursos();
         // Se establece el modo en el que debe comportarse la actividad
@@ -173,18 +170,20 @@ public class AlumnoFragment extends Fragment {
     }
 
     // Obtiene la referencia a las vistas del layout.
-    private void initVistas(View v) {
-        spnCurso = (Spinner) v.findViewById(R.id.spnCurso);
-        txtNombre = (EditText) v.findViewById(R.id.txtNombre);
-        txtTelefono = (EditText) v.findViewById(R.id.txtTelefono);
-        txtDireccion = (EditText) v.findViewById(R.id.txtDireccion);
-        btnGuardar = (ActionButton) v.findViewById(R.id.btnGuardar);
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                guardarAlumno();
-            }
-        });
+    private void initVistas() {
+        if (getView() != null) {
+            spnCurso = (Spinner) getView().findViewById(R.id.spnCurso);
+            txtNombre = (EditText) getView().findViewById(R.id.txtNombre);
+            txtTelefono = (EditText) getView().findViewById(R.id.txtTelefono);
+            txtDireccion = (EditText) getView().findViewById(R.id.txtDireccion);
+            ActionButton btnGuardar = (ActionButton) getView().findViewById(R.id.btnGuardar);
+            btnGuardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    guardarAlumno();
+                }
+            });
+        }
     }
 
     // Hace reset sobre el contenido de las vistas.

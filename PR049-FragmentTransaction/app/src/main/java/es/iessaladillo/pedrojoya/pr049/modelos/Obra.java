@@ -19,40 +19,21 @@ public class Obra implements Parcelable {
         this.anio = anio;
     }
 
-    public Obra() {
-    }
-
     // Getters y Setters.
     public int getFotoResId() {
         return fotoResId;
-    }
-
-    public void setFotoResId(int fotoResId) {
-        this.fotoResId = fotoResId;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
     public int getAnio() {
         return anio;
-    }
-
-    public void setAnio(int anio) {
-        this.anio = anio;
     }
 
     // Desde aquí para que sea Parcelable.

@@ -48,10 +48,10 @@ public class AlumnosAdapter extends SimpleCursorAdapter {
     }
 
     static class ViewHolder {
-        CircleImageView imgAvatar;
-        TextView lblNombre;
-        TextView lblCurso;
-        TextView lblDireccion;
+        final CircleImageView imgAvatar;
+        final TextView lblNombre;
+        final TextView lblCurso;
+        final TextView lblDireccion;
 
         ViewHolder(View view){
             imgAvatar = (CircleImageView) view.findViewById(R.id.imgAvatar);

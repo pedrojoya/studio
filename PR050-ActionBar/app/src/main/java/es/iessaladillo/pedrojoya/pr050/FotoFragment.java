@@ -62,7 +62,7 @@ public class FotoFragment extends Fragment {
     // Retorna la vista que debe mostrar el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_foto, container, false);
     }
 
@@ -78,7 +78,7 @@ public class FotoFragment extends Fragment {
             throw new ClassCastException(
                     activity.toString()
                             + activity
-                                    .getString(R.string._debe_implementar_fotofragment_listener));
+                            .getString(R.string._debe_implementar_fotofragment_listener));
         }
     }
 
@@ -119,21 +119,21 @@ public class FotoFragment extends Fragment {
         }
         // Se deshabilita el ítem correspondiente al efecto actual.
         switch (mEfecto) {
-        case ORIGINAL:
-            menu.findItem(R.id.mnuOriginal).setEnabled(false);
-            break;
-        case GRISES:
-            menu.findItem(R.id.mnuGrises).setEnabled(false);
-            break;
-        case SEPIA:
-            menu.findItem(R.id.mnuSepia).setEnabled(false);
-            break;
-        case AZULADO:
-            menu.findItem(R.id.mnuAzulado).setEnabled(false);
-            break;
-        case VERDOSO:
-            menu.findItem(R.id.mnuVerdoso).setEnabled(false);
-            break;
+            case ORIGINAL:
+                menu.findItem(R.id.mnuOriginal).setEnabled(false);
+                break;
+            case GRISES:
+                menu.findItem(R.id.mnuGrises).setEnabled(false);
+                break;
+            case SEPIA:
+                menu.findItem(R.id.mnuSepia).setEnabled(false);
+                break;
+            case AZULADO:
+                menu.findItem(R.id.mnuAzulado).setEnabled(false);
+                break;
+            case VERDOSO:
+                menu.findItem(R.id.mnuVerdoso).setEnabled(false);
+                break;
         }
         super.onPrepareOptionsMenu(menu);
     }
@@ -143,28 +143,28 @@ public class FotoFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Dependiendo del item pulsado realizo la acción deseada.
         switch (item.getItemId()) {
-        case R.id.mnuInfo:
-            // Se informa a la actividad de que se solicita Info sobre la foto.
-            listener.onInfo(mFotoResId);
-            break;
-        case R.id.mnuOriginal:
-            aplicarEfecto(Efecto.ORIGINAL);
-            break;
-        case R.id.mnuGrises:
-            aplicarEfecto(Efecto.GRISES);
-            break;
-        case R.id.mnuSepia:
-            aplicarEfecto(Efecto.SEPIA);
-            break;
-        case R.id.mnuAzulado:
-            aplicarEfecto(Efecto.AZULADO);
-            break;
-        case R.id.mnuVerdoso:
-            aplicarEfecto(Efecto.VERDOSO);
-            break;
-        default:
-            // Se propaga el evento porque no ha podido ser resuelto.
-            return super.onOptionsItemSelected(item);
+            case R.id.mnuInfo:
+                // Se informa a la actividad de que se solicita Info sobre la foto.
+                listener.onInfo(mFotoResId);
+                break;
+            case R.id.mnuOriginal:
+                aplicarEfecto(Efecto.ORIGINAL);
+                break;
+            case R.id.mnuGrises:
+                aplicarEfecto(Efecto.GRISES);
+                break;
+            case R.id.mnuSepia:
+                aplicarEfecto(Efecto.SEPIA);
+                break;
+            case R.id.mnuAzulado:
+                aplicarEfecto(Efecto.AZULADO);
+                break;
+            case R.id.mnuVerdoso:
+                aplicarEfecto(Efecto.VERDOSO);
+                break;
+            default:
+                // Se propaga el evento porque no ha podido ser resuelto.
+                return super.onOptionsItemSelected(item);
         }
         // Si se llega aquí es que se ha procesado el evento.
         return true;
@@ -172,30 +172,32 @@ public class FotoFragment extends Fragment {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        imgFoto = (ImageView) (getView().findViewById(R.id.imgFoto));
-        // Se aplica el efecto actual.
-        aplicarEfecto(mEfecto);
+        if (getView() != null) {
+            imgFoto = (ImageView) (getView().findViewById(R.id.imgFoto));
+            // Se aplica el efecto actual.
+            aplicarEfecto(mEfecto);
+        }
     }
 
     // Aplica el efecto indicado a la foto.
     private void aplicarEfecto(Efecto efecto) {
         // Se establece la imagen.
         switch (efecto) {
-        case ORIGINAL:
-            imgFoto.setImageBitmap(mFotoBitmapOriginal);
-            break;
-        case GRISES:
-            imgFoto.setImageBitmap(aEscalaGrises(mFotoBitmapOriginal));
-            break;
-        case SEPIA:
-            imgFoto.setImageBitmap(aSepia(mFotoBitmapOriginal));
-            break;
-        case AZULADO:
-            imgFoto.setImageBitmap(aAzulado(mFotoBitmapOriginal));
-            break;
-        case VERDOSO:
-            imgFoto.setImageBitmap(aVerdoso(mFotoBitmapOriginal));
-            break;
+            case ORIGINAL:
+                imgFoto.setImageBitmap(mFotoBitmapOriginal);
+                break;
+            case GRISES:
+                imgFoto.setImageBitmap(aEscalaGrises(mFotoBitmapOriginal));
+                break;
+            case SEPIA:
+                imgFoto.setImageBitmap(aSepia(mFotoBitmapOriginal));
+                break;
+            case AZULADO:
+                imgFoto.setImageBitmap(aAzulado(mFotoBitmapOriginal));
+                break;
+            case VERDOSO:
+                imgFoto.setImageBitmap(aVerdoso(mFotoBitmapOriginal));
+                break;
         }
         // Se almacena el efecto aplicado.
         mEfecto = efecto;

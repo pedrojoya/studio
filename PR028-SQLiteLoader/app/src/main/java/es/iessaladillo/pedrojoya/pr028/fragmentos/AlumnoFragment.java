@@ -36,9 +36,8 @@ public class AlumnoFragment extends Fragment {
 	private EditText txtTelefono;
 	private EditText txtDireccion;
 	private Spinner spnCurso;
-    private ActionButton btnGuardar;
 
-	private String modo;
+    private String modo;
 	private Alumno alumno;
 	private ArrayAdapter<CharSequence> adaptadorCursos;
     private Random mAleatorio;
@@ -209,7 +208,7 @@ public class AlumnoFragment extends Fragment {
         txtNombre = (EditText) v.findViewById(R.id.txtNombre);
         txtTelefono = (EditText) v.findViewById(R.id.txtTelefono);
         txtDireccion = (EditText) v.findViewById(R.id.txtDireccion);
-        btnGuardar = (ActionButton) v.findViewById(R.id.btnGuardar);
+        ActionButton btnGuardar = (ActionButton) v.findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

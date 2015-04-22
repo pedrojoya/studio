@@ -3,14 +3,14 @@ package es.iessaladillo.pedrojoya.pr028.actividades;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr028.R;
 import es.iessaladillo.pedrojoya.pr028.fragmentos.AlumnoFragment;
 import es.iessaladillo.pedrojoya.pr028.fragmentos.ListaAlumnosFragment;
 import es.iessaladillo.pedrojoya.pr028.fragmentos.SiNoDialogFragment;
 
-public class MainActivity extends ActionBarActivity implements
+public class MainActivity extends AppCompatActivity implements
         ListaAlumnosFragment.OnListaAlumnosFragmentListener, SiNoDialogFragment.SiNoDialogListener {
 
     private static final String TAG_LISTA_FRAGMENT = "ListaAlumnosFragment";

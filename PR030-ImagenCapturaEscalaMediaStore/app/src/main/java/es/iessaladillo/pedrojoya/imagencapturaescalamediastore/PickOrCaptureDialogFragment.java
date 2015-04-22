@@ -1,11 +1,12 @@
 package es.iessaladillo.pedrojoya.imagencapturaescalamediastore;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 
 public class PickOrCaptureDialogFragment extends DialogFragment {
 
@@ -19,6 +20,7 @@ public class PickOrCaptureDialogFragment extends DialogFragment {
 
     // Al crear el diálogo. Retorna el diálogo configurado.
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
         b.setTitle(R.string.elige_opcion);

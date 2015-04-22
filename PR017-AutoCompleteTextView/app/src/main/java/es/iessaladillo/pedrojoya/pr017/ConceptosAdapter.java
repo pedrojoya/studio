@@ -32,7 +32,7 @@ class ConceptosAdapter extends ArrayAdapter<Concepto> {
         //noinspection unchecked
         mConceptos = (ArrayList<Concepto>) conceptos.clone();
         // El ArrayList de sugerencias está inicialmente vacío.
-        mSugerencias = new ArrayList<Concepto>();
+        mSugerencias = new ArrayList<>();
     }
 
     // Retorna el objeto Filter que va a filtrar el adaptador.

@@ -4,10 +4,10 @@ package es.iessaladillo.pedrojoya.pr016;
 class Alumno {
 
 	// Variables miembro.
-	private String nombre;
-	private int edad;
-	private String ciclo;
-	private String curso;
+	private final String nombre;
+	private final int edad;
+	private final String ciclo;
+	private final String curso;
 
 	// Constructores.
 	public Alumno(String nombre, int edad, String ciclo, String curso) {
@@ -17,40 +17,21 @@ class Alumno {
 		this.curso = curso;
 	}
 
-	public Alumno() {
-	}
-
-	// Getters and Setters.
+    // Getters and Setters.
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public int getEdad() {
+    public int getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
-
-	public String getCiclo() {
+    public String getCiclo() {
 		return ciclo;
 	}
 
-	public void setCiclo(String ciclo) {
-		this.ciclo = ciclo;
-	}
-
-	public String getCurso() {
+    public String getCurso() {
 		return curso;
-	}
-
-	public void setCurso(String curso) {
-		this.curso = curso;
 	}
 
 }

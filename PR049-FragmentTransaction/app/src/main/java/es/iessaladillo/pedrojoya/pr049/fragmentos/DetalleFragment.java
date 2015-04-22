@@ -91,13 +91,15 @@ public class DetalleFragment extends Fragment {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        imgFoto = (ImageView) getView().findViewById(R.id.imgFoto);
-        lblNombre = (TextView) getView().findViewById(R.id.lblNombre);
-        lblAutor = (TextView) getView().findViewById(R.id.lblAutor);
-        lblNombre.setTypeface(Typeface.createFromAsset(getActivity()
-                .getAssets(), "fonts/alegreya-boldItalic.ttf"));
-        lblAutor.setTypeface(Typeface.createFromAsset(
-                getActivity().getAssets(), "fonts/alegreya-bold.ttf"));
+        if (getView() != null) {
+            imgFoto = (ImageView) getView().findViewById(R.id.imgFoto);
+            lblNombre = (TextView) getView().findViewById(R.id.lblNombre);
+            lblAutor = (TextView) getView().findViewById(R.id.lblAutor);
+            lblNombre.setTypeface(Typeface.createFromAsset(getActivity()
+                    .getAssets(), "fonts/alegreya-boldItalic.ttf"));
+            lblAutor.setTypeface(Typeface.createFromAsset(
+                    getActivity().getAssets(), "fonts/alegreya-bold.ttf"));
+        }
     }
 
     // Muestra el detalle de un album en las vistas correspondientes.

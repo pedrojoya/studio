@@ -32,7 +32,7 @@
             android:layout_below="@+id/imgNuevoAlumno"
             android:layout_centerHorizontal="true"
             android:text="@string/sin_alumnado_agregue_un_alumno"
-            android:textAlignment="center" />
+            android:gravity="center" />
     </RelativeLayout>
     <com.software.shell.fab.ActionButton
         android:id="@+id/btnAgregar"

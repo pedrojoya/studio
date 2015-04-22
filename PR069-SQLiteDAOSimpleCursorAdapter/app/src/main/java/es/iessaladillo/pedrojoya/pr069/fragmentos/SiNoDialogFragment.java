@@ -1,19 +1,18 @@
 package es.iessaladillo.pedrojoya.pr069.fragmentos;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 
 import es.iessaladillo.pedrojoya.pr069.R;
 
 public class SiNoDialogFragment extends DialogFragment {
 
-    private Dialog dialogo = null;
     private SiNoDialogListener listener = null;
 
     // Interfaz pública para comunicación con la actividad.
@@ -44,8 +43,7 @@ public class SiNoDialogFragment extends DialogFragment {
                 listener.onNegativeButtonClick(SiNoDialogFragment.this);
             }
         });
-        dialogo = b.create();
-        return dialogo;
+        return b.create();
     }
 
     @Override

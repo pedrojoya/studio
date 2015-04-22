@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.videoview;
+package es.iessaladillo.pedrojoya.pr034;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +18,9 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-public class MainActivity extends ActionBarActivity implements
+import es.iessaladillo.pedrojoya.videoview.R;
+
+public class MainActivity extends AppCompatActivity implements
         MediaPlayer.OnPreparedListener {
 
     private static final int RC_SELECCIONAR_VIDEO = 0;
