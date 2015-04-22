@@ -1,15 +1,12 @@
 package es.iessaladillo.pedrojoya.pr090.actividades;
 
-import java.util.ArrayList;
-
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -17,12 +14,14 @@ import android.widget.ListView;
 
 import com.software.shell.fab.ActionButton;
 
+import java.util.ArrayList;
+
 import es.iessaladillo.pedrojoya.pr090.R;
 import es.iessaladillo.pedrojoya.pr090.data.Cancion;
 import es.iessaladillo.pedrojoya.pr090.data.CancionesAdapter;
 import es.iessaladillo.pedrojoya.pr090.servicios.MusicaOnlineService;
 
-public class MainActivity extends ActionBarActivity implements
+public class MainActivity extends AppCompatActivity implements
         OnItemClickListener {
 
     private Intent intentServicio;

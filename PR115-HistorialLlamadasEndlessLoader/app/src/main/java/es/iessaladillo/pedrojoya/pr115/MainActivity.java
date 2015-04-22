@@ -6,13 +6,14 @@ import android.provider.CallLog;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class MainActivity extends ActionBarActivity implements EndlessListView.LoadAgent, LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity implements EndlessListView.LoadAgent,
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int LIMIT = 10;
     private static final int DATOS_LOADER = 0;

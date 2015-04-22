@@ -9,10 +9,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 class PaginasAdapter extends FragmentPagerAdapter {
 
     // Constantes.
-    private int NUM_PAGINAS = 5;
+    private final int NUM_PAGINAS = 5;
 
     // Variables.
-    private int[] colores;
+    private final int[] colores;
     private final String mTab;
 
     // Constructor. Recibe el gestor de fragmentos.

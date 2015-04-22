@@ -36,7 +36,7 @@
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:layout_marginLeft="16dp"
-            android:text="Alumnos de 2º CFGS DAM" />
+            android:text="@string/grupo" />
 
     </FrameLayout>
 

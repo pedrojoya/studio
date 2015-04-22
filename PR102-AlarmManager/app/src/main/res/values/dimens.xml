@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources>
 
-    <dimen name="activity_main_padding">16dp</dimen>
-    <dimen name="edittext_padding">12dp</dimen>
-    
+    <dimen name="activity_main_padding">10dp</dimen>
+    <dimen name="edittext_padding">4dp</dimen>
+    <dimen name="lblActivar_marginLeft">15dp</dimen>
+
 </resources>

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
@@ -23,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends ActionBarActivity implements OnItemLongClickListener {
+public class MainActivity extends AppCompatActivity implements OnItemLongClickListener {
 
     // Modelo para los items de las listas.
     public class Item {
@@ -270,8 +270,8 @@ public class MainActivity extends ActionBarActivity implements OnItemLongClickLi
 
     // Carga los arraylist de datos.
     private void cargarDatos() {
-        mDatos1 = new ArrayList<Item>();
-        mDatos2 = new ArrayList<Item>();
+        mDatos1 = new ArrayList<>();
+        mDatos2 = new ArrayList<>();
 
         TypedArray arrayDrawable = getResources().obtainTypedArray(R.array.resicon);
         TypedArray arrayText = getResources().obtainTypedArray(R.array.restext);

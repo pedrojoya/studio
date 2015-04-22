@@ -186,7 +186,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     // Se mueve el alumno una posición hacia abajo.
-                    int position = getPosition();
+                    int position = getAdapterPosition();
                     if (position < datos.size() - 1) {
                         swapItems(position, position + 1);
                     }

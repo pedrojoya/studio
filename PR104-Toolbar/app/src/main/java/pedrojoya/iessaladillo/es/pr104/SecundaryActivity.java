@@ -1,17 +1,14 @@
 package pedrojoya.iessaladillo.es.pr104;
 
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class SecundaryActivity extends ActionBarActivity {
-
-    private Toolbar toolbar;
+public class SecundaryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +17,9 @@ public class SecundaryActivity extends ActionBarActivity {
         // Se indica que la ActionBar va a corresponder a un widget Toobar.
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         // La ActionBar mostrará el icono de navegación.
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override

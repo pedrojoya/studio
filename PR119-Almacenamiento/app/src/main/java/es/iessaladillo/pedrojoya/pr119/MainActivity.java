@@ -2,7 +2,7 @@ package es.iessaladillo.pedrojoya.pr119;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String RAW_FILE_NAME = "lorem.txt";
     private static final String ASSET_FILE_NAME = "audio.mp3";

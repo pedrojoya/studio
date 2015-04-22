@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class PaginaFragment extends Fragment {
 
-    public static final String PAR_NUM_PAGINA = "numPagina";
+    private static final String PAR_NUM_PAGINA = "numPagina";
     private static final String PAR_COLOR = "color";
 
     public static PaginaFragment newInstance(int numPagina, int color) {

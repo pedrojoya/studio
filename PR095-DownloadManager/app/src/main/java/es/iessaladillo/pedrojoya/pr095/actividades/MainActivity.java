@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +28,7 @@ import es.iessaladillo.pedrojoya.pr095.data.Cancion;
 import es.iessaladillo.pedrojoya.pr095.data.CancionesAdapter;
 import es.iessaladillo.pedrojoya.pr095.servicios.MusicaService;
 
-public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     public static final String EXTENSION_ARCHIVO = ".mp3";
 

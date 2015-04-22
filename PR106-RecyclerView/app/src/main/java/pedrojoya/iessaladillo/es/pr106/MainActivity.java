@@ -1,7 +1,7 @@
 package pedrojoya.iessaladillo.es.pr106;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +11,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity implements AlumnosAdapter.OnItemClickListener,
+public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
         AlumnosAdapter.OnItemLongClickListener {
 
     private RecyclerView lstAlumnos;
-    private ImageButton btnAgregar;
 
     private AlumnosAdapter mAdaptador;
 
@@ -42,7 +41,7 @@ public class MainActivity extends ActionBarActivity implements AlumnosAdapter.On
         lstAlumnos.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
+        ImageButton btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -25,7 +25,8 @@ import java.util.Locale;
 
 import cat.lafosca.facecropper.FaceCropper;
 
-public class MainActivity extends ActionBarActivity implements PickOrCaptureDialogFragment.Listener {
+public class MainActivity extends AppCompatActivity implements
+        PickOrCaptureDialogFragment.Listener {
 
     private static final int RC_CAPTURAR_FOTO = 0;
     private static final int RC_SELECCIONAR_FOTO = 1;

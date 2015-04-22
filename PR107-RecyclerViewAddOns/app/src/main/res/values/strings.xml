@@ -10,6 +10,8 @@
     <string name="listado_de_alumnos">Listado de Alumnos</string>
     <string name="bajar">Bajar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="grupo">Alumnos de 2º CFGS DAM</string>
+    <string name="avatar">Avatar</string>
 
 
 </resources>

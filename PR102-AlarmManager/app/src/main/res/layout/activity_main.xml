@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/lblCabecera"
-        style="?android:attr/listSeparatorTextViewStyle"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/recordatorio" />
@@ -18,10 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblCabecera"
         android:layout_marginTop="@dimen/activity_main_padding"
+        android:text="@string/mensaje"
         android:paddingLeft="@dimen/edittext_padding"
         android:paddingRight="@dimen/edittext_padding"
-        android:text="@string/mensaje"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        style="@style/TextAppearance.AppCompat.Caption" />
 
     <EditText
         android:id="@+id/txtMensaje"
@@ -39,60 +39,54 @@
 
     <TextView
         android:id="@+id/lblIntervalo"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtMensaje"
         android:layout_marginTop="@dimen/activity_main_padding"
         android:paddingLeft="@dimen/edittext_padding"
         android:paddingRight="@dimen/edittext_padding"
         android:text="@string/intervalo_entre_avisos"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        style="@style/TextAppearance.AppCompat.Caption" />
 
     <EditText
         android:id="@+id/txtIntervalo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblIntervalo"
-        android:ems="7"
+        android:ems="4"
         android:imeOptions="actionNext"
         android:inputType="number"
+        android:gravity="end"
         android:maxLength="7"
         android:paddingTop="0dp"
         android:singleLine="true"
-        android:text="@string/default_intervalo">
-
-        <requestFocus />
-    </EditText>
+        android:text="@string/default_intervalo"/>
 
     <TextView
         android:id="@+id/lblActivar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/swActivar"
-        android:layout_alignStart="@+id/swActivar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/txtMensaje"
-        android:layout_marginLeft="@dimen/activity_main_padding"
-        android:layout_marginStart="@dimen/activity_main_padding"
+        android:layout_marginLeft="@dimen/lblActivar_marginLeft"
+        android:layout_marginStart="@dimen/lblActivar_marginLeft"
         android:layout_marginTop="@dimen/activity_main_padding"
-        android:layout_toRightOf="@+id/lblIntervalo"
-        android:layout_toEndOf="@+id/lblIntervalo"
         android:paddingLeft="@dimen/edittext_padding"
         android:paddingRight="@dimen/edittext_padding"
+        android:layout_toRightOf="@+id/lblIntervalo"
+        android:layout_toEndOf="@+id/lblIntervalo"
         android:text="@string/avisar"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        style="@style/TextAppearance.AppCompat.Caption" />
 
     <Switch
         android:id="@+id/swActivar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtIntervalo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="@dimen/activity_main_padding"
-        android:layout_marginStart="@dimen/activity_main_padding"
+        android:layout_below="@+id/lblActivar"
+        android:layout_marginLeft="@dimen/lblActivar_marginLeft"
+        android:layout_marginStart="@dimen/lblActivar_marginLeft"
         android:layout_toRightOf="@+id/txtIntervalo"
+        android:textOn="@string/on"
+        android:textOff="@string/off"
         android:layout_toEndOf="@+id/txtIntervalo" />
 
 </RelativeLayout>

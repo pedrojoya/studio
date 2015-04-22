@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- En la API 21 la altura de la vista por detras de la StatusBar vuelve a ser 0 -->
+    <dimen name="statusBarHeight">0dp</dimen>
+</resources>

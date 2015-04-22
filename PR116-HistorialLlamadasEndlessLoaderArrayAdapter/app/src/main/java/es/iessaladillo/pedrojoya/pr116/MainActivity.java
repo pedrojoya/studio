@@ -6,7 +6,7 @@ import android.provider.CallLog;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import butterknife.InjectView;
 // El problema de esta implementación es que si se produce una nueva llamada, el loader no
 // es notificado, ya que está subscripto sólo a los últimos registros obtenidos, y la nueva
 // llamada sería la primera.
-public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int LIMIT = 10;
     private static final int DATOS_LOADER = 0;

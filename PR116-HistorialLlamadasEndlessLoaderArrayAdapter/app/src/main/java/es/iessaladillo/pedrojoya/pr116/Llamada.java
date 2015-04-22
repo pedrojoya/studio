@@ -6,9 +6,6 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 
-/**
- * Created by pedro on 12/2/15.
- */
 public class Llamada {
 
     private String numero;

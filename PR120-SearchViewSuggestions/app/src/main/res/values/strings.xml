@@ -7,7 +7,6 @@
     <string name="title_activity_busqueda">BusquedaActivity</string>
     <string name="search_hint">(buscar)</string>
     <string name="title_activity_alumno">Alummo</string>
-    <string name="guardar">Guardar</string>
     <string name="editar_alumno">Editar alumno</string>
     <string name="agregar_alumno">Agregar alumno</string>
     <string name="alumno_no_encontrado">Alumno no encontrado</string>

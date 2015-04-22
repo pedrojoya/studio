@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 public class LinearLayoutListView extends LinearLayout {
 	
-	ListView listView;
+	private ListView listView;
 
 	public LinearLayoutListView(Context context) {
 		super(context);

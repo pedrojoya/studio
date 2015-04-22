@@ -1,16 +1,16 @@
 package es.iessaladillo.pedrojoya.pr102;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements OnCheckedChangeListener {
 
     // Vistas.
     private TextView txtMensaje;
@@ -22,11 +22,11 @@ public class MainActivity extends Activity implements OnCheckedChangeListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Se obtiene e inicializan las vistas.
-        getVistas();
+        initVistas();
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
+    private void initVistas() {
         txtMensaje = (TextView) findViewById(R.id.txtMensaje);
         txtIntervalo = (TextView) findViewById(R.id.txtIntervalo);
         Switch swActivar = (Switch) findViewById(R.id.swActivar);

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -30,7 +31,7 @@ class Adaptador extends ArrayAdapter {
         super(context, 0, datos);
         mContext = context;
         mDatos = datos;
-        mFormateadorFechas = new SimpleDateFormat(FORMATO_FECHA_HORA);
+        mFormateadorFechas = new SimpleDateFormat(FORMATO_FECHA_HORA, Locale.getDefault());
     }
 
     @Override

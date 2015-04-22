@@ -2,7 +2,7 @@ package es.iessaladillo.pedrojoya.pr111;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,7 +20,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 
-public class AlumnoActivity extends ActionBarActivity {
+public class AlumnoActivity extends AppCompatActivity {
 
     public static final String EXTRA_ALUMNO = "tarea";
     @InjectView(R.id.txtNombre)
@@ -54,7 +54,7 @@ public class AlumnoActivity extends ActionBarActivity {
         ButterKnife.inject(this);
         // Se obtiene el alumno enviado como extra (si lo hay).
         if (getIntent() != null && getIntent().hasExtra(EXTRA_ALUMNO)) {
-            mAlumno = (Alumno) getIntent().getParcelableExtra(EXTRA_ALUMNO);
+            mAlumno = getIntent().getParcelableExtra(EXTRA_ALUMNO);
             setTitle(R.string.modificar_alumno);
         } else {
             setTitle(R.string.agregar_alumno);

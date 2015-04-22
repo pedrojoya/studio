@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- A partir de la API 19 la status bar puede ser transparente, por lo que se establece
-    la altura de la status bar como padding superior de la toolbar, de manera que se muestre
-    con el color de fondo de la toolbar -->
-    <dimen name="statusBarPaddingTop">24dp</dimen>
+    <!-- En la API 19 se hace la status bar transparente y se coloca una vista detrás con dicha
+         altura -->
+    <dimen name="statusBarHeight">24dp</dimen>
 </resources>

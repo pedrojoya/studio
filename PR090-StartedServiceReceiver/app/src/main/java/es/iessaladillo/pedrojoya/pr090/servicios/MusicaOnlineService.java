@@ -14,7 +14,6 @@ public class MusicaOnlineService extends Service implements
 
     public static final String EXTRA_URL_CANCION = "url";
     public static final String ACTION_COMPLETADA = "es.iessaladillo.pedrojoya.pr089.action_completada";
-    public static final String EXTRA_RESPUESTA = "respuesta";
 
     private MediaPlayer reproductor;
 

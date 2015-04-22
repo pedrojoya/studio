@@ -17,24 +17,6 @@ public class Alumno {
 	private String curso;
 	private String direccion;
 
-	// Constructores
-	public Alumno(long id, String nombre, String telefono, String curso,
-           String direccion) {
-		this.id = id;
-		this.nombre = nombre;
-		this.telefono = telefono;
-		this.curso = curso;
-		this.direccion = direccion;
-	}
-
-	public Alumno(String nombre, String telefono, String curso, String direccion) {
-		this.id = 0;
-		this.nombre = nombre;
-		this.telefono = telefono;
-		this.curso = curso;
-		this.direccion = direccion;
-	}
-
     public Alumno(JSONObject objeto) {
         try {
             this.nombre = objeto.getString(InstitutoContract.Alumno.NOMBRE);
@@ -49,11 +31,7 @@ public class Alumno {
 	public Alumno() {
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	void setId(long id) {
+    void setId(long id) {
 		this.id = id;
 	}
 

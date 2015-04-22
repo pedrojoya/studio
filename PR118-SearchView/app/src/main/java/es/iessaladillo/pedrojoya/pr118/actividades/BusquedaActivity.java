@@ -8,7 +8,7 @@ import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +23,8 @@ import es.iessaladillo.pedrojoya.pr118.datos.InstitutoProvider;
 import es.iessaladillo.pedrojoya.pr118.models.Alumno;
 
 
-public class BusquedaActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
+public class BusquedaActivity extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
 
     private static final int LOADER_BUSQUEDA = 1;
     private String mTermino;

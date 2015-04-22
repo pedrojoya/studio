@@ -18,10 +18,8 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Se obtiene la vista para el fragmento.
-        View rootView = inflater.inflate(R.layout.fragment_main, container,
-                false);
-        return rootView;
+        // Se obtiene y retorna la vista para el fragmento.
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
@@ -33,21 +31,23 @@ public class MainFragment extends Fragment {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        // Se configura el ViewPager.
-        ViewPager vpPaginador = (ViewPager) getView().findViewById(R.id.vpPaginador);
-        vpPaginador.setAdapter(new PaginasAdapter(getActivity(),
-                getChildFragmentManager()));
-        // Se configura el SlidingTabLayout.
-        SlidingTabLayout stTabs = (SlidingTabLayout) getView().findViewById(R.id.stTabs);
-        stTabs.setCustomTabView(R.layout.tab_header, R.id.lblTab);
-        stTabs.setViewPager(vpPaginador);
-        stTabs.setSelectedIndicatorColors(
-                getResources().getColor(R.color.accent), getResources()
-                        .getColor(R.color.accent),
-                getResources().getColor(R.color.accent), getResources()
-                        .getColor(R.color.accent),
-                getResources().getColor(R.color.accent));
-        //stTabs.setDividerColors(getResources().getColor(android.R.color.white));
+        if (getView() != null) {
+            // Se configura el ViewPager.
+            ViewPager vpPaginador = (ViewPager) getView().findViewById(R.id.vpPaginador);
+            vpPaginador.setAdapter(new PaginasAdapter(getActivity(),
+                    getChildFragmentManager()));
+            // Se configura el SlidingTabLayout.
+            SlidingTabLayout stTabs = (SlidingTabLayout) getView().findViewById(R.id.stTabs);
+            stTabs.setCustomTabView(R.layout.tab_header, R.id.lblTab);
+            stTabs.setViewPager(vpPaginador);
+            stTabs.setSelectedIndicatorColors(
+                    getResources().getColor(R.color.accent), getResources()
+                            .getColor(R.color.accent),
+                    getResources().getColor(R.color.accent), getResources()
+                            .getColor(R.color.accent),
+                    getResources().getColor(R.color.accent));
+            //stTabs.setDividerColors(getResources().getColor(android.R.color.white));
+        }
     }
 
 }

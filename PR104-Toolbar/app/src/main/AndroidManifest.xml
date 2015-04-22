@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
@@ -18,13 +18,11 @@
         </activity>
         <activity
             android:name=".SecundaryActivity"
-            android:label="@string/title_activity_secundary">
-            <!-- Se indica que su actividad padre es la principal para que
-                 no haya que especificarlo explícitamente en la navegación -->
+            android:label="@string/title_activity_secundary"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity">
-
             </meta-data>
         </activity>
     </application>

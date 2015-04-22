@@ -1,17 +1,14 @@
 package es.iessaladillo.pedrojoya.pr107;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +17,7 @@ import com.software.shell.fab.ActionButton;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener, ItemTouchListenerAdapter.RecyclerViewOnItemClickListener, ActionMode.Callback {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ItemTouchListenerAdapter.RecyclerViewOnItemClickListener, ActionMode.Callback {
 
     private RecyclerView lstAlumnos;
     private ActionButton btnAgregar;
@@ -43,7 +40,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
         adaptador = new AlumnosAdapter(this, DB.getAlumnos());
-        adaptador.setEmptyView((TextView) findViewById(R.id.lblNoHayAlumnos));
+        adaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
         lstAlumnos.setAdapter(adaptador);
         lstAlumnos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstAlumnos.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

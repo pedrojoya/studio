@@ -11,7 +11,7 @@ public class DB {
 
     // Inicialización.
     static {
-        datos = new ArrayList<Alumno>();
+        datos = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             int id = next++;
             datos.add(new Alumno(id, "Alumno " + id));

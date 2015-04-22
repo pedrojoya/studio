@@ -3,7 +3,6 @@ package es.iessaladillo.pedrojoya.pr096;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,10 +11,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Constantes.
     private static final int NC_BIG_TEXT = 1;
@@ -364,7 +363,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 .setContentInfo(getString(R.string.content_info))
                 .setTicker(getString(R.string.ticker))
                 .setAutoCancel(true)
-                .setPriority(Notification.PRIORITY_HIGH)
+                .setPriority(Notification.PRIORITY_MAX)
                 .setDefaults(Notification.DEFAULT_SOUND | Notification
                         .DEFAULT_LIGHTS);
         // Se añade la acción de enviar.

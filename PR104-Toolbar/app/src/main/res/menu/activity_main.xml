@@ -9,7 +9,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/mnuNext"
-        android:icon="@drawable/ic_next"
+        android:icon="@drawable/ic_action_chevron_right"
         android:title="@string/next"
         android:orderInCategory="100"
         app:showAsAction="ifRoom|withText" />
