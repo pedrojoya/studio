@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
+
 import es.iessaladillo.pedrojoya.pr123.R;
 
 public class InfoFragment extends Fragment implements OnClickListener {
@@ -35,16 +35,18 @@ public class InfoFragment extends Fragment implements OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
         super.onActivityCreated(savedInstanceState);
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
-        ((ImageButton) getView().findViewById(R.id.btnGusta))
-                .setOnClickListener(this);
-        lblGusta = (TextView) getView().findViewById(R.id.lblGusta);
-        lblGusta.setText(mGusta + "");
+    private void initVistas() {
+        if (getView() != null) {
+            getView().findViewById(R.id.btnGusta)
+                    .setOnClickListener(this);
+            lblGusta = (TextView) getView().findViewById(R.id.lblGusta);
+            lblGusta.setText(mGusta + "");
+        }
     }
 
     // Cuando se hace click sobre el botón.

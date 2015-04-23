@@ -13,7 +13,7 @@
         android:layout_marginBottom="40dp"
         android:layout_centerHorizontal="true"
         android:textSize="40sp"
-        android:text="00:00:00" />
+        tools:text="00:00:00" />
     <Button
         android:id="@+id/btnIniciar"
         android:layout_width="wrap_content"

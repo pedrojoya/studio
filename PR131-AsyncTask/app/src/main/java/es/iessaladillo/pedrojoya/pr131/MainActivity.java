@@ -1,13 +1,14 @@
 package es.iessaladillo.pedrojoya.pr131;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity implements TareaSecundaria.Callbacks {
+public class MainActivity extends AppCompatActivity implements
+        TareaSecundaria.Callbacks {
 
     private ProgressBar prbBarra;
     private TextView lblMensaje;

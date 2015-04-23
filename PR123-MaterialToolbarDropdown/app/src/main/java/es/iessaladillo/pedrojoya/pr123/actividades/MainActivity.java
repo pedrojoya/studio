@@ -1,24 +1,22 @@
 package es.iessaladillo.pedrojoya.pr123.actividades;
 
-import java.lang.reflect.Field;
-
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+
+import java.lang.reflect.Field;
+
 import es.iessaladillo.pedrojoya.pr123.R;
 import es.iessaladillo.pedrojoya.pr123.fragmentos.FotoFragment;
 import es.iessaladillo.pedrojoya.pr123.fragmentos.InfoFragment;
 
-public class MainActivity extends ActionBarActivity implements
+public class MainActivity extends AppCompatActivity implements
         AdapterView.OnItemSelectedListener {
 
     // Constantes.
@@ -42,25 +40,25 @@ public class MainActivity extends ActionBarActivity implements
         overflowEnDispositivoConTeclaMenu();
         // Se indica que la ActionBar va a corresponder al widget Toobar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_launcher);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        // Se crea el adaptador para el Spinner a partir de un array de
-        // constantes de cadena. Se usará como layout uno similar a
-        // android.R.layout.simple_spinner_dropdown_item pero con el texto en
-        // blanco.
-        ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
-                R.array.opciones, R.layout.spinner_item);
-        adaptador.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        // Se establece el adaptador y el listener para el spinner (que será la
-        // propia actividad).
-        // LayoutInflater inflador = LayoutInflater.from(getSupportActionBar().getThemedContext());
-        // spnOpciones = (Spinner) inflador.inflate(R.layout.spinner, toolbar, false);
-        spnOpciones = (Spinner) findViewById(R.id.spn);
-        spnOpciones.setOnItemSelectedListener(this);
-        spnOpciones.setAdapter(adaptador);
-        // toolbar.addView(spnOpciones);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            // Se crea el adaptador para el Spinner a partir de un array de
+            // constantes de cadena. Se usará como layout uno similar a
+            // android.R.layout.simple_spinner_dropdown_item pero con el texto en
+            // blanco.
+            ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
+                    R.array.opciones, R.layout.spinner_item);
+            adaptador.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            // Se establece el adaptador y el listener para el spinner (que será la
+            // propia actividad).
+            // LayoutInflater inflador = LayoutInflater.from(getSupportActionBar().getThemedContext());
+            // spnOpciones = (Spinner) inflador.inflate(R.layout.spinner, toolbar, false);
+            spnOpciones = (Spinner) findViewById(R.id.spn);
+            spnOpciones.setOnItemSelectedListener(this);
+            spnOpciones.setAdapter(adaptador);
+            // toolbar.addView(spnOpciones);
+        }
         // Si venimos de un estado anterior.
         if (savedInstanceState != null) {
             // Se coloca en la opción en la que estaba.

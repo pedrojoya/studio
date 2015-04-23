@@ -2,7 +2,7 @@ package es.iessaladillo.pedrojoya.pr133;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -17,7 +17,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final float DEFAULT_CUENTA = 0.00f;
     private static final int DEFAULT_PORCENTAJE = 2;

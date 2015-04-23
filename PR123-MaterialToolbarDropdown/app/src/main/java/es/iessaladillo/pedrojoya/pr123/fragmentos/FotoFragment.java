@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import es.iessaladillo.pedrojoya.pr123.R;
 import es.iessaladillo.pedrojoya.pr123.utils.ColorBitmap;
 
@@ -21,13 +22,11 @@ public class FotoFragment extends Fragment {
 
     private enum Efecto {
         ORIGINAL, GRISES, SEPIA, AZULADO, VERDOSO
-    };
+    }
 
     // Vistas.
     private ImageView imgFoto;
 
-    // Variables
-    private int mFotoResId;
     private Efecto mEfecto;
     private Bitmap mFotoBitmapOriginal;
 
@@ -55,7 +54,7 @@ public class FotoFragment extends Fragment {
     // Retorna la vista que debe mostrar el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_foto, container, false);
     }
 
@@ -64,6 +63,7 @@ public class FotoFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         // Se obtienen el argumento correspondiente al redId de la foto.
         Bundle argumentos = getArguments();
+        int mFotoResId;
         if (argumentos != null && argumentos.containsKey(EXTRA_FOTO_RESID)) {
             mFotoResId = argumentos.getInt(EXTRA_FOTO_RESID);
         } else {
@@ -75,7 +75,7 @@ public class FotoFragment extends Fragment {
         mFotoBitmapOriginal = BitmapFactory.decodeResource(getResources(),
                 mFotoResId);
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -96,21 +96,21 @@ public class FotoFragment extends Fragment {
         }
         // Se deshabilita el ítem correspondiente al efecto actual.
         switch (mEfecto) {
-        case ORIGINAL:
-            menu.findItem(R.id.mnuOriginal).setEnabled(false);
-            break;
-        case GRISES:
-            menu.findItem(R.id.mnuGrises).setEnabled(false);
-            break;
-        case SEPIA:
-            menu.findItem(R.id.mnuSepia).setEnabled(false);
-            break;
-        case AZULADO:
-            menu.findItem(R.id.mnuAzulado).setEnabled(false);
-            break;
-        case VERDOSO:
-            menu.findItem(R.id.mnuVerdoso).setEnabled(false);
-            break;
+            case ORIGINAL:
+                menu.findItem(R.id.mnuOriginal).setEnabled(false);
+                break;
+            case GRISES:
+                menu.findItem(R.id.mnuGrises).setEnabled(false);
+                break;
+            case SEPIA:
+                menu.findItem(R.id.mnuSepia).setEnabled(false);
+                break;
+            case AZULADO:
+                menu.findItem(R.id.mnuAzulado).setEnabled(false);
+                break;
+            case VERDOSO:
+                menu.findItem(R.id.mnuVerdoso).setEnabled(false);
+                break;
         }
         super.onPrepareOptionsMenu(menu);
     }
@@ -120,56 +120,58 @@ public class FotoFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Dependiendo del item pulsado realizo la acción deseada.
         switch (item.getItemId()) {
-        case R.id.mnuOriginal:
-            aplicarEfecto(Efecto.ORIGINAL);
-            break;
-        case R.id.mnuGrises:
-            aplicarEfecto(Efecto.GRISES);
-            break;
-        case R.id.mnuSepia:
-            aplicarEfecto(Efecto.SEPIA);
-            break;
-        case R.id.mnuAzulado:
-            aplicarEfecto(Efecto.AZULADO);
-            break;
-        case R.id.mnuVerdoso:
-            aplicarEfecto(Efecto.VERDOSO);
-            break;
-        default:
-            // Se propaga el evento porque no ha podido ser resuelto.
-            return super.onOptionsItemSelected(item);
+            case R.id.mnuOriginal:
+                aplicarEfecto(Efecto.ORIGINAL);
+                break;
+            case R.id.mnuGrises:
+                aplicarEfecto(Efecto.GRISES);
+                break;
+            case R.id.mnuSepia:
+                aplicarEfecto(Efecto.SEPIA);
+                break;
+            case R.id.mnuAzulado:
+                aplicarEfecto(Efecto.AZULADO);
+                break;
+            case R.id.mnuVerdoso:
+                aplicarEfecto(Efecto.VERDOSO);
+                break;
+            default:
+                // Se propaga el evento porque no ha podido ser resuelto.
+                return super.onOptionsItemSelected(item);
         }
         // Si se llega aquí es que se ha procesado el evento.
         return true;
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
-        imgFoto = (ImageView) (getView().findViewById(R.id.imgFoto));
-        // Se aplica el efecto actual.
-        aplicarEfecto(mEfecto);
+    private void initVistas() {
+        if (getView() != null) {
+            imgFoto = (ImageView) (getView().findViewById(R.id.imgFoto));
+            // Se aplica el efecto actual.
+            aplicarEfecto(mEfecto);
+        }
     }
 
     // Aplica el efecto indicado a la foto.
     private void aplicarEfecto(Efecto efecto) {
         // Se establece la imagen.
         switch (efecto) {
-        case ORIGINAL:
-            imgFoto.setImageBitmap(mFotoBitmapOriginal);
-            break;
-        case GRISES:
-            imgFoto.setImageBitmap(ColorBitmap
-                    .aEscalaGrises(mFotoBitmapOriginal));
-            break;
-        case SEPIA:
-            imgFoto.setImageBitmap(ColorBitmap.aSepia(mFotoBitmapOriginal));
-            break;
-        case AZULADO:
-            imgFoto.setImageBitmap(ColorBitmap.aAzulado(mFotoBitmapOriginal));
-            break;
-        case VERDOSO:
-            imgFoto.setImageBitmap(ColorBitmap.aVerdoso(mFotoBitmapOriginal));
-            break;
+            case ORIGINAL:
+                imgFoto.setImageBitmap(mFotoBitmapOriginal);
+                break;
+            case GRISES:
+                imgFoto.setImageBitmap(ColorBitmap
+                        .aEscalaGrises(mFotoBitmapOriginal));
+                break;
+            case SEPIA:
+                imgFoto.setImageBitmap(ColorBitmap.aSepia(mFotoBitmapOriginal));
+                break;
+            case AZULADO:
+                imgFoto.setImageBitmap(ColorBitmap.aAzulado(mFotoBitmapOriginal));
+                break;
+            case VERDOSO:
+                imgFoto.setImageBitmap(ColorBitmap.aVerdoso(mFotoBitmapOriginal));
+                break;
         }
         // Se almacena el efecto aplicado.
         mEfecto = efecto;

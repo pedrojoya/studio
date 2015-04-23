@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="%"
+                android:text="@string/simbolo_porcentaje"
                 android:id="@+id/lblMonedaPorcentaje"
                 android:layout_alignBaseline="@+id/txtPorcentaje"
                 android:layout_marginLeft="@dimen/moneda_marginLeft"

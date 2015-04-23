@@ -17,7 +17,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -37,7 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends ActionBarActivity implements
+public class MainActivity extends AppCompatActivity implements
         PickOrCaptureDialogFragment.Listener, MediaPlayer.OnPreparedListener, View.OnClickListener,
         CustomVideoView.PlayPauseListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnInfoListener {
 
