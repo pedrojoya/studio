@@ -85,23 +85,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Dependiendo del item pulsado realizo la acción deseada.
         switch (item.getItemId()) {
-        case R.id.mnuOriginal:
-            imgFoto.setImageBitmap(mFotoBitmapOriginal);
-            break;
-        case R.id.mnuGrises:
-            imgFoto.setImageBitmap(aEscalaGrises(mFotoBitmapOriginal));
-            break;
-        case R.id.mnuSepia:
-            imgFoto.setImageBitmap(aSepia(mFotoBitmapOriginal));
-            break;
-        case R.id.mnuAzulado:
-            imgFoto.setImageBitmap(aAzulado(mFotoBitmapOriginal));
-            break;
-        case R.id.mnuVerdoso:
-            imgFoto.setImageBitmap(aVerdoso(mFotoBitmapOriginal));
-            break;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.mnuOriginal:
+                imgFoto.setImageBitmap(mFotoBitmapOriginal);
+                break;
+            case R.id.mnuGrises:
+                imgFoto.setImageBitmap(aEscalaGrises(mFotoBitmapOriginal));
+                break;
+            case R.id.mnuSepia:
+                imgFoto.setImageBitmap(aSepia(mFotoBitmapOriginal));
+                break;
+            case R.id.mnuAzulado:
+                imgFoto.setImageBitmap(aAzulado(mFotoBitmapOriginal));
+                break;
+            case R.id.mnuVerdoso:
+                imgFoto.setImageBitmap(aVerdoso(mFotoBitmapOriginal));
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
         // Se almacena el id del menú del efecto actual.
         mEfecto = item.getItemId();

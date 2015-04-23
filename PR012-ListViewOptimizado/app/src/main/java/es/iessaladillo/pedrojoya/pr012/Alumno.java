@@ -12,7 +12,7 @@ class Alumno {
 
     // Constructor.
     public Alumno(int foto, String nombre, int edad, String ciclo,
-            String curso, boolean repetidor) {
+                  String curso, boolean repetidor) {
         this.foto = foto;
         this.nombre = nombre;
         this.edad = edad;

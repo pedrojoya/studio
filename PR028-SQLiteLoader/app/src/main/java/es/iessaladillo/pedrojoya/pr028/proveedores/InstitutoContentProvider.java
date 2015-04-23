@@ -30,7 +30,7 @@ public class InstitutoContentProvider extends ContentProvider {
     private static final String BASE_PATH_ALUMNOS = "alumnos"; // Segmento path.
     public static final Uri CONTENT_URI_ALUMNOS = Uri.withAppendedPath(
             CONTENT_URI_BASE, BASE_PATH_ALUMNOS); // Uri pública de acceso a
-                                                  // alumnos.
+    // alumnos.
     private static final String MIME_TYPE_ALUMNOS = ContentResolver.CURSOR_DIR_BASE_TYPE
             + "/vnd.es.iessaladillo.instituto.alumnos"; // Tipo MIME alumnos.
     private static final String MIME_ITEM_TYPE_ALUMNOS = ContentResolver.CURSOR_ITEM_BASE_TYPE
@@ -44,6 +44,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // considerados válidos.
     private static final UriMatcher validadorURIs = new UriMatcher(
             UriMatcher.NO_MATCH);
+
     static {
         validadorURIs.addURI(AUTHORITY, BASE_PATH_ALUMNOS,
                 URI_TYPE_ALUMNOS_LIST);
@@ -57,12 +58,12 @@ public class InstitutoContentProvider extends ContentProvider {
         // Dependiendo del tipo de uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
-        case URI_TYPE_ALUMNOS_LIST:
-            return MIME_TYPE_ALUMNOS;
-        case URI_TYPE_ALUMNOS_ID:
-            return MIME_ITEM_TYPE_ALUMNOS;
-        default:
-            throw new IllegalArgumentException("URI desconocida: " + uri);
+            case URI_TYPE_ALUMNOS_LIST:
+                return MIME_TYPE_ALUMNOS;
+            case URI_TYPE_ALUMNOS_ID:
+                return MIME_ITEM_TYPE_ALUMNOS;
+            default:
+                throw new IllegalArgumentException("URI desconocida: " + uri);
         }
     }
 
@@ -82,7 +83,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // indicados en el método query del ContentResolver.
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
-            String[] selectionArgs, String sortOrder) {
+                        String[] selectionArgs, String sortOrder) {
         // Se abre la base de datos.
         SQLiteDatabase bd = helper.getReadableDatabase();
         // Se crea un constructor de consultas.
@@ -90,25 +91,25 @@ public class InstitutoContentProvider extends ContentProvider {
         // Dependiendo de la uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
-        case URI_TYPE_ALUMNOS_LIST:
-            // Se compueba si el llamador ha solicitado una columna que no
-            // existe.
-            checkColumns(Instituto.Alumno.TODOS, projection);
-            // Se establece la tabla para la consulta.
-            builder.setTables(Instituto.Alumno.TABLA);
-            break;
-        case URI_TYPE_ALUMNOS_ID:
-            // Se compueba si el llamador ha solicitado una columna que no
-            // existe.
-            checkColumns(Instituto.Alumno.TODOS, projection);
-            // Se establece la tabla para la consulta.
-            builder.setTables(Instituto.Alumno.TABLA);
-            // Se agrega al where la selección de ese alumno.
-            builder.appendWhere(Instituto.Alumno._ID + " = "
-                    + uri.getLastPathSegment());
-            break;
-        default:
-            throw new IllegalArgumentException("URI desconocida: " + uri);
+            case URI_TYPE_ALUMNOS_LIST:
+                // Se compueba si el llamador ha solicitado una columna que no
+                // existe.
+                checkColumns(Instituto.Alumno.TODOS, projection);
+                // Se establece la tabla para la consulta.
+                builder.setTables(Instituto.Alumno.TABLA);
+                break;
+            case URI_TYPE_ALUMNOS_ID:
+                // Se compueba si el llamador ha solicitado una columna que no
+                // existe.
+                checkColumns(Instituto.Alumno.TODOS, projection);
+                // Se establece la tabla para la consulta.
+                builder.setTables(Instituto.Alumno.TABLA);
+                // Se agrega al where la selección de ese alumno.
+                builder.appendWhere(Instituto.Alumno._ID + " = "
+                        + uri.getLastPathSegment());
+                break;
+            default:
+                throw new IllegalArgumentException("URI desconocida: " + uri);
         }
         // Se realiza la consulta.
         Cursor cursor = builder.query(bd, projection, selection, selectionArgs,
@@ -130,19 +131,19 @@ public class InstitutoContentProvider extends ContentProvider {
         // Dependiendo de la uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
-        case URI_TYPE_ALUMNOS_LIST:
-            // Se realiza el borrado.
-            filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
-            break;
-        case URI_TYPE_ALUMNOS_ID:
-            // Se agrega al where la selección de ese alumno.
-            where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
-                    + (TextUtils.isEmpty(selection) ? "" : " and " + where);
-            // Se realiza el borrado.
-            filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
-            break;
-        default:
-            throw new IllegalArgumentException("URI desconocida: " + uri);
+            case URI_TYPE_ALUMNOS_LIST:
+                // Se realiza el borrado.
+                filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
+                break;
+            case URI_TYPE_ALUMNOS_ID:
+                // Se agrega al where la selección de ese alumno.
+                where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
+                        + (TextUtils.isEmpty(selection) ? "" : " and " + where);
+                // Se realiza el borrado.
+                filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("URI desconocida: " + uri);
         }
         // Se notifica de los cambios a todos los listener.
         if (filasBorradas > 0) {
@@ -161,11 +162,11 @@ public class InstitutoContentProvider extends ContentProvider {
         // Dependiendo de la uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
-        case URI_TYPE_ALUMNOS_LIST:
-            id = bd.insert(Instituto.Alumno.TABLA, null, values);
-            break;
-        default:
-            throw new IllegalArgumentException("URI desconocida: " + uri);
+            case URI_TYPE_ALUMNOS_LIST:
+                id = bd.insert(Instituto.Alumno.TABLA, null, values);
+                break;
+            default:
+                throw new IllegalArgumentException("URI desconocida: " + uri);
         }
         // Se notifica a los escuchadores del content provider.
         getContext().getContentResolver().notifyChange(uri, null);
@@ -177,7 +178,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // recibidos por el método update del ContentResolver.
     @Override
     public int update(Uri uri, ContentValues values, String selection,
-            String[] selectionArgs) {
+                      String[] selectionArgs) {
         int filasActualizadas;
         // Se inicializa la parte del where.
         String where = selection;
@@ -186,19 +187,19 @@ public class InstitutoContentProvider extends ContentProvider {
         // Depndiendo del tipo de uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
-        case URI_TYPE_ALUMNOS_LIST:
-            filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
-                    selectionArgs);
-            break;
-        case URI_TYPE_ALUMNOS_ID:
-            // Se agrega al where la selección de ese alumno.
-            where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
-                    + (TextUtils.isEmpty(selection) ? "" : " and " + where);
-            filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
-                    selectionArgs);
-            break;
-        default:
-            throw new IllegalArgumentException("URI desconocida: " + uri);
+            case URI_TYPE_ALUMNOS_LIST:
+                filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
+                        selectionArgs);
+                break;
+            case URI_TYPE_ALUMNOS_ID:
+                // Se agrega al where la selección de ese alumno.
+                where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
+                        + (TextUtils.isEmpty(selection) ? "" : " and " + where);
+                filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
+                        selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("URI desconocida: " + uri);
         }
         // Se notifica a los listeners.
         if (filasActualizadas > 0) {

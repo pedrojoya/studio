@@ -1,10 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/activity_padding"
-    android:animateLayoutChanges="true"
-    tools:context=".MainActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/activity_padding"
+                android:animateLayoutChanges="true"
+                tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnToastDinamico"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="@string/toast_creado_dinamicamente"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     <Button
         android:id="@+id/btnToastLayout"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnToastDinamico"
         android:text="@string/toast_con_layout_propio"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     <Button
         android:id="@+id/btnSnackbar"
@@ -28,14 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnToastLayout"
         android:text="@string/cambiar_visibilidad"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     <TextView
         android:id="@+id/lblTexto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnSnackbar"
-        android:text="@string/quijote" />
+        android:text="@string/quijote"/>
 
 </RelativeLayout>
-

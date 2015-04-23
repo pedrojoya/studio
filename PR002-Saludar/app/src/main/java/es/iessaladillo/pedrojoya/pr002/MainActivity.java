@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     public void onClick(View v) {
         // Dependiendo del botón pulsado.
         switch (v.getId()) {
-        case R.id.btnSaludar:
-            btnSaludarOnClick();
-            break;
+            case R.id.btnSaludar:
+                btnSaludarOnClick();
+                break;
         }
     }
 
@@ -81,4 +81,5 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         // Se muestra en un Toast.
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
     }
+
 }

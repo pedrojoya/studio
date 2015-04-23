@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
     <!-- Cuando se ha seleccionado -->
-    <item android:drawable="@drawable/cloud_activated" android:state_activated="true" />
+    <item android:drawable="@drawable/cloud_activated" android:state_activated="true"/>
     <!-- En el resto de estados -->
     <item android:drawable="@drawable/cloud"/>
-
 </selector>

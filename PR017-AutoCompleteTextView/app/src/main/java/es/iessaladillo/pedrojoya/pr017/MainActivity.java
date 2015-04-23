@@ -71,12 +71,12 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
-                    int count) {
+                                      int count) {
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
-                    int after) {
+                                          int after) {
             }
 
             // Después de haber cambiado el texto.
@@ -147,9 +147,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-        case R.id.btnTraducir:
-            wvWeb.loadUrl(URL_BASE + txtConcepto.getText().toString());
-            break;
+            case R.id.btnTraducir:
+                wvWeb.loadUrl(URL_BASE + txtConcepto.getText().toString());
+                break;
         }
     }
 

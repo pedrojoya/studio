@@ -23,13 +23,13 @@ public class AlumnoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_alumno);
         // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
         // Se obtienen y escriben los datos iniciales.
         getDatosIniciales();
     }
 
     // Obtiene e inicializa las vistas.
-    private void getVistas() {
+    private void initVistas() {
         findViewById(R.id.btnAceptar)
                 .setOnClickListener(new OnClickListener() {
 

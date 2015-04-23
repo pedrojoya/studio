@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements
     public void onClick(View vista) {
         // Dependiendo del botón.
         switch (vista.getId()) {
-        case R.id.btnSolicitar:
-            // Solicito los datos del alumno.
-            solicitarDatos();
-            break;
+            case R.id.btnSolicitar:
+                // Solicito los datos del alumno.
+                solicitarDatos();
+                break;
         }
     }
 
@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements
         if (resultCode == RESULT_OK) {
             // Depeniendo del código de petición (Request Code)
             switch (requestCode) {
-            case RC_ALUMNO:
-                // Se obtienen los datos de retorno.
-                getDatosRetorno(data);
+                case RC_ALUMNO:
+                    // Se obtienen los datos de retorno.
+                    getDatosRetorno(data);
             }
         }
     }

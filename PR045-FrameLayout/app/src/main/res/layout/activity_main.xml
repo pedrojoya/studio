@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:animateLayoutChanges="true">
 
     <ImageView
         android:id="@+id/imgFoto"
@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/foto_del_dia"
         android:scaleType="centerCrop"
-        android:src="@drawable/foto" />
+        android:src="@drawable/foto"/>
 
     <RelativeLayout
         android:id="@+id/rlPanel"
@@ -32,7 +32,7 @@
             android:layout_toStartOf="@+id/imgDetalle"
             android:text="@string/foto_del_dia"
             android:textSize="@dimen/abc_text_size_headline_material"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:id="@+id/lblSubtitulo"
@@ -45,7 +45,7 @@
             android:layout_below="@+id/lblTitulo"
             android:text="@string/londres"
             android:textSize="@dimen/abc_text_size_subhead_material"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"/>
 
         <ImageView
             android:id="@+id/imgDetalle"
@@ -56,7 +56,7 @@
             android:layout_alignParentTop="true"
             android:clickable="true"
             android:contentDescription="@string/abrir_detalle"
-            android:src="@drawable/ic_action_navigation_collapse" />
+            android:src="@drawable/ic_action_navigation_collapse"/>
 
         <TextView
             android:id="@+id/lblDetalle"
@@ -67,7 +67,7 @@
             android:paddingTop="@dimen/panel_padding"
             android:text="@string/detalle"
             android:textSize="@dimen/abc_text_size_body_2_material"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"/>
     </RelativeLayout>
 
 </FrameLayout>

@@ -113,7 +113,7 @@ public class DAO {
         if (cursor != null) {
             cursor.moveToFirst();
             // Retorno el objeto Alumno correspondiente.
-            alumno = cursorToAlumno (cursor);
+            alumno = cursorToAlumno(cursor);
         }
         // Se cierra la base de datos.
         mHelper.close();
@@ -126,7 +126,7 @@ public class DAO {
     // por nombre.
     public Cursor queryAllAlumnos(SQLiteDatabase bd) {
         // Se realiza la consulta y se retorna el cursor.
-        return  bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
+        return bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
                 null, null, null, Instituto.Alumno.NOMBRE);
     }
 

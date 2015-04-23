@@ -67,12 +67,12 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
-                    int count) {
+                                      int count) {
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
-                    int after) {
+                                          int after) {
             }
 
             // Después de haber cambiado el texto.
@@ -89,12 +89,12 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
-                    int count) {
+                                      int count) {
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
-                    int after) {
+                                          int after) {
             }
 
             // Después de haber cambiado el texto.
@@ -119,18 +119,18 @@ public class MainActivity extends AppCompatActivity implements
     public void onClick(View v) {
         // Dependiendo del botón pulsado.
         switch (v.getId()) {
-        case R.id.btnAceptar:
-            // Se informa de la conexión
-            Toast.makeText(
-                    this,
-                    getString(R.string.conectando_con_el_usuario) + " "
-                            + txtUsuario.getText().toString() + "...",
-                    Toast.LENGTH_SHORT).show();
-            break;
-        case R.id.btnCancelar:
-            // Se resetean las vistas.
-            resetVistas();
-            break;
+            case R.id.btnAceptar:
+                // Se informa de la conexión
+                Toast.makeText(
+                        this,
+                        getString(R.string.conectando_con_el_usuario) + " "
+                                + txtUsuario.getText().toString() + "...",
+                        Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnCancelar:
+                // Se resetean las vistas.
+                resetVistas();
+                break;
         }
     }
 

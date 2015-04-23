@@ -215,8 +215,7 @@ public class MainActivity extends AppCompatActivity implements
     public void onItemClick(DialogFragment dialog, int which) {
         if (which == OPTION_PICK) {
             seleccionarFoto("mifoto.jgp"); // Si BD, por ejemplo ID_alumno.jpg.
-        }
-        else {
+        } else {
             capturarFoto("mifoto.jpg"); // Si BD, por ejemplo ID_alumno.jpg.
         }
     }
@@ -295,6 +294,5 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
     }
-
 
 }

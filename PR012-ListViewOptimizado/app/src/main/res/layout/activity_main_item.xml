@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -20,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
             android:contentDescription="@string/foto_del_alumno"
-            android:src="@drawable/foto" />
+            android:src="@drawable/foto"/>
 
         <TextView
             android:id="@+id/lblNombre"
@@ -34,7 +35,7 @@
             android:paddingLeft="@dimen/card_content_padding"
             android:paddingRight="@dimen/card_content_padding"
             tools:text="Baldomero Llégate Ligero"
-            style="@style/Base.TextAppearance.AppCompat.Subhead" />
+            style="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
         <TextView
             android:id="@+id/lblCurso"
@@ -48,7 +49,7 @@
             android:paddingLeft="@dimen/card_content_padding"
             android:paddingRight="@dimen/card_content_padding"
             tools:text="2º CFGS DAM"
-            style="@style/Base.TextAppearance.AppCompat.Body2" />
+            style="@style/Base.TextAppearance.AppCompat.Body2"/>
 
         <TextView
             android:id="@+id/lblEdad"
@@ -62,7 +63,7 @@
             android:paddingLeft="@dimen/card_content_padding"
             android:paddingRight="@dimen/card_content_padding"
             tools:text="22 años"
-            style="@style/Base.TextAppearance.AppCompat.Body2" />
+            style="@style/Base.TextAppearance.AppCompat.Body2"/>
 
         <View
             android:id="@+id/divider"
@@ -75,7 +76,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/divider" />
+            android:background="@color/divider"/>
 
         <Button
             android:id="@+id/btnNotas"
@@ -87,7 +88,7 @@
             android:layout_toEndOf="@+id/imgFoto"
             android:layout_marginLeft="@dimen/card_content_padding"
             android:layout_marginStart="@dimen/card_content_padding"
-            style="@style/AppCompat.Button.Flat.Common" />
+            style="@style/AppCompat.Button.Flat.Common"/>
 
         <Button
             android:id="@+id/btnLlamar"
@@ -97,7 +98,7 @@
             android:layout_below="@+id/divider"
             android:layout_toRightOf="@+id/btnNotas"
             android:layout_toEndOf="@+id/btnNotas"
-            style="@style/AppCompat.Button.Flat.Common" />
+            style="@style/AppCompat.Button.Flat.Common"/>
 
         <TextView
             android:id="@+id/lblRepetidor"
@@ -117,7 +118,7 @@
             android:textSize="@dimen/tarjeta_repetidor_textSize"
             android:translationX="@dimen/tarjeta_repetidor_translationX"
             android:translationY="@dimen/tarjeta_repetidor_translationY"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

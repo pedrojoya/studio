@@ -44,84 +44,84 @@ public class MainActivity extends AppCompatActivity implements
         Intent intent;
         // Dependiendo del botón pulsado.
         switch (v.getId()) {
-        case R.id.btnNavegar:
-            // Acción--> VER. Uri--> URL.
-            intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://www.genbeta.com"));
-            if (estaDisponible(this, intent)) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.no_hay_navegador,
-                        Toast.LENGTH_SHORT).show();
-            }
-            break;
-        case R.id.btnBuscar:
-            // Acción--> BUSCAR EN INTERNET. Extra -> Término de consulta.
-            intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, "IES Saladillo");
-            if (estaDisponible(this, intent)) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.no_hay_buscador,
-                        Toast.LENGTH_SHORT).show();
-            }
-            break;
-        case R.id.btnLlamar:
-            // Acción--> LLAMAR. Uri--> tel:num.
-            intent = new Intent(Intent.ACTION_CALL,
-                    Uri.parse("tel:(+34)123456789"));
-            if (estaDisponible(this, intent)) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.no_se_puede_llamar,
-                        Toast.LENGTH_SHORT).show();
-            }
-            break;
-        case R.id.btnMarcar:
-            // Acción--> MARCAR. Uri--> tel:num.
-            intent = new Intent(Intent.ACTION_DIAL,
-                    Uri.parse("tel:(+34)12345789"));
-            if (estaDisponible(this, intent)) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.no_hay_dial, Toast.LENGTH_SHORT)
-                        .show();
-            }
-            break;
-        case R.id.btnMostrarMapa:
-            // Acción--> VER. Uri--> geo:latitud,longitud?z=zoom.
-            intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("geo:36.1121,-5.44347?z=19"));
-            if (estaDisponible(this, intent)) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas,
-                        Toast.LENGTH_SHORT).show();
-            }
-            break;
-        case R.id.btnBuscarMapa:
-            // Acción--> VER. Uri--> geo:latitud,longitud?q=consulta.
-            intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("geo:0,0?q=duque de rivas, Algeciras"));
-            if (estaDisponible(this, intent)) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas,
-                        Toast.LENGTH_SHORT).show();
-            }
-            break;
-        case R.id.btnMostrarContactos:
-            // Acción--> VER. Uri--> Accederá al proveedor de contenidos de la
-            // aplicación de contactos.
-            intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("content://contacts/people/"));
-            if (estaDisponible(this, intent)) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, R.string.no_hay_gestor_de_contactos,
-                        Toast.LENGTH_SHORT).show();
-            }
-            break;
+            case R.id.btnNavegar:
+                // Acción--> VER. Uri--> URL.
+                intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://www.genbeta.com"));
+                if (estaDisponible(this, intent)) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.no_hay_navegador,
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btnBuscar:
+                // Acción--> BUSCAR EN INTERNET. Extra -> Término de consulta.
+                intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                intent.putExtra(SearchManager.QUERY, "IES Saladillo");
+                if (estaDisponible(this, intent)) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.no_hay_buscador,
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btnLlamar:
+                // Acción--> LLAMAR. Uri--> tel:num.
+                intent = new Intent(Intent.ACTION_CALL,
+                        Uri.parse("tel:(+34)123456789"));
+                if (estaDisponible(this, intent)) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.no_se_puede_llamar,
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btnMarcar:
+                // Acción--> MARCAR. Uri--> tel:num.
+                intent = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:(+34)12345789"));
+                if (estaDisponible(this, intent)) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.no_hay_dial, Toast.LENGTH_SHORT)
+                            .show();
+                }
+                break;
+            case R.id.btnMostrarMapa:
+                // Acción--> VER. Uri--> geo:latitud,longitud?z=zoom.
+                intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("geo:36.1121,-5.44347?z=19"));
+                if (estaDisponible(this, intent)) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas,
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btnBuscarMapa:
+                // Acción--> VER. Uri--> geo:latitud,longitud?q=consulta.
+                intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("geo:0,0?q=duque de rivas, Algeciras"));
+                if (estaDisponible(this, intent)) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas,
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.btnMostrarContactos:
+                // Acción--> VER. Uri--> Accederá al proveedor de contenidos de la
+                // aplicación de contactos.
+                intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("content://contacts/people/"));
+                if (estaDisponible(this, intent)) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, R.string.no_hay_gestor_de_contactos,
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
 
@@ -132,4 +132,5 @@ public class MainActivity extends AppCompatActivity implements
                 intent, PackageManager.MATCH_DEFAULT_ONLY);
         return listaApps.size() > 0;
     }
+
 }

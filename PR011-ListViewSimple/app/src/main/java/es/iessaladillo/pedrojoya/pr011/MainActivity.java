@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
-                    int count) {
+                                      int count) {
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
-                    int after) {
+                                          int after) {
             }
 
             @Override
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public boolean onEditorAction(TextView v, int actionId,
-                    KeyEvent event) {
+                                          KeyEvent event) {
                 // Si se ha pulsado Done.
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     String nombre = txtNombre.getText().toString();
@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity implements
     public void onClick(View v) {
         // Dependiendo de la vista pulsada.
         switch (v.getId()) {
-        case R.id.btnAgregar:
-            String nombre = txtNombre.getText().toString();
-            if (!TextUtils.isEmpty(nombre)) {
-                agregarAlumno(nombre);
-            }
-            break;
+            case R.id.btnAgregar:
+                String nombre = txtNombre.getText().toString();
+                if (!TextUtils.isEmpty(nombre)) {
+                    agregarAlumno(nombre);
+                }
+                break;
         }
     }
 

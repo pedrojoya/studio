@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/concepto_padding" >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/concepto_padding">
 
     <ImageView
         android:id="@+id/imgFoto"
@@ -10,7 +10,7 @@
         android:layout_height="@dimen/foto_height"
         android:layout_marginRight="@dimen/foto_marginRight"
         android:layout_marginEnd="@dimen/foto_marginRight"
-        android:contentDescription="@string/foto_del_concepto" />
+        android:contentDescription="@string/foto_del_concepto"/>
 
     <TextView
         android:id="@+id/lblEnglish"
@@ -21,6 +21,6 @@
         android:layout_toRightOf="@+id/imgFoto"
         android:layout_toEndOf="@+id/imgFoto"
         android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </RelativeLayout>

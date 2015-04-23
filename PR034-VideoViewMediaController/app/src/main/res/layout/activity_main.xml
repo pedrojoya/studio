@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlRaiz"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black">
+                android:id="@+id/rlRaiz"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/black">
 
     <VideoView
         android:id="@+id/vvReproductor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"/>
 
     <TextView
         android:id="@+id/lblSinVideo"
@@ -20,6 +20,6 @@
         android:text="@string/seleccionar_video"
         android:layout_centerInParent="true"
         android:textAppearance="?android:textAppearanceSmall"
-        android:background="@color/fondo_sin_video" />
+        android:background="@color/fondo_sin_video"/>
 
 </RelativeLayout>

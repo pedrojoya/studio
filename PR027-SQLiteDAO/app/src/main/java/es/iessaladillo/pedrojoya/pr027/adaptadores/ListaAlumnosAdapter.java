@@ -20,14 +20,14 @@ public class ListaAlumnosAdapter extends ArrayAdapter<Alumno> {
 
     // Variables miembro.
     private final ArrayList<Alumno> mAlumnos; // Alumnos (datos).
-	private final LayoutInflater inflador; // Inflador de layout para la fila.
+    private final LayoutInflater inflador; // Inflador de layout para la fila.
 
-	// Constructor.
-	public ListaAlumnosAdapter(Context contexto, ArrayList<Alumno> alumnos) {
-		super(contexto, R.layout.fragment_lista_alumnos_item, alumnos);
-		mAlumnos = alumnos;
-		inflador = LayoutInflater.from(contexto);
-	}
+    // Constructor.
+    public ListaAlumnosAdapter(Context contexto, ArrayList<Alumno> alumnos) {
+        super(contexto, R.layout.fragment_lista_alumnos_item, alumnos);
+        mAlumnos = alumnos;
+        inflador = LayoutInflater.from(contexto);
+    }
 
     // Retorna la vista que se debe "dibujar" para un determinado elemento.
     @Override

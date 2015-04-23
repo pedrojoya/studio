@@ -160,4 +160,3 @@ class ConceptosAdapter extends ArrayAdapter<Concepto> {
     }
 
 }
-

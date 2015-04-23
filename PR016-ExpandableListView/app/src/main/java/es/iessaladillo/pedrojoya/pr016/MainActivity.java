@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene los ArrayList de datos para grupos e hijos. Modifica los
     // parámetros recibidos.
     private void fillDatos(ArrayList<String> grupos,
-            ArrayList<ArrayList<Alumno>> hijos) {
+                           ArrayList<ArrayList<Alumno>> hijos) {
         ArrayList<Alumno> grupoActual;
         // Primer grupo.
         grupos.add("CFGM Sistemas Microinformáticos y Redes");
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements
     // Cuando se pulsa un hijo de la lista.
     @Override
     public boolean onChildClick(ExpandableListView parent, View v,
-            int groupPosition, int childPosition, long id) {
+                                int groupPosition, int childPosition, long id) {
         // Se obtiene el hijo pulsado.
         // Si tuvieramos que obtener el adaptador se debe usar el método
         // getExpandableListAdapter() de la lista y NO getAdapter().
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // Constructor.
         public AdaptadorAlumnos(Context contexto, ArrayList<String> grupos,
-                ArrayList<ArrayList<Alumno>> alumnos) {
+                                ArrayList<ArrayList<Alumno>> alumnos) {
             this.mGrupos = grupos;
             this.mHijos = alumnos;
             // Se obtiene un inflador de layouts.
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements
         // Cuando se va a pintar un hijo de un grupo.
         @Override
         public View getChildView(int posGrupo, int posHijo,
-                boolean isLastChild, View convertView, ViewGroup parent) {
+                                 boolean isLastChild, View convertView, ViewGroup parent) {
             ContenedorVistasHijo contenedor;
             // Si no se puede reciclar.
             if (convertView == null) {
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements
         // Cuando se va a pintar el encabezado de un grupo.
         @Override
         public View getGroupView(int posGrupo, boolean isExpanded,
-                View convertView, ViewGroup parent) {
+                                 View convertView, ViewGroup parent) {
             ContenedorVistasGrupo contenedor;
             // Si no se puede reciclar.
             if (convertView == null) {

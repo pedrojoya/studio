@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/lblCabecera"
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_margin="@dimen/activity_vertical_margin"
-        android:text="@string/panel_de_mensajes" />
+        android:text="@string/panel_de_mensajes"/>
 
     <ScrollView
         android:id="@+id/scvTexto"
@@ -20,13 +20,13 @@
         android:layout_below="@+id/lblCabecera"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin" >
+        android:layout_marginRight="@dimen/activity_vertical_margin">
 
         <TextView
             android:id="@+id/lblTexto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
     </ScrollView>
 
     <LinearLayout
@@ -37,7 +37,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/primary_light"
-        android:padding="@dimen/panel_padding" >
+        android:padding="@dimen/panel_padding">
 
         <EditText
             android:id="@+id/txtMensaje"
@@ -48,9 +48,9 @@
             android:hint="@string/mensaje"
             android:maxLines="@integer/txtMensaje_maxLines"
             android:inputType="textMultiLine"
-            android:imeOptions="actionDone" >
+            android:imeOptions="actionDone">
 
-            <requestFocus />
+            <requestFocus/>
         </EditText>
 
         <ImageView
@@ -63,7 +63,7 @@
             android:src="@android:drawable/ic_menu_send"
             android:padding="@dimen/button_padding"
             android:clickable="true"
-            android:contentDescription="@string/enviar" />
+            android:contentDescription="@string/enviar"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -44,7 +44,7 @@ public class ListaAlumnosFragment extends Fragment {
     // Retorna la vista que debe mostrar el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Se infla y se retorna el layout que debe mostrar el fragmento.
         return inflater.inflate(R.layout.fragment_lista_alumnos, container,
                 false);
@@ -80,7 +80,7 @@ public class ListaAlumnosFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
+                                    int position, long id) {
                 // Se obtiene el alumno sobre el que se ha pulsado.
                 Alumno alumno = (Alumno) lstAlumnos.getItemAtPosition(position);
                 // Se da la orden de editar.
@@ -117,16 +117,16 @@ public class ListaAlumnosFragment extends Fragment {
             public boolean onActionItemClicked(ActionMode modo, MenuItem item) {
                 // Dependiendo del elemento pulsado.
                 switch (item.getItemId()) {
-                case R.id.mnuAlumnoEliminar:
-                    // Si hay elementos seleccionados se pide confirmación.
-                    if (lstAlumnos.getCheckedItemPositions().size() > 0) {
-                        // Se almacena el modo contextual para poder cerrarlo
-                        // una vez eliminados.
-                        modoContextual = modo;
-                        // Se pide confirmación.
-                        listener.onConfirmarEliminarAlumnos();
-                    }
-                    break;
+                    case R.id.mnuAlumnoEliminar:
+                        // Si hay elementos seleccionados se pide confirmación.
+                        if (lstAlumnos.getCheckedItemPositions().size() > 0) {
+                            // Se almacena el modo contextual para poder cerrarlo
+                            // una vez eliminados.
+                            modoContextual = modo;
+                            // Se pide confirmación.
+                            listener.onConfirmarEliminarAlumnos();
+                        }
+                        break;
                 }
                 // Se retorna que se ha procesado el evento.
                 return true;
@@ -135,7 +135,7 @@ public class ListaAlumnosFragment extends Fragment {
             // Al seleccionar un elemento de la lista.
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
-                    int position, long id, boolean checked) {
+                                                  int position, long id, boolean checked) {
                 // Se actualiza el título de la action bar contextual.
                 mode.setTitle(lstAlumnos.getCheckedItemCount() + "");
             }

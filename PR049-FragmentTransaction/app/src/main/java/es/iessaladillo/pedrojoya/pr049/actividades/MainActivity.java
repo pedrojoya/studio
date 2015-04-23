@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
 import es.iessaladillo.pedrojoya.pr049.R;
 import es.iessaladillo.pedrojoya.pr049.fragmentos.DetalleFragment;
 import es.iessaladillo.pedrojoya.pr049.fragmentos.DetalleFragment.OnDetalleShownListener;

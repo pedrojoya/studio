@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId,
-                    KeyEvent event) {
+                                          KeyEvent event) {
                 // Si se ha pulsado la tecla de Ir es como si se pulsara el
                 // botón.
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
-                    int count) {
+                                      int count) {
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
-                    int after) {
+                                          int after) {
             }
 
             @Override
@@ -123,4 +123,5 @@ public class MainActivity extends AppCompatActivity {
     private void checkDatos() {
         btnEnviar.setEnabled(!TextUtils.isEmpty(txtMensaje.getText()));
     }
+
 }

@@ -30,13 +30,13 @@ public class SeleccionMultipleDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
         b.setTitle(R.string.turno);
-        mOptionIsChecked = new boolean[] { true, false, false };
+        mOptionIsChecked = new boolean[]{true, false, false};
         b.setMultiChoiceItems(R.array.turnos, mOptionIsChecked,
                 new OnMultiChoiceClickListener() {
                     // Cuando se hace click en un elemento.
                     @Override
                     public void onClick(DialogInterface dialog, int which,
-                            boolean isChecked) {
+                                        boolean isChecked) {
                         mOptionIsChecked[which] = isChecked;
                     }
                 });

@@ -88,4 +88,3 @@ public class AlumnosAdapter extends ArrayAdapter<Alumno> {
     }
 
 }
-

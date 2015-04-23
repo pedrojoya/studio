@@ -104,7 +104,6 @@ public class DetalleFragment extends Fragment {
 
     // Muestra el detalle de un album en las vistas correspondientes.
     void mostrarDetalle() {
-        // Escribo los datos en las vistas.
         getActivity().setTitle(mObra.getNombre());
         imgFoto.setImageResource(mObra.getFotoResId());
         lblNombre.setText(mObra.getNombre());
@@ -114,4 +113,5 @@ public class DetalleFragment extends Fragment {
             mListener.onDetalleShown(mPosition);
         }
     }
+
 }

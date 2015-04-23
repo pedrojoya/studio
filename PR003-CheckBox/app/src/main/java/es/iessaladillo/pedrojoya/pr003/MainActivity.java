@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Cuando se cambia de estado del checkbox.
             public void onCheckedChanged(CompoundButton buttonView,
-                    boolean isChecked) {
+                                         boolean isChecked) {
                 // Se crea el mensaje.
                 String mensaje = getString(R.string.modo_educado) + " ";
                 if (isChecked) {
@@ -70,4 +70,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

@@ -140,8 +140,7 @@ public class MainActivity extends AppCompatActivity implements
             i.putExtra("return-data", true);
             // Inicio la actividad esperando el resultado.
             startActivityForResult(i, RC_RECORTAR_FOTO);
-        }
-        else {
+        } else {
             // Si no se puede recortar, se escala la imagen y se muestra.
             cargarImagenEscalada(pathFoto);
         }
@@ -275,8 +274,7 @@ public class MainActivity extends AppCompatActivity implements
     public void onItemClick(DialogFragment dialog, int which) {
         if (which == OPTION_PICK) {
             seleccionarFoto("mifoto.jgp"); // Si BD, por ejemplo ID_alumno.jpg.
-        }
-        else {
+        } else {
             capturarFoto("mifoto.jpg"); // Si BD, por ejemplo ID_alumno.jpg.
         }
     }
@@ -340,6 +338,5 @@ public class MainActivity extends AppCompatActivity implements
         }
 
     }
-
 
 }

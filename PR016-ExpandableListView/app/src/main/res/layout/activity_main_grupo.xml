@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_400"
         android:orientation="horizontal"
-        android:padding="@dimen/grupo_padding" >
+        android:padding="@dimen/grupo_padding">
 
         <TextView
             android:id="@+id/lblEncCiclo"
@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <ImageView
             android:id="@+id/imgIndicador"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/expandir_contraer_grupo"
-            android:src="@drawable/ic_action_navigation_expand" />
+            android:src="@drawable/ic_action_navigation_expand"/>
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/grupo_padding"
-        android:paddingRight="@dimen/grupo_padding" >
+        android:paddingRight="@dimen/grupo_padding">
 
         <TextView
             android:id="@+id/lblEncNombre"
@@ -53,7 +53,7 @@
             android:paddingLeft="@dimen/encabezado_paddingLeft"
             android:textAllCaps="true"
             android:textColor="@color/primary_400"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/lblEncCurso"
@@ -65,7 +65,7 @@
             android:text="@string/curso"
             android:textAllCaps="true"
             android:textColor="@color/primary_400"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </LinearLayout>

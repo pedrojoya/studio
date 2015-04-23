@@ -48,13 +48,13 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-        case R.id.imgFoto:
-            // Se cambia la visibilidad del panel.
-            togglePanel();
-            break;
-        case R.id.imgDetalle:
-            // Se cambia la visibilidad del detalle.
-            toggleDetalle();
+            case R.id.imgFoto:
+                // Se cambia la visibilidad del panel.
+                togglePanel();
+                break;
+            case R.id.imgDetalle:
+                // Se cambia la visibilidad del detalle.
+                toggleDetalle();
         }
     }
 

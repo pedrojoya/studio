@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
 import es.iessaladillo.pedrojoya.pr028.R;
 import es.iessaladillo.pedrojoya.pr028.adaptadores.AlumnosAdapter;
 import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
@@ -50,7 +51,7 @@ public class ListaAlumnosFragment extends Fragment implements
     // Retorna la vista que debe mostrar el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Se infla el layout y se retorna la vista que debe mostrar el fragmento.
         return inflater.inflate(R.layout.fragment_lista_alumnos, container, false);
         // Se obtienen e inicializan las vistas.
@@ -76,7 +77,7 @@ public class ListaAlumnosFragment extends Fragment implements
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
+                                    int position, long id) {
                 // Se obtiene el alumno sobre el que se ha pulsado.
                 Cursor c = (Cursor) lstAlumnos.getItemAtPosition(position);
                 Alumno alumno = Alumno.fromCursor(c);
@@ -113,16 +114,16 @@ public class ListaAlumnosFragment extends Fragment implements
             public boolean onActionItemClicked(ActionMode modo, MenuItem item) {
                 // Dependiendo del elemento pulsado.
                 switch (item.getItemId()) {
-                case R.id.mnuAlumnoEliminar:
-                    // Si hay elementos seleccionados se pide confirmación.
-                    if (lstAlumnos.getCheckedItemPositions().size() > 0) {
-                        // Se almacena el modo contextual para poder cerrarlo
-                        // una vez eliminados.
-                        modoContextual = modo;
-                        // Se pide confirmación.
-                        listener.onConfirmarEliminarAlumnos();
-                    }
-                    break;
+                    case R.id.mnuAlumnoEliminar:
+                        // Si hay elementos seleccionados se pide confirmación.
+                        if (lstAlumnos.getCheckedItemPositions().size() > 0) {
+                            // Se almacena el modo contextual para poder cerrarlo
+                            // una vez eliminados.
+                            modoContextual = modo;
+                            // Se pide confirmación.
+                            listener.onConfirmarEliminarAlumnos();
+                        }
+                        break;
                 }
                 // Se retorna que se ha procesado el evento.
                 return true;
@@ -131,7 +132,7 @@ public class ListaAlumnosFragment extends Fragment implements
             // Al seleccionar un elemento de la lista.
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
-                    int position, long id, boolean checked) {
+                                                  int position, long id, boolean checked) {
                 // Se actualiza el título de la action bar contextual.
                 mode.setTitle(lstAlumnos.getCheckedItemCount() + "");
             }
@@ -159,10 +160,10 @@ public class ListaAlumnosFragment extends Fragment implements
         // Se inicializa el cargador.
         gestor.initLoader(0, null, this);
         // Se establece el adaptador para la lista, que inicialmente manejará un cursor nulo.
-        String[] from = { Instituto.Alumno.NOMBRE, Instituto.Alumno.CURSO,
-                Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION };
-        int[] to = { R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono,
-                R.id.lblDireccion };
+        String[] from = {Instituto.Alumno.NOMBRE, Instituto.Alumno.CURSO,
+                Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION};
+        int[] to = {R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono,
+                R.id.lblDireccion};
         adaptador = new AlumnosAdapter(this.getActivity(),
                 R.layout.fragment_lista_alumnos_item, null, from, to, 0);
         lstAlumnos.setAdapter(adaptador);

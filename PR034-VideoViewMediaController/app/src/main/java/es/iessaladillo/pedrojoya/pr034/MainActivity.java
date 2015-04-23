@@ -101,8 +101,7 @@ public class MainActivity extends AppCompatActivity implements
         if (!TextUtils.isEmpty(mPathVideo)) {
             // Si disponemos del vídeo lo cargamos.
             cargarVideo(mPathVideo);
-        }
-        else {
+        } else {
             // Si no disponemos del vídeo, se selecciona.
             seleccionarVideo();
         }

@@ -1,7 +1,7 @@
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/imgFoto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:contentDescription="@string/fotografia"
-    android:scaleType="centerCrop"
-    android:src="@drawable/bench" />
+           android:id="@+id/imgFoto"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:contentDescription="@string/fotografia"
+           android:scaleType="centerCrop"
+           android:src="@drawable/bench"/>

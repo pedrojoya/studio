@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lblRespuesta"
     android:layout_width="@dimen/respuesta_width"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:gravity="center"
-    android:background="@drawable/respuesta_fondo" />
+    android:background="@drawable/respuesta_fondo"/>
