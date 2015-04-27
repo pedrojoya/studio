@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem menuItem) {
                         mnuLimpiar.setVisible(false);
-                        mToolbar.setNavigationIcon(R.drawable.ic_back);
+                        //mToolbar.setNavigationIcon(R.drawable.ic_back);
                         return true;
                     }
                     // Cuando se colapsa.
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                        mToolbar.setNavigationIcon(R.drawable.ic_burger);
+                        //mToolbar.setNavigationIcon(R.drawable.ic_burger);
                         mnuLimpiar.setVisible(true);
                         return true;
                     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             // Se colapsa el searchview.
-            svBuscar.onActionViewCollapsed();
+            //svBuscar.onActionViewCollapsed();
             return true;
         }
         if (id == R.id.mnuLimpiar) {

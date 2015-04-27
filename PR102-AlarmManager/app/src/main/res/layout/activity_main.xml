@@ -77,7 +77,7 @@
         android:text="@string/avisar"
         style="@style/TextAppearance.AppCompat.Caption" />
 
-    <Switch
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/swActivar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,8 +85,6 @@
         android:layout_marginLeft="@dimen/lblActivar_marginLeft"
         android:layout_marginStart="@dimen/lblActivar_marginLeft"
         android:layout_toRightOf="@+id/txtIntervalo"
-        android:textOn="@string/on"
-        android:textOff="@string/off"
         android:layout_toEndOf="@+id/txtIntervalo" />
 
 </RelativeLayout>

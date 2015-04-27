@@ -10,7 +10,6 @@
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="suggestionRowLayout">@layout/search_dropdown_item</item>
-        <item name="searchIcon">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme">

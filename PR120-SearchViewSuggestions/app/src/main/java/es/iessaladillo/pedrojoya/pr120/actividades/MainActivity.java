@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         svBuscar.setSearchableInfo(gestorBusquedas.getSearchableInfo(
                 new ComponentName(this, BusquedaActivity.class)));
         // Se crea y establece el Listener para cuando se expande o contrae el searchview.
+/*
         MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.mnuBuscar),
                 new MenuItemCompat.OnActionExpandListener() {
                     // Cuando se expande.
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+*/
         return true;
     }
 

@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
@@ -10,7 +10,6 @@
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="suggestionRowLayout">@layout/search_dropdown_item</item>
-        <item name="searchIcon">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme">
