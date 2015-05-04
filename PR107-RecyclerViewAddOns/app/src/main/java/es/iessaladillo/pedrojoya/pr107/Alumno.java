@@ -1,30 +1,32 @@
 package es.iessaladillo.pedrojoya.pr107;
 
 // Modelo Alumno.
-public class Alumno {
+class Alumno {
+    private final long id;
+    private final String nombre;
+    private final String direccion;
+    private final String urlFoto;
 
-    private int id;
-    private String nombre;
-
-    public Alumno(int id, String nombre) {
+    public Alumno(long id, String nombre, String direccion, String urlFoto) {
         this.id = id;
         this.nombre = nombre;
+        this.direccion = direccion;
+        this.urlFoto = urlFoto;
+
     }
 
-    public int getId() {
-        return id;
+    public String getUrlFoto() {
+        return urlFoto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getDireccion() {
+        return direccion;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public long getId() { return id;}
 
 }

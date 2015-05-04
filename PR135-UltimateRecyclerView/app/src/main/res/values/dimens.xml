@@ -1,0 +1,27 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Toolbar -->
+    <dimen name="statusbar_height">0dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <!-- RecyclerView -->
+    <dimen name="list_paddingTop">8dp</dimen>
+    <dimen name="list_paddingBottom">56dp</dimen>
+    <!-- Panel inferior -->
+    <dimen name="panel_inferior_height">44dp</dimen>
+    <!-- Single line with avatar list item -->
+    <dimen name="two_line_tile_height">72dp</dimen>
+    <dimen name="two_line_avatar_width">40dp</dimen>
+    <dimen name="two_line_avatar_height">40dp</dimen>
+    <dimen name="two_line_avatar_marginTop">20dp</dimen>
+    <dimen name="two_line_avatar_marginLeft">16dp</dimen>
+    <dimen name="two_line_text_paddingTop">18dp</dimen>
+    <dimen name="two_line_secundary_text_paddingBottom">20dp</dimen>
+    <dimen name="two_line_text_paddingLeft">72dp</dimen>
+    <dimen name="two_line_text_marginRight">16dp</dimen>
+    <dimen name="two_line_secundary_icon_width">32dp</dimen>
+    <dimen name="two_line_secundary_icon_height">32dp</dimen>
+    <dimen name="two_line_secundary_icon_marginRight">16dp</dimen>
+</resources>

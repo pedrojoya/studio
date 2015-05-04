@@ -1,14 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Color de la ActionBar -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!-- Color de la barra de notificaciones -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!-- Color de acento (contraste) -->
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionModeBackground">@color/actionModeBackground</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionMenuTextColor">@color/actionMenuTextColor</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_action_arrow_back</item>
     </style>
+
+    <style name="ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
+        <item name="background">@color/actionModeBackground</item>
+        <item name="titleTextStyle">@style/ActionModeTitleStyle</item>
+
+    </style>
+
+    <style name="ActionModeTitleStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
+    </style>
+
 </resources>

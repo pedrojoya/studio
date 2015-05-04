@@ -15,6 +15,7 @@
 
 package es.iessaladillo.pedrojoya.pr107;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -72,7 +73,7 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
     private boolean mPaused = false;
     private View mSwipeView;
     private int mDismissCount = 0;
-    private List<PendingDismissData> mPendingDismisses = new ArrayList<PendingDismissData>();
+    private List<PendingDismissData> mPendingDismisses = new ArrayList<>();
     private SwipeDirection mAllowedSwipeDirection = SwipeDirection.NONE;
 
 
@@ -149,7 +150,7 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         mDownY = motionEvent.getRawY();
         mSwipeView = mRecyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
         if (mSwipeView == null) return false;
-        int pos = mRecyclerView.getChildPosition(mSwipeView);
+        int pos = mRecyclerView.getChildAdapterPosition(mSwipeView);
         mAllowedSwipeDirection = mCallbacks.canDismiss(pos);
         if (mAllowedSwipeDirection != SwipeDirection.NONE) {
 
@@ -205,7 +206,7 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         }
         if (dismiss) {
             // dismiss
-            final int pos = mRecyclerView.getChildPosition(mSwipeView);
+            final int pos = mRecyclerView.getChildAdapterPosition(mSwipeView);
             final View swipeViewCopy = mSwipeView;
             final SwipeDirection swipeDirection = dismissRight ? SwipeDirection.RIGHT : SwipeDirection.LEFT;
             ++mDismissCount;
@@ -290,7 +291,7 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         mPendingDismisses.add(new PendingDismissData(pos, dismissView, direction));
         if (mDismissCount == 0) {
             Collections.sort(mPendingDismisses);
-            List<PendingDismissData> dismissData = new ArrayList<PendingDismissData>(mPendingDismisses);
+            List<PendingDismissData> dismissData = new ArrayList<>(mPendingDismisses);
             mCallbacks.onDismiss(mRecyclerView, dismissData);
             mPendingDismisses.clear();
         }
@@ -317,7 +318,7 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         }
 
         @Override
-        public int compareTo(PendingDismissData other) {
+        public int compareTo(@NonNull PendingDismissData other) {
             return other.position - position;
         }
     }
@@ -326,5 +327,3 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         LEFT, RIGHT, BOTH, NONE
     }
 }
-
-

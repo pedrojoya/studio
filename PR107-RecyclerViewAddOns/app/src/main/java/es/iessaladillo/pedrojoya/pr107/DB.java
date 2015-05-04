@@ -3,18 +3,17 @@ package es.iessaladillo.pedrojoya.pr107;
 import java.util.ArrayList;
 
 // Simula un BD.
-public class DB {
+class DB {
 
     // Lista de alumnos.
-    private static ArrayList<Alumno> datos;
+    private static final ArrayList<Alumno> datos;
     private static int next = 1;
 
     // Inicialización.
     static {
         datos = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            int id = next++;
-            datos.add(new Alumno(id, "Alumno " + id));
+            datos.add(getNextAlumno());
         }
     }
 
@@ -37,8 +36,18 @@ public class DB {
         return datos.size();
     }
 
-    public static int getNext() {
+    private static int getNext() {
         return next++;
+    }
+
+    public static Alumno getNextAlumno() {
+        int num = next++;
+        return new Alumno(
+                num,
+                "Alumno " + num,
+                "c/ Su casa, nº " + num,
+                "http://lorempixel.com/100/100/abstract/" + (num%10 + 1) + "/"
+        );
     }
 
 }

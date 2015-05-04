@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PR135-UltimateRecyclerView</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_hay_datos_que_mostrar">No hay datos que mostrar</string>
+</resources>

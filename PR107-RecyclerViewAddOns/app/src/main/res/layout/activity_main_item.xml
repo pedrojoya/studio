@@ -3,32 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="56dp"
+    android:minHeight="@dimen/two_line_tile_height"
     android:background="@drawable/activity_main_item_background"
+    android:clickable="true"
     android:orientation="vertical">
-    <!--?android:attr/activatedBackgroundIndicator-->
 
-    <ImageView
-        android:id="@+id/imgUser"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="4dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/two_line_avatar_width"
+        android:layout_height="@dimen/two_line_avatar_height"
         android:contentDescription="@string/avatar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/two_line_avatar_marginTop"
+        android:layout_marginLeft="@dimen/two_line_avatar_marginLeft"
+        android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
         android:src="@drawable/ic_user" />
-
 
     <TextView
         android:id="@+id/lblNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:paddingLeft="72dp"
-        android:paddingTop="20dp"
-        tools:text="Nombre del alumno"
-        android:layout_marginRight="16dp"
-        android:textSize="16sp" />
+        android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:paddingTop="@dimen/two_line_text_paddingTop"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:text="Baldomero Llegate Ligero"
+        android:layout_marginRight="@dimen/two_line_text_marginRight"
+        android:layout_marginEnd="@dimen/two_line_text_marginRight"
+        android:textSize="@dimen/abc_text_size_subhead_material" />
+
+    <TextView
+        android:id="@+id/lblDireccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
+        android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/lblNombre"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:text="c/ La casa de Baldomero"
+        android:layout_marginRight="@dimen/two_line_text_marginRight"
+        android:layout_marginEnd="@dimen/two_line_text_marginRight"
+        android:textSize="14sp" />
 
 </RelativeLayout>

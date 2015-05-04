@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        // Para que al cambiar la orientación no pierda el tamaño.
-        toolbar.setTitleTextAppearance(this, R.style.TextAppearance_AppCompat_Title);
         setSupportActionBar(toolbar);
         initVistas();
     }
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     private void initVistas() {
         lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
-        mAdaptador = new AlumnosAdapter(this, DB.getAlumnos());
+        mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
