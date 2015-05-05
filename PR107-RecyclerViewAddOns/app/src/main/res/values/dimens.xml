@@ -1,6 +1,4 @@
 <resources>
-    <!-- MainActivity -->
-    <dimen name="panel_margin">4dp</dimen>
     <!-- Empty View -->
     <dimen name="empty_drawablePadding">10dp</dimen>
     <!-- Toolbar -->
@@ -16,7 +14,6 @@
     <dimen name="two_line_secundary_text_paddingBottom">20dp</dimen>
     <dimen name="two_line_text_paddingLeft">72dp</dimen>
     <dimen name="two_line_text_marginRight">16dp</dimen>
-    <dimen name="two_line_secundary_icon_width">32dp</dimen>
 
 
 </resources>

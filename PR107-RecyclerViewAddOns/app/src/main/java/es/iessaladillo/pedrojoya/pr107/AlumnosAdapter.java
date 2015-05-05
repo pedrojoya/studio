@@ -43,6 +43,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     // Constructor.
     public AlumnosAdapter(ArrayList<Alumno> datos) {
+        // Para que drag & drop pueda funcionar correctamente.
         setHasStableIds(true);
         mDatos = datos;
     }
@@ -240,12 +241,34 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         return items;
     }
 
+    // Retorna el id de un elemento. Necesario para drag & drop.
     @Override
     public long getItemId(int position) {
         if (position < 0 || position >= mDatos.size()) {
             return -1;
         }
         return mDatos.get(position).getId();
+    }
+
+    // Retorna la posición del item con dicho id. Necesario para drag & drop.
+    public int getPositionForId(long id) {
+        for (int i = 0; i < mDatos.size(); i++) {
+            if (mDatos.get(i).getId() == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Intercambia los elementos indicados.
+    public void moveItem(int start, int end) {
+        int max = Math.max(start, end);
+        int min = Math.min(start, end);
+        if (min >= 0 && max < mDatos.size()) {
+            Alumno item = mDatos.remove(min);
+            mDatos.add(max, item);
+            notifyItemMoved(min, max);
+        }
     }
 
     // Contenedor de vistas para la vista-fila.

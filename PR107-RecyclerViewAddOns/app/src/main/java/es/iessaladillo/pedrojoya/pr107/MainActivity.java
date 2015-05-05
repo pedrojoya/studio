@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
     private ActionMode mActionMode;
     private SwipeToDismissTouchListener swipeToDismissTouchListener;
     private Toolbar toolbar;
+    private DragController mDragController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
         lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
-        // mAdaptador.setOnItemLongClickListener(this);
+        mAdaptador.setOnItemLongClickListener(this);
         mAdaptador.setOnEmptyStateChangedListener(this);
         lstAlumnos.setAdapter(mAdaptador);
         lstAlumnos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -76,6 +78,16 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
                     mAdaptador.removeItem(data.position);
                 }
             }
+
+            @Override
+            public void onResetMotion() {
+            }
+
+            @Override
+            public void onTouchDown() {
+            }
+
+
         });
         lstAlumnos.addOnItemTouchListener(swipeToDismissTouchListener);
 
@@ -95,7 +107,28 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
         });
         // Drag & drop.
         ImageView overlay = (ImageView) findViewById(R.id.overlay);
-        lstAlumnos.addOnItemTouchListener(new DragController(lstAlumnos, overlay));
+        mDragController = new DragController(lstAlumnos, overlay) {
+
+            @Override
+            void onDragStarted() {
+                Log.d("Mia", "onDragStarted");
+            }
+
+            @Override
+            void onSwapDone() {
+                // Si está activo el modo de acción contextual se deshabilita en cuenta se hace
+                // un intercambio por drag and drop.
+                if (mActionMode != null) {
+                    mActionMode.finish();
+                }
+            }
+
+            @Override
+            void onDragEnded() {
+            }
+
+        };
+        lstAlumnos.addOnItemTouchListener(mDragController);
     }
 
     private void showFloatingViews() {
