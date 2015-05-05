@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
         lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
-        mAdaptador.setOnItemLongClickListener(this);
+        // mAdaptador.setOnItemLongClickListener(this);
         mAdaptador.setOnEmptyStateChangedListener(this);
         lstAlumnos.setAdapter(mAdaptador);
         lstAlumnos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -92,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
                 toolbar.animate().translationY(0);
             }
         });
+        // Drag & drop.
+        ImageView overlay = (ImageView) findViewById(R.id.overlay);
+        lstAlumnos.addOnItemTouchListener(new DragController(lstAlumnos, overlay));
     }
 
     private void showFloatingViews() {
