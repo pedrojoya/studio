@@ -2,12 +2,11 @@ package es.iessaladillo.pedrojoya.pr107;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,9 +19,9 @@ import com.software.shell.fab.ActionButton;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements ActionMode.Callback,
+public class MainActivity extends AppCompatActivity implements
         AlumnosAdapter.OnItemClickListener, AlumnosAdapter.OnItemLongClickListener,
-        AlumnosAdapter.OnEmptyStateChangedListener {
+        AlumnosAdapter.OnEmptyStateChangedListener, ActionMode.Callback {
 
     private RecyclerView lstAlumnos;
     private ActionButton btnAgregar;
@@ -55,8 +54,10 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
         mAdaptador.setOnItemLongClickListener(this);
         mAdaptador.setOnEmptyStateChangedListener(this);
         lstAlumnos.setAdapter(mAdaptador);
-        lstAlumnos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        lstAlumnos.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        lstAlumnos.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
+        lstAlumnos.addItemDecoration(new DividerItemDecoration(this,
+                LinearLayoutManager.VERTICAL));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         btnAgregar = (ActionButton) findViewById(R.id.btnAgregar);
         btnAgregar.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
                 agregarAlumno(DB.getNextAlumno());
             }
         });
-        swipeToDismissTouchListener = new SwipeToDismissTouchListener(lstAlumnos, new SwipeToDismissTouchListener.DismissCallbacks() {
+        swipeToDismissTouchListener = new SwipeToDismissTouchListener(lstAlumnos,
+                        new SwipeToDismissTouchListener.DismissCallbacks() {
 
             @Override
             public SwipeToDismissTouchListener.SwipeDirection canDismiss(int position) {
@@ -73,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
             }
 
             @Override
-            public void onDismiss(RecyclerView view, List<SwipeToDismissTouchListener.PendingDismissData> dismissData) {
+            public void onDismiss(RecyclerView view,
+                List<SwipeToDismissTouchListener.PendingDismissData> dismissData) {
                 for (SwipeToDismissTouchListener.PendingDismissData data : dismissData) {
                     mAdaptador.removeItem(data.position);
                 }
@@ -95,14 +98,20 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
 
             @Override
             public void onHide() {
-                btnAgregar.hide();
-                toolbar.animate().translationY(-toolbar.getHeight());
+                // Solo si NO está activo el modo de acción contextual.
+                if (mActionMode == null) {
+                    btnAgregar.hide();
+                    toolbar.animate().translationY(-toolbar.getHeight());
+                }
             }
 
             @Override
             public void onShow() {
-                btnAgregar.show();
-                toolbar.animate().translationY(0);
+                // Solo si NO está activo el modo de acción contextual.
+                if (mActionMode == null) {
+                    btnAgregar.show();
+                    toolbar.animate().translationY(0);
+                }
             }
         });
         // Drag & drop.
@@ -111,13 +120,12 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
 
             @Override
             void onDragStarted() {
-                Log.d("Mia", "onDragStarted");
             }
 
             @Override
             void onSwapDone() {
-                // Si está activo el modo de acción contextual se deshabilita en cuenta se hace
-                // un intercambio por drag and drop.
+                // Si está activo el modo de acción contextual se deshabilita
+                // en cuenta se hace un intercambio por drag and drop.
                 if (mActionMode != null) {
                     mActionMode.finish();
                 }
@@ -133,24 +141,24 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
 
     private void showFloatingViews() {
         btnAgregar.show();
-        toolbar.setVisibility(View.VISIBLE);
     }
 
     private void hideFloatingViews() {
         btnAgregar.hide();
-        toolbar.setVisibility(View.GONE);
     }
 
     // Al crear el modo de acción contextual.
     @Override
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
         mActionMode = actionMode;
-        actionMode.getMenuInflater().inflate(R.menu.activity_main_contextual, menu);
+        actionMode.getMenuInflater().inflate(R.menu.activity_main_contextual,
+                menu);
         // Se ocultan las vistas flotantes.
         hideFloatingViews();
         return true;
     }
 
+    // Al preparar el menú del modo de acción contextual.
     @Override
     public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
         swipeToDismissTouchListener.setEnabled(false);
@@ -185,7 +193,8 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
             toggleSelection(position);
         } else {
             Toast.makeText(getApplicationContext(), "Has pulsado sobre " +
-                    mAdaptador.getItem(position).getNombre(), Toast.LENGTH_SHORT).show();
+                    mAdaptador.getItem(position).getNombre(),
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -195,17 +204,21 @@ public class MainActivity extends AppCompatActivity implements ActionMode.Callba
         if (this.mActionMode != null) {
             toggleSelection(position);
         } else {
-            startSupportActionMode(this);
+            toolbar.startActionMode(this);
+            //startSupportActionMode(this);
             toggleSelection(position);
         }
     }
 
+    // Cambia el estado de selección del elemento situado en dicha posición.
     private void toggleSelection(int position) {
         // Se cambia el estado de selección
         mAdaptador.toggleSelection(position);
         // Se actualiza el texto del action mode contextual.
-        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " + mAdaptador.getItemCount());
-        // Si ya no hay ningún elemento seleccionado se finaliza el modo de acción contextual
+        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " +
+                mAdaptador.getItemCount());
+        // Si ya no hay ningún elemento seleccionado se finaliza el modo de
+        // acción contextual
         if (mAdaptador.getSelectedItemCount() == 0) {
             mActionMode.finish();
         }

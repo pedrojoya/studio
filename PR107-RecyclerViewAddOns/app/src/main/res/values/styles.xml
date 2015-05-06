@@ -8,18 +8,20 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!-- Color de acento (contraste) -->
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Necesario para mostrar modo contextual sobre toolbar -->
         <item name="windowActionModeOverlay">true</item>
+        <!-- Modo de acción contextual -->
         <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionMenuTextColor">@color/actionMenuTextColor</item>
         <item name="actionModeCloseDrawable">@drawable/ic_action_arrow_back</item>
     </style>
 
+    <!-- Estilos para el modo de acción contextual -->
     <style name="ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
         <item name="background">@color/actionModeBackground</item>
         <item name="titleTextStyle">@style/ActionModeTitleStyle</item>
 
     </style>
-
     <style name="ActionModeTitleStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>

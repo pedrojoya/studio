@@ -1,0 +1,36 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_height"
+        android:scaleType="centerCrop"
+        android:src="@drawable/foto"/>
+
+    <!-- clipToPadding a false para que al desplazar la imagen no se mantenga
+         el padding inicial -->
+    <ScrollView
+        android:id="@+id/svScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/image_height">
+
+        <!-- Debe de tener fondo para que no se muestre encima de la imagen
+             cuando ésta se está desplazando -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="@dimen/text_padding"
+            android:singleLine="false"
+            android:text="@string/lorem"/>
+    </ScrollView>
+
+    <include layout="@layout/toolbar"/>
+
+</FrameLayout>

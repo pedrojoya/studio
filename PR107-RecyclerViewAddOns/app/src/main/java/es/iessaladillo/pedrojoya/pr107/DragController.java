@@ -10,7 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-public abstract class DragController implements RecyclerView.OnItemTouchListener {
+// Basado en http://blog.stylingandroid.com/material-part-6/#more-2907
+public abstract class DragController implements
+        RecyclerView.OnItemTouchListener {
 
     public static final int ANIMATION_DURATION = 100;
 
@@ -34,11 +36,14 @@ public abstract class DragController implements RecyclerView.OnItemTouchListener
                     @Override
                     public void onLongPress(MotionEvent e) {
                         super.onLongPress(e);
-                        // Si está habilitado y la vista es aún válida (problemas con swipeToDismiss)
-                        if (recyclerView.findChildViewUnder(e.getX(), e.getY()) != null) {
+                        // Si está habilitado y la vista es aún válida
+                        // (problemas con swipeToDismiss)
+                        if (recyclerView.findChildViewUnder(e.getX(), e.getY())
+                                != null) {
                             // Ya se ha producido el long click.
-                            // Para iniciar el drag es necesario que se haga click largo y además
-                            // se mueva (es necesario hacerlo así ya que el click largo se reserva
+                            // Para iniciar el drag es necesario que se haga
+                            // click largo y además se mueva (es necesario
+                            // hacerlo así ya que el click largo se reserva
                             // para el modo de acción contextual).
                             isLongClick = true;
                         }
@@ -106,8 +111,8 @@ public abstract class DragController implements RecyclerView.OnItemTouchListener
         // Se desplaza la vista overlay para que quede justo encima de la
         // vista sobre la que se ha pulsado.
         overlay.setTranslationY(y - startY);
-        // Se almacena el id del item que se pretende arrastrar. Necesario para el posterior
-        // intercambio.
+        // Se almacena el id del item que se pretende arrastrar. Necesario
+        // para el posterior intercambio.
         draggingId = recyclerView.getChildItemId(draggingView);
         // Se almacenan los límites de la vista sobre la que se ha pulsado,
         // para poder saber si el overlay es movido fuera de dichos límites.
@@ -127,27 +132,31 @@ public abstract class DragController implements RecyclerView.OnItemTouchListener
         overlay.setTranslationY(y - startY);
         // Si ha salido de los límites almacenados.
         if (!isInPreviousBounds()) {
-            // Se obtiene la vista sobre la que se encuentra y se intercambia con la vista original.
+            // Se obtiene la vista sobre la que se encuentra y se intercambia
+            //  con la vista original.
             View view = recyclerView.findChildViewUnder(0, y);
-            if (recyclerView.getChildAdapterPosition(view) != 0 && view != null) {
+            if (recyclerView.getChildAdapterPosition(view) != 0 &&
+                    view != null) {
                 swapViews(view);
             }
         }
     }
 
-    // Intercambia el item correspondiente a la vista recibida con el item correspondiente
-    // a la vista arrastrada.
+    // Intercambia el item correspondiente a la vista recibida con el item
+    // correspondiente a la vista arrastrada.
     private void swapViews(View current) {
-        // Se obtiene el id del elemento correspondiente a la vista sobre la que se encuentra.
+        // Se obtiene el id del elemento correspondiente a la vista sobre la
+        // que se encuentra.
         long replacementId = recyclerView.getChildItemId(current);
-        // Se obtienen del adaptador las posiciones en la que se encuentran la vista sobre la que
-        // se encuentra y la vista original.
+        // Se obtienen del adaptador las posiciones en la que se encuentran
+        // la  vista sobre la que se encuentra y la vista original.
         AlumnosAdapter adapter = (AlumnosAdapter) recyclerView.getAdapter();
         int start = adapter.getPositionForId(replacementId);
         int end = adapter.getPositionForId(draggingId);
         // Se intercambian los elementos.
         adapter.moveItem(start, end);
-        // Si el elemento original era el primero visible, se hace scroll a su nueva posición.
+        // Si el elemento original era el primero visible,
+        // se hace scroll a su nueva posición.
         if (isFirst) {
             recyclerView.scrollToPosition(end);
             isFirst = false;
@@ -164,7 +173,8 @@ public abstract class DragController implements RecyclerView.OnItemTouchListener
     public boolean isInPreviousBounds() {
         float overlayTop = overlay.getTop() + overlay.getTranslationY();
         float overlayBottom = overlay.getBottom() + overlay.getTranslationY();
-        return overlayTop < startBounds.bottom && overlayBottom > startBounds.top;
+        return overlayTop < startBounds.bottom &&
+                overlayBottom > startBounds.top;
     }
 
     // Cuando finaliza el arrastre.
@@ -177,7 +187,8 @@ public abstract class DragController implements RecyclerView.OnItemTouchListener
         // la vista overlay hasta su posición original.
         float translationY = overlay.getTranslationY();
         draggingView.setTranslationY(translationY - startBounds.top);
-        draggingView.animate().translationY(0f).setDuration(ANIMATION_DURATION).start();
+        draggingView.animate().translationY(0f).setDuration(ANIMATION_DURATION)
+                .start();
         onDragEnded();
     }
 
@@ -185,7 +196,8 @@ public abstract class DragController implements RecyclerView.OnItemTouchListener
 
     // Muestra en la vista overlay un bitmap copia de la vista recibida.
     private void paintViewToOverlay(View view) {
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),
+                Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         view.draw(canvas);
         overlay.setImageBitmap(bitmap);

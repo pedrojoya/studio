@@ -1,18 +1,3 @@
-/*
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- */
-
 package es.iessaladillo.pedrojoya.pr107;
 
 import android.support.annotation.NonNull;
@@ -26,33 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Based on Roman Nurik's Android-SwipeToDismiss lib <a href="https://github.com/romannurik/Android-SwipeToDismiss">https://github.com/romannurik/Android-SwipeToDismiss</a>
- * <p/>
- * RecyclerView.OnItemTouchListener that allows items to be swiped and dismissed.
- * <p/>
- * Typical usage:
- * <p/>
- * <pre>
- * {@code
- * swipeToDismissTouchListener = new SwipeToDismissTouchListener(recyclerView, new SwipeToDismissTouchListener.DismissCallbacks() {
- *           @Override
- *          public SwipeToDismissTouchListener.SwipeDirection canDismiss(int position) {
- *              return SwipeToDismissTouchListener.SwipeDirection.RIGHT;
- *          }
- *           @Override
- *          public void onDismiss(RecyclerView view, List<SwipeToDismissTouchListener.PendingDismissData> dismissData) {
- *             for (SwipeToDismissTouchListener.PendingDismissData data : dismissData) {
- *                 adapter.removeItem(data.position);
- *                 adapter.notifyItemRemoved(data.position);
- *             }
- *          }
- *  });
- *
- * }
- * </pre>
- */
-public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchListener {
+// De la librería https://github.com/ismoli/DynamicRecyclerView.
+// Basada a su vez en https://github.com/romannurik/Android-SwipeToDismiss
+public class SwipeToDismissTouchListener implements
+        RecyclerView.OnItemTouchListener {
 
     private final RecyclerView mRecyclerView;
     private int mSlop;
@@ -81,15 +43,17 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
      * Constructs a new swipe-to-dismiss OnItemTouchListener for RecyclerView
      *
      * @param recyclerView RecyclerView
-     * @param callbacks    The callback to trigger when the user has indicated that she would like to
-     *                     dismiss this view.
+     * @param callbacks    The callback to trigger when the user has
+     *                     indicated that she would like to dismiss this view.
      */
-    public SwipeToDismissTouchListener(RecyclerView recyclerView, DismissCallbacks callbacks) {
+    public SwipeToDismissTouchListener(RecyclerView recyclerView,
+                                       DismissCallbacks callbacks) {
         ViewConfiguration vc = ViewConfiguration.get(recyclerView.getContext());
         mSlop = vc.getScaledTouchSlop();
         mMinFlingVelocity = vc.getScaledMinimumFlingVelocity() * 4;
         mMaxFlingVelocity = vc.getScaledMaximumFlingVelocity();
-        mAnimationTime = recyclerView.getContext().getResources().getInteger(android.R.integer.config_shortAnimTime);
+        mAnimationTime = recyclerView.getContext().getResources()
+                .getInteger(android.R.integer.config_shortAnimTime);
         mRecyclerView = recyclerView;
         mCallbacks = callbacks;
     }
@@ -121,7 +85,8 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
     }
 
     @Override
-    public boolean onInterceptTouchEvent(final RecyclerView view, MotionEvent motionEvent) {
+    public boolean onInterceptTouchEvent(final RecyclerView view,
+                                         MotionEvent motionEvent) {
         if (mPaused) return false;
         // offset because the view is translated during swipe
         motionEvent.offsetLocation(mTranslationX, 0);
@@ -148,7 +113,8 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
 
         mDownX = motionEvent.getRawX();
         mDownY = motionEvent.getRawY();
-        mSwipeView = mRecyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+        mSwipeView = mRecyclerView.findChildViewUnder(motionEvent.getX(),
+                motionEvent.getY());
         if (mSwipeView == null) return false;
         int pos = mRecyclerView.getChildAdapterPosition(mSwipeView);
         mAllowedSwipeDirection = mCallbacks.canDismiss(pos);
@@ -197,7 +163,8 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         if (Math.abs(deltaX) > mViewWidth / 2 && mSwiping) {
             dismiss = true;
             dismissRight = deltaX > 0;
-        } else if (mMinFlingVelocity <= absVelocityX && absVelocityX <= mMaxFlingVelocity
+        } else if (mMinFlingVelocity <= absVelocityX &&
+                absVelocityX <= mMaxFlingVelocity
                 && absVelocityY < absVelocityX
                 && absVelocityY < absVelocityX && mSwiping) {
             // dismiss only if flinging in the same direction as dragging
@@ -208,7 +175,8 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
             // dismiss
             final int pos = mRecyclerView.getChildAdapterPosition(mSwipeView);
             final View swipeViewCopy = mSwipeView;
-            final SwipeDirection swipeDirection = dismissRight ? SwipeDirection.RIGHT : SwipeDirection.LEFT;
+            final SwipeDirection swipeDirection =
+                    dismissRight ? SwipeDirection.RIGHT : SwipeDirection.LEFT;
             ++mDismissCount;
             mSwipeView.animate()
                     .translationX(dismissRight ? mViewWidth : -mViewWidth)
@@ -253,12 +221,15 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
             mSwipeView.setPressed(false);
 
             MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
-            cancelEvent.setAction(MotionEvent.ACTION_CANCEL | (motionEvent.getActionIndex() << MotionEvent.ACTION_POINTER_INDEX_SHIFT));
+            cancelEvent.setAction(
+                    MotionEvent.ACTION_CANCEL | (motionEvent.getActionIndex()
+                            << MotionEvent.ACTION_POINTER_INDEX_SHIFT));
             mSwipeView.onTouchEvent(cancelEvent);
         }
 
         //Prevent swipes to disallowed directions
-        if ((deltaX < 0 && mAllowedSwipeDirection == SwipeDirection.RIGHT) || (deltaX > 0 && mAllowedSwipeDirection == SwipeDirection.LEFT)) {
+        if ((deltaX < 0 && mAllowedSwipeDirection == SwipeDirection.RIGHT) ||
+                (deltaX > 0 && mAllowedSwipeDirection == SwipeDirection.LEFT)) {
             resetMotion();
             return false;
         }
@@ -288,32 +259,36 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         mAllowedSwipeDirection = SwipeDirection.NONE;
     }
 
-    private void performDismiss(View dismissView, int pos, SwipeDirection direction) {
+    private void performDismiss(View dismissView, int pos,
+                                SwipeDirection direction) {
         --mDismissCount;
         mPendingDismisses.add(new PendingDismissData(pos, dismissView, direction));
         if (mDismissCount == 0) {
             Collections.sort(mPendingDismisses);
-            List<PendingDismissData> dismissData = new ArrayList<>(mPendingDismisses);
+            List<PendingDismissData> dismissData =
+                    new ArrayList<>(mPendingDismisses);
             mCallbacks.onDismiss(mRecyclerView, dismissData);
             mPendingDismisses.clear();
         }
     }
 
-
     public interface DismissCallbacks {
         SwipeDirection canDismiss(int position);
+
         void onDismiss(RecyclerView view, List<PendingDismissData> dismissData);
+
         void onResetMotion();
+
         void onTouchDown();
     }
-
 
     public class PendingDismissData implements Comparable<PendingDismissData> {
         public int position;
         public View view;
         public SwipeDirection direction;
 
-        public PendingDismissData(int position, View view, SwipeDirection direction) {
+        public PendingDismissData(int position, View view,
+                                  SwipeDirection direction) {
             this.position = position;
             this.view = view;
             this.direction = direction;
@@ -329,4 +304,5 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
     public enum SwipeDirection {
         LEFT, RIGHT, BOTH, NONE
     }
+
 }

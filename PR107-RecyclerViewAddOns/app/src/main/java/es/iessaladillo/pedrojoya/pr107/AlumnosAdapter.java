@@ -18,17 +18,20 @@ import de.hdodenhof.circleimageview.CircleImageView;
 // Adaptador para la lista de alumnos.
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
-    // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    // Interfaz que debe implementar el listener para cuando se haga click
+    // sobre un elemento.
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
     }
 
-    // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
+    // Interfaz que debe implementar el listener para cuando se haga click
+    // largo sobre un elemento.
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Alumno alumno, int position);
     }
 
-    // Interfaz que debe implementar el listener para cuando la lista pase a o deje de estar vacía.
+    // Interfaz que debe implementar el listener para cuando la lista pase a
+    // o deje de estar vacía.
     public interface OnEmptyStateChangedListener {
         void onEmptyStateChanged(boolean isEmpty);
     }
@@ -129,7 +132,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     // Elimina los elementos seleccionados.
     public void removeSelectedItems() {
-        // Se eliminan en orden inverso para que no haya problemas. Al eliminar se cambia el
+        // Se eliminan en orden inverso para que no haya problemas. Al
+        // eliminar se cambia el
         // estado de selección del elemento.
         List<Integer> seleccionados = getSelectedItemsPositions();
         Collections.sort(seleccionados, Collections.reverseOrder());
@@ -178,18 +182,22 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         }
     }
 
-    // Establece el listener a informar cuando se hace click sobre un elemento de la lista.
+    // Establece el listener a informar cuando se hace click sobre un
+    // elemento de la lista.
     public void setOnItemClickListener(OnItemClickListener listener) {
         mOnItemClickListener = listener;
     }
 
-    // Establece el listener a informar cuando se hace click largo sobre un elemento de la lista.
+    // Establece el listener a informar cuando se hace click largo sobre un
+    // elemento de la lista.
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         mOnItemLongClickListener = listener;
     }
 
-    // Establece el listener a informar cuando la lista pasa a o deja de estar vacía.
-    public void setOnEmptyStateChangedListener(OnEmptyStateChangedListener listener) {
+    // Establece el listener a informar cuando la lista pasa a o deja de
+    // estar vacía.
+    public void setOnEmptyStateChangedListener(
+            OnEmptyStateChangedListener listener) {
         mOnEmptyStateChangedListener = listener;
         checkEmptyStateChanged();
     }
