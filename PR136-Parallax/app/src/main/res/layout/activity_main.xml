@@ -11,6 +11,42 @@
         android:scaleType="centerCrop"
         android:src="@drawable/foto"/>
 
+    <!-- Vista superpuesta a la foto con color de la toolbar, que se volviendo
+         más opaca conforme hacemos scroll -->
+    <View
+        android:id="@+id/vOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_height"
+        android:background="@color/colorPrimary" />
+
+    <!-- Panel para el título (encima de la imagen)
+         El padding es para que se respecto el icono de la toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="60dp">
+        <!-- Cuando menor sea el scroll más se trasladará hacia abajo el
+             título -->
+        <TextView
+            android:id="@+id/lblTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:minHeight="?attr/actionBarSize"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:text="Efecto Parallax"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
+        <!-- Vista con la altura de la imagen sobre la que se
+             mostrará el TextView -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_height" />
+
+    </LinearLayout>
+
     <!-- clipToPadding a false para que al desplazar la imagen no se mantenga
          el padding inicial -->
     <ScrollView
