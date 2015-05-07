@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
         imgFoto = (ImageView) findViewById(R.id.imgFoto);
         svScroll = (ScrollView) findViewById(R.id.svScroll);
         // Cuando se hace scroll se realiza el efecto parallax.
+        parallax(svScroll, imgFoto);
         svScroll.getViewTreeObserver()
                 .addOnScrollChangedListener(new ViewTreeObserver
                         .OnScrollChangedListener() {
@@ -43,6 +44,16 @@ public class MainActivity extends ActionBarActivity {
     private void parallax(ScrollView scrollView, ImageView image) {
         int scrollY = scrollView.getScrollY();
         image.setTranslationY(-scrollY / 2);
+        int baseColor = getResources().getColor(R.color.colorPrimary);
+        int imageHeight = getResources().getDimensionPixelSize(R.dimen.image_height);
+        float alpha = Math.min(1, (float) scrollY / imageHeight);
+        toolbar.setBackgroundColor(getColorWithAlpha(alpha, baseColor));
+    }
+
+    public int getColorWithAlpha(float alpha, int baseColor) {
+        int a = Math.min(255, Math.max(0, (int) (alpha * 255))) << 24;
+        int rgb = 0x00ffffff & baseColor;
+        return a + rgb;
     }
 
 }
