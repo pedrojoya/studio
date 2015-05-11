@@ -40,7 +40,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
     private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
-    private SparseBooleanArray mSelectedItems = new SparseBooleanArray();
+    private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
     private boolean mIsEmpty = true;
 
 
@@ -201,7 +201,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Cambia el estado de selección de un elemento.
-    public void toggleSelection(int position) {
+    private void toggleSelection(int position) {
         if (mSelectedItems.get(position, false)) {
             mSelectedItems.delete(position);
         } else {
@@ -239,7 +239,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Retorna un array con las posiciones de los elementos seleccionados.
-    public List<Integer> getSelectedItemsPositions() {
+    private List<Integer> getSelectedItemsPositions() {
         List<Integer> items = new ArrayList<>(mSelectedItems.size());
         for (int i = 0; i < mSelectedItems.size(); i++) {
             items.add(mSelectedItems.keyAt(i));

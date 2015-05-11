@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_height"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/foto"
         android:src="@drawable/foto"/>
 
     <!-- Vista superpuesta a la foto con color de la toolbar, que se volviendo
@@ -37,9 +38,9 @@
             android:minHeight="?attr/actionBarSize"
             android:gravity="center_vertical"
             android:ellipsize="end"
-            android:text="Parallax RecyclerView"
+            android:text="@string/app_name"
             android:textColor="@android:color/white"
-            android:textSize="20dp"/>
+            android:textSize="@dimen/titulo_textSize"/>
         <!-- Vista con la altura de la imagen sobre la que se
              mostrará el TextView -->
         <View

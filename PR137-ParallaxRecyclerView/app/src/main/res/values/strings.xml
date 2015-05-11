@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Parallax RecyclerView</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="foto_alumno">Foto del alumno</string>
     <string name="ha_pulsado_sobre">Ha pulsado sobre</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
+    <string name="foto">Foto encabezado</string>
 </resources>

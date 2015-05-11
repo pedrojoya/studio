@@ -4,15 +4,17 @@
              android:layout_height="match_parent"
              tools:context=".MainActivity">
 
+    <!-- Imagen de cabecera -->
     <ImageView
         android:id="@+id/imgFoto"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_height"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/foto"
         android:src="@drawable/foto"/>
 
-    <!-- Vista superpuesta a la foto con color de la toolbar, que se volviendo
-         más opaca conforme hacemos scroll -->
+    <!-- Vista superpuesta a la imagen de cabecera con color de la toolbar,
+         que se va volviendo más opaca conforme hacemos scroll -->
     <View
         android:id="@+id/vOverlay"
         android:layout_width="match_parent"
@@ -20,14 +22,15 @@
         android:background="@color/colorPrimary" />
 
     <!-- Panel para el título (encima de la imagen)
-         El padding es para que se respecto el icono de la toolbar -->
+         Padding necesario para respetar el espacio del
+         icono de la toolbar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="60dp">
+        android:paddingLeft="@dimen/toolbar_icon_paddingLeft">
         <!-- Cuando menor sea el scroll más se trasladará hacia abajo el
-             título -->
+             título y mayor será su tamaño -->
         <TextView
             android:id="@+id/lblTitulo"
             android:layout_width="wrap_content"
@@ -36,18 +39,23 @@
             android:minHeight="?attr/actionBarSize"
             android:gravity="center_vertical"
             android:ellipsize="end"
-            android:text="Efecto Parallax"
+            android:text="@string/app_name"
             android:textColor="@android:color/white"
-            android:textSize="20dp"/>
+            android:textSize="@dimen/titulo_textSize"/>
         <!-- Vista con la altura de la imagen sobre la que se
-             mostrará el TextView -->
+             mostrará el TextView. El título se muestra
+             sobre ella -->
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/image_height" />
 
     </LinearLayout>
 
-    <!-- clipToPadding a false para que al desplazar la imagen no se mantenga
+    <!-- El ScrollView debe ocupar toda la pantalla para que se pueda
+         hacer scroll sobre la imagen de cabecera.
+         paddingTop para no se muestre el contenido encima de la imagen
+         de cabecera.
+         clipToPadding a false para que al desplazar la imagen no se mantenga
          el padding inicial -->
     <ScrollView
         android:id="@+id/svScroll"
@@ -56,8 +64,8 @@
         android:clipToPadding="false"
         android:paddingTop="@dimen/image_height">
 
-        <!-- Debe de tener fondo para que no se muestre encima de la imagen
-             cuando ésta se está desplazando -->
+        <!-- Debe tener fondo para que no se muestre encima de la imagen
+             de cabecera al desplazar -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,8 +73,10 @@
             android:padding="@dimen/text_padding"
             android:singleLine="false"
             android:text="@string/lorem"/>
+
     </ScrollView>
 
+    <!-- Toolbar. Encima del resto de vistas. -->
     <include layout="@layout/toolbar"/>
 
 </FrameLayout>
