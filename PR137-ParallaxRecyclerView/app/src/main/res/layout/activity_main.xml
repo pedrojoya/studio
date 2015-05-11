@@ -1,0 +1,86 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_height"
+        android:scaleType="centerCrop"
+        android:src="@drawable/foto"/>
+
+    <!-- Vista superpuesta a la foto con color de la toolbar, que se volviendo
+         más opaca conforme hacemos scroll -->
+    <View
+        android:id="@+id/vOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_height"
+        android:background="@color/primary" />
+
+    <!-- Panel para el título (encima de la imagen)
+         El padding es para que se respecto el icono de la toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="60dp">
+        <!-- Cuando menor sea el scroll más se trasladará hacia abajo el
+             título -->
+        <TextView
+            android:id="@+id/lblTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:minHeight="?attr/actionBarSize"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:text="Parallax RecyclerView"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
+        <!-- Vista con la altura de la imagen sobre la que se
+             mostrará el TextView -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_height" />
+
+    </LinearLayout>
+
+    <!-- clipToPadding a false para que al desplazar la imagen no se mantenga
+         el padding inicial -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lstAlumnos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/image_height" />
+
+    <TextView
+        android:id="@+id/lblNoHayAlumnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="@dimen/empty_drawablePadding"
+        android:drawableTop="@mipmap/ic_user_add"
+        android:text="@string/no_hay_alumnos"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <com.software.shell.fab.ActionButton
+        android:id="@+id/btnAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        fab:button_color="@color/fab_material_pink_500"
+        fab:button_colorPressed="@color/fab_material_pink_900"
+        fab:image="@drawable/fab_plus_icon"
+        fab:show_animation="@anim/fab_roll_from_down"
+        fab:hide_animation="@anim/fab_roll_to_down" />
+
+    <include layout="@layout/toolbar"/>
+
+</FrameLayout>
