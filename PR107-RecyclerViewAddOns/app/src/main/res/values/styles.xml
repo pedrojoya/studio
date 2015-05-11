@@ -14,6 +14,9 @@
         <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionMenuTextColor">@color/actionMenuTextColor</item>
         <item name="actionModeCloseDrawable">@drawable/ic_action_arrow_back</item>
+        <!-- Fondo para elementos activados -->
+        <item name="selectableItemBackground">@drawable/activity_main_item_background</item>
+        <item name="android:selectableItemBackground">@drawable/activity_main_item_background</item>
     </style>
 
     <!-- Estilos para el modo de acción contextual -->
