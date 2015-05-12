@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:scaleType="centerCrop"
         android:contentDescription="@string/imagen"/>
 
     <LinearLayout
@@ -24,56 +25,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/normal"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/claro"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/oscuro"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/vibrante"/>
 
             <TextView
                 android:id="@+id/lblVibrant"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="@string/vibrante"
+                android:padding="@dimen/muestra_padding"
                 android:layout_weight="1"/>
 
             <TextView
@@ -81,6 +43,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="@string/vibrante_claro"
+                android:padding="@dimen/muestra_padding"
                 android:layout_weight="1"/>
 
             <TextView
@@ -88,6 +52,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="@string/vibrante_oscuro"
+                android:padding="@dimen/muestra_padding"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -99,19 +65,13 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/apagado"/>
-
             <TextView
                 android:id="@+id/lblMuted"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="@string/apagado"
+                android:padding="@dimen/muestra_padding"
                 android:layout_weight="1"/>
 
             <TextView
@@ -119,6 +79,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="@string/apagado_claro"
+                android:padding="@dimen/muestra_padding"
                 android:layout_weight="1"/>
 
             <TextView
@@ -126,6 +88,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="@string/apagado_oscuro"
+                android:padding="@dimen/muestra_padding"
                 android:layout_weight="1"/>
 
         </LinearLayout>
