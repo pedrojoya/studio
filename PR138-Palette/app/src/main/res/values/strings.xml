@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PR138-Palette</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="normal">Normal</string>
+    <string name="claro">Claro</string>
+    <string name="oscuro">Oscuro</string>
+    <string name="imagen">Imagen</string>
+    <string name="vibrante">Vibrante</string>
+    <string name="apagado">Apagado</string>
+</resources>
