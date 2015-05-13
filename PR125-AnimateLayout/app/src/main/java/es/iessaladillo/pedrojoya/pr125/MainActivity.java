@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
                 agregarElemento();
             }
         });
+
         // Se crea la transición y se asoica al contenedor.
         LayoutTransition transition = new LayoutTransition();
         llContentedor.setLayoutTransition(transition);
@@ -51,6 +52,7 @@ public class MainActivity extends ActionBarActivity {
                 this, pvhSlide, pvhScaleY, pvhScaleX)
                 .setDuration(transition.getDuration(LayoutTransition.CHANGE_DISAPPEARING));
         transition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, changingAppearingAnim);
+
     }
 
     // Agrega un botón al contenedor.

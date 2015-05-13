@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
         mShareActionProvider =
                 (ShareActionProvider) MenuItemCompat.getActionProvider(menu
                         .findItem(R.id.mnuShare));
-        mShareActionProvider.setShareIntent(getIntentCompartir());
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(getIntentCompartir());
+        }
         return super.onCreateOptionsMenu(menu);
     }
 

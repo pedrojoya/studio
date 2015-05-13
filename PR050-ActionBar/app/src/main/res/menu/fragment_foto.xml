@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/mnuInfo"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_action_info_outline"
         android:orderInCategory="100"
         app:showAsAction="ifRoom|withText"
         android:title="@string/acerca_de"/>
