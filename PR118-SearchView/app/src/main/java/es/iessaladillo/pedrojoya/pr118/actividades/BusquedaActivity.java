@@ -100,4 +100,5 @@ public class BusquedaActivity extends AppCompatActivity implements
         Alumno alumno = Alumno.fromCursor(cursor);
         Toast.makeText(this, alumno.getNombre() + " - " + alumno.getCurso(), Toast.LENGTH_SHORT).show();
     }
+
 }

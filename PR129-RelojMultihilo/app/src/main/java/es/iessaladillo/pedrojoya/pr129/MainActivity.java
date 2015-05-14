@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr129;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,15 +9,16 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
-@SuppressLint("SimpleDateFormat")
 public class MainActivity extends AppCompatActivity implements
         OnClickListener {
 
     private Button btnIniciar;
     private Thread hiloSecundario;
     private TextView lblTiempo;
-    private final SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss");
+    private final SimpleDateFormat formateador = new SimpleDateFormat
+            ("HH:mm:ss", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
