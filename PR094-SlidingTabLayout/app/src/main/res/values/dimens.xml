@@ -8,5 +8,8 @@
     <!-- tab_header -->
     <dimen name="header_textSize">14sp</dimen>
     <dimen name="header_padding">15dp</dimen>
-    
+    <dimen name="text_padding">10dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="cab_height">104dp</dimen>
+
 </resources>

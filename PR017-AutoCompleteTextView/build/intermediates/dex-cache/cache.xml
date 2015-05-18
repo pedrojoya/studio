@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jar="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
+        revision="22.0.1"
+        sha1="983e2f375504bc04def18e709c35192afe92e65f">
+        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/classes-cbde0041fc97b14e03bc7cc94cce8f3229660f05.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jar="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-ca3687b250df26883ffa912c3e3c58d498c98cac.jar" />
+        revision="22.0.1"
+        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
+        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-e50e75acf642531379947c77f41dd597dd723d0f.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jar="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/classes-cc3ba3384dab5277e9cd61958c1e2b083e7dd06b.jar" />
+        revision="22.0.1"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/classes-7448dc33c9e90492ae993eb202438e5952e0e0e9.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/classes-d68b49e3bb6d41d0ad05f09b0936c16f8664d8b6.jar" />
+        revision="22.0.1"
+        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
+        <dex dex="/Users/pedro/studio/PR017-AutoCompleteTextView/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
     </item>
 
 </items>

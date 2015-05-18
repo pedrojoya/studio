@@ -54,7 +54,7 @@
             android:layout_alignParentTop="true"
             android:clickable="true"
             android:contentDescription="@string/popup_menu"
-            android:src="@drawable/ic_overflow" />
+            android:src="@drawable/ic_action_more_vert" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

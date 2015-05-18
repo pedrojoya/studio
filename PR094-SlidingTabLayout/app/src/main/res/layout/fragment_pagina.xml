@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="es.iessaladillo.pedrojoya.pr094.MainActivity$PaginaFragment">
+<ScrollView android:id="@+id/svScrollView"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            tools:context="es.iessaladillo.pedrojoya.pr094.MainActivity$PaginaFragment">
 
     <TextView
         android:id="@+id/lblPagina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textIsSelectable="true"
-        android:textSize="@dimen/pagina_textSize" />
+        android:padding="@dimen/text_padding"
+        android:text="@string/lorem" />
 
-</RelativeLayout>
+</ScrollView>

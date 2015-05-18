@@ -3,5 +3,23 @@
 
     <string name="app_name">SlidingTabLayout</string>
     <string name="tab">Opción</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Sed sapien lacus, posuere a augue vel, vehicula scelerisque
+        orci. Aenean porttitor imperdiet pretium. Nullam cursus porta
+        facilisis. Nam vel neque varius, semper eros id, sagittis arcu.
+        Maecenas sed nisi ut eros tincidunt interdum. Donec placerat enim metus, a lobortis enim dictum eget. Nunc eget risus lacinia, luctus arcu a, viverra arcu. Duis porttitor nec odio eu tristique. Suspendisse rhoncus quis massa sit amet luctus. Fusce eu faucibus dui, eget fermentum metus. Aliquam finibus orci et lectus dictum semper. Etiam varius ut ex volutpat dictum. Mauris sit amet ante ut ex gravida finibus ac sed nisl. \n\nCurabitur facilisis sapien ex, vitae tincidunt erat lacinia et. Nunc non tortor pretium, porta diam at, semper orci. Suspendisse potenti.
+
+Cras eu arcu vitae ex vestibulum efficitur sed eget mauris. Integer gravida
+        gravida pharetra. \nProin ac fermentum est. Sed vitae mi dapibus,
+        tristique ligula quis, tincidunt sapien. Nullam quis nunc lectus. Praesent tempus nunc sit amet lorem tincidunt ultricies. Vivamus eu libero quis tortor tincidunt fringilla sit amet sollicitudin est. Cras quis metus quis erat porta semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent malesuada felis ac elit varius, nec imperdiet lacus tristique. Mauris porttitor ipsum dolor, ut viverra neque lacinia et. Duis a metus rutrum, auctor ante sit amet, euismod neque. In blandit, sapien sit amet gravida euismod, ex purus eleifend magna, ac eleifend augue lacus ac elit. Vestibulum vestibulum turpis vel est vehicula pretium. Praesent quis vestibulum enim. Praesent imperdiet consequat odio id volutpat.
+
+Ut lobortis vehicula magna id vulputate. Phasellus eu ultricies ligula. \n\nUt
+        non placerat mauris. Morbi consequat arcu lectus, nec euismod sapien iaculis at. Ut sit amet pulvinar neque. Etiam ac sem suscipit, malesuada ipsum vel, gravida elit. Suspendisse molestie turpis condimentum dolor pharetra, laoreet volutpat risus finibus. Donec id mi sed sapien fringilla bibendum. Mauris eget nunc in ex malesuada tempus ut sed mauris.
+
+Proin blandit lacus sit amet tellus imperdiet, quis laoreet justo aliquet.
+        \n\nSed fringilla purus sapien, in ullamcorper elit lacinia ut.
+        Vestibulum tempor ac eros sed cursus. Vestibulum rutrum ex ut diam sagittis, id pretium lacus ullamcorper. Sed a nulla ut diam vestibulum gravida. Praesent et porttitor eros. Nullam facilisis lobortis lacus, id feugiat magna. Fusce cursus rutrum sapien, a sollicitudin mi fermentum sit amet. Aliquam sit amet porttitor mi. Nam a facilisis eros. Cras placerat eleifend libero nec commodo. Fusce hendrerit tempus velit, quis rhoncus sapien porta et. Integer id condimentum ante, in luctus justo. Nullam gravida lorem vitae justo imperdiet venenatis.
+
+Donec eu fermentum velit. Morbi est nisi, lobortis quis lobortis nec, elementum vulputate mauris. Nam efficitur lacus sem, nec malesuada ipsum pharetra vitae. Aliquam rhoncus fringilla orci, vel consequat est congue et. Cras felis ipsum, sollicitudin id venenatis eu, fermentum eu nisl. Nam id ex et lacus pharetra ullamcorper a sed justo. Aliquam eu tellus vitae felis egestas bibendum eget eu nulla. Quisque tempus, odio non pellentesque consectetur, urna dui viverra metus, eu sodales lorem mauris sed justo. Vivamus eleifend, nibh eget faucibus hendrerit, turpis ligula luctus nisi, eget efficitur enim nisl eget risus. Vestibulum quis hendrerit metus, sit amet volutpat neque. Nam euismod ipsum non massa sagittis, ac suscipit ipsum pellentesque.</string>
 
 </resources>

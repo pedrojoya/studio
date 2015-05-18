@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR050-ActionBar\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR050-ActionBar\app\build\intermediates\pre-dexed\debug\classes-ae3f14c1beb78c99b94c3b4f7edc2d0f4da33678.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR050-ActionBar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR050-ActionBar\app\build\intermediates\pre-dexed\debug\classes-faa41c94db675787004b196947802536b209676c.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR050-ActionBar\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
+        jar="/Users/pedro/studio/PR050-ActionBar/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR050-ActionBar\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-7de093429a30d632ae13cae010f86659c39c64e8.jar" />
+        <dex dex="/Users/pedro/studio/PR050-ActionBar/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-58d4e4c1c11cd7e8bd95b53a56f28f0f576162ec.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
+        jar="/Users/pedro/studio/PR050-ActionBar/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="/Users/pedro/studio/PR050-ActionBar/app/build/intermediates/pre-dexed/debug/classes-abb04a99d7ecfcba7cacacaa12a2839bf448ad6f.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR050-ActionBar/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="983e2f375504bc04def18e709c35192afe92e65f">
+        <dex dex="/Users/pedro/studio/PR050-ActionBar/app/build/intermediates/pre-dexed/debug/classes-f2338fb20709d6e02df4f33a651c759ea2c34c0c.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR050-ActionBar\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-7a0e010d3a34f4facea2614a45246d96db5d393e.jar" />
+        <dex dex="/Users/pedro/studio/PR050-ActionBar/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
     </item>
 
 </items>

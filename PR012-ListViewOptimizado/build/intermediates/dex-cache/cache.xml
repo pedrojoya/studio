@@ -2,32 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-90b3c606a5aa443392aa2ff21e7b39dcf0463e30.jar" />
+        revision="22.0.1"
+        sha1="983e2f375504bc04def18e709c35192afe92e65f">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-cc7f9893d0210041ba313a67691c8aa4d28b6b2c.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-d75aadc7c862de5e25557f65935944858d63ce8e.jar" />
+        revision="22.0.1"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-93401a3d1563d250d999aa5f4e688442a78f42df.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-6098f2b49f0418d1687c38a84a2df27602a46832.jar" />
+        revision="22.0.1"
+        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-f03e7e542240a3bbce2c3164c038c9080dbf9d37.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-8d50cc0374e21cf17c4f6ab6221d8913f2d64931.jar" />
+        revision="22.0.1"
+        sha1="11842de6a309c447b3a3d60d73ad637a87c58994">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/classes-7faa4a3592aa9bc64d00fc849ca3096d31480820.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
     </item>
     <item
         jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/classes.jar"
