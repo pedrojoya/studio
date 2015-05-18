@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private FrameLayout container;
     private MainFragment mFragmento;
+    private boolean mIsToolbarShown = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +25,19 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onHide() {
+        mIsToolbarShown = false;
         mFragmento.onHide();
     }
 
     @Override
     public void onShow() {
+        mIsToolbarShown = true;
         mFragmento.onShow();
+    }
+
+    @Override
+    public boolean isToolbarShown() {
+        return mIsToolbarShown;
     }
 
 }

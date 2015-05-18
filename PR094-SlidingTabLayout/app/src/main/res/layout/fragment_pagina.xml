@@ -6,6 +6,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/cab_height"
             tools:context="es.iessaladillo.pedrojoya.pr094.MainActivity$PaginaFragment">
 
     <TextView

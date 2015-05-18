@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.example.android.common.view.SlidingTabLayout;
 
@@ -19,13 +20,15 @@ public class MainFragment extends Fragment {
     private SlidingTabLayout stTabs;
     private LinearLayout llCabecera;
     private ViewPager vpPaginador;
+    private PaginasAdapter mAdaptador;
+    private boolean mIsToolbarShown = true;
 
     public MainFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Se obtiene y retorna la vista para el fragmento.
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -43,10 +46,14 @@ public class MainFragment extends Fragment {
             llCabecera = (LinearLayout) getView().findViewById(R.id.llCabecera);
             toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+            ((AppCompatActivity) getActivity()).getSupportActionBar()
+                    .setElevation(0);
             // Se configura el ViewPager.
             vpPaginador = (ViewPager) getView().findViewById(R.id.vpPaginador);
-            vpPaginador.setAdapter(new PaginasAdapter(getActivity(),
-                    getChildFragmentManager()));
+            mAdaptador = new PaginasAdapter(getActivity(),
+                    getChildFragmentManager());
+            vpPaginador.setAdapter(mAdaptador);
+            vpPaginador.setOffscreenPageLimit(0);
             // Se configura el SlidingTabLayout.
             stTabs = (SlidingTabLayout) getView().findViewById(R.id.stTabs);
             stTabs.setCustomTabView(R.layout.tab_header, R.id.lblTab);
@@ -58,18 +65,54 @@ public class MainFragment extends Fragment {
                             .getColor(R.color.accent),
                     getResources().getColor(R.color.accent));
             //stTabs.setDividerColors(getResources().getColor(android.R.color.white));
+            stTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    updateScroll(position);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+            vpPaginador.setCurrentItem(0);
+        }
+    }
+
+    private void updateScroll(int position) {
+        ScrollView svScrollView = (ScrollView) mAdaptador.getItem
+                (position).getView().findViewById(R.id.svScrollView);
+        if (svScrollView != null) {
+            if (mIsToolbarShown) {
+                if (svScrollView.getScrollY() == toolbar
+                        .getHeight()) {
+                    svScrollView.scrollTo(0, 0);
+                }
+            } else {
+                if (svScrollView.getScrollY() < toolbar.getHeight()) {
+                    svScrollView.scrollTo(0,
+                            toolbar.getHeight());
+                }
+            }
         }
     }
 
     public void onHide() {
         llCabecera.animate().cancel();
         llCabecera.animate().translationY(-toolbar.getHeight());
+        mIsToolbarShown = false;
     }
 
     public void onShow() {
         llCabecera.animate().cancel();
         llCabecera.animate().translationY(0);
-   }
+        mIsToolbarShown = true;
+    }
 
 
 }

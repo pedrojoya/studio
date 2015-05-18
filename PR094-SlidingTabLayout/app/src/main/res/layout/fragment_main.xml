@@ -9,25 +9,22 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="@dimen/cab_height"
         tools:context=".MainActivity"/>
-
 
     <LinearLayout
         android:id="@+id/llCabecera"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:elevation="@dimen/toolbar_elevation">
 
         <include layout="@layout/toolbar"/>
 
         <com.example.android.common.view.SlidingTabLayout
             android:id="@+id/stTabs"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/tab_height"
-            android:background="@color/primary"
-            android:elevation="@dimen/toolbar_elevation"/>
+            android:layout_height="wrap_content"
+            android:background="@color/primary"/>
 
     </LinearLayout>
 
