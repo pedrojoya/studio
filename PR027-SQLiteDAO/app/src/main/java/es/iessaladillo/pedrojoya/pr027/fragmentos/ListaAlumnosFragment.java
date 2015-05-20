@@ -27,6 +27,8 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 
 public class ListaAlumnosFragment extends Fragment {
 
+    private ListaAlumnosAdapter mAdaptador;
+
     // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
         public void onAgregarAlumno();
@@ -164,8 +166,8 @@ public class ListaAlumnosFragment extends Fragment {
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) (new DAO(getActivity()))
                 .getAllAlumnos();
         // Se establece el adaptador para la lista (personalizado).
-        lstAlumnos.setAdapter(new ListaAlumnosAdapter(getActivity(),
-                alumnos));
+        mAdaptador = new ListaAlumnosAdapter(getActivity(), alumnos);
+        lstAlumnos.setAdapter(mAdaptador);
     }
 
     // Cuando el fragmento es cargado en la actividad.
@@ -185,26 +187,44 @@ public class ListaAlumnosFragment extends Fragment {
     // Elimina de la base de datos los alumnos seleccionados, actualiza el
     // adaptador y cierra el modo de acción conextual.
     public void eliminarAlumnos() {
-        // Se obtiene el array con las posiciones seleccionadas.
-        SparseBooleanArray seleccionados = lstAlumnos.getCheckedItemPositions();
-        // Por cada selección.
-        for (int i = 0; i < seleccionados.size(); i++) {
-            // Se obtiene la posición del elemento en el adaptador.
-            int position = seleccionados.keyAt(i);
-            // Si ha sido seleccionado
-            if (seleccionados.valueAt(i)) {
-                // Se obtiene el alumo.
-                Alumno alu = (Alumno) lstAlumnos.getItemAtPosition(position);
-                // Se borra de la base de datos.
-                (new DAO(getActivity())).deleteAlumno(alu.getId());
-                // Se elimina del adaptador.
-                ((ListaAlumnosAdapter) lstAlumnos.getAdapter()).remove(alu);
-            }
+        // Se obtienen los elementos seleccionados (y se
+        // quita la selección).
+        ArrayList<Alumno> elems = getElementosSeleccionados(
+                lstAlumnos, true);
+        // Se eliminan de la base de datos y del adaptador.
+        for (Alumno alumno : elems) {
+            // Se borra de la base de datos.
+            (new DAO(getActivity())).deleteAlumno(alumno.getId());
+            mAdaptador.remove(alumno);
         }
+        // Se notifica al adaptador que ha habido cambios.
+        mAdaptador.notifyDataSetChanged();
         // Se finaliza el modo contextual.
         modoContextual.finish();
-        // Se infora al adaptador de que ha habido cambios en sus datos.
-        ((ListaAlumnosAdapter) lstAlumnos.getAdapter()).notifyDataSetChanged();
+    }
+
+    // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y
+    // si debe quitarse la selección una vez obtenidos los elementos.
+    private ArrayList<Alumno> getElementosSeleccionados(ListView lst,
+                                                        boolean uncheck) {
+        // ArrayList resultado.
+        ArrayList<Alumno> datos = new ArrayList<>();
+        // Se obtienen los elementos seleccionados de la lista.
+        SparseBooleanArray selec = lst.getCheckedItemPositions();
+        for (int i = 0; i < selec.size(); i++) {
+            // Si está seleccionado.
+            if (selec.valueAt(i)) {
+                int position = selec.keyAt(i);
+                // Se quita de la selección (si hay que hacerlo).
+                if (uncheck) {
+                    lst.setItemChecked(position, false);
+                }
+                // Se añade al resultado.
+                datos.add((Alumno) lst.getItemAtPosition(selec.keyAt(i)));
+            }
+        }
+        // Se retorna el resultado.
+        return datos;
     }
 
 }
