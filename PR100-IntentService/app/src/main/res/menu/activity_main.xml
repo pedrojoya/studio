@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/mnuExportar"
-        android:icon="@android:drawable/ic_menu_send"
+        android:icon="@drawable/ic_action_send"
         app:showAsAction="ifRoom|withText"
         android:title="@string/exportar"/>
 

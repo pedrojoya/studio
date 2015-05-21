@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR094-SlidingTabLayout\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-e91f33c7a18dc30df76a3b620986af99939534af.jar" />
+        <dex dex="/Users/pedro/studio/PR094-SlidingTabLayout/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-b1c46bc93b4097f34ac94406659df5be532e3461.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR094-SlidingTabLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR094-SlidingTabLayout\app\build\intermediates\pre-dexed\debug\classes-2de8475f2d80429c728437a52f287e4f470d7e59.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR094-SlidingTabLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR094-SlidingTabLayout\app\build\intermediates\pre-dexed\debug\classes-2cef4282773838ed54fd04013858c3b7323273dc.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR094-SlidingTabLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
+        jar="/Users/pedro/studio/PR094-SlidingTabLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR094-SlidingTabLayout\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-a54a1f68fe2de092487df14c75f7b1ee63360fbc.jar" />
+        <dex dex="/Users/pedro/studio/PR094-SlidingTabLayout/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-a11a566936e85dfeb5cd6755a6a181493ae66443.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR094-SlidingTabLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/pedro/studio/PR094-SlidingTabLayout/app/build/intermediates/pre-dexed/debug/classes-ee93c6c7917704b2aca74329711709125b3c45e2.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR094-SlidingTabLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/pedro/studio/PR094-SlidingTabLayout/app/build/intermediates/pre-dexed/debug/classes-f62e612288ab7423672779121a75b5fffc1bfb84.jar" />
     </item>
 
 </items>
