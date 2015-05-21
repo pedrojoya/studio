@@ -15,19 +15,17 @@ public class PaginaFragment extends Fragment {
 
     private static final String PAR_COLOR = "color";
     private static final int UMBRAL_SCROLL = 20;
-    private TextView lblPagina;
     private ScrollView svScrollView;
     private int mScrollAnterior;
     private boolean mVistasOcultas;
     private HideShowInterface mListener;
-    private ViewTreeObserver.OnScrollChangedListener mObservador;
 
     public interface HideShowInterface {
-        public void onHide();
+        void onHide();
 
-        public void onShow();
+        void onShow();
 
-        public boolean isToolbarShown();
+        boolean isToolbarShown();
     }
 
     @Override
@@ -51,10 +49,10 @@ public class PaginaFragment extends Fragment {
 
     private void initVistas(View v) {
         // Se actualiza el TextView.
-        lblPagina = (TextView) v.findViewById(R.id.lblPagina);
+        TextView lblPagina = (TextView) v.findViewById(R.id.lblPagina);
         lblPagina.setTextColor(getArguments().getInt(PAR_COLOR));
         svScrollView = (ScrollView) v.findViewById(R.id.svScrollView);
-        mObservador = new ViewTreeObserver
+        ViewTreeObserver.OnScrollChangedListener mObservador = new ViewTreeObserver
                 .OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {

@@ -3,13 +3,10 @@
     <!-- Toolbar -->
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
-    <!-- fragment_pagina -->
-    <dimen name="pagina_textSize">120sp</dimen>
     <!-- tab_header -->
     <dimen name="header_textSize">14sp</dimen>
     <dimen name="header_padding">15dp</dimen>
     <dimen name="text_padding">10dp</dimen>
-    <dimen name="tab_height">48dp</dimen>
     <dimen name="cab_height">104dp</dimen>
 
 </resources>
