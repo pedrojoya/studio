@@ -85,18 +85,27 @@ public class MainFragment extends Fragment {
     }
 
     private void updateScroll(int position) {
-        ScrollView svScrollView = (ScrollView) mAdaptador.getItem
+        final int toolbarHeight = toolbar.getHeight();
+        final ScrollView svScrollView = (ScrollView) mAdaptador.getItem
                 (position).getView().findViewById(R.id.svScrollView);
         if (svScrollView != null) {
             if (mIsToolbarShown) {
-                if (svScrollView.getScrollY() == toolbar
-                        .getHeight()) {
-                    svScrollView.scrollTo(0, 0);
+                if (svScrollView.getScrollY() == toolbarHeight) {
+                    svScrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            svScrollView.scrollTo(0, 0);
+                        }
+                    });
                 }
             } else {
-                if (svScrollView.getScrollY() < toolbar.getHeight()) {
-                    svScrollView.scrollTo(0,
-                            toolbar.getHeight());
+                if (svScrollView.getScrollY() < toolbarHeight) {
+                    svScrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            svScrollView.scrollTo(0, toolbarHeight);
+                        }
+                    });
                 }
             }
         }
