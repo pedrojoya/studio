@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">IntentService</string>
-    <string name="exportar">Exportar</string>
     <string name="eliminar">Eliminar</string>
     <string name="de">de</string>
     <string name="no_hay_alumnos_en_la_lista">No hay alumnos en la lista</string>

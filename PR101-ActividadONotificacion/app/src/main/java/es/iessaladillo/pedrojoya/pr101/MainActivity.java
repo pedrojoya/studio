@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
         ArrayList<String> datosArrayList = new ArrayList<>(
                 Arrays.asList(datosArray));
         mAdaptador = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_activated_1, datosArrayList);
+                R.layout.activity_main_item, datosArrayList);
         lstAlumnos.setAdapter(mAdaptador);
         // Se configura el modo de acción contextual.
         lstAlumnos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -253,12 +253,12 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
         ActionBar ab = getSupportActionBar();
         if (scrollState == ScrollState.UP) {
-            if (ab.isShowing()) {
+            if (ab != null && ab.isShowing()) {
                 ab.hide();
             }
             btnExportar.hide();
         } else if (scrollState == ScrollState.DOWN) {
-            if (!ab.isShowing()) {
+            if (ab != null && !ab.isShowing()) {
                 ab.show();
             }
             btnExportar.show();

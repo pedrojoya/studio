@@ -7,31 +7,38 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableListView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
 import com.nispok.snackbar.listeners.ActionClickListener;
+import com.software.shell.fab.ActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
 
     // Vistas.
-    private ListView lstAlumnos;
+    private ObservableListView lstAlumnos;
 
     // Variables.
     private BroadcastReceiver mExportarReceiver;
     private ArrayAdapter<String> mAdaptador;
     private LocalBroadcastManager mGestor;
+    private ActionButton btnExportar;
 
     // Al crear la actividad.
     @Override
@@ -72,8 +79,16 @@ public class MainActivity extends AppCompatActivity {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
+        btnExportar = (ActionButton) findViewById(R.id.btnExportar);
+        btnExportar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exportar();
+            }
+        });
+
         // Se carga la lista a partir de las constantes de cadena.
-        lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
+        lstAlumnos = (ObservableListView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
         String[] datosArray = getResources().getStringArray(R.array.alumnos);
         ArrayList<String> datosArrayList = new ArrayList<>(
@@ -109,10 +124,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 // Dependiendo del ítem pulsado.
                 switch (item.getItemId()) {
-                case R.id.mnuEliminar:
-                    eliminarAlumnos(getElementosSeleccionados(lstAlumnos, true));
-                    // Se retorna que se ha gestionado el evento.
-                    return true;
+                    case R.id.mnuEliminar:
+                        eliminarAlumnos(getElementosSeleccionados(lstAlumnos, true));
+                        // Se retorna que se ha gestionado el evento.
+                        return true;
                 }
                 return false;
             }
@@ -121,41 +136,13 @@ public class MainActivity extends AppCompatActivity {
             // lista.
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
-                    int position, long id, boolean checked) {
+                                                  int position, long id, boolean checked) {
                 // Se actualiza el título de la action bar contextual.
                 mode.setTitle(lstAlumnos.getCheckedItemCount() + " "
                         + getString(R.string.de) + " " + lstAlumnos.getCount());
             }
         });
-    }
-
-    // Al crear el menú de opciones.
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    // Al mostrarse el menú de opciones.
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // Se activa o desactiva el ítem de exportar dependiendo de si hay datos
-        // que exportar.
-        menu.findItem(R.id.mnuExportar).setEnabled(mAdaptador.getCount() > 0);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    // Al pulsar un ítem de menú.
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.mnuExportar:
-            exportar();
-            return true;
-        default:
-            break;
-        }
-        return super.onOptionsItemSelected(item);
+        lstAlumnos.setScrollViewCallbacks(this);
     }
 
     // Exporta la lista de alumnos.
@@ -238,6 +225,31 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onScrollChanged(int i, boolean b, boolean b1) {
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+    }
+
+    // Cuando se mueve el scroll de la lista hacia abajo o arriba.
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+        ActionBar ab = getSupportActionBar();
+        if (scrollState == ScrollState.UP) {
+            if (ab != null && ab.isShowing()) {
+                ab.hide();
+            }
+            btnExportar.hide();
+        } else if (scrollState == ScrollState.DOWN) {
+            if (ab != null && !ab.isShowing()) {
+                ab.show();
+            }
+            btnExportar.show();
         }
     }
 
