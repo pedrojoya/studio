@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr100;
+package es.iessaladillo.pedrojoya.pr101;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,40 +6,48 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableListView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
 import com.nispok.snackbar.listeners.ActionClickListener;
+import com.software.shell.fab.ActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ObservableScrollViewCallbacks {
+
+    // Constantes.
+    private static final int PRIORIDAD_SUPERIOR = 2;
 
     // Vistas.
-    private ListView lstAlumnos;
+    private ObservableListView lstAlumnos;
+    private ActionButton btnExportar;
 
     // Variables.
     private BroadcastReceiver mExportarReceiver;
     private ArrayAdapter<String> mAdaptador;
-    private LocalBroadcastManager mGestor;
 
     // Al crear la actividad.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Se obtienen e inicializan las vistas.
         initVistas();
-        mGestor = LocalBroadcastManager.getInstance(this);
         // Se crea el receptor de mensajes desde el servicio.
         mExportarReceiver = new BroadcastReceiver() {
 
@@ -50,36 +58,50 @@ public class MainActivity extends AppCompatActivity {
                         (ExportarService
                                 .EXTRA_FILENAME));
                 mostrarSnackbar(uri);
+                // Se aborta la propagación del broadcast para que no lo reciba
+                // nadie más.
+                abortBroadcast();
             }
         };
     }
 
+    // Al pasar a primer plano la actividad.
     @Override
     protected void onResume() {
         super.onResume();
-        // Se registra el receptor para la acción.
+        // Se crea el filtro para al receptor.
         IntentFilter exportarFilter = new IntentFilter(
-                ExportarService.ACTION_COMPLETADA);
-        mGestor.registerReceiver(mExportarReceiver, exportarFilter);
+                "es.iessaladillo.pedrojoya.pr101.action.EXPORTED");
+        exportarFilter.setPriority(PRIORIDAD_SUPERIOR);
+        // Se registra el receptor para dicha acción.
+        registerReceiver(mExportarReceiver, exportarFilter);
     }
 
+    // Al dejar de estar en primer plano la actividad.
     @Override
     protected void onPause() {
-        // Se desregistra el receptor para dicha acción.
-        mGestor.unregisterReceiver(mExportarReceiver);
+        // Se quita del registro el receptor para dicha acción.
+        unregisterReceiver(mExportarReceiver);
         super.onPause();
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
+        btnExportar = (ActionButton) findViewById(R.id.btnExportar);
+        btnExportar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exportar();
+            }
+        });
         // Se carga la lista a partir de las constantes de cadena.
-        lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
+        lstAlumnos = (ObservableListView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
         String[] datosArray = getResources().getStringArray(R.array.alumnos);
         ArrayList<String> datosArrayList = new ArrayList<>(
                 Arrays.asList(datosArray));
         mAdaptador = new ArrayAdapter<>(this,
-               R.layout.activity_main_item, datosArrayList);
+                android.R.layout.simple_list_item_activated_1, datosArrayList);
         lstAlumnos.setAdapter(mAdaptador);
         // Se configura el modo de acción contextual.
         lstAlumnos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -92,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
+                btnExportar.show();
             }
 
             // Al crear el modo de acción de contextual.
@@ -100,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 // Se infla el menú contextual.
                 getMenuInflater()
                         .inflate(R.menu.activity_main_contextual, menu);
+                btnExportar.hide();
                 // Se retorna que el evento ha sido gestionado.
                 return true;
             }
@@ -109,10 +133,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 // Dependiendo del ítem pulsado.
                 switch (item.getItemId()) {
-                case R.id.mnuEliminar:
-                    eliminarAlumnos(getElementosSeleccionados(lstAlumnos, true));
-                    // Se retorna que se ha gestionado el evento.
-                    return true;
+                    case R.id.mnuEliminar:
+                        eliminarAlumnos(getElementosSeleccionados(lstAlumnos, true));
+                        // Se activa o desactiva el ítem de exportar dependiendo de si hay datos
+                        // que exportar.
+                        btnExportar.setEnabled(mAdaptador.getCount() > 0);
+                        // Se retorna que se ha gestionado el evento.
+                        return true;
                 }
                 return false;
             }
@@ -121,41 +148,13 @@ public class MainActivity extends AppCompatActivity {
             // lista.
             @Override
             public void onItemCheckedStateChanged(ActionMode mode,
-                    int position, long id, boolean checked) {
+                                                  int position, long id, boolean checked) {
                 // Se actualiza el título de la action bar contextual.
                 mode.setTitle(lstAlumnos.getCheckedItemCount() + " "
                         + getString(R.string.de) + " " + lstAlumnos.getCount());
             }
         });
-    }
-
-    // Al crear el menú de opciones.
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    // Al mostrarse el menú de opciones.
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // Se activa o desactiva el ítem de exportar dependiendo de si hay datos
-        // que exportar.
-        menu.findItem(R.id.mnuExportar).setEnabled(mAdaptador.getCount() > 0);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    // Al pulsar un ítem de menú.
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.mnuExportar:
-            exportar();
-            return true;
-        default:
-            break;
-        }
-        return super.onOptionsItemSelected(item);
+        lstAlumnos.setScrollViewCallbacks(this);
     }
 
     // Exporta la lista de alumnos.
@@ -177,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y
     // si debe quitarse la selección una vez obtenidos los elementos.
     private ArrayList<String> getElementosSeleccionados(ListView lst,
-            boolean uncheck) {
+                                                        boolean uncheck) {
         // ArrayList resultado.
         ArrayList<String> datos = new ArrayList<>();
         // Se obtienen los elementos seleccionados de la lista.
@@ -241,4 +240,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onScrollChanged(int i, boolean b, boolean b1) {
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+    }
+
+    // Cuando se mueve el scroll de la lista hacia abajo o arriba.
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+        ActionBar ab = getSupportActionBar();
+        if (scrollState == ScrollState.UP) {
+            if (ab.isShowing()) {
+                ab.hide();
+            }
+            btnExportar.hide();
+        } else if (scrollState == ScrollState.DOWN) {
+            if (!ab.isShowing()) {
+                ab.show();
+            }
+            btnExportar.show();
+        }
+    }
 }

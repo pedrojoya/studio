@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jar="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\pre-dexed\debug\classes-cbe43f170e456642169596350be338227a785a55.jar" />
+        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
+        <dex dex="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-a14bb901d3c5775ccb808ea0899ab4173102546e.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-2695b357b8c9a30478d9fd87fd76b8e25828b819.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\pre-dexed\debug\classes-686596bae3f4c0875a7d4e5b86abb8990527d7ed.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d0c8c7d07711f6b418e2743591b7b76f5bf0a5c6.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\22.0.0\classes.jar"
+        jar="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/22.0.0/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="c9e0c6fc22b22b96d0db564cf073ab6f288bb758">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR096-NotificationStyles\app\build\intermediates\pre-dexed\debug\classes-3fdea10a0e6aa1bf86d8f29a2ddb0d2bb979abf0.jar" />
+        <dex dex="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/pre-dexed/debug/classes-2126bbd1e8bdc288cf8553f34ddba89d8adad4ac.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="983e2f375504bc04def18e709c35192afe92e65f">
+        <dex dex="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/pre-dexed/debug/classes-77d4da0fbba1663ef8e0519bbec4fcb3ae81e0b1.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/pre-dexed/debug/classes-93a6363391140382f73cef22caacb19bd5a89a26.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
+        <dex dex="/Users/pedro/studio/PR096-NotificationStyles/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
     </item>
 
 </items>
