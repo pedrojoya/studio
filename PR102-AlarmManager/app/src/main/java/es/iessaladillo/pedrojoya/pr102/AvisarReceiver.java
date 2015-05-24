@@ -8,7 +8,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 
@@ -33,9 +32,7 @@ public class AvisarReceiver extends BroadcastReceiver {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         // Se configura la notificación.
         NotificationCompat.Builder b = new NotificationCompat.Builder(context);
-        b.setSmallIcon(android.R.drawable.ic_menu_info_details);
-        b.setLargeIcon(((BitmapDrawable) context.getResources().getDrawable(
-                android.R.drawable.ic_menu_info_details)).getBitmap());
+        b.setSmallIcon(R.drawable.ic_action_info_outline);
         b.setContentTitle(context.getString(R.string.aviso_importante));
         b.setContentText(intent.getStringExtra(EXTRA_MENSAJE));
         b.setDefaults(Notification.DEFAULT_ALL);

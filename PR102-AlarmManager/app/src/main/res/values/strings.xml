@@ -3,7 +3,6 @@
 
     <string name="app_name">AlarmManager</string>
     <string name="aviso_importante">Aviso importante</string>
-    <string name="recordatorio">Recordatorio</string>
     <string name="mensaje">Mensaje</string>
     <string name="intervalo_entre_avisos">Intervalo (ms)</string>
     <string name="avisar">Avisar</string>

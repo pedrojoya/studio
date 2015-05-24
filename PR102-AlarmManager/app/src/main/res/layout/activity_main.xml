@@ -6,17 +6,9 @@
     tools:context="${relativePackage}.${activityClass}">
 
     <TextView
-        android:id="@+id/lblCabecera"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recordatorio" />
-
-    <TextView
         android:id="@+id/lblMensaje"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblCabecera"
         android:layout_marginTop="@dimen/activity_main_padding"
         android:text="@string/mensaje"
         android:paddingLeft="@dimen/edittext_padding"

@@ -5,7 +5,7 @@
     
     <item android:id="@+id/mnuDescargas"
         android:title="@string/descargas"
-        android:icon="@android:drawable/ic_menu_view"
+        android:icon="@drawable/ic_action_downloads"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 </menu>

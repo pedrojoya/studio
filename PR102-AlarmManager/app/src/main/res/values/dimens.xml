@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="activity_main_padding">10dp</dimen>
+    <dimen name="activity_main_padding">15dp</dimen>
     <dimen name="edittext_padding">4dp</dimen>
     <dimen name="lblActivar_marginLeft">15dp</dimen>
 
