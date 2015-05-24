@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/classes-dc76a9d251922464b141667b6338de0411339b58.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/classes-ec64df0d7739a5b8f45fee256595d937d34ec676.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-653ce51a5df89094eeb29aeb1a8b2a8d507ae70b.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-b1c46bc93b4097f34ac94406659df5be532e3461.jar" />
+    </item>
+
+</items>
