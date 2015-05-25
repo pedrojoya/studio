@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements
 
     // Variables.
     private CargaAlumnosAsyncTask tarea = null;
-    private AlumnosAdapter adaptador;
     private SwipeRefreshLayout swlPanel;
 
     // Al crearse la actividad.
@@ -44,7 +43,12 @@ public class MainActivity extends AppCompatActivity implements
         initVistas();
         // Si hay conexión a Internet.
         if (isConnectionAvailable()) {
-            swlPanel.setRefreshing(true);
+            swlPanel.post(new Runnable() {
+                @Override
+                public void run() {
+                    swlPanel.setRefreshing(true);
+                }
+            });
             // Se lanza la tarea para obtener los datos de los alumnos.
             lanzarTarea();
         } else {
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    // Lanza la tarea asíncrona de carga de alumnos.
     private void lanzarTarea() {
         tarea = new CargaAlumnosAsyncTask(this);
         tarea.execute(URL_DATOS);
@@ -62,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements
         lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
         swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
+        swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         swlPanel.setOnRefreshListener(this);
     }
 
@@ -94,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     // Carga los alumnos en el ListView. Recibe la lista de alumnos.
     private void cargarAlumnos(List<Alumno> alumnos) {
         // Se crea y asigna el adaptador para el ListView.
-        adaptador = new AlumnosAdapter(this, new ArrayList<>(alumnos));
+        AlumnosAdapter adaptador = new AlumnosAdapter(this, new ArrayList<>(alumnos));
         lstAlumnos.setAdapter(adaptador);
     }
 

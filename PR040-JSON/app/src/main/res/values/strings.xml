@@ -2,9 +2,6 @@
 <resources>
 
     <string name="app_name">JSON</string>
-
-    <string name="refrescar">Refrescar</string>
-
     <string name="no_hay_conexion_a_internet">No hay conexión a Internet</string>
     <string name="no_hay_alumnos">No hay alumnos que mostrar</string>
     <string name="foto_del_alumno">Foto del alumno</string>

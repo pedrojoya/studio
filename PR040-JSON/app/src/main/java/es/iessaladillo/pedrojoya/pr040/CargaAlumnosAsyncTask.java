@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CargaAlumnosAsyncTask extends AsyncTask<String, Void, String> {
+class CargaAlumnosAsyncTask extends AsyncTask<String, Void, String> {
 
     // Interfaz de comunicación con la actividad.
     public interface Callbacks {
@@ -15,7 +15,7 @@ public class CargaAlumnosAsyncTask extends AsyncTask<String, Void, String> {
     }
 
     // Variables.
-    Callbacks listener;
+    private Callbacks listener;
 
     // Constructor.
     public CargaAlumnosAsyncTask(Callbacks listener) {

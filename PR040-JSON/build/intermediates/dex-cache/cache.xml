@@ -2,53 +2,53 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/classes-fc89d00b21295f371824c5841f081c45ddc41cb2.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\pre-dexed\debug\classes-187e478717cb4f5cf96beb8a77c3faffeb84d5d9.jar" />
     </item>
     <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/gson-2.2.4-5b4ea0ee15cf89130b8ca35cd06437e9b13922bf.jar" />
-    </item>
-    <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-b1c46bc93b4097f34ac94406659df5be532e3461.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.0/7ff0e000d1e27e356567f56c92af3b8ab912636f/picasso-2.5.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="7ff0e000d1e27e356567f56c92af3b8ab912636f">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/picasso-2.5.0-4bd80e54d76fb8804399f1f5b4791660031560b3.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="22886d910315028a2b34b1ba068c265534ade87a">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/classes-69cca8b863b1e0c761a2f0ce88c3ba6f78262793.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/classes-8aa91c399c1988c89f1dfdef45e9cb9280845526.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-a2207c59552bb7d4d40aadabf9b8ac668d78de4e.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-9c36c20c9ae8112cf1df5ddc2a82eee1a81a67e5.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-e91f33c7a18dc30df76a3b620986af99939534af.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.0\7ff0e000d1e27e356567f56c92af3b8ab912636f\picasso-2.5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7ff0e000d1e27e356567f56c92af3b8ab912636f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\pre-dexed\debug\picasso-2.5.0-41fc6e4f8e81c17444b921536b604745a02e52d1.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\pre-dexed\debug\classes-dc35d4efbc52ee006b5cde216e3733bbcdb1e5e0.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="22886d910315028a2b34b1ba068c265534ade87a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\pre-dexed\debug\classes-e3ca372c5f5700ba04e06a8301e662c9bd85f7b4.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR040-JSON\app\build\intermediates\pre-dexed\debug\gson-2.2.4-ceb9d3182bb896cb45613ed9dceef0731fb5d98b.jar" />
     </item>
 
 </items>
