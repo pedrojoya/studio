@@ -73,21 +73,21 @@ public class MainActivity extends AppCompatActivity {
         pbProgreso.setVisibility(View.INVISIBLE);
     }
 
-    // Retorna si hay conexi髇 a la red o no.
+    // Retorna si hay conexi贸n a la red o no.
     private boolean isConnectionAvailable() {
-        // Se obtiene del gestor de conectividad la informaci髇 de red.
+        // Se obtiene del gestor de conectividad la informaci贸n de red.
         ConnectivityManager gestorConectividad = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo infoRed = gestorConectividad.getActiveNetworkInfo();
-        // Se retorna si hay conexi髇.
+        // Se retorna si hay conexi贸n.
         return (infoRed != null && infoRed.isConnected());
     }
 
-    // Crea una tarea para buscar el t閞mino en Internet.
+    // Crea una tarea para buscar el t茅rmino en Internet.
     private void buscar() throws UnsupportedEncodingException {
         // Si hay un nombre a buscar.
         String nombre = txtNombre.getText().toString();
         if (!TextUtils.equals(nombre, "")) {
-            // Si hay conexi髇 a Internet.
+            // Si hay conexi贸n a Internet.
             if (isConnectionAvailable()) {
                 // Se crea el listener para la respuesta.
                 Listener<String> listener = new Listener<String>() {
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         String resultado = "";
                         int ini = response.indexOf("Aproximadamente");
                         if (ini != -1) {
-                            // Se busca el siguiente espacio en blanco despu閟
+                            // Se busca el siguiente espacio en blanco despu-es
                             // de Aproximadamente.
                             int fin = response.indexOf(" ", ini + 16);
                             // El resultado corresponde a lo que sigue a
@@ -119,19 +119,19 @@ public class MainActivity extends AppCompatActivity {
                 };
                 // Se crea el listener para el error.
                 ErrorListener errorListener = new ErrorListener() {
-                    // Cuando se produce un error en la petici髇.
+                    // Cuando se produce un error en la petici贸n.
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pbProgreso.setVisibility(View.INVISIBLE);
                         mostrarToast(error.getMessage());
                     }
                 };
-                // Se crea la petici髇.
+                // Se crea la petici贸n.
                 GoogleRequest peticion = new GoogleRequest(URLEncoder.encode(
                         nombre, "UTF-8"), listener, errorListener);
-                // Se hace visible el c韗culo de progreso.
+                // Se hace visible el c铆rculo de progreso.
                 pbProgreso.setVisibility(View.VISIBLE);
-                // Se a馻de la petici髇 a la cola de Volley.
+                // Se a帽ade la petici贸n a la cola de Volley.
                 colaPeticiones.add(peticion);
             } else {
                 mostrarToast(getString(R.string.no_hay_conexion_a_internet));
@@ -139,14 +139,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Env韆 el nombre a un servidor de eco.
+    // Env铆a el nombre a un servidor de eco.
     private void eco() {
         // Si hay un nombre a enviar.
         final String nombre = txtNombre.getText().toString();
         if (!TextUtils.equals(nombre, "")) {
-            // Si hay conexi髇 a Internet.
+            // Si hay conexi贸n a Internet.
             if (isConnectionAvailable()) {
-                // Se crea el mapa de par醡etros.
+                // Se crea el mapa de par谩metros.
                 SimpleDateFormat formateador = new SimpleDateFormat(
                         "dd/MM/yyyy HH:mm:ss", Locale.getDefault());
                 Map<String, String> params = new HashMap<>();
@@ -167,19 +167,19 @@ public class MainActivity extends AppCompatActivity {
                 };
                 // Se crea el listener para error.
                 ErrorListener errorListener = new ErrorListener() {
-                    // Cuando se produce un error en la petici髇.
+                    // Cuando se produce un error en la petici贸n.
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pbProgreso.setVisibility(View.INVISIBLE);
                         mostrarToast(error.getMessage());
                     }
                 };
-                // Se crea la petici髇.
+                // Se crea la petici贸n.
                 EcoRequest peticion = new EcoRequest(params, listener,
                         errorListener);
-                // Se hace visible el c韗culo de progreso.
+                // Se hace visible el c铆rculo de progreso.
                 pbProgreso.setVisibility(View.VISIBLE);
-                // Se a馻de la petici髇 a la cola de Volley.
+                // Se a帽ade la petici贸n a la cola de Volley.
                 colaPeticiones.add(peticion);
             } else {
                 mostrarToast(getString(R.string.no_hay_conexion_a_internet));
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Muestra un toast con duraci髇 larga.
+    // Muestra un toast con duraci贸n larga.
     private void mostrarToast(String mensaje) {
         Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG)
                 .show();
