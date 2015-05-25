@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="ancho_foto">200dp</dimen>
+
+</resources>
