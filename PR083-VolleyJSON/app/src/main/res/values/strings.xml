@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VolleyJSON</string>
+    <string name="no_hay_conexion_a_internet">No hay conexión a Internet</string>
+    <string name="no_hay_alumnos">No hay alumnos que mostrar</string>
+    <string name="foto_del_alumno">Foto del alumno</string>
+    <string name="Notas">Notas</string>
+    <string name="Llamar">Llamar</string>
+    <string name="anios">años</string>
+
+</resources>

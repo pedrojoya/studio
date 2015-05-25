@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/card_padding"
+        android:paddingBottom="@dimen/card_padding"
+        android:paddingLeft="@dimen/card_padding"
+        android:paddingStart="@dimen/card_padding">
+
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="@dimen/tarjeta_foto_width"
+            android:layout_height="@dimen/tarjeta_foto_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/foto_del_alumno"
+            android:src="@drawable/foto"/>
+
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imgFoto"
+            android:layout_toEndOf="@+id/imgFoto"
+            android:paddingLeft="@dimen/card_content_padding"
+            android:paddingRight="@dimen/card_content_padding"
+            tools:text="Baldomero Llégate Ligero"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"/>
+
+        <TextView
+            android:id="@+id/lblCurso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblNombre"
+            android:layout_toRightOf="@+id/imgFoto"
+            android:layout_toEndOf="@+id/imgFoto"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingLeft="@dimen/card_content_padding"
+            android:paddingRight="@dimen/card_content_padding"
+            tools:text="2º CFGS DAM"
+            style="@style/Base.TextAppearance.AppCompat.Body2"/>
+
+        <TextView
+            android:id="@+id/lblEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblCurso"
+            android:layout_toRightOf="@+id/imgFoto"
+            android:layout_toEndOf="@+id/imgFoto"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingLeft="@dimen/card_content_padding"
+            android:paddingRight="@dimen/card_content_padding"
+            tools:text="22 años"
+            style="@style/Base.TextAppearance.AppCompat.Body2"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_toRightOf="@+id/imgFoto"
+            android:layout_toEndOf="@+id/imgFoto"
+            android:layout_below="@+id/lblEdad"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/divider"/>
+
+        <Button
+            android:id="@+id/btnNotas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Notas"
+            android:layout_below="@+id/divider"
+            android:layout_toRightOf="@+id/imgFoto"
+            android:layout_toEndOf="@+id/imgFoto"
+            android:layout_marginLeft="@dimen/card_content_padding"
+            android:layout_marginStart="@dimen/card_content_padding"
+            style="@style/AppCompat.Button.Flat.Common"/>
+
+        <Button
+            android:id="@+id/btnLlamar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Llamar"
+            android:layout_below="@+id/divider"
+            android:layout_toRightOf="@+id/btnNotas"
+            android:layout_toEndOf="@+id/btnNotas"
+            style="@style/AppCompat.Button.Flat.Common"/>
+
+        <TextView
+            android:id="@+id/lblRepetidor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/tarjeta_repetidor_background"
+            android:paddingBottom="@dimen/tarjeta_repetidor_verticalPadding"
+            android:paddingLeft="@dimen/tarjeta_repetidor_horizontalPadding"
+            android:paddingRight="@dimen/tarjeta_repetidor_horizontalPadding"
+            android:paddingTop="@dimen/tarjeta_repetidor_verticalPadding"
+            android:rotation="-45"
+            android:text="REP"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/tarjeta_repetidor_textSize"
+            android:translationX="@dimen/tarjeta_repetidor_translationX"
+            android:translationY="@dimen/tarjeta_repetidor_translationY"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
