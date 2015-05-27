@@ -6,15 +6,15 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.GridView;
 
-// GridView que solicita m·s datos al hacer scroll hasta el final.
+// GridView que solicita m√°s datos al hacer scroll hasta el final.
 public class EndlessGridView extends GridView implements OnScrollListener {
 
     private LoadAgent listener;
     private boolean isLoading;
 
-    // Interfaz que debe implementar el objeto que cargar· los datos.
+    // Interfaz que debe implementar el objeto que cargar√° los datos.
     public interface LoadAgent {
-        // MÈtodo que ser· llamado para cargar m·s datos.
+        // M√©todo que ser√° llamado para cargar m√°s datos.
         void loadData();
     }
 
@@ -44,10 +44,10 @@ public class EndlessGridView extends GridView implements OnScrollListener {
         if (getAdapter().getCount() == 0)
             return;
 
-        // Si se ha llegado al final del scroll y no se est· cargando ya.
+        // Si se ha llegado al final del scroll y no se est√° cargando ya.
         int l = visibleItemCount + firstVisibleItem;
         if (l >= totalItemCount && !isLoading) {
-            // Se cargan m·s datos.
+            // Se cargan m√°s datos.
             isLoading = true;
             listener.loadData();
         }
@@ -57,7 +57,7 @@ public class EndlessGridView extends GridView implements OnScrollListener {
     public void onScrollStateChanged(AbsListView view, int scrollState) {
     }
 
-    // Establece el objeto que cargar· los datos.
+    // Establece el objeto que cargar√° los datos.
     public void setLoadAgent(LoadAgent listener) {
         this.listener = listener;
     }

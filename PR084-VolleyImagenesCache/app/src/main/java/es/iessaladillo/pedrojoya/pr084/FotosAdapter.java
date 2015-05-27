@@ -31,7 +31,7 @@ public class FotosAdapter extends ArrayAdapter<Foto> {
         super(contexto, R.layout.activity_main_item, datos);
         this.contexto = contexto;
         this.datos = datos;
-        // Se obtiene el cargador de im·genes.
+        // Se obtiene el cargador de im√°genes.
         cargadorImagenes = App.getImageLoader();
     }
 
@@ -60,7 +60,7 @@ public class FotosAdapter extends ArrayAdapter<Foto> {
         // Se escriben los datos correspondientes en las vistas.
         Foto foto = datos.get(position);
         // Se le indica al NetworkImageView la URL de la foto que debe mostrar y
-        // el cargador de im·genes que debe usarse para obtenerla.
+        // el cargador de im√°genes que debe usarse para obtenerla.
         contenedor.imgFoto.setImageUrl(foto.getUrl(), cargadorImagenes);
         contenedor.lblDescripcion.setText(foto.getDescripcion());
         // Se retorna la vista que debe mostrarse para el elemento de la lista.

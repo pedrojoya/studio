@@ -18,7 +18,7 @@ public class Instagram {
     public static final String PAGINACION_KEY = "pagination";
     public static final String SIGUIENTE_PETICION_KEY = "next_url";
 
-    // Retorna la url de acceso a las im·genes m·s recientes para un tag.
+    // Retorna la url de acceso a las im√°genes m√°s recientes para un tag.
     public static String getRecentMediaURL(String tag) {
         return BASE_URL + "/tags/" + tag + "/media/recent?client_id="
                 + CLIENT_ID;

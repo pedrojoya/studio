@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
         lstFotos.setAdapter(adaptador);
         // Se establece la url inicial.
         sUrlSiguiente = Instagram.getRecentMediaURL("algeciras");
-        // Si hay conexiÛn a Internet se obtienen los datos.
+        // Si hay conexi√≥n a Internet se obtienen los datos.
         if (isConnectionAvailable()) {
             obtenerDatos();
         } else {
@@ -57,11 +57,11 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
 
     // Obtiene los datos JSON de la lista de fotos de Instagram.
     private void obtenerDatos() {
-        // Se muestra el cÌrculo de progreso.
+        // Se muestra el c√≠rculo de progreso.
         if (mnuActualizar != null) {
             mnuActualizar.setVisible(true);
         }
-        // Se crea el listener que recibir· la respuesta de la peticiÛn.
+        // Se crea el listener que recibir√° la respuesta de la petici√≥n.
         Response.Listener<JSONObject> listenerRespuesta =
                 new Response.Listener<JSONObject>() {
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
             public void onResponse(JSONObject respuesta) {
                 // Se crea la lista de datos parseando la respuesta.
                 ArrayList<Foto> lista = procesarRespuesta(respuesta);
-                // Se aÒaden las fotos de la lista al adaptador.
+                // Se a√±aden las fotos de la lista al adaptador.
                 agregarAlAdaptador(lista);
                 // Se oculta el progreso.
                 if (mnuActualizar != null) {
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
 
             // Agraga al adaptador la lista de fotos obtenidas.
             private void agregarAlAdaptador(ArrayList<Foto> lista) {
-                // Se aÒade cada foto al adaotador.
+                // Se a√±ade cada foto al adaotador.
                 for (Foto foto : lista) {
                     adaptador.add(foto);
                 }
@@ -90,11 +90,11 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
             }
 
         };
-        // Se crea la peticiÛn JSON.
+        // Se crea la petici√≥n JSON.
         JsonObjectRequest peticion =
                 new JsonObjectRequest(Method.GET,
                         sUrlSiguiente, listenerRespuesta, null);
-        // Se aÒade la peticiÛn a la cola de peticiones.
+        // Se a√±ade la petici√≥n a la cola de peticiones.
         colaPeticiones.add(peticion);
     }
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
         ArrayList<Foto> lista = new ArrayList<>();
         try {
             // Se procesa la respuesta para obtener los datos deseados.
-            // Se obtiene cual debe ser la prÛxima peticiÛn para paginaciÛn.
+            // Se obtiene cual debe ser la pr√≥xima petici√≥n para paginaci√≥n.
             JSONObject paginationKeyJSONObject = respuesta
                     .getJSONObject(Instagram.PAGINACION_KEY);
             sUrlSiguiente = paginationKeyJSONObject
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
                     JSONObject usuario = elemento
                             .getJSONObject(Instagram.USUARIO_KEY);
                     // Se obtiene del usuario el nombre de usuario y se
-                    // guarda en el objeto modelo como descripciÛn.
+                    // guarda en el objeto modelo como descripci√≥n.
                     foto.setDescripcion(usuario
                             .getString(Instagram.NOMBRE_USUARIO_KEY));
                     // Se obtiene la imagen.
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
                     foto.setUrl(imagen.getJSONObject(
                             Instagram.RESOLUCION_MINIATURA_KEY).getString(
                             Instagram.URL_KEY));
-                    // Se aÒade el objeto modelo a la lista de datos
+                    // Se a√±ade el objeto modelo a la lista de datos
                     // para el adaptador.
                     lista.add(foto);
                 }
@@ -149,25 +149,25 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
         return lista;
     }
 
-    // Retorna si hay conexiÛn a la red o no.
+    // Retorna si hay conexi√≥n a la red o no.
     private boolean isConnectionAvailable() {
-        // Se obtiene del gestor de conectividad la informaciÛn de red.
+        // Se obtiene del gestor de conectividad la informaci√≥n de red.
         ConnectivityManager gestorConectividad = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo infoRed = gestorConectividad.getActiveNetworkInfo();
-        // Se retorna si hay conexiÛn.
+        // Se retorna si hay conexi√≥n.
         return (infoRed != null && infoRed.isConnected());
     }
 
-    // Muestra un toast con duraciÛn larga.
+    // Muestra un toast con duraci√≥n larga.
     private void mostrarToast(String mensaje) {
         Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG)
                 .show();
     }
 
-    // Cuando el gridview solicta m·s datos.
+    // Cuando el gridview solicta m√°s datos.
     @Override
     public void loadData() {
-        // Se obtienen m·s fotos.
+        // Se obtienen m√°s fotos.
         obtenerDatos();
     }
 
