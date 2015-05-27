@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr084;
 
 // Clase contrato con las claves de Instagram.
-public class Instagram {
+class Instagram {
 
     // Constantes.
     public static final String CLIENT_ID = "c432d0e158dd46f7873950a19a582102";

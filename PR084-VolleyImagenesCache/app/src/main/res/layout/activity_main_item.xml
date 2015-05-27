@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-     >
-<LinearLayout 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"    
-    android:background="@drawable/fondo_foto">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:minHeight="@dimen/ancho_foto">
+
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/imgFoto"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="@drawable/fondo_leyenda_foto"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/foto" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/foto"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/lblDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_gravity="bottom"
+        android:background="@color/fondoDescripcion"
         android:gravity="center"
-        android:textStyle="bold"
-        android:background="@drawable/fondo_leyenda_foto"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-</LinearLayout>
-</RelativeLayout>
+        android:minHeight="@dimen/single_line_grid_footer_minHeight"
+        android:padding="@dimen/single_line_grid_footer_padding"
+        android:textColor="@color/primary_text_default_material_dark"
+        android:textSize="@dimen/abc_text_size_subhead_material"
+        tools:text="Quillo que"/>
+</FrameLayout>

@@ -1,10 +1,9 @@
 package es.iessaladillo.pedrojoya.pr084;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -12,59 +11,86 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.ArrayList;
 
-// Adaptador para lista de fotos.
-public class FotosAdapter extends ArrayAdapter<Foto> {
+public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
+        .ViewHolder> {
 
-    // Variables.
-    private Context contexto;
-    private ArrayList<Foto> datos;
-    private ImageLoader cargadorImagenes;
+    private final ArrayList<Foto> mDatos;
+    private final ImageLoader cargadorImagenes;
 
-    // Clase interna contenedora de vistas.
-    private class ContenedorVistas {
-        public NetworkImageView imgFoto;
-        public TextView lblDescripcion;
-    }
-
-    // Constructor.
-    public FotosAdapter(Context contexto, ArrayList<Foto> datos) {
-        super(contexto, R.layout.activity_main_item, datos);
-        this.contexto = contexto;
-        this.datos = datos;
+    // Constructor. Recibe contexto y datos.
+    public FotosAdapter(ArrayList<Foto> datos) {
+        mDatos = datos;
         // Se obtiene el cargador de imágenes.
         cargadorImagenes = App.getImageLoader();
     }
 
-    // Cuando debe visualizarse un elemento de la lista. Retorna la vista.
+    // Retorna el número de ítems de datos.
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ContenedorVistas contenedor = null;
-        // Si no se puede reciclar.
-        if (convertView == null) {
-            // Se infla el layout.
-            convertView = LayoutInflater.from(contexto).inflate(
-                    R.layout.activity_main_item, parent, false);
-            // Se obtienen las vistas.
-            contenedor = new ContenedorVistas();
-            contenedor.imgFoto = (NetworkImageView) convertView
-                    .findViewById(R.id.imgFoto);
-            contenedor.lblDescripcion = (TextView) convertView
-                    .findViewById(R.id.lblDescripcion);
-            // Se guarda el contenedor en la propiedad tag del item.
-            convertView.setTag(contenedor);
-        } else {
-            // Si se puede reciclar, obtengo el contenedor de la vista
-            // reciclada.
-            contenedor = (ContenedorVistas) convertView.getTag();
+    public int getItemCount() {
+        return mDatos.size();
+    }
+
+    // Cuando se debe crear una nueva vista que represente el ítem.
+    // Recibe la vista padre que lo contendrá (para el inflado) y el tipo de vista
+    // (por si hay varios tipos de ítems en el recyclerview).
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Se infla la especificación XML para obtener la vista correspondiente al ítem.
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_main_item, parent, false);
+        // Se crea y retorna el contenedor de subvistas de la vista correspondiente
+        // al ítem.
+        return new ViewHolder(itemView);
+    }
+
+    // Cuando se deben escribir los datos en las subvistas de la vista correspondiente
+    // al ítem. Recibe el contenedor y la posición del ítem en la colección de datos.
+    @Override
+    public void onBindViewHolder(FotosAdapter.ViewHolder holder, int position) {
+        // Se obtiene el alumno correspondiente.
+        Foto foto = mDatos.get(position);
+        // Se escriben los datos en la vista.
+        holder.lblDescripcion.setText(foto.getDescripcion());
+        holder.imgFoto.setImageUrl(foto.getUrl(), cargadorImagenes);
+    }
+
+    // Añade un elemento al adaptador.
+    public void addItem(Foto alumno, int position) {
+        // Se añade el elemento.
+        mDatos.add(position, alumno);
+        // Se notifica que se ha insertado un elemento en la última posición.
+        notifyItemInserted(position);
+    }
+
+    // Elimina un elemento del adaptador.
+    public void removeItem(int position) {
+        mDatos.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    // Elimina todos los elementos del adaptador.
+    public void removeAllItems() {
+        for (int i = getItemCount() - 1; i >= 0; i--) {
+            removeItem(i);
         }
-        // Se escriben los datos correspondientes en las vistas.
-        Foto foto = datos.get(position);
-        // Se le indica al NetworkImageView la URL de la foto que debe mostrar y
-        // el cargador de imágenes que debe usarse para obtenerla.
-        contenedor.imgFoto.setImageUrl(foto.getUrl(), cargadorImagenes);
-        contenedor.lblDescripcion.setText(foto.getDescripcion());
-        // Se retorna la vista que debe mostrarse para el elemento de la lista.
-        return convertView;
+    }
+
+    // Contenedor de vistas para la vista correspondiente al elemento.
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        // El contenedor de vistas para un elemento de la lista debe contener...
+        private final TextView lblDescripcion;
+        private final NetworkImageView imgFoto;
+
+        // El constructor recibe la vista correspondiente al elemento.
+        public ViewHolder(View itemView) {
+            // No olvidar llamar al constructor del padre.
+            super(itemView);
+            // Se obtienen las subvistas de la vista correspondiente al elemento.
+            lblDescripcion = (TextView) itemView.findViewById(R.id.lblDescripcion);
+            imgFoto = (NetworkImageView) itemView.findViewById(R.id.imgFoto);
+        }
+
     }
 
 }

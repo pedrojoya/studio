@@ -4,8 +4,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request.Method;
@@ -19,48 +24,60 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements EndlessGridView
-        .LoadAgent {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    // Vistas.
-    private EndlessGridView lstFotos;
-
-    // Variables.
-    private MenuItem mnuActualizar;
-    private FotosAdapter adaptador;
-    private RequestQueue colaPeticiones;
-    private String sUrlSiguiente;
+    private FotosAdapter mAdaptador;
+    private RequestQueue mColaPeticiones;
+    private String mUrlSiguiente;
+    private SwipeRefreshLayout swlPanel;
+    private EndlessRecyclerOnScrollListener mEndlessScrollListener;
 
     // Al crearse la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lstFotos = (EndlessGridView) this.findViewById(R.id.lstFotos);
-        // Se establece la actividad como listener del scroll del gridview.
-        lstFotos.setLoadAgent(this);
+        initVistas();
         // Se obtiene la cola de peticiones de Volley.
-        colaPeticiones = App.getRequestQueue();
-        // Se crea y asigna el adaptador para el ListView.
-        ArrayList<Foto> fotos = new ArrayList<>();
-        adaptador = new FotosAdapter(this, fotos);
-        lstFotos.setAdapter(adaptador);
-        // Se establece la url inicial.
-        sUrlSiguiente = Instagram.getRecentMediaURL("algeciras");
-        // Si hay conexión a Internet se obtienen los datos.
-        if (isConnectionAvailable()) {
-            obtenerDatos();
-        } else {
-            mostrarToast(getString(R.string.no_hay_conexion_a_internet));
-        }
+        mColaPeticiones = App.getRequestQueue();
+        // Se cargan los datos iniciales.
+        swlPanel.post(new Runnable() {
+            @Override
+            public void run() {
+                swlPanel.setRefreshing(true);
+                onRefresh();
+            }
+        });
+    }
+
+    // Obtiene e inicializa las vistas.
+    private void initVistas() {
+        swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
+        swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swlPanel.setOnRefreshListener(this);
+        RecyclerView lstFotos = (RecyclerView) this.findViewById(R.id.lstFotos);
+        mAdaptador = new FotosAdapter(new ArrayList<Foto>());
+        lstFotos.setHasFixedSize(true);
+        lstFotos.setAdapter(mAdaptador);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, getResources()
+                .getInteger(R.integer.grid_columns),
+                LinearLayoutManager.VERTICAL, false);
+        lstFotos.setLayoutManager(gridLayoutManager);
+        lstFotos.setItemAnimator(new DefaultItemAnimator());
+        mEndlessScrollListener = new EndlessRecyclerOnScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int current_page) {
+                obtenerDatos();
+            }
+        };
+        lstFotos.addOnScrollListener(mEndlessScrollListener);
     }
 
     // Obtiene los datos JSON de la lista de fotos de Instagram.
     private void obtenerDatos() {
-        // Se muestra el círculo de progreso.
-        if (mnuActualizar != null) {
-            mnuActualizar.setVisible(true);
-        }
         // Se crea el listener que recibirá la respuesta de la petición.
         Response.Listener<JSONObject> listenerRespuesta =
                 new Response.Listener<JSONObject>() {
@@ -69,33 +86,21 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
             public void onResponse(JSONObject respuesta) {
                 // Se crea la lista de datos parseando la respuesta.
                 ArrayList<Foto> lista = procesarRespuesta(respuesta);
-                // Se añaden las fotos de la lista al adaptador.
-                agregarAlAdaptador(lista);
-                // Se oculta el progreso.
-                if (mnuActualizar != null) {
-                    mnuActualizar.setVisible(false);
-                }
-                // Se indica al gridview que ya ha finalizado la carga.
-                lstFotos.setLoaded();
-            }
-
-            // Agraga al adaptador la lista de fotos obtenidas.
-            private void agregarAlAdaptador(ArrayList<Foto> lista) {
                 // Se añade cada foto al adaotador.
                 for (Foto foto : lista) {
-                    adaptador.add(foto);
+                    mAdaptador.addItem(foto, mAdaptador.getItemCount());
                 }
-                // Se notifican los cambios en los datos.
-                adaptador.notifyDataSetChanged();
+                // Se indica al gridview que ya ha finalizado la carga.
+                swlPanel.setRefreshing(false);
             }
 
         };
         // Se crea la petición JSON.
         JsonObjectRequest peticion =
                 new JsonObjectRequest(Method.GET,
-                        sUrlSiguiente, listenerRespuesta, null);
+                        mUrlSiguiente, listenerRespuesta, null);
         // Se añade la petición a la cola de peticiones.
-        colaPeticiones.add(peticion);
+        mColaPeticiones.add(peticion);
     }
 
     // Procesa el objeto JSON de respuesta, retornando la lista de fotos.
@@ -106,8 +111,9 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
             // Se obtiene cual debe ser la próxima petición para paginación.
             JSONObject paginationKeyJSONObject = respuesta
                     .getJSONObject(Instagram.PAGINACION_KEY);
-            sUrlSiguiente = paginationKeyJSONObject
+            mUrlSiguiente = paginationKeyJSONObject
                     .getString(Instagram.SIGUIENTE_PETICION_KEY);
+            Log.d("Mia", mUrlSiguiente);
             // Se obtiene el valor de la clave "data", que correponde al
             // array de datos.
             JSONArray dataKeyJSONArray = respuesta
@@ -137,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
                             Instagram.RESOLUCION_MINIATURA_KEY).getString(
                             Instagram.URL_KEY));
                     // Se añade el objeto modelo a la lista de datos
-                    // para el adaptador.
+                    // para el mAdaptador.
                     lista.add(foto);
                 }
             }
@@ -164,11 +170,25 @@ public class MainActivity extends AppCompatActivity implements EndlessGridView
                 .show();
     }
 
-    // Cuando el gridview solicta más datos.
     @Override
-    public void loadData() {
-        // Se obtienen más fotos.
-        obtenerDatos();
+    public void onRefresh() {
+        mEndlessScrollListener.reset(0, true);
+        // Se establece la url inicial.
+        mUrlSiguiente = Instagram.getRecentMediaURL("algeciras");
+        Log.d("Mia", mUrlSiguiente);
+        // Si hay conexión a Internet se obtienen los datos.
+        if (isConnectionAvailable()) {
+            mAdaptador.removeAllItems();
+            obtenerDatos();
+        } else {
+            mostrarToast(getString(R.string.no_hay_conexion_a_internet));
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mEndlessScrollListener.reset(0, true);
     }
 
 }

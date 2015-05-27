@@ -1,10 +1,10 @@
 package es.iessaladillo.pedrojoya.pr084;
 
-public class Foto {
+class Foto {
 
     // Propiedades.
-    String url;
-    String descripcion;
+    private String url;
+    private String descripcion;
 
     // Getters and setters.
     public String getUrl() {
