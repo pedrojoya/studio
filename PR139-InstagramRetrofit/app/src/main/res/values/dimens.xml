@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="ancho_foto">200dp</dimen>
+    <dimen name="single_line_grid_footer_minHeight">48dp</dimen>
+    <dimen name="single_line_grid_footer_padding">16dp</dimen>
+
+</resources>

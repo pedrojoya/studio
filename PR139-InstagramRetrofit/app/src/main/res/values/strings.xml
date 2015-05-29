@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fotos de Instagram</string>
+    <string name="no_hay_conexion_a_internet">No hay conexión a Internet</string>
+    <string name="foto">Foto</string>
+
+</resources>
