@@ -4,10 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -15,13 +15,10 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
         .ViewHolder> {
 
     private final ArrayList<Foto> mDatos;
-    private final ImageLoader cargadorImagenes;
 
     // Constructor. Recibe contexto y datos.
     public FotosAdapter(ArrayList<Foto> datos) {
         mDatos = datos;
-        // Se obtiene el cargador de imágenes.
-        cargadorImagenes = App.getImageLoader();
     }
 
     // Retorna el número de ítems de datos.
@@ -51,7 +48,7 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
         Foto foto = mDatos.get(position);
         // Se escriben los datos en la vista.
         holder.lblDescripcion.setText(foto.getDescripcion());
-        holder.imgFoto.setImageUrl(foto.getUrl(), cargadorImagenes);
+        Picasso.with(holder.itemView.getContext()).load(foto.getUrl()).into(holder.imgFoto);
     }
 
     // Añade un elemento al adaptador.
@@ -80,7 +77,7 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
 
         // El contenedor de vistas para un elemento de la lista debe contener...
         private final TextView lblDescripcion;
-        private final NetworkImageView imgFoto;
+        private final ImageView imgFoto;
 
         // El constructor recibe la vista correspondiente al elemento.
         public ViewHolder(View itemView) {
@@ -88,7 +85,7 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
             super(itemView);
             // Se obtienen las subvistas de la vista correspondiente al elemento.
             lblDescripcion = (TextView) itemView.findViewById(R.id.lblDescripcion);
-            imgFoto = (NetworkImageView) itemView.findViewById(R.id.imgFoto);
+            imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
         }
 
     }

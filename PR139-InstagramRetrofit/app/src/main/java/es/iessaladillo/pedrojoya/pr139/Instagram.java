@@ -1,31 +1,62 @@
 package es.iessaladillo.pedrojoya.pr139;
 
+import es.iessaladillo.pedrojoya.pr139.api.TagResponse;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.http.GET;
+import retrofit.http.Path;
+import retrofit.http.Query;
+
 // Clase contrato con las claves de Instagram.
 class Instagram {
 
     // Constantes.
     public static final String CLIENT_ID = "c432d0e158dd46f7873950a19a582102";
     public static final String BASE_URL = "https://api.instagram.com/v1";
-    public static final String ARRAY_DATOS_KEY = "data";
-    public static final String TIPO_ELEMENTO_KEY = "type";
     public static final String TIPO_ELEMENTO_IMAGEN = "image";
-    public static final String USUARIO_KEY = "user";
-    public static final String NOMBRE_USUARIO_KEY = "username";
-    public static final String IMAGEN_KEY = "images";
-    public static final String RESOLUCION_MINIATURA_KEY = "thumbnail";
-    public static final String RESOLUCION_ESTANDAR_KEY = "standard_resolution";
-    public static final String URL_KEY = "url";
-    public static final String PAGINACION_KEY = "pagination";
-    public static final String SIGUIENTE_PETICION_KEY = "next_url";
 
-    // Retorna la url de acceso a las imágenes más recientes para un tag.
-    public static String getRecentMediaURL(String tag) {
-        return BASE_URL + "/tags/" + tag + "/media/recent?client_id="
-                + CLIENT_ID;
+    // Interfaz de trabajo de Retrofit contra la API.
+    public interface ApiInterface {
+
+        @GET("/tags/{tag}/media/recent")
+        void getTagPhotos(@Path("tag") String tag,
+                          @Query("client_id") String clientId,
+                          @Query("max_tag_id") String maxTagId,
+                          Callback<TagResponse> cb);
+
     }
 
     // Constructor privado para que NO pueda instanciarse.
     private Instagram() {
+    }
+
+    private static ApiInterface mApiInterface;
+
+
+    // Retorna la interfaz de
+    public static ApiInterface getApiInterface() {
+        if (mApiInterface == null) createInstance();
+        return mApiInterface;
+    }
+
+    // Crea la instancia del cliente.
+    private static void createInstance() {
+        if (mApiInterface == null) {
+            synchronized(Instagram.class) {
+                if (mApiInterface == null) {
+                    mApiInterface = buildApiClient();
+                }
+            }
+        }
+    }
+
+    // Construye y retorna el cliente de acceso a la API a través de Retrofit.
+    private static ApiInterface buildApiClient() {
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint(BASE_URL)
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .build();
+        return restAdapter.create(ApiInterface.class);
     }
 
 }
