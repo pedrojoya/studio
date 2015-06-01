@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-9fab7f645bb7b4ab9ef1b2ffedca3fade3e56425.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/classes-a188e57f028c58f2004eb084da0a73eb47db4a1c.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/classes-8cda22695bd68301ef457b5e754b7f0fd3cde20a.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\classes-3d3a0a20b07a20a0c9a8060c08d9d951a2efd0de.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-f48d32cd74c106beeff7f2bee746d81134121580.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\classes-01bbe28221f81f5ab0daf0ac09b4ef75178fd877.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-7a0e010d3a34f4facea2614a45246d96db5d393e.jar" />
     </item>
 
 </items>
