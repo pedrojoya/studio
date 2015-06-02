@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        encoding "UTF-8"
+    }
 }
 
 repositories {
@@ -34,5 +37,5 @@ dependencies {
         exclude module: 'stax-api'
         exclude module: 'xpp3'
     }
-    compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.0'
 }
