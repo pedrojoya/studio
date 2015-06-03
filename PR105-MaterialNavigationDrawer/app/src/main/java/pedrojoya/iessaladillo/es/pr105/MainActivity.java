@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.squareup.picasso.Picasso;
@@ -57,11 +58,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         configNavigationDrawer();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     // Configura la toolbar.
     private void configToolbar() {
         // Se establece la toolbar como action bar y se obliga a mostrar
         // el icono para abrir el naviagation drawer.
-        setSupportActionBar(mToolbar);
+        //setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
