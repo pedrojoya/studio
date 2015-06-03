@@ -2,34 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_nestedscrollview"
             android:icon="@drawable/ic_dashboard"
-            android:title="Home" />
+            android:title="NestedScrollView" />
         <item
-            android:id="@+id/nav_messages"
+            android:id="@+id/nav_tablayout"
             android:icon="@drawable/ic_event"
-            android:title="Messages" />
-        <item
-            android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_headset"
-            android:title="Friends" />
-        <item
-            android:id="@+id/nav_discussion"
-            android:icon="@drawable/ic_forum"
-            android:title="Discussion" />
-        <item
-            android:id="@+id/nav_subitems"
-            android:title="Sub items">
-            <menu>
-                <item
-                    android:id="@+id/nav_subitem1"
-                    android:icon="@drawable/ic_dashboard"
-                    android:title="Sub item 1" />
-                <item
-                    android:id="@+id/nav_subitem2"
-                    android:icon="@drawable/ic_forum"
-                    android:title="Sub item 2" />
-            </menu>
-        </item>
+            android:title="TabLayout" />
     </group>
 </menu>
