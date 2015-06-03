@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PR104-Toolbar</string>
+    <string name="app_name">Material Navigation Drawer</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="next">Next</string>
@@ -15,5 +15,17 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer magna ligula, euismod id maximus vel, imperdiet et purus. Sed ex mi, lacinia fermentum molestie posuere, varius a erat. Nunc vitae ultrices felis, vitae hendrerit odio. Nunc ipsum lectus, cursus at erat id, iaculis posuere est. Nunc lobortis, massa sit amet posuere imperdiet, diam massa pulvinar orci, vel tincidunt dolor purus a dui. Integer condimentum sapien sed auctor hendrerit. Morbi hendrerit, nunc non ultricies pretium, ipsum nisl volutpat nulla, eu cursus massa eros et metus.
+
+Sed rutrum elit nibh, volutpat tincidunt sapien fermentum gravida. Vivamus mollis finibus turpis, eget egestas lorem. Fusce eu enim aliquam, tristique nisi sit amet, varius quam. Sed aliquet leo non consectetur varius. Fusce consequat porta lorem. Morbi fermentum justo ante, sit amet pellentesque nulla elementum ultrices. Vestibulum ligula nulla, laoreet id magna non, congue sagittis metus. Integer faucibus, libero vitae ultricies commodo, nunc mi maximus lectus, non fringilla tellus diam et purus. Etiam et velit nulla. Cras vel lacus sit amet nisi condimentum fermentum ac quis odio. Suspendisse malesuada risus vitae diam feugiat dictum. Cras nec libero velit. Mauris at tristique arcu, sed porttitor ante.
+
+Nullam imperdiet tincidunt nulla non tincidunt. Curabitur sit amet purus diam. Duis sit amet mauris dui. Cras eget hendrerit enim. Vivamus vitae mauris nisl. Nullam nisl felis, hendrerit at condimentum quis, molestie ac orci. Vestibulum eu suscipit metus. Sed a rhoncus urna. Sed ac blandit odio. Vivamus quis ex interdum, gravida enim non, cursus eros. Aliquam id ornare turpis. Sed suscipit, mauris a porttitor fermentum, ex tellus commodo eros, accumsan ullamcorper nibh massa quis turpis. Vivamus ut dapibus ipsum. Pellentesque scelerisque posuere massa, id commodo ligula fermentum non.
+
+Integer vitae iaculis dui. Quisque dignissim, sapien a sodales vulputate, neque metus tincidunt neque, a laoreet felis mi ut leo. Nulla molestie lacus mattis scelerisque hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum suscipit magna non varius. Maecenas porttitor dui elit, id molestie ante sodales ut. Donec lacinia arcu at eleifend lobortis. Donec tincidunt arcu non suscipit euismod. Fusce vehicula vel quam vel mollis. Aliquam ultricies nisi sed metus scelerisque, eu viverra nibh dictum. Quisque pretium lobortis mauris at elementum. In at lorem sit amet velit pretium rutrum. Suspendisse vitae mauris lobortis, fringilla sem a, consequat neque. Etiam accumsan mauris nec fringilla pellentesque. Nam fringilla turpis eu molestie faucibus.
+
+Integer et sagittis dui. Donec a accumsan libero. Fusce cursus tincidunt purus, eu pulvinar nibh consectetur non. Maecenas lobortis viverra finibus. Aenean dapibus nisl sed velit gravida accumsan. Etiam eros lorem, auctor sit amet tristique ac, porta maximus ligula. Duis sem nisi, sollicitudin in nunc eget, mattis malesuada dolor. Vivamus egestas volutpat consequat. Morbi rhoncus semper massa, ac congue purus varius vel. Donec a est varius nisi aliquet consequat. Morbi nec dolor et velit blandit sodales.</string>
 
 </resources>

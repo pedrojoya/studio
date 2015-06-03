@@ -1,45 +1,55 @@
-<!-- Layout con panel de navegación. Debe ser el elemento raíz. -->
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<!-- Layout con panel de navegación. Debe ser el elemento raíz.
+     android:fitsSystemWindows a true para que coja la status bar -->
+<android.support.v4.widget.DrawerLayout
     android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pedrojoya.iessaladillo.es.pr105.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
 
     <!-- Contenido principal. Debe ser el primer hijo y ocupar el padre al completo -->
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!-- Toolbar -->
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-        <!-- Zona para fragmentos de contenido -->
-        <FrameLayout
-            android:id="@+id/container"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Quillo que" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        </FrameLayout>
-    </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
 
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <!-- Fragmento de navegación. Su alineación debe ser "start",
-         ocupar por completo el el padre y tener un ancho fijo entre < 320dp. -->
-    <fragment
-        android:id="@+id/navigation_drawer"
-        android:name="pedrojoya.iessaladillo.es.pr105.NavigationDrawerFragment"
-        android:layout_width="@dimen/navigation_drawer_width"
+    </android.support.design.widget.CoordinatorLayout>
+
+    <!-- Vista de navegación. Debe ser el segundo hijo.
+         android:layout_gravity debe ser start.
+         app:headerLayout corresponde al layout de la cabecera del panel.
+         app:menu corresponde al menú con los ítems de navegación -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:layout="@layout/fragment_navigation_drawer" />
+        app:headerLayout="@layout/activity_main_drawer_header"
+        app:menu="@menu/activity_main_drawer_menu"/>
 
 </android.support.v4.widget.DrawerLayout>
