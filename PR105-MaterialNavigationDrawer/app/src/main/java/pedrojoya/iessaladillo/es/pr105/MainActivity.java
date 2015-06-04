@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -80,8 +81,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void cargarFragmento(String title) {
+        Fragment frg = null;
+        switch (mSelectedNavItemId) {
+            case R.id.nav_nestedscrollview:
+                frg = NestedScrollViewFragment.newInstance(title);
+                break;
+            default:
+                frg = TabLayoutFragment.newInstance(title);
+                break;
+        }
         setTitle(title);
-        NestedScrollViewFragment frg = NestedScrollViewFragment.newInstance(title);
         getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
     }
 
