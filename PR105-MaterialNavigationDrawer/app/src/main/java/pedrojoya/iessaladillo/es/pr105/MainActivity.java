@@ -1,6 +1,7 @@
 package pedrojoya.iessaladillo.es.pr105;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -85,13 +86,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (mSelectedNavItemId) {
             case R.id.nav_nestedscrollview:
                 frg = NestedScrollViewFragment.newInstance(title);
+                setTitle(title);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
+                break;
+            case R.id.nav_tablayout:
+                frg = TabLayoutFragment.newInstance(title);
+                setTitle(title);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
+                break;
+            case R.id.nav_collapsingtoolbarlayout:
+                frg = CollapsingToolbarLayoutFragment.newInstance(title);
+                setTitle(title);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
                 break;
             default:
-                frg = TabLayoutFragment.newInstance(title);
-                break;
+                startActivity(new Intent(this, DetalleActivity.class));
         }
-        setTitle(title);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
     }
 
     @Override

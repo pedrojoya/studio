@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Navigation drawer -->
+    <dimen name="navigation_drawer_header_profile_marginTop">41dp</dimen>
+
+    <!-- Fake StatusBar -->
+    <dimen name="statusBarHeight">25dp</dimen>
+
+
+
+</resources>

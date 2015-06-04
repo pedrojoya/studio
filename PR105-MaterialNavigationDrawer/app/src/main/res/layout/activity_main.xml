@@ -1,5 +1,6 @@
 <!-- Layout con panel de navegación. Debe ser el elemento raíz.
-     android:fitsSystemWindows a true para que coja la status bar -->
+     android:fitsSystemWindows a false en kitkat y a true en el resto de los
+     casos, para que el nav drawer ocupe la status bar -->
 <android.support.v4.widget.DrawerLayout
     android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -7,26 +8,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="@bool/fitsSystemWindows"
     tools:context=".MainActivity">
 
     <!-- Contenido principal. Debe ser el primer hijo y ocupar el padre al completo -->
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="@bool/fitsSystemWindows"
+        />
 
 
     <!-- Vista de navegación. Debe ser el segundo hijo.
          android:layout_gravity debe ser start.
          app:headerLayout corresponde al layout de la cabecera del panel.
-         app:menu corresponde al menú con los ítems de navegación -->
+         app:menu corresponde al menú con los ítems de navegación
+         android:fitsSystemWindows="@bool/fitsSystemWindows" false para kitkat,
+         true en el resto de los casos, para que el nav drawer salga por encima
+         de la status bar.
+         -->
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:fitsSystemWindows="@bool/fitsSystemWindows"
         app:headerLayout="@layout/activity_main_drawer_header"
-        app:menu="@menu/activity_main_drawer_menu"/>
+        app:menu="@menu/activity_main_drawer_menu"
+        app:theme="@style/NavigationViewTheme"/>
 
 </android.support.v4.widget.DrawerLayout>

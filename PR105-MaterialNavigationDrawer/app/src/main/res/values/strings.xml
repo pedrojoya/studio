@@ -29,5 +29,6 @@ Integer vitae iaculis dui. Quisque dignissim, sapien a sodales vulputate, neque 
 Integer et sagittis dui. Donec a accumsan libero. Fusce cursus tincidunt purus, eu pulvinar nibh consectetur non. Maecenas lobortis viverra finibus. Aenean dapibus nisl sed velit gravida accumsan. Etiam eros lorem, auctor sit amet tristique ac, porta maximus ligula. Duis sem nisi, sollicitudin in nunc eget, mattis malesuada dolor. Vivamus egestas volutpat consequat. Morbi rhoncus semper massa, ac congue purus varius vel. Donec a est varius nisi aliquet consequat. Morbi nec dolor et velit blandit sodales.</string>
     <string name="foto_alumno">Foto del alumno</string>
     <string name="ha_pulsado_sobre">Has pulsado sobre</string>
+    <string name="title_activity_detalle">DetalleActivity</string>
 
 </resources>

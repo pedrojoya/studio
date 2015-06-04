@@ -9,5 +9,18 @@
             android:id="@+id/nav_tablayout"
             android:icon="@drawable/ic_event"
             android:title="TabLayout" />
+        <item
+            android:id="@+id/nav_collapsingtoolbarlayout"
+            android:icon="@drawable/ic_forum"
+            android:title="CollapsingToolbarLayout" />
     </group>
+    <item android:title="Otras opciones">
+        <menu>
+            <item
+                android:id="@+id/nav_detalleactivity"
+                android:icon="@drawable/ic_headset"
+                android:title="DetalleActivity" />
+        </menu>
+    </item>
+
 </menu>

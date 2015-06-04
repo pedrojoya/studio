@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FAB -->
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Navigation drawer -->
+    <dimen name="navigation_drawer_header_profile_marginTop">41dp</dimen>
+
+    <dimen name="statusBarHeight">0dp</dimen>
+
+
+</resources>

@@ -2,8 +2,8 @@ package pedrojoya.iessaladillo.es.pr105;
 
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,9 +26,9 @@ public class TabLayoutFragment extends Fragment {
 
     private String mOpcion;
     private HideShowNestedScrollListener mScrollListener;
-    private Snackbar mSnackbar;
     private ViewPager viewPager;
     private FloatingActionButton fabAccion;
+    private ViewPagerAdapter viewPagerAdapter;
 
     public static TabLayoutFragment newInstance(String param1) {
         TabLayoutFragment fragment = new TabLayoutFragment();
@@ -77,6 +77,9 @@ public class TabLayoutFragment extends Fragment {
         fabAccion = (FloatingActionButton) view.findViewById(R.id.fabAccion);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
+        }
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -87,8 +90,7 @@ public class TabLayoutFragment extends Fragment {
             public void onPageSelected(int position) {
                 if (position == 0) {
                     ViewCompat.animate(fabAccion).scaleX(1).scaleY(1);
-                }
-                else {
+                } else {
                     ViewCompat.animate(fabAccion).scaleX(0).scaleY(0);
                 }
             }
@@ -101,28 +103,30 @@ public class TabLayoutFragment extends Fragment {
     }
 
     private void configViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(Tab1Fragment.newInstance("Tab 1"), "Tab 1");
-        adapter.addFragment(Tab2Fragment.newInstance("Tab 2"), "Tab 2");
-        adapter.addFragment(Tab2Fragment.newInstance("Tab 3"), "Tab 3");
-        adapter.addFragment(Tab2Fragment.newInstance("Tab 4"), "Tab 4");
-        adapter.addFragment(Tab2Fragment.newInstance("Tab 5"), "Tab 5");
-        adapter.addFragment(Tab2Fragment.newInstance("Tab 6"), "Tab 6");
-        adapter.addFragment(Tab2Fragment.newInstance("Tab 7"), "Tab 7");
-        viewPager.setAdapter(adapter);
+        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPagerAdapter.addFragment(Tab1Fragment.newInstance("Alumnos"), "Alumnos", R.drawable.ic_action_face_white);
+        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Lorem"), "Lorem", R.drawable.ic_discuss);
+        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 3"), "Tab 3", R.drawable.ic_done);
+//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 4"), "Tab 4", R.drawable.ic_done);
+//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 5"), "Tab 5", R.drawable.ic_done);
+//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 6"), "Tab 6", R.drawable.ic_done);
+//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 7"), "Tab 7", R.drawable.ic_done);
+        viewPager.setAdapter(viewPagerAdapter);
     }
 
-    static class Adapter extends FragmentPagerAdapter {
+    static class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
+        private final List<Integer> mFragmentIcons = new ArrayList<>();
 
-        public Adapter(FragmentManager fm) {
+        public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String title, @DrawableRes int resIdIcon) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
+            mFragmentIcons.add(Integer.valueOf(resIdIcon));
         }
 
         @Override
@@ -137,8 +141,15 @@ public class TabLayoutFragment extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
+            return "";
+            //return mFragmentTitles.get(position);
         }
+
+        @DrawableRes
+        public int getPageIcon(int position) {
+            return mFragmentIcons.get(position).intValue();
+        }
+
     }
 
 }

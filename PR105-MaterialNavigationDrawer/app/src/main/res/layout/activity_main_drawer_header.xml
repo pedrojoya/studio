@@ -2,22 +2,42 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="164dp"
+    android:layout_height="@dimen/navigation_drawer_header_height"
     android:background="@drawable/background_poly"
-    android:paddingLeft="16dp"
-    android:paddingTop="40dp"
-    android:paddingBottom="16dp"
+    android:paddingLeft="@dimen/navigation_drawer_paddingLeft"
+    android:paddingRight="@dimen/navigation_drawer_paddingRight"
+    android:paddingBottom="@dimen/navigation_drawer_header_marginBottom"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgProfile"
         android:layout_width="64dp"
-        android:layout_height="64dp" />
-    <TextView
+        android:layout_height="64dp"
+        android:layout_marginTop="@dimen/navigation_drawer_header_profile_marginTop"
+        android:scaleType="centerCrop"/>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Username"
+        android:layout_height="52dp"
         android:layout_alignParentBottom="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="Pedro Joya"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="pedro.joya@iessaladillo.es"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    </LinearLayout>
 
 </RelativeLayout>
