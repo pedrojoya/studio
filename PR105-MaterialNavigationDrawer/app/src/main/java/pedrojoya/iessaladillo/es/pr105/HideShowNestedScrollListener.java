@@ -3,7 +3,7 @@ package pedrojoya.iessaladillo.es.pr105;
 import android.support.v4.widget.NestedScrollView;
 import android.view.ViewTreeObserver;
 
-public abstract class HideShowScrollListener implements ViewTreeObserver
+public abstract class HideShowNestedScrollListener implements ViewTreeObserver
         .OnScrollChangedListener {
 
     private static final int UMBRAL_SCROLL = 20;
@@ -13,7 +13,7 @@ public abstract class HideShowScrollListener implements ViewTreeObserver
     private boolean mVistasOcultas;
 
 
-    public HideShowScrollListener(NestedScrollView svScrollView) {
+    public HideShowNestedScrollListener(NestedScrollView svScrollView) {
         this.svScrollView = svScrollView;
     }
 

@@ -24,7 +24,7 @@ public class NestedScrollViewFragment extends Fragment {
     private TextView lblTexto;
     private NestedScrollView nsvScroll;
     private FloatingActionButton fabAccion;
-    private HideShowScrollListener mScrollListener;
+    private HideShowNestedScrollListener mScrollListener;
     private Snackbar mSnackbar;
 
     public static NestedScrollViewFragment newInstance(String param1) {
@@ -69,7 +69,7 @@ public class NestedScrollViewFragment extends Fragment {
         actividad.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         lblTexto = (TextView) view.findViewById(R.id.lblTexto);
         nsvScroll = (NestedScrollView) view.findViewById(R.id.nsvScroll);
-        mScrollListener = new HideShowScrollListener(nsvScroll) {
+        mScrollListener = new HideShowNestedScrollListener(nsvScroll) {
             @Override
             public void showVistas() {
                 if (mSnackbar != null) {
@@ -83,7 +83,8 @@ public class NestedScrollViewFragment extends Fragment {
                 if (mSnackbar != null) {
                     mSnackbar.dismiss();
                 }
-                int translationY = getResources().getDimensionPixelSize(R.dimen.fab_translationY);
+                int translationY = getResources().getDimensionPixelSize(R
+                        .dimen.fab_margin) + fabAccion.getHeight();
                 ViewCompat.animate(fabAccion).translationY(translationY);
             }
         };

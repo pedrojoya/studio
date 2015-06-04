@@ -8,13 +8,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +25,10 @@ public class TabLayoutFragment extends Fragment {
     private static final String ARG_PARAM1 = "opcion";
 
     private String mOpcion;
-    private FloatingActionButton fabAccion;
-    private HideShowScrollListener mScrollListener;
+    private HideShowNestedScrollListener mScrollListener;
     private Snackbar mSnackbar;
     private ViewPager viewPager;
+    private FloatingActionButton fabAccion;
 
     public static TabLayoutFragment newInstance(String param1) {
         TabLayoutFragment fragment = new TabLayoutFragment();
@@ -75,26 +75,40 @@ public class TabLayoutFragment extends Fragment {
             configViewPager(viewPager);
         }
         fabAccion = (FloatingActionButton) view.findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSnackbar = Snackbar.make(viewPager, "Quillo que", Snackbar.LENGTH_SHORT).setAction("Deshacer", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getActivity(), "Quieres deshacer", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                mSnackbar.show();
-            }
-        });
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    ViewCompat.animate(fabAccion).scaleX(1).scaleY(1);
+                }
+                else {
+                    ViewCompat.animate(fabAccion).scaleX(0).scaleY(0);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void configViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(TabFragment.newInstance("Tab 1"), "Tab 1");
-        adapter.addFragment(TabFragment.newInstance("Tab 2"), "Tab 2");
+        adapter.addFragment(Tab1Fragment.newInstance("Tab 1"), "Tab 1");
+        adapter.addFragment(Tab2Fragment.newInstance("Tab 2"), "Tab 2");
+        adapter.addFragment(Tab2Fragment.newInstance("Tab 3"), "Tab 3");
+        adapter.addFragment(Tab2Fragment.newInstance("Tab 4"), "Tab 4");
+        adapter.addFragment(Tab2Fragment.newInstance("Tab 5"), "Tab 5");
+        adapter.addFragment(Tab2Fragment.newInstance("Tab 6"), "Tab 6");
+        adapter.addFragment(Tab2Fragment.newInstance("Tab 7"), "Tab 7");
         viewPager.setAdapter(adapter);
     }
 

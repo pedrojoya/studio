@@ -27,5 +27,7 @@ Nullam imperdiet tincidunt nulla non tincidunt. Curabitur sit amet purus diam. D
 Integer vitae iaculis dui. Quisque dignissim, sapien a sodales vulputate, neque metus tincidunt neque, a laoreet felis mi ut leo. Nulla molestie lacus mattis scelerisque hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum suscipit magna non varius. Maecenas porttitor dui elit, id molestie ante sodales ut. Donec lacinia arcu at eleifend lobortis. Donec tincidunt arcu non suscipit euismod. Fusce vehicula vel quam vel mollis. Aliquam ultricies nisi sed metus scelerisque, eu viverra nibh dictum. Quisque pretium lobortis mauris at elementum. In at lorem sit amet velit pretium rutrum. Suspendisse vitae mauris lobortis, fringilla sem a, consequat neque. Etiam accumsan mauris nec fringilla pellentesque. Nam fringilla turpis eu molestie faucibus.
 
 Integer et sagittis dui. Donec a accumsan libero. Fusce cursus tincidunt purus, eu pulvinar nibh consectetur non. Maecenas lobortis viverra finibus. Aenean dapibus nisl sed velit gravida accumsan. Etiam eros lorem, auctor sit amet tristique ac, porta maximus ligula. Duis sem nisi, sollicitudin in nunc eget, mattis malesuada dolor. Vivamus egestas volutpat consequat. Morbi rhoncus semper massa, ac congue purus varius vel. Donec a est varius nisi aliquet consequat. Morbi nec dolor et velit blandit sodales.</string>
+    <string name="foto_alumno">Foto del alumno</string>
+    <string name="ha_pulsado_sobre">Has pulsado sobre</string>
 
 </resources>
