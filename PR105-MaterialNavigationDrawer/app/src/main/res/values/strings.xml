@@ -2,22 +2,6 @@
 <resources>
 
     <string name="app_name">Material Navigation Drawer</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="next">Next</string>
-    <string name="title_activity_secundary">Secundary Activity</string>
-    <string name="actividad_principal">Main Activity</string>
-    <string name="secundary_activity">Secundary Activity</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer magna ligula, euismod id maximus vel, imperdiet et purus. Sed ex mi, lacinia fermentum molestie posuere, varius a erat. Nunc vitae ultrices felis, vitae hendrerit odio. Nunc ipsum lectus, cursus at erat id, iaculis posuere est. Nunc lobortis, massa sit amet posuere imperdiet, diam massa pulvinar orci, vel tincidunt dolor purus a dui. Integer condimentum sapien sed auctor hendrerit. Morbi hendrerit, nunc non ultricies pretium, ipsum nisl volutpat nulla, eu cursus massa eros et metus.
 
 Sed rutrum elit nibh, volutpat tincidunt sapien fermentum gravida. Vivamus mollis finibus turpis, eget egestas lorem. Fusce eu enim aliquam, tristique nisi sit amet, varius quam. Sed aliquet leo non consectetur varius. Fusce consequat porta lorem. Morbi fermentum justo ante, sit amet pellentesque nulla elementum ultrices. Vestibulum ligula nulla, laoreet id magna non, congue sagittis metus. Integer faucibus, libero vitae ultricies commodo, nunc mi maximus lectus, non fringilla tellus diam et purus. Etiam et velit nulla. Cras vel lacus sit amet nisi condimentum fermentum ac quis odio. Suspendisse malesuada risus vitae diam feugiat dictum. Cras nec libero velit. Mauris at tristique arcu, sed porttitor ante.
@@ -30,5 +14,21 @@ Integer et sagittis dui. Donec a accumsan libero. Fusce cursus tincidunt purus, 
     <string name="foto_alumno">Foto del alumno</string>
     <string name="ha_pulsado_sobre">Has pulsado sobre</string>
     <string name="title_activity_detalle">DetalleActivity</string>
+    <string name="nestedscrollview">NestedScrollView</string>
+    <string name="collapsingtoolbarlayout">CollapsingToolbarLayout</string>
+    <string name="tablayout">TabLayout</string>
+    <string name="detalleactivity">DetalleActivity</string>
+    <string name="otras_opciones">Otras opciones</string>
+    <string name="autor">Pedro Joya</string>
+    <string name="email">pedro.joya@iessaladillo.es</string>
+    <string name="imagen_cabecera">Imagen de cabecera</string>
+    <string name="fab_pulsado">Se ha pulsado el FAB</string>
+    <string name="deshacer">Deshacer</string>
+    <string name="deshaciendo_accion">Deshaciendo acción</string>
+    <string name="alumnos">Alumnos</string>
+    <string name="textinputlayout">TextInput</string>
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Teléfono</string>
+    <string name="direccion">Dirección</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.fragmentos;
 
 
 import android.os.Bundle;
@@ -14,21 +14,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import pedrojoya.iessaladillo.es.pr105.R;
+
 
 public class CollapsingToolbarLayoutFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "opcion";
+    private static final String ARG_TITULO = "titulo";
 
-    private String mOpcion;
     private NestedScrollView nsvScroll;
-    private FloatingActionButton fabAccion;
     private Snackbar mSnackbar;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
 
-    public static CollapsingToolbarLayoutFragment newInstance(String param1) {
+    private String mTitulo;
+
+    // Retorna una nueva intancia del fragmento.
+    public static CollapsingToolbarLayoutFragment newInstance(String titulo) {
         CollapsingToolbarLayoutFragment fragment = new CollapsingToolbarLayoutFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_TITULO, titulo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -39,8 +41,9 @@ public class CollapsingToolbarLayoutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Se obtienen los argumentos.
         if (getArguments() != null) {
-            mOpcion = getArguments().getString(ARG_PARAM1);
+            mTitulo = getArguments().getString(ARG_TITULO);
         }
     }
 
@@ -58,29 +61,39 @@ public class CollapsingToolbarLayoutFragment extends Fragment {
         }
     }
 
+    // Obtiene e inicializa las vistas.
     private void initVistas(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         AppCompatActivity actividad = ((AppCompatActivity) getActivity());
         actividad.setSupportActionBar(toolbar);
-        actividad.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        actividad.getSupportActionBar().setHomeButtonEnabled(true);
-        actividad.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
-        collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle(mOpcion);
+        actividad.setTitle(mTitulo);
+        if (actividad.getSupportActionBar() != null) {
+            actividad.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            actividad.getSupportActionBar().setHomeButtonEnabled(true);
+            actividad.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
+        CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle(mTitulo);
         nsvScroll = (NestedScrollView) view.findViewById(R.id.nsvScroll);
-        fabAccion = (FloatingActionButton) view.findViewById(R.id.fabAccion);
+        FloatingActionButton fabAccion = (FloatingActionButton) view.findViewById(R.id.fabAccion);
         fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSnackbar = Snackbar.make(nsvScroll, "Quillo que", Snackbar.LENGTH_SHORT).setAction("Deshacer", new View.OnClickListener() {
+                mSnackbar = Snackbar.make(nsvScroll,
+                        getString(R.string.fab_pulsado),
+                        Snackbar.LENGTH_SHORT).setAction(getString(R.string.deshacer),
+                            new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getActivity(), "Quieres deshacer", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),
+                                getString(R.string.deshaciendo_accion),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
                 mSnackbar.show();
             }
         });
-        //lblTexto.setText(mOpcion);
     }
+
 }

@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.utils;
 
 import android.support.v7.widget.RecyclerView;
 

@@ -1,17 +1,19 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.actividades;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import pedrojoya.iessaladillo.es.pr105.R;
 
-public class DetalleActivity extends ActionBarActivity {
+
+public class DetalleActivity extends AppCompatActivity {
 
     private NestedScrollView nsvScroll;
 
@@ -22,11 +24,15 @@ public class DetalleActivity extends ActionBarActivity {
         initVistas();
     }
 
+    // Obtiene e inicializa las vistas.
     private void initVistas() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
+        // Se muestra el título en la collapsing toolbar.
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(getTitle());
         nsvScroll = (NestedScrollView) findViewById(R.id.nsvScroll);

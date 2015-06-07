@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.utils;
 
 import android.support.v4.widget.NestedScrollView;
 import android.view.ViewTreeObserver;
@@ -8,7 +8,7 @@ public abstract class HideShowNestedScrollListener implements ViewTreeObserver
 
     private static final int UMBRAL_SCROLL = 20;
 
-    NestedScrollView svScrollView;
+    private final NestedScrollView svScrollView;
     private int mScrollAnterior;
     private boolean mVistasOcultas;
 
@@ -22,19 +22,20 @@ public abstract class HideShowNestedScrollListener implements ViewTreeObserver
         int diferencia = svScrollView.getScrollY() - mScrollAnterior;
         if (mVistasOcultas && diferencia < -UMBRAL_SCROLL) {
             mVistasOcultas = false;
-            showVistas();
+            onShow();
         } else if (!mVistasOcultas && diferencia > UMBRAL_SCROLL) {
             mVistasOcultas = true;
-            hideVistas();
+            onHide();
         }
         mScrollAnterior = svScrollView.getScrollY();
     }
 
+    // Resetea los valores iniciales.
     public void reset() {
         mScrollAnterior = 0;
         mVistasOcultas = false;
     }
 
-    public abstract void showVistas();
-    public abstract void hideVistas();
+    public abstract void onShow();
+    public abstract void onHide();
 }

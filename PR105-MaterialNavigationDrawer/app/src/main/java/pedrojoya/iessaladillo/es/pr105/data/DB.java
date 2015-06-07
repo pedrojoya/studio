@@ -1,10 +1,10 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.data;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 // Simula un BD.
-class DB {
+public class DB {
 
     // Lista de alumnos.
     private static final ArrayList<Alumno> datos;

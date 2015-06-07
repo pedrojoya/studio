@@ -1,7 +1,7 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.data;
 
 // Modelo Alumno.
-class Alumno {
+public class Alumno {
 
     private final String nombre;
     private final String direccion;

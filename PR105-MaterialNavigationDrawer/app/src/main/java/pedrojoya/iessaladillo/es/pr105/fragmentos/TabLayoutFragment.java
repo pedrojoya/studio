@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.fragmentos;
 
 
 import android.os.Bundle;
@@ -19,21 +19,24 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import pedrojoya.iessaladillo.es.pr105.R;
+import pedrojoya.iessaladillo.es.pr105.utils.HideShowNestedScrollListener;
+
 
 public class TabLayoutFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "opcion";
+    private static final String ARG_TITULO = "titulo";
 
-    private String mOpcion;
     private HideShowNestedScrollListener mScrollListener;
-    private ViewPager viewPager;
     private FloatingActionButton fabAccion;
-    private ViewPagerAdapter viewPagerAdapter;
 
-    public static TabLayoutFragment newInstance(String param1) {
+    private String mTitulo;
+
+    // Retorna una nueva intancia del fragmento.
+    public static TabLayoutFragment newInstance(String titulo) {
         TabLayoutFragment fragment = new TabLayoutFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_TITULO, titulo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,8 +47,9 @@ public class TabLayoutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Se obtienen los argumentos.
         if (getArguments() != null) {
-            mOpcion = getArguments().getString(ARG_PARAM1);
+            mTitulo = getArguments().getString(ARG_TITULO);
         }
     }
 
@@ -63,27 +67,48 @@ public class TabLayoutFragment extends Fragment {
         }
     }
 
+    // Obtiene e inicializa las vistas.
     private void initVistas(View view) {
+        fabAccion = (FloatingActionButton) view.findViewById(R.id.fabAccion);
+        configToolbar(view);
+        configViewPager(view);
+    }
+
+    // Configura la toolbar.
+    private void configToolbar(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         AppCompatActivity actividad = ((AppCompatActivity) getActivity());
         actividad.setSupportActionBar(toolbar);
-        actividad.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        actividad.getSupportActionBar().setHomeButtonEnabled(true);
-        actividad.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        if (viewPager != null) {
-            configViewPager(viewPager);
+        actividad.setTitle(mTitulo);
+        if (actividad.getSupportActionBar() != null) {
+            actividad.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            actividad.getSupportActionBar().setHomeButtonEnabled(true);
+            actividad.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         }
-        fabAccion = (FloatingActionButton) view.findViewById(R.id.fabAccion);
+    }
+
+    // Configura el ViewPager.
+    private void configViewPager(View view) {
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPagerAdapter.addFragment(Tab1Fragment.newInstance(),
+                getString(R.string.alumnos), R.drawable.ic_action_face_white);
+        viewPagerAdapter.addFragment(Tab2Fragment.newInstance(),
+                getString(R.string.textinputlayout), R.drawable.ic_discuss);
+        viewPager.setAdapter(viewPagerAdapter);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        /**** Para mostrar iconos en las tabs.
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
         }
+        ****/
+        // Se añade un listener para poder mostrar / ocultar el FAB dependiendo
+        // del fragmento que se muestre en el ViewPager.
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            public void onPageScrolled(int position, float positionOffset,
+                                       int positionOffsetPixels) {
             }
 
             @Override
@@ -97,24 +122,14 @@ public class TabLayoutFragment extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
+
     }
 
-    private void configViewPager(ViewPager viewPager) {
-        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        viewPagerAdapter.addFragment(Tab1Fragment.newInstance("Alumnos"), "Alumnos", R.drawable.ic_action_face_white);
-        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Lorem"), "Lorem", R.drawable.ic_discuss);
-        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 3"), "Tab 3", R.drawable.ic_done);
-//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 4"), "Tab 4", R.drawable.ic_done);
-//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 5"), "Tab 5", R.drawable.ic_done);
-//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 6"), "Tab 6", R.drawable.ic_done);
-//        viewPagerAdapter.addFragment(Tab2Fragment.newInstance("Tab 7"), "Tab 7", R.drawable.ic_done);
-        viewPager.setAdapter(viewPagerAdapter);
-    }
-
+    // Adaptador para el ViewPager.
     static class ViewPagerAdapter extends FragmentPagerAdapter {
+
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
         private final List<Integer> mFragmentIcons = new ArrayList<>();
@@ -123,31 +138,37 @@ public class TabLayoutFragment extends Fragment {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title, @DrawableRes int resIdIcon) {
+        // Añade un fragmento al adaptador. Recibe el fragmento, el título
+        // para la tab y el icono para la tab.
+        public void addFragment(Fragment fragment, String title,
+                                @DrawableRes int resIdIcon) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
-            mFragmentIcons.add(Integer.valueOf(resIdIcon));
+            mFragmentIcons.add(resIdIcon);
         }
 
+        // Retorna el fragmento correspondiente a la posición recibida.
         @Override
         public Fragment getItem(int position) {
             return mFragments.get(position);
         }
 
+        // Retorna el número de fragmentos del adaptador.
         @Override
         public int getCount() {
             return mFragments.size();
         }
 
+        // Retorna el título asociado a una determinada página.
         @Override
         public CharSequence getPageTitle(int position) {
-            return "";
-            //return mFragmentTitles.get(position);
+            return " " + mFragmentTitles.get(position);
         }
 
+        // Retorna el resId del icono asociado a una determinada página.
         @DrawableRes
         public int getPageIcon(int position) {
-            return mFragmentIcons.get(position).intValue();
+            return mFragmentIcons.get(position);
         }
 
     }

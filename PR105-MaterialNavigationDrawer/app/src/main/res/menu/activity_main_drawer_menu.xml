@@ -4,22 +4,22 @@
         <item
             android:id="@+id/nav_nestedscrollview"
             android:icon="@drawable/ic_dashboard"
-            android:title="NestedScrollView" />
+            android:title="@string/nestedscrollview" />
         <item
             android:id="@+id/nav_tablayout"
             android:icon="@drawable/ic_event"
-            android:title="TabLayout" />
+            android:title="@string/tablayout" />
         <item
             android:id="@+id/nav_collapsingtoolbarlayout"
             android:icon="@drawable/ic_forum"
-            android:title="CollapsingToolbarLayout" />
+            android:title="@string/collapsingtoolbarlayout" />
     </group>
-    <item android:title="Otras opciones">
+    <item android:title="@string/otras_opciones">
         <menu>
             <item
                 android:id="@+id/nav_detalleactivity"
                 android:icon="@drawable/ic_headset"
-                android:title="DetalleActivity" />
+                android:title="@string/detalleactivity" />
         </menu>
     </item>
 

@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr105;
+package pedrojoya.iessaladillo.es.pr105.adaptadores;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import pedrojoya.iessaladillo.es.pr105.data.Alumno;
+import pedrojoya.iessaladillo.es.pr105.R;
 
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
@@ -82,6 +84,16 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mDatos.add(alumno);
         // Se notifica que se ha insertado un elemento en la última posición.
         notifyItemInserted(mDatos.size() - 1);
+    }
+
+    // Intercambia dos elementos de la lista.
+    public void swapItems(int from, int to) {
+        // Se realiza el intercambio.
+        Alumno alumnoTo = mDatos.get(to);
+        mDatos.set(to, mDatos.get(from));
+        mDatos.set(from, alumnoTo);
+        // Se notifica el movimiento.
+        notifyItemMoved(from, to);
     }
 
     // Establece el listener a informar cuando se hace click sobre un elemento de la lista.

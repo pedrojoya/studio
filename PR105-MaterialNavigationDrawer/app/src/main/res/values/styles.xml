@@ -10,7 +10,6 @@
         <item name="colorAccent">@color/accent</item>
         <!-- Color selección -->
         <item name="colorControlHighlight">@color/primary_light</item>
-        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
     <!-- Tema para la Toolbar. Debe heredar de ThemeOverlay.AppCompat  -->
