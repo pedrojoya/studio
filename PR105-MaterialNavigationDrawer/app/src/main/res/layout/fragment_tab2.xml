@@ -14,10 +14,11 @@
         android:padding="@dimen/fragment_tab2_padding">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/etlNombre"
+            android:id="@+id/tilNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_tab2_padding">
+            android:layout_marginBottom="@dimen/fragment_tab2_padding"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
             <EditText
                 android:id="@+id/txtNombre"
@@ -32,10 +33,11 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/etlTelefono"
+            android:id="@+id/tilTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_tab2_padding">
+            android:layout_marginBottom="@dimen/fragment_tab2_padding"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
             <EditText
                 android:id="@+id/txtTelefono"
@@ -47,10 +49,11 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/etlDireccion"
+            android:id="@+id/tilDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_tab2_padding">
+            android:layout_marginBottom="@dimen/fragment_tab2_padding"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
             <EditText
                 android:id="@+id/txtDireccion"

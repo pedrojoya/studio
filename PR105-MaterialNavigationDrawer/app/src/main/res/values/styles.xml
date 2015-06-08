@@ -24,6 +24,10 @@
         <item name="textAppearanceListItem">@style/TextAppearance.AppCompat.Body2</item>
     </style>
 
+    <style name="TextAppearence.App.TextInputLayout" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textColor">@color/primary_dark</item>
+    </style>
+
     <style name="AppTheme" parent="AppThemeBase">
     </style>
 
