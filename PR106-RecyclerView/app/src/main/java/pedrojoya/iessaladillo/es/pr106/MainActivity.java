@@ -1,13 +1,14 @@
 package pedrojoya.iessaladillo.es.pr106;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -15,38 +16,56 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         AlumnosAdapter.OnItemLongClickListener {
 
     private RecyclerView lstAlumnos;
-
     private AlumnosAdapter mAdaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         initVistas();
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setHasFixedSize(true);
-        mAdaptador = new AlumnosAdapter(DB.getAlumnos());
-        mAdaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
-        mAdaptador.setOnItemClickListener(this);
-        mAdaptador.setOnItemLongClickListener(this);
-        lstAlumnos.setAdapter(mAdaptador);
-        lstAlumnos.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        ImageButton btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
-        btnAgregar.setOnClickListener(new View.OnClickListener() {
+        configToolbar();
+        configRecyclerView();
+        configFab();
+    }
+
+    // Configura la Toolbar.
+    private void configToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    // Configura el FAB.
+    private void configFab() {
+        FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
+        fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 agregarAlumno(DB.getNextAlumno());
             }
         });
+    }
 
+    // Configura el RecyclerView.
+    private void configRecyclerView() {
+        TextView lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
+        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        lstAlumnos.setHasFixedSize(true);
+        mAdaptador = new AlumnosAdapter(DB.getAlumnos());
+        mAdaptador.setOnItemClickListener(this);
+        mAdaptador.setOnItemLongClickListener(this);
+        mAdaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
+        lstAlumnos.setAdapter(mAdaptador);
+        lstAlumnos.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
+        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
     }
 
     // Agrega un alumno a la lista.

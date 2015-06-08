@@ -5,13 +5,14 @@
     android:layout_height="wrap_content"
     android:minHeight="@dimen/two_line_tile_height"
     android:background="@drawable/selectable_item_background"
+    android:clickable="true"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/two_line_avatar_width"
         android:layout_height="@dimen/two_line_avatar_height"
-        android:contentDescription="@string/foto_alumno"
+        android:contentDescription="@string/avatar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/two_line_avatar_marginTop"
@@ -25,8 +26,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
         android:paddingTop="@dimen/two_line_text_paddingTop"
-        android:layout_toLeftOf="@+id/btnDown"
-        android:layout_toStartOf="@+id/btnDown"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         tools:text="Baldomero Llegate Ligero"
@@ -40,8 +41,8 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
-        android:layout_toLeftOf="@+id/btnDown"
-        android:layout_toStartOf="@+id/btnDown"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/lblNombre"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -49,18 +50,5 @@
         android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
         android:textSize="14sp" />
-
-    <ImageButton
-        android:id="@+id/btnDown"
-        android:layout_width="@dimen/two_line_secundary_icon_width"
-        android:layout_height="@dimen/two_line_secundary_icon_height"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/two_line_secundary_icon_marginRight"
-        android:layout_marginEnd="@dimen/two_line_secundary_icon_marginRight"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/bajar"
-        android:src="@drawable/ic_down" />
 
 </RelativeLayout>

@@ -40,7 +40,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
     private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
-    private SparseBooleanArray mSelectedItems = new SparseBooleanArray();
+    private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
     private boolean mIsEmpty = true;
 
 
@@ -160,9 +160,19 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     void swapItems(int from, int to) {
         // Se realiza el intercambio.
         Collections.swap(mDatos, from, to);
+        // Se intercambia también el estado de selección de from y to.
+        boolean fromSelected = mSelectedItems.get(from, false);
+        boolean toSelected = mSelectedItems.get(to, false);
+        if (fromSelected) mSelectedItems.delete(from);
+        if (toSelected) mSelectedItems.delete(to);
+        if (fromSelected) {
+            mSelectedItems.put(to, true);
+        }
+        if (toSelected) {
+            mSelectedItems.put(from, true);
+        }
         // Se notifica el movimiento.
-        notifyItemChanged(from);
-        notifyItemChanged(to);
+        notifyItemMoved(from, to);
     }
 
     // Comprueba si ha pasa a estar vacía o deja de estar vacía.

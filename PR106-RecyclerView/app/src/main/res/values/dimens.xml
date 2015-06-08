@@ -1,22 +1,17 @@
 <resources>
+
     <!-- Empty View -->
     <dimen name="empty_drawablePadding">10dp</dimen>
+
+    <!-- Fake StatusBar -->
+    <dimen name="statusBarHeight">0dp</dimen>
+
     <!-- FAB -->
-    <dimen name="fab_diameter">56dp</dimen>
-    <dimen name="fab_elevation_low">9dp</dimen>
-    <dimen name="fab_elevation_high">12dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="fab_shadowRadius">4dp</dimen>
-    <dimen name="fab_dy">1dp</dimen>
-    <!-- Toolbar -->
-    <dimen name="statusbar_height">0dp</dimen>
-    <dimen name="toolbar_height">56dp</dimen>
-    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="fab_margin">0dp</dimen>
+
     <!-- RecyclerView -->
-    <dimen name="list_paddingTop">8dp</dimen>
-    <dimen name="list_paddingBottom">56dp</dimen>
-    <!-- Panel inferior -->
-    <dimen name="panel_inferior_height">44dp</dimen>
+    <dimen name="lst_padding">8dp</dimen>
+
     <!-- Single line with avatar list item -->
     <dimen name="two_line_tile_height">72dp</dimen>
     <dimen name="two_line_avatar_width">40dp</dimen>
@@ -30,4 +25,5 @@
     <dimen name="two_line_secundary_icon_width">32dp</dimen>
     <dimen name="two_line_secundary_icon_height">32dp</dimen>
     <dimen name="two_line_secundary_icon_marginRight">16dp</dimen>
+
 </resources>

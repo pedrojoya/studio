@@ -12,7 +12,7 @@ class DB {
     // Inicialización.
     static {
         datos = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 15; i++) {
             datos.add(getNextAlumno());
         }
     }

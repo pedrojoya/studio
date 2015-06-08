@@ -4,12 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -65,17 +65,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
                 }
             }
         });
-        // Cuando se pulsa sobre bajar.
-        viewHolder.btnDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Se mueve el alumno una posición hacia abajo.
-                int position = viewHolder.getAdapterPosition();
-                if (position < mDatos.size() - 1) {
-                    swapItems(position, position + 1);
-                }
-            }
-        });
         // Se retorna el contenedor.
         return viewHolder;
     }
@@ -92,9 +81,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         Picasso.with(holder.imgAvatar.getContext())
                 .load(alumno.getUrlFoto())
                 .into(holder.imgAvatar);
-        // Se muestran u ocultan el botón de movimiento.
-        holder.btnDown.setVisibility(position < mDatos.size() - 1 ?
-                View.VISIBLE : View.GONE);
 
     }
 
@@ -108,18 +94,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
-/*
-        if (position > 0) {
-            notifyItemChanged(position - 1);
-        }
-        if (position == 0 && mDatos.size() > 0) {
-            notifyItemChanged(0);
-        }
-*/      // Si aún hay mDatos y se ha eliminado el último elemento, se notifica que ha habido cambios
-        // en el elemento anterior para que se oculte la flecha.
-        if (mDatos.size() > 0 && position == mDatos.size()) {
-            notifyItemChanged(position - 1);
-        }
         // Si la lista ha quedado vacía se muestra la empty view.
         checkIfEmpty();
     }
@@ -130,10 +104,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mDatos.add(alumno);
         // Se notifica que se ha insertado un elemento en la última posición.
         notifyItemInserted(mDatos.size() - 1);
-        // Se notifica que ha habido cambios en el elemento anterior, para que se muestre la flecha.
-        if (mDatos.size() > 1) {
-            notifyItemChanged(mDatos.size() - 2);
-        }
         // Si la lista estaba vacía se oculta la empty view.
         checkIfEmpty();
     }
@@ -141,21 +111,13 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Intercambia dos elementos de la lista.
     void swapItems(int from, int to) {
         // Se realiza el intercambio.
-        Alumno alumnoTo = mDatos.get(to);
-        mDatos.set(to, mDatos.get(from));
-        mDatos.set(from, alumnoTo);
+        Collections.swap(mDatos, from, to);
         // Se notifica el movimiento.
         notifyItemMoved(from, to);
-        // Si en el intercambio ha participado el último elemento se notifica que ha habido
-        // cambios en los elementos para que se muestren u oculten adecuadamente las flechas.
-        if (from == mDatos.size() - 1 || to == mDatos.size() - 1) {
-            notifyItemChanged(from);
-            notifyItemChanged(to);
-        }
     }
 
     // Comprueba si la lista está vacía.
-    void checkIfEmpty() {
+    private void checkIfEmpty() {
         if (emptyView != null) {
             // Muestra u oculta la empty view dependiendo de si la lista está vacía o no.
             emptyView.setVisibility(getItemCount() > 0 ? View.GONE : View.VISIBLE);
@@ -186,7 +148,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         private final TextView lblNombre;
         private final TextView lblDireccion;
         private final CircleImageView imgAvatar;
-        private final ImageButton btnDown;
 
 
         // El constructor recibe la vista-fila.
@@ -196,7 +157,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
             lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
             imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
-            btnDown = (ImageButton) itemView.findViewById(R.id.btnDown);
         }
 
     }

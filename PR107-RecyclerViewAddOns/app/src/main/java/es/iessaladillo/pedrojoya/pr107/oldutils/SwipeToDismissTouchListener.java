@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr107;
+package es.iessaladillo.pedrojoya.pr107.oldutils;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -82,6 +82,11 @@ public class SwipeToDismissTouchListener implements
                 break;
             }
         }
+    }
+
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean b) {
+
     }
 
     @Override

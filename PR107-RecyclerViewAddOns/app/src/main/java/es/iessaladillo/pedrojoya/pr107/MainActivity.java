@@ -1,107 +1,118 @@
 package es.iessaladillo.pedrojoya.pr107;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.software.shell.fab.ActionButton;
-
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements
         AlumnosAdapter.OnItemClickListener, AlumnosAdapter.OnItemLongClickListener,
-        AlumnosAdapter.OnEmptyStateChangedListener, ActionMode.Callback {
+        ActionMode.Callback {
 
     private RecyclerView lstAlumnos;
-    private ActionButton btnAgregar;
+    private FloatingActionButton fabAccion;
     private AlumnosAdapter mAdaptador;
     private TextView lblNoHayAlumnos;
     private ActionMode mActionMode;
-    private SwipeToDismissTouchListener swipeToDismissTouchListener;
     private Toolbar toolbar;
-    private DragController mDragController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initVistas();
+    }
+
+    // Obtiene e inicializa las vistas.
+    private void initVistas() {
+        configToolbar();
+        configRecyclerView();
+        configFab();
+    }
+
+    // Configura la Toolbar.
+    private void configToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        initVistas();
     }
 
-    private void initVistas() {
+    // Configura el FAB.
+    private void configFab() {
+        fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
+        fabAccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                agregarAlumno(DB.getNextAlumno());
+            }
+        });
+    }
+
+    // Configura el RecyclerView.
+    private void configRecyclerView() {
         lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
         lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.setOnEmptyStateChangedListener(this);
+        mAdaptador.setOnEmptyStateChangedListener(new AlumnosAdapter.OnEmptyStateChangedListener() {
+            @Override
+            public void onEmptyStateChanged(boolean isEmpty) {
+                lblNoHayAlumnos.setVisibility(isEmpty ? View.VISIBLE : View.INVISIBLE);
+            }
+        });
         lstAlumnos.setAdapter(mAdaptador);
         lstAlumnos.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false));
         lstAlumnos.addItemDecoration(new DividerItemDecoration(this,
                 LinearLayoutManager.VERTICAL));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        btnAgregar = (ActionButton) findViewById(R.id.btnAgregar);
-        btnAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                agregarAlumno(DB.getNextAlumno());
-            }
-        });
-        swipeToDismissTouchListener = new SwipeToDismissTouchListener(lstAlumnos,
-                        new SwipeToDismissTouchListener.DismissCallbacks() {
+        // Drag & drop y Swipe to dismiss.
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
+                        ItemTouchHelper.DOWN,
+                        ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView,
+                                          RecyclerView.ViewHolder viewHolder,
+                                          RecyclerView.ViewHolder target) {
+                        final int fromPos = viewHolder.getAdapterPosition();
+                        final int toPos = target.getAdapterPosition();
+                        mAdaptador.swapItems(fromPos, toPos);
+                        return true;
+                    }
 
-            @Override
-            public SwipeToDismissTouchListener.SwipeDirection canDismiss(int position) {
-                return SwipeToDismissTouchListener.SwipeDirection.RIGHT;
-            }
-
-            @Override
-            public void onDismiss(RecyclerView view,
-                List<SwipeToDismissTouchListener.PendingDismissData> dismissData) {
-                for (SwipeToDismissTouchListener.PendingDismissData data : dismissData) {
-                    mAdaptador.removeItem(data.position);
-                }
-            }
-
-            @Override
-            public void onResetMotion() {
-            }
-
-            @Override
-            public void onTouchDown() {
-            }
-
-
-        });
-        lstAlumnos.addOnItemTouchListener(swipeToDismissTouchListener);
-
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        // Se elimina el elemento.
+                        mAdaptador.removeItem(viewHolder.getAdapterPosition());
+                    }
+                });
+        itemTouchHelper.attachToRecyclerView(lstAlumnos);
+        // Hide / show FAB on scrolling.
         lstAlumnos.addOnScrollListener(new HidingScrollListener() {
 
             @Override
             public void onHide() {
                 // Solo si NO está activo el modo de acción contextual.
                 if (mActionMode == null) {
-                    btnAgregar.hide();
-                    toolbar.animate().translationY(-toolbar.getHeight());
+                    hideFloatingViews();
                 }
             }
 
@@ -109,42 +120,22 @@ public class MainActivity extends AppCompatActivity implements
             public void onShow() {
                 // Solo si NO está activo el modo de acción contextual.
                 if (mActionMode == null) {
-                    btnAgregar.show();
-                    toolbar.animate().translationY(0);
+                    showFloatingViews();
                 }
             }
         });
-        // Drag & drop.
-        ImageView overlay = (ImageView) findViewById(R.id.overlay);
-        mDragController = new DragController(lstAlumnos, overlay) {
-
-            @Override
-            void onDragStarted() {
-            }
-
-            @Override
-            void onSwapDone() {
-                // Si está activo el modo de acción contextual se deshabilita
-                // en cuenta se hace un intercambio por drag and drop.
-                if (mActionMode != null) {
-                    mActionMode.finish();
-                }
-            }
-
-            @Override
-            void onDragEnded() {
-            }
-
-        };
-        lstAlumnos.addOnItemTouchListener(mDragController);
     }
 
+    // Muestra las vistas flotantes.
     private void showFloatingViews() {
-        btnAgregar.show();
+        ViewCompat.animate(fabAccion).translationY(0);
     }
 
+    // Oculta las vistas flotantes.
     private void hideFloatingViews() {
-        btnAgregar.hide();
+        ViewCompat.animate(fabAccion).translationY(fabAccion
+                .getHeight() + getResources()
+                .getDimensionPixelOffset(R.dimen.fab_margin));
     }
 
     // Al crear el modo de acción contextual.
@@ -158,11 +149,8 @@ public class MainActivity extends AppCompatActivity implements
         return true;
     }
 
-    // Al preparar el menú del modo de acción contextual.
     @Override
     public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        swipeToDismissTouchListener.setEnabled(false);
-        // this.mActionMode = actionMode;
         return false;
     }
 
@@ -179,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements
     // Al finalizar el modo de acción contextual.
     @Override
     public void onDestroyActionMode(ActionMode actionMode) {
-        swipeToDismissTouchListener.setEnabled(true);
         mAdaptador.clearSelections();
         this.mActionMode = null;
         // Se muestran las vistas flotantes.
@@ -205,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements
             toggleSelection(position);
         } else {
             toolbar.startActionMode(this);
-            //startSupportActionMode(this);
             toggleSelection(position);
         }
     }
@@ -229,12 +215,6 @@ public class MainActivity extends AppCompatActivity implements
         // Se agrega el alumno.
         mAdaptador.addItem(alumno, mAdaptador.getItemCount());
         lstAlumnos.scrollToPosition(mAdaptador.getItemCount() - 1);
-    }
-
-    // Cuando la lista para a o deja de estar vacía.
-    @Override
-    public void onEmptyStateChanged(boolean isEmpty) {
-        lblNoHayAlumnos.setVisibility(isEmpty ? View.VISIBLE : View.INVISIBLE);
     }
 
 }

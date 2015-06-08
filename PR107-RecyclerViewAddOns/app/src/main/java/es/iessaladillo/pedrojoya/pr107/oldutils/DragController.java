@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr107;
+package es.iessaladillo.pedrojoya.pr107.oldutils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,6 +9,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+
+import es.iessaladillo.pedrojoya.pr107.AlumnosAdapter;
 
 // Basado en http://blog.stylingandroid.com/material-part-6/#more-2907
 public abstract class DragController implements

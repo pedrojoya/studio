@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr105.data.Alumno;
@@ -89,9 +90,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Intercambia dos elementos de la lista.
     public void swapItems(int from, int to) {
         // Se realiza el intercambio.
-        Alumno alumnoTo = mDatos.get(to);
-        mDatos.set(to, mDatos.get(from));
-        mDatos.set(from, alumnoTo);
+        Collections.swap(mDatos, from, to);
         // Se notifica el movimiento.
         notifyItemMoved(from, to);
     }

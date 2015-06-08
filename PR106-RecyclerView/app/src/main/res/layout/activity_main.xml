@@ -1,27 +1,46 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!-- StatusBar para API 19 -->
+
+    <!-- StatusBar falsa para Kit-Kat -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/statusbar_height"
-        android:background="@color/primary_dark" />
-    <!-- Toolbar -->
-    <include layout="@layout/toolbar" />
-    <!-- Panel -->
-    <FrameLayout
+        android:layout_height="@dimen/statusBarHeight"
+        android:background="@color/primary_dark"/>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!-- Lista -->
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        </android.support.design.widget.AppBarLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lstAlumnos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="@dimen/list_paddingBottom"
-            android:paddingTop="@dimen/list_paddingTop" />
-        <!-- Empty View -->
+            android:paddingTop="@dimen/lst_padding"
+            android:paddingBottom="@dimen/lst_padding"
+            android:fadeScrollbars="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
         <TextView
             android:id="@+id/lblNoHayAlumnos"
             android:layout_width="wrap_content"
@@ -31,40 +50,17 @@
             android:drawableTop="@drawable/ic_no_hay_alumnos"
             android:text="@string/no_hay_alumnos"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        <!-- Panel inferior -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/panel_inferior_height"
-            android:layout_gravity="bottom"
-            android:background="@color/primary_400">
-            <TextView
-                android:id="@+id/lblNumAlumnos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/abc_text_size_subhead_material"
-                android:textColor="@android:color/white"
-                android:layout_marginLeft="@dimen/fab_margin"
-                android:layout_marginStart="@dimen/fab_margin"
-                android:text="@string/texto_panel" />
-        </FrameLayout>
-        <!-- FAB -->
-        <pedrojoya.iessaladillo.es.pr106.utils.ShadowLayout
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:shadowColor="#AA000000"
-            app:cornerRadius="@dimen/fab_diameter"
-            app:dy="@dimen/fab_dy"
-            app:shadowRadius="@dimen/fab_shadowRadius">
-            <ImageButton
-                android:id="@+id/btnAgregar"
-                android:contentDescription="@string/agregar_alumno"
-                style="@style/FabStyle" />
-        </pedrojoya.iessaladillo.es.pr106.utils.ShadowLayout>
-    </FrameLayout>
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:src="@drawable/ic_action_add"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
 </LinearLayout>
-
-
-
