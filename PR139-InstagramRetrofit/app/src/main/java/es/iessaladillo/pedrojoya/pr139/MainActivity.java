@@ -10,6 +10,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         initVistas();
         // Se obtiene la interfaz de acceso a la api.
-        mApiClient = Instagram.getApiInterface();
+        mApiClient = Instagram.getApiInterface(this);
         // Se cargan los datos iniciales.
         swlPanel.post(new Runnable() {
             @Override
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
+        configToolbar();
         swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
         swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -72,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
         };
         lstFotos.addOnScrollListener(mEndlessScrollListener);
+    }
+
+    private void configToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
     }
 
     // Obtiene los datos JSON de la lista de fotos de Instagram.
