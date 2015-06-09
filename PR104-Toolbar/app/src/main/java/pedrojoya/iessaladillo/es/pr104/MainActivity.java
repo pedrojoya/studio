@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se indica que la ActionBar va a corresponder al widget Toobar.
+        // La toolbar actuará como ActionBar.
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
     }
 

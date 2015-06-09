@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- El layout incluye un widget Toolbar de la librería de compatibilidad.
-     Se le define:
-     - El fondo al color primario.
-     - El tema de la toolbar es uno personalizado.
-     - El tema de los elementos popup de la toolbar es uno de los existentes.
+<!--
+     Fondo al color primario.
+     Tema oscuro para la toolbar.
+     Tema claro para el menú de overflow de la toolbar.
 -->
 <android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,6 +10,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
-    android:theme="@style/ToolbarTheme"
     android:minHeight="@dimen/abc_action_bar_default_height_material"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>

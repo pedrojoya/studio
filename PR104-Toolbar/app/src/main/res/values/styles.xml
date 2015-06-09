@@ -10,14 +10,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Tema para la Toolbar. Debe heredar de ThemeOverlay.AppCompat  -->
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark">
-        <!-- Color principal del texto -->
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <!-- Color secundario de texto (icono de navegación y overflow) -->
-        <item name="android:textColorSecondary">@color/textColorSecundary</item>
-    </style>
-
     <style name="AppTheme" parent="AppThemeBase">
 
     </style>

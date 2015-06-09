@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">PR104-Toolbar</string>
-    <string name="action_settings">Configurar</string>
-    <string name="next">Siguiente</string>
-    <string name="title_activity_secundary">Actividad secundaria</string>
-    <string name="actividad_principal">Actividad principal</string>
-    <string name="actividad_secundaria">Actividad secundaria</string>
-</resources>
