@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PR142-GeoFence</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="geofence">GeoFence</string>
+    <string name="cliente_api_no_conectado">Cliente API no conectado</string>
+</resources>
