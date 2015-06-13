@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="text_padding">20dp</dimen>
+    <dimen name="appbar_height">128dp</dimen>
+    <dimen name="collapsing_titleMarginStart">32dp</dimen>
+</resources>
