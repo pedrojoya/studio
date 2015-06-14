@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr107;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,12 +22,16 @@ public class MainActivity extends AppCompatActivity implements
         AlumnosAdapter.OnItemClickListener, AlumnosAdapter.OnItemLongClickListener,
         ActionMode.Callback {
 
+    private static final String STATE_LISTA = "estadoLista";
+
     private RecyclerView lstAlumnos;
     private FloatingActionButton fabAccion;
     private AlumnosAdapter mAdaptador;
     private TextView lblNoHayAlumnos;
     private ActionMode mActionMode;
     private Toolbar toolbar;
+    private LinearLayoutManager mLayoutManager;
+    private Parcelable mEstadoLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +83,9 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
         lstAlumnos.setAdapter(mAdaptador);
-        lstAlumnos.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false));
+        mLayoutManager = new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false);
+        lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.addItemDecoration(new DividerItemDecoration(this,
                 LinearLayoutManager.VERTICAL));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
@@ -215,6 +221,30 @@ public class MainActivity extends AppCompatActivity implements
         // Se agrega el alumno.
         mAdaptador.addItem(alumno, mAdaptador.getItemCount());
         lstAlumnos.scrollToPosition(mAdaptador.getItemCount() - 1);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Se salva el estado del RecyclerView.
+        mEstadoLista = mLayoutManager.onSaveInstanceState();
+        outState.putParcelable(STATE_LISTA, mEstadoLista);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Se obtiene el estado anterior de la lista.
+        mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Se retaura el estado de la lista.
+        if (mEstadoLista != null) {
+            mLayoutManager.onRestoreInstanceState(mEstadoLista);
+        }
     }
 
 }
