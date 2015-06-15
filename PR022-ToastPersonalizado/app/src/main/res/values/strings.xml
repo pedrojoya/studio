@@ -4,7 +4,8 @@
     <string name="title_activity_main">Toast Personalizado</string>
     <string name="toast_creado_dinamicamente">Toast creado dinámicamente</string>
     <string name="toast_con_layout_propio">Toast con layout propio</string>
-    <string name="visibilidad_cambiada">Se ha cambiado la visibilidad del texto</string>
+    <string name="visibilidad_cambiada">Visibilidad del texto
+        modificada</string>
     <string name="deshacer">Deshacer</string>
     <string name="cambiar_visibilidad">Cambiar visibilidad del texto</string>
     <string name="quijote">En un lugar de la Mancha de cuyo nombre no quiero acordarme</string>

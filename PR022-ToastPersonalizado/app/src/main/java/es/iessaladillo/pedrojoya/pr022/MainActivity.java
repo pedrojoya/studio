@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr022;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,10 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.nispok.snackbar.Snackbar;
-import com.nispok.snackbar.SnackbarManager;
-import com.nispok.snackbar.listeners.ActionClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -119,21 +116,15 @@ public class MainActivity extends AppCompatActivity {
 
     // Muestra una snackbar con el mensaje y la accion deshacer.
     private void mostrarSnackbar(String mensaje) {
-        SnackbarManager.show(
-                Snackbar.with(this)
-                        .text(mensaje)
-                        .actionLabel(getString(R.string.deshacer))
-                        .actionColorResource(R.color.accent)
-                        .actionListener(new ActionClickListener() {
-                            @Override
-                            public void onActionClicked(Snackbar snackbar) {
-                                cambiarVisibilidad(lblTexto);
-                            }
-                        })
-                        .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
-
-        );
+        Snackbar snackBar = Snackbar.make(findViewById(R.id.rlRaiz), mensaje,
+                Snackbar.LENGTH_LONG);
+        snackBar.setAction(getString(R.string.deshacer), new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarVisibilidad(lblTexto);
+            }
+        });
+        snackBar.show();
     }
-
 
 }
