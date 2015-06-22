@@ -116,15 +116,14 @@ public class MainActivity extends AppCompatActivity {
 
     // Muestra una snackbar con el mensaje y la accion deshacer.
     private void mostrarSnackbar(String mensaje) {
-        Snackbar snackBar = Snackbar.make(findViewById(R.id.rlRaiz), mensaje,
-                Snackbar.LENGTH_LONG);
-        snackBar.setAction(getString(R.string.deshacer), new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarVisibilidad(lblTexto);
-            }
-        });
-        snackBar.show();
+        Snackbar.make(findViewById(R.id.rlRaiz), mensaje, Snackbar.LENGTH_LONG)
+                .setAction(getString(R.string.deshacer), new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cambiarVisibilidad(lblTexto);
+                    }
+                })
+                .show();
     }
 
 }

@@ -3,6 +3,7 @@ package pedrojoya.iessaladillo.es.pr106;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     // Cuando se hace click sobre un elemento de la lista.
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
-        Toast.makeText(this, getString(R.string.ha_pulsado_sobre) + alumno.getNombre(),
-                Toast.LENGTH_SHORT).show();
+        Snackbar.make(lstAlumnos, getString(R.string.ha_pulsado_sobre) + alumno.getNombre(),
+                Snackbar.LENGTH_SHORT).show();
     }
 
     // Cuando se hace long click sobre un elemento de la lista.

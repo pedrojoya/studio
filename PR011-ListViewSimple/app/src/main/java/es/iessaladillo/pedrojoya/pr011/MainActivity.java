@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr011;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -24,11 +25,16 @@ public class MainActivity extends AppCompatActivity implements
         OnItemClickListener,
         OnClickListener {
 
-    private EditText txtNombre;
+    private static final String STATE_LISTA = "estadoLista";
+    private static final String STATE_LISTA_CONTENIDO = "contenidoLista";
 
-    // Variables.
-    private ArrayAdapter<String> adaptador;
+    private ArrayAdapter<String> mAdaptador;
+    private Parcelable mEstadoLista;
+    private ArrayList<String> mListaContenido;
+
+    private EditText txtNombre;
     private ImageButton btnAgregar;
+    private ListView lstAlumnos;
 
     // Al crear la actividad.
     @Override
@@ -79,19 +85,20 @@ public class MainActivity extends AppCompatActivity implements
                 return false;
             }
         });
-        ListView lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
+        mListaContenido = new ArrayList<>();
+        lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
-        // Se obtienen los datos para el adaptador de la lista.
+        lstAlumnos.setOnItemClickListener(this);
+    }
+
+    private void setAdaptador() {
+        // Se obtienen los datos para el mAdaptador de la lista.
         // ArrayList<String> alumnos = new ArrayList<String>(
         // Arrays.asList(getResources().getStringArray(R.array.alumnos)));
-        ArrayList<String> alumnos = new ArrayList<>();
         // Se crea el adaptador ArrayAdapter con layout estándar.
-        adaptador = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, alumnos);
-        lstAlumnos.setAdapter(adaptador);
-        // Se establece el listener para cuando se hace click en un item de la
-        // lista.
-        lstAlumnos.setOnItemClickListener(this);
+        mAdaptador = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, mListaContenido);
+        lstAlumnos.setAdapter(mAdaptador);
     }
 
     // btnAgregar activo o no dependiendo de si hay nombre.
@@ -123,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements
     // Agrega un alumno a la lista.
     private void agregarAlumno(String nombre) {
         // Se agrega el alumno.
-        adaptador.add(nombre);
+        mAdaptador.add(nombre);
         // Se pone en blanco txtNombre.
         txtNombre.setText("");
         checkDatos(txtNombre.getText().toString());
@@ -131,7 +138,43 @@ public class MainActivity extends AppCompatActivity implements
 
     // Elimina un alumno de la lista.
     private void eliminarAlumno(Object item) {
-        adaptador.remove((String) item);
+        mAdaptador.remove((String) item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Se salva el estado del ListView.
+        mEstadoLista = lstAlumnos.onSaveInstanceState();
+        outState.putParcelable(STATE_LISTA, mEstadoLista);
+        outState.putStringArrayList(STATE_LISTA_CONTENIDO, getAdapterData());
+    }
+
+    private ArrayList<String> getAdapterData() {
+        ArrayList<String> data = new ArrayList<>();
+        for (int i = 0; i < mAdaptador.getCount(); i++) {
+            data.add(mAdaptador.getItem(i));
+        }
+        return data;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Se obtiene el estado anterior de la lista.
+        mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
+        mListaContenido = savedInstanceState.getStringArrayList(STATE_LISTA_CONTENIDO);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setAdaptador();
+        // Se retaura el estado de la lista.
+        if (mEstadoLista != null) {
+            lstAlumnos.onRestoreInstanceState(mEstadoLista);
+
+        }
     }
 
 }
