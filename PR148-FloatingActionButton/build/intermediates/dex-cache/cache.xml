@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-85e2061ce3509c3e7e8ff9add3054513fddf8721.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-d8a5fff571e0d932772a79d893eb9d4bc5533fc2.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/pre-dexed/debug/classes-acfee8cf2b92c66e94175f302a2a6c43c5b378ae.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/pre-dexed/debug/classes-da98bf9eeba60f928bee801303248d4cc9dd4986.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/pedro/studio/PR148-FloatingActionButton/app/build/intermediates/pre-dexed/debug/classes-526b193ea74632f833706e72433df4cb3cc8cc34.jar" />
+    </item>
+
+</items>
