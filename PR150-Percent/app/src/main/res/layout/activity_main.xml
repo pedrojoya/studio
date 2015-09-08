@@ -4,91 +4,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
+    <TextView
         android:id="@+id/top_left"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_alignParentTop="true"
-        android:background="#ff44aacc"
-        app:layout_heightPercent="31%"
-        app:layout_widthPercent="47%"
-        app:layout_marginLeftPercent="2%"
-        app:layout_marginRightPercent="1%"
-        app:layout_marginTopPercent="2%"
-        app:layout_marginBottomPercent="1%"
-        />
+        android:background="@color/top_left"
+        android:gravity="center"
+        android:text="Anchura: 70%"
+        android:textColor="@android:color/white"
+        app:layout_heightPercent="@fraction/views_height"
+        app:layout_marginLeftPercent="@fraction/views_margin"
+        app:layout_marginStartPercent="@fraction/views_margin"
+        app:layout_marginTopPercent="@fraction/views_margin"
+        app:layout_widthPercent="@fraction/top_left_width"/>
 
-    <View
+    <TextView
         android:id="@+id/top_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_alignBottom="@+id/top_left"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/top_left"
-        android:background="#ffe40000"
-        app:layout_heightPercent="31%"
-        app:layout_widthPercent="47%"
-        app:layout_marginLeftPercent="1%"
-        app:layout_marginRightPercent="2%"
-        app:layout_marginTopPercent="2%"
-        app:layout_marginBottomPercent="1%"
-        />
+        android:layout_toEndOf="@+id/top_left"
+        android:background="@color/top_right"
+        android:gravity="center"
+        android:text="Anchura: 24%"
+        android:textColor="@android:color/white"
+        app:layout_marginLeftPercent="@fraction/views_margin"
+        app:layout_marginStartPercent="@fraction/views_margin"
+        app:layout_marginRightPercent="@fraction/views_margin"
+        app:layout_marginEndPercent="@fraction/views_margin"
+        app:layout_marginTopPercent="@fraction/views_margin"/>
 
-    <View
+    <TextView
         android:id="@+id/middle_left"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_below="@+id/top_left"
-        android:background="#ff88bb66"
-        app:layout_heightPercent="31%"
-        app:layout_widthPercent="47%"
-        app:layout_marginLeftPercent="2%"
-        app:layout_marginRightPercent="1%"
-        app:layout_marginTopPercent="1%"
-        app:layout_marginBottomPercent="1%"
-        />
+        android:background="@color/middle_left"
+        android:gravity="center"
+        android:text="Anchura: 47%"
+        android:textColor="@android:color/white"
+        app:layout_heightPercent="@fraction/views_height"
+        app:layout_marginLeftPercent="@fraction/views_margin"
+        app:layout_marginStartPercent="@fraction/views_margin"
+        app:layout_marginTopPercent="@fraction/views_margin"
+        app:layout_widthPercent="@fraction/middle_width"/>
 
-    <View
+    <TextView
         android:id="@+id/middle_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_below="@+id/top_right"
+        android:layout_alignBottom="@+id/middle_left"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/middle_left"
+        android:layout_below="@+id/top_left"
         android:layout_toRightOf="@+id/middle_left"
-        android:background="#ffa27243"
-        app:layout_heightPercent="31%"
-        app:layout_widthPercent="47%"
-        app:layout_marginLeftPercent="1%"
-        app:layout_marginRightPercent="2%"
-        app:layout_marginTopPercent="1%"
-        app:layout_marginBottomPercent="1%"
-        />
+        android:layout_toEndOf="@+id/middle_left"
+        android:background="@color/middle_right"
+        android:gravity="center"
+        android:text="Anchura: 47%"
+        android:textColor="@android:color/white"
+        app:layout_marginLeftPercent="@fraction/views_margin"
+        app:layout_marginStartPercent="@fraction/views_margin"
+        app:layout_marginRightPercent="@fraction/views_margin"
+        app:layout_marginEndPercent="@fraction/views_margin"/>
 
-    <View
+    <TextView
         android:id="@+id/bottom_left"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/middle_left"
-        android:background="#ff234455"
-        app:layout_heightPercent="31%"
-        app:layout_widthPercent="47%"
-        app:layout_marginLeftPercent="2%"
-        app:layout_marginRightPercent="1%"
-        app:layout_marginTopPercent="1%"
-        app:layout_marginBottomPercent="2%"
-        />
+        android:background="@color/bottom_left"
+        android:gravity="center"
+        android:text="Anchura: 30%"
+        android:textColor="@android:color/white"
+        app:layout_marginBottomPercent="@fraction/views_margin"
+        app:layout_marginLeftPercent="@fraction/views_margin"
+        app:layout_marginStartPercent="@fraction/views_margin"
+        app:layout_marginTopPercent="@fraction/views_margin"
+        app:layout_widthPercent="@fraction/bottom_left_width"/>
 
-    <View
+    <TextView
         android:id="@+id/bottom_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/bottom_left"
         android:layout_below="@+id/middle_right"
         android:layout_toRightOf="@+id/bottom_left"
-        android:background="#ff5611ff"
-        app:layout_heightPercent="31%"
-        app:layout_widthPercent="47%"
-        app:layout_marginLeftPercent="1%"
-        app:layout_marginRightPercent="2%"
-        app:layout_marginTopPercent="1%"
-        app:layout_marginBottomPercent="2%"
-        />
+        android:layout_toEndOf="@+id/bottom_left"
+        android:background="@color/bottom_right"
+        android:gravity="center"
+        android:text="Anchura: 64%"
+        android:textColor="@android:color/white"
+        app:layout_marginBottomPercent="@fraction/views_margin"
+        app:layout_marginLeftPercent="@fraction/views_margin"
+        app:layout_marginRightPercent="@fraction/views_margin"
+        app:layout_marginEndPercent="@fraction/views_margin"/>
 
 </android.support.percent.PercentRelativeLayout>

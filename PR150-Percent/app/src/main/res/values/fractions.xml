@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="top_left_width">70%</fraction>
+    <fraction name="middle_width">47%</fraction>
+    <fraction name="bottom_left_width">30%</fraction>
+    <fraction name="views_height">30%</fraction>
+    <fraction name="views_margin">2%</fraction>
+</resources>
