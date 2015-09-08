@@ -18,8 +18,6 @@ import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
-;
-
 // Clase contrato con las claves de Instagram.
 class Instagram {
 

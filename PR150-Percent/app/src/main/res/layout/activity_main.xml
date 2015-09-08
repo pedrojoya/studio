@@ -1,0 +1,94 @@
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/top_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:background="#ff44aacc"
+        app:layout_heightPercent="31%"
+        app:layout_widthPercent="47%"
+        app:layout_marginLeftPercent="2%"
+        app:layout_marginRightPercent="1%"
+        app:layout_marginTopPercent="2%"
+        app:layout_marginBottomPercent="1%"
+        />
+
+    <View
+        android:id="@+id/top_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/top_left"
+        android:background="#ffe40000"
+        app:layout_heightPercent="31%"
+        app:layout_widthPercent="47%"
+        app:layout_marginLeftPercent="1%"
+        app:layout_marginRightPercent="2%"
+        app:layout_marginTopPercent="2%"
+        app:layout_marginBottomPercent="1%"
+        />
+
+    <View
+        android:id="@+id/middle_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/top_left"
+        android:background="#ff88bb66"
+        app:layout_heightPercent="31%"
+        app:layout_widthPercent="47%"
+        app:layout_marginLeftPercent="2%"
+        app:layout_marginRightPercent="1%"
+        app:layout_marginTopPercent="1%"
+        app:layout_marginBottomPercent="1%"
+        />
+
+    <View
+        android:id="@+id/middle_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/top_right"
+        android:layout_toRightOf="@+id/middle_left"
+        android:background="#ffa27243"
+        app:layout_heightPercent="31%"
+        app:layout_widthPercent="47%"
+        app:layout_marginLeftPercent="1%"
+        app:layout_marginRightPercent="2%"
+        app:layout_marginTopPercent="1%"
+        app:layout_marginBottomPercent="1%"
+        />
+
+    <View
+        android:id="@+id/bottom_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/middle_left"
+        android:background="#ff234455"
+        app:layout_heightPercent="31%"
+        app:layout_widthPercent="47%"
+        app:layout_marginLeftPercent="2%"
+        app:layout_marginRightPercent="1%"
+        app:layout_marginTopPercent="1%"
+        app:layout_marginBottomPercent="2%"
+        />
+
+    <View
+        android:id="@+id/bottom_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/middle_right"
+        android:layout_toRightOf="@+id/bottom_left"
+        android:background="#ff5611ff"
+        app:layout_heightPercent="31%"
+        app:layout_widthPercent="47%"
+        app:layout_marginLeftPercent="1%"
+        app:layout_marginRightPercent="2%"
+        app:layout_marginTopPercent="1%"
+        app:layout_marginBottomPercent="2%"
+        />
+
+</android.support.percent.PercentRelativeLayout>

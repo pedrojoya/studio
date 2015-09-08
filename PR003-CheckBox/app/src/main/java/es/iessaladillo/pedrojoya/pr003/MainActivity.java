@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         // Se obtienen e inicializan las vistas.
         initVistas();
     }
@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     // Obtiene la referencia e inicializa las vistas.
     private void initVistas() {
         // Se obtiene la referencia a las vistas.
-        chkEducado = (CheckBox) this.findViewById(R.id.chkEducado);
-        Button btnSaludar = (Button) this.findViewById(R.id.btnSaludar);
+        chkEducado = (CheckBox) findViewById(R.id.chkEducado);
+        Button btnSaludar = (Button) findViewById(R.id.btnSaludar);
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         // Se inicializan las vistas.
         chkEducado.setChecked(true);

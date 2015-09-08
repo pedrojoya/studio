@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -75,9 +74,10 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
                 if (mSnackbar != null) {
                     mSnackbar.dismiss();
                 }
-                int translationY = getResources().getDimensionPixelSize(R
-                        .dimen.fab_margin) + fabAccion.getHeight();
-                ViewCompat.animate(fabAccion).translationY(translationY);
+//                int translationY = getResources().getDimensionPixelSize(R
+//                        .dimen.fab_margin) + fabAccion.getHeight();
+//                ViewCompat.animate(fabAccion).translationY(translationY);
+                fabAccion.hide();
             }
 
             @Override
@@ -85,7 +85,8 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
                 if (mSnackbar != null) {
                     mSnackbar.dismiss();
                 }
-                ViewCompat.animate(fabAccion).translationY(0);
+//                ViewCompat.animate(fabAccion).translationY(0);
+                fabAccion.show();
             }
         });
         // Drag & drop y Swipe to dismiss.

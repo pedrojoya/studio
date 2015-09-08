@@ -26,8 +26,7 @@
         </activity>
 
         <service
-            android:name=".GeofenceTransitionsIntentService"
-            android:exported="false" />
+            android:name=".GeofenceTransitionsIntentService" />
     </application>
 
 </manifest>

@@ -1,31 +1,25 @@
 package es.iessaladillo.pedrojoya.pr142;
 
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.ActivityRecognition;
-import com.google.android.gms.location.DetectedActivity;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -34,19 +28,18 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final int RC_GEOFENCE_TRANSITIONS_INTENT_SERVICE = 0;
 
-    private TextView lblActiviades;
-    private SwitchCompat swActivar;
-
     private GoogleApiClient mGoogleApiClient;
-    private DetectedActivitiesReceiver mDetectedActivitiesReceiver;
+    private ArrayList<Geofence> mGeofencesList;
+
+    private SwitchCompat swActivar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mGeofencesList = new ArrayList<Geofence>();
+        populateGeofencesList();
         initVistas();
-        // Se crea el receptor.
-        mDetectedActivitiesReceiver = new DetectedActivitiesReceiver();
         // Se crea el cliente de acceso a la API.
         setupGoogleApiClient();
     }
@@ -56,21 +49,6 @@ public class MainActivity extends AppCompatActivity implements
         super.onStart();
         // Se realiza la conexión con la API.
         mGoogleApiClient.connect();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Se registra el receptor.
-        LocalBroadcastManager.getInstance(this).registerReceiver(mDetectedActivitiesReceiver,
-                new IntentFilter(DetectedActivitiesIntentService.ACTION_DETECTED_ACTIVITIES));
-    }
-
-    @Override
-    protected void onPause() {
-        // Se quita el registro del receptor.
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mDetectedActivitiesReceiver);
-        super.onPause();
     }
 
     @Override
@@ -89,19 +67,17 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        lblActiviades = (TextView) findViewById(R.id.lblActividades);
         swActivar = (SwitchCompat) findViewById(R.id.swActivar);
         swActivar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                if (checked) {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isActive) {
+                if (isActive) {
                     activarReconocimiento();
                 } else {
                     desactivarReconocimiento();
                 }
             }
         });
-
     }
 
     // Crea el cliente de acceso a la API.
@@ -110,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements
         // La actividad actuará como listener cuando se conecte o cuando falle
         // la conexión.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(ActivityRecognition.API)
+                .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
@@ -132,26 +108,6 @@ public class MainActivity extends AppCompatActivity implements
                 getGeofencingRequest(),
                 getGeofenceServicePendingIntent()
         ).setResultCallback(this);
-    }
-
-    // Retorna una solicitud personalizada de Geofence.
-    private GeofencingRequest getGeofencingRequest() {
-        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
-        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
-        builder.addGeofences(mGeofenceList);
-        return builder.build();
-    }
-
-    // Retorna un PendingIntent para iniciar el servicio que recibe el intent
-    // con la información Geofence.
-    private PendingIntent getGeofenceServicePendingIntent() {
-        // Intent explícito para llamar al intent service.
-        Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);
-        // Se retorna un Pending Intent para que se inicie dicho servicio. Si ya
-        // existe una PendingIntent, se usa ese mismo (FLAG_UPDATE_CURRENT).
-        return PendingIntent.getService(this,
-                RC_GEOFENCE_TRANSITIONS_INTENT_SERVICE, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private void desactivarReconocimiento() {
@@ -193,30 +149,55 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onResult(Status status) {
         if (status.isSuccess()) {
-            Log.e(getString(R.string.app_name), "Ha ido bien la activación / desactivación");
+            Toast.makeText(this, "Activación correcta", Toast.LENGTH_SHORT).show();
         }
         else {
-            Log.e(getString(R.string.app_name), "Error al activar / desactivar");
+            String errorMessage = GeofenceErrorMessages.getErrorString(this, status.getStatusCode());
+            Log.e(getString(R.string.app_name), errorMessage);
         }
     }
 
-    // Receptor de intent con la lista de actividades.
-    private class DetectedActivitiesReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Se obtiene el extra correspondiente a la lista de actividades.
-            ArrayList<DetectedActivity> listaActividades =
-                    intent.getParcelableArrayListExtra(
-
-                            DetectedActivitiesIntentService.EXTRA_DETECTED_ACTIVITIES);
-            // Se escribe en el TextView.
-            String s ="";
-            for (DetectedActivity actividad : listaActividades) {
-                s = s + actividad.toString() + "\n";
-            }
-            lblActiviades.setText(s);
+    // Rellena la lista de geofences
+    private void populateGeofencesList() {
+        // Se crea un Geofence por cada lugar y se añade a la lista de geofences.
+        Geofence.Builder builder;
+        for (HashMap.Entry<String, LatLng> lugar : Constants.LUGARES.entrySet()) {
+            builder = new Geofence.Builder();
+            // El RequestId corresponde al nombre asignado al lugar.
+            builder.setRequestId(lugar.getKey());
+            // Se trata de una región circular.
+            builder.setCircularRegion(
+                    lugar.getValue().latitude,
+                    lugar.getValue().longitude,
+                    Constants.GEOFENCE_RADIUS_IN_METERS
+            );
+            builder.setExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS);
+            // Se dispararán los eventos de entrar y de salir de una Geofence.
+            builder.setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT);
+            mGeofencesList.add(builder.build());
         }
-
     }
+
+    // Crea la petición de detección de eventos sobre Geofences.
+    private GeofencingRequest getGeofencingRequest() {
+        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
+        // Se disparará el evento de entrada si ya nos encontramos en una Geofence.
+        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
+        // Añadimos a la solicitud la lista de Geofences.
+        builder.addGeofences(mGeofencesList);
+        return builder.build();
+    }
+
+    // Retorna un PendingIntent para iniciar el servicio que recibe el intent
+    // con la información Geofence.
+    private PendingIntent getGeofenceServicePendingIntent() {
+        // Intent explícito para llamar al intent service.
+        Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);
+        // Se retorna un Pending Intent para que se inicie dicho servicio. Si ya
+        // existe un PendingIntent, se usa ese mismo (FLAG_UPDATE_CURRENT).
+        return PendingIntent.getService(this,
+                RC_GEOFENCE_TRANSITIONS_INTENT_SERVICE, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
 }
