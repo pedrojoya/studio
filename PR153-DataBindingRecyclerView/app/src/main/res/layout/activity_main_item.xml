@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="es.iessaladillo.pedrojoya.pr153.Alumno"/>
+        <variable
+            name="alumno"
+            type="Alumno"/>
+    </data>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selectable_item_background"
+        android:clickable="true"
+        android:minHeight="@dimen/two_line_tile_height"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/two_line_avatar_width"
+            android:layout_height="@dimen/two_line_avatar_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/two_line_avatar_marginLeft"
+            android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
+            android:layout_marginTop="@dimen/two_line_avatar_marginTop"
+            android:contentDescription="@string/avatar"
+            app:imageUrl="@{alumno.foto}"
+            android:src="@drawable/ic_user"/>
+
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="@dimen/two_line_text_marginRight"
+            android:layout_marginRight="@dimen/two_line_text_marginRight"
+            android:paddingLeft="@dimen/two_line_text_paddingLeft"
+            android:paddingTop="@dimen/two_line_text_paddingTop"
+            android:textSize="@dimen/abc_text_size_subhead_material"
+            android:text="@{alumno.nombre}"
+            tools:text="Baldomero Llegate Ligero"/>
+
+        <TextView
+            android:id="@+id/lblDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lblNombre"
+            android:layout_marginEnd="@dimen/two_line_text_marginRight"
+            android:layout_marginRight="@dimen/two_line_text_marginRight"
+            android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
+            android:paddingLeft="@dimen/two_line_text_paddingLeft"
+            android:textSize="14sp"
+            android:text="@{alumno.direccion}"
+            tools:text="c/ La casa de Baldomero"/>
+
+    </RelativeLayout>
+
+</layout>
