@@ -10,10 +10,10 @@ public class Alumno extends BaseObservable {
     private  String direccion;
     private  String foto;
 
-    public Alumno(String nombre, String direccion, int edad, String urlFoto) {
+    public Alumno(String nombre, String direccion, int edad, String foto) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.foto = urlFoto;
+        this.foto = foto;
 
     }
 

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (savedInstanceState == null) {
-            mSaludo = new Saludo("", true);
+            mSaludo = new Saludo("", false);
         } else {
             mSaludo = savedInstanceState.getParcelable(STATE_SALUDO);
         }

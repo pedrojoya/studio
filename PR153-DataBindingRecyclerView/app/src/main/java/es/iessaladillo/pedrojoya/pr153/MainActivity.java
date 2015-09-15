@@ -1,16 +1,15 @@
 package es.iessaladillo.pedrojoya.pr153;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
+
+import es.iessaladillo.pedrojoya.pr153.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
@@ -18,7 +17,8 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     private static final String STATE_LISTA = "estadoLista";
 
-    private RecyclerView lstAlumnos;
+    private ActivityMainBinding binding;
+
     private AlumnosAdapter mAdaptador;
     private LinearLayoutManager mLayoutManager;
     private Parcelable mEstadoLista;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         initVistas();
     }
 
@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     // Configura la Toolbar.
     private void configToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -49,8 +48,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     // Configura el FAB.
     private void configFab() {
-        FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
+        binding.fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 agregarAlumno(DB.getNextAlumno());
@@ -60,31 +58,29 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        TextView lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setHasFixedSize(true);
+        binding.lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
-        lstAlumnos.setAdapter(mAdaptador);
+        mAdaptador.setEmptyView(binding.lblNoHayAlumnos);
+        binding.lstAlumnos.setAdapter(mAdaptador);
         mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
-        lstAlumnos.setLayoutManager(mLayoutManager);
-        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        binding.lstAlumnos.setLayoutManager(mLayoutManager);
+        binding.lstAlumnos.setItemAnimator(new DefaultItemAnimator());
     }
 
     // Agrega un alumno a la lista.
     private void agregarAlumno(Alumno alumno) {
         // Se agrega el alumno.
         mAdaptador.addItem(alumno);
-        lstAlumnos.scrollToPosition(mAdaptador.getItemCount() - 1);
+        binding.lstAlumnos.scrollToPosition(mAdaptador.getItemCount() - 1);
     }
 
     // Cuando se hace click sobre un elemento de la lista.
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
-        Snackbar.make(lstAlumnos, getString(R.string.ha_pulsado_sobre) + alumno.getNombre(),
+        Snackbar.make(binding.lstAlumnos, getString(R.string.ha_pulsado_sobre) + alumno.getNombre(),
                 Snackbar.LENGTH_SHORT).show();
     }
 

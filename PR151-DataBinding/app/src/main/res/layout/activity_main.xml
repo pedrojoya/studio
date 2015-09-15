@@ -2,9 +2,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="es.iessaladillo.pedrojoya.pr151.Saludo" />
         <variable
             name="saludo"
-            type="es.iessaladillo.pedrojoya.pr151.Saludo" />
+            type="Saludo" />
     </data>
 
     <LinearLayout
@@ -20,6 +21,7 @@
             android:id="@+id/lblNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@{saludo.educado?@color/accent:@color/primary}"
             android:text="@string/introduzca_nombre"/>
 
         <EditText
