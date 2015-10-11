@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Se agranda, traslada y rota a la vez, proporcionando un efecto espiral.
+     A la vez, pasa de medio transparente a completamente opaca.
+     Al finalizar la animación, la vista permanecerá en dicho estado visual.
+-->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="4000"
+    android:fillAfter="true"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:shareInterpolator="true" >
+
+    <scale
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="1.5"
+        android:toYScale="1.5" />
+
+    <translate
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromXDelta="0"
+        android:fromYDelta="0"
+        android:toXDelta="100%"
+        android:toYDelta="0" />
+
+    <rotate
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromDegrees="0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="270" />
+
+    <alpha
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromAlpha="0.5"
+        android:toAlpha="1.0" />
+
+</set>

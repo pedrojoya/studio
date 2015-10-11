@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/pre-dexed/debug/classes-e81ea0468fc68836b4fcb646c19f20fbf3d05f78.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-c9fd84d3dcef58af83b28f59f0840eebabe592ef.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/exploded-aar/com.android.support/percent/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="cddfbb68753c7b1222ffb7af97bfd9ecf413aba7">
+        <dex dex="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/pre-dexed/debug/classes-4b43d8a4b98944a5cfb75be86e4e7bdeb6cede0c.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/pre-dexed/debug/classes-4658791ea1fb65f450123d25c5482d60d258386a.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/pedro/studio/PR099-TweenAnimation/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-e2e5c7eaf9a19539c885a564bf4dacca1bd37457.jar" />
+    </item>
+
+</items>
