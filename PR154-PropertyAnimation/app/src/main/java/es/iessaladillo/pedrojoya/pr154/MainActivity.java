@@ -15,7 +15,7 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int NUM_XML_ANIMATIONS = 16;
+    private static final int NUM_XML_ANIMATIONS = 16;
     
     private ImageView imgImagen;
     private final int[] resIdsAnimaciones = {R.animator.scale, R.animator.translate,
