@@ -15,8 +15,7 @@ public class MainActivity extends AppCompatActivity implements
     private static final int RC_ALUMNO = 1;
 
     // Variables a nivel de clase.
-    private String mNombre = "";
-    private int mEdad = AlumnoActivity.DEFAULT_EDAD;
+    private Alumno mAlumno;
 
     private TextView lblDatos;
 
@@ -25,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Se crea el alumno.
+        mAlumno = new Alumno("", Alumno.DEFAULT_EDAD);
         // Se obtienen e inicializan las vistas.
         initVistas();
     }
@@ -50,14 +51,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Muestra la actividad AlumnoActivity en espera de respuesta.
     private void solicitarDatos() {
-        // Se crea el intent explícito.
-        Intent intent = new Intent(this, AlumnoActivity.class);
-        // Se añaden como extras los datos iniciales.
-        intent.putExtra(AlumnoActivity.EXTRA_NOMBRE, mNombre);
-        intent.putExtra("edad", mEdad);
-        // Envía el intent a la actividad en espera de respuesta, con un
-        // determinado código de petición.
-        this.startActivityForResult(intent, RC_ALUMNO);
+        AlumnoActivity.startForResult(this, RC_ALUMNO, mAlumno.getNombre(), mAlumno.getEdad());
     }
 
     // Cuando llega una respuesta.
@@ -76,24 +70,17 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene los datos retornados del intent de retorno.
     private void getDatosRetorno(Intent intentRetorno) {
-        // Se escriben los datos recibidos en las variables globales.
+        // Se actualiza el alumno en base a los datos recibidos.
         if (intentRetorno != null) {
             if (intentRetorno.hasExtra(AlumnoActivity.EXTRA_NOMBRE)) {
-                mNombre = intentRetorno
-                        .getStringExtra(AlumnoActivity.EXTRA_NOMBRE);
+                mAlumno.setNombre(intentRetorno
+                        .getStringExtra(AlumnoActivity.EXTRA_NOMBRE));
             }
-            mEdad = intentRetorno.getIntExtra(AlumnoActivity.EXTRA_EDAD,
-                    AlumnoActivity.DEFAULT_EDAD);
+            mAlumno.setEdad(intentRetorno.getIntExtra(AlumnoActivity.EXTRA_EDAD,
+                    Alumno.DEFAULT_EDAD));
         }
-        // Se muestran los datos recibidos.
-        mostrarDatos();
-    }
-
-    // Muestra los datos en el TextView de datos.
-    private void mostrarDatos() {
-        String texto = this.getString(R.string.nombre) + ": " + mNombre + "\n"
-                + this.getString(R.string.edad) + ": " + mEdad;
-        lblDatos.setText(texto);
+        // Se muestran los datos del alumno.
+        lblDatos.setText(getString(R.string.datos, mAlumno.getNombre(), mAlumno.getEdad()));
     }
 
 }
