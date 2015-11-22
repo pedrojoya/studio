@@ -90,7 +90,7 @@ public class NestedScrollViewFragment extends Fragment {
                     mSnackbar.dismiss();
                 }
                 int translationY = getResources().getDimensionPixelSize(R
-                        .dimen.fab_margin) + fabAccion.getHeight();
+                        .dimen.fab_margin_bottom) + fabAccion.getHeight();
                 ViewCompat.animate(fabAccion).translationY(translationY);
             }
         };

@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initVistas() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mImgProfile = (CircleImageView) findViewById(R.id.imgProfile);
+        mImgProfile = (CircleImageView) mNavigationView.getHeaderView(0).findViewById(R.id.imgProfile);
         configNavigationDrawer();
     }
 
