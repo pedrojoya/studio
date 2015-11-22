@@ -41,6 +41,14 @@ public class MainActivity extends AppCompatActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (savedInstanceState != null) {
+            // Se obtiene el estado anterior de la lista.
+            mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
+            mListaContenido = savedInstanceState.getStringArrayList(STATE_LISTA_CONTENIDO);
+        }
+        else {
+            mListaContenido = new ArrayList<>();
+        }
         // Se obtienen e inicializan las vistas.
         initVistas();
     }
@@ -85,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements
                 return false;
             }
         });
-        mListaContenido = new ArrayList<>();
         lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
         lstAlumnos.setOnItemClickListener(this);
@@ -147,23 +154,7 @@ public class MainActivity extends AppCompatActivity implements
         // Se salva el estado del ListView.
         mEstadoLista = lstAlumnos.onSaveInstanceState();
         outState.putParcelable(STATE_LISTA, mEstadoLista);
-        outState.putStringArrayList(STATE_LISTA_CONTENIDO, getAdapterData());
-    }
-
-    private ArrayList<String> getAdapterData() {
-        ArrayList<String> data = new ArrayList<>();
-        for (int i = 0; i < mAdaptador.getCount(); i++) {
-            data.add(mAdaptador.getItem(i));
-        }
-        return data;
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // Se obtiene el estado anterior de la lista.
-        mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
-        mListaContenido = savedInstanceState.getStringArrayList(STATE_LISTA_CONTENIDO);
+        outState.putStringArrayList(STATE_LISTA_CONTENIDO, mListaContenido);
     }
 
     @Override
@@ -173,7 +164,6 @@ public class MainActivity extends AppCompatActivity implements
         // Se retaura el estado de la lista.
         if (mEstadoLista != null) {
             lstAlumnos.onRestoreInstanceState(mEstadoLista);
-
         }
     }
 

@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr005;
+package es.iessaladillo.pedrojoya.pr156;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Muestra la actividad AlumnoActivity en espera de respuesta.
     private void solicitarDatos() {
-        AlumnoActivity.startForResult(this, RC_ALUMNO, mAlumno.getNombre(), mAlumno.getEdad());
+        AlumnoActivity.startForResult(this, RC_ALUMNO, mAlumno);
     }
 
     // Cuando llega una respuesta.
@@ -72,15 +72,19 @@ public class MainActivity extends AppCompatActivity implements
     private void getDatosRetorno(Intent intentRetorno) {
         // Se actualiza el alumno en base a los datos recibidos.
         if (intentRetorno != null) {
-            if (intentRetorno.hasExtra(AlumnoActivity.EXTRA_NOMBRE)) {
-                mAlumno.setNombre(intentRetorno
-                        .getStringExtra(AlumnoActivity.EXTRA_NOMBRE));
+            if (intentRetorno.hasExtra(AlumnoActivity.EXTRA_ALUMNO)) {
+                mAlumno = intentRetorno
+                        .getParcelableExtra(AlumnoActivity.EXTRA_ALUMNO);
             }
-            mAlumno.setEdad(intentRetorno.getIntExtra(AlumnoActivity.EXTRA_EDAD,
-                    Alumno.DEFAULT_EDAD));
         }
         // Se muestran los datos del alumno.
-        lblDatos.setText(getString(R.string.datos, mAlumno.getNombre(), mAlumno.getEdad()));
+        alumnoToViews();
+    }
+
+    // Muestra los datos del alumno en las vistas.
+    private void alumnoToViews() {
+        lblDatos.setText(getString(R.string.datos, mAlumno.getNombre(),
+                mAlumno.getEdad()));
     }
 
 }
