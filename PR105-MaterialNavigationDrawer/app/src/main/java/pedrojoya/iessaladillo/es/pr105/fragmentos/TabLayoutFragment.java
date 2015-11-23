@@ -103,7 +103,11 @@ public class TabLayoutFragment extends Fragment {
                 tabLayout.setupWithViewPager(viewPager);
                 // Para mostrar iconos en las tabs.
                 for (int i = 0; i < tabLayout.getTabCount(); i++) {
-                    tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
+                    try {
+                        tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -172,8 +176,12 @@ public class TabLayoutFragment extends Fragment {
 
         // Retorna el resId del icono asociado a una determinada página.
         @DrawableRes
-        public int getPageIcon(int position) {
-            return mFragmentIcons.get(position);
+        public int getPageIcon(int position) throws Exception{
+            try {
+                return  mFragmentIcons.get(position);
+            } catch (Exception e) {
+                throw e;
+            }
         }
 
     }

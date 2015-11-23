@@ -32,7 +32,7 @@
         tools:text="Baldomero Llegate Ligero"
         android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        android:textSize="@dimen/abc_text_size_subhead_material" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
     <TextView
         android:id="@+id/lblDireccion"

@@ -22,7 +22,6 @@ import pedrojoya.iessaladillo.es.pr105.fragmentos.CollapsingToolbarLayoutFragmen
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String STATE_SELECTED_NAVITEM_ID = "selectedNavItemPosition";
     private static final String PREFERENCES_FILE = "prefs";
     private static final String PREF_NAV_DRAWER_OPENED = "navdrawerOpened";
 
@@ -30,31 +29,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView mNavigationView;
     private CircleImageView mImgProfile;
 
-    private int mSelectedNavItemId = -1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initVistas();
-        // Se restaura el estado de la opción seleccionada en el nav drawer.
-        if (savedInstanceState != null) {
-            mSelectedNavItemId =
-                    savedInstanceState.getInt(STATE_SELECTED_NAVITEM_ID);
-            MenuItem item = mNavigationView.getMenu().findItem(mSelectedNavItemId);
-            item.setChecked(true);
-            setTitle(item.getTitle());
-        } else {
-            // Si no hay estado anterior, se selecciona la primera opción
-            // en el nav drawer.
+        // Si no hay estado anterior, se selecciona la primera opción
+        // en el nav drawer.
+        if (savedInstanceState == null) {
             onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
         }
-    }
-
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Se guarda la opción seleccionada actualmente en el nav drawer.
-        outState.putInt(STATE_SELECTED_NAVITEM_ID, mSelectedNavItemId);
     }
 
     // Obtiene e inicializa las vistas.
@@ -81,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Muestra el fragmento o actividad corresponiente a la opción
     // seleccionada en el nav drawer.
-    private void mostrarOpcion(String title) {
+    private void mostrarOpcion(int itemId, String title) {
         Fragment frg;
-        switch (mSelectedNavItemId) {
+        switch (itemId) {
             case R.id.nav_nestedscrollview:
                 frg = NestedScrollViewFragment.newInstance(title);
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
@@ -115,10 +99,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Cuando se selecciona una opción del nav drawer.
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
-        mSelectedNavItemId = menuItem.getItemId();
         // Se muestra el fragmento o actividad correspondiente.
-        mostrarOpcion(menuItem.getTitle().toString());
-        // Se selecciona el elemento.
+        mostrarOpcion(menuItem.getItemId(), menuItem.getTitle().toString());
+        // Se selecciona el elemento (necesario para cuando se selecciona desde código).
         menuItem.setChecked(true);
         // Se cierra el navigation drawer.
         mDrawerLayout.closeDrawers();
