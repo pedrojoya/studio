@@ -6,5 +6,5 @@
     <string name="clave">Clave</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="conectando_con_el_usuario">Conectando con el usuario</string>
+    <string name="conectando_con_el_usuario">Conectando con el usuario %1$s...</string>
 </resources>

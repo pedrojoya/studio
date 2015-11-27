@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements SearchView
     @Override
     public boolean onQueryTextSubmit(String query) {
         Toast.makeText(getApplicationContext(),
-                getString(R.string.buscar) + " " + query, Toast.LENGTH_SHORT)
+                getString(R.string.buscar, query), Toast.LENGTH_SHORT)
                 .show();
         // Se indica que ya se ha consumido el evento.
         return true;
@@ -78,9 +78,8 @@ public class MainActivity extends AppCompatActivity implements SearchView
         // Se informa al usuario sobre que alumno ha pulsado.
         Toast.makeText(
                 lst.getContext(),
-                getResources().getString(R.string.ha_pulsado_sobre)
-                        + lst.getItemAtPosition(position), Toast.LENGTH_SHORT)
-                .show();
+                getResources().getString(R.string.ha_pulsado_sobre, lst.getItemAtPosition(position)),
+                Toast.LENGTH_SHORT).show();
     }
 
 }

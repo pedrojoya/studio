@@ -98,7 +98,8 @@ public class BusquedaActivity extends AppCompatActivity implements
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Cursor cursor = (Cursor) mLstResultados.getItemAtPosition(position);
         Alumno alumno = Alumno.fromCursor(cursor);
-        Toast.makeText(this, alumno.getNombre() + " - " + alumno.getCurso(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.descripcion, alumno.getNombre(), alumno.getCurso()),
+                Toast.LENGTH_SHORT).show();
     }
 
 }

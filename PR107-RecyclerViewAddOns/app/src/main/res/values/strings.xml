@@ -5,6 +5,7 @@
     <string name="no_hay_alumnos">No hay alumnos</string>
     <string name="eliminar">Eliminar</string>
     <string name="avatar">Avatar</string>
+    <string name="has_pulsado_sobre">Has pulsado sobre %1$s</string>
 
 
 </resources>

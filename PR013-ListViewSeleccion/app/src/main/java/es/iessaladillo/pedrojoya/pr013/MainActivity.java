@@ -131,14 +131,14 @@ public class MainActivity extends AppCompatActivity implements
         boolean correcta = TextUtils.equals(elemSeleccionado, "Blanco");
         if (correcta) {
             // Se muestra la puntuación.
-            lblPuntuacion.setText("+ " + mPuntuacion);
+            lblPuntuacion.setText(getString(R.string.puntuacion, "+", mPuntuacion));
             animarPuntuacion(true);
         } else {
             // Se disminuye la puntuación.
             int disminucion = mPuntuacion == 100 ? 50 : 25;
             mPuntuacion -= disminucion;
             // Se muestra la puntuación.
-            lblPuntuacion.setText("- " + disminucion);
+            lblPuntuacion.setText(getString(R.string.puntuacion, "-", disminucion));
             animarPuntuacion(false);
             // Se elimina la respuesta seleccionada del adaptador y se fuerza
             // el repintado de la lista.

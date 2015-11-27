@@ -134,12 +134,14 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.mnuLlamar:
-                    Toast.makeText(getContext(), getContext().getString(R.string.llamar_a) + " " +
-                                    alumno.getNombre(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),
+                            getContext().getString(R.string.llamar_a, alumno.getNombre()),
+                            Toast.LENGTH_LONG).show();
                     break;
                 case R.id.mnuEnviarMensaje:
-                    Toast.makeText(getContext(), getContext().getString(R.string.enviar_mensaje_a) +
-                                    " " + alumno.getNombre(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),
+                            getContext().getString(R.string.enviar_mensaje_a, alumno.getNombre()),
+                            Toast.LENGTH_LONG).show();
                     break;
             }
             return true;

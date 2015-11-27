@@ -2,7 +2,7 @@
     <string name="app_name">DialogFragment</string>
     <string name="title_activity_main">DialogFragment</string>
     <string name="datepicker">DatePicker</string>
-    <string name="ha_seleccionado">"Ha seleccionado: "</string>
+    <string name="ha_seleccionado">"Ha seleccionado: %1$s"</string>
     <string name="timepicker">TimePicker</string>
     <string name="alerta_de_pregunta_si_no">Alerta de pregunta Si/No</string>
     <string name="eliminar_usuario">Eliminar usuario</string>

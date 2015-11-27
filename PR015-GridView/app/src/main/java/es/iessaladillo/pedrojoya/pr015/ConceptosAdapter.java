@@ -71,13 +71,11 @@ class ConceptosAdapter extends BaseAdapter {
         // Se obtiene el alumno que debe mostrar el elemento.
         Concepto concepto = datos.get(position);
         // Se escriben los datos del alumno en las vistas.
-        holder.imgFoto.setImageResource(concepto.getFotoResId());
-        holder.lblEnglish.setText(concepto.getEnglish());
-        holder.lblSpanish.setText(concepto.getSpanish());
+        holder.bind(concepto);
     }
 
     // Contenedor de vistas para la vista-fila.
-    public class ViewHolder {
+    static class ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
         private final ImageView imgFoto;
@@ -95,6 +93,12 @@ class ConceptosAdapter extends BaseAdapter {
                     .findViewById(R.id.lblSpanish);
         }
 
+        // Escribe los datos del concepto en las vistas.
+        public void bind(Concepto concepto) {
+            imgFoto.setImageResource(concepto.getFotoResId());
+            lblEnglish.setText(concepto.getEnglish());
+            lblSpanish.setText(concepto.getSpanish());
+        }
     }
 
 }

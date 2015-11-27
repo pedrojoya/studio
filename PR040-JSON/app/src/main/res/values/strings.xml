@@ -7,6 +7,6 @@
     <string name="foto_del_alumno">Foto del alumno</string>
     <string name="Notas">Notas</string>
     <string name="Llamar">Llamar</string>
-    <string name="anios">años</string>
+    <string name="anios">%1$d años</string>
 
 </resources>

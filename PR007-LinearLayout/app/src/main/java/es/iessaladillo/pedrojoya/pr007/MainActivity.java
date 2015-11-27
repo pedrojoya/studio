@@ -123,8 +123,7 @@ public class MainActivity extends AppCompatActivity implements
                 // Se informa de la conexión
                 Toast.makeText(
                         this,
-                        getString(R.string.conectando_con_el_usuario) + " "
-                                + txtUsuario.getText().toString() + "...",
+                        getString(R.string.conectando_con_el_usuario, txtUsuario.getText().toString()),
                         Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnCancelar:

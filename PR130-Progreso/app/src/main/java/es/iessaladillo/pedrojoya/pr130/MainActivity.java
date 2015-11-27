@@ -68,15 +68,14 @@ public class MainActivity extends AppCompatActivity {
 
     // Actualiza el valor de las barras de progreso.
     private void actualizarBarras(int progreso) {
-        lblMensaje.setText(getString(R.string.trabajando) + " " + progreso
-                + " de 10");
+        lblMensaje.setText(getString(R.string.trabajando, progreso, 10));
         prbBarra.setProgress(progreso);
     }
 
     // Muestra el total de tareas realizadas.
     private void mostrarRealizadas(int tareas) {
-        lblMensaje.setText(getString(R.string.realizadas) + " "
-                + tareas + " " + getString(R.string.tareas));
+        lblMensaje.setText(getResources().getQuantityString(
+                R.plurals.realizadas, tareas, tareas));
     }
 
     // Resetea las vistas relacionadas con el progreso.

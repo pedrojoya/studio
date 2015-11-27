@@ -14,7 +14,7 @@
         <item>Rigoberto</item>
         <item>Atanasio</item>
 	</string-array>
-    <string name="ha_pulsado_sobre">"Ha pulsado sobre "</string>
-    <string name="buscar">Buscar</string>
+    <string name="ha_pulsado_sobre">"Ha pulsado sobre %1$s"</string>
+    <string name="buscar">Buscar %1$s</string>
 
 </resources>

@@ -9,7 +9,7 @@
     <string name="progreso_indeterminado">Indeterminado</string>
     <string name="operacion_finalizada">Operación finalizada</string>
     <string name="actualizacion_de_datos">Actualización de datos</string>
-    <string name="actualizando">Actualizando…</string>
+    <string name="actualizando">Actualizando… (%1$d de %2$d)</string>
     <string name="de"> de </string>
     <string name="title_activity_resultado">ResultadoActivity</string>
     <string name="enviar">Enviar</string>
@@ -22,7 +22,7 @@
     <string name="big_text">Big Text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</string>
     <string name="big_content_title">Big Content Title</string>
     <string name="summary_text">Summary Text</string>
-    <string name="line">Line</string>
+    <string name="line">Line %1$d</string>
     <string name="heads_up_notification">Heads-up</string>
     <string name="responder">Responder</string>
 

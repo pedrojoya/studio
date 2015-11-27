@@ -82,9 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.mnuAprobar:
                         Toast.makeText(
                                 getApplicationContext(),
-                                getString(R.string.felicidades) + " "
-                                        + txtAlumno.getText().toString() + ". "
-                                        + getString(R.string.estas_aprobado),
+                                getString(R.string.felicidades, txtAlumno.getText().toString()),
                                 Toast.LENGTH_LONG).show();
                         break;
                     case R.id.mnuEliminar:
@@ -180,8 +178,7 @@ public class MainActivity extends AppCompatActivity {
                                 adaptador.notifyDataSetChanged();
                                 Toast.makeText(
                                         getApplicationContext(),
-                                        elems.size()
-                                                + getString(R.string.asignaturas_eliminadas),
+                                        getString(R.string.asignaturas_eliminadas, elems.size()),
                                         Toast.LENGTH_LONG).show();
                                 break;
                         }
@@ -194,10 +191,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemCheckedStateChanged(ActionMode mode,
                                                           int position, long id, boolean checked) {
                         // Se actualiza el título de la action bar contextual.
-                        mode.setTitle(lstAsignaturas.getCheckedItemCount()
-                                + getString(R.string.de)
-                                + lstAsignaturas.getCount());
-
+                        mode.setTitle(getString(R.string.de,
+                                lstAsignaturas.getCheckedItemCount(), lstAsignaturas.getCount()));
                     }
                 });
         // Un click simple ya activa el modo de acción contextual.

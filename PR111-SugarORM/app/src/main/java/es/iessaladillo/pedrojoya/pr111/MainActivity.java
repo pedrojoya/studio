@@ -106,10 +106,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemCheckedStateChanged(ActionMode mode,
                                                           int position, long id, boolean checked) {
                         // Se actualiza el título de la action bar contextual.
-                        mode.setTitle(mLstAlumnos.getCheckedItemCount()
-                                + " " + "de" + " "
-                                + mLstAlumnos.getCount());
-
+                        mode.setTitle(getString(R.string.de, mLstAlumnos.getCheckedItemCount(),
+                                mLstAlumnos.getCount()));
                     }
                 });
         // Cuando se hace click en un elemento de la lista.

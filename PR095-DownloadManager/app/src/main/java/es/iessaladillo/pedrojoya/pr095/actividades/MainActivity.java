@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         // Se informa al usuario del error.
                         String motivo = c.getString(c
                                 .getColumnIndex(DownloadManager.COLUMN_REASON));
-                        mostrarToast(getString(R.string.error) + motivo);
+                        mostrarToast(getString(R.string.error, motivo));
                         break;
                 }
             }
@@ -211,15 +211,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Environment.DIRECTORY_DOWNLOADS,
         // cancion.getNombre() + EXTENSION_ARCHIVO);
         solicitud.setTitle(cancion.getNombre());
-        solicitud.setDescription(cancion.getNombre() + "("
-                + cancion.getDuracion() + ")");
+        solicitud.setDescription(getString(R.string.descripcion, cancion.getNombre(), cancion.getDuracion()));
         solicitud.allowScanningByMediaScanner();
         solicitud
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         // Se encola la solicitud.
         mGestorDescargas.enqueue(solicitud);
         // Se informa al usuario.
-        mostrarToast(getString(R.string.descargando) + " " + cancion.getNombre());
+        mostrarToast(getString(R.string.descargando, cancion.getNombre()));
     }
 
     @Override

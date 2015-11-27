@@ -12,5 +12,6 @@
     <string name="concepto">Concepto</string>
     <string name="responsable">Responsable</string>
     <string name="guardar">Guardar</string>
+    <string name="de">%1$d de %2$d</string>
 
 </resources>

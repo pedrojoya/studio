@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements
         Alumno alumno = mAdaptador.getChild(groupPosition, childPosition);
         Toast.makeText(
                 this,
-                alumno.getNombre() + " (" + alumno.getCurso() + " "
-                        + alumno.getCiclo() + ")", Toast.LENGTH_SHORT).show();
+                getString(R.string.info_alumno, alumno.getNombre(), alumno.getCurso(), alumno.getCiclo()),
+                Toast.LENGTH_SHORT).show();
         // Se retorna true para indicar que el evento ya ha sido gestionado.
         return true;
     }

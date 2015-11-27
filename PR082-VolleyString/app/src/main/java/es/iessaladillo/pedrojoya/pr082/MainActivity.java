@@ -111,8 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         // Si hay resultado.
                         if (!TextUtils.equals(resultado, "")) {
                             // Se muestra un toast con el resultado.
-                            mostrarToast(resultado + " "
-                                    + getString(R.string.entradas));
+                            mostrarToast(getString(R.string.entradas, resultado));
                         }
 
                     }

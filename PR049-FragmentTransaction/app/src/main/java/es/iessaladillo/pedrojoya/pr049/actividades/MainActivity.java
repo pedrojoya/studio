@@ -113,8 +113,7 @@ public class MainActivity extends AppCompatActivity implements
                         .getBackStackEntryAt(mGestorFragmentos
                                 .getBackStackEntryCount() - 2);
                 Toast toast = Toast.makeText(this,
-                        "Pulsa Back para volver a \n\"" + entrada.getName()
-                                + "\"", Toast.LENGTH_SHORT);
+                        getString(R.string.pulsa_back, entrada.getName()), Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.BOTTOM, 0, 0);
                 toast.show();
             }

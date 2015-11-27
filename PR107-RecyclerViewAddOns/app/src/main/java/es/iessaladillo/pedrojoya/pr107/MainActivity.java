@@ -185,8 +185,8 @@ public class MainActivity extends AppCompatActivity implements
         if (this.mActionMode != null) {
             toggleSelection(position);
         } else {
-            Toast.makeText(getApplicationContext(), "Has pulsado sobre " +
-                    mAdaptador.getItem(position).getNombre(),
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.has_pulsado_sobre, mAdaptador.getItem(position).getNombre()),
                     Toast.LENGTH_SHORT).show();
         }
     }

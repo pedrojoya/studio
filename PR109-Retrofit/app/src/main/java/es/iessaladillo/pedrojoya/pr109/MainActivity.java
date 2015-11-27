@@ -136,10 +136,8 @@ public class MainActivity extends ActionBarActivity implements SwipeRefreshLayou
                     public void onItemCheckedStateChanged(ActionMode mode,
                                                           int position, long id, boolean checked) {
                         // Se actualiza el título de la action bar contextual.
-                        mode.setTitle(mLstTareas.getCheckedItemCount()
-                                + " " + "de" + " "
-                                + mLstTareas.getCount());
-
+                        mode.setTitle(getString(R.string.de, mLstTareas.getCheckedItemCount(),
+                                mLstTareas.getCount()));
                     }
                 });
         // Un click simple ya activa el modo de acción contextual.

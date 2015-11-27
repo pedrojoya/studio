@@ -72,16 +72,15 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onProgressUpdate(int progress) {
         // Se actualiza la barra.
-        lblMensaje.setText(getString(R.string.trabajando) + " " + progress
-                + " de 10");
+        lblMensaje.setText(getString(R.string.trabajando, progress, 10));
         prbBarra.setProgress(progress);
     }
 
     @Override
     public void onPostExecute(int result) {
         // Se muestra el mensaje de finalización.
-        lblMensaje.setText(getString(R.string.realizadas) + " " + result + " "
-                + getString(R.string.tareas));
+        lblMensaje.setText(getResources().getQuantityString(
+                R.plurals.realizadas, result, result));
         resetearVistas();
     }
 
