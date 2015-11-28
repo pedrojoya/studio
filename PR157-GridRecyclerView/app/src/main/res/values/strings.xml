@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GridRecyclerView</string>
+    <string name="concepto">Concepto</string>
+    <string name="nombre_transicion_imagen">transicion_imagen</string>
+</resources>

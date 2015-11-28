@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Se activa el uso de transiciones entre actividades.
+        // Se habilita el uso de transiciones entre actividades.
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         super.onCreate(savedInstanceState);
         //configTransitions();
