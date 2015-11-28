@@ -5,11 +5,10 @@
     <string name="alumno">Alumno</string>
     <string name="asignaturas">Asignaturas</string>
     <string name="eliminar">Eliminar</string>
-    <string name="de">" de "</string>
+    <string name="de">%1$d de %2$d</string>
     <string name="aprobar">Aprobar</string>
-    <string name="estas_aprobado">Estás aprobado</string>
-    <string name="felicidades">Felicidades</string>
+    <string name="felicidades">Felicidades %1$s. Estás aprobado</string>
     <string name="has_aprobado">"Has aprobado: "</string>
-    <string name="asignaturas_eliminadas">" asignaturas eliminadas"</string>
+    <string name="asignaturas_eliminadas">"%1$d asignaturas eliminadas"</string>
 
 </resources>

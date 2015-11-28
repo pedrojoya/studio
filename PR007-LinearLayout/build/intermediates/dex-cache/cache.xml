@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR007-LinearLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/pedro/studio/PR007-LinearLayout/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-88164ae08dbdd1e4da1e24dc5ead5952ea1908a6.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR007-LinearLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="/Users/pedro/studio/PR007-LinearLayout/app/build/intermediates/pre-dexed/debug/classes-72a5e08af1d41da3995ab1bfa619dc623bc52ecb.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR007-LinearLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/pedro/studio/PR007-LinearLayout/app/build/intermediates/pre-dexed/debug/classes-2d5f613f275942bc95813b257cfbfd635ef1ad8f.jar" />
-    </item>
-    <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
+        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/pedro/studio/PR007-LinearLayout/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
+        <dex dex="D:\Documents\GitHub\studio\PR007-LinearLayout\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-fd46c506161dfcacc9c9c5e3eddbd85ccd4b0d08.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR007-LinearLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
+        <dex dex="D:\Documents\GitHub\studio\PR007-LinearLayout\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-9c664a2e04a00e1b226ff1f84f88daecaba66e99.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR007-LinearLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
+        <dex dex="D:\Documents\GitHub\studio\PR007-LinearLayout\app\build\intermediates\pre-dexed\debug\classes-0d2741aaaec6361665be4f857d921914aae1e5ad.jar" />
+    </item>
+    <item
+        jar="D:\Documents\GitHub\studio\PR007-LinearLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="983e2f375504bc04def18e709c35192afe92e65f">
+        <dex dex="D:\Documents\GitHub\studio\PR007-LinearLayout\app\build\intermediates\pre-dexed\debug\classes-a58502ef25201fb6db0fce8386de857992e9f143.jar" />
     </item>
 
 </items>

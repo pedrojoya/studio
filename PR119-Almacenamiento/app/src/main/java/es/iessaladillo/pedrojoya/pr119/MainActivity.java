@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             escritor.close();
             lector.close();
             Toast.makeText(this,
-                    getString(R.string.generado) + fichero.getPath(), Toast.LENGTH_LONG).show();
+                    getString(R.string.generado, fichero.getPath()), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             e.printStackTrace();
         }

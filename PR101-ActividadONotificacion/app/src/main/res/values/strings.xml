@@ -3,7 +3,7 @@
 
     <string name="app_name">Actividad o Notificación</string>
     <string name="eliminar">Eliminar</string>
-    <string name="de">de</string>
+    <string name="de">%1$d de %2$d</string>
     <string name="no_hay_alumnos_en_la_lista">No hay alumnos en la lista</string>
     <string name="listado_de_alumnos">Listado de alumnos</string>
     <string name="fichero_generado_con_exito">Fichero generado con éxito</string>

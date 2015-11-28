@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             // Se obtiene la hora actual.
             String hora = formateadorFechas.format(new Date());
             // Se agrega el mensaje.
-            lblTexto.append("[" + hora + "] " + mensaje + "\n\n");
+            lblTexto.append(getString(R.string.mensaje_hora, hora, mensaje));
             // Se limpia el cuadro de texto.
             txtMensaje.setText("");
             // Se mueve el scroll al final para ver el último mensaje.

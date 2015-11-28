@@ -53,27 +53,11 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         // Se obtiene el alumno que debe mostrar el elemento.
         Alumno alumno = alumnos.get(position);
         // Se escriben los datos del alumno en las vistas.
-        holder.imgFoto.setImageResource(alumno.getFoto());
-        holder.lblNombre.setText(alumno.getNombre());
-        holder.lblCurso.setText(alumno.getCurso() + " " + alumno.getCiclo());
-        holder.lblEdad.setText(alumno.getEdad() + " " + getContext().getString(R.string.anios));
-        // El fondo del TextView con la edad es diferente si es menor de
-        // edad.
-        if (alumno.getEdad() < 18) {
-            holder.lblEdad.setTextColor(getContext().getResources().getColor(R.color.accent));
-        } else {
-            holder.lblEdad.setTextColor(getContext().getResources().getColor(R.color.primary_text));
-        }
-        // Si el alumno es repetidor se muestra el TextView correspondiente.
-        if (alumno.isRepetidor()) {
-            holder.lblRepetidor.setVisibility(View.VISIBLE);
-        } else {
-            holder.lblRepetidor.setVisibility(View.INVISIBLE);
-        }
+        holder.bind(alumno);
     }
 
     // Contenedor de vistas para la vista-fila.
-    public class ViewHolder {
+    static class ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
         private final ImageView imgFoto;
@@ -97,7 +81,28 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
                     .findViewById(R.id.lblRepetidor);
         }
 
+        // Escribe los datos del alumno en las vistas.
+        public void bind(Alumno alumno) {
+            imgFoto.setImageResource(alumno.getFoto());
+            lblNombre.setText(alumno.getNombre());
+            lblCurso.setText(lblCurso.getContext().getString(
+                    R.string.cursociclo, alumno.getCurso(), alumno.getCiclo()));
+            lblEdad.setText(lblEdad.getContext().getString(R.string.anios, alumno.getEdad()));
+            // El fondo del TextView con la edad es diferente si es menor de
+            // edad.
+            if (alumno.getEdad() < 18) {
+                lblEdad.setTextColor(lblEdad.getContext().getResources().getColor(R.color.accent));
+            } else {
+                lblEdad.setTextColor(
+                        lblEdad.getContext().getResources().getColor(R.color.primary_text));
+            }
+            // Si el alumno es repetidor se muestra el TextView correspondiente.
+            if (alumno.isRepetidor()) {
+                lblRepetidor.setVisibility(View.VISIBLE);
+            } else {
+                lblRepetidor.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
 }
-

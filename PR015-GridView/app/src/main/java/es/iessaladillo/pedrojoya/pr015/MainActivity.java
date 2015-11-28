@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity implements
         Concepto concepto = (Concepto) grdCuadricula
                 .getItemAtPosition(position);
         // Se informa al usuario.
-        Toast.makeText(this, concepto.getEnglish(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,
+                getString(R.string.traduccion, concepto.getSpanish(), concepto.getEnglish()),
+                Toast.LENGTH_SHORT).show();
     }
 
 }

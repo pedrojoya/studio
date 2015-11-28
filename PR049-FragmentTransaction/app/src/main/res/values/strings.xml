@@ -4,4 +4,5 @@
     <string name="title_activity_detalle">DetalleActivity</string>
     <string name="cabecera">Cabecera</string>
     <string name="obra">Obra</string>
+    <string name="pulsa_back">Pulsa Back para volver a \n\"%1$s\"</string>
 </resources>

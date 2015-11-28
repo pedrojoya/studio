@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NotificationCompat.InboxStyle estilo = new NotificationCompat.InboxStyle();
         estilo.setBigContentTitle(getString(R.string.big_content_title));
         for (int i = 0; i < 5; i++) {
-            estilo.addLine(getString(R.string.line) + " " + (i + 1));
+            estilo.addLine(getString(R.string.line, i + 1));
         }
         estilo.setSummaryText(getString(R.string.summary_text));
         b.setStyle(estilo);
@@ -259,8 +259,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int paso = values[0];
             // Se actualiza la notificación.
             mBuilder.setProgress(NUM_PASOS, paso, false).setContentText(
-                    getString(R.string.actualizando) + " (" + paso + " "
-                            + getString(R.string.de) + " " + NUM_PASOS + ")");
+                    getString(R.string.actualizando, paso, NUM_PASOS));
             mGestor.notify(NC_PROGRESS, mBuilder.build());
         }
 

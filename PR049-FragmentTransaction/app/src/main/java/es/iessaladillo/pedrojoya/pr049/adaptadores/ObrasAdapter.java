@@ -52,10 +52,7 @@ public class ObrasAdapter extends ArrayAdapter<Obra> {
 
     // Cuando se deben escribir los datos en la vista del elemento.
     private void onBindViewHolder(ViewHolder holder, int position) {
-        Obra obra = mDatos.get(position);
-        holder.lblNombre.setText(obra.getNombre());
-        holder.lblAutor.setText(obra.getAutor());
-        holder.lblAnio.setText(obra.getAnio() + "");
+        holder.bind(mDatos.get(position));
     }
 
     // Contenedor de vistas para la vista-fila.
@@ -75,6 +72,13 @@ public class ObrasAdapter extends ArrayAdapter<Obra> {
                     .findViewById(R.id.lblAutor);
             lblAnio = (TextView) itemView
                     .findViewById(R.id.lblAnio);
+        }
+
+        // Escribe los datos de la obra en las vistas.
+        public void bind(Obra obra) {
+            lblNombre.setText(obra.getNombre());
+            lblAutor.setText(obra.getAutor());
+            lblAnio.setText(obra.getAnio() + "");
         }
 
     }

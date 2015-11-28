@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         // Se muestra el log.
         Log.d(LOG_PROYECTO, metodo);
         // Se agrega al listado.
-        mListado = mListado.concat(metodo + "\n");
+        mListado = mListado.concat(metodo);
         lblListado.setText(mListado);
     }
 

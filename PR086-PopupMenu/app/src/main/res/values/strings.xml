@@ -5,7 +5,7 @@
     <string name="llamar">Llamar</string>
     <string name="enviar_mensaje">Enviar mensaje</string>
     <string name="popup_menu">Popup menu</string>
-    <string name="llamar_a">Llamar a</string>
-    <string name="enviar_mensaje_a">Enviar mensaje a</string>
+    <string name="llamar_a">Llamar a %1$s</string>
+    <string name="enviar_mensaje_a">Enviar mensaje a %1$s</string>
 
 </resources>

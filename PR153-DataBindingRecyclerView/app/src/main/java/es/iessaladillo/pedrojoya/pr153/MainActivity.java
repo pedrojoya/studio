@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     // Cuando se hace click sobre un elemento de la lista.
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
-        Snackbar.make(binding.lstAlumnos, getString(R.string.ha_pulsado_sobre) + alumno.getNombre(),
+        Snackbar.make(binding.lstAlumnos, getString(R.string.ha_pulsado_sobre, alumno.getNombre()),
                 Snackbar.LENGTH_SHORT).show();
     }
 

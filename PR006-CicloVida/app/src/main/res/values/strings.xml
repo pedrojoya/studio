@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Ciclo de vida</string>
-    <string name="oncreate">onCreate</string>
-    <string name="ondestroy">onDestroy</string>
-    <string name="onpause">onPause</string>
-    <string name="onrestart">onRestart</string>
-    <string name="onrestoreinstancestate">onRestoreInstanceState</string>
-    <string name="onresume">onResume</string>
-    <string name="onsaveinstancestate">onSaveInstanceState</string>
-    <string name="onstart">onStart</string>
-    <string name="onstop">onStop</string>
+    <string name="oncreate">onCreate\n</string>
+    <string name="ondestroy">onDestroy\n</string>
+    <string name="onpause">onPause\n</string>
+    <string name="onrestart">onRestart\n</string>
+    <string name="onrestoreinstancestate">onRestoreInstanceState\n</string>
+    <string name="onresume">onResume\n</string>
+    <string name="onsaveinstancestate">onSaveInstanceState\n</string>
+    <string name="onstart">onStart\n</string>
+    <string name="onstop">onStop\n</string>
 </resources>

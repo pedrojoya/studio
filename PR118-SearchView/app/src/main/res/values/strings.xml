@@ -7,5 +7,6 @@
     <string name="title_activity_busqueda">Restultados de la búsqueda</string>
     <string name="search_hint">Buscar alumno</string>
     <string name="limpiar_historial_busqueda">Limpiar historial de búsqueda</string>
+    <string name="descripcion">%1$s - %2$s</string>
 
 </resources>

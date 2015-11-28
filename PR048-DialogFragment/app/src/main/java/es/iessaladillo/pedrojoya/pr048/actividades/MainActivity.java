@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements
     public void onItemClick(DialogFragment dialog, int which) {
         String[] turnos = getResources().getStringArray(R.array.turnos);
         Toast.makeText(this,
-                getString(R.string.ha_seleccionado) + turnos[which],
+                getString(R.string.ha_seleccionado, turnos[which]),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPositiveButtonClick(DialogFragment dialog, int which) {
         String[] turnos = getResources().getStringArray(R.array.turnos);
-        Toast.makeText(this, getString(R.string.ha_seleccionado) + turnos[which],
+        Toast.makeText(this, getString(R.string.ha_seleccionado, turnos[which]),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements
     // Al hacer click sobre un elemento del adaptador. Recibe el alumno seleccionado.
     @Override
     public void onListItemClick(DialogFragment dialog, Alumno alumno) {
-        Toast.makeText(this, getString(R.string.ha_seleccionado) + alumno.getNombre(),
+        Toast.makeText(this, getString(R.string.ha_seleccionado, alumno.getNombre()),
                 Toast.LENGTH_SHORT).show();
     }
 

@@ -176,7 +176,7 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public void onListItemSelected(CharSequence value, int position, int rc) {
         Toast.makeText(this,
-                getString(R.string.ha_seleccionado) + value,
+                getString(R.string.ha_seleccionado, String.valueOf(value)),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -191,7 +191,7 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public void onListItemClick(DialogFragment dialog, Alumno alumno) {
         Toast.makeText(this,
-                getString(R.string.ha_seleccionado) + alumno.getNombre(),
+                getString(R.string.ha_seleccionado, alumno.getNombre()),
                 Toast.LENGTH_SHORT).show();
     }
 

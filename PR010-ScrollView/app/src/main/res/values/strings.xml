@@ -4,4 +4,5 @@
     <string name="enviar">Enviar</string>
     <string name="mensaje">Mensaje</string>
     <string name="panel_de_mensajes">Panel de mensajes</string>
+    <string name="mensaje_hora">[%1$s] %2$s\n\n"</string>
 </resources>

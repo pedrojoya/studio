@@ -138,8 +138,8 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
             public void onItemCheckedStateChanged(ActionMode mode,
                                                   int position, long id, boolean checked) {
                 // Se actualiza el título de la action bar contextual.
-                mode.setTitle(lstAlumnos.getCheckedItemCount() + " "
-                        + getString(R.string.de) + " " + lstAlumnos.getCount());
+                mode.setTitle(getString(R.string.de,
+                        lstAlumnos.getCheckedItemCount(), lstAlumnos.getCount()));
             }
         });
         lstAlumnos.setScrollViewCallbacks(this);
