@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr157;
+package es.iessaldillo.pedrojoya.pr159;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +26,7 @@ public class DetalleActivity extends AppCompatActivity {
         initVistas();
     }
 
-    // Configura la transición de entrada y retorno.
+    // Configura la transiciÃ³n de entrada y retorno.
     private void configTransition() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Fade transition = new Fade();
