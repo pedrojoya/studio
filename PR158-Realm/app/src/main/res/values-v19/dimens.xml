@@ -3,4 +3,8 @@
     <!-- Fake StatusBar -->
     <dimen name="statusBarHeight">24dp</dimen>
 
+    <!-- FAB -->
+    <dimen name="fab_marginBottom">0dp</dimen>
+
+
 </resources>

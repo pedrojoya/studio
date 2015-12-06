@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr158;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -20,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     private static final String STATE_LISTA = "estadoLista";
 
-    private RecyclerView lstAlumnos;
     private AlumnosAdapter mAdaptador;
     private LinearLayoutManager mLayoutManager;
     private Parcelable mEstadoLista;
@@ -28,9 +29,15 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Se habilita el uso de transiciones entre actividades.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se obtiene la instancia de Realm y se configura.
+        // Se obtiene la instancia de Realm y se configura. La actividad actuará
+        // como listener cuando se produzcan cambios en ella.
+        // a ejecutar.
         mRealm = Realm.getInstance(getApplicationContext());
         mRealm.addChangeListener(this);
         // Se obtienen e inicializan las vistas.
@@ -48,10 +55,6 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     private void configToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
 
     // Configura el FAB.
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Se inicia la actividad de detalle para añadir.
                 DetalleActivity.start(MainActivity.this);
             }
         });
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        RecyclerView lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(mRealm, getAlumnos());
         mAdaptador.setOnItemClickListener(this);
@@ -80,15 +84,16 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
     }
 
+    // Retorna la lista de alumnos ordenados por nombre.
     private RealmResults<Alumno> getAlumnos() {
-        // Se obtienen todos los alumnos ordenados por nombre.
          return mRealm.where(Alumno.class).findAllSortedAsync("nombre");
     }
 
     // Cuando se hace click sobre un elemento de la lista.
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
-        DetalleActivity.start(this, alumno.getId());
+        // Se inicia la actividad de detalle para actualización.
+        DetalleActivity.start(this, alumno.getId(), view.findViewById(R.id.imgFoto));
     }
 
     // Cuando se hace long click sobre un elemento de la lista.
@@ -124,13 +129,16 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     @Override
     protected void onDestroy() {
+        // Se eliminan todos los listener a la base de datos y se cierra.
         mRealm.removeAllChangeListeners();
         mRealm.close();
         super.onDestroy();
     }
 
+    // Cuando se producen cambios en la base de datos.
     @Override
     public void onChange() {
+        // Se notifica al adaptador para que los dibuje.
         mAdaptador.notifyDataSetChanged();
     }
 

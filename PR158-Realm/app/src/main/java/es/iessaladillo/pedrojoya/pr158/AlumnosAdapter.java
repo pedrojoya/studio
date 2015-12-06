@@ -162,7 +162,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             // Se obtienen las vistas de la vista-fila.
             lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
             lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
-            imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
+            imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgFoto);
         }
 
         // Escribe el alumno en las vistas.

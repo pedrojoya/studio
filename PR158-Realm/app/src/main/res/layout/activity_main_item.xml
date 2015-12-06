@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgAvatar"
+        android:id="@+id/imgFoto"
         android:layout_width="@dimen/two_line_avatar_width"
         android:layout_height="@dimen/two_line_avatar_height"
         android:contentDescription="@string/avatar"
@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:paddingTop="@dimen/two_line_text_paddingTop"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -33,7 +34,7 @@
         tools:text="Baldomero Llegate Ligero"
         android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        android:textSize="@dimen/abc_text_size_subhead_material" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
     <TextView
         android:id="@+id/lblDireccion"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/lblNombre"
