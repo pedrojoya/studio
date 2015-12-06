@@ -3,7 +3,6 @@
 
     <string name="app_name">Realm</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
-    <string name="ha_pulsado_sobre">Ha pulsado sobre %1$s</string>
     <string name="avatar">Avatar</string>
     <string name="nombre">Nombre</string>
     <string name="direccion">Dirección</string>

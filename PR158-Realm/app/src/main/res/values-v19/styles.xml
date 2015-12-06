@@ -5,4 +5,9 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <!-- Tema de la actividad de detalle -->
+    <style name="DetalleTheme" parent="AppThemeBase">
+    </style>
+
+
 </resources>

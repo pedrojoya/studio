@@ -4,5 +4,12 @@
     <style name="AppTheme" parent="AppThemeBase">
         <item name="android:windowTranslucentStatus">false</item>
     </style>
-    
+
+    <!-- Tema de la actividad de detalle -->
+    <style name="DetalleTheme" parent="AppThemeBase">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
 </resources>

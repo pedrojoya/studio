@@ -10,7 +10,6 @@ import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -23,10 +22,7 @@ public class MainActivity extends ActionBarActivity {
     private ImageView imgCuadro;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // Se habilita el uso de transiciones entre actividades.
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
         //configTransitions();
         setContentView(R.layout.activity_main);
         imgCuadro = (ImageView) findViewById(R.id.imgFoto);

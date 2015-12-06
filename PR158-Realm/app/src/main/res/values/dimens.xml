@@ -7,7 +7,8 @@
     <dimen name="statusBarHeight">0dp</dimen>
 
     <!-- FAB -->
-    <dimen name="fab_margin">0dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_marginBottom">16dp</dimen>
 
     <!-- RecyclerView -->
     <dimen name="lst_padding">8dp</dimen>
@@ -27,5 +28,7 @@
     <dimen name="two_line_secundary_icon_marginRight">16dp</dimen>
     <dimen name="fab_elevation">4dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="collapsing_titleMarginStart">15dp</dimen>
+    <dimen name="appbar_height">192dp</dimen>
 
 </resources>
