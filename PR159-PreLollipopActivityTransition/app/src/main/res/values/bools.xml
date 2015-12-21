@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <fraction name="dimen_webview">60%</fraction>
+    <bool name="fitsSystemWindows">true</bool>
 </resources>

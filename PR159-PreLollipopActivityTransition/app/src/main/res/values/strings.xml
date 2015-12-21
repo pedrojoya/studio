@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">GridRecyclerView</string>
+    <string name="app_name">PreLollipopActivityTransition</string>
     <string name="concepto">Concepto</string>
     <string name="nombre_transicion_imagen">transicion_imagen</string>
+    <string name="imagen_cabecera">Foto</string>
 </resources>
