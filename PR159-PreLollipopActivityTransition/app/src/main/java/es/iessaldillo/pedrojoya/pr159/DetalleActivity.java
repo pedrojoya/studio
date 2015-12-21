@@ -1,12 +1,18 @@
 package es.iessaldillo.pedrojoya.pr159;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Fade;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
+
+import com.kogitune.activity_transition.ActivityTransition;
+import com.kogitune.activity_transition.ActivityTransitionLauncher;
+import com.kogitune.activity_transition.ExitActivityTransition;
 
 public class DetalleActivity extends AppCompatActivity {
 
@@ -14,40 +20,52 @@ public class DetalleActivity extends AppCompatActivity {
 
     private Concepto mConcepto;
     private ImageView imgFotoDetalle;
+    private ExitActivityTransition mExitTransition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
-        configTransition();
         if (getIntent() != null && getIntent().hasExtra(EXTRA_CONCEPTO)) {
             mConcepto = getIntent().getParcelableExtra(EXTRA_CONCEPTO);
         }
+        configToolbar();
         initVistas();
+        // Se realiza la animación.
+        mExitTransition = ActivityTransition.with(getIntent()).to(imgFotoDetalle)
+                .duration(getResources().getInteger(R.integer.duracion)).start(savedInstanceState);
     }
 
-    // Configura la transición de entrada y retorno.
-    private void configTransition() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Fade transition = new Fade();
-            transition.excludeTarget(android.R.id.statusBarBackground, true);
-            transition.excludeTarget(android.R.id.navigationBarBackground, true);
-            getWindow().setEnterTransition(transition);
-            getWindow().setReturnTransition(transition);
-        }
+    // Configura la Toolbar.
+    private void configToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
     }
 
+    // Inicializa las vistas.
     private void initVistas() {
         imgFotoDetalle = (ImageView) findViewById(R.id.imgFotoDetalle);
+        WebView wvNavegador = (WebView) findViewById(R.id.wvNavegador);
         if (mConcepto != null) {
             imgFotoDetalle.setImageResource(mConcepto.getFotoResId());
+            setTitle(mConcepto.getEnglish());
+            wvNavegador.loadUrl("http://www.thefreedictionary.com/" + mConcepto.getEnglish());
+            // Por defecto se expande la appbar.
+            AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
+            appbar.setExpanded(true);
         }
     }
 
-    // Inicia la actividad.
-    public static void start(Context contexto, Concepto concepto, Bundle opciones)  {
-        Intent intent = new Intent(contexto, DetalleActivity.class);
+    // Inicia la actividad. Recibe la vista a animar.
+    public static void start(Activity activity, Concepto concepto, View view) {
+        Intent intent = new Intent(activity, DetalleActivity.class);
         intent.putExtra(EXTRA_CONCEPTO, concepto);
-        contexto.startActivity(intent, opciones);
+        ActivityTransitionLauncher.with(activity).from(view).launch(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        // Al pulsar atrás se inicia la transición a la inversa.
+        mExitTransition.exit(this);
+    }
+
 }

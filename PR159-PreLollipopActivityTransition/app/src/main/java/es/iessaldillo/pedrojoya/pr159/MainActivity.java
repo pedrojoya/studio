@@ -1,11 +1,11 @@
 package es.iessaldillo.pedrojoya.pr159;
 
-import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -14,23 +14,25 @@ public class MainActivity extends AppCompatActivity
         implements ConceptosAdapter.OnItemClickListener {
 
 
-    private RecyclerView grdConceptos;
-    private ConceptosAdapter mAdaptador;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        configToolbar();
         initVistas();
     }
 
+    private void configToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    }
+
     private void initVistas() {
-        grdConceptos = (RecyclerView) findViewById(R.id.grdConceptos);
+        RecyclerView grdConceptos = (RecyclerView) findViewById(R.id.grdConceptos);
         grdConceptos.setHasFixedSize(true);
         // El grid tendrá dos columnas
         grdConceptos.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
         grdConceptos.setItemAnimator(new DefaultItemAnimator());
-        mAdaptador = new ConceptosAdapter(getDatos());
+        ConceptosAdapter mAdaptador = new ConceptosAdapter(getDatos());
         mAdaptador.setOnItemClickListener(this);
         grdConceptos.setAdapter(mAdaptador);
     }
@@ -55,17 +57,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(View view, Concepto concepto, int position) {
-        // Se crea el Bundle de opciones para la transición de actividades
-        // con la foto como elemento compartido.
-        View vCompartida = view.findViewById(R.id.imgFoto);
-        ActivityOptions options = ActivityOptions
-                .makeSceneTransitionAnimation(MainActivity.this, vCompartida,
-                        vCompartida.getTransitionName());
-
-        // TODO: Que el texto también sea un elemento compartido en la transición.
-
-        // Se inicia la actividad de detalle.
-        DetalleActivity.start(this, concepto, options.toBundle());
+        // Se inicia la actividad de detalle con animación de la foto del concepto seleccionado.
+        DetalleActivity.start(this, concepto, view.findViewById(R.id.imgFoto));
     }
 
 }
