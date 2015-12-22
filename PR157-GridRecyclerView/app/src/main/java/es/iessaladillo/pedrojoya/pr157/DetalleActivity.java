@@ -11,6 +11,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -45,17 +46,13 @@ public class DetalleActivity extends AppCompatActivity {
     private void configTransition() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Slide transition = new Slide();
-//            transition.setDuration(1000);
             transition.excludeTarget(android.R.id.statusBarBackground, true);
             transition.excludeTarget(android.R.id.navigationBarBackground, true);
-            // Si no se excluye el CardView da un error (parece un bug).
-            //transition.excludeTarget(R.id.cvTarjeta, true);
+            // Se excluyen varios elementos que afean la animación;
             transition.excludeTarget(R.id.appbar, true);
             transition.excludeTarget(R.id.toolbar, true);
             transition.excludeTarget(R.id.collapsingToolbar, true);
             getWindow().setEnterTransition(transition);
-//            Slide retorno = new Slide(Gravity.RIGHT);
-//            getWindow().setReturnTransition(transition);
         }
     }
 
@@ -77,8 +74,6 @@ public class DetalleActivity extends AppCompatActivity {
     public static void start(Activity activity, Concepto concepto, View vFotoCompartida)  {
         Intent intent = new Intent(activity, DetalleActivity.class);
         intent.putExtra(EXTRA_CONCEPTO, concepto);
-
-
         ActivityOptionsCompat options = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(
                         activity,
@@ -91,7 +86,17 @@ public class DetalleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        setTitle("");
         ActivityCompat.finishAfterTransition(this);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Cuando se pulsa la flecha de navegación se simula haber pulsado Atrás.
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
