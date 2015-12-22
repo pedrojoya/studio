@@ -4,8 +4,7 @@
         <!-- Se habilitan las animaciones en las transiciones -->
         <item name="android:windowContentTransitions">true</item>
         <!-- Se indican las animaciones de entrada y de salida. -->
-        <item name="android:windowEnterTransition">@android:transition/fade</item>
-        <item name="android:windowExitTransition">@android:transition/fade</item>
+        <item name="android:windowSharedElementsUseOverlay">false</item>
     </style>
 
 </resources>

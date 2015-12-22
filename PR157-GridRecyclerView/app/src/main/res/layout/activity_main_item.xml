@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/info_textSize"/>
+            android:textSize="@dimen/info_textSize"
+            android:transitionName="@string/nombre_transicion_texto"/>
 
         <TextView
             android:id="@+id/lblSpanish"
