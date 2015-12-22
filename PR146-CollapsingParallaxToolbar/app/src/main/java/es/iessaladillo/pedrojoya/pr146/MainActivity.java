@@ -20,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // Configura la Toolbar.
     private void configToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        ((CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar))
-                .setTitle(getTitle());
+        setTitle(getTitle());
     }
 
     @Override
@@ -33,16 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (item.getItemId() == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
