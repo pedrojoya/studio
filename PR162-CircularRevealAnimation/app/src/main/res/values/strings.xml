@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CircularRevealAnimation</string>
+    <string name="adjuntar">Adjuntar</string>
+    <string name="galeria">Galería</string>
+    <string name="foto">Foto</string>
+    <string name="video">Vídeo</string>
+</resources>
