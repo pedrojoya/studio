@@ -5,5 +5,4 @@
     <!-- En las API < 19, la status bar no puede ser transparente, por lo que
      no se mostrará la vista detrás -->
     <dimen name="statusBarHeight">0dp</dimen>
-    <dimen name="spinner_verticlaOffset">-35dp</dimen>
 </resources>

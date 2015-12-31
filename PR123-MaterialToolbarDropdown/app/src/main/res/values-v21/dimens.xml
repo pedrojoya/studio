@@ -1,5 +1,4 @@
 <resources>
     <!-- En la API 21 la vista fondo de la status bar no se muestra -->
     <dimen name="statusBarHeight">0dp</dimen>
-    <dimen name="spinner_verticlaOffset">0dp</dimen>
 </resources>

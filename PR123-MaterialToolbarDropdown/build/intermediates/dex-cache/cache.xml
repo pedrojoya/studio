@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
+        jar="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="D:\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-fd46c506161dfcacc9c9c5e3eddbd85ccd4b0d08.jar" />
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_a932d631f717f0b90fcf2743a578ee1830c15724.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
+        jar="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="D:\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\pre-dexed\debug\classes-14ff046bfd9729835dcfb5bbc4246c13382194cc.jar" />
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_b8b5bb2aa084e6944d1402749b6b9986110a0cfc.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
+        jar="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="D:\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\pre-dexed\debug\classes-8afd691e4b5d28e65e1bff4cc5e5bc70791e32a3.jar" />
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_c1f7d9d4ff4970469323452b3ea693214ce7a8c2.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="D:\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-d18ed1e91dea9a74c8573ba7544c48b0aa58bd55.jar" />
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_4cefdf1c95082cfc3d5552a180dca2340f933742.jar" />
     </item>
 
 </items>

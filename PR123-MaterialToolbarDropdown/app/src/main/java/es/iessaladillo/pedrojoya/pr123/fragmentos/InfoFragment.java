@@ -45,7 +45,7 @@ public class InfoFragment extends Fragment implements OnClickListener {
             getView().findViewById(R.id.btnGusta)
                     .setOnClickListener(this);
             lblGusta = (TextView) getView().findViewById(R.id.lblGusta);
-            lblGusta.setText(mGusta + "");
+            lblGusta.setText(getString(R.string.gusta, mGusta));
         }
     }
 
@@ -53,7 +53,7 @@ public class InfoFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View v) {
         // Se actualiza el contador.
-        lblGusta.setText(++mGusta + "");
+        lblGusta.setText(getString(R.string.gusta, ++mGusta));
     }
 
 }
