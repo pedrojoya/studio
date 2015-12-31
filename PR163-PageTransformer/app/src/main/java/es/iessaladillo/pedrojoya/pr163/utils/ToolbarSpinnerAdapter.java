@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr163;
+package es.iessaladillo.pedrojoya.pr163.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -16,13 +16,13 @@ import java.util.ArrayList;
 // la toolbar.
 public class ToolbarSpinnerAdapter extends ArrayAdapter<String> implements ThemedSpinnerAdapter {
 
-    private final ThemedSpinnerAdapter.Helper mDropDownHelper;
+    private final Helper mDropDownHelper;
     private final ArrayList<String> mDatos;
 
     public ToolbarSpinnerAdapter(Context context, ArrayList<String> datos) {
         super(context, android.R.layout.simple_spinner_dropdown_item, datos);
         // Se crea un ayudante para aplicar el tema adecuado.
-        mDropDownHelper = new ThemedSpinnerAdapter.Helper(context);
+        mDropDownHelper = new Helper(context);
         mDatos = datos;
     }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="transformaciones">
+        <item>Traslación Y</item>
+        <item>Rotación</item>
+        <item>Escalado</item>
+        <item>Puertas</item>
+        <item>Cubo</item>
+        <item>Texto</item>
+        <item>Profundidad</item>
+    </string-array>
+</resources>

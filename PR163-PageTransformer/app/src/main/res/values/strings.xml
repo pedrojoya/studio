@@ -2,9 +2,4 @@
     <string name="app_name">PageTransformer</string>
     <string name="section_format">%1$d</string>
     <string name="titulo_pagina">Página %1$d</string>
-    <string-array name="transformaciones">
-        <item>Traslación Y</item>
-        <item>Rotación</item>
-        <item>Escalado</item>
-    </string-array>
 </resources>

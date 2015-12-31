@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr163;
+package es.iessaladillo.pedrojoya.pr163.transformers;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

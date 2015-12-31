@@ -17,14 +17,27 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import es.iessaladillo.pedrojoya.pr163.transformers.CuboTransformer;
+import es.iessaladillo.pedrojoya.pr163.transformers.ProfundidadTransformer;
+import es.iessaladillo.pedrojoya.pr163.transformers.PuertasTransformer;
+import es.iessaladillo.pedrojoya.pr163.transformers.RotateTransformer;
+import es.iessaladillo.pedrojoya.pr163.transformers.ScaleTransformer;
+import es.iessaladillo.pedrojoya.pr163.transformers.TextoTransformer;
+import es.iessaladillo.pedrojoya.pr163.transformers.UpTransformer;
+import es.iessaladillo.pedrojoya.pr163.utils.ToolbarSpinnerAdapter;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final ViewPager.PageTransformer[] TRANSFORMACIONES =
-            new ViewPager.PageTransformer[] {
-                new UpTransformer(),
-                new RotateTransformer(),
-                new ScaleUpTransformer()
-    };
+            new ViewPager.PageTransformer[]{
+                    new UpTransformer(),
+                    new RotateTransformer(),
+                    new ScaleTransformer(),
+                    new PuertasTransformer(),
+                    new CuboTransformer(),
+                    new TextoTransformer(),
+                    new ProfundidadTransformer()
+            };
 
     private ViewPager mViewPager;
 
@@ -103,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            TextView textView = (TextView) rootView.findViewById(R.id.lblTexto);
             textView.setText(getString(R.string.section_format,
                     getArguments().getInt(ARG_VALOR)));
             rootView.setBackgroundColor(
@@ -136,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return getString(R.string.titulo_pagina, position+1);
+            return getString(R.string.titulo_pagina, position + 1);
         }
     }
 
