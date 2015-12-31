@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="fragment_textview_textSize">90sp</dimen>
+</resources>
