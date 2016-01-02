@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <TextView
-        android:id="@+id/section_label"
+        android:id="@+id/lblTexto"
         android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/lblTexto_textSize"
         android:layout_height="wrap_content" />
 
 </android.support.v4.widget.NestedScrollView>

@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jar="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="23.0.1"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\pre-dexed\debug\classes-d7a5727127b543dc46d8f4b558d8094aa5ce7a8e.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
+        revision="23.0.2"
         sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\pre-dexed\debug\classes-2c91a29c5201796e0fbde12c8b938253c637163b.jar" />
+        <dex dex="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_295ce56f0b9119a1d1a42d1591a2f2aca3027f63.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jar="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-9475256223c8a8d35cff3d09f19f41cbba385d01.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\pre-dexed\debug\classes-ebbd6bfbdf6555d94be198b4eb3f37c8d68b28f5.jar" />
-    </item>
-    <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
+        revision="23.0.2"
         sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\pre-dexed\debug\classes-f925de6f3fbedebe95294281cc4867807b3a887c.jar" />
+        <dex dex="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_8468e965e3270db9dbf071c17a081e62eaf0dca6.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
         jumboMode="false"
-        revision="23.0.1"
+        revision="23.0.2"
         sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR147-TabLayout\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-704f5f136cab3bc774d2fbc4eff23b53d2336175.jar" />
+        <dex dex="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_4cefdf1c95082cfc3d5552a180dca2340f933742.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_f22f4e4792004da86f4389a4d09302bfb7acccd0.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_7619045132f0c5001af751097ece1bdf01427db0.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/pedro/studio/PR147-TabLayout/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_9f11d7c9eb0019eb8d4692c87e2b7f078d8c8084.jar" />
     </item>
 
 </items>

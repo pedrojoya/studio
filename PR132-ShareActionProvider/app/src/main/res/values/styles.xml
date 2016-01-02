@@ -8,6 +8,7 @@
         <item name="actionModeBackground">@color/actionModeBackground</item>
         <item name="actionMenuTextColor">@color/actionMenuTextColor</item>
         <item name="actionBarPopupTheme">@style/Theme.AppCompat.Light</item>
+
     </style>
 
 </resources>
