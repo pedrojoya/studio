@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExpandableRecyclerView</string>
+    <string name="expandir_contraer_grupo">Expandir o contraer el grupo</string>
+    <string name="datos_alumno">%1$s - %2$s de %3$s</string>
+</resources>
