@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr164;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +16,12 @@ public class MainActivity extends AppCompatActivity
         implements AlumnosAdapter.OnItemClickListener {
 
     private static final String STATE_DATOS = "state_datos";
+    private static final String STATE_LISTA = "state_lista";
 
     private AlumnosAdapter mAdaptador;
     private ArrayList<ListItem> mDatos;
+    private LinearLayoutManager mLayoutManager;
+    private Parcelable mEstadoLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             mDatos = savedInstanceState.getParcelableArrayList(STATE_DATOS);
+            mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
         }
         setupToolbar();
         setupRecyclerView();
@@ -43,15 +48,27 @@ public class MainActivity extends AppCompatActivity
         mAdaptador = new AlumnosAdapter(mDatos);
         mAdaptador.setOnItemClickListener(this);
         lstAlumnos.setAdapter(mAdaptador);
-        lstAlumnos.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false));
+        mLayoutManager = new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false);
+        lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        mEstadoLista = mLayoutManager.onSaveInstanceState();
+        outState.putParcelable(STATE_LISTA, mEstadoLista);
         outState.putParcelableArrayList(STATE_DATOS, mAdaptador.getData());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Se retaura el estado de la lista.
+        if (mEstadoLista != null) {
+            mLayoutManager.onRestoreInstanceState(mEstadoLista);
+        }
     }
 
     private ArrayList<ListItem> getDatos() {
