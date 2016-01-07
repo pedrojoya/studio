@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SortedList</string>
+    <string name="unidades_data">%1$s %2$s</string>
+    <string name="agregar_producto">Agregar producto</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="nombre">Nombre</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="unidad">Unidad</string>
+    <string name="obligatorio">(* Obligatorio)</string>
+    <string name="mayor_que_0"><![CDATA[Debe ser > 0]]></string>
+    <string name="se_ha_eliminado">Se ha eliminado de la lista %1$s</string>
+    <string name="se_ha_agregado">Se ha agregado a la lista %1$s</string>
+</resources>
