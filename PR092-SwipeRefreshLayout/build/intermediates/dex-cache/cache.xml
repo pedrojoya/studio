@@ -2,32 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
+        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/libs/internal_impl-23.1.1.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-a35d346acf5a1edcdd70f94e190774fa37e003c0.jar" />
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-4bbe56001531954c39f77463aedd47eb4cfb35f3.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
+        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/classes-68af06174320071c5236fd7a794e5ca0ec7be9b7.jar" />
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/classes-14f2d81586dd0110f1300e7c18313dc05e770ee4.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/classes-4e05874ae0d9d6f77b79e18911dadedc30fadbb6.jar" />
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-4cefdf1c95082cfc3d5552a180dca2340f933742.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
+        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/classes-09fcc7f75499759d40234892b631eb23f88a2b96.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/classes-78036183b894604ea3564fd148d64f9a34d9dac9.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/pedro/studio/PR092-SwipeRefreshLayout/app/build/intermediates/pre-dexed/debug/classes-5b7a8196742a7029f826fb9eb01c1ccb0f92e2f4.jar" />
     </item>
 
 </items>

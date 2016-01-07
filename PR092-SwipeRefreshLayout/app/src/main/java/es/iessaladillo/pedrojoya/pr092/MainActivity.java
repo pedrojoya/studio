@@ -3,19 +3,24 @@ package es.iessaladillo.pedrojoya.pr092;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
+import es.iessaladillo.pedrojoya.pr092.utils.DividerItemDecoration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,22 +28,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se carga el fragmento principal.
+        setupToolbar();
+        // Se carga el fragmento principal si no venimos de estado anterior.
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new MainFragment()).commit();
         }
     }
 
+    private void setupToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    }
+
     // Fragmento principal
     public static class MainFragment extends Fragment implements
             OnRefreshListener {
 
-        private static final long MILISEGUNDOS_ESPERA = 5000;
+        private static final long MILISEGUNDOS_ESPERA = 2000;
+        private static final String STATE_DATOS = "state_datos";
+        private static final String STATE_LISTA = "state_lista";
         private SwipeRefreshLayout swlPanel;
-        private final SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        private ListView lstLista;
-        private ArrayAdapter<String> adaptador;
+        private final SimpleDateFormat mFormateador = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        private RecyclerView lstLista;
+        private ListaAdapter mAdaptador;
+        private LinearLayoutManager mLayoutManager;
+        private Parcelable mEstadoLista;
+        private ArrayList<String> mDatos;
 
         public MainFragment() {
         }
@@ -46,19 +61,49 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container,
+            return inflater.inflate(R.layout.fragment_main, container,
                     false);
-            swlPanel = (SwipeRefreshLayout) rootView
-                    .findViewById(R.id.swlPanel);
-            lstLista = (ListView) rootView.findViewById(R.id.lstLista);
-            return rootView;
-
         }
 
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
-            // El fragmento aportará ítems a la action bar.
             setHasOptionsMenu(true);
+            if (savedInstanceState == null) {
+                mDatos = getDatosIniciales();
+            } else {
+                // Recuperamos los daots y el estado de la lista.
+                mDatos = savedInstanceState.getStringArrayList(STATE_DATOS);
+                mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
+            }
+            setupPanel();
+            setupRecyclerView();
+            super.onActivityCreated(savedInstanceState);
+        }
+
+        // Retorna ArrayList con datos iniciales.
+        private ArrayList<String> getDatosIniciales() {
+            ArrayList<String> datos = new ArrayList<>();
+            datos.add(mFormateador.format(new Date()));
+            return datos;
+        }
+
+        private void setupRecyclerView() {
+            lstLista = (RecyclerView) getView().findViewById(R.id.lstLista);
+            lstLista.setHasFixedSize(true);
+            mAdaptador = new ListaAdapter(mDatos);
+            lstLista.setAdapter(mAdaptador);
+            mLayoutManager = new LinearLayoutManager(getActivity(),
+                    LinearLayoutManager.VERTICAL, false);
+            lstLista.setLayoutManager(mLayoutManager);
+            lstLista.addItemDecoration(
+                    new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+            lstLista.setItemAnimator(new DefaultItemAnimator());
+        }
+
+        // Configura el SwipeRefreshLayout.
+        private void setupPanel() {
+            swlPanel = (SwipeRefreshLayout) getView()
+                    .findViewById(R.id.swlPanel);
             // El fragmento actuará como listener del gesto de swipe.
             swlPanel.setOnRefreshListener(this);
             // Se establecen los colores que debe usar la animación.
@@ -66,15 +111,9 @@ public class MainActivity extends AppCompatActivity {
                     android.R.color.holo_green_light,
                     android.R.color.holo_orange_light,
                     android.R.color.holo_red_light);
-            // Se carga la lista inicialmente.
-            ArrayList<String> datos = new ArrayList<>();
-            datos.add(formateador.format(new Date()));
-            adaptador = new ArrayAdapter<>(getActivity(),
-                    android.R.layout.simple_list_item_1, datos);
-            lstLista.setAdapter(adaptador);
-            super.onActivityCreated(savedInstanceState);
         }
 
+        // Cuando el usuario hace swipe to refresh.
         @Override
         public void onRefresh() {
             refrescar();
@@ -88,13 +127,31 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     // Se añaden los datos al adaptador.
-                    adaptador.add(formateador.format(new Date()));
-                    adaptador.notifyDataSetChanged();
+                    mAdaptador.addItem(mFormateador.format(new Date()));
                     // Se cancela la animación del panel.
                     swlPanel.setRefreshing(false);
                 }
             }, MILISEGUNDOS_ESPERA);
         }
+
+        @Override
+        public void onSaveInstanceState(Bundle outState) {
+            super.onSaveInstanceState(outState);
+            // Se almacenan los datos de la lista y su estado.
+            mEstadoLista = mLayoutManager.onSaveInstanceState();
+            outState.putParcelable(STATE_LISTA, mEstadoLista);
+            outState.putStringArrayList(STATE_DATOS, mAdaptador.getData());
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            // Se retaura el estado de la lista.
+            if (mEstadoLista != null) {
+                mLayoutManager.onRestoreInstanceState(mEstadoLista);
+            }
+        }
+
     }
 
 }
