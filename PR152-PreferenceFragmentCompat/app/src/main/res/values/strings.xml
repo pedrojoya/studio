@@ -20,6 +20,8 @@
     <string name="otras">Otras preferencias</string>
     <string name="lema">Lema</string>
     <string name="lema_detalle">Lema de la organización</string>
+    <string name="password">Contraseña</string>
+    <string name="password_detalle">Contraseña de acceso al servicio web</string>
     <string name="tono_notificacion">Tono de notificación</string>
     <string name="red">En red</string>
     <string name="red_detalle_on">Jugar en red</string>

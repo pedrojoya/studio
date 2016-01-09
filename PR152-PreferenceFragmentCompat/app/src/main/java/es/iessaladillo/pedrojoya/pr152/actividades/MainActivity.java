@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr152.actividades;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -93,8 +92,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
         case R.id.mnuPreferencias:
             // Lanzamos la actividad de preferencias.
-            Intent i = new Intent(this, PreferenciasActivity.class);
-            this.startActivity(i);
+            PreferenciasActivity.start(this, null);
             return true;
         }
         return super.onOptionsItemSelected(item);

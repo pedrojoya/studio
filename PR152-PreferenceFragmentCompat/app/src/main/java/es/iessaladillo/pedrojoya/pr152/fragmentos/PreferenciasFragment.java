@@ -1,8 +1,12 @@
 package es.iessaladillo.pedrojoya.pr152.fragmentos;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v14.preference.MultiSelectListPreference;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -13,9 +17,24 @@ import android.support.v7.preference.PreferenceScreen;
 import java.util.Set;
 
 import es.iessaladillo.pedrojoya.pr152.R;
+import es.iessaladillo.pedrojoya.pr152.utils.MultiSelectListPreferenceDialogFragmentCompat;
+import es.iessaladillo.pedrojoya.pr152.utils.PasswordPreference;
+import es.iessaladillo.pedrojoya.pr152.utils.PasswordPreferenceDialogFragmentCompat;
 
 public class PreferenciasFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private static final String FRAGMENT_DIALOG_TAG = "android.support.v7.preference.PreferenceFragment.DIALOG";
+
+    private String mPreferenceScreenKey;
+
+    public static PreferenciasFragment newInstance(String preferenceScreenKey) {
+        PreferenciasFragment frg = new PreferenciasFragment();
+        Bundle argumentos = new Bundle();
+        argumentos.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, preferenceScreenKey);
+        frg.setArguments(argumentos);
+        return frg;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,14 +42,28 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
     }
 
     @Override
-    public void onCreatePreferences(Bundle bundle, String s) {
+    public void onCreatePreferences(Bundle bundle, String key) {
+        mPreferenceScreenKey = key;
         // Se construye el fragmento de preferencias a partir de la
         // especificación XML de preferencias.
-        this.addPreferencesFromResource(R.xml.preferencias);
+        //this.addPreferencesFromResource(R.xml.preferencias);
+        setPreferencesFromResource(R.xml.preferencias, key);
         // Se inicializan los summary con el valor de la preferencia.
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
             inicializarSummary(getPreferenceScreen().getPreference(i));
         }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle((mPreferenceScreenKey == null) ?
+                    getString(R.string.title_activity_preferencias) :
+                    findPreference(mPreferenceScreenKey).getTitle());
+        }
+        super.onActivityCreated(savedInstanceState);
     }
 
     // Inicializa el summary de una preferencia. Llama recursivamente si se
@@ -80,16 +113,23 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
     // Cuando se cambia el valor de una preferencia.
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-            String key) {
+                                          String key) {
         // Se busca esa preferencia en el árbol de preferencias y se actualiza
         // el summary a partir del valor que contenga.
         actualizarSummary(findPreference(key));
     }
 
-    // Actuliza el summary de una preferencia dependiendo del tipo que sea.
+    // Actualiza el summary de una preferencia dependiendo del tipo que sea.
     private void actualizarSummary(Preference preferencia) {
+        // Si es un PasswordPreference.
+        if (preferencia instanceof PasswordPreference) {
+            PasswordPreference pref = (PasswordPreference) preferencia;
+            // Se establece como summary el valor textual de la preferencia
+            // convertida a asteriscos.
+            pref.setSummary(new String(new char[pref.getText().length()]).replace("\0", "*"));
+        }
         // Si es un EditTextPreference.
-        if (preferencia instanceof EditTextPreference) {
+        else if (preferencia instanceof EditTextPreference) {
             EditTextPreference pref = (EditTextPreference) preferencia;
             // Se establece como summary el valor (textual) de la preferencia.
             pref.setSummary(pref.getText());
@@ -105,5 +145,42 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
             Set<String> seleccionados = pref.getValues();
             pref.setSummary(seleccionados.toString());
         }
+    }
+
+    // Hack para que funcione MultiSelectListPreferenceDialog.
+    // Referencia: https://github.com/caarmen/network-monitor/tree/master/networkmonitor/src/main/java/ca/rmen/android/networkmonitor/app/prefs/hack
+    @Override
+    public void onDisplayPreferenceDialog(Preference preference) {
+        onDisplayPreferenceDialog(this, preference);
+    }
+
+    /**
+     * Displays preference dialogs which aren't supported by default in PreferenceFragmentCompat.
+     *
+     * @return true if we managed a preference which isn't supported by default, false otherwise.
+     */
+
+    public static boolean onDisplayPreferenceDialog(PreferenceFragmentCompat preferenceFragmentCompat, Preference preference) {
+        DialogFragment dialogFragment = (DialogFragment) preferenceFragmentCompat.getFragmentManager().findFragmentByTag(FRAGMENT_DIALOG_TAG);
+        if (dialogFragment != null) return false;
+
+        // Hack to allow a MultiSelectListPreference
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH
+                && preference instanceof MultiSelectListPreference) {
+            dialogFragment = MultiSelectListPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+        }
+        // Hack to allow a PasswordPreference
+        else if (preference instanceof PasswordPreference) {
+            dialogFragment = PasswordPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+        }
+
+        // We've created our own fragment:
+        if (dialogFragment != null) {
+            dialogFragment.setTargetFragment(preferenceFragmentCompat, 0);
+            dialogFragment.show(preferenceFragmentCompat.getFragmentManager(), FRAGMENT_DIALOG_TAG);
+            return true;
+        }
+
+        return false;
     }
 }

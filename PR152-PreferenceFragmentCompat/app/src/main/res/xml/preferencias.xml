@@ -7,7 +7,7 @@
             android:key="prefSincronizar"
             android:summaryOff="@string/no"
             android:summaryOn="@string/si"
-            android:title="@string/sincronizar" />
+            android:title="@string/sincronizar"/>
 
         <ListPreference
             android:defaultValue="@string/tipo_conexion_default"
@@ -16,7 +16,7 @@
             android:entries="@array/tipo_conexion_entries"
             android:entryValues="@array/tipo_conexion_values"
             android:key="prefTipoConexion"
-            android:title="@string/tipo_conexion" />
+            android:title="@string/tipo_conexion"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/apariencia">
         <CheckBoxPreference
@@ -24,7 +24,7 @@
             android:key="prefLetrasGrandes"
             android:summaryOff="@string/no"
             android:summaryOn="@string/si"
-            android:title="@string/letras_grandes" />
+            android:title="@string/letras_grandes"/>
 
         <MultiSelectListPreference
             android:defaultValue="@array/turnos_default"
@@ -33,19 +33,28 @@
             android:entryValues="@array/turnos_values"
             android:key="prefTurnos"
             android:summary="@string/turnos_detalle"
-            android:title="@string/turnos" />
+            android:title="@string/turnos"/>
 
         <Preference android:title="@string/web_oficial">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="http://www.iessaladillo.es" />
+                android:data="http://www.iessaladillo.es"/>
         </Preference>
+        <PreferenceScreen
+            android:key="PrefOtras"
+            android:title="@string/otras">
 
             <EditTextPreference
                 android:dialogTitle="@string/lema"
                 android:key="prefLema"
                 android:summary="@string/lema_detalle"
-                android:title="@string/lema" />
+                android:title="@string/lema"/>
+
+            <es.iessaladillo.pedrojoya.pr152.utils.PasswordPreference
+                android:dialogTitle="@string/password"
+                android:key="prefPassword"
+                android:summary="@string/password_detalle"
+                android:title="@string/password"/>
 
             <SwitchPreferenceCompat
                 android:key="prefRed"
@@ -53,7 +62,8 @@
                 android:summaryOn="@string/red_detalle_on"
                 android:switchTextOff="@string/no"
                 android:switchTextOn="@string/si"
-                android:title="@string/red" />
+                android:title="@string/red"/>
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>
