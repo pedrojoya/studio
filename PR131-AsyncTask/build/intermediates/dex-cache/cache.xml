@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
+        jar="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/classes-393189df8763fd0dc047cb1d97431f7be45cef84.jar" />
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_501e3007ac487b89588961a4c4f2112d1b3c5cac.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-59d6b7595233ec4af2db76137a2bf5bd3895a5bf.jar" />
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_4cefdf1c95082cfc3d5552a180dca2340f933742.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
+        jar="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/classes-d753539b3a6336f3ccdaac62cc55a6569fb9198b.jar" />
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_4370c958101af8a007eaed15096412b90d15a4be.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
+        jar="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/pedro/studio/PR131-AsyncTask/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_e673e0f11aed06adc224860d2fd262434fe36eb0.jar" />
     </item>
 
 </items>

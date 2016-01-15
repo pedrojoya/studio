@@ -4,9 +4,7 @@
     <string name="app_name">AsyncTask</string>
     <string name="iniciar">Iniciar</string>
     <string name="trabajando">Trabajando…(%1$d de %2$d)</string>
-    <plurals name="realizadas">
-        <item quantity="one">Realizada %1$d tarea</item>
-        <item quantity="other">Realizadass %1$d tarea</item>
-    </plurals>
+    <string name="cancelar">Cancelar</string>
+    <string name="tarea_cancelada">Tarea cancelada</string>
 
 </resources>

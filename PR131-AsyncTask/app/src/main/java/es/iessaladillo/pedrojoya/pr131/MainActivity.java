@@ -1,27 +1,35 @@
 package es.iessaladillo.pedrojoya.pr131;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements
-        TareaSecundaria.Callbacks {
+        TareaSecundariaFragment.Callbacks {
+
+    private static final String TAG_TAREA = "tag_tarea";
 
     private ProgressBar prbBarra;
     private TextView lblMensaje;
     private ProgressBar prbCirculo;
     private Button btnIniciar;
+    private Button btnCancelar;
 
-    private TareaSecundaria tarea;
+    private TareaSecundariaFragment.TareaSecundaria tarea;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initVistas();
+        if (savedInstanceState != null) {
+            restaurarControles();
+        }
     }
 
     // Obtiene e inicializa las vistas.
@@ -36,63 +44,86 @@ public class MainActivity extends AppCompatActivity implements
                 iniciar();
             }
         });
+        btnCancelar = (Button) findViewById(R.id.btnCancelar);
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelar();
+            }
+        });
+        actualizarVistas(false);
+    }
+
+    private void restaurarControles() {
+        // Si el fragmento existe y la tarea está aún ejecutándose.
+        TareaSecundariaFragment frg = (TareaSecundariaFragment) getSupportFragmentManager().findFragmentByTag(TAG_TAREA);
+        if(frg != null) {
+            if (frg.getTareaSecundaria().getStatus() == AsyncTask.Status.RUNNING) {
+                prbBarra.setVisibility(View.VISIBLE);
+                lblMensaje.setVisibility(View.VISIBLE);
+                prbCirculo.setVisibility(View.VISIBLE);
+                btnIniciar.setEnabled(false);
+                btnCancelar.setEnabled(true);
+            }
+        }
     }
 
     // Cuando se hace click en btnIniciar.
     private void iniciar() {
-        btnIniciar.setEnabled(false);
-        // Se crea la tarea secundaria.
-        tarea = new TareaSecundaria(this);
-        // Lanzo la tarea secundaria indicando que debe hacer 10 trabajos.
-        tarea.execute(10);
+        // Se crea el fragmento que ejecuta la tarea secundaria y se añade
+        // al gestor de fragmentos.
+        TareaSecundariaFragment frg = TareaSecundariaFragment.newInstance(
+                getResources().getInteger(R.integer.numPasos));
+        getSupportFragmentManager().beginTransaction().add(frg, TAG_TAREA).commit();
     }
 
-    private void mostrarBarras() {
-        prbBarra.setVisibility(View.VISIBLE);
-        lblMensaje.setText(R.string.trabajando);
-        lblMensaje.setVisibility(View.VISIBLE);
-        prbCirculo.setVisibility(View.VISIBLE);
+    // Cuando se hace click en btnCancelar.
+    private void cancelar() {
+        TareaSecundariaFragment frg = (TareaSecundariaFragment) getSupportFragmentManager().findFragmentByTag(TAG_TAREA);
+        if (frg != null) {
+            if (frg.getTareaSecundaria().getStatus() == AsyncTask.Status.RUNNING) {
+                frg.getTareaSecundaria().cancel(true);
+            }
+        }
     }
 
-    // Resetea las vistas.
-    private void resetearVistas() {
-        prbBarra.setVisibility(View.INVISIBLE);
-        prbBarra.setProgress(0);
-        prbCirculo.setVisibility(View.INVISIBLE);
-        prbCirculo.setProgress(0);
-        btnIniciar.setEnabled(true);
+    // Actualiza el estado de las vistas. Recibe si la tarea está iniciada o no.
+    private void actualizarVistas(boolean iniciada) {
+        if (!iniciada) {
+            prbBarra.setProgress(0);
+            lblMensaje.setText("");
+        }
+        btnIniciar.setEnabled(!iniciada);
+        btnCancelar.setEnabled(iniciada);
+        prbBarra.setVisibility(iniciada?View.VISIBLE:View.INVISIBLE);
+        lblMensaje.setVisibility(iniciada?View.VISIBLE:View.INVISIBLE);
+        prbCirculo.setVisibility(iniciada?View.VISIBLE:View.INVISIBLE);
     }
 
     @Override
     public void onPreExecute() {
         // Se hacen visibles las vistas para el progreso.
-        mostrarBarras();
+        actualizarVistas(true);
     }
 
     @Override
     public void onProgressUpdate(int progress) {
         // Se actualiza la barra.
-        lblMensaje.setText(getString(R.string.trabajando, progress, 10));
+        lblMensaje.setText(getString(R.string.trabajando, progress,
+                getResources().getInteger(R.integer.numPasos)));
         prbBarra.setProgress(progress);
     }
 
     @Override
     public void onPostExecute(int result) {
-        // Se muestra el mensaje de finalización.
-        lblMensaje.setText(getResources().getQuantityString(
-                R.plurals.realizadas, result, result));
-        resetearVistas();
+        // Se resetean las vistas.
+        actualizarVistas(false);
     }
 
-    // Al pausar la actividad.
     @Override
-    protected void onPause() {
-        super.onPause();
-        if (tarea != null) {
-            // Se cancela la tarea.
-            tarea.cancel(true);
-            tarea = null;
-        }
+    public void onCancelled() {
+        actualizarVistas(false);
+        Toast.makeText(this, R.string.tarea_cancelada, Toast.LENGTH_SHORT).show();
     }
 
 }

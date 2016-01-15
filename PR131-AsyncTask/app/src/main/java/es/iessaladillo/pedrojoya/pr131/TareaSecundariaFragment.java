@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr131;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,7 +42,7 @@ public class TareaSecundariaFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         if (activity instanceof Callbacks) {
             mListener = (Callbacks) activity;

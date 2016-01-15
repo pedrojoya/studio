@@ -13,9 +13,15 @@ public class TextoTransformer implements ViewPager.PageTransformer {
     public void transformPage(View view, float position) {
         // Buscamos dentro de la vista el TextView correspondiente al texto.
         TextView lblTexto = (TextView) view.findViewById(R.id.lblTexto);
-        // Hacemos que el TextView se traslade horizontalmente en sentido inverso
-        // lo que se está trasladando el resto de elementos.
-        lblTexto.setTranslationX(-(view.getWidth() * position));
+        // Si la página no está visible no tendrá traslación X.
+        if (position <= -1 || position >= 1) {
+            lblTexto.setTranslationX(0.0f);
+        }
+        else {
+            // Hacemos que el TextView se traslade horizontalmente en sentido inverso
+            // lo que se está trasladando el resto de elementos.
+            lblTexto.setTranslationX(-(view.getWidth() * position));
+        }
     }
 
 }
