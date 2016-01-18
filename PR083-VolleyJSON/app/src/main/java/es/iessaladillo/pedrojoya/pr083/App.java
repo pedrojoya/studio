@@ -11,6 +11,7 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         // Se crea la cola de peticiones de Volley.
         colaPeticiones = Volley.newRequestQueue(this);
     }

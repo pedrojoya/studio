@@ -4,9 +4,15 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,40 +37,85 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     // Constantes.
     private static final String URL_DATOS =
             "https://dl.dropboxusercontent.com/u/67422/Android/json/datos.json";
+    private static final String STATE_LISTA = "state_lista";
+    private static final String STATE_DATOS = "state_datos";
 
-    // Vistas.
-    private ListView lstAlumnos;
     private SwipeRefreshLayout swlPanel;
-
     private RequestQueue colaPeticiones;
+    private LinearLayoutManager mLayoutManager;
+    private AlumnosAdapter mAdaptador;
+    private TextView lblEmpty;
+    private Parcelable mEstadoLista;
+    private ArrayList<Alumno> mDatos;
 
-    // Al crearse la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initVistas();
         // Se obtiene la cola de peticiones de Volley.
         colaPeticiones = App.getRequestQueue();
-        // Si hay conexión a Internet.
-        if (isConnectionAvailable()) {
-            swlPanel.post(new Runnable() {
-                @Override
-                public void run() {
-                    swlPanel.setRefreshing(true);
-                }
-            });
-            // realizarPeticionJSON();
-            realizarPeticionGson();
-        } else {
-            mostrarToast(getString(R.string.no_hay_conexion_a_internet));
+        // Si venimos de estado anterior recuperamos datos.
+        if (savedInstanceState != null) {
+            mDatos = savedInstanceState.getParcelableArrayList(STATE_DATOS);
         }
+        else {
+            mDatos = new ArrayList<>();
+        }
+        initVistas();
+        lblEmpty.setVisibility(mAdaptador.isEmpty()?View.VISIBLE:View.INVISIBLE);
+        /* Si queremos que se ejecute automáticamente inicialmente */
+        if (savedInstanceState ==  null) {
+            // Si hay conexión a Internet.
+            if (isConnectionAvailable()) {
+                swlPanel.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        swlPanel.setRefreshing(true);
+                    }
+                });
+                // realizarPeticionJSON();
+                realizarPeticionGson();
+            } else {
+                mostrarToast(getString(R.string.no_hay_conexion_a_internet));
+            }
+        }
+
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
+        configToolbar();
+        configRecyclerView();
+        configSwipeRefresh();
+    }
+
+    // Configura la Toolbar.
+    private void configToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    // Configura el RecyclerView.
+    private void configRecyclerView() {
+        lblEmpty = (TextView) findViewById(R.id.lblEmpty);
+        RecyclerView lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        lstAlumnos.setHasFixedSize(true);
+        mAdaptador = new AlumnosAdapter(mDatos);
+        mAdaptador.setOnEmptyStateChangedListener(new AlumnosAdapter.OnEmptyStateChangedListener() {
+            @Override
+            public void onEmptyStateChanged(boolean isEmpty) {
+                lblEmpty.setVisibility(isEmpty ? View.VISIBLE: View.INVISIBLE);
+            }
+        });
+        lstAlumnos.setAdapter(mAdaptador);
+        mLayoutManager = new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false);
+        lstAlumnos.setLayoutManager(mLayoutManager);
+        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    // Configura el SwipeRefreshLayout.
+    private void configSwipeRefresh() {
         swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
         swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -139,9 +190,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     // Carga los alumnos en el ListView. Recibe la lista de alumnos.
     private void cargarAlumnos(List<Alumno> alumnos) {
-        // Se crea y asigna el adaptador para el ListView.
-        AlumnosAdapter adaptador = new AlumnosAdapter(this, new ArrayList<>(alumnos));
-        lstAlumnos.setAdapter(adaptador);
+        // Se cambian los datos del adaptador.
+        mAdaptador.swapData(new ArrayList<>(alumnos));
     }
 
     // Procesa la cadena JSON y retorna el ArrayList de alumnos.
@@ -168,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 alumnos.add(alumno);
             }
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         // Se retorna el ArrayList.
@@ -208,6 +257,31 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             realizarPeticionGson();
         } else {
             mostrarToast(getString(R.string.no_hay_conexion_a_internet));
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Se salva el estado del RecyclerView.
+        mEstadoLista = mLayoutManager.onSaveInstanceState();
+        outState.putParcelable(STATE_LISTA, mEstadoLista);
+        outState.putParcelableArrayList(STATE_DATOS, mAdaptador.getData());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Se obtiene el estado anterior de la lista.
+        mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Se retaura el estado de la lista.
+        if (mEstadoLista != null) {
+            mLayoutManager.onRestoreInstanceState(mEstadoLista);
         }
     }
 

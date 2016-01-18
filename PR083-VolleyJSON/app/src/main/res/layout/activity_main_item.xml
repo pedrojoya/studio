@@ -3,7 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="@dimen/tarjeta_cardCornerRadius"
+    card_view:cardElevation="@dimen/tarjeta_cardElevation"
+    card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -89,7 +93,7 @@
             android:layout_toEndOf="@+id/imgFoto"
             android:layout_marginLeft="@dimen/card_content_padding"
             android:layout_marginStart="@dimen/card_content_padding"
-            style="@style/AppCompat.Button.Flat.Common"/>
+            style="@style/Widget.AppCompat.Button.Borderless"/>
 
         <Button
             android:id="@+id/btnLlamar"
@@ -99,7 +103,7 @@
             android:layout_below="@+id/divider"
             android:layout_toRightOf="@+id/btnNotas"
             android:layout_toEndOf="@+id/btnNotas"
-            style="@style/AppCompat.Button.Flat.Common"/>
+            style="@style/Widget.AppCompat.Button.Borderless"/>
 
         <TextView
             android:id="@+id/lblRepetidor"
