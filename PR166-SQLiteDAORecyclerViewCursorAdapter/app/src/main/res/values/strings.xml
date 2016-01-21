@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SQLiteDAOSimpleCursorAdapter</string>
-    <string name="sin_alumnado_agregue_un_alumno">No hay alumnos.\nPulse para agregar</string>
+    <string name="app_name">Alumnado</string>
+    <string name="sin_alumnado_agregue_un_alumno">No hay alumnos</string>
     <string name="nombre">Nombre</string>
     <string name="curso">Curso</string>
     <string name="telefono">Teléfono</string>

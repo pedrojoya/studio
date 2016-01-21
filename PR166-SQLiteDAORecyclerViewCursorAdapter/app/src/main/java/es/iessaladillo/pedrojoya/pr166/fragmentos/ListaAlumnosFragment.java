@@ -5,155 +5,124 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.SparseBooleanArray;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView.MultiChoiceModeListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import es.iessaladillo.pedrojoya.pr069.R;
-import es.iessaladillo.pedrojoya.pr069.adaptadores.AlumnosAdapter;
-import es.iessaladillo.pedrojoya.pr069.bd.DAO;
-import es.iessaladillo.pedrojoya.pr069.bd.Instituto;
-import es.iessaladillo.pedrojoya.pr069.modelos.Alumno;
+import java.util.ArrayList;
 
-public class ListaAlumnosFragment extends Fragment {
+import es.iessaladillo.pedrojoya.pr166.R;
+import es.iessaladillo.pedrojoya.pr166.adaptadores.AlumnosAdapter;
+import es.iessaladillo.pedrojoya.pr166.bd.DAO;
+import es.iessaladillo.pedrojoya.pr166.modelos.Alumno;
+import es.iessaladillo.pedrojoya.pr166.utils.DividerItemDecoration;
+import es.iessaladillo.pedrojoya.pr166.utils.HidingScrollListener;
+
+public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
 
     private DAO mDao;
+    private TextView lblNuevoAlumno;
+    private AlumnosAdapter mAdaptador;
+    private ActionMode mActionMode;
+    private HidingScrollListener mHidingScrollListener;
 
     // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
-        public void onAgregarAlumno();
 
-        public void onEditarAlumno(long id);
+        void onAgregarAlumno();
 
-        public void onConfirmarEliminarAlumnos();
+        void onEditarAlumno(long id);
+
+        void onConfirmarEliminarAlumnos();
+
+        void onShowFAB();
+
+        void onHideFAB();
+
     }
 
-    // Variables miembro.
-    private ListView lstAlumnos;
     private OnListaAlumnosFragmentListener listener;
-    private ActionMode modoContextual;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
-    // Retorna la vista que debe mostrar el fragmento.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Se infla y se retorna el layout que debe mostrar el fragmento.
         return inflater.inflate(R.layout.fragment_lista_alumnos, container,
                 false);
     }
-
-    // Cuando la actividad se ha creado por completo.
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // Se obtienen e inicializan las vistas.
         initVistas(getView());
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas(View v) {
-        // Se configuran las vistas.
-        lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
-        RelativeLayout rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
-        // Si la lista está vacía se muestra un icono y un texto para que al
-        // pulsarlo se agregue un alumno.
-        rlListaVacia.setOnClickListener(new OnClickListener() {
-
+        lblNuevoAlumno = (TextView) v.findViewById(R.id.lblNuevoAlumno);
+        RecyclerView lstAlumnos = (RecyclerView) v.findViewById(R.id.lstAlumnos);
+        lstAlumnos.setHasFixedSize(true);
+        mAdaptador = new AlumnosAdapter();
+        mAdaptador.setOnItemClickListener(this);
+        mAdaptador.setOnItemLongClickListener(this);
+        mAdaptador.setOnEmptyStateChangedListener(new AlumnosAdapter.OnEmptyStateChangedListener() {
             @Override
-            public void onClick(View arg0) {
-                // Se informa al listener (actividad) de que se quiere agregar
-                // un alumno.
-                listener.onAgregarAlumno();
+            public void onEmptyStateChanged(boolean isEmpty) {
+                lblNuevoAlumno.setVisibility(isEmpty ? View.VISIBLE : View.INVISIBLE);
             }
         });
-        lstAlumnos.setEmptyView(rlListaVacia);
-        // Al hacer click sobre un elemento de la lista.
-        lstAlumnos.setOnItemClickListener(new OnItemClickListener() {
+        lstAlumnos.setAdapter(mAdaptador);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.VERTICAL, false);
+        lstAlumnos.setLayoutManager(mLayoutManager);
+        lstAlumnos.addItemDecoration(
+                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        // Drag & drop y Swipe to dismiss.
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
+                        ItemTouchHelper.DOWN,
+                        ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView,
+                                          RecyclerView.ViewHolder viewHolder,
+                                          RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        // Se elimina el elemento.
+                        eliminarAlumno(viewHolder.getAdapterPosition());
+                    }
+                });
+        itemTouchHelper.attachToRecyclerView(lstAlumnos);
+        // Hide / show FAB on scrolling.
+        mHidingScrollListener = new HidingScrollListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // Se obtiene el alumno sobre el que se ha pulsado.
-                Cursor c = (Cursor) lstAlumnos.getItemAtPosition(position);
-                Alumno alumno = DAO.cursorToAlumno(c);
-                // Se da la orden de editar.
-                listener.onEditarAlumno(alumno.getId());
-            }
-
-        });
-        // Se establece que se puedan seleccionar varios elementos de la lista.
-        lstAlumnos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-        lstAlumnos.setMultiChoiceModeListener(new MultiChoiceModeListener() {
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode arg0, Menu arg1) {
-                return false;
+            public void onHide() {
+                listener.onHideFAB();
             }
 
             @Override
-            public void onDestroyActionMode(ActionMode arg0) {
+            public void onShow() {
+                listener.onShowFAB();
             }
-
-            // Al crear el modo de acción contextual.
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                // Se infla la especificación del menú contextual en el
-                // menú.
-                mode.getMenuInflater().inflate(R.menu.fragment_lista_alumnos,
-                        menu);
-                // Se retorna que ya se ha gestionado el evento.
-                return true;
-            }
-
-            // Al pulsar sobre un ítem del modo de acción contextual.
-            @Override
-            public boolean onActionItemClicked(ActionMode modo, MenuItem item) {
-                // Dependiendo del elemento pulsado.
-                switch (item.getItemId()) {
-                    case R.id.mnuAlumnoEliminar:
-                        // Si hay elementos seleccionados se pide confirmación.
-                        if (lstAlumnos.getCheckedItemPositions().size() > 0) {
-                            // Se almacena el modo contextual para poder cerrarlo
-                            // una vez eliminados.
-                            modoContextual = modo;
-                            // Se pide confirmación.
-                            listener.onConfirmarEliminarAlumnos();
-                        }
-                        break;
-                }
-                // Se retorna que se ha procesado el evento.
-                return true;
-            }
-
-            // Al seleccionar un elemento de la lista.
-            @Override
-            public void onItemCheckedStateChanged(ActionMode mode,
-                                                  int position,
-                                                  long id, boolean checked) {
-                // Se actualiza el título de la action bar contextual.
-                mode.setTitle(lstAlumnos.getCheckedItemCount() + "");
-            }
-        });
-        (v.findViewById(R.id.btnAgregar)).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Se informa al listener (actividad) de que se quiere agregar
-                // un alumno.
-                listener.onAgregarAlumno();
-            }
-        });
+        };
+        lstAlumnos.addOnScrollListener(mHidingScrollListener);
     }
-
     // Al mostrar el fragmento.
     @Override
     public void onResume() {
@@ -175,13 +144,7 @@ public class ListaAlumnosFragment extends Fragment {
     private void cargarAlumnos() {
         // Se obtienen los datos de los alumnos a través del DAO.
         Cursor cursor = mDao.queryAllAlumnos(mDao.openWritableDatabase());
-        // Se establece un SimpleCursorAdapter como adaptador para la lista.
-        String[] from = {Instituto.Alumno.NOMBRE, Instituto.Alumno.CURSO,
-                Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION};
-        int[] to = {R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono,
-                R.id.lblDireccion};
-        lstAlumnos.setAdapter(new AlumnosAdapter(getActivity(),
-                R.layout.fragment_lista_alumnos_item, cursor, from, to, 0));
+        mAdaptador.swapCursor(cursor);
     }
 
     // Cuando el fragmento es cargado en la actividad.
@@ -200,34 +163,123 @@ public class ListaAlumnosFragment extends Fragment {
 
     // Elimina de la base de datos los alumnos seleccionados, actualiza el
     // adaptador y cierra el modo de acción conextual.
-    public void eliminarAlumnos() {
+    public void eliminarAlumnosSeleccionados() {
         // Se cierra la bd.
         mDao.closeDatabase();
         // Se obtiene el array con las posiciones seleccionadas.
-        SparseBooleanArray seleccionados = lstAlumnos.getCheckedItemPositions();
+        ArrayList<Integer> seleccionados = mAdaptador.getSelectedItemsPositions();
         // Por cada selección.
         for (int i = 0; i < seleccionados.size(); i++) {
-            // Se obtiene la posición del elemento en el adaptador.
-            int position = seleccionados.keyAt(i);
-            // Si ha sido seleccionado
-            if (seleccionados.valueAt(i)) {
-                // Se obtiene el alumo.
-                Cursor cursor = (Cursor) lstAlumnos.getItemAtPosition(position);
-                Alumno alu = DAO.cursorToAlumno(cursor);
-                // Se borra de la base de datos.
-                mDao.deleteAlumno(alu.getId());
-            }
+            // Se obtiene el alumo.
+            Alumno alu = DAO.cursorToAlumno(mAdaptador.getItemAtPosition(seleccionados.get(i)));
+            // Se borra de la base de datos.
+            mDao.deleteAlumno(alu.getId());
         }
         // Se finaliza el modo contextual.
-        modoContextual.finish();
+        mActionMode.finish();
         // Se obtiene el cursor actualizado.
         Cursor cursor = mDao.queryAllAlumnos(mDao.openWritableDatabase());
         // Se actualiza el cursor del adaptador.
-        AlumnosAdapter adaptador = ((AlumnosAdapter) lstAlumnos
-                .getAdapter());
-        adaptador.changeCursor(cursor);
-        // Se informa al adaptador de que ha habido cambios en sus datos.
-        adaptador.notifyDataSetChanged();
+        mAdaptador.swapCursor(cursor);
     }
 
+    private void eliminarAlumno(int position) {
+        // Se cierra la bd.
+        mDao.closeDatabase();
+        // Se obtiene el alumo.
+        Alumno alu = DAO.cursorToAlumno(mAdaptador.getItemAtPosition(position));
+        // Se borra de la base de datos.
+        mDao.deleteAlumno(alu.getId());
+        // Se obtiene el cursor actualizado.
+        Cursor cursor = mDao.queryAllAlumnos(mDao.openWritableDatabase());
+        // Se actualiza el cursor del adaptador.
+        mAdaptador.swapCursor(cursor);
+    }
+
+    @Override
+    public void onItemClick(View view, Cursor cursor, int position) {
+        if (mActionMode != null) {
+            toggleSelection(position);
+        } else {
+            // Se obtiene el alumno sobre el que se ha pulsado.
+            Alumno alumno = DAO.cursorToAlumno(cursor);
+            // Se da la orden de editar.
+            listener.onEditarAlumno(alumno.getId());
+        }
+    }
+
+    @Override
+    public void onItemLongClick(View view, Cursor cursor, int position) {
+        if (mActionMode != null) {
+            toggleSelection(position);
+        } else {
+            mActionMode = getActivity().startActionMode(this);
+            toggleSelection(position);
+            listener.onHideFAB();
+        }
+    }
+
+    // Cambia el estado de selección del elemento situado en dicha posición.
+    private void toggleSelection(int position) {
+        // Se cambia el estado de selección
+        mAdaptador.toggleSelection(position);
+        // Se actualiza el texto del action mode contextual.
+        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " +
+                mAdaptador.getItemCount());
+        // Si ya no hay ningún elemento seleccionado se finaliza el modo de
+        // acción contextual
+        if (mAdaptador.getSelectedItemCount() == 0) {
+            mActionMode.finish();
+        }
+    }
+
+    @Override
+    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        // Se infla la especificación del menú contextual en el
+        // menú.
+        actionMode.getMenuInflater().inflate(R.menu.fragment_lista_alumnos,
+                menu);
+        // Se retorna que ya se ha gestionado el evento.
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        // Dependiendo del elemento pulsado.
+        switch (menuItem.getItemId()) {
+            case R.id.mnuAlumnoEliminar:
+                // Si hay elementos seleccionados se pide confirmación.
+                if (mAdaptador.getSelectedItemCount() > 0) {
+                    // Se almacena el modo contextual para poder cerrarlo
+                    // una vez eliminados.
+                    mActionMode = actionMode;
+                    // Se pide confirmación.
+                    listener.onConfirmarEliminarAlumnos();
+                }
+                break;
+        }
+        // Se retorna que se ha procesado el evento.
+        return true;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode actionMode) {
+        mAdaptador.clearSelections();
+        mActionMode = null;
+        listener.onShowFAB();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mActionMode != null) {
+            mActionMode.finish();
+        }
+        mHidingScrollListener.reset();
+    }
 }

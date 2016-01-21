@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr069.modelos.Alumno;
+import es.iessaladillo.pedrojoya.pr166.modelos.Alumno;
 
 /**
  * Clase de acceso a los datos de la base de datps. Utiliza un objeto de un

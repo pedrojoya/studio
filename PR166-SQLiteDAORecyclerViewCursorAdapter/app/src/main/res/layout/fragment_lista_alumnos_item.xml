@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/item_background_selector"
+    android:clickable="true"
     android:minHeight="@dimen/three_lines_tile_height">
 
     <ImageView
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/three_lines_avatar_height"
         android:layout_height="@dimen/three_lines_avatar_height"
-        android:contentDescription="@string/avatar"
         android:layout_marginLeft="@dimen/three_lines_avatar_marginLeft"
         android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
-        android:layout_marginTop="@dimen/three_lines_avatar_marginTop"/>
+        android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
+        android:contentDescription="@string/avatar"/>
 
     <TextView
         android:id="@+id/lblNombre"
@@ -22,29 +24,30 @@
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
         android:paddingTop="@dimen/three_lines_text_paddingTop"
-        tools:text="Nombre"
         android:textSize="@dimen/three_lines_primary_text_textSize"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="Nombre"/>
 
     <TextView
         android:id="@+id/lblCurso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lblNombre"
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
-        tools:text="Curso"
-        android:layout_below="@+id/lblNombre"
         android:textSize="@dimen/three_lines_secundary_text_textSize"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        tools:text="Curso"/>
 
     <TextView
         android:id="@+id/lblDireccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lblCurso"
         android:paddingBottom="@dimen/three_lines_text_paddingBottom"
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
-        tools:text="Dirección"
-        android:layout_below="@+id/lblCurso"
-        android:textSize="@dimen/three_lines_secundary_text_textSize" />
+        android:textSize="@dimen/three_lines_secundary_text_textSize"
+        tools:text="Dirección"/>
+
 </RelativeLayout>

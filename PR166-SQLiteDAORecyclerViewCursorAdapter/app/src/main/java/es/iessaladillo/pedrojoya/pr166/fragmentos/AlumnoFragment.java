@@ -8,38 +8,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.software.shell.fab.ActionButton;
-
-import es.iessaladillo.pedrojoya.pr069.R;
-import es.iessaladillo.pedrojoya.pr069.bd.DAO;
-import es.iessaladillo.pedrojoya.pr069.modelos.Alumno;
+import es.iessaladillo.pedrojoya.pr166.R;
+import es.iessaladillo.pedrojoya.pr166.bd.DAO;
+import es.iessaladillo.pedrojoya.pr166.modelos.Alumno;
+import es.iessaladillo.pedrojoya.pr166.utils.ClickToSelectEditText;
 
 public class AlumnoFragment extends Fragment {
 
     // Constantes.
-    public static final String EXTRA_MODO = "modo";
-    public static final String EXTRA_ID = "id";
-    public static final String MODO_AGREGAR = "AGREGAR";
-    public static final String MODO_EDITAR = "EDITAR";
+    private static final String EXTRA_ID = "id";
 
     private EditText txtNombre;
     private EditText txtTelefono;
     private EditText txtDireccion;
-    private Spinner spnCurso;
-    private String modo;
-    private Alumno alumno;
-    private ArrayAdapter<CharSequence> adaptadorCursos;
+    private ClickToSelectEditText<String> spnCurso;
+    private Alumno mAlumno;
 
-    static public AlumnoFragment newInstance(String modo, long id) {
+    // Retorna una nueva instancia del fragmento (para agregar)
+    static public AlumnoFragment newInstance() {
+        return new AlumnoFragment();
+    }
+
+    // Retorna una nueva instancia del fragmento. Recibe el id del mAlumno
+    // (para actualizar).
+    static public AlumnoFragment newInstance(long idAlumno) {
         AlumnoFragment frg = new AlumnoFragment();
         Bundle argumentos = new Bundle();
-        argumentos.putString(EXTRA_MODO, modo);
-        argumentos.putLong(EXTRA_ID, id);
+        argumentos.putLong(EXTRA_ID, idAlumno);
         frg.setArguments(argumentos);
         return frg;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
@@ -51,63 +56,65 @@ public class AlumnoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // Se obtienen las referencias a las vistas.
-        initVistas();
-        // Se carga el spinner de cursos.
-        cargarCursos();
-        // Se establece el modo en el que debe comportarse la actividad
-        // dependiendo del argumento recibido.
-        // Dependiendo de la acción.
-        String modo = getArguments().getString(EXTRA_MODO);
-        if (modo.equals(MODO_EDITAR)) {
-            setModoEditar();
-        } else {
+        initViews();
+    }
+
+    // Obtiene la referencia a las vistas del layout.
+    private void initViews() {
+        if (getView() != null) {
+            spnCurso = (ClickToSelectEditText<String>) getView().findViewById(R.id.txtCurso);
+            cargarCursos();
+            txtNombre = (EditText) getView().findViewById(R.id.txtNombre);
+            txtTelefono = (EditText) getView().findViewById(R.id.txtTelefono);
+            txtDireccion = (EditText) getView().findViewById(R.id.txtDireccion);
+        }
+        // Establecemos el modo de funcionamiento dependiendo de si nos han
+        // pasado el id del alumno o no.
+        if (getArguments() == null || getArguments().getLong(EXTRA_ID) == 0) {
             setModoAgregar();
         }
+        else {
+            setModoEditar();
+        }
+
     }
 
-    // Carga los cursos en el spinner.
+    // Carga los cursos en el "spinner".
     private void cargarCursos() {
-        // Se crea un ArrayAdapter para el spinner, que use layouts estándar
-        // tanto para cuando no está desplegado como para cuando sí lo esté. La
-        // fuente de datos para el adaptador es un array de constantes de
-        // cadena.
-        adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
-                R.array.cursos, android.R.layout.simple_spinner_item);
-        adaptadorCursos
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
+                R.array.cursos, android.R.layout.simple_list_item_1);
         spnCurso.setAdapter(adaptadorCursos);
-    }
-
-    // Realiza las operaciones iniciales necesarias en el modo Editar.
-    private void setModoEditar() {
-        // Se establece el modo Editar.
-        modo = MODO_EDITAR;
-        // Se cargan los datos del alumno a partir del id recibido.
-        cargarAlumno(getArguments().getLong(EXTRA_ID));
-        // Se escriben los datos del alumno en las vistas correspondientes.
-        alumnoToVistas();
-        // Se actuliza el título de la actividad en relación al modo.
-        getActivity().setTitle(R.string.editar_alumno);
+        spnCurso.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
+            @Override
+            public void onItemSelectedListener(String item, int selectedIndex) {
+                spnCurso.setText(item);
+            }
+        });
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Agregar.
     private void setModoAgregar() {
-        // Se establece el modo Agregar.
-        modo = MODO_AGREGAR;
         // Se crea un nuevo objeto Alumno vacío.
-        alumno = new Alumno();
-        // Se actualiza el título de la actividad en relación al modo.
+        mAlumno = new Alumno();
         getActivity().setTitle(R.string.agregar_alumno);
     }
 
-    // Carga los datos del alumno provenientes de la BD en el objeto Alumno.
+    // Realiza las operaciones iniciales necesarias en el modo Editar.
+    private void setModoEditar() {
+        // Se cargan los datos del alumno a partir del id recibido.
+        cargarAlumno(getArguments().getLong(EXTRA_ID));
+        // Se escriben los datos del mAlumno en las vistas correspondientes.
+        alumnoToVistas();
+        getActivity().setTitle(R.string.editar_alumno);
+    }
+
+    // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(long id) {
-        // Se consulta en la BD los datos del alumno a través del objeto DAO.
-        alumno = (new DAO(getActivity())).queryAlumno(id);
-        // Si no se ha encontrado el alumno, se informa y se pasa al modo
+        // Se consulta en la BD los datos del mAlumno a través del objeto DAO.
+        mAlumno = (new DAO(getActivity())).queryAlumno(id);
+        // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
         // Agregar.
-        if (alumno == null) {
+        if (mAlumno == null) {
             Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
                     Toast.LENGTH_LONG).show();
             setModoAgregar();
@@ -115,14 +122,14 @@ public class AlumnoFragment extends Fragment {
     }
 
     // Guarda el alumno en pantalla en la base de datos.
-    void guardarAlumno() {
+    public void guardarAlumno() {
         // Se llena el objeto Alumno con los datos de las vistas.
         vistasToAlumno();
-        // Dependiendo del modo se inserta o actualiza el alumno (siempre y
+        // Dependiendo del modo se inserta o actualiza el mAlumno (siempre y
         // cuando se hayan introducido los datos obligatorios).
-        if (alumno.getNombre().length() > 0
-                && alumno.getTelefono().length() > 0) {
-            if (modo.equals(MODO_AGREGAR)) {
+        if (mAlumno.getNombre().length() > 0
+                && mAlumno.getTelefono().length() > 0) {
+            if (getArguments() == null || getArguments().getLong(EXTRA_ID) == 0) {
                 agregarAlumno();
             } else {
                 actualizarAlumno();
@@ -134,13 +141,13 @@ public class AlumnoFragment extends Fragment {
         }
     }
 
-    // Agrega un alumno a la base de datos.
+    // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
         // Se realiza el insert a través del objeto DAO.
-        long id = (new DAO(getActivity())).createAlumno(alumno);
+        long id = (new DAO(getActivity())).createAlumno(mAlumno);
         // Se informa de si ha ido bien.
         if (id >= 0) {
-            alumno.setId(id);
+            mAlumno.setId(id);
             Toast.makeText(getActivity(),
                     getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
                     .show();
@@ -154,10 +161,10 @@ public class AlumnoFragment extends Fragment {
         resetVistas();
     }
 
-    // Actualiza un alumno en la base de datos.
+    // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
         // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
-        if ((new DAO(getActivity())).updateAlumno(alumno)) {
+        if ((new DAO(getActivity())).updateAlumno(mAlumno)) {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
@@ -166,23 +173,6 @@ public class AlumnoFragment extends Fragment {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_incorrecta),
                     Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    // Obtiene la referencia a las vistas del layout.
-    private void initVistas() {
-        if (getView() != null) {
-            spnCurso = (Spinner) getView().findViewById(R.id.spnCurso);
-            txtNombre = (EditText) getView().findViewById(R.id.txtNombre);
-            txtTelefono = (EditText) getView().findViewById(R.id.txtTelefono);
-            txtDireccion = (EditText) getView().findViewById(R.id.txtDireccion);
-            ActionButton btnGuardar = (ActionButton) getView().findViewById(R.id.btnGuardar);
-            btnGuardar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    guardarAlumno();
-                }
-            });
         }
     }
 
@@ -195,19 +185,18 @@ public class AlumnoFragment extends Fragment {
 
     // Muestra los datos del objeto Alumno en las vistas.
     private void alumnoToVistas() {
-        txtNombre.setText(alumno.getNombre());
-        txtTelefono.setText(alumno.getTelefono());
-        txtDireccion.setText(alumno.getDireccion());
-        spnCurso.setSelection(adaptadorCursos.getPosition(alumno.getCurso()),
-                true);
+        txtNombre.setText(mAlumno.getNombre());
+        txtTelefono.setText(mAlumno.getTelefono());
+        txtDireccion.setText(mAlumno.getDireccion());
+        spnCurso.setText(mAlumno.getCurso());
     }
 
     // Llena el objeto Alumno con los datos de las vistas.
     private void vistasToAlumno() {
-        alumno.setNombre(txtNombre.getText().toString());
-        alumno.setTelefono(txtTelefono.getText().toString());
-        alumno.setDireccion(txtDireccion.getText().toString());
-        alumno.setCurso((String) spnCurso.getSelectedItem());
+        mAlumno.setNombre(txtNombre.getText().toString());
+        mAlumno.setTelefono(txtTelefono.getText().toString());
+        mAlumno.setDireccion(txtDireccion.getText().toString());
+        mAlumno.setCurso(spnCurso.getText().toString());
     }
 
 }

@@ -9,7 +9,6 @@ public class Alumno {
     private String direccion;
 
     public Alumno() {
-        // Establezo los valores iniciales para las propiedades
         this.id = 0;
         this.nombre = null;
         this.telefono = null;
@@ -29,7 +28,6 @@ public class Alumno {
         return nombre;
     }
 
-    // Getters y Setters de las propiedades.
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

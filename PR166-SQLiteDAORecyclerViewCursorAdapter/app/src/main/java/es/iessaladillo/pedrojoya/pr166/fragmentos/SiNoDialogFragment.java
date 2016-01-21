@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
-import es.iessaladillo.pedrojoya.pr069.R;
+import es.iessaladillo.pedrojoya.pr166.R;
 
 public class SiNoDialogFragment extends DialogFragment {
 
@@ -17,9 +17,9 @@ public class SiNoDialogFragment extends DialogFragment {
 
     // Interfaz pública para comunicación con la actividad.
     public interface SiNoDialogListener {
-        public void onPositiveButtonClick(DialogFragment dialog);
+        void onPositiveButtonClick(DialogFragment dialog);
 
-        public void onNegativeButtonClick(DialogFragment dialog);
+        void onNegativeButtonClick(DialogFragment dialog);
     }
 
     @Override
