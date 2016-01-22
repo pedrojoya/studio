@@ -71,6 +71,12 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     // Obtiene e inicializa las vistas.
     private void initVistas(View v) {
         lblNuevoAlumno = (TextView) v.findViewById(R.id.lblNuevoAlumno);
+        lblNuevoAlumno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onAgregarAlumno();
+            }
+        });
         RecyclerView lstAlumnos = (RecyclerView) v.findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter();

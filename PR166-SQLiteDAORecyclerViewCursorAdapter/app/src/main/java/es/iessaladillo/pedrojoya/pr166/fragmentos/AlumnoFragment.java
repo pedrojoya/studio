@@ -180,7 +180,9 @@ public class AlumnoFragment extends Fragment {
     private void resetVistas() {
         txtNombre.setText("");
         txtTelefono.setText("");
+        spnCurso.setText("");
         txtDireccion.setText("");
+        txtNombre.requestFocus();
     }
 
     // Muestra los datos del objeto Alumno en las vistas.
