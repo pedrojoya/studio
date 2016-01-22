@@ -64,7 +64,7 @@ public class ClickToSelectEditText<T> extends AppCompatEditText {
         });
     }
 
-    private void showDialog(View view) {
+    public void showDialog(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle(mHint);
         builder.setAdapter(mSpinnerAdapter, new DialogInterface.OnClickListener() {

@@ -2,7 +2,9 @@ package es.iessaladillo.pedrojoya.pr166.fragmentos;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,19 @@ public class AlumnoFragment extends Fragment {
 
     // Constantes.
     private static final String EXTRA_ID = "id";
+    private static final String STATE_TILNOMBRE = "state_tilNombre";
+    private static final String STATE_TILCURSO = "state_tilCurso";
+    private static final String STATE_TILTELEFONO = "state_tilTelefono";
 
     private EditText txtNombre;
     private EditText txtTelefono;
     private EditText txtDireccion;
     private ClickToSelectEditText<String> spnCurso;
     private Alumno mAlumno;
+    private TextInputLayout tilNombre;
+    private TextInputLayout tilCurso;
+    private TextInputLayout tilTelefono;
+    private TextInputLayout tilDireccion;
 
     // Retorna una nueva instancia del fragmento (para agregar)
     static public AlumnoFragment newInstance() {
@@ -56,16 +65,71 @@ public class AlumnoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews();
+        initViews(savedInstanceState);
     }
 
     // Obtiene la referencia a las vistas del layout.
-    private void initViews() {
+    private void initViews(Bundle savedInstanceState) {
         if (getView() != null) {
+            tilNombre = (TextInputLayout) getView().findViewById(R.id.tilNombre);
+            tilTelefono = (TextInputLayout) getView().findViewById(R.id.tilTelefono);
+            tilCurso = (TextInputLayout) getView().findViewById(R.id.tilCurso);
+            tilDireccion = (TextInputLayout) getView().findViewById(R.id.tilDireccion);
+            if (savedInstanceState != null) {
+                if (savedInstanceState.getBoolean(STATE_TILNOMBRE)) {
+                    tilNombre.setErrorEnabled(true);
+                    tilNombre.setError(getString(R.string.campo_obligatorio));
+                }
+                if (savedInstanceState.getBoolean(STATE_TILCURSO)) {
+                    tilCurso.setErrorEnabled(true);
+                    tilCurso.setError(getString(R.string.campo_obligatorio));
+                }
+                if (savedInstanceState.getBoolean(STATE_TILTELEFONO)) {
+                    tilTelefono.setErrorEnabled(true);
+                    tilTelefono.setError(getString(R.string.campo_obligatorio));
+                }
+                tilDireccion.setErrorEnabled(false);
+            }
+            txtNombre = (EditText) getView().findViewById(R.id.txtNombre);
+            txtNombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        if (tilNombre.isErrorEnabled() && checkRequiredEditText(txtNombre, tilNombre)) {
+                            tilNombre.setError("");
+                            tilNombre.setErrorEnabled(false);
+                        }
+                    }
+                }
+            });
             spnCurso = (ClickToSelectEditText<String>) getView().findViewById(R.id.txtCurso);
             cargarCursos();
-            txtNombre = (EditText) getView().findViewById(R.id.txtNombre);
+            spnCurso.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        if (tilCurso.isErrorEnabled() && checkRequiredEditText(spnCurso, tilCurso)) {
+                            tilCurso.setError("");
+                            tilCurso.setErrorEnabled(false);
+                        }
+                    }
+                    else {
+                        spnCurso.showDialog(v);
+                    }
+                }
+            });
             txtTelefono = (EditText) getView().findViewById(R.id.txtTelefono);
+            txtTelefono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        if (tilTelefono.isErrorEnabled() && checkRequiredEditText(txtTelefono, tilTelefono)) {
+                            tilTelefono.setError("");
+                            tilTelefono.setErrorEnabled(false);
+                        }
+                    }
+                }
+            });
             txtDireccion = (EditText) getView().findViewById(R.id.txtDireccion);
         }
         // Establecemos el modo de funcionamiento dependiendo de si nos han
@@ -123,21 +187,43 @@ public class AlumnoFragment extends Fragment {
 
     // Guarda el alumno en pantalla en la base de datos.
     public void guardarAlumno() {
-        // Se llena el objeto Alumno con los datos de las vistas.
-        vistasToAlumno();
-        // Dependiendo del modo se inserta o actualiza el mAlumno (siempre y
+        // Dependiendo del modo se inserta o actualiza el Alumno (siempre y
         // cuando se hayan introducido los datos obligatorios).
-        if (mAlumno.getNombre().length() > 0
-                && mAlumno.getTelefono().length() > 0) {
+        if (isValidForm()) {
+            // Se llena el objeto Alumno con los datos de las vistas.
+            vistasToAlumno();
             if (getArguments() == null || getArguments().getLong(EXTRA_ID) == 0) {
                 agregarAlumno();
             } else {
                 actualizarAlumno();
             }
-        } else {
-            Toast.makeText(getActivity(),
-                    getString(R.string.datos_obligatorios),
-                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isValidForm() {
+        boolean valido = true;
+        if (!checkRequiredEditText(txtNombre, tilNombre)) {
+            valido = false;
+        }
+        if (!checkRequiredEditText(spnCurso, tilCurso)) {
+            valido = false;
+        }
+        if (!checkRequiredEditText(txtTelefono, tilTelefono)) {
+            valido = false;
+        }
+        return valido;
+    }
+
+    private boolean checkRequiredEditText(EditText txt, TextInputLayout til) {
+        if (TextUtils.isEmpty(txt.getText().toString())) {
+            til.setErrorEnabled(true);
+            til.setError(getString(R.string.campo_obligatorio));
+            return false;
+        }
+        else {
+            til.setErrorEnabled(false);
+            til.setError("");
+            return true;
         }
     }
 
@@ -201,4 +287,11 @@ public class AlumnoFragment extends Fragment {
         mAlumno.setCurso(spnCurso.getText().toString());
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(STATE_TILNOMBRE, tilNombre.isErrorEnabled());
+        outState.putBoolean(STATE_TILCURSO, tilCurso.isErrorEnabled());
+        outState.putBoolean(STATE_TILTELEFONO, tilTelefono.isErrorEnabled());
+    }
 }

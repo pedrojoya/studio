@@ -21,5 +21,6 @@
     <string name="title_activity_alumno">AlumnoActivity</string>
     <string name="esta_seguro_de_eliminar_los_alumnos">¿Está seguro de eliminar los alumnos?</string>
     <string name="avatar">avatar</string>
+    <string name="campo_obligatorio">Campo obligatorio</string>
 
 </resources>
