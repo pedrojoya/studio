@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
         .ViewHolder> {
 
-    private final ArrayList<Foto> mDatos;
+    private ArrayList<Foto> mDatos;
 
     // Constructor. Recibe contexto y datos.
     public FotosAdapter(ArrayList<Foto> datos) {
@@ -24,7 +24,10 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
     // Retorna el número de ítems de datos.
     @Override
     public int getItemCount() {
-        return mDatos.size();
+        if (mDatos != null) {
+            return mDatos.size();
+        }
+        return 0;
     }
 
     // Cuando se debe crear una nueva vista que represente el ítem.
@@ -70,6 +73,10 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
         for (int i = getItemCount() - 1; i >= 0; i--) {
             removeItem(i);
         }
+    }
+
+    public ArrayList<Foto> getData() {
+        return mDatos;
     }
 
     // Contenedor de vistas para la vista correspondiente al elemento.

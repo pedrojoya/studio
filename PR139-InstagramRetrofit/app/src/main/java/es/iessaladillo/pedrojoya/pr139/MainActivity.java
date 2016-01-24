@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,34 +20,53 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr139.api.Datum;
 import es.iessaladillo.pedrojoya.pr139.api.TagResponse;
+import retrofit.Call;
 import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+
+    private static final String STATE_LISTA = "state_lista";
+    private static final String STATE_LISTA_DATOS = "state_lista_datos";
+    private static final String STATE_MAX_TAG_ID = "state_max_tag_id";
 
     private FotosAdapter mAdaptador;
     private String mMaxTagId;
     private SwipeRefreshLayout swlPanel;
     private EndlessRecyclerOnScrollListener mEndlessScrollListener;
     private Instagram.ApiInterface mApiClient;
+    private GridLayoutManager mGridLayoutManager;
+    private Parcelable mEstadoLista;
+    private ArrayList<Foto> mDatos;
 
     // Al crearse la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Se restauran los datos si provenimos de un cambio de orientación.
+        if (savedInstanceState == null) {
+            mDatos = new ArrayList<Foto>();
+        }
+        else {
+            mDatos = savedInstanceState.getParcelableArrayList(STATE_LISTA_DATOS);
+            mMaxTagId = savedInstanceState.getString(STATE_MAX_TAG_ID);
+        }
         initVistas();
         // Se obtiene la interfaz de acceso a la api.
         mApiClient = Instagram.getApiInterface(this);
         // Se cargan los datos iniciales.
-        swlPanel.post(new Runnable() {
-            @Override
-            public void run() {
-                swlPanel.setRefreshing(true);
-                onRefresh();
-            }
-        });
+        if (savedInstanceState == null) {
+            mDatos = new ArrayList<Foto>();
+            swlPanel.post(new Runnable() {
+                @Override
+                public void run() {
+                    swlPanel.setRefreshing(true);
+                    onRefresh();
+                }
+            });
+        }
     }
 
     // Obtiene e inicializa las vistas.
@@ -59,15 +79,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 android.R.color.holo_red_light);
         swlPanel.setOnRefreshListener(this);
         RecyclerView lstFotos = (RecyclerView) this.findViewById(R.id.lstFotos);
-        mAdaptador = new FotosAdapter(new ArrayList<Foto>());
+        mAdaptador = new FotosAdapter(mDatos);
         lstFotos.setHasFixedSize(true);
         lstFotos.setAdapter(mAdaptador);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, getResources()
+        mGridLayoutManager = new GridLayoutManager(this, getResources()
                 .getInteger(R.integer.grid_columns),
                 LinearLayoutManager.VERTICAL, false);
-        lstFotos.setLayoutManager(gridLayoutManager);
+        lstFotos.setLayoutManager(mGridLayoutManager);
         lstFotos.setItemAnimator(new DefaultItemAnimator());
-        mEndlessScrollListener = new EndlessRecyclerOnScrollListener(gridLayoutManager) {
+        mEndlessScrollListener = new EndlessRecyclerOnScrollListener(mGridLayoutManager) {
             @Override
             public void onLoadMore(int current_page) {
                 obtenerDatos();
@@ -82,34 +102,39 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     // Obtiene los datos JSON de la lista de fotos de Instagram.
     private void obtenerDatos() {
-        mApiClient.getTagPhotos("algeciras", Instagram.CLIENT_ID, mMaxTagId,
-                new Callback<TagResponse>() {
+        Call<TagResponse> peticion = mApiClient.getTagPhotos("algeciras", Instagram.CLIENT_ID, mMaxTagId);
+        peticion.enqueue(new Callback<TagResponse>() {
             @Override
-            public void success(TagResponse tagResponse, Response response) {
-                // Se obtiene la próxima URL.
-                mMaxTagId = tagResponse.getPagination().getNextMaxTagId();
-                Log.d("Mia", mMaxTagId);
-                // Se añade cada foto al adaptador.
-                List<Datum> datos = tagResponse.getData();
-                for (Datum dato : datos) {
-                    if (dato.getType().equals(
-                            Instagram.TIPO_ELEMENTO_IMAGEN)) {
-                        // Se crea un objeto modelo.
-                        Foto foto = new Foto();
-                        foto.setDescripcion(dato.getUser().getUsername());
-                        foto.setUrl(dato.getImages().getThumbnail().getUrl());
-                        mAdaptador.addItem(foto, mAdaptador.getItemCount());
+            public void onResponse(Response<TagResponse> response, Retrofit retrofit) {
+                // Si la respuesta es correcta.
+                TagResponse tagResponse = response.body();
+                if (tagResponse != null) {
+                    // Se obtiene la próxima URL.
+                    mMaxTagId = tagResponse.getPagination().getNextMaxTagId();
+                    Log.d("Mia", mMaxTagId);
+                    // Se añade cada foto al adaptador.
+                    List<Datum> datos = tagResponse.getData();
+                    for (Datum dato : datos) {
+                        if (dato.getType().equals(
+                                Instagram.TIPO_ELEMENTO_IMAGEN)) {
+                            // Se crea un objeto modelo.
+                            Foto foto = new Foto();
+                            foto.setDescripcion(dato.getUser().getUsername());
+                            foto.setUrl(dato.getImages().getThumbnail().getUrl());
+                            mAdaptador.addItem(foto, mAdaptador.getItemCount());
+                        }
                     }
+                    // Se indica al gridview que ya ha finalizado la carga.
+                    swlPanel.setRefreshing(false);
                 }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
                 // Se indica al gridview que ya ha finalizado la carga.
                 swlPanel.setRefreshing(false);
             }
 
-            @Override
-            public void failure(RetrofitError error) {
-                // Se indica al gridview que ya ha finalizado la carga.
-                swlPanel.setRefreshing(false);
-            }
         });
     }
 
@@ -145,8 +170,30 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Se salva el estado del RecyclerView.
+        mEstadoLista = mGridLayoutManager.onSaveInstanceState();
+        outState.putParcelable(STATE_LISTA, mEstadoLista);
+        outState.putParcelableArrayList(STATE_LISTA_DATOS, mAdaptador.getData());
+        outState.putString(STATE_MAX_TAG_ID, mMaxTagId);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Se obtiene el estado anterior de la lista.
+        mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        // Se retaura el estado de la lista.
+        if (mEstadoLista != null) {
+            mGridLayoutManager.onRestoreInstanceState(mEstadoLista);
+        }
+        // Se resetea el detector de scroll.
         mEndlessScrollListener.reset(0, true);
     }
 
