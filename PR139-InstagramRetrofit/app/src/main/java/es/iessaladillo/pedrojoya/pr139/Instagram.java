@@ -108,8 +108,7 @@ class Instagram {
         File httpCacheDirectory = new File(context.getApplicationContext()
                 .getCacheDir().getAbsolutePath(), "HttpCache");
         // Se crea la caché, indicando el directorio y el tamaño (10 megas)
-        Cache httpResponseCache = null;
-            httpResponseCache = new Cache(httpCacheDirectory, 10 *
+        Cache httpResponseCache = new Cache(httpCacheDirectory, 10 *
                     1024);
         return httpResponseCache;
     }

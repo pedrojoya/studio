@@ -21,7 +21,7 @@
         android:gravity="center"
         android:minHeight="@dimen/single_line_grid_footer_minHeight"
         android:padding="@dimen/single_line_grid_footer_padding"
-        android:textColor="@color/primary_text_default_material_dark"
-        android:textSize="@dimen/abc_text_size_subhead_material"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="@android:color/white"
         tools:text="Quillo que"/>
 </FrameLayout>

@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -21,9 +20,10 @@ import com.github.mikephil.charting.utils.LargeValueFormatter;
 import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr140.data.Escrutinio_sitio;
+import retrofit.Call;
 import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -92,12 +92,9 @@ public class MainActivity extends AppCompatActivity {
         for (Poblacion poblacion : mPoblaciones) {
             nombres.add(poblacion.getNombre());
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getSupportActionBar().getThemedContext(),
-                R.layout.appbar_filter_title,
-                nombres);
-        adapter.setDropDownViewResource(R.layout.appbar_filter_list);
-        mSpnToolbar.setAdapter(adapter);
+        ToolbarSpinnerAdapter adaptador = new ToolbarSpinnerAdapter(
+                getSupportActionBar().getThemedContext(), nombres);
+        mSpnToolbar.setAdapter(adaptador);
         mSpnToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view,
@@ -113,17 +110,20 @@ public class MainActivity extends AppCompatActivity {
 
     // Obtiene los datos electorales.
     private void obtenerDatos(String codigo) {
-        mApiClient.getPoblacionData(codigo, new Callback<Escrutinio_sitio>() {
+        Call<Escrutinio_sitio> peticion = mApiClient.getPoblacionData(codigo);
+        peticion.enqueue(new Callback<Escrutinio_sitio>() {
             @Override
-            public void success(final Escrutinio_sitio escrutinio,
-                                Response response) {
-                // Se establecen los datos del gráfico
-                setChartData(escrutinio);
+            public void onResponse(Response<Escrutinio_sitio> response, Retrofit retrofit) {
+                Escrutinio_sitio escrutinio = response.body();
+                if (escrutinio != null) {
+                    // Se establecen los datos del gráfico
+                    setChartData(escrutinio);
+                }
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                Log.d(getString(R.string.app_name), error.getMessage());
+            public void onFailure(Throwable t) {
+                Log.d(getString(R.string.app_name), t.getMessage());
             }
         });
     }
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             if (electos > 0) {
                 int color = getColorPartido(escrutinio.getResultados()
                         .getPartidos().get(i).getId_partido());
-                colores.add(Integer.valueOf(color));
+                colores.add(color);
                 valores.add(new Entry(electos, i));
                 nombres.add(
                         escrutinio.getResultados().getPartidos().get(i).getNombre());
