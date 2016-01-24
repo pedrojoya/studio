@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr139;
 
 import android.content.Context;
 
+import com.facebook.stetho.okhttp.StethoInterceptor;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
@@ -66,7 +67,7 @@ class Instagram {
         // Se crea el cliente OkHttpClient y se le indica la caché que debe usar.
         OkHttpClient client = new OkHttpClient();
         client.setCache(createCache(context));
-        // Se le añade un interceptador para añadir las cabeceras necesarias
+        // Se le añade un interceptor para añadir las cabeceras necesarias
         // para trabajar con la caché.
         client.interceptors().add(new Interceptor() {
             @Override
@@ -84,10 +85,12 @@ class Instagram {
                 return chain.proceed(newRequest);
             }
         });
-        // Se añade un interceptador para los logs.
+        // Se añade un interceptor para los logs.
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         client.interceptors().add(logInterceptor);
+        // Se añade el interceptor para Stetho.
+        client.networkInterceptors().add(new StethoInterceptor());
         // Se construye el objeto Retrofit y a partir de él se retorna el
         // servicio de acceso a la API.
         Retrofit retrofit = new Retrofit.Builder()
