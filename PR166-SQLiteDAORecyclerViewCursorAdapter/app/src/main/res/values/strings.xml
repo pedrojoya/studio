@@ -10,7 +10,6 @@
     <string name="agregar_alumno">Agregar</string>
     <string name="editar_alumno">Actualizar</string>
     <string name="eliminar_alumno">Eliminar</string>
-    <string name="datos_obligatorios">No ha introducido datos obligatorios</string>
     <string name="insercion_correcta">El alumno se ha agregado correctamente</string>
     <string name="insercion_incorrecta">Se ha producido un error al agregar el alumno</string>
     <string name="actualizacion_correcta">El alumno se ha actualizado correctamente</string>

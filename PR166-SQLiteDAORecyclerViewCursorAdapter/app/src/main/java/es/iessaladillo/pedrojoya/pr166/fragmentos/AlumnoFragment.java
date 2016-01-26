@@ -1,15 +1,22 @@
 package es.iessaladillo.pedrojoya.pr166.fragmentos;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import es.iessaladillo.pedrojoya.pr166.R;
@@ -34,6 +41,10 @@ public class AlumnoFragment extends Fragment {
     private TextInputLayout tilCurso;
     private TextInputLayout tilTelefono;
     private TextInputLayout tilDireccion;
+    private ImageView imgNombre;
+    private ImageView imgCurso;
+    private ImageView imgTelefono;
+    private ImageView imgDireccion;
 
     // Retorna una nueva instancia del fragmento (para agregar)
     static public AlumnoFragment newInstance() {
@@ -90,54 +101,103 @@ public class AlumnoFragment extends Fragment {
                 }
                 tilDireccion.setErrorEnabled(false);
             }
+            imgNombre = (ImageView) getView().findViewById(R.id.imgNombre);
             txtNombre = (EditText) getView().findViewById(R.id.txtNombre);
             txtNombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
+                    Drawable drawable = getResources().getDrawable(R.drawable.ic_face);
+                    drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
                         if (tilNombre.isErrorEnabled() && checkRequiredEditText(txtNombre, tilNombre)) {
                             tilNombre.setError("");
                             tilNombre.setErrorEnabled(false);
                         }
+                        DrawableCompat.setTintList(drawable, null);
+                    } else {
+                        DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+                        DrawableCompat.setTint(drawable, getResources().getColor(R.color.accent));
                     }
+                    imgNombre.setImageDrawable(drawable);
                 }
             });
+            imgCurso = (ImageView) getView().findViewById(R.id.imgCurso);
             spnCurso = (ClickToSelectEditText<String>) getView().findViewById(R.id.txtCurso);
             cargarCursos();
             spnCurso.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
+                    Drawable drawable = getResources().getDrawable(R.drawable.ic_create);
+                    drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
                         if (tilCurso.isErrorEnabled() && checkRequiredEditText(spnCurso, tilCurso)) {
                             tilCurso.setError("");
                             tilCurso.setErrorEnabled(false);
                         }
-                    }
-                    else {
+                        DrawableCompat.setTintList(drawable, null);
+                    } else {
+                        DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+                        DrawableCompat.setTint(drawable, getResources().getColor(R.color.accent));
                         spnCurso.showDialog(v);
                     }
+                    imgCurso.setImageDrawable(drawable);
                 }
             });
+            imgTelefono = (ImageView) getView().findViewById(R.id.imgTelefono);
             txtTelefono = (EditText) getView().findViewById(R.id.txtTelefono);
             txtTelefono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
+                    Drawable drawable = getResources().getDrawable(R.drawable.ic_phone);
+                    drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
                         if (tilTelefono.isErrorEnabled() && checkRequiredEditText(txtTelefono, tilTelefono)) {
                             tilTelefono.setError("");
                             tilTelefono.setErrorEnabled(false);
                         }
+                        DrawableCompat.setTintList(drawable, null);
+                    } else {
+                        DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+                        DrawableCompat.setTint(drawable, getResources().getColor(R.color.accent));
+                    }
+                    imgTelefono.setImageDrawable(drawable);
+                }
+            });
+            imgDireccion = (ImageView) getView().findViewById(R.id.imgDireccion);
+            txtDireccion = (EditText) getView().findViewById(R.id.txtDireccion);
+            txtDireccion.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!tilDireccion.isErrorEnabled()) {
+                        Drawable drawable = getResources().getDrawable(R.drawable.ic_home);
+                        drawable = DrawableCompat.wrap(drawable);
+                        if (!hasFocus) {
+                            DrawableCompat.setTintList(drawable, null);
+                        } else {
+                            DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+                            DrawableCompat.setTint(drawable, getResources().getColor(R.color.accent));
+                        }
+                        imgDireccion.setImageDrawable(drawable);
                     }
                 }
             });
-            txtDireccion = (EditText) getView().findViewById(R.id.txtDireccion);
+            txtDireccion.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        guardarAlumno();
+                        return true;
+                    }
+                    return false;
+
+                }
+            });
         }
         // Establecemos el modo de funcionamiento dependiendo de si nos han
         // pasado el id del alumno o no.
         if (getArguments() == null || getArguments().getLong(EXTRA_ID) == 0) {
             setModoAgregar();
-        }
-        else {
+        } else {
             setModoEditar();
         }
 
@@ -219,8 +279,7 @@ public class AlumnoFragment extends Fragment {
             til.setErrorEnabled(true);
             til.setError(getString(R.string.campo_obligatorio));
             return false;
-        }
-        else {
+        } else {
             til.setErrorEnabled(false);
             til.setError("");
             return true;

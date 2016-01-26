@@ -1,7 +1,7 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="fragment_alumno_padding">10dp</dimen>
-    <dimen name="fragment_alumno_marginBottom">5dp</dimen>
+    <dimen name="fragment_alumno_padding">16dp</dimen>
+    <dimen name="fragment_alumno_marginBottom">16dp</dimen>
     <dimen name="three_lines_tile_height">88dp</dimen>
     <dimen name="three_lines_text_paddingLeft">72dp</dimen>
     <dimen name="three_lines_text_paddingRight">16dp</dimen>
