@@ -49,7 +49,6 @@ public class DAO {
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares campo-valor para realizar la inserción.
         ContentValues valores = new ContentValues();
-        valores.put(Instituto.Alumno.AVATAR, alumno.getAvatar());
         valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
         valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
         valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
@@ -84,7 +83,6 @@ public class DAO {
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares clave-valor con cada campo-valor.
         ContentValues valores = new ContentValues();
-        valores.put(Instituto.Alumno.AVATAR, alumno.getAvatar());
         valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
         valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
         valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
@@ -113,7 +111,7 @@ public class DAO {
         if (cursor != null) {
             cursor.moveToFirst();
             // Retorno el objeto Alumno correspondiente.
-            alumno = cursorToAlumno(cursor);
+            alumno = cursorToAlumno (cursor);
         }
         // Se cierra la base de datos.
         mHelper.close();
@@ -126,7 +124,7 @@ public class DAO {
     // por nombre.
     public Cursor queryAllAlumnos(SQLiteDatabase bd) {
         // Se realiza la consulta y se retorna el cursor.
-        return bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
+        return  bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
                 null, null, null, Instituto.Alumno.NOMBRE);
     }
 
@@ -156,14 +154,12 @@ public class DAO {
     // Crea un objeto Alumno a partir del registro actual de un cursor. Recibe
     // el cursor y retorna un nuevo objeto Alumno cargado con los datos del
     // registro actual del cursor.
-    public Alumno cursorToAlumno(Cursor cursorAlumno) {
+    public static Alumno cursorToAlumno(Cursor cursorAlumno) {
         // Crea un objeto Alumno y guarda los valores provenientes
         // del registro actual del cursor.
         Alumno alumno = new Alumno();
         alumno.setId(cursorAlumno.getLong(
                 cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno._ID)));
-        alumno.setAvatar(cursorAlumno.getString(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.AVATAR)));
         alumno.setNombre(cursorAlumno.getString(
                 cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE)));
         alumno.setCurso(cursorAlumno.getString(

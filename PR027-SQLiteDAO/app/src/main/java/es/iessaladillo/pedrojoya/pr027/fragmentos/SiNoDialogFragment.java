@@ -17,9 +17,9 @@ public class SiNoDialogFragment extends DialogFragment {
 
     // Interfaz pública para comunicación con la actividad.
     public interface SiNoDialogListener {
-        public void onPositiveButtonClick(DialogFragment dialog);
+        void onPositiveButtonClick(DialogFragment dialog);
 
-        public void onNegativeButtonClick(DialogFragment dialog);
+        void onNegativeButtonClick(DialogFragment dialog);
     }
 
     @Override
