@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 import es.iessaladillo.pedrojoya.pr027.R;
 import es.iessaladillo.pedrojoya.pr027.bd.DAO;
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
@@ -45,6 +47,7 @@ public class AlumnoFragment extends Fragment {
     private ImageView imgCurso;
     private ImageView imgTelefono;
     private ImageView imgDireccion;
+    private Random mAleatorio;
 
     // Retorna una nueva instancia del fragmento (para agregar)
     static public AlumnoFragment newInstance() {
@@ -76,6 +79,7 @@ public class AlumnoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mAleatorio = new Random();
         initViews(savedInstanceState);
     }
 
@@ -353,4 +357,14 @@ public class AlumnoFragment extends Fragment {
         outState.putBoolean(STATE_TILCURSO, tilCurso.isErrorEnabled());
         outState.putBoolean(STATE_TILTELEFONO, tilTelefono.isErrorEnabled());
     }
+
+    // Retorna una url aleatoria correspondiente a una imagen para el avatar.
+    private String getRandomAvatarUrl() {
+        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
+                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
+        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
+                (mAleatorio.nextInt(10) + 1) + "/";
+    }
+
 }

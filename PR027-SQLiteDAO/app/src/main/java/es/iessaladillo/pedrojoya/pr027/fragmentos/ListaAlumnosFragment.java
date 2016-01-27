@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr027.fragmentos;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
