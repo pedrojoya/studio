@@ -11,7 +11,7 @@ import java.util.List;
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 
 /**
- * Clase de acceso a los datos de la base de datps. Utiliza un objeto de un
+ * Clase de acceso a los datos de la base de datos. Utiliza un objeto de un
  * clase privada interna para gestionar realmente la base de datos, creando
  * hacia el exterior un wrapper (una envoltura) que permita a otros objetos
  * interactuar con la base de datos si hacer uso de sentencias SQL ni conocer
@@ -19,13 +19,24 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
  */
 public class DAO {
 
-    // Variables a nivel de clase.
+    private static DAO sInstance;
+
     private final Helper mHelper; // Ayudante para la creación y gestión de la BD.
 
     // Constructor. Recibe el contexto.
-    public DAO(Context contexto) {
+    private DAO(Context contexto) {
         // Se obtiene el mHelper.
-        mHelper = new Helper(contexto);
+        mHelper = Helper.getInstance(contexto);
+    }
+
+    // Retorna la instancia (única) del helper.
+    public static synchronized DAO getInstance(Context context) {
+        // Al usar el contexto de la aplicación nos aseguramos de que no haya
+        // memory leaks si el recibido es el contexto de una actividad.
+        if (sInstance == null) {
+            sInstance = new DAO(context);
+        }
+        return sInstance;
     }
 
     // Abre la base de datos para escritura.

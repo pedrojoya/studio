@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr027.fragmentos;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -27,11 +28,16 @@ import es.iessaladillo.pedrojoya.pr027.utils.HidingScrollListener;
 
 public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
 
+    private static final String STATE_LISTA = "state_lista";
+    private static final String STATE_DATOS = "state_datos";
+
     private TextView lblNuevoAlumno;
     private AlumnosAdapter mAdaptador;
     private ActionMode mActionMode;
     private HidingScrollListener mHidingScrollListener;
     private DAO mDao;
+    private LinearLayoutManager mLayoutManager;
+    private Parcelable mEstadoLista;
 
     // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
@@ -65,6 +71,16 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initVistas(getView());
+        mDao = DAO.getInstance(getActivity());
+        if (savedInstanceState == null) {
+            // Se carga la lista de alumnos.
+            cargarAlumnos();
+        }
+        else {
+            // Se obtiene el estado anterior de la lista y los datos.
+            mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
+            mAdaptador.swapData(savedInstanceState.<Alumno>getParcelableArrayList(STATE_DATOS));
+        }
     }
 
     // Obtiene e inicializa las vistas.
@@ -88,7 +104,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
             }
         });
         lstAlumnos.setAdapter(mAdaptador);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+        mLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
         lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.addItemDecoration(
@@ -128,23 +144,27 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         };
         lstAlumnos.addOnScrollListener(mHidingScrollListener);
     }
-    // Al mostrar el fragmento.
+
     @Override
-    public void onResume() {
-        mDao = new DAO(getActivity());
-        // Se carga la lista de alumnos.
-        cargarAlumnos();
-        super.onResume();
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Se salva el estado del RecyclerView y los datos.
+        mEstadoLista = mLayoutManager.onSaveInstanceState();
+        outState.putParcelable(STATE_LISTA, mEstadoLista);
+        outState.putParcelableArrayList(STATE_DATOS, mAdaptador.getData());
     }
 
     @Override
-    public void onPause() {
-        mDao = null;
-        super.onPause();
+    public void onResume() {
+        super.onResume();
+        // Se retaura el estado de la lista.
+        if (mEstadoLista != null) {
+            mLayoutManager.onRestoreInstanceState(mEstadoLista);
+        }
     }
 
     // Crea el adaptador y carga la lista de alumnos.
-    private void cargarAlumnos() {
+    public void cargarAlumnos() {
         // Se obtienen los datos de los alumnos a través del DAO.
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) (mDao.getAllAlumnos());
         mAdaptador.swapData(alumnos);
@@ -276,4 +296,5 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         }
         mHidingScrollListener.reset();
     }
+
 }

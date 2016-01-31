@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr027.actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final String TAG_LISTA_FRAGMENT = "tag_lista_fragment";
     private static final String TAG_FRG_DIALOGO = "tag_frg_dialogo";
+    private static final int RC_AGREGAR = 1;
+    private static final int RC_EDITAR = 2;
 
     private FloatingActionButton btnAgregar;
 
@@ -59,13 +62,13 @@ public class MainActivity extends AppCompatActivity implements
     // Muestra la actividad de alumno para agregar.
     @Override
     public void onAgregarAlumno() {
-        AlumnoActivity.start(this);
+        AlumnoActivity.startForResult(this, RC_AGREGAR);
     }
 
     // Muestra la actividad de alumno para editar. Recibe el id del alumno.
     @Override
     public void onEditarAlumno(long id) {
-        AlumnoActivity.start(this, id);
+        AlumnoActivity.startForResult(this, id, RC_EDITAR);
     }
 
     // Muestra el fragmento de diálogo de confirmación de eliminación.
@@ -101,6 +104,18 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onHideFAB() {
         btnAgregar.hide();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            ListaAlumnosFragment frg = (ListaAlumnosFragment) getSupportFragmentManager()
+                    .findFragmentByTag(TAG_LISTA_FRAGMENT);
+            if (frg != null) {
+                frg.cargarAlumnos();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

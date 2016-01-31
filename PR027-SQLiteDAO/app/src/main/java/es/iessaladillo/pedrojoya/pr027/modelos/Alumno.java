@@ -1,6 +1,9 @@
 package es.iessaladillo.pedrojoya.pr027.modelos;
 
-public class Alumno {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Alumno implements Parcelable {
 
     private long id;
     private String nombre;
@@ -55,4 +58,36 @@ public class Alumno {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
+        dest.writeString(this.nombre);
+        dest.writeString(this.telefono);
+        dest.writeString(this.curso);
+        dest.writeString(this.direccion);
+    }
+
+    protected Alumno(Parcel in) {
+        this.id = in.readLong();
+        this.nombre = in.readString();
+        this.telefono = in.readString();
+        this.curso = in.readString();
+        this.direccion = in.readString();
+    }
+
+    public static final Parcelable.Creator<Alumno> CREATOR = new Parcelable.Creator<Alumno>() {
+        public Alumno createFromParcel(Parcel source) {
+            return new Alumno(source);
+        }
+
+        public Alumno[] newArray(int size) {
+            return new Alumno[size];
+        }
+    };
 }

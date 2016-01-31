@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import es.iessaladillo.pedrojoya.pr027.R;
@@ -61,16 +62,25 @@ public class AlumnoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     // Envía un intent para iniciar la actividad.
-    public static void start(Activity actividad) {
-        actividad.startActivity(new Intent(actividad, AlumnoActivity.class));
+    public static void startForResult(Activity actividad, int requestCode) {
+        actividad.startActivityForResult(new Intent(actividad, AlumnoActivity.class), requestCode);
     }
 
     // Envía un intent para iniciar la actividad, recibiendo el id del alumno.
-    public static void start(Activity actividad, long idAlumno) {
+    public static void startForResult(Activity actividad, long idAlumno, int requestCode) {
         Intent intent = new Intent(actividad, AlumnoActivity.class);
         intent.putExtra(EXTRA_ID, idAlumno);
-        actividad.startActivity(intent);
+        actividad.startActivityForResult(intent, requestCode);
     }
 
 }

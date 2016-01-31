@@ -1,3 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="031e8b3ab2df4ab43b1017f84417d7e10dfbb8d2">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/de.hdodenhof-circleimageview-2.0.0_2555e600041a8985aba24bf5643b7894d500401d.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.facebook.stetho/stetho/1.3.0/87e6bfd8d961a57cf8cbecebcbd68489d41bd4fc/stetho-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="87e6bfd8d961a57cf8cbecebcbd68489d41bd4fc">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/stetho-1.3.0_d3cd59a549b9278163f6650fc0241fe868fd7abb.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_e7b6aceb3c69e2893dad804692a6ddfd5cd12dd2.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_4a2107a4583409f5899e414ecbb56db21d453da8.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_3fe7b04c3130af96fbfd04e555059c5d87fce3e6.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_a956a90244b5c367d566e5e1804a56d8beef98af.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_3af7557647dde8a17e982f6b40242ff09e953d40.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_29fcde85a4bc17282e3f26e3b506289b4b30f7e6.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_4cefdf1c95082cfc3d5552a180dca2340f933742.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_097ae1fd1274091e86f666fdb3e66a04a11dd66e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_aeac0f872beecddb37c6d323742e769eaee52510.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d237556caead5b93d97e18a071059a2c0045978e">
+        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.amulyakhare-com.amulyakhare.textdrawable-1.0.1_c07ab2c0714e5d30c085f29fc1ba85ffcec22eab.jar" />
+    </item>
+
+</items>

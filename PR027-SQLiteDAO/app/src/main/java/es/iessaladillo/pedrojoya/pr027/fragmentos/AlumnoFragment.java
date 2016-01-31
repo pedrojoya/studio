@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr027.fragmentos;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -239,7 +241,7 @@ public class AlumnoFragment extends Fragment {
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(long id) {
         // Se consulta en la BD los datos del mAlumno a través del objeto DAO.
-        mAlumno = (new DAO(getActivity())).queryAlumno(id);
+        mAlumno = DAO.getInstance(getActivity()).queryAlumno(id);
         // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
         // Agregar.
         if (mAlumno == null) {
@@ -293,36 +295,41 @@ public class AlumnoFragment extends Fragment {
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
         // Se realiza el insert a través del objeto DAO.
-        long id = (new DAO(getActivity())).createAlumno(mAlumno);
+        long id = DAO.getInstance(getActivity()).createAlumno(mAlumno);
         // Se informa de si ha ido bien.
         if (id >= 0) {
             mAlumno.setId(id);
             Toast.makeText(getActivity(),
                     getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
                     .show();
+            retornar();
+            getActivity().finish();
         } else {
             Toast.makeText(getActivity(),
                     getString(R.string.insercion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
-        // Se resetean las vistas para poder agregar otro alumno (seguimos en
-        // modo Agregar).
-        resetVistas();
     }
 
     // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
         // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
-        if ((new DAO(getActivity())).updateAlumno(mAlumno)) {
+        if (DAO.getInstance(getActivity()).updateAlumno(mAlumno)) {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
-            getActivity().finish();
+            retornar();
         } else {
             Toast.makeText(getActivity(),
                     getString(R.string.actualizacion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // Finaliza la actividad retornando que se ha finalizado correctamente.
+    private void retornar() {
+        getActivity().setResult(Activity.RESULT_OK, new Intent());
+        getActivity().finish();
     }
 
     // Hace reset sobre el contenido de las vistas.
@@ -366,5 +373,4 @@ public class AlumnoFragment extends Fragment {
         return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
                 (mAleatorio.nextInt(10) + 1) + "/";
     }
-
 }

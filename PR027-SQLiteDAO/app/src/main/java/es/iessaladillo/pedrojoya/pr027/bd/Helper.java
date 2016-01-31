@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class Helper extends SQLiteOpenHelper {
 
+	private static Helper sInstance;
+
 	// Constantes de sentencias SQL.
 	private static final String TBL_ALUMNO_CREATE = "create table "
 			+ Instituto.Alumno.TABLA + "(" + Instituto.Alumno._ID
@@ -17,10 +19,20 @@ class Helper extends SQLiteOpenHelper {
 			+ Instituto.Alumno.TABLA;
 
 	// Constructor. Recibe el contexto.
-	public Helper(Context ctx) {
+	private Helper(Context ctx) {
 		// Se llama al constructor del padre, que es quien realmente crea o
 		// actualiza la versión de BD si es necesario.
 		super(ctx, Instituto.BD_NOMBRE, null, Instituto.BD_VERSION);
+	}
+
+	// Retorna la instancia (única) del helper.
+	public static synchronized Helper getInstance(Context context) {
+		// Al usar el contexto de la aplicación nos aseguramos de que no haya
+		// memory leaks si el recibido es el contexto de una actividad.
+		if (sInstance == null) {
+			sInstance = new Helper(context.getApplicationContext());
+		}
+		return sInstance;
 	}
 
 	// Cuando es necesario crear la BD.
