@@ -7,6 +7,8 @@ import com.firebase.client.Firebase;
 
 public class App extends Application {
 
+    public static final String FIREBASE_URL = "https://saladillo.firebaseio.com/";
+
     @Override
     public void onCreate() {
         super.onCreate();

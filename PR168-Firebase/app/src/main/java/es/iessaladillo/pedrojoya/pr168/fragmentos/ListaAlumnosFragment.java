@@ -17,8 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 
+import es.iessaladillo.pedrojoya.pr168.App;
 import es.iessaladillo.pedrojoya.pr168.R;
 import es.iessaladillo.pedrojoya.pr168.adaptadores.AlumnosAdapter;
 import es.iessaladillo.pedrojoya.pr168.bd.DAO;
@@ -27,8 +30,6 @@ import es.iessaladillo.pedrojoya.pr168.utils.DividerItemDecoration;
 import es.iessaladillo.pedrojoya.pr168.utils.HidingScrollListener;
 
 public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
-
-    private static final String FIREBASE_URL = "https://saladillo.firebaseio.com/";
 
     private static final String STATE_LISTA = "state_lista";
     private static final String STATE_DATOS = "state_datos";
@@ -167,6 +168,19 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
     // Crea el adaptador y carga la lista de alumnos.
     public void cargarAlumnos() {
+        Firebase ref = new Firebase(App.FIREBASE_URL);
+        mAdapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class, android.R.layout.two_line_list_item, ref) {
+            @Override
+            protected void populateView(View view, ChatMessage chatMessage, int position) {
+                ((TextView)view.findViewById(android.R.id.text1)).setText(chatMessage.getName());
+                ((TextView)view.findViewById(android.R.id.text2)).setText(chatMessage.getMessage());
+
+            }
+        };
+        messagesView.setListAdapter(mAdapter);
+
+
+
         // Se obtienen los datos de los alumnos a través del DAO.
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) (mDao.getAllAlumnos());
         mAdaptador.swapData(alumnos);

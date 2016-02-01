@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.firebase.client.Query;
+import com.firebase.ui.FirebaseRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +21,7 @@ import java.util.List;
 import es.iessaladillo.pedrojoya.pr168.R;
 import es.iessaladillo.pedrojoya.pr168.modelos.Alumno;
 
-public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
+public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapter.ViewHolder> {
 
     private final TextDrawable.IBuilder mDrawableBuilder;
 
@@ -41,22 +43,14 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         void onEmptyStateChanged(boolean isEmpty);
     }
 
-    private ArrayList<Alumno> mDatos;
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
     private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
     private boolean mIsEmpty = true;
 
-
-    // Constructores.
-    public AlumnosAdapter(ArrayList<Alumno> datos) {
-        // Se llama al constructor por defecto.
-        this();
-        mDatos = datos;
-    }
-
-    public AlumnosAdapter() {
+    public AlumnosAdapter(Class<Alumno> modelClass, int modelLayout, Class<ViewHolder> viewHolderClass, Query ref) {
+        super(modelClass, modelLayout, viewHolderClass, ref);
         mDrawableBuilder = TextDrawable.builder()
                 .beginConfig()
                 .width(100)
@@ -64,13 +58,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
                 .toUpperCase()
                 .endConfig()
                 .round();
-    }
-
-    // Cambia los datos.
-    public void swapData(ArrayList<Alumno> datos) {
-        mDatos = datos;
-        checkEmptyStateChanged();
-        notifyDataSetChanged();
     }
 
     // Cuando se debe crear una nueva vista para el elemento.
@@ -116,82 +103,19 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         return viewHolder;
     }
 
-    // Cuando se deben escribir los datos en las subvistas de la
-    // vista correspondiente al ítem.
     @Override
-    public void onBindViewHolder(AlumnosAdapter.ViewHolder holder, int position) {
-        // Se obtiene el alumno correspondiente y se escriben sus datos.
-        if (mDatos != null) {
-            Alumno alumno = mDatos.get(position);
-            holder.lblNombre.setText(alumno.getNombre());
-            holder.lblCurso.setText(alumno.getCurso());
-            holder.lblDireccion.setText(alumno.getDireccion());
-            holder.itemView.setActivated(mSelectedItems.get(position, false));
-            holder.imgAvatar.setImageDrawable(mDrawableBuilder.build(
-                    holder.itemView.isActivated() ?
-                            "\u2713" :
-                            alumno.getNombre().substring(0, 1),
-                    holder.itemView.isActivated() ?
-                            Color.GRAY :
-                            ColorGenerator.MATERIAL.getColor(alumno.getNombre())));
-        }
-    }
-
-    // Retorna el número de ítems gestionados.
-    @Override
-    public int getItemCount() {
-        if (mDatos != null) {
-            return mDatos.size();
-        }
-        return 0;
-    }
-
-    // Retorna el cursor de datos
-    public ArrayList<Alumno> getData() {
-        return mDatos;
-    }
-
-    public Alumno getItemAtPosition(int posicion) {
-        if (mDatos != null) {
-            return  mDatos.get(posicion);
-        }
-        else {
-            return null;
-        }
-    }
-
-    // Elimina un elemento de la lista.
-    public void removeItem(int position) {
-        mDatos.remove(position);
-        notifyItemRemoved(position);
-        // Se comprueba si pasa a estar vacía.
-        checkEmptyStateChanged();
-    }
-
-    // Elimina los elementos seleccionados.
-    public void removeSelectedItems() {
-        // Se eliminan en orden inverso para que no haya problemas. Al
-        // eliminar se cambia el
-        // estado de selección del elemento.
-        List<Integer> seleccionados = getSelectedItemsPositions();
-        Collections.sort(seleccionados, Collections.reverseOrder());
-        for (int i = 0; i < seleccionados.size(); i++) {
-            int pos = seleccionados.get(i);
-            toggleSelection(pos);
-            removeItem(pos);
-        }
-        // Se comprueba si pasa a estar vacía.
-        checkEmptyStateChanged();
-    }
-
-    // Añade un elemento a la lista.
-    public void addItem(Alumno alumno, int position) {
-        // Se añade el elemento.
-        mDatos.add(position, alumno);
-        // Se notifica que se ha insertado un elemento en la última posición.
-        notifyItemInserted(position);
-        // Si comprueba si deja de estar vacía.
-        checkEmptyStateChanged();
+    protected void populateViewHolder(ViewHolder holder, Alumno alumno, int position) {
+        holder.lblNombre.setText(alumno.getNombre());
+        holder.lblCurso.setText(alumno.getCurso());
+        holder.lblDireccion.setText(alumno.getDireccion());
+        holder.itemView.setActivated(mSelectedItems.get(position, false));
+        holder.imgAvatar.setImageDrawable(mDrawableBuilder.build(
+                holder.itemView.isActivated() ?
+                        "\u2713" :
+                        alumno.getNombre().substring(0, 1),
+                holder.itemView.isActivated() ?
+                        Color.GRAY :
+                        ColorGenerator.MATERIAL.getColor(alumno.getNombre())));
     }
 
     // Retorna si la lista está vacía.

@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr168"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
