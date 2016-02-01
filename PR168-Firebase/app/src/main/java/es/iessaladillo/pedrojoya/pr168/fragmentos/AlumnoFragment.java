@@ -21,17 +21,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import java.util.Random;
 
+import es.iessaladillo.pedrojoya.pr168.App;
 import es.iessaladillo.pedrojoya.pr168.R;
-import es.iessaladillo.pedrojoya.pr168.bd.DAO;
 import es.iessaladillo.pedrojoya.pr168.modelos.Alumno;
 import es.iessaladillo.pedrojoya.pr168.utils.ClickToSelectEditText;
 
 public class AlumnoFragment extends Fragment {
 
     // Constantes.
-    private static final String EXTRA_ID = "id";
+    private static final String EXTRA_KEY = "id";
     private static final String STATE_TILNOMBRE = "state_tilNombre";
     private static final String STATE_TILCURSO = "state_tilCurso";
     private static final String STATE_TILTELEFONO = "state_tilTelefono";
@@ -50,6 +55,7 @@ public class AlumnoFragment extends Fragment {
     private ImageView imgTelefono;
     private ImageView imgDireccion;
     private Random mAleatorio;
+    private ValueEventListener mListener;
 
     // Retorna una nueva instancia del fragmento (para agregar)
     static public AlumnoFragment newInstance() {
@@ -58,10 +64,10 @@ public class AlumnoFragment extends Fragment {
 
     // Retorna una nueva instancia del fragmento. Recibe el id del mAlumno
     // (para actualizar).
-    static public AlumnoFragment newInstance(long idAlumno) {
+    static public AlumnoFragment newInstance(String key) {
         AlumnoFragment frg = new AlumnoFragment();
         Bundle argumentos = new Bundle();
-        argumentos.putLong(EXTRA_ID, idAlumno);
+        argumentos.putString(EXTRA_KEY, key);
         frg.setArguments(argumentos);
         return frg;
     }
@@ -201,7 +207,7 @@ public class AlumnoFragment extends Fragment {
         }
         // Establecemos el modo de funcionamiento dependiendo de si nos han
         // pasado el id del alumno o no.
-        if (getArguments() == null || getArguments().getLong(EXTRA_ID) == 0) {
+        if (getArguments() == null || getArguments().getString(EXTRA_KEY).equals("")) {
             setModoAgregar();
         } else {
             setModoEditar();
@@ -232,23 +238,34 @@ public class AlumnoFragment extends Fragment {
     // Realiza las operaciones iniciales necesarias en el modo Editar.
     private void setModoEditar() {
         // Se cargan los datos del alumno a partir del id recibido.
-        cargarAlumno(getArguments().getLong(EXTRA_ID));
-        // Se escriben los datos del mAlumno en las vistas correspondientes.
-        alumnoToVistas();
+        cargarAlumno(getArguments().getString(EXTRA_KEY));
         getActivity().setTitle(R.string.editar_alumno);
     }
 
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
-    private void cargarAlumno(long id) {
-        // Se consulta en la BD los datos del mAlumno a través del objeto DAO.
-        mAlumno = DAO.getInstance(getActivity()).queryAlumno(id);
+    private void cargarAlumno(String key) {
+        // Se consulta en la BD los datos del alumno.
+        Firebase ref = new Firebase(App.FIREBASE_URL);
+        mListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                mAlumno = snapshot.getValue(Alumno.class);
+                alumnoToVistas();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        };
+        ref.child(key).addValueEventListener(mListener);
         // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
         // Agregar.
-        if (mAlumno == null) {
-            Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
-                    Toast.LENGTH_LONG).show();
-            setModoAgregar();
-        }
+//        if (mAlumno == null) {
+//            Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
+//                    Toast.LENGTH_LONG).show();
+//            setModoAgregar();
+//        }
     }
 
     // Guarda el alumno en pantalla en la base de datos.
@@ -258,7 +275,7 @@ public class AlumnoFragment extends Fragment {
         if (isValidForm()) {
             // Se llena el objeto Alumno con los datos de las vistas.
             vistasToAlumno();
-            if (getArguments() == null || getArguments().getLong(EXTRA_ID) == 0) {
+            if (getArguments() == null || getArguments().getString(EXTRA_KEY).equals("")) {
                 agregarAlumno();
             } else {
                 actualizarAlumno();
@@ -294,36 +311,61 @@ public class AlumnoFragment extends Fragment {
 
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
-        // Se realiza el insert a través del objeto DAO.
-        long id = DAO.getInstance(getActivity()).createAlumno(mAlumno);
-        // Se informa de si ha ido bien.
-        if (id >= 0) {
-            mAlumno.setId(id);
-            Toast.makeText(getActivity(),
-                    getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
-                    .show();
-            retornar();
-            getActivity().finish();
-        } else {
-            Toast.makeText(getActivity(),
-                    getString(R.string.insercion_incorrecta),
-                    Toast.LENGTH_SHORT).show();
-        }
+        Firebase ref = new Firebase(App.FIREBASE_URL);
+        ref.push().setValue(mAlumno, new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.insercion_incorrecta),
+                            Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
+                            .show();
+                    retornar();
+                }
+            }
+        });
+//        // Se realiza el insert a través del objeto DAO.
+//        long id = DAO.getInstance(getActivity()).createAlumno(mAlumno);
+//        // Se informa de si ha ido bien.
+//        if (id >= 0) {
+//            mAlumno.setId(id);
+//            Toast.makeText(getActivity(),
+//                    getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
+//                    .show();
+//            retornar();
+//            getActivity().finish();
+//        } else {
+//            Toast.makeText(getActivity(),
+//                    getString(R.string.insercion_incorrecta),
+//                    Toast.LENGTH_SHORT).show();
+//        }
     }
 
     // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
-        // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
-        if (DAO.getInstance(getActivity()).updateAlumno(mAlumno)) {
-            Toast.makeText(getActivity(),
-                    getString(R.string.actualizacion_correcta),
-                    Toast.LENGTH_SHORT).show();
-            retornar();
-        } else {
-            Toast.makeText(getActivity(),
-                    getString(R.string.actualizacion_incorrecta),
-                    Toast.LENGTH_SHORT).show();
-        }
+        Firebase ref = new Firebase(App.FIREBASE_URL);
+        ref.child(getArguments().getString(EXTRA_KEY)).setValue(mAlumno, new Firebase.CompletionListener() {
+
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.actualizacion_incorrecta),
+                            Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.actualizacion_correcta),
+                            Toast.LENGTH_SHORT).show();
+                    retornar();
+                }
+            }
+        });
     }
 
     // Finaliza la actividad retornando que se ha finalizado correctamente.
@@ -372,5 +414,13 @@ public class AlumnoFragment extends Fragment {
                 "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
         return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
                 (mAleatorio.nextInt(10) + 1) + "/";
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mListener != null) {
+            new Firebase(App.FIREBASE_URL).child(getArguments().getString(EXTRA_KEY)).removeEventListener(mListener);
+        }
     }
 }

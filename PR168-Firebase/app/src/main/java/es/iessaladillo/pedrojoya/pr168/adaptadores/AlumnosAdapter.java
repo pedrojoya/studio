@@ -11,12 +11,11 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 import com.firebase.ui.FirebaseRecyclerAdapter;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr168.R;
 import es.iessaladillo.pedrojoya.pr168.modelos.Alumno;
@@ -28,7 +27,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
     // Interfaz que debe implementar el listener para cuando se haga click
     // sobre un elemento.
     public interface OnItemClickListener {
-        void onItemClick(View view, Alumno alumno, int position);
+        void onItemClick(View view, Alumno alumno, String key, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click
@@ -37,20 +36,23 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
         void onItemLongClick(View view, Alumno alumno, int position);
     }
 
-    // Interfaz que debe implementar el listener para cuando la lista pase a
-    // o deje de estar vacía.
-    public interface OnEmptyStateChangedListener {
-        void onEmptyStateChanged(boolean isEmpty);
-    }
-
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
-    private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
-    private boolean mIsEmpty = true;
 
-    public AlumnosAdapter(Class<Alumno> modelClass, int modelLayout, Class<ViewHolder> viewHolderClass, Query ref) {
-        super(modelClass, modelLayout, viewHolderClass, ref);
+    public AlumnosAdapter(Firebase ref) {
+        super(Alumno.class, R.layout.fragment_lista_alumnos_item, ViewHolder.class, ref);
+        mDrawableBuilder = TextDrawable.builder()
+                .beginConfig()
+                .width(100)
+                .height(100)
+                .toUpperCase()
+                .endConfig()
+                .round();
+    }
+
+    public AlumnosAdapter(Query ref) {
+        super(Alumno.class, R.layout.fragment_lista_alumnos_item, ViewHolder.class, ref);
         mDrawableBuilder = TextDrawable.builder()
                 .beginConfig()
                 .width(100)
@@ -79,7 +81,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
                 if (mOnItemClickListener != null) {
                     // Se informa al listener.
                     mOnItemClickListener.onItemClick(v,
-                            getItemAtPosition(viewHolder.getAdapterPosition()),
+                            getItem(viewHolder.getAdapterPosition()), getRef(viewHolder.getAdapterPosition()).getKey(),
                             viewHolder.getAdapterPosition());
                 }
             }
@@ -91,7 +93,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
                 if (mOnItemLongClickListener != null) {
                     // Se informa al listener.
                     mOnItemLongClickListener.onItemLongClick(v,
-                            getItemAtPosition(viewHolder.getAdapterPosition()),
+                            getItem(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                     return true;
                 } else {
@@ -120,23 +122,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
 
     // Retorna si la lista está vacía.
     public boolean isEmpty() {
-        return mIsEmpty;
-    }
-
-    // Comprueba si ha pasa a estar vacía o deja de estar vacía.
-    private void checkEmptyStateChanged() {
-        // Deja de estar vacía
-        if (mIsEmpty && mDatos != null && mDatos.size() > 0) {
-            mIsEmpty = false;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(false);
-            }
-        } else if (!mIsEmpty && mDatos != null && mDatos.size() == 0) {
-            mIsEmpty = true;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(true);
-            }
-        }
+        return getItemCount() <= 0;
     }
 
     // Establece el listener a informar cuando se hace click sobre un
@@ -149,14 +135,6 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
     // elemento de la lista.
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         mOnItemLongClickListener = listener;
-    }
-
-    // Establece el listener a informar cuando la lista pasa a o deja de
-    // estar vacía.
-    public void setOnEmptyStateChangedListener(
-            OnEmptyStateChangedListener listener) {
-        mOnEmptyStateChangedListener = listener;
-        checkEmptyStateChanged();
     }
 
     // Cambia el estado de selección de un elemento.

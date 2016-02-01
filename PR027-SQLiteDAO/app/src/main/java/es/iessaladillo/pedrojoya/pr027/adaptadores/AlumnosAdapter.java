@@ -21,11 +21,11 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
-    private final TextDrawable.IBuilder mDrawableBuilder;
-
-    // Interfaz que debe implementar el listener para cuando se haga click
-    // sobre un elemento.
     public interface OnItemClickListener {
+
+        // Interfaz que debe implementar el listener para cuando se haga click
+        // sobre un elemento.
+        private final TextDrawable.IBuilder mDrawableBuilder;
         void onItemClick(View view, Alumno alumno, int position);
     }
 

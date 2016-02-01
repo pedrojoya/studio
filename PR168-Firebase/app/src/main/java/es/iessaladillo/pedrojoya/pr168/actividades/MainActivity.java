@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr168.actividades;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -65,10 +64,10 @@ public class MainActivity extends AppCompatActivity implements
         AlumnoActivity.startForResult(this, RC_AGREGAR);
     }
 
-    // Muestra la actividad de alumno para editar. Recibe el id del alumno.
+    // Muestra la actividad de alumno para editar. Recibe la key del alumno.
     @Override
-    public void onEditarAlumno(long id) {
-        AlumnoActivity.startForResult(this, id, RC_EDITAR);
+    public void onEditarAlumno(String key) {
+        AlumnoActivity.startForResult(this, key, RC_EDITAR);
     }
 
     // Muestra el fragmento de diálogo de confirmación de eliminación.
@@ -104,18 +103,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onHideFAB() {
         btnAgregar.hide();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            ListaAlumnosFragment frg = (ListaAlumnosFragment) getSupportFragmentManager()
-                    .findFragmentByTag(TAG_LISTA_FRAGMENT);
-            if (frg != null) {
-                frg.cargarAlumnos();
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

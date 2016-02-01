@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import es.iessaladillo.pedrojoya.pr168.App;
 import es.iessaladillo.pedrojoya.pr168.R;
 import es.iessaladillo.pedrojoya.pr168.adaptadores.AlumnosAdapter;
-import es.iessaladillo.pedrojoya.pr168.bd.DAO;
 import es.iessaladillo.pedrojoya.pr168.modelos.Alumno;
 import es.iessaladillo.pedrojoya.pr168.utils.DividerItemDecoration;
 import es.iessaladillo.pedrojoya.pr168.utils.HidingScrollListener;
@@ -38,7 +37,6 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     private AlumnosAdapter mAdaptador;
     private ActionMode mActionMode;
     private HidingScrollListener mHidingScrollListener;
-    private DAO mDao;
     private LinearLayoutManager mLayoutManager;
     private Parcelable mEstadoLista;
 
@@ -47,7 +45,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
         void onAgregarAlumno();
 
-        void onEditarAlumno(long id);
+        void onEditarAlumno(String key);
 
         void onConfirmarEliminarAlumnos();
 
@@ -74,15 +72,9 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initVistas(getView());
-        mDao = DAO.getInstance(getActivity());
-        if (savedInstanceState == null) {
-            // Se carga la lista de alumnos.
-            cargarAlumnos();
-        }
-        else {
+        if (savedInstanceState != null) {
             // Se obtiene el estado anterior de la lista y los datos.
             mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
-            mAdaptador.swapData(savedInstanceState.<Alumno>getParcelableArrayList(STATE_DATOS));
         }
     }
 
@@ -97,15 +89,10 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         });
         RecyclerView lstAlumnos = (RecyclerView) v.findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
-        mAdaptador = new AlumnosAdapter();
+        Firebase ref = new Firebase(App.FIREBASE_URL);
+        mAdaptador = new AlumnosAdapter(ref);
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.setOnEmptyStateChangedListener(new AlumnosAdapter.OnEmptyStateChangedListener() {
-            @Override
-            public void onEmptyStateChanged(boolean isEmpty) {
-                lblNuevoAlumno.setVisibility(isEmpty ? View.VISIBLE : View.INVISIBLE);
-            }
-        });
         lstAlumnos.setAdapter(mAdaptador);
         mLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
@@ -151,39 +138,19 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // Se salva el estado del RecyclerView y los datos.
+        // Se salva el estado del RecyclerView.
         mEstadoLista = mLayoutManager.onSaveInstanceState();
         outState.putParcelable(STATE_LISTA, mEstadoLista);
-        outState.putParcelableArrayList(STATE_DATOS, mAdaptador.getData());
     }
 
     @Override
     public void onResume() {
         super.onResume();
         // Se retaura el estado de la lista.
+        lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
         if (mEstadoLista != null) {
             mLayoutManager.onRestoreInstanceState(mEstadoLista);
         }
-    }
-
-    // Crea el adaptador y carga la lista de alumnos.
-    public void cargarAlumnos() {
-        Firebase ref = new Firebase(App.FIREBASE_URL);
-        mAdapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class, android.R.layout.two_line_list_item, ref) {
-            @Override
-            protected void populateView(View view, ChatMessage chatMessage, int position) {
-                ((TextView)view.findViewById(android.R.id.text1)).setText(chatMessage.getName());
-                ((TextView)view.findViewById(android.R.id.text2)).setText(chatMessage.getMessage());
-
-            }
-        };
-        messagesView.setListAdapter(mAdapter);
-
-
-
-        // Se obtienen los datos de los alumnos a través del DAO.
-        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) (mDao.getAllAlumnos());
-        mAdaptador.swapData(alumnos);
     }
 
     // Cuando el fragmento es cargado en la actividad.
@@ -207,34 +174,31 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         ArrayList<Integer> seleccionados = mAdaptador.getSelectedItemsPositions();
         // Por cada selección.
         for (int i = 0; i < seleccionados.size(); i++) {
-            // Se obtiene el alumo.
-            Alumno alu = mAdaptador.getItemAtPosition(seleccionados.get(i));
+            // Se obtiene la referencia al alumno.
+            Firebase refAlumno = mAdaptador.getRef(seleccionados.get(i));
             // Se elimina el alumo de la bd.
-            mDao.deleteAlumno(alu.getId());
+            refAlumno.removeValue();
         }
-        // Se eliminan del adaptador.
-        mAdaptador.removeSelectedItems();
+        lblNuevoAlumno.setVisibility(mAdaptador.isEmpty()?View.VISIBLE:View.INVISIBLE);
         // Se finaliza el modo contextual.
         mActionMode.finish();
     }
 
     private void eliminarAlumno(int position) {
-        // Se obtiene el alumo.
-        Alumno alu = mAdaptador.getItemAtPosition(position);
+        // Se obtiene la referencia al alumno.
+        Firebase refAlumno = mAdaptador.getRef(position);
         // Se borra de la base de datos.
-        if (mDao.deleteAlumno(alu.getId())) {
-            // Si se ha eliminado de la bd se borra del adaptador.
-            mAdaptador.removeItem(position);
-        }
+        refAlumno.removeValue();
+        lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
-    public void onItemClick(View view, Alumno alumno, int position) {
+    public void onItemClick(View view, Alumno alumno, String key, int position) {
         if (mActionMode != null) {
             toggleSelection(position);
         } else {
             // Se da la orden de editar.
-            listener.onEditarAlumno(alumno.getId());
+            listener.onEditarAlumno(key);
         }
     }
 
@@ -313,4 +277,9 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         mHidingScrollListener.reset();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAdaptador.cleanup();
+    }
 }

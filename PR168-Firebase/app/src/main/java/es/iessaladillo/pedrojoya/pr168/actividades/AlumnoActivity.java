@@ -13,7 +13,7 @@ import es.iessaladillo.pedrojoya.pr168.fragmentos.AlumnoFragment;
 
 public class AlumnoActivity extends AppCompatActivity {
 
-    private static final String EXTRA_ID = "extra_id";
+    private static final String EXTRA_KEY = "extra_key";
     private static final String TAG_FRG_ALUMNO = "tag_frag_alumno";
 
     @Override
@@ -50,8 +50,8 @@ public class AlumnoActivity extends AppCompatActivity {
     private void cargarFragmento(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             AlumnoFragment frg;
-            if (getIntent().hasExtra(EXTRA_ID)) {
-                frg = AlumnoFragment.newInstance(getIntent().getLongExtra(EXTRA_ID, 0));
+            if (getIntent().hasExtra(EXTRA_KEY)) {
+                frg = AlumnoFragment.newInstance(getIntent().getStringExtra(EXTRA_KEY));
             } else {
                 frg = AlumnoFragment.newInstance();
             }
@@ -76,10 +76,10 @@ public class AlumnoActivity extends AppCompatActivity {
         actividad.startActivityForResult(new Intent(actividad, AlumnoActivity.class), requestCode);
     }
 
-    // Envía un intent para iniciar la actividad, recibiendo el id del alumno.
-    public static void startForResult(Activity actividad, long idAlumno, int requestCode) {
+    // Envía un intent para iniciar la actividad, recibiendo la key del alumno.
+    public static void startForResult(Activity actividad, String key, int requestCode) {
         Intent intent = new Intent(actividad, AlumnoActivity.class);
-        intent.putExtra(EXTRA_ID, idAlumno);
+        intent.putExtra(EXTRA_KEY, key);
         actividad.startActivityForResult(intent, requestCode);
     }
 
