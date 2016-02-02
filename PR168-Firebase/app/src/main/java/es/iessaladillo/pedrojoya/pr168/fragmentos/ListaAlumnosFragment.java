@@ -39,6 +39,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     private HidingScrollListener mHidingScrollListener;
     private LinearLayoutManager mLayoutManager;
     private Parcelable mEstadoLista;
+    private RecyclerView.AdapterDataObserver mObservador;
 
     // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
@@ -93,6 +94,26 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         mAdaptador = new AlumnosAdapter(ref);
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
+        mObservador = new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+            }
+
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+            }
+        };
+        mAdaptador.registerAdapterDataObserver(mObservador);
         lstAlumnos.setAdapter(mAdaptador);
         mLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
@@ -280,6 +301,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mAdaptador.unregisterAdapterDataObserver(mObservador);
         mAdaptador.cleanup();
     }
 }

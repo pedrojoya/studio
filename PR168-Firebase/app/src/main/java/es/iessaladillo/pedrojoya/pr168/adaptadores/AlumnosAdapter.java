@@ -36,9 +36,17 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
         void onItemLongClick(View view, Alumno alumno, int position);
     }
 
+    // Interfaz que debe implementar el listener para cuando la lista pase a
+    // o deje de estar vacía.
+    public interface OnEmptyStateChangedListener {
+        void onEmptyStateChanged(boolean isEmpty);
+    }
+
+
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
+    private boolean mIsEmpty = true;
 
     public AlumnosAdapter(Firebase ref) {
         super(Alumno.class, R.layout.fragment_lista_alumnos_item, ViewHolder.class, ref);
@@ -61,6 +69,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
                 .endConfig()
                 .round();
     }
+
 
     // Cuando se debe crear una nueva vista para el elemento.
     @Override
