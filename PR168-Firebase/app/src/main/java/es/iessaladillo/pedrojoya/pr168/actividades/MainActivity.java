@@ -5,23 +5,36 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+
+import java.util.Map;
+
+import es.iessaladillo.pedrojoya.pr168.App;
 import es.iessaladillo.pedrojoya.pr168.R;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.ListaAlumnosFragment;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.ListaAlumnosFragment.OnListaAlumnosFragmentListener;
+import es.iessaladillo.pedrojoya.pr168.fragmentos.LoginFragment;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.SiNoDialogFragment;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.SiNoDialogFragment.SiNoDialogListener;
 
 public class MainActivity extends AppCompatActivity implements
-        OnListaAlumnosFragmentListener, SiNoDialogListener {
+        OnListaAlumnosFragmentListener, SiNoDialogListener, LoginFragment.OnLoginFragmentListener {
 
     private static final String TAG_LISTA_FRAGMENT = "tag_lista_fragment";
+    private static final String TAG_LOGIN_FRAGMENT = "tag_login_fragment";
     private static final String TAG_FRG_DIALOGO = "tag_frg_dialogo";
     private static final int RC_AGREGAR = 1;
     private static final int RC_EDITAR = 2;
 
     private FloatingActionButton btnAgregar;
+    private Firebase firebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +42,59 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         setupToolbar();
         initVistas();
-        cargarFragmento();
+        // Se comprueba si el usuario está conectado.
+        firebase = new Firebase(App.FIREBASE_URL);
+        if (firebase.getAuth() == null || haExpirado(firebase.getAuth())) {
+            // Se muestra el fragmento de login.
+            cargarFragmentoLogin();
+        }
+        else {
+            App.setUid(firebase.getAuth().getUid());
+            cargarFragmentoLista();
+        }
+    }
+
+    // Retorna si el login ha expirado.
+    private boolean haExpirado(AuthData auth) {
+        return (System.currentTimeMillis() / 1000) >= auth.getExpires();
+    }
+
+    @Override
+    public void onLogin(String email, String password) {
+        firebase.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                App.setUid(firebase.getAuth().getUid());
+                invalidateOptionsMenu();
+                cargarFragmentoLista();
+            }
+
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                Toast.makeText(MainActivity.this, "Usuario o password incorrecto", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onSignup(final String email, final String password) {
+        firebase.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
+            @Override
+            public void onSuccess(Map<String, Object> result) {
+                onLogin(email, password);
+            }
+
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                Toast.makeText(MainActivity.this, "Error al crear el usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void onLogout() {
+        firebase.unauth();
+        invalidateOptionsMenu();
+        cargarFragmentoLogin();
     }
 
     // Configura la toolbar.
@@ -48,8 +113,18 @@ public class MainActivity extends AppCompatActivity implements
         btnAgregar = (FloatingActionButton) findViewById(R.id.btnAgregar);
     }
 
+    // Carga el fragmento de login.
+    private void cargarFragmentoLogin() {
+        if (getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_FRAGMENT) == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flContenido, new LoginFragment(), TAG_LOGIN_FRAGMENT)
+                    .commit();
+        }
+    }
+
     // Carga el fragmento de la lista.
-    private void cargarFragmento() {
+    private void cargarFragmentoLista() {
         if (getSupportFragmentManager().findFragmentByTag(TAG_LISTA_FRAGMENT) == null) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -105,4 +180,30 @@ public class MainActivity extends AppCompatActivity implements
         btnAgregar.hide();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.mnuLogout) {
+            onLogout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.mnuLogout).setVisible(!(firebase.getAuth() == null || haExpirado(firebase.getAuth())));
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        invalidateOptionsMenu();
+    }
 }

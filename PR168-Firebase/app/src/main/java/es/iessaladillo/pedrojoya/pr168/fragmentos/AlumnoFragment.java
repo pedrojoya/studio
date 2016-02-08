@@ -245,7 +245,7 @@ public class AlumnoFragment extends Fragment {
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(String key) {
         // Se consulta en la BD los datos del alumno.
-        Firebase ref = new Firebase(App.FIREBASE_URL);
+        Firebase ref = new Firebase(App.getUidAlumnosUrl());
         mListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -311,7 +311,7 @@ public class AlumnoFragment extends Fragment {
 
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
-        Firebase ref = new Firebase(App.FIREBASE_URL);
+        Firebase ref = new Firebase(App.getUidAlumnosUrl());
         ref.push().setValue(mAlumno, new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
@@ -329,26 +329,11 @@ public class AlumnoFragment extends Fragment {
                 }
             }
         });
-//        // Se realiza el insert a través del objeto DAO.
-//        long id = DAO.getInstance(getActivity()).createAlumno(mAlumno);
-//        // Se informa de si ha ido bien.
-//        if (id >= 0) {
-//            mAlumno.setId(id);
-//            Toast.makeText(getActivity(),
-//                    getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
-//                    .show();
-//            retornar();
-//            getActivity().finish();
-//        } else {
-//            Toast.makeText(getActivity(),
-//                    getString(R.string.insercion_incorrecta),
-//                    Toast.LENGTH_SHORT).show();
-//        }
     }
 
     // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
-        Firebase ref = new Firebase(App.FIREBASE_URL);
+        Firebase ref = new Firebase(App.getUidAlumnosUrl());
         ref.child(getArguments().getString(EXTRA_KEY)).setValue(mAlumno, new Firebase.CompletionListener() {
 
             @Override
@@ -420,7 +405,7 @@ public class AlumnoFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         if (mListener != null) {
-            new Firebase(App.FIREBASE_URL).child(getArguments().getString(EXTRA_KEY)).removeEventListener(mListener);
+            new Firebase(App.getUidAlumnosUrl()).child(getArguments().getString(EXTRA_KEY)).removeEventListener(mListener);
         }
     }
 }
