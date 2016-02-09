@@ -71,7 +71,21 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
-                Toast.makeText(MainActivity.this, "Usuario o password incorrecto", Toast.LENGTH_SHORT).show();
+                String mensaje;
+                switch (firebaseError.getCode()) {
+                    case FirebaseError.USER_DOES_NOT_EXIST:
+                        mensaje = "El usuario especificado no existe";
+                        break;
+                    case FirebaseError.INVALID_EMAIL:
+                        mensaje = "El email especificado no es válido";
+                        break;
+                    case FirebaseError.INVALID_PASSWORD:
+                        mensaje = "La contraseña especificada no es válida";
+                        break;
+                    default:
+                        mensaje = "Se ha producido un error al conectarse";
+                }
+                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show() ;
             }
         });
     }
@@ -86,7 +100,15 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onError(FirebaseError firebaseError) {
-                Toast.makeText(MainActivity.this, "Error al crear el usuario", Toast.LENGTH_SHORT).show();
+                String mensaje;
+                switch (firebaseError.getCode()) {
+                    case FirebaseError.EMAIL_TAKEN:
+                        mensaje = "Error: ya existe un usuario con ese email";
+                        break;
+                    default:
+                        mensaje = "Se ha producido un error al crear el usuario";
+                }
+                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show() ;
             }
         });
     }

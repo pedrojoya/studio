@@ -30,6 +30,7 @@ public class App extends Application {
         Stetho.initializeWithDefaults(this);
         // Se inicializa Firebase.
         Firebase.setAndroidContext(this);
+        Firebase.getDefaultConfig().setPersistenceEnabled(true);
     }
 
 }
