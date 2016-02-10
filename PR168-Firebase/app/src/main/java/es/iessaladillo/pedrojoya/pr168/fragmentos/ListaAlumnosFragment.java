@@ -91,7 +91,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         RecyclerView lstAlumnos = (RecyclerView) v.findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
         Firebase ref = new Firebase(App.getUidAlumnosUrl());
-        mAdaptador = new AlumnosAdapter(ref);
+        mAdaptador = new AlumnosAdapter(ref.orderByChild("nombre"));
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
         mObservador = new RecyclerView.AdapterDataObserver() {

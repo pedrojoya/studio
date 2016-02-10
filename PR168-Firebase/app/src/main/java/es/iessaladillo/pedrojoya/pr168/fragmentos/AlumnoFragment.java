@@ -312,6 +312,11 @@ public class AlumnoFragment extends Fragment {
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
         Firebase ref = new Firebase(App.getUidAlumnosUrl());
+        //TODO FALLA EL COMPLETIONLISTENER CUANDO SE HACE OFFLINE Y DESPUES
+        //VUELVE A ESTAR ONLINE, YA QUE EL FRAGMENTO PUEDE QUE YA NO ESTÉ PRESENTE.
+        //SE DEBERÍA COMPROBAR SI ESTAMOS OFFLINE, EN CUYO CASO NO DEBERÍAMOS
+        //ESTABLECER EL LISTENER. (O HACER REMOVE DEL LISTENER AL SALIR DEL
+        //FRAGMENTO).
         ref.push().setValue(mAlumno, new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
