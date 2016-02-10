@@ -55,7 +55,9 @@ public class AlumnoFragment extends Fragment {
     private ImageView imgTelefono;
     private ImageView imgDireccion;
     private Random mAleatorio;
-    private ValueEventListener mListener;
+    private ValueEventListener mAlumnoListener;
+    private ValueEventListener mNuevoAlumnoListener;
+    private String mNuevoAlumnoKey;
 
     // Retorna una nueva instancia del fragmento (para agregar)
     static public AlumnoFragment newInstance() {
@@ -246,26 +248,22 @@ public class AlumnoFragment extends Fragment {
     private void cargarAlumno(String key) {
         // Se consulta en la BD los datos del alumno.
         Firebase ref = new Firebase(App.getUidAlumnosUrl());
-        mListener = new ValueEventListener() {
+        mAlumnoListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 mAlumno = snapshot.getValue(Alumno.class);
                 alumnoToVistas();
+                Toast.makeText(getActivity(), R.string.datos_actualizados, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
+                Toast.makeText(getActivity(),
+                        getString(R.string.actualizacion_incorrecta),
+                        Toast.LENGTH_SHORT).show();
             }
         };
-        ref.child(key).addValueEventListener(mListener);
-        // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
-        // Agregar.
-//        if (mAlumno == null) {
-//            Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
-//                    Toast.LENGTH_LONG).show();
-//            setModoAgregar();
-//        }
+        ref.child(key).addValueEventListener(mAlumnoListener);
     }
 
     // Guarda el alumno en pantalla en la base de datos.
@@ -312,50 +310,33 @@ public class AlumnoFragment extends Fragment {
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
         Firebase ref = new Firebase(App.getUidAlumnosUrl());
-        //TODO FALLA EL COMPLETIONLISTENER CUANDO SE HACE OFFLINE Y DESPUES
-        //VUELVE A ESTAR ONLINE, YA QUE EL FRAGMENTO PUEDE QUE YA NO ESTÉ PRESENTE.
-        //SE DEBERÍA COMPROBAR SI ESTAMOS OFFLINE, EN CUYO CASO NO DEBERÍAMOS
-        //ESTABLECER EL LISTENER. (O HACER REMOVE DEL LISTENER AL SALIR DEL
-        //FRAGMENTO).
-        ref.push().setValue(mAlumno, new Firebase.CompletionListener() {
+        Firebase refNuevoAlumno = ref.push();
+        mNuevoAlumnoKey = refNuevoAlumno.getKey();
+        mNuevoAlumnoListener = new ValueEventListener() {
             @Override
-            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                if (firebaseError != null) {
-                    Toast.makeText(getActivity(),
-                            getString(R.string.insercion_incorrecta),
-                            Toast.LENGTH_SHORT).show();
-
-                }
-                else {
-                    Toast.makeText(getActivity(),
-                            getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
-                            .show();
-                    retornar();
-                }
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Toast.makeText(getActivity(),
+                        getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
+                        .show();
+                retornar();
             }
-        });
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                Toast.makeText(getActivity(),
+                        getString(R.string.insercion_incorrecta),
+                        Toast.LENGTH_SHORT).show();
+            }
+        };
+        refNuevoAlumno.addListenerForSingleValueEvent(mNuevoAlumnoListener);
+        refNuevoAlumno.setValue(mAlumno);
     }
 
     // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
         Firebase ref = new Firebase(App.getUidAlumnosUrl());
-        ref.child(getArguments().getString(EXTRA_KEY)).setValue(mAlumno, new Firebase.CompletionListener() {
-
-            @Override
-            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                if (firebaseError != null) {
-                    Toast.makeText(getActivity(),
-                            getString(R.string.actualizacion_incorrecta),
-                            Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(getActivity(),
-                            getString(R.string.actualizacion_correcta),
-                            Toast.LENGTH_SHORT).show();
-                    retornar();
-                }
-            }
-        });
+        ref.child(getArguments().getString(EXTRA_KEY)).setValue(mAlumno);
+        retornar();
     }
 
     // Finaliza la actividad retornando que se ha finalizado correctamente.
@@ -409,8 +390,11 @@ public class AlumnoFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mListener != null) {
-            new Firebase(App.getUidAlumnosUrl()).child(getArguments().getString(EXTRA_KEY)).removeEventListener(mListener);
+        if (mAlumnoListener != null) {
+            new Firebase(App.getUidAlumnosUrl()).child(getArguments().getString(EXTRA_KEY)).removeEventListener(mAlumnoListener);
+        }
+        if (mNuevoAlumnoListener != null) {
+            new Firebase(App.getUidAlumnosUrl()).child(mNuevoAlumnoKey).removeEventListener(mNuevoAlumnoListener);
         }
     }
 }
