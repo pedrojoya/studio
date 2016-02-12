@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.facebook.stetho.Stetho;
 import com.firebase.client.Firebase;
+import com.firebase.client.Logger;
 
 public class App extends Application {
 
@@ -30,6 +31,7 @@ public class App extends Application {
         Stetho.initializeWithDefaults(this);
         // Se inicializa Firebase.
         Firebase.setAndroidContext(this);
+        Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
         Firebase.getDefaultConfig().setPersistenceEnabled(true);
     }
 
