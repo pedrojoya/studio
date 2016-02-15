@@ -312,20 +312,25 @@ public class AlumnoFragment extends Fragment {
         Firebase ref = new Firebase(App.getUidAlumnosUrl());
         Firebase refNuevoAlumno = ref.push();
         mNuevoAlumnoKey = refNuevoAlumno.getKey();
+        mAlumno.setId(mNuevoAlumnoKey);
         mNuevoAlumnoListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+/*
                 Toast.makeText(getActivity(),
                         getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
                         .show();
+*/
                 retornar();
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+/*
                 Toast.makeText(getActivity(),
                         getString(R.string.insercion_incorrecta),
                         Toast.LENGTH_SHORT).show();
+*/
             }
         };
         refNuevoAlumno.addListenerForSingleValueEvent(mNuevoAlumnoListener);

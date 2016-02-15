@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,8 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -208,9 +213,27 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     private void eliminarAlumno(int position) {
         // Se obtiene la referencia al alumno.
         Firebase refAlumno = mAdaptador.getRef(position);
+        final Alumno alumno = mAdaptador.getItem(position);
         // Se borra de la base de datos.
         refAlumno.removeValue();
         lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+        Snackbar snackbar = Snackbar.make(lblNuevoAlumno, R.string.alumno_eliminado, Snackbar.LENGTH_LONG);
+        snackbar.setAction(R.string.deshacer, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                agregarAlumno(alumno);
+            }
+        });
+        snackbar.show();
+    }
+
+    // Agrega el alumno a la base de datos.
+    private void agregarAlumno(Alumno alumno) {
+        Firebase ref = new Firebase(App.getUidAlumnosUrl());
+        Firebase refNuevoAlumno = ref.push();
+        String key = refNuevoAlumno.getKey();
+        alumno.setId(key);
+        refNuevoAlumno.setValue(alumno);
     }
 
     @Override

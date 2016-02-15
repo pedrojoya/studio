@@ -5,25 +5,20 @@ import android.os.Parcelable;
 
 public class Alumno implements Parcelable {
 
-    private long id;
+    private String id;
     private String nombre;
     private String telefono;
     private String curso;
     private String direccion;
 
     public Alumno() {
-        this.id = 0;
-        this.nombre = null;
-        this.telefono = null;
-        this.curso = null;
-        this.direccion = null;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,7 +61,7 @@ public class Alumno implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(this.id);
+        dest.writeString(this.id);
         dest.writeString(this.nombre);
         dest.writeString(this.telefono);
         dest.writeString(this.curso);
@@ -74,7 +69,7 @@ public class Alumno implements Parcelable {
     }
 
     protected Alumno(Parcel in) {
-        this.id = in.readLong();
+        this.id = in.readString();
         this.nombre = in.readString();
         this.telefono = in.readString();
         this.curso = in.readString();

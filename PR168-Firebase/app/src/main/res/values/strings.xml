@@ -41,5 +41,7 @@
     <string name="desconectarse">Salir</string>
     <string name="action_sign_up">Registrarse</string>
     <string name="datos_actualizados">Datos actualizados</string>
+    <string name="alumno_eliminado">Se ha eliminado el alumno</string>
+    <string name="deshacer">Deshacer</string>
 
 </resources>
