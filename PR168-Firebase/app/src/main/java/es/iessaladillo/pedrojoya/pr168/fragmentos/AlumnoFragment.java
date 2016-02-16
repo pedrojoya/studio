@@ -21,16 +21,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.firebase.ui.FirebaseListAdapter;
 
 import java.util.Random;
 
 import es.iessaladillo.pedrojoya.pr168.App;
 import es.iessaladillo.pedrojoya.pr168.R;
 import es.iessaladillo.pedrojoya.pr168.modelos.Alumno;
+import es.iessaladillo.pedrojoya.pr168.modelos.Curso;
 import es.iessaladillo.pedrojoya.pr168.utils.ClickToSelectEditText;
 
 public class AlumnoFragment extends Fragment {
@@ -58,6 +61,7 @@ public class AlumnoFragment extends Fragment {
     private ValueEventListener mAlumnoListener;
     private ValueEventListener mNuevoAlumnoListener;
     private String mNuevoAlumnoKey;
+    private FirebaseListAdapter<String> mCursosAdapter;
 
     // Retorna una nueva instancia del fragmento (para agregar)
     static public AlumnoFragment newInstance() {
@@ -219,9 +223,16 @@ public class AlumnoFragment extends Fragment {
 
     // Carga los cursos en el "spinner".
     private void cargarCursos() {
-        ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
-                R.array.cursos, android.R.layout.simple_list_item_1);
-        spnCurso.setAdapter(adaptadorCursos);
+        // ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
+        //        R.array.cursos, android.R.layout.simple_list_item_1);
+        Firebase refCursos = new Firebase(App.getUidCursosUrl());
+        mCursosAdapter = new FirebaseListAdapter<String>(getActivity(), String.class, android.R.layout.simple_list_item_1, refCursos) {
+            @Override
+            protected void populateView(View view, String s, int i) {
+                ((TextView)view.findViewById(android.R.id.text1)).setText(s);
+            }
+        };
+        spnCurso.setAdapter(mCursosAdapter);
         spnCurso.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
             @Override
             public void onItemSelectedListener(String item, int selectedIndex) {
@@ -401,5 +412,6 @@ public class AlumnoFragment extends Fragment {
         if (mNuevoAlumnoListener != null) {
             new Firebase(App.getUidAlumnosUrl()).child(mNuevoAlumnoKey).removeEventListener(mNuevoAlumnoListener);
         }
+        mCursosAdapter.cleanup();
     }
 }

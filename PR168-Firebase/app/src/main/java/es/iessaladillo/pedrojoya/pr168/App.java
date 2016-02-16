@@ -25,6 +25,10 @@ public class App extends Application {
         return FIREBASE_URL + "users/" + (TextUtils.isEmpty(sUid)?"":sUid + "/") + "alumnos/";
     }
 
+    public static String getUidCursosUrl() {
+        return FIREBASE_URL + "users/" + (TextUtils.isEmpty(sUid)?"":sUid + "/") + "cursos/";
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
