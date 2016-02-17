@@ -53,6 +53,8 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
         void onEditarAlumno(String key);
 
+        void onVerNotasAlumno(String key);
+
         void onConfirmarEliminarAlumnos();
 
         void onShowFAB();
@@ -213,6 +215,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     private void eliminarAlumno(int position) {
         // Se obtiene la referencia al alumno.
         Firebase refAlumno = mAdaptador.getRef(position);
+        final String key = refAlumno.getKey();
         final Alumno alumno = mAdaptador.getItem(position);
         // Se borra de la base de datos.
         refAlumno.removeValue();
@@ -221,19 +224,16 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         snackbar.setAction(R.string.deshacer, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                agregarAlumno(alumno);
+                agregarAlumno(key, alumno);
             }
         });
         snackbar.show();
     }
 
     // Agrega el alumno a la base de datos.
-    private void agregarAlumno(Alumno alumno) {
-        Firebase ref = new Firebase(App.getUidAlumnosUrl());
-        Firebase refNuevoAlumno = ref.push();
-        String key = refNuevoAlumno.getKey();
-        alumno.setId(key);
-        refNuevoAlumno.setValue(alumno);
+    private void agregarAlumno(String key, Alumno alumno) {
+        Firebase ref = (new Firebase(App.getUidAlumnosUrl())).child(key);
+        ref.setValue(alumno);
     }
 
     @Override
@@ -244,6 +244,12 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
             // Se da la orden de editar.
             listener.onEditarAlumno(key);
         }
+    }
+
+    @Override
+    public void onNotasButtonClick(View view, Alumno alumno, String key, int position) {
+        // Se da la orden de mostrar las notas del alumno.
+        listener.onVerNotasAlumno(key);
     }
 
     @Override

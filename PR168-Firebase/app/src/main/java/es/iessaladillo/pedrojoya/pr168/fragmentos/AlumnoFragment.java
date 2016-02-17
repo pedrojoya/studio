@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -47,7 +48,7 @@ public class AlumnoFragment extends Fragment {
     private EditText txtNombre;
     private EditText txtTelefono;
     private EditText txtDireccion;
-    private ClickToSelectEditText<String> spnCurso;
+    private ClickToSelectEditText<Curso> spnCurso;
     private Alumno mAlumno;
     private TextInputLayout tilNombre;
     private TextInputLayout tilCurso;
@@ -61,7 +62,7 @@ public class AlumnoFragment extends Fragment {
     private ValueEventListener mAlumnoListener;
     private ValueEventListener mNuevoAlumnoListener;
     private String mNuevoAlumnoKey;
-    private FirebaseListAdapter<String> mCursosAdapter;
+    private FirebaseListAdapter<Curso> mCursosAdapter;
 
     // Retorna una nueva instancia del fragmento (para agregar)
     static public AlumnoFragment newInstance() {
@@ -140,7 +141,7 @@ public class AlumnoFragment extends Fragment {
                 }
             });
             imgCurso = (ImageView) getView().findViewById(R.id.imgCurso);
-            spnCurso = (ClickToSelectEditText<String>) getView().findViewById(R.id.txtCurso);
+            spnCurso = (ClickToSelectEditText<Curso>) getView().findViewById(R.id.txtCurso);
             cargarCursos();
             spnCurso.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
@@ -226,17 +227,17 @@ public class AlumnoFragment extends Fragment {
         // ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
         //        R.array.cursos, android.R.layout.simple_list_item_1);
         Firebase refCursos = new Firebase(App.getUidCursosUrl());
-        mCursosAdapter = new FirebaseListAdapter<String>(getActivity(), String.class, android.R.layout.simple_list_item_1, refCursos) {
+        mCursosAdapter = new FirebaseListAdapter<Curso>(getActivity(), Curso.class, android.R.layout.simple_list_item_1, refCursos) {
             @Override
-            protected void populateView(View view, String s, int i) {
-                ((TextView)view.findViewById(android.R.id.text1)).setText(s);
+            protected void populateView(View view, Curso curso, int i) {
+                ((TextView)view.findViewById(android.R.id.text1)).setText(curso.getNombre());
             }
         };
         spnCurso.setAdapter(mCursosAdapter);
-        spnCurso.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
+        spnCurso.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<Curso>() {
             @Override
-            public void onItemSelectedListener(String item, int selectedIndex) {
-                spnCurso.setText(item);
+            public void onItemSelectedListener(Curso item, int selectedIndex) {
+                spnCurso.setText(item.getNombre());
             }
         });
     }
@@ -264,7 +265,7 @@ public class AlumnoFragment extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 mAlumno = snapshot.getValue(Alumno.class);
                 alumnoToVistas();
-                Toast.makeText(getActivity(), R.string.datos_actualizados, Toast.LENGTH_SHORT).show();
+                Snackbar.make(getView(), R.string.datos_actualizados, Snackbar.LENGTH_LONG).show();
             }
 
             @Override

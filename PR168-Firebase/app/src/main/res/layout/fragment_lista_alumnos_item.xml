@@ -45,10 +45,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblCurso"
-        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
         android:textSize="@dimen/three_lines_secundary_text_textSize"
         tools:text="Dirección"/>
+
+    <Button
+        android:id="@+id/btnNotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/lblDireccion"
+        android:text="@string/notas"
+        android:layout_marginLeft="@dimen/three_lines_text_paddingLeft"
+        android:layout_marginRight="@dimen/three_lines_text_paddingRight"
+        />
 
 </RelativeLayout>

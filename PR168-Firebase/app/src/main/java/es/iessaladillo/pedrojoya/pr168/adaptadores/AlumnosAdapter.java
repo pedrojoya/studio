@@ -6,6 +6,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
     // sobre un elemento.
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, String key, int position);
+        void onNotasButtonClick(View view, Alumno alumno, String key, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click
@@ -90,6 +92,17 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
                 if (mOnItemClickListener != null) {
                     // Se informa al listener.
                     mOnItemClickListener.onItemClick(v,
+                            getItem(viewHolder.getAdapterPosition()), getRef(viewHolder.getAdapterPosition()).getKey(),
+                            viewHolder.getAdapterPosition());
+                }
+            }
+        });
+        viewHolder.btnNotas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    // Se informa al listener.
+                    mOnItemClickListener.onNotasButtonClick(v,
                             getItem(viewHolder.getAdapterPosition()), getRef(viewHolder.getAdapterPosition()).getKey(),
                             viewHolder.getAdapterPosition());
                 }
@@ -200,6 +213,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
         private final TextView lblDireccion;
         private final ImageView imgAvatar;
         private final TextView lblCurso;
+        private final Button btnNotas;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -210,6 +224,8 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
                     .findViewById(R.id.lblCurso);
             lblDireccion = (TextView) itemView
                     .findViewById(R.id.lblDireccion);
+            btnNotas = (Button) itemView
+                    .findViewById(R.id.btnNotas);
         }
 
     }
