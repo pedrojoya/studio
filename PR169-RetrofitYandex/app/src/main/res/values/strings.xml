@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RetrofitYandex</string>
+    <string name="palabra">Texto a traducir al inglés</string>
+    <string name="termino">(español)</string>
+    <string name="traducir">Traducir</string>
+    <string name="error_peticion">Error en la petición</string>
+</resources>
