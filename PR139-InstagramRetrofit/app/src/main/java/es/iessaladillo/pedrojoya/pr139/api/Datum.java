@@ -12,7 +12,7 @@ public class Datum {
     @Expose
     private Object attribution;
     @Expose
-    private List<String> tags = new ArrayList<String>();
+    private List<String> tags = new ArrayList<>();
     @Expose
     private Object location;
     @Expose
@@ -30,7 +30,7 @@ public class Datum {
     private Images images;
     @SerializedName("users_in_photo")
     @Expose
-    private List<UsersInPhoto> usersInPhoto = new ArrayList<UsersInPhoto>();
+    private List<UsersInPhoto> usersInPhoto = new ArrayList<>();
     @Expose
     private Caption caption;
     @Expose

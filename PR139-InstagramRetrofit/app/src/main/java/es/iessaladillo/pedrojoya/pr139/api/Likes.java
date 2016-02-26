@@ -11,7 +11,7 @@ public class Likes {
     @Expose
     private Integer count;
     @Expose
-    private List<Datum_> data = new ArrayList<Datum_>();
+    private List<Datum_> data = new ArrayList<>();
 
     /**
      * 

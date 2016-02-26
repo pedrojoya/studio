@@ -1,15 +1,16 @@
 package es.iessaladillo.pedrojoya.pr140;
 
-import com.facebook.stetho.okhttp.StethoInterceptor;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import es.iessaladillo.pedrojoya.pr140.data.Escrutinio_sitio;
-import retrofit.Call;
-import retrofit.Retrofit;
-import retrofit.SimpleXmlConverterFactory;
-import retrofit.http.GET;
-import retrofit.http.Path;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 class APIClient {
 
@@ -51,14 +52,17 @@ class APIClient {
 
     // Construye y retorna el cliente de acceso a la API a través de Retrofit.
     private static ApiInterface buildApiClient() {
-        // Se crea el cliente OkHttpClient y se le indica la caché que debe usar.
-        OkHttpClient client = new OkHttpClient();
-        // Se añade un interceptor para los logs.
+        // Se crea un interceptor para los logs.
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        client.interceptors().add(logInterceptor);
+        // Se crea el constructor del cliente OkHttpClient.
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        // Se añade el interceptor de logs.
+        builder.addInterceptor(logInterceptor);
         // Se añade el interceptor para Stetho.
-        client.networkInterceptors().add(new StethoInterceptor());
+        builder.addInterceptor(new StethoInterceptor());
+        // Se crea el cliente OkHttp.
+        OkHttpClient client = builder.build();
         // Se construye el objeto Retrofit y a partir de él se retorna el
         // servicio de acceso a la API.
         Retrofit retrofit = new Retrofit.Builder()

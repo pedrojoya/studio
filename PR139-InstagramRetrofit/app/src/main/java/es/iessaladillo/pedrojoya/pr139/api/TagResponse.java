@@ -13,7 +13,7 @@ public class TagResponse {
     @Expose
     private Meta meta;
     @Expose
-    private List<Datum> data = new ArrayList<Datum>();
+    private List<Datum> data = new ArrayList<>();
 
     /**
      * 

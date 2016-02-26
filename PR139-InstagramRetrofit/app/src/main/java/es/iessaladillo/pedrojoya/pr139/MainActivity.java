@@ -20,10 +20,9 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr139.api.Datum;
 import es.iessaladillo.pedrojoya.pr139.api.TagResponse;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         // Se restauran los datos si provenimos de un cambio de orientación.
         if (savedInstanceState == null) {
-            mDatos = new ArrayList<Foto>();
+            mDatos = new ArrayList<>();
         }
         else {
             mDatos = savedInstanceState.getParcelableArrayList(STATE_LISTA_DATOS);
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mApiClient = Instagram.getApiInterface(this);
         // Se cargan los datos iniciales.
         if (savedInstanceState == null) {
-            mDatos = new ArrayList<Foto>();
+            mDatos = new ArrayList<>();
             swlPanel.post(new Runnable() {
                 @Override
                 public void run() {
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Call<TagResponse> peticion = mApiClient.getTagPhotos("algeciras", Instagram.CLIENT_ID, mMaxTagId);
         peticion.enqueue(new Callback<TagResponse>() {
             @Override
-            public void onResponse(Response<TagResponse> response, Retrofit retrofit) {
+            public void onResponse(Call<TagResponse> call, Response<TagResponse> response) {
                 // Si la respuesta es correcta.
                 TagResponse tagResponse = response.body();
                 if (tagResponse != null) {
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<TagResponse> call, Throwable t) {
                 // Se indica al gridview que ya ha finalizado la carga.
                 swlPanel.setRefreshing(false);
             }

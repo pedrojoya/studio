@@ -2,24 +2,24 @@ package es.iessaladillo.pedrojoya.pr139;
 
 import android.content.Context;
 
-import com.facebook.stetho.okhttp.StethoInterceptor;
-import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.File;
 import java.io.IOException;
 
 import es.iessaladillo.pedrojoya.pr139.api.TagResponse;
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.http.GET;
-import retrofit.http.Path;
-import retrofit.http.Query;
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 // Clase contrato con las claves de Instagram.
 class Instagram {
@@ -64,12 +64,16 @@ class Instagram {
 
     // Construye y retorna el cliente de acceso a la API a través de Retrofit.
     private static ApiInterface buildApiClient(Context context) {
-        // Se crea el cliente OkHttpClient y se le indica la caché que debe usar.
-        OkHttpClient client = new OkHttpClient();
-        client.setCache(createCache(context));
-        // Se le añade un interceptor para añadir las cabeceras necesarias
+        // Interceptor para los logs.
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        // Se obtiene el constructor del cliente HTTP.
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        // Se establece la caché.
+        builder.cache(createCache(context));
+        // Se añade un interceptor para añadir las cabeceras necesarias
         // para trabajar con la caché.
-        client.interceptors().add(new Interceptor() {
+        builder.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 // Se obtiene la petición original.
@@ -85,18 +89,17 @@ class Instagram {
                 return chain.proceed(newRequest);
             }
         });
-        // Se añade un interceptor para los logs.
-        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
-        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        client.interceptors().add(logInterceptor);
+        // Se añade el interceptor para los logs.
+        builder.addInterceptor(logInterceptor);
         // Se añade el interceptor para Stetho.
-        client.networkInterceptors().add(new StethoInterceptor());
+        builder.addInterceptor(new StethoInterceptor());
+        // Se construye el cliente HTTP.
+        OkHttpClient client = builder.build();
         // Se construye el objeto Retrofit y a partir de él se retorna el
         // servicio de acceso a la API.
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-
                 .client(client)
                 .build();
         return retrofit.create(ApiInterface.class);
@@ -107,10 +110,8 @@ class Instagram {
         // Se crea el archivo para la caché en el directorio correspondiente.
         File httpCacheDirectory = new File(context.getApplicationContext()
                 .getCacheDir().getAbsolutePath(), "HttpCache");
-        // Se crea la caché, indicando el directorio y el tamaño (10 megas)
-        Cache httpResponseCache = new Cache(httpCacheDirectory, 10 *
-                    1024);
-        return httpResponseCache;
+        // Se crea y retorna la caché, indicando el directorio y el tamaño (10 megas)
+        return new Cache(httpCacheDirectory, 10 * 1024);
     }
 
 }

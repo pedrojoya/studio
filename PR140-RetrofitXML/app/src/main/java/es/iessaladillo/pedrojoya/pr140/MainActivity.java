@@ -20,11 +20,9 @@ import com.github.mikephil.charting.utils.LargeValueFormatter;
 import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr140.data.Escrutinio_sitio;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
-
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -113,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         Call<Escrutinio_sitio> peticion = mApiClient.getPoblacionData(codigo);
         peticion.enqueue(new Callback<Escrutinio_sitio>() {
             @Override
-            public void onResponse(Response<Escrutinio_sitio> response, Retrofit retrofit) {
+            public void onResponse(Call<Escrutinio_sitio> call, Response<Escrutinio_sitio> response) {
                 Escrutinio_sitio escrutinio = response.body();
                 if (escrutinio != null) {
                     // Se establecen los datos del gráfico
@@ -122,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<Escrutinio_sitio> call, Throwable t) {
                 Log.d(getString(R.string.app_name), t.getMessage());
             }
         });

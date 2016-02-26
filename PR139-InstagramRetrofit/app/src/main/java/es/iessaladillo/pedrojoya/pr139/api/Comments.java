@@ -11,7 +11,7 @@ public class Comments {
     @Expose
     private Integer count;
     @Expose
-    private List<Object> data = new ArrayList<Object>();
+    private List<Object> data = new ArrayList<>();
 
     /**
      * 
