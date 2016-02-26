@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr168.actividades;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements
                     default:
                         mensaje = "Se ha producido un error al crear el usuario";
                 }
-                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show() ;
+                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -159,6 +160,12 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onAgregarAlumno() {
         AlumnoActivity.startForResult(this, RC_AGREGAR);
+    }
+
+    // Muestra la actividad de notas del alumno. Recibe la key del alumno.
+    @Override
+    public void onVerNotasAlumno(String key) {
+        Toast.makeText(MainActivity.this, "Ver notas de " +  key, Toast.LENGTH_SHORT).show();
     }
 
     // Muestra la actividad de alumno para editar. Recibe la key del alumno.
