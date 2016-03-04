@@ -2,7 +2,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="es.iessaladillo.pedrojoya.pr151.ActivityMainVM" />
+        <import type="es.iessaladillo.pedrojoya.pr170.ActivityMainVM" />
         <variable
             name="viewModel"
             type="ActivityMainVM" />
@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:font='@{"postcard.ttf"}'
-            android:textColor="@{viewModel.educado?@color/primary:@color/accent}"
             android:text="@string/introduzca_nombre"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -40,10 +39,10 @@
             android:layout_height="wrap_content"
             android:text="@{viewModel.nombre}"
             android:inputType="text|textPersonName"
-            android:addTextChangedListener="@{viewModel.txtNombreTextWatcher}"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:binding="@{viewModel.nombre}">
 
             <requestFocus/>
         </EditText>
@@ -52,20 +51,32 @@
             android:id="@+id/chkEducado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:checked="@{viewModel.educado}"
             android:text="@string/saludar_educadamente"
             app:font='@{"postcard.ttf"}'
-            android:onCheckedChanged="@{viewModel.chkEducadoCheckedChangedListener}"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:binding="@{viewModel.educado}"/>
+
+        <es.iessaladillo.pedrojoya.pr170.utils.ClickToSelectEditText
+            android:id="@+id/txtTratamiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_arrow_drop_down"
+            android:drawableRight="@drawable/ic_arrow_drop_down"
+            android:hint="@string/tratamiento"
+            android:inputType="none"
+            android:imeOptions="actionNext"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:binding="@{viewModel.tratamiento}"/>
 
         <Button
             android:id="@+id/btnSaludar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/saludar"
-            app:enabled="@{viewModel.formularioValido}"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>

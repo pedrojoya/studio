@@ -1,16 +1,21 @@
-package es.iessaladillo.pedrojoya.pr151;
+package es.iessaladillo.pedrojoya.pr170;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.Random;
 
-import es.iessaladillo.pedrojoya.pr151.databinding.ActivityMainBinding;
+import es.iessaladillo.pedrojoya.pr170.databinding.ActivityMainBinding;
+import es.iessaladillo.pedrojoya.pr170.utils.ClickToSelectEditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,6 +54,42 @@ public class MainActivity extends AppCompatActivity {
                 loadImage();
             }
         });
+        mBinding.txtNombre.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mBinding.btnSaludar.setEnabled(!TextUtils.isEmpty(s.toString()));
+            }
+        });
+        cargarCursos();
+        mBinding.txtTratamiento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mBinding.txtTratamiento.showDialog(v);
+                }
+            }
+        });
+    }
+
+    private void cargarCursos() {
+        ArrayAdapter<CharSequence> adaptador = ArrayAdapter.createFromResource(this, R.array.tratamientos, android.R.layout.simple_list_item_1);
+        mBinding.txtTratamiento.setAdapter(adaptador);
+        mBinding.txtTratamiento.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
+            @Override
+            public void onItemSelectedListener(String item, int selectedIndex) {
+                mBinding.txtTratamiento.setText(item);
+            }
+        });
     }
 
     private void loadImage() {
@@ -58,10 +99,13 @@ public class MainActivity extends AppCompatActivity {
     // Muestra el saludo.
     private void showSaludo() {
         String mensaje = getString(R.string.buenos_dias);
-        if (mViewModel.isEducado()) {
+        if (mViewModel.educado.get()) {
             mensaje = mensaje + " " + getString(R.string.tenga_usted);
+            if (!mViewModel.tratamiento.isEmpty()) {
+                mensaje = mensaje + " " + mViewModel.tratamiento.get();
+            }
         }
-        mensaje += " " + mViewModel.getNombre();
+        mensaje += " " + mViewModel.nombre.get();
         // Se muestra el mensaje
         Snackbar.make(mBinding.imgImagen, mensaje, Snackbar.LENGTH_LONG).show();
     }
