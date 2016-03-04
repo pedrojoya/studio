@@ -9,15 +9,12 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.CompoundButton;
 
-public class Saludo extends BaseObservable implements Parcelable {
+public class ActivityMainVM extends BaseObservable implements Parcelable {
 
     private String nombre;
     private boolean educado;
 
-    public Saludo(String nombre, boolean educado) {
-        this.nombre = nombre;
-        this.educado = educado;
-    }
+    public ActivityMainVM() {}
 
     @Bindable
     public String getNombre() {
@@ -27,7 +24,7 @@ public class Saludo extends BaseObservable implements Parcelable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.nombre);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.dataValid);
+        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.formularioValido);
     }
 
     @Bindable
@@ -41,11 +38,12 @@ public class Saludo extends BaseObservable implements Parcelable {
     }
 
     @Bindable
-    public boolean isDataValid() {
+    public boolean isFormularioValido() {
         return !(TextUtils.isEmpty(nombre));
     }
 
-    public TextWatcher nombrewatcher() {
+    // Para vinculación bidireccional del EditText con la prop nombre.
+    public TextWatcher txtNombreTextWatcher() {
         return new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -56,7 +54,7 @@ public class Saludo extends BaseObservable implements Parcelable {
             public void onTextChanged(CharSequence s, int i, int i1, int i2) {
                 if (!TextUtils.equals(nombre, s.toString())) {
                     nombre = s.toString();
-                    notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.dataValid);
+                    notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.formularioValido);
                 }
             }
 
@@ -66,7 +64,8 @@ public class Saludo extends BaseObservable implements Parcelable {
         };
     }
 
-    public CompoundButton.OnCheckedChangeListener educadocheckedchangedlistener() {
+    // Para vinculación bidireccional del Checkbox con la prop educado.
+    public CompoundButton.OnCheckedChangeListener chkEducadoCheckedChangedListener() {
         return new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -88,18 +87,18 @@ public class Saludo extends BaseObservable implements Parcelable {
         dest.writeByte(educado ? (byte) 1 : (byte) 0);
     }
 
-    protected Saludo(Parcel in) {
+    protected ActivityMainVM(Parcel in) {
         this.nombre = in.readString();
         this.educado = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<Saludo> CREATOR = new Parcelable.Creator<Saludo>() {
-        public Saludo createFromParcel(Parcel source) {
-            return new Saludo(source);
+    public static final Parcelable.Creator<ActivityMainVM> CREATOR = new Parcelable.Creator<ActivityMainVM>() {
+        public ActivityMainVM createFromParcel(Parcel source) {
+            return new ActivityMainVM(source);
         }
 
-        public Saludo[] newArray(int size) {
-            return new Saludo[size];
+        public ActivityMainVM[] newArray(int size) {
+            return new ActivityMainVM[size];
         }
     };
 }

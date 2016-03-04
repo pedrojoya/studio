@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr151;
+package es.iessaladillo.pedrojoya.pr151.tools;
 
 import android.databinding.BindingAdapter;
 import android.databinding.BindingConversion;
@@ -7,6 +7,8 @@ import android.text.TextWatcher;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+
+import es.iessaladillo.pedrojoya.pr151.R;
 
 public class Converters {
 

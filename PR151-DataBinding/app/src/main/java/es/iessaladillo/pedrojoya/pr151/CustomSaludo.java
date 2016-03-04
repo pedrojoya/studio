@@ -4,6 +4,9 @@ import android.databinding.Observable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import es.iessaladillo.pedrojoya.pr151.tools.BindableBoolean;
+import es.iessaladillo.pedrojoya.pr151.tools.BindableString;
+
 public class CustomSaludo implements Parcelable {
 
     public BindableString nombre = new BindableString();
