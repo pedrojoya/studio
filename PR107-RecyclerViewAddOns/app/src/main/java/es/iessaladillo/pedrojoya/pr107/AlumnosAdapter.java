@@ -30,16 +30,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         void onItemLongClick(View view, Alumno alumno, int position);
     }
 
-    // Interfaz que debe implementar el listener para cuando la lista pase a
-    // o deje de estar vacía.
-    public interface OnEmptyStateChangedListener {
-        void onEmptyStateChanged(boolean isEmpty);
-    }
-
     private final ArrayList<Alumno> mDatos;
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
-    private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
     private boolean mIsEmpty = true;
 
@@ -126,8 +119,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
-        // Se comprueba si pasa a estar vacía.
-        checkEmptyStateChanged();
     }
 
     // Elimina los elementos seleccionados.
@@ -142,8 +133,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             toggleSelection(pos);
             removeItem(pos);
         }
-        // Se comprueba si pasa a estar vacía.
-        checkEmptyStateChanged();
     }
 
     // Añade un elemento a la lista.
@@ -152,8 +141,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mDatos.add(position, alumno);
         // Se notifica que se ha insertado un elemento en la última posición.
         notifyItemInserted(position);
-        // Si comprueba si deja de estar vacía.
-        checkEmptyStateChanged();
     }
 
     // Intercambia dos elementos de la lista.
@@ -175,23 +162,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         notifyItemMoved(from, to);
     }
 
-    // Comprueba si ha pasa a estar vacía o deja de estar vacía.
-    private void checkEmptyStateChanged() {
-        // Deja de estar vacía
-        if (mIsEmpty && mDatos.size() > 0) {
-            mIsEmpty = false;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(false);
-            }
-        }
-        else if (!mIsEmpty && mDatos.size()==0) {
-            mIsEmpty = true;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(true);
-            }
-        }
-    }
-
     // Establece el listener a informar cuando se hace click sobre un
     // elemento de la lista.
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -202,14 +172,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // elemento de la lista.
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         mOnItemLongClickListener = listener;
-    }
-
-    // Establece el listener a informar cuando la lista pasa a o deja de
-    // estar vacía.
-    public void setOnEmptyStateChangedListener(
-            OnEmptyStateChangedListener listener) {
-        mOnEmptyStateChangedListener = listener;
-        checkEmptyStateChanged();
     }
 
     // Cambia el estado de selección de un elemento.

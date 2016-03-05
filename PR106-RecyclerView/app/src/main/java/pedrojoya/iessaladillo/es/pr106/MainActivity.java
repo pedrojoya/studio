@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     private RecyclerView lstAlumnos;
     private AlumnosAdapter mAdaptador;
     private LinearLayoutManager mLayoutManager;
+    private TextView mEmptyView;
     private Parcelable mEstadoLista;
 
     @Override
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
+        mEmptyView = (TextView) findViewById(R.id.lblNoHayAlumnos);
         configToolbar();
         configRecyclerView();
         configFab();
@@ -66,12 +68,30 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
+        mAdaptador.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkAdapterIsEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkAdapterIsEmpty();
+            }
+        });
         lstAlumnos.setAdapter(mAdaptador);
+        checkAdapterIsEmpty();
         mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    // Muestra u oculta la empty view dependiendo de si el adaptador está vacío.
+    private void checkAdapterIsEmpty() {
+        mEmptyView.setVisibility(mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     // Agrega un alumno a la lista.

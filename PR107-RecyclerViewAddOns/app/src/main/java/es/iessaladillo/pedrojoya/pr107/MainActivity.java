@@ -76,13 +76,22 @@ public class MainActivity extends AppCompatActivity implements
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.setOnEmptyStateChangedListener(new AlumnosAdapter.OnEmptyStateChangedListener() {
+        mAdaptador.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
-            public void onEmptyStateChanged(boolean isEmpty) {
-                lblNoHayAlumnos.setVisibility(isEmpty ? View.VISIBLE : View.INVISIBLE);
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkAdapterIsEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkAdapterIsEmpty();
             }
         });
         lstAlumnos.setAdapter(mAdaptador);
+        // Se realiza la comprobación inicial.
+        checkAdapterIsEmpty();
         mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         lstAlumnos.setLayoutManager(mLayoutManager);
@@ -130,6 +139,10 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
+    }
+
+    private void checkAdapterIsEmpty() {
+        lblNoHayAlumnos.setVisibility(mAdaptador.getItemCount()==0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     // Muestra las vistas flotantes.

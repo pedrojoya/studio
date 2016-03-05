@@ -17,7 +17,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     private final ArrayList<Alumno> mDatos;
-    private View emptyView;
     private OnItemLongClickListener onItemLongClickListener;
     private OnItemClickListener onItemClickListener;
 
@@ -94,8 +93,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
-        // Si la lista ha quedado vacía se muestra la empty view.
-        checkIfEmpty();
     }
 
     // Añade un elemento a la lista.
@@ -104,8 +101,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mDatos.add(alumno);
         // Se notifica que se ha insertado un elemento en la última posición.
         notifyItemInserted(mDatos.size() - 1);
-        // Si la lista estaba vacía se oculta la empty view.
-        checkIfEmpty();
     }
 
     // Intercambia dos elementos de la lista.
@@ -114,21 +109,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         Collections.swap(mDatos, from, to);
         // Se notifica el movimiento.
         notifyItemMoved(from, to);
-    }
-
-    // Comprueba si la lista está vacía.
-    private void checkIfEmpty() {
-        if (emptyView != null) {
-            // Muestra u oculta la empty view dependiendo de si la lista está vacía o no.
-            emptyView.setVisibility(getItemCount() > 0 ? View.GONE : View.VISIBLE);
-        }
-    }
-
-    // Establece la empty view para la lista.
-    public void setEmptyView(View emptyView) {
-        this.emptyView = emptyView;
-        // Muestra la empty view si  la lista está vacía.
-        checkIfEmpty();
     }
 
     // Establece el listener a informar cuando se hace click sobre un elemento de la lista.
