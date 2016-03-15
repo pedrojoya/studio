@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Escrutinio_sitio> call, Response<Escrutinio_sitio> response) {
                 Escrutinio_sitio escrutinio = response.body();
-                if (escrutinio != null) {
+                if (escrutinio != null && response.isSuccessful()) {
                     // Se establecen los datos del gráfico
                     setChartData(escrutinio);
                 }

@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onResponse(Call<TagResponse> call, Response<TagResponse> response) {
                 // Si la respuesta es correcta.
                 TagResponse tagResponse = response.body();
-                if (tagResponse != null) {
+                if (tagResponse != null && response.isSuccessful()) {
                     // Se obtiene la próxima URL.
                     mMaxTagId = tagResponse.getPagination().getNextMaxTagId();
                     Log.d("Mia", mMaxTagId);

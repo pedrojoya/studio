@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<TranslateResponse>() {
             @Override
             public void onResponse(Call<TranslateResponse> call, Response<TranslateResponse> response) {
-                if (response.body() != null) {
+                if (response.body() != null && response.isSuccessful()) {
                     showTraduccion(response.body());
                 } else {
                     Snackbar.make(lblTraduccion, R.string.error_peticion, Snackbar.LENGTH_SHORT).show();

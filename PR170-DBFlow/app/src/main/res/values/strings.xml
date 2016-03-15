@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DBFlow</string>
+    <string name="title_activity_alumno">Alumno</string>
+    <string name="nombre">Nombre</string>
+    <string name="guardar">Guardar</string>
+    <string name="no_hay_alumnos">No hay alumnos</string>
+    <string name="modificar_alumno">Modificar alumno</string>
+    <string name="agregar_alumno">Agregar alumno</string>
+    <string name="curso">Curso</string>
+    <string name="telefono">Telefono</string>
+    <string name="direccion">Dirección</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="de">%1$d de %2$d</string>
+
+</resources>
