@@ -63,6 +63,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         if (alumno.getCurso() != null) {
             holder.lblCurso.setText(alumno.getCurso().getNombre());
         }
+        holder.lblDireccion.setText(alumno.getDireccion());
         // Se obtienen las asignaturas del alumno.
         List<Asignatura_Alumno> asignaturas = alumno.getAsignaturas();
         if (asignaturas != null) {
@@ -70,7 +71,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
             for (Asignatura_Alumno asignatura_alumno : asignaturas) {
                 texto = texto + (TextUtils.isEmpty(texto)?"":" | ") + asignatura_alumno.getAsignatura().getNombre();
             }
-            holder.lblDireccion.setText(texto);
+            holder.lblAsignaturas.setText(texto);
         }
         Glide.with(getContext()).load(
                 alumno.getAvatar())
@@ -85,6 +86,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         private final TextView lblNombre;
         private final TextView lblCurso;
         private final TextView lblDireccion;
+        private final TextView lblAsignaturas;
 
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
@@ -96,6 +98,8 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
                     .findViewById(R.id.lblCurso);
             lblDireccion = (TextView) itemView
                     .findViewById(R.id.lblDireccion);
+            lblAsignaturas = (TextView) itemView
+                    .findViewById(R.id.lblAsignaturas);
         }
 
     }

@@ -32,4 +32,9 @@ public class Asignatura extends BaseModel {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }

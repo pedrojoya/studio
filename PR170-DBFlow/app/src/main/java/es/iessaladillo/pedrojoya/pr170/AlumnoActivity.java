@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +24,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr170.db.Alumno;
+import es.iessaladillo.pedrojoya.pr170.db.Asignatura;
+import es.iessaladillo.pedrojoya.pr170.db.Asignatura_Alumno;
 import es.iessaladillo.pedrojoya.pr170.db.Curso;
 import es.iessaladillo.pedrojoya.pr170.db.Curso_Table;
 
@@ -47,10 +51,13 @@ public class AlumnoActivity extends AppCompatActivity {
     TextView lblTelefono;
     @Bind(R.id.lblDireccion)
     TextView lblDireccion;
+    @Bind(R.id.lstAsignaturas)
+    ListView lstAsignaturas;
 
     private Alumno mAlumno;
     private ArrayAdapter<Curso> adaptadorCursos;
     private Random mAleatorio;
+    private ArrayList<Asignatura> mAsignaturas;
 
     // Al crear la actividad.
     @Override
@@ -175,6 +182,14 @@ public class AlumnoActivity extends AppCompatActivity {
         txtDireccion.setText(mAlumno.getDireccion());
         spnCurso.setSelection(adaptadorCursos.getPosition(mAlumno.getCurso()),
                 true);
+        List<Asignatura_Alumno> asignaturasAlumno = mAlumno.getAsignaturas();
+        mAsignaturas = new ArrayList<Asignatura>();
+        if (asignaturasAlumno != null) {
+            for (Asignatura_Alumno asignaturaAlumno : asignaturasAlumno) {
+                mAsignaturas.add(asignaturaAlumno.getAsignatura());
+            }
+        }
+        lstAsignaturas.setAdapter(new ArrayAdapter<Asignatura>(this, android.R.layout.simple_list_item_1, mAsignaturas));
     }
 
     // Carga los cursos en el spinner.

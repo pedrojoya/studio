@@ -41,10 +41,20 @@
         android:id="@+id/lblDireccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
         tools:text="Dirección"
         android:layout_below="@+id/lblCurso"
+        android:textSize="@dimen/three_lines_secundary_text_textSize" />
+
+    <TextView
+        android:id="@+id/lblAsignaturas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        tools:text="Asignaturas"
+        android:layout_below="@+id/lblDireccion"
         android:textSize="@dimen/three_lines_secundary_text_textSize" />
 </RelativeLayout>

@@ -13,5 +13,6 @@
     <string name="direccion">Dirección</string>
     <string name="eliminar">Eliminar</string>
     <string name="de">%1$d de %2$d</string>
+    <string name="asignaturas">Asignaturas</string>
 
 </resources>
