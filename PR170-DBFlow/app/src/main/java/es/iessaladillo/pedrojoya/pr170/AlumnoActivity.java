@@ -21,6 +21,9 @@ import java.util.Random;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.iessaladillo.pedrojoya.pr170.db.Alumno;
+import es.iessaladillo.pedrojoya.pr170.db.Curso;
+import es.iessaladillo.pedrojoya.pr170.db.Curso_Table;
 
 
 public class AlumnoActivity extends AppCompatActivity {

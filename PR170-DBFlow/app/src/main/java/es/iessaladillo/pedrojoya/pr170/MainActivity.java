@@ -22,6 +22,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.iessaladillo.pedrojoya.pr170.db.Alumno;
 
 public class MainActivity extends AppCompatActivity {
 

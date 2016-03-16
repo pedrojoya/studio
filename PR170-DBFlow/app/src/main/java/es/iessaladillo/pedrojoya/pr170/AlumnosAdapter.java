@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr170;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.iessaladillo.pedrojoya.pr170.db.Alumno;
+import es.iessaladillo.pedrojoya.pr170.db.Asignatura_Alumno;
 
 // Adaptador para la lista.
 class AlumnosAdapter extends ArrayAdapter<Alumno> {
@@ -59,7 +63,15 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         if (alumno.getCurso() != null) {
             holder.lblCurso.setText(alumno.getCurso().getNombre());
         }
-        holder.lblDireccion.setText(alumno.getDireccion());
+        // Se obtienen las asignaturas del alumno.
+        List<Asignatura_Alumno> asignaturas = alumno.getAsignaturas();
+        if (asignaturas != null) {
+            String texto = "";
+            for (Asignatura_Alumno asignatura_alumno : asignaturas) {
+                texto = texto + (TextUtils.isEmpty(texto)?"":" | ") + asignatura_alumno.getAsignatura().getNombre();
+            }
+            holder.lblDireccion.setText(texto);
+        }
         Glide.with(getContext()).load(
                 alumno.getAvatar())
                 .into(holder.imgAvatar);
