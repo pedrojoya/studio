@@ -14,5 +14,7 @@
     <string name="eliminar">Eliminar</string>
     <string name="de">%1$d de %2$d</string>
     <string name="asignaturas">Asignaturas</string>
+    <string name="sin_asignaturas">Sin asignaturas</string>
+    <string name="aceptar">Aceptar</string>
 
 </resources>

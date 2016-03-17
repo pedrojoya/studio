@@ -66,13 +66,17 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         holder.lblDireccion.setText(alumno.getDireccion());
         // Se obtienen las asignaturas del alumno.
         List<Asignatura_Alumno> asignaturas = alumno.getAsignaturas();
-        if (asignaturas != null) {
-            String texto = "";
+        String texto;
+        if (asignaturas != null && !asignaturas.isEmpty()) {
+            texto = "";
             for (Asignatura_Alumno asignatura_alumno : asignaturas) {
                 texto = texto + (TextUtils.isEmpty(texto)?"":" | ") + asignatura_alumno.getAsignatura().getNombre();
             }
-            holder.lblAsignaturas.setText(texto);
         }
+        else {
+            texto = getContext().getString(R.string.sin_asignaturas);
+        }
+        holder.lblAsignaturas.setText(texto);
         Glide.with(getContext()).load(
                 alumno.getAvatar())
                 .into(holder.imgAvatar);

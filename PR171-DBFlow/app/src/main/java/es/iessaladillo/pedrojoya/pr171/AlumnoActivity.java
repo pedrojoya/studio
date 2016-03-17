@@ -25,6 +25,7 @@ import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr171.db.Alumno;
 import es.iessaladillo.pedrojoya.pr171.db.Asignatura;
 import es.iessaladillo.pedrojoya.pr171.db.Asignatura_Alumno;
+import es.iessaladillo.pedrojoya.pr171.db.Asignatura_Table;
 import es.iessaladillo.pedrojoya.pr171.db.Curso;
 import es.iessaladillo.pedrojoya.pr171.db.Curso_Table;
 
@@ -50,6 +51,8 @@ public class AlumnoActivity extends AppCompatActivity {
     TextView lblTelefono;
     @Bind(R.id.lblDireccion)
     TextView lblDireccion;
+    @Bind(R.id.lblAsignaturas)
+    TextView lblAsignaturas;
     @Bind(R.id.lstAsignaturas)
     ListView lstAsignaturas;
 
@@ -171,6 +174,20 @@ public class AlumnoActivity extends AppCompatActivity {
             agregar();
         } else {
             actualizar();
+        }
+    }
+
+    @OnClick(R.id.lblAsignaturas)
+    public void mostrarAsignaturas() {
+        // Se obtienen las asignaturas.
+        List<Asignatura> asignaturas = SQLite.select()
+                .from(Asignatura.class)
+                .orderBy(Asignatura_Table.nombre, true)
+                .queryList();
+        // Se obtienen las asignaturas del alumno.
+        List<Asignatura_Alumno> asignaturasAlumno;
+        if (mAlumno != null) {
+            asignaturasAlumno = mAlumno.getAsignaturas();
         }
     }
 
