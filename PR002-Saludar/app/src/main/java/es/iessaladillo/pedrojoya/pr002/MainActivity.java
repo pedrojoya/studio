@@ -72,14 +72,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Se crea el mensaje.
-        String mensaje = getString(R.string.modo_educado) + " ";
-        if (isChecked) {
-            mensaje += getString(R.string.on);
-        } else {
-            mensaje += getString(R.string.off);
-        }
-        // Se muestra en un Toast.
-        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+        chkEducado.setText(isChecked?getString(R.string.saludar_educadamente):getString(R.string.saludar_normal));
     }
 
 }
