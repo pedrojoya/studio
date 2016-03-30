@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+// Variables.
+def support_library_version = "23.2.1"
+def butterknife_version = "7.0.1"
+def junit_version = '4.12'
+def mockito_version = '1.10.19'
+def powerMockito_version = '1.6.4'
+def hamcrest_version = '1.3'
+def espresso_version = "2.2.2"
+def support_test_version = "0.5"
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr172"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        // Necesario para ui testing con Espresso.
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    // Librerias.
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:${support_library_version}"
+    compile "com.jakewharton:butterknife:${butterknife_version}"
+    // Pruebas unitarias locales.
+    testCompile "junit:junit:${junit_version}"
+    testCompile "org.mockito:mockito-all:${mockito_version}"
+    testCompile "org.hamcrest:hamcrest-all:${hamcrest_version}"
+    testCompile "org.powermock:powermock-module-junit4:${powerMockito_version}"
+    testCompile "org.powermock:powermock-api-mockito:${powerMockito_version}"
+    // UI testing con Espresso
+    androidTestCompile "com.android.support.test.espresso:espresso-core:${espresso_version}"
+    androidTestCompile "com.android.support:support-annotations:${support_library_version}"
+    androidTestCompile "com.android.support.test:runner:${support_test_version}"
+    androidTestCompile "com.android.support.test:rules:${support_test_version}"
+}
