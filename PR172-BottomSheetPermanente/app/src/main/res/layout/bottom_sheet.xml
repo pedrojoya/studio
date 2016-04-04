@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rlPanel"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/translucent_grey"
+    android:padding="@dimen/panel_padding"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    app:behavior_peekHeight="@dimen/bottomSheet_peekHeight"
+    app:behavior_hideable="true">
+
+    <TextView
+        android:id="@+id/lblTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imgDetalle"
+        android:layout_toStartOf="@+id/imgDetalle"
+        android:text="@string/foto_del_dia"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/abc_text_size_headline_material"/>
+
+    <TextView
+        android:id="@+id/lblSubtitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lblTitulo"
+        android:layout_toLeftOf="@+id/imgDetalle"
+        android:layout_toStartOf="@+id/imgDetalle"
+        android:text="@string/londres"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/abc_text_size_subhead_material"/>
+
+    <ImageView
+        android:id="@+id/imgDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/lblTitulo"
+        android:layout_alignBottom="@+id/lblTitulo"
+        android:clickable="true"
+        android:contentDescription="@string/abrir_detalle"
+        android:src="@drawable/ic_arrow_drop_up"/>
+
+    <TextView
+        android:id="@+id/lblDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblSubtitulo"
+        android:paddingLeft="@dimen/panel_padding"
+        android:paddingTop="@dimen/panel_padding"
+        android:text="@string/detalle"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/abc_text_size_body_2_material"/>
+</RelativeLayout>

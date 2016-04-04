@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="panel_padding">16dp</dimen>
+    <dimen name="bottomSheet_peekHeight">80dp</dimen>
+
+</resources>
