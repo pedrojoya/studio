@@ -1,7 +1,10 @@
 package es.iessaladillo.pedrojoya.pr172;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomSheetBehavior<RelativeLayout> bsb;
     private ImageView imgDetalle;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         imgDetalle = (ImageView) findViewById(R.id.imgDetalle);
         RelativeLayout rlPanel = (RelativeLayout) findViewById(R.id.rlPanel);
         bsb = BottomSheetBehavior.from(rlPanel);
@@ -51,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 } else if (bsb.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
                     bsb.setState(BottomSheetBehavior.STATE_EXPANDED);
                 }
+            }
+        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                intent.putExtra(SearchManager.QUERY, getString(R.string.foto_del_dia));
+                startActivity(intent);
             }
         });
     }
