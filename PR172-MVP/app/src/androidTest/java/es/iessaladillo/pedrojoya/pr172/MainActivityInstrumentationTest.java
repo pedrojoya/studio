@@ -37,24 +37,37 @@ public class MainActivityInstrumentationTest {
     // Valida que cambia el texto del checkbox al pulsarlo.
     @Test
     public void validateChangeCheckBoxTextOnClick() {
-        onView(withId(R.id.chkEducado)).perform(click()).check(matches(withText(R.string.saludar_normal)));
         onView(withId(R.id.chkEducado)).perform(click()).check(matches(withText(R.string.saludar_educadamente)));
+        onView(withId(R.id.chkEducado)).perform(click()).check(matches(withText(R.string.saludar_normal)));
     }
 
     // Valida que saluda educadamente.
     @Test
     public void validateSaludoEducado() {
         onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
+        onView(withId(R.id.chkEducado)).perform(click());
         onView(withId(R.id.btnSaludar)).perform(click());
         onView(withText("Buenos días tenga usted Baldomero")).inRoot(withDecorView(not(activityTestRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+        // Para que tiempo a ocultarse la Toast (para futuros test)
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        onView(withId(R.id.chkEducado)).perform(click());
     }
 
     @Test
     public void validateSaludoNoEducado() {
         onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
-        onView(withId(R.id.chkEducado)).perform(click());
         onView(withId(R.id.btnSaludar)).perform(click());
         onView(withText("Buenos días Baldomero")).inRoot(withDecorView(not(activityTestRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+        // Para que tiempo a ocultarse la Toast (para futuros test)
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

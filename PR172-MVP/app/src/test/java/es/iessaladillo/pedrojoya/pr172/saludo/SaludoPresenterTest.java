@@ -30,7 +30,7 @@ public class SaludoPresenterTest {
         // Se llama al método del presentador poara mostrar saludo.
         mPresentador.onSaludar("Baldomero", false);
         // Se comprueba que el método de la vista para mostrar el saludo es llamado.
-        verify(mVista).mostrarSaludo("Buenos días Baldomero");
+        verify(mVista).mostrarSaludo("Baldomero", false);
     }
 
     // Test para comprobar que se muestra el saludo en modo educado.
@@ -39,7 +39,7 @@ public class SaludoPresenterTest {
         // Se llama al método del presentador poara mostrar saludo.
         mPresentador.onSaludar("Baldomero", true);
         // Se comprueba que el método de la vista para mostrar el saludo es llamado.
-        verify(mVista).mostrarSaludo("Buenos días tenga usted Baldomero");
+        verify(mVista).mostrarSaludo("Baldomero", true);
     }
 
 }

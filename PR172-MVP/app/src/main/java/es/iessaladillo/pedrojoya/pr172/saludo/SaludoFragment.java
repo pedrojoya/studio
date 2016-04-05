@@ -58,7 +58,7 @@ public class SaludoFragment extends Fragment implements SaludoContract.View {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Se crea el Presentador.
-        mPresentador = new SaludoPresenter(this);
+        mPresentador = new SaludoPresenter(SaludoRepository.getInstance(), this);
         initVistas();
     }
 
@@ -72,8 +72,9 @@ public class SaludoFragment extends Fragment implements SaludoContract.View {
     }
 
     @Override
-    public void cambiarTextoModo(String texto) {
-        chkEducado.setText(texto);
+    public void cambiarTextoModo(boolean educado) {
+        chkEducado.setText(educado?getString(R.string.saludar_educadamente):
+                getString(R.string.saludar_normal));
     }
 
     @Override

@@ -1,6 +1,9 @@
 package es.iessaladillo.pedrojoya.pr172.saludo;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+
+import java.util.List;
 
 public interface SaludoContract {
 
@@ -8,18 +11,26 @@ public interface SaludoContract {
     interface UserActionsListener {
         // Se ha solicitado saludar.
         void onSaludar(String nombre, boolean educado);
-        //Se ha solicitado cambiar el modo de saludo.
+        // Se ha solicitado cambiar el modo de saludo.
         void onCambiarModoSaludo(boolean eduacado);
     }
 
     // Interfaz de comunicación desde el Presentador con la Vista.
     interface View {
-        // Para obtener el contexto de la vista (para poder acceder a recursos).
-        Context getContext();
-        // Para mostrar el mensaje de saludo.
+        // Para mostrar el saludo.
         void mostrarSaludo(String mensaje);
         // Para cambiar el texto del modo de saludo.
-        void cambiarTextoModo(String texto);
+        void cambiarTextoModo(boolean educado);
+    }
+
+    // Interfaz de comunicación entre el Presentador y el Repositorio.
+    interface Repository {
+        // Callback que debe implementar el Presentador y que será llamador por el Repositorio.
+        interface GetSaludoCallback {
+            void onSaludoLoaded(String mensaje);
+        }
+        // Para obtener el saludo (desde el Presentador al Repositorio)
+        void getSaludo(String nombre, boolean educado, @NonNull GetSaludoCallback callback);
     }
 
 }
