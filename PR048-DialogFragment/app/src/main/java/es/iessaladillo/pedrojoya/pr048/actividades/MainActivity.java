@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     // Muestra el diálogo de selección de fecha.
@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements
         for (int i = 0; i < optionIsChecked.length; i++) {
             if (optionIsChecked[i]) {
                 if (primero) {
-                    mensaje += getString(R.string.ha_seleccionado);
                     primero = false;
                 } else {
                     mensaje += ", ";
@@ -166,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements
         if (mensaje.equals("")) {
             mensaje = getString(R.string.no_ha_seleccionado_ningun_turno);
         }
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.ha_seleccionado, mensaje), Toast.LENGTH_SHORT).show();
     }
 
     // Al hacer click sobre un elemento del adaptador. Recibe el alumno seleccionado.

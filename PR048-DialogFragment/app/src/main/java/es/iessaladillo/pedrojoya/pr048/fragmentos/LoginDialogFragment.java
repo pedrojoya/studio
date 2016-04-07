@@ -19,9 +19,9 @@ public class LoginDialogFragment extends DialogFragment {
 
     // Interfaz pública para comunicación con la actividad.
     public interface LoginDialogListener {
-        public void onConectarClick(DialogFragment dialog);
+        void onConectarClick(DialogFragment dialog);
 
-        public void onCancelarClick(DialogFragment dialog);
+        void onCancelarClick(DialogFragment dialog);
     }
 
     // Al crear el diálogo. Retorna el diálogo configurado.

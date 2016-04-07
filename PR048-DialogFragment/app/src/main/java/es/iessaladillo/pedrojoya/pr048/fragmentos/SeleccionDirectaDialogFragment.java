@@ -18,7 +18,7 @@ public class SeleccionDirectaDialogFragment extends DialogFragment {
 
     // Interfaz pública para comunicación con la actividad.
     public interface SeleccionDirectaDialogListener {
-        public void onItemClick(DialogFragment dialog, int which);
+        void onItemClick(DialogFragment dialog, int which);
     }
 
     // Al crear el diálogo. Retorna el diálogo configurado.

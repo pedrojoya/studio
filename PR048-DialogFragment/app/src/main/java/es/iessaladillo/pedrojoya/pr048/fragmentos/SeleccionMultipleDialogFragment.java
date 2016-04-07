@@ -20,8 +20,8 @@ public class SeleccionMultipleDialogFragment extends DialogFragment {
 
     // Interfaz pública para comunicación con la actividad.
     public interface SeleccionMultipleDialogListener {
-        public void onPositiveButtonClick(DialogFragment dialog,
-                                          boolean[] optionIsChecked);
+        void onPositiveButtonClick(DialogFragment dialog,
+                                   boolean[] optionIsChecked);
     }
 
     // Al crear el diálogo. Retorna el diálogo configurado.

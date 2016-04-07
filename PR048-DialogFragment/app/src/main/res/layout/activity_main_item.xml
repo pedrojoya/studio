@@ -23,7 +23,7 @@
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
         android:paddingTop="@dimen/two_line_text_paddingTop"
         tools:text="Baldomero Llegate Ligero"
-        android:textSize="@dimen/abc_text_size_subhead_material" />
+        style="@style/Base.TextAppearance.AppCompat.Subhead" />
 
     <TextView
         android:id="@+id/lblDireccion"

@@ -24,7 +24,7 @@ public class AdaptadorDialogFragment extends DialogFragment {
 
     // Interfaz pública para comunicación con la actividad.
     public interface AdaptadorDialogListener {
-        public void onListItemClick(DialogFragment dialog, Alumno alumno);
+        void onListItemClick(DialogFragment dialog, Alumno alumno);
     }
 
     // Al crear el diálogo. Retorna el diálogo configurado.

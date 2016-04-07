@@ -12,7 +12,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import es.iessaladillo.pedrojoya.pr048.R;
 import es.iessaladillo.pedrojoya.pr048.modelos.Alumno;
 
@@ -70,19 +71,17 @@ public class AlumnosAdapter extends ArrayAdapter<Alumno> {
     static class ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
-        private final ImageView imgAvatar;
-        private final TextView lblNombre;
-        private final TextView lblDireccion;
+        @Bind(R.id.imgAvatar)
+        ImageView imgAvatar;
+        @Bind(R.id.lblNombre)
+        TextView lblNombre;
+        @Bind(R.id.lblDireccion)
+        TextView lblDireccion;
 
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
             // Se obtienen las vistas de la vista-fila.
-            imgAvatar = (CircleImageView) itemView
-                    .findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView
-                    .findViewById(R.id.lblNombre);
-            lblDireccion = (TextView) itemView
-                    .findViewById(R.id.lblDireccion);
+            ButterKnife.bind(this, itemView);
         }
 
     }

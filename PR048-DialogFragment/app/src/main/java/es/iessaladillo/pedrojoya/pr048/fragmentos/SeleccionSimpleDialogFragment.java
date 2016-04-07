@@ -19,7 +19,7 @@ public class SeleccionSimpleDialogFragment extends DialogFragment {
 
     // Interfaz pública para comunicación con la actividad.
     public interface SeleccionSimpleDialogListener {
-        public void onPositiveButtonClick(DialogFragment dialog, int which);
+        void onPositiveButtonClick(DialogFragment dialog, int which);
     }
 
     // Al crear el diálogo. Retorna el diálogo configurado.
