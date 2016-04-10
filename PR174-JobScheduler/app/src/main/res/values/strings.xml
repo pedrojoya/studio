@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JobScheduler</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="intervalo_entre_avisos">Intervalo (ms)</string>
+    <string name="avisar">Avisar</string>
+    <string name="quillo_ponte_ya_a_currar">Quillo, ponte ya a currar!!!</string>
+    <string name="default_intervalo">5000</string>
+    <string name="aviso_importante">Aviso importante</string>
+
+</resources>

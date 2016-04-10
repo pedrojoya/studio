@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_main_padding"
+    tools:context="es.iessaladillo.pedrojoya.pr174.MainActivity">
+
+    <TextView
+        android:id="@+id/lblMensaje"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_main_padding"
+        android:paddingLeft="@dimen/edittext_padding"
+        android:paddingRight="@dimen/edittext_padding"
+        android:labelFor="@+id/txtMensaje"
+        android:text="@string/mensaje"/>
+
+    <EditText
+        android:id="@+id/txtMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblMensaje"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:paddingTop="0dp"
+        android:singleLine="true"
+        android:text="@string/quillo_ponte_ya_a_currar">
+
+        <requestFocus/>
+    </EditText>
+
+    <TextView
+        android:id="@+id/lblIntervalo"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMensaje"
+        android:layout_marginTop="@dimen/activity_main_padding"
+        android:paddingLeft="@dimen/edittext_padding"
+        android:paddingRight="@dimen/edittext_padding"
+        android:labelFor="@+id/txtIntervalo"
+        android:text="@string/intervalo_entre_avisos"/>
+
+    <EditText
+        android:id="@+id/txtIntervalo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblIntervalo"
+        android:ems="4"
+        android:gravity="end"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLength="7"
+        android:paddingTop="0dp"
+        android:singleLine="true"
+        android:text="@string/default_intervalo"/>
+
+    <TextView
+        android:id="@+id/lblActivar"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMensaje"
+        android:layout_marginStart="@dimen/lblActivar_marginLeft"
+        android:layout_marginTop="@dimen/activity_main_padding"
+        android:layout_toEndOf="@+id/lblIntervalo"
+        android:paddingLeft="@dimen/edittext_padding"
+        android:paddingRight="@dimen/edittext_padding"
+        android:text="@string/avisar"/>
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/swActivar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblActivar"
+        android:layout_marginStart="@dimen/lblActivar_marginLeft"
+        android:layout_toEndOf="@+id/txtIntervalo"/>
+
+</RelativeLayout>
+

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_mensaje">pref_mensaje</string>
+    <string name="pref_intervalo">pref_intervalo</string>
+    <string name="pref_activo">pref_activo</string>
+</resources>
