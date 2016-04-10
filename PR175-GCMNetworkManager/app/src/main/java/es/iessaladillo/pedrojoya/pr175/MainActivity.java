@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr174;
+package es.iessaladillo.pedrojoya.pr175;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        // Se establecen los valores a partir de las preferencias.
+        // Se cargan los datos desde las preferencias.
+        cargarDatos();
+    }
+
+    // Carga los datos a mostar en las vista a partir de las preferencias.
+    private void cargarDatos() {
         SharedPrefHelper prefs = new SharedPrefHelper(getResources(),
                 PreferenceManager.getDefaultSharedPreferences(this));
         txtMensaje.setText(prefs.getString(R.string.pref_mensaje, getString(R.string.quillo_ponte_ya_a_currar)));
@@ -52,21 +57,15 @@ public class MainActivity extends AppCompatActivity {
             } catch (NumberFormatException e) {
                 intervalo = PlanificadorService.DEFAULT_INTERVAL;
             }
-            mTrabajoId = PlanificadorService.planificarTrabajo(this, mensaje, intervalo);
-            if (mTrabajoId > 0) {
-                Toast.makeText(this,
-                        getString(R.string.trabajo_planificado_id, mTrabajoId),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // Se ha producido un error en la planificación.
-                Toast.makeText(this,
-                        R.string.error_planificacion,
-                        Toast.LENGTH_SHORT).show();
+            if (PlanificadorService.planificarTrabajo(this, mensaje, intervalo)) {
+                Toast.makeText(this, R.string.trabajo_planificado, Toast.LENGTH_SHORT).show();
             }
-
+            else {
+                Toast.makeText(this, R.string.gps_no_disponbile, Toast.LENGTH_SHORT).show();
+            }
         } else {
-            // Se desactiva la planificación del trabajo.
-            PlanificadorService.cancelarPlanificacionTrabajo(this, mTrabajoId);
+            // Se desactiva la planificación del trabajo..
+            PlanificadorService.cancelarPlanificacionTrabajo(this);
         }
     }
 

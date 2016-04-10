@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">JobScheduler</string>
+    <string name="app_name">GCMNetworkManager</string>
     <string name="mensaje">Mensaje</string>
     <string name="intervalo_entre_avisos">Intervalo (ms)</string>
     <string name="avisar">Avisar</string>
     <string name="quillo_ponte_ya_a_currar">Quillo, ponte ya a currar!!!</string>
     <string name="default_intervalo">5000</string>
     <string name="aviso_importante">Aviso importante</string>
-    <string name="trabajo_planificado_id">Trabajo planificado: %d</string>
-    <string name="error_planificacion">Error en la planificación del trabajo</string>
+    <string name="gps_no_disponbile">GooglePlayServices no disponible</string>
+    <string name="trabajo_planificado">Trabajo planificado</string>
 
 </resources>
