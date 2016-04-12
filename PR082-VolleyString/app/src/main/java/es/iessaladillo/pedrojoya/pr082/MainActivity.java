@@ -26,50 +26,33 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
 
-    // Constantes.
     private static final String KEY_NOMBRE = "nombre";
     private static final String KEY_FECHA = "fecha";
 
-    // Vistas.
-    private EditText txtNombre;
-    private ProgressBar pbProgreso;
+    @Bind(R.id.txtNombre)
+    public EditText txtNombre;
+    @Bind(R.id.pbProgreso)
+    public ProgressBar pbProgreso;
 
-    // Variables.
     private RequestQueue colaPeticiones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         initVistas();
         // Se obtiene la cola de peticiones de Volley.
         colaPeticiones = App.getRequestQueue();
     }
 
-    // Obtiene e inicializa las vistas.
     private void initVistas() {
-        txtNombre = (EditText) findViewById(R.id.txtNombre);
-        Button btnBuscar = (Button) findViewById(R.id.btnBuscar);
-        btnBuscar.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    buscar();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        Button btnEco = (Button) findViewById(R.id.btnEco);
-        btnEco.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                eco();
-            }
-        });
-        pbProgreso = (ProgressBar) findViewById(R.id.pbProgreso);
         pbProgreso.setVisibility(View.INVISIBLE);
     }
 
@@ -83,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Crea una tarea para buscar el término en Internet.
-    private void buscar() throws UnsupportedEncodingException {
+    @OnClick(R.id.btnBuscar)
+    public void buscar() {
         // Si hay un nombre a buscar.
         String nombre = txtNombre.getText().toString();
         if (!TextUtils.equals(nombre, "")) {
@@ -91,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             if (isConnectionAvailable()) {
                 // Se crea el listener para la respuesta.
                 Listener<String> listener = new Listener<String>() {
+                    public static final String STR_APROXIMADAMENTE = "Aproximadamente";
                     // Cuando se obtiene la respuesta.
                     @Override
                     public void onResponse(String response) {
@@ -98,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
                         // Se busca en el contenido la palabra
                         // Aproximadamente.
                         String resultado = "";
-                        int ini = response.indexOf("Aproximadamente");
+                        int ini = response.indexOf(STR_APROXIMADAMENTE);
                         if (ini != -1) {
-                            // Se busca el siguiente espacio en blanco despu-es
+                            // Se busca el siguiente espacio en blanco después
                             // de Aproximadamente.
                             int fin = response.indexOf(" ", ini + 16);
                             // El resultado corresponde a lo que sigue a
@@ -111,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
                         // Si hay resultado.
                         if (!TextUtils.equals(resultado, "")) {
                             // Se muestra un toast con el resultado.
-                            mostrarToast(getString(R.string.entradas, resultado));
+                            Toast.makeText(getApplicationContext(),
+                                    getString(R.string.entradas, resultado), Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -122,24 +108,33 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pbProgreso.setVisibility(View.INVISIBLE);
-                        mostrarToast(error.getMessage());
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG)
+                                .show();
                     }
                 };
                 // Se crea la petición.
-                GoogleRequest peticion = new GoogleRequest(URLEncoder.encode(
-                        nombre, "UTF-8"), listener, errorListener);
-                // Se hace visible el círculo de progreso.
-                pbProgreso.setVisibility(View.VISIBLE);
-                // Se añade la petición a la cola de Volley.
-                colaPeticiones.add(peticion);
+                GoogleRequest peticion = null;
+                try {
+                    peticion = new GoogleRequest(URLEncoder.encode(
+                            nombre, "UTF-8"), listener, errorListener);
+                    // Se hace visible el círculo de progreso.
+                    pbProgreso.setVisibility(View.VISIBLE);
+                    // Se añade la petición a la cola de Volley.
+                    colaPeticiones.add(peticion);
+                } catch (UnsupportedEncodingException e) {
+                    Toast.makeText(getApplicationContext(), R.string.error_codificacion, Toast.LENGTH_LONG)
+                            .show();
+                }
             } else {
-                mostrarToast(getString(R.string.no_hay_conexion_a_internet));
+                Toast.makeText(getApplicationContext(), R.string.no_hay_conexion_a_internet, Toast.LENGTH_LONG)
+                        .show();
             }
         }
     }
 
     // Envía el nombre a un servidor de eco.
-    private void eco() {
+    @OnClick(R.id.btnEco)
+    public void eco() {
         // Si hay un nombre a enviar.
         final String nombre = txtNombre.getText().toString();
         if (!TextUtils.equals(nombre, "")) {
@@ -160,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
                         // Si hay resultado.
                         if (!TextUtils.equals(response, "")) {
                             // Se muestra un toast con el resultado.
-                            mostrarToast(response);
+                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG)
+                                    .show();
                         }
                     }
                 };
@@ -170,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pbProgreso.setVisibility(View.INVISIBLE);
-                        mostrarToast(error.getMessage());
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG)
+                                .show();
                     }
                 };
                 // Se crea la petición.
@@ -181,15 +178,10 @@ public class MainActivity extends AppCompatActivity {
                 // Se añade la petición a la cola de Volley.
                 colaPeticiones.add(peticion);
             } else {
-                mostrarToast(getString(R.string.no_hay_conexion_a_internet));
+                Toast.makeText(getApplicationContext(), R.string.no_hay_conexion_a_internet, Toast.LENGTH_LONG)
+                        .show();
             }
         }
-    }
-
-    // Muestra un toast con duración larga.
-    private void mostrarToast(String mensaje) {
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG)
-                .show();
     }
 
 }

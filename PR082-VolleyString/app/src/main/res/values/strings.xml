@@ -7,5 +7,6 @@
     <string name="no_hay_conexion_a_internet">No hay conexión a Internet</string>
     <string name="entradas">%1$s entradas</string>
     <string name="eco">Eco</string>
+    <string name="error_codificacion">Error en la codificación</string>
 
 </resources>

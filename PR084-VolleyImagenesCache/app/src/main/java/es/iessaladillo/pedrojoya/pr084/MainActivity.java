@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         // Se crea la petición JSON.
         JsonObjectRequest peticion =
                 new JsonObjectRequest(Method.GET,
-                        mUrlSiguiente, listenerRespuesta, null);
+                        mUrlSiguiente, null, listenerRespuesta, null);
         // Se añade la petición a la cola de peticiones.
         mColaPeticiones.add(peticion);
     }
