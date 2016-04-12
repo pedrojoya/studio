@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String STATE_LAUNCHED = "state_launched";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Si no había sido cargado, simulamos el tiempo de carga.
@@ -21,12 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(STATE_LAUNCHED, true);
-        super.onSaveInstanceState(outState);
     }
 
 }
