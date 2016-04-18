@@ -2,11 +2,12 @@ package pedrojoya.iessaladillo.es.pr176;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 public class AlumnoActivity extends AppCompatActivity {
 
@@ -17,18 +18,50 @@ public class AlumnoActivity extends AppCompatActivity {
         initVistas();
     }
 
+    // Inicializa las vistas.
     private void initVistas() {
-        (findViewById(R.id.btnAgregar)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DB.addAlumno(DB.getNextAlumno());
-                finish();
-            }
-        });
+        configToolbar();
+        configFab();
     }
 
-    public static void start(Activity activity) {
-        activity.startActivity(new Intent(activity, AlumnoActivity.class));
+    // Configura la Toolbar.
+    private void configToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    // Configura el FAB.
+    private void configFab() {
+        FloatingActionButton fabAgregar = (FloatingActionButton) findViewById(R.id.fabAgregar);
+        if (fabAgregar != null) {
+            fabAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DB.addAlumno(DB.getNextAlumno());
+                    setResult(RESULT_OK);
+                    finish();
+                }
+            });
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Cuando se pulsa la flecha de navegación de la toolbar se simular como
+        // si se hubiera pulsado Atrás.
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Para iniciar la actividad esperando respuesta.
+    public static void startForResult(Activity activity, int requestCode) {
+        activity.startActivityForResult(new Intent(activity, AlumnoActivity.class), requestCode);
     }
 
 }

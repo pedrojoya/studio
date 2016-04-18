@@ -1,8 +1,7 @@
 package pedrojoya.iessaladillo.es.pr176;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
@@ -16,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     private static final String STATE_LISTA = "estadoLista";
     private static final int LOADER_ID = 1;
+    private static final int RC_AGREGAR = 1;
 
     private RecyclerView lstAlumnos;
     private AlumnosAdapter mAdaptador;
@@ -39,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initVistas();
-        cargarDatos();
+        // Se inicia el cargador. La actividad actuará como ArrayListener.
+        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
 
@@ -50,12 +50,6 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         configRecyclerView();
         configFab();
         configPanel();
-    }
-
-    // Inicia el cargador de datos.
-    private void cargarDatos() {
-        // La actividad actuará como ArrayListener.
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     // Configura la Toolbar.
@@ -75,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
             @Override
             public void onClick(View view) {
                 //agregarAlumno(DB.getNextAlumno());
-                AlumnoActivity.start(MainActivity.this);
+                AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR);
             }
         });
     }
@@ -157,6 +151,15 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     public void onItemLongClick(View view, Alumno alumno, int position) {
         // Se elimina el alumno.
         mAdaptador.removeItem(position);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RC_AGREGAR && resultCode == RESULT_OK) {
+            Log.d(getString(R.string.app_name), "onActivityResult: ");
+            // Se reinicia el cargador.
+            getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+        }
     }
 
     // Cuando se debe crear el loader.

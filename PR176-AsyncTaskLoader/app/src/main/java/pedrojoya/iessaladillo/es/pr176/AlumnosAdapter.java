@@ -70,13 +70,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public void onBindViewHolder(AlumnosAdapter.ViewHolder holder, int position) {
         // Se obtiene el alumno correspondiente.
         Alumno alumno = mDatos.get(position);
-        // Se escriben los mDatos en la vista.
-        holder.lblNombre.setText(alumno.getNombre());
-        holder.lblDireccion.setText(alumno.getDireccion());
-        Picasso.with(holder.imgAvatar.getContext())
-                .load(alumno.getUrlFoto())
-                .into(holder.imgAvatar);
-
+        // Se escriben los datos en las vistas.
+        holder.bind(alumno);
     }
 
     // Retorna el número de ítems gestionados.
@@ -150,6 +145,15 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
             lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
             imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
+        }
+
+        // Se escribe los datos del alumno en las vistas.
+        public void bind(Alumno alumno) {
+            lblNombre.setText(alumno.getNombre());
+            lblDireccion.setText(alumno.getDireccion());
+            Picasso.with(imgAvatar.getContext())
+                    .load(alumno.getUrlFoto())
+                    .into(imgAvatar);
         }
 
     }

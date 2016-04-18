@@ -18,25 +18,28 @@ public class AlumnosLoader extends AsyncTaskLoader<ArrayList<Alumno>> {
 
     @Override
     protected void onStartLoading() {
-        // Si no tengo datos o está activa la bandera de recarga, se recarga.
+        // Si no se dispone de datos o está activa la bandera de recarga, se recarga.
         if (takeContentChanged() || mDatos == null) {
             Log.d(getContext().getString(R.string.app_name), "forceLoad");
             forceLoad();
         }
         else {
-            // Como tengo datos y no se ha activado recarga, los entrego
+            // Se entregan los datos disponibles.
             deliverResult(mDatos);
         }
     }
 
     @Override
     public ArrayList<Alumno> loadInBackground() {
+        // Se obtienen los datos y se retornan.
         return DB.getAlumnos();
     }
 
     @Override
     public void deliverResult(ArrayList<Alumno> data) {
+        // Se hace la copia local de los datos.
         mDatos = data;
+        // Se entregan los datos a los clientes.
         super.deliverResult(data);
     }
 
