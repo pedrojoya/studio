@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         }
     }
 
-    // Cuando se debe crear el loader.
+    // Cuando se debe crear el loader. Retorna el cargador.
     @Override
     public Loader<ArrayList<Alumno>> onCreateLoader(int id, Bundle args) {
         Log.d(getString(R.string.app_name), "onCreateLoader");
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         return new AlumnosLoader(this);
     }
 
-    // Cuando el loader a entregado datos.
+    // Cuando el loader entrega datos.
     @Override
     public void onLoadFinished(Loader<ArrayList<Alumno>> loader, ArrayList<Alumno> data) {
         Log.d(getString(R.string.app_name), "onLoaderFinished");

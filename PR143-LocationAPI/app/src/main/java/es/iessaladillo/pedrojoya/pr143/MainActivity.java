@@ -1,10 +1,14 @@
 package es.iessaladillo.pedrojoya.pr143;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -19,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements
         LocationListener {
 
     private static final long LOCATION_REQUEST_INTERVAL = 1000;
+    private static final int PRC_LOCATION = 1;
 
     private TextView lblLocation;
 
@@ -76,6 +81,16 @@ public class MainActivity extends AppCompatActivity implements
     // Cuando ya estamos conectados con la API.
     @Override
     public void onConnected(Bundle bundle) {
+        // Se solicitan los permisos necesarios para obtener la localización (API 23+),
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
+            // Si no se tienen, se solicitan.
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    PRC_LOCATION);
+        }
         // Se obtiene la última localización.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLastLocation != null) {
@@ -87,6 +102,23 @@ public class MainActivity extends AppCompatActivity implements
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(LOCATION_REQUEST_INTERVAL);
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
+    }
+
+    // Cuando nos conceden los permisos necesarios.
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PRC_LOCATION) {
+            if(grantResults.length == 2 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                if (mLastLocation != null) {
+                    lblLocation.setText(mLastLocation.toString());
+                }
+            } else {
+                Toast.makeText(this, "Se requieren permisos", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     // Cuando se suspende la conexión.
