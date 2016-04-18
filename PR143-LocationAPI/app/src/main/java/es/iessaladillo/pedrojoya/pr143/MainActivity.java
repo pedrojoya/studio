@@ -1,10 +1,14 @@
 package es.iessaladillo.pedrojoya.pr143;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
-    private static final long LOCATION_REQUEST_INTERVAL = 1000;
+    private static final long LOCATION_REQUEST_INTERVAL = 10000;
     private static final int PRC_LOCATION = 1;
 
     private TextView lblLocation;
@@ -81,44 +85,55 @@ public class MainActivity extends AppCompatActivity implements
     // Cuando ya estamos conectados con la API.
     @Override
     public void onConnected(Bundle bundle) {
-        // Se solicitan los permisos necesarios para obtener la localización (API 23+),
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                    PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
-                        PackageManager.PERMISSION_GRANTED) {
-            // Si no se tienen, se solicitan.
+        if (!iniciarLocalizacion()) {
+            // Se solicitan los permisos.
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
                     PRC_LOCATION);
         }
-        // Se obtiene la última localización.
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (mLastLocation != null) {
-            lblLocation.setText(mLastLocation.toString());
-        }
-        // Se solicita la localización más exacta a la API cada segundo y la actividad
-        // actuará como listener cuando cambie la localización.
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(LOCATION_REQUEST_INTERVAL);
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
     }
 
-    // Cuando nos conceden los permisos necesarios.
+    // Cuando se regresa del diálogo para conceder permisos.
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == PRC_LOCATION) {
-            if(grantResults.length == 2 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                if (mLastLocation != null) {
-                    lblLocation.setText(mLastLocation.toString());
-                }
-            } else {
-                Toast.makeText(this, "Se requieren permisos", Toast.LENGTH_SHORT).show();
+            if (!iniciarLocalizacion()) {
+                Toast.makeText(this, R.string.permisos_requeridos, Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
+    }
+
+    // Obtiene la última localización conocida y activa la actualización de la
+    // localización. La actividad actuará como listener.
+    // Retorna si se ha inicializado la localización.
+    public boolean iniciarLocalizacion() {
+        // Si se tienen los permisos necesarios.
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED) {
+            // Se obtiene la última localización.
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            if (mLastLocation != null) {
+                lblLocation.setText(mLastLocation.getLongitude() + " / " + mLastLocation.getLatitude());
+                // Se busca la dirección correspondiente a la localización.
+                if (Geocoder.isPresent()) {
+                    GeocodingService.start(this, new DireccionResultReceiver(new Handler()), mLastLocation);
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "No ha servicio de Geolocalización inversa", Toast.LENGTH_SHORT).show();
+                }
+            }
+            // Se solicita que se notifique a la actividad cuando cambie
+            // la localización.
+            mLocationRequest = LocationRequest.create();
+            mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            mLocationRequest.setInterval(LOCATION_REQUEST_INTERVAL);
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+            return true;
+        }
+        return false;
     }
 
     // Cuando se suspende la conexión.
@@ -132,8 +147,20 @@ public class MainActivity extends AppCompatActivity implements
     // Cuando cambia la localización.
     @Override
     public void onLocationChanged(Location location) {
-        // Se escribe la localización actual.
-        lblLocation.setText(location.toString());
+        if (mLastLocation.getLatitude() != location.getLatitude() ||
+                mLastLocation.getLongitude() != location.getLongitude()) {
+            // Se copia la localización.
+            mLastLocation = location;
+            // Se escribe la localización actual.
+            lblLocation.setText(mLastLocation.getLongitude() + " / " + mLastLocation.getLatitude());
+            // Se busca la dirección correspondiente a la localización.
+            if (Geocoder.isPresent()) {
+                GeocodingService.start(this, new DireccionResultReceiver(new Handler()), mLastLocation);
+            } else {
+                Toast.makeText(MainActivity.this, "No ha servicio de Geolocalización inversa", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Log.d(getString(R.string.app_name), "Localización actualizada");
     }
 
     // Cuando falla la conexión con la API.
@@ -141,6 +168,25 @@ public class MainActivity extends AppCompatActivity implements
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(getString(R.string.app_name), "GoogleApiClient connection failed: " +
                 connectionResult.getErrorCode());
+    }
+
+    @SuppressLint("ParcelCreator")
+    class DireccionResultReceiver extends ResultReceiver {
+
+        public DireccionResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            // Display the address string
+            // or an error message sent from the intent service.
+            String direccion = resultData.getString(GeocodingService.EXTRA_RESULTADO);
+            if (resultCode == GeocodingService.SUCCESS_RESULT) {
+                lblLocation.append(" " + direccion);
+            }
+        }
+
     }
 
 
