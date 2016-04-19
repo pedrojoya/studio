@@ -77,7 +77,7 @@ public class GeocodingService extends IntentService {
             // Si se ha obtenido una dirección correctamente, se coge cada
             // una de sus líneas.
             Address direccion = direcciones.get(0);
-            ArrayList<String> lineas = new ArrayList<String>();
+            ArrayList<String> lineas = new ArrayList<>();
             for (int i = 0; i < direccion.getMaxAddressLineIndex(); i++) {
                 lineas.add(direccion.getAddressLine(i));
             }
