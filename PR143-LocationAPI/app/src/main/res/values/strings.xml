@@ -5,4 +5,9 @@
     <string name="geocoder_no_disponible">Servicio de geolocalización inversa no disponible</string>
     <string name="lat_long_invalidas">La latitud o longitud indicada no es válida</string>
     <string name="direccion_no_encontrada">No se ha encontrado ninguna dirección para esas coordenadas</string>
+    <string name="coordenadas">%1$f N, %2$f E</string>
+    <string name="localizacion_requerida">No ha proporcionado una localización al servicio de goecoding</string>
+    <string name="configuracion_inadecuada">No es posible establecer la configuración adecuada</string>
+    <string name="sin_configuracion_adecuada">Si no establece la configuración necesaria la app no puede funcionar</string>
+    <string name="sin_geocoding">No hay servicio de geocodificación inversa</string>
 </resources>
