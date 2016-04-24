@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Hace scroll en el ScrollView en la dirección indicada.
+    @SuppressWarnings("SameParameterValue")
     private void hacerScroll(final ScrollView scv, final int focus) {
         // Es necesario que se haga en el futuro para que se calcule
         // correctamente el final.

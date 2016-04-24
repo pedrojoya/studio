@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity implements
             // Se obtiene el estado anterior de la lista.
             mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
             mListaContenido = savedInstanceState.getStringArrayList(STATE_LISTA_CONTENIDO);
-        }
-        else {
+        } else {
             mListaContenido = new ArrayList<>();
         }
         // Se obtienen e inicializan las vistas.
@@ -56,7 +55,9 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
-        btnAgregar.setOnClickListener(this);
+        if (btnAgregar != null) {
+            btnAgregar.setOnClickListener(this);
+        }
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtNombre.addTextChangedListener(new TextWatcher() {
 

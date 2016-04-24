@@ -25,11 +25,13 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene e inicializa las vistas.
     private void getVistas() {
         ListView lstAlumnos = (ListView) this.findViewById(R.id.lstAlumnos);
-        lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
-        // Se crea el adaptador y se asigna a la lista.
-        lstAlumnos.setAdapter(new AlumnosAdapter(this, getDatos()));
-        // La actividad actuará como listener cuando se pulse un elemento.
-        lstAlumnos.setOnItemClickListener(this);
+        if (lstAlumnos != null) {
+            lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
+            // Se crea el adaptador y se asigna a la lista.
+            lstAlumnos.setAdapter(new AlumnosAdapter(this, getDatos()));
+            // La actividad actuará como listener cuando se pulse un elemento.
+            lstAlumnos.setOnItemClickListener(this);
+        }
     }
 
     // Al pulsar sobre un elemento de la lista.

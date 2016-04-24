@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr008;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -36,8 +37,13 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene e inicializa las vistas.
     private void getVistas() {
         btnAceptar = (Button) findViewById(R.id.btnAceptar);
-        btnAceptar.setOnClickListener(this);
-        findViewById(R.id.btnCancelar).setOnClickListener(this);
+        if (btnAceptar != null) {
+            btnAceptar.setOnClickListener(this);
+        }
+        Button btnCancelar = (Button) findViewById(R.id.btnCancelar);
+        if (btnCancelar != null) {
+            btnCancelar.setOnClickListener(this);
+        }
         lblUsuario = (TextView) findViewById(R.id.lblUsuario);
         lblClave = (TextView) findViewById(R.id.lblClave);
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);
@@ -159,11 +165,10 @@ public class MainActivity extends AppCompatActivity implements
     // EditText correspondiente tiene el foco o no.
     private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
         if (hasFocus) {
-            lbl.setTextColor(getResources().getColor(R.color.accent));
+            lbl.setTextColor(ContextCompat.getColor(this, R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            lbl.setTextColor(getResources()
-                    .getColor(R.color.primary_text));
+            lbl.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }

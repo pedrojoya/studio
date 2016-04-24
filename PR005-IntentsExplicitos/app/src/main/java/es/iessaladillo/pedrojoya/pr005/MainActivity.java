@@ -25,16 +25,18 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Se crea el alumno.
-        mAlumno = new Alumno("", Alumno.DEFAULT_EDAD);
+        mAlumno = new Alumno();
         // Se obtienen e inicializan las vistas.
         initVistas();
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        Button btnSolicitar = (Button) this.findViewById(R.id.btnSolicitar);
         // La actividad responderá al pulsar el botón.
-        btnSolicitar.setOnClickListener(this);
+        Button btnSolicitar = (Button) this.findViewById(R.id.btnSolicitar);
+        if (btnSolicitar != null) {
+            btnSolicitar.setOnClickListener(this);
+        }
         lblDatos = (TextView) this.findViewById(R.id.lblDatos);
     }
 

@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/classes-3a38db25099a1197645bd1cf8ef2381b792d121a.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-3f89620eb292b8b9a70ff44b7c45cf30945d9762.jar" />
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_1889c4117598c6c64f90ea4245957f7444e582f5/classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e4cdbe0df2679705a005e3e672c14853ac4e99a0">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f0ea4d409b878ca64e3991de88b3b5f032db1ed7/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/pre-dexed/debug/classes-aa81c04b985470f2d7b0f790e0b3893682c91d51.jar" />
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_306ed36f2c8eab3efdb713852dd5b995180cfb6d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_5585347364986c72594f8e82f29a9760263072aa/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_ae7c54c2651cc88d76cc98619faa911915940719/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_2a378e27f60536659afe7280727047a39e196e31/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f3abfbda00c6ba21ac259b81b46702bbe94456c6">
+        <dex dex="/Users/pedro/studio/PR011-ListViewSimple/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_04c06c2b3013ef6c48c5184362b0f31697111ec2/classes.dex" />
     </item>
 
 </items>

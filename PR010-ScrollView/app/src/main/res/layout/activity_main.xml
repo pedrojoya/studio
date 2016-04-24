@@ -38,7 +38,9 @@
         android:layout_alignParentStart="true"
         android:background="@color/primary_light"
         android:paddingLeft="@dimen/panel_paddingLeft"
+        android:paddingStart="@dimen/panel_paddingLeft"
         android:paddingRight="@dimen/panel_paddingRight"
+        android:paddingEnd="@dimen/panel_paddingRight"
         android:paddingTop="@dimen/panel_paddingTop"
         android:paddingBottom="@dimen/panel_paddingBottom"
         >

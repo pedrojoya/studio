@@ -29,7 +29,7 @@ public class MainActivityInstrumentationTest {
 
     // Preferred JUnit 4 mechanism of specifying the activity to be launched before each test
     @Rule
-    public ActivityTestRule<MainActivity> activityTestRule =
+    public final ActivityTestRule<MainActivity> activityTestRule =
             new ActivityTestRule<>(MainActivity.class);
 
     // Valida que cambia el texto del checkbox al pulsarlo.

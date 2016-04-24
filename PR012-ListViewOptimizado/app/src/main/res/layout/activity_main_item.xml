@@ -8,9 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/card_padding"
-        android:paddingBottom="@dimen/card_padding"
-        android:paddingLeft="@dimen/card_padding">
+        android:padding="@dimen/card_padding">
 
         <ImageView
             android:id="@+id/imgFoto"
@@ -84,11 +82,11 @@
             android:layout_height="wrap_content"
             android:text="@string/Notas"
             android:layout_below="@+id/divider"
-            android:layout_toRightOf="@+id/imgFoto"
-            android:layout_toEndOf="@+id/imgFoto"
+            android:layout_toLeftOf="@+id/btnLlamar"
+            android:layout_toStartOf="@+id/btnLlamar"
             android:layout_marginLeft="@dimen/card_content_padding"
             android:layout_marginStart="@dimen/card_content_padding"
-            style="@style/AppCompat.Button.Flat.Common"/>
+            style="@style/Widget.AppCompat.Button.Borderless"/>
 
         <Button
             android:id="@+id/btnLlamar"
@@ -96,9 +94,9 @@
             android:layout_height="wrap_content"
             android:text="@string/Llamar"
             android:layout_below="@+id/divider"
-            android:layout_toRightOf="@+id/btnNotas"
-            android:layout_toEndOf="@+id/btnNotas"
-            style="@style/AppCompat.Button.Flat.Common"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
 
         <TextView
             android:id="@+id/lblRepetidor"

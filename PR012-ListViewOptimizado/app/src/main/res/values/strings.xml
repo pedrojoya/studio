@@ -4,7 +4,10 @@
     <string name="title_activity_main">ListView optimizado</string>
     <string name="listado_de_alumnos">Listado de alumnos</string>
     <string name="foto_del_alumno">Foto del alumno</string>
-    <string name="anios">%1$d años</string>
+    <plurals name="anios">
+        <item quantity="one">%1$d año</item>
+        <item quantity="other">%1$d años</item>
+    </plurals>
     <string name="cursociclo">%1$s del %2$s</string>
     <string name="Notas">Notas</string>
     <string name="Llamar">Llamar</string>

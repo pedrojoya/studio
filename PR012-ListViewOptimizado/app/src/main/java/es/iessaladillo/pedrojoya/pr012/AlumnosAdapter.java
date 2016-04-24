@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr012;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,14 +88,15 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
             lblNombre.setText(alumno.getNombre());
             lblCurso.setText(lblCurso.getContext().getString(
                     R.string.cursociclo, alumno.getCurso(), alumno.getCiclo()));
-            lblEdad.setText(lblEdad.getContext().getString(R.string.anios, alumno.getEdad()));
+            lblEdad.setText(lblEdad.getContext().getResources()
+                    .getQuantityString(R.plurals.anios, alumno.getEdad(), alumno.getEdad()));
             // El fondo del TextView con la edad es diferente si es menor de
             // edad.
             if (alumno.getEdad() < 18) {
-                lblEdad.setTextColor(lblEdad.getContext().getResources().getColor(R.color.accent));
+                lblEdad.setTextColor(ContextCompat.getColor(lblEdad.getContext(), R.color.accent));
             } else {
                 lblEdad.setTextColor(
-                        lblEdad.getContext().getResources().getColor(R.color.primary_text));
+                        ContextCompat.getColor(lblEdad.getContext(), R.color.primary_text));
             }
             // Si el alumno es repetidor se muestra el TextView correspondiente.
             if (alumno.isRepetidor()) {

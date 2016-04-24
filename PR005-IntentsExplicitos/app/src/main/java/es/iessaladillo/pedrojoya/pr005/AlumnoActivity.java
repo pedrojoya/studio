@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class AlumnoActivity extends AppCompatActivity {
@@ -31,15 +32,17 @@ public class AlumnoActivity extends AppCompatActivity {
     private void initVistas() {
         txtNombre = (EditText) this.findViewById(R.id.txtNombre);
         txtEdad = (EditText) this.findViewById(R.id.txtEdad);
-        findViewById(R.id.btnAceptar)
-                .setOnClickListener(new OnClickListener() {
+        Button btnAceptar = (Button) findViewById(R.id.btnAceptar);
+        if (btnAceptar != null) {
+            btnAceptar.setOnClickListener(new OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        // Se finaliza la actividad.
-                        finish();
-                    }
-                });
+                @Override
+                public void onClick(View v) {
+                    // Se finaliza la actividad.
+                    finish();
+                }
+            });
+        }
     }
 
     // Obtiene los datos iniciales desde el intent con el que ha sido llamada
@@ -90,6 +93,7 @@ public class AlumnoActivity extends AppCompatActivity {
     }
 
     // Método estático para iniciar la actividad esperando un resultado.
+    @SuppressWarnings("SameParameterValue")
     public static void startForResult(Activity activity, int requestCode, String nombre, int edad) {
         // Se crea el intent explícito.
         Intent intent = new Intent(activity, AlumnoActivity.class);

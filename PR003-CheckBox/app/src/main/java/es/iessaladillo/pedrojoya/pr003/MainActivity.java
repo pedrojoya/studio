@@ -34,22 +34,24 @@ public class MainActivity extends AppCompatActivity {
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         // Se inicializan las vistas.
         chkEducado.setChecked(true);
-        btnSaludar.setOnClickListener(new OnClickListener() {
+        if (btnSaludar != null) {
+            btnSaludar.setOnClickListener(new OnClickListener() {
 
-            // Cuando se hace click sobre btnSaludar.
-            public void onClick(View b) {
-                // Se crea el mensaje a mostrar.
-                String mensaje = getString(R.string.buenos_dias);
-                if (chkEducado.isChecked()) {
-                    mensaje = mensaje + " " + getString(R.string.tenga_usted);
+                // Cuando se hace click sobre btnSaludar.
+                public void onClick(View b) {
+                    // Se crea el mensaje a mostrar.
+                    String mensaje = getString(R.string.buenos_dias);
+                    if (chkEducado.isChecked()) {
+                        mensaje = mensaje + " " + getString(R.string.tenga_usted);
+                    }
+                    mensaje += " " + txtNombre.getText();
+                    // Se muestra el mensaje en un Toast.
+                    Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_LONG)
+                            .show();
                 }
-                mensaje += " " + txtNombre.getText();
-                // Se muestra el mensaje en un Toast.
-                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_LONG)
-                        .show();
-            }
 
-        });
+            });
+        }
         chkEducado.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             // Cuando se cambia de estado del checkbox.

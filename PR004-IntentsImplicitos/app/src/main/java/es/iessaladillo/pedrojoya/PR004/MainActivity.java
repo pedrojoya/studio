@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -28,14 +29,34 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         // La actividad responderá al pulsar sobre cualquier botón.
-        findViewById(R.id.btnNavegar).setOnClickListener(this);
-        findViewById(R.id.btnBuscar).setOnClickListener(this);
-        findViewById(R.id.btnLlamar).setOnClickListener(this);
-        findViewById(R.id.btnMarcar).setOnClickListener(this);
-        findViewById(R.id.btnMostrarMapa).setOnClickListener(this);
-        findViewById(R.id.btnBuscarMapa).setOnClickListener(this);
-        findViewById(R.id.btnMostrarContactos)
-                .setOnClickListener(this);
+        Button btnNavegar = (Button) findViewById(R.id.btnNavegar);
+        if (btnNavegar != null) {
+            btnNavegar.setOnClickListener(this);
+        }
+        Button btnBuscar = (Button) findViewById(R.id.btnBuscar);
+        if (btnBuscar != null) {
+            btnBuscar.setOnClickListener(this);
+        }
+        Button btnLlamar = (Button) findViewById(R.id.btnLlamar);
+        if (btnLlamar != null) {
+            btnLlamar.setOnClickListener(this);
+        }
+        Button btnMarcar = (Button) findViewById(R.id.btnMarcar);
+        if (btnMarcar != null) {
+            btnMarcar.setOnClickListener(this);
+        }
+        Button btnMostrarMapa = (Button) findViewById(R.id.btnMostrarMapa);
+        if (btnMostrarMapa != null) {
+            btnMostrarMapa.setOnClickListener(this);
+        }
+        Button btnBuscarMapa = (Button) findViewById(R.id.btnBuscarMapa);
+        if (btnBuscarMapa != null) {
+            btnBuscarMapa.setOnClickListener(this);
+        }
+        Button btnMostrarContactos = (Button) findViewById(R.id.btnMostrarContactos);
+        if (btnMostrarContactos != null) {
+            btnMostrarContactos.setOnClickListener(this);
+        }
     }
 
     // Al hacer click sobre algún botón.

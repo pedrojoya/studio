@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         chkEducado.setChecked(true);
         // La actividad actuará con listener cuando se haga click sobre el
         // botón.
-        btnSaludar.setOnClickListener(this);
+        if (btnSaludar != null) {
+            btnSaludar.setOnClickListener(this);
+        }
         // La actividad actuará como listener cuando cambie el estado del
         // checkbox.
         chkEducado.setOnCheckedChangeListener(this);
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Se crea el mensaje.
-        chkEducado.setText(isChecked?getString(R.string.saludar_educadamente):getString(R.string.saludar_normal));
+        chkEducado.setText(isChecked ? getString(R.string.saludar_educadamente) : getString(R.string.saludar_normal));
     }
 
 }

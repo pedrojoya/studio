@@ -10,11 +10,7 @@
     <dimen name="tarjeta_repetidor_translationY">5dp</dimen>
     <dimen name="card_padding">8dp</dimen>
     <dimen name="card_content_padding">16dp</dimen>
-    <!-- Flat button -->
-    <dimen name="btn_flat_corner_radius">1dp</dimen>
-    <dimen name="btn_flat_min_width">88dp</dimen>
-    <dimen name="btn_flat_min_height">36dp</dimen>
-    <dimen name="btn_flat_padding">8dp</dimen>
-    <dimen name="btn_flat_margin">4dp</dimen>
+    <dimen name="list_dividerHeight">10dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
 
 </resources>
