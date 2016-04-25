@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity implements
         lblPuntuacion = (TextView) findViewById(R.id.lblPuntuacion);
         btnComprobar = (Button) findViewById(R.id.btnComprobar);
         // La actividad actuará como listener cuando se pulse el botón.
-        btnComprobar.setOnClickListener(this);
+        if (btnComprobar != null) {
+            btnComprobar.setOnClickListener(this);
+        }
         lblContador = (TextView) findViewById(R.id.lblContador);
         lstRespuestas = (ListView) this.findViewById(R.id.lstRespuestas);
         // Se crea y asigna el adaptador a la lista.
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements
             // Cuando pasa un intervalo.
             public void onTick(long millisUntilFinished) {
                 // Se actualiza el TextView con el valor del contador.
-                lblContador.setText((millisUntilFinished / 1000) + "");
+                lblContador.setText((String.valueOf(millisUntilFinished / 1000)));
             }
 
             // Cuando la cuenta atrás llega a su fin.

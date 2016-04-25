@@ -51,6 +51,9 @@
             android:gravity="center_vertical"
             android:text="@string/alumno"
             android:paddingLeft="@dimen/encabezado_paddingLeft"
+            android:paddingStart="@dimen/encabezado_paddingLeft"
+            android:paddingRight="@dimen/encabezado_paddingLeft"
+            android:paddingEnd="@dimen/encabezado_paddingLeft"
             android:textAllCaps="true"
             android:textColor="@color/primary_400"
             android:textStyle="bold"/>
