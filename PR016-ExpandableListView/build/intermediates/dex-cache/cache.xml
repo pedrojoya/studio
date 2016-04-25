@@ -1,33 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="D:\Documents\GitHub\studio\PR016-ExpandableListView\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-fd46c506161dfcacc9c9c5e3eddbd85ccd4b0d08.jar" />
-    </item>
-    <item
-        jar="D:\Documents\GitHub\studio\PR016-ExpandableListView\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="D:\Documents\GitHub\studio\PR016-ExpandableListView\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-02855210451ef642c874bbd5505a3b763ccea479.jar" />
-    </item>
-    <item
-        jar="D:\Documents\GitHub\studio\PR016-ExpandableListView\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="D:\Documents\GitHub\studio\PR016-ExpandableListView\app\build\intermediates\pre-dexed\debug\classes-f27d8d51585ad738f88d732657e334c17cf51669.jar" />
-    </item>
-    <item
-        jar="D:\Documents\GitHub\studio\PR016-ExpandableListView\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="D:\Documents\GitHub\studio\PR016-ExpandableListView\app\build\intermediates\pre-dexed\debug\classes-6651100f1609010204b09467b720695b2d65e9a7.jar" />
-    </item>
-
-</items>

@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr016;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,22 +36,24 @@ public class MainActivity extends AppCompatActivity implements
     private void initVistas() {
         ExpandableListView lstAlumnos = (ExpandableListView) this.findViewById(R.id.lstAlumnos);
         // No se usarán los indicadores por defecto para grupos e hijos.
-        lstAlumnos.setGroupIndicator(null);
-        lstAlumnos.setChildIndicator(null);
-        // Se obtienen los datos.
-        ArrayList<String> grupos = new ArrayList<>();
-        ArrayList<ArrayList<Alumno>> hijos = new ArrayList<>();
-        fillDatos(grupos, hijos);
-        // Se crea el adaptador para la lista y se establece.
-        mAdaptador = new AdaptadorAlumnos(this, grupos, hijos);
-        lstAlumnos.setAdapter(mAdaptador);
-        // Inicialmente aparecerán expandidos.
-        for (int i = 0; i < mAdaptador.getGroupCount(); i++) {
-            lstAlumnos.expandGroup(i);
+        if (lstAlumnos != null) {
+            lstAlumnos.setGroupIndicator(null);
+            lstAlumnos.setChildIndicator(null);
+            // Se obtienen los datos.
+            ArrayList<String> grupos = new ArrayList<>();
+            ArrayList<ArrayList<Alumno>> hijos = new ArrayList<>();
+            fillDatos(grupos, hijos);
+            // Se crea el adaptador para la lista y se establece.
+            mAdaptador = new AdaptadorAlumnos(this, grupos, hijos);
+            lstAlumnos.setAdapter(mAdaptador);
+            // Inicialmente aparecerán expandidos.
+            for (int i = 0; i < mAdaptador.getGroupCount(); i++) {
+                lstAlumnos.expandGroup(i);
+            }
+            // La actividad actuará como listener cuando se pulse un hijo de la
+            // lista.
+            lstAlumnos.setOnChildClickListener(this);
         }
-        // La actividad actuará como listener cuando se pulse un hijo de la
-        // lista.
-        lstAlumnos.setOnChildClickListener(this);
     }
 
     // Obtiene los ArrayList de datos para grupos e hijos. Modifica los
@@ -130,9 +132,8 @@ public class MainActivity extends AppCompatActivity implements
             // Se obtiene un inflador de layouts.
             mInflador = LayoutInflater.from(contexto);
             // Se obtienen los colores de menor y mayor de edad.
-            Resources recursos = contexto.getResources();
-            mColorMenorDeEdad = recursos.getColor(R.color.primary_400);
-            mColorMayorDeEdad = recursos.getColor(R.color.primary_text);
+            mColorMenorDeEdad = ContextCompat.getColor(contexto, R.color.primary_400);
+            mColorMayorDeEdad = ContextCompat.getColor(contexto, R.color.primary_text);
         }
 
         // Retorna el objeto de datos de un hijo de un grupo.

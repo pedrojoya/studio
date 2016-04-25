@@ -5,7 +5,7 @@ class Concepto {
     // Propiedades.
     private final int fotoResId;
     private final String english;
-    private String spanish;
+    private final String spanish;
 
     // Constructores.
     public Concepto(int fotoResId, String english, String spanish) {
@@ -22,5 +22,8 @@ class Concepto {
     public String getEnglish() {
         return english;
     }
+
+    @SuppressWarnings("unused")
+    public String getSpanish() { return spanish; }
 
 }

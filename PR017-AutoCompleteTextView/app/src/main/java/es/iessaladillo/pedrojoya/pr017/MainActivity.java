@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr017;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -54,7 +55,9 @@ public class MainActivity extends AppCompatActivity implements
         txtConcepto = (AutoCompleteTextView) findViewById(R.id.txtConcepto);
         txtConcepto.setAdapter(new ConceptosAdapter(this, getDatos()));
         btnTraducir = (Button) findViewById(R.id.btnTraducir);
-        btnTraducir.setOnClickListener(this);
+        if (btnTraducir != null) {
+            btnTraducir.setOnClickListener(this);
+        }
         // Se cambia el color del TextView dependiendo de si el EditText
         // correspondiente tiene el foco o no.
         txtConcepto.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -119,11 +122,10 @@ public class MainActivity extends AppCompatActivity implements
     // EditText correspondiente tiene el foco o no.
     private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
         if (hasFocus) {
-            lbl.setTextColor(getResources().getColor(R.color.accent));
+            lbl.setTextColor(ContextCompat.getColor(this, R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            lbl.setTextColor(getResources()
-                    .getColor(R.color.primary_text));
+            lbl.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }

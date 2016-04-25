@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         btnMostrar = (Button) findViewById(R.id.btnMostrar);
-        btnMostrar.setOnClickListener(this);
+        if (btnMostrar != null) {
+            btnMostrar.setOnClickListener(this);
+        }
         spnPais = (Spinner) findViewById(R.id.spnPais);
         // Se crea el adaptador y se le asigna al spinner.
         PaisesAdapter adaptador = new PaisesAdapter(this, getPaises());

@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Retorna el bitmap recibo aplicándole el cambio de tono dado por la
     // intensidad recibida y el factor de cada color.
+    @SuppressWarnings("SameParameterValue")
     private static Bitmap efectoTono(Bitmap src, int intensidad,
                                      double factorIntesidadRojo, double factorIntensidadVerde,
                                      double factorIntensidadAzul) {
