@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="es.iessaladillo.pedrojoya.pr028" >
+          xmlns:tools="http://schemas.android.com/tools"
+          package="es.iessaladillo.pedrojoya.pr028" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,7 +10,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name="es.iessaladillo.pedrojoya.pr028.actividades.MainActivity"
             android:label="@string/app_name" >
@@ -22,7 +24,8 @@
         <activity
             android:name="es.iessaladillo.pedrojoya.pr028.actividades.AlumnoActivity"
             android:label="@string/title_activity_alumno"
-            android:parentActivityName=".actividades.MainActivity">
+            android:parentActivityName=".actividades.MainActivity"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".actividades.MainActivity" />

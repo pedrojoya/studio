@@ -32,7 +32,8 @@ public class Alumno {
         this.id = id;
     }
 
-    String getAvatar() {
+    @SuppressWarnings("WeakerAccess")
+    public String getAvatar() {
         return avatar;
     }
 

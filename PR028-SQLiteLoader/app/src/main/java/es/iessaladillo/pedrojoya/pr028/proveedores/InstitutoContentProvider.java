@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import java.util.HashSet;
 import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
 import es.iessaladillo.pedrojoya.pr028.bd.Helper;
 
+@SuppressWarnings("ConstantConditions")
 public class InstitutoContentProvider extends ContentProvider {
 
     // Constantes generales.
@@ -54,7 +56,7 @@ public class InstitutoContentProvider extends ContentProvider {
 
     // Retorna el tipo de uri recibida.
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         // Dependiendo del tipo de uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
@@ -82,7 +84,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // Retorna el cursor con el resultado de la consulta. Recibe los parámetros
     // indicados en el método query del ContentResolver.
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         // Se abre la base de datos.
         SQLiteDatabase bd = helper.getReadableDatabase();
@@ -122,7 +124,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // Retorna el número de registros eliminados. Recibe los parámetros recibido
     // por el método delete del ContentResolver.
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         int filasBorradas;
         // Se inicializa la selección.
         String where = selection;
@@ -155,7 +157,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // Retorna la uri del nuevo registro. Recibe los parámetros recibido por el
     // método insert del ContentResolver.
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         long id;
         // Se obtiene la base de datos.
         SQLiteDatabase bd = helper.getWritableDatabase();
@@ -177,7 +179,7 @@ public class InstitutoContentProvider extends ContentProvider {
     // Retorna el número de registros actualizados. Recibe los parámetros
     // recibidos por el método update del ContentResolver.
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
+    public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         int filasActualizadas;
         // Se inicializa la parte del where.
@@ -210,6 +212,7 @@ public class InstitutoContentProvider extends ContentProvider {
     }
 
     // Comprueba si todas las columnas están entre las disponibles.
+    @SuppressWarnings("SameParameterValue")
     private void checkColumns(String[] disponibles, String[] columnas) {
         if (columnas != null) {
             HashSet<String> columnasSolicitadas = new HashSet<>(

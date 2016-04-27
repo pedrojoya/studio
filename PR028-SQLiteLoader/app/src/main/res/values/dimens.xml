@@ -12,4 +12,5 @@
     <dimen name="three_lines_avatar_height">40dp</dimen>
     <dimen name="three_lines_avatar_marginLeft">16dp</dimen>
     <dimen name="three_lines_avatar_marginTop">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
