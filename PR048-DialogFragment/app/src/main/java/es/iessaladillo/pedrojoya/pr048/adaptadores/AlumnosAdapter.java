@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.iessaladillo.pedrojoya.pr048.R;
 import es.iessaladillo.pedrojoya.pr048.modelos.Alumno;
@@ -62,6 +62,8 @@ public class AlumnosAdapter extends ArrayAdapter<Alumno> {
         // Se escriben los datos del alumno en las vistas.
         Picasso.with(getContext())
                 .load(alumno.getUrlFoto())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
                 .into(holder.imgAvatar);
         holder.lblNombre.setText(alumno.getNombre());
         holder.lblDireccion.setText(alumno.getDireccion());
@@ -71,11 +73,11 @@ public class AlumnosAdapter extends ArrayAdapter<Alumno> {
     static class ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
-        @Bind(R.id.imgAvatar)
+        @BindView(R.id.imgAvatar)
         ImageView imgAvatar;
-        @Bind(R.id.lblNombre)
+        @BindView(R.id.lblNombre)
         TextView lblNombre;
-        @Bind(R.id.lblDireccion)
+        @BindView(R.id.lblDireccion)
         TextView lblDireccion;
 
         // El constructor recibe la vista-fila.

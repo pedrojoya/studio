@@ -18,6 +18,7 @@ public class SeleccionSimpleDialogFragment extends DialogFragment {
     private int mTurnoSeleccionado = 0;
 
     // Interfaz pública para comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface SeleccionSimpleDialogListener {
         void onPositiveButtonClick(DialogFragment dialog, int which);
     }

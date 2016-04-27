@@ -78,7 +78,7 @@ public class ObrasAdapter extends ArrayAdapter<Obra> {
         public void bind(Obra obra) {
             lblNombre.setText(obra.getNombre());
             lblAutor.setText(obra.getAutor());
-            lblAnio.setText(obra.getAnio() + "");
+            lblAnio.setText(String.valueOf(obra.getAnio()));
         }
 
     }

@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/pre-dexed/debug/classes-eb4bd993549095b37998129b7947072a0c4aba14.jar" />
+        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_d099f0f192763617a11da49832fece2e1c5fe1dc/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/pre-dexed/debug/classes-311cc0d97aee1a37b84721fcedc0615f7af330ce.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-63f9382dd188826b96593d5379ee3be58c72b4c3.jar" />
+        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_daa1f5fdd9b6e1a18536d078e231b54f9e74f002/classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
+        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="eeccf974dc9619ccf62a5a8bbad1ee14301e3c83">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_2a53ac730837a86cf284ac2a52c63898ce7b870c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_44a6f4662183427e893f2abe6397530a2bf046df/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_7dbe6f4f44f89b79ba33767fe33df2091c1f0939/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e5d4527208f5e80a0a58f9d921b7e6e21dc2ec23">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_0a02dcdc399a033fa165ec97a2a062b0dbdc42b6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR046-ViewPager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_e95fa433e270c1227c22abbeddd150eb8dbf480d/classes.dex" />
     </item>
 
 </items>

@@ -23,6 +23,7 @@ public class AdaptadorDialogFragment extends DialogFragment {
     private ArrayList<Alumno> mAlumnos;
 
     // Interfaz pública para comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface AdaptadorDialogListener {
         void onListItemClick(DialogFragment dialog, Alumno alumno);
     }

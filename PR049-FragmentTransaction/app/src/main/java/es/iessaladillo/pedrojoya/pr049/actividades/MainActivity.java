@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // Carga el fragmento de detalle en el FrameLayout correspondiente.
-    void mostrarFragmentoDetalle(Obra obra, int position) {
+    private void mostrarFragmentoDetalle(Obra obra, int position) {
         // Se crea una nueva instancia del fragmento de detalle pasándole la
         // obra como parámetro.
         DetalleFragment frgDetalle = DetalleFragment

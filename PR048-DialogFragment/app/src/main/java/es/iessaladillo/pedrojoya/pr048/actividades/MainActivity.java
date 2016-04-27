@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr048.actividades;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.os.Bundle;
@@ -95,21 +96,23 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // Al establecer la fecha.
+    @SuppressLint("DefaultLocale")
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear,
                           int dayOfMonth) {
-        Toast.makeText(this, getString(R.string.ha_seleccionado)
-                + String.format("%02d", dayOfMonth) + "/"
+        Toast.makeText(this, getString(R.string.ha_seleccionado,
+                String.format("%02d", dayOfMonth) + "/"
                 + String.format("%02d", (monthOfYear + 1)) + "/"
-                + String.format("%04d", year), Toast.LENGTH_SHORT).show();
+                + String.format("%04d", year)), Toast.LENGTH_SHORT).show();
     }
 
     // Al establecer la hora.
+    @SuppressLint("DefaultLocale")
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        Toast.makeText(this, getString(R.string.ha_seleccionado)
-                + String.format("%02d", hourOfDay) + ":"
-                + String.format("%02d", minute), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.ha_seleccionado,
+                String.format("%02d", hourOfDay) + ":"
+                + String.format("%02d", minute)), Toast.LENGTH_SHORT).show();
     }
 
     // Al pulsar el botón positivo en la interfaz SiNoDialogListener.

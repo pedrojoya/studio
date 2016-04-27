@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr049.fragmentos;
 
-import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ public class DetalleFragment extends Fragment {
     // Interfaz para notificación de eventos desde el fragmento.
     public interface OnDetalleShownListener {
         // Cuando se selecciona una obra.
-        public void onDetalleShown(int position);
+        void onDetalleShown(int position);
     }
 
     // Constantes.
@@ -55,10 +55,10 @@ public class DetalleFragment extends Fragment {
 
     // Cuando se vincula el fragmento a la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
-            // La actividad actuar� como listener cuando se seleccione una obra.
+            // La actividad actuará como listener cuando se seleccione una obra.
             mListener = (OnDetalleShownListener) activity;
         } catch (ClassCastException e) {
             // La actividad no implementa la interfaz necesaria.
@@ -103,7 +103,7 @@ public class DetalleFragment extends Fragment {
     }
 
     // Muestra el detalle de un album en las vistas correspondientes.
-    void mostrarDetalle() {
+    private void mostrarDetalle() {
         getActivity().setTitle(mObra.getNombre());
         imgFoto.setImageResource(mObra.getFotoResId());
         lblNombre.setText(mObra.getNombre());

@@ -12,6 +12,7 @@ public class Obra implements Parcelable {
     private int anio;
 
     // Constructores.
+    @SuppressWarnings("SameParameterValue")
     public Obra(int fotoResId, String nombre, String autor, int anio) {
         this.fotoResId = fotoResId;
         this.nombre = nombre;
@@ -57,7 +58,7 @@ public class Obra implements Parcelable {
     }
 
     // Leer desde un Parcel las propiedades del objeto.
-    void readFromParcel(Parcel in) {
+    private void readFromParcel(Parcel in) {
         fotoResId = in.readInt();
         nombre = in.readString();
         autor = in.readString();

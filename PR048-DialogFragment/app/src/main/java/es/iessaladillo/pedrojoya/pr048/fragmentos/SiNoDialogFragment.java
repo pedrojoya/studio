@@ -17,6 +17,7 @@ public class SiNoDialogFragment extends DialogFragment {
     private SiNoDialogListener mListener = null;
 
     // Interfaz pública para comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface SiNoDialogListener {
         void onPositiveButtonClick(DialogFragment dialog);
 

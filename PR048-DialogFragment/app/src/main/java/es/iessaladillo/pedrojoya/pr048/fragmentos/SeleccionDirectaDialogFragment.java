@@ -17,6 +17,7 @@ public class SeleccionDirectaDialogFragment extends DialogFragment {
     private SeleccionDirectaDialogListener mListener = null;
 
     // Interfaz pública para comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface SeleccionDirectaDialogListener {
         void onItemClick(DialogFragment dialog, int which);
     }

@@ -19,6 +19,7 @@ public class SeleccionMultipleDialogFragment extends DialogFragment {
     private boolean[] mOptionIsChecked;
 
     // Interfaz pública para comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface SeleccionMultipleDialogListener {
         void onPositiveButtonClick(DialogFragment dialog,
                                    boolean[] optionIsChecked);

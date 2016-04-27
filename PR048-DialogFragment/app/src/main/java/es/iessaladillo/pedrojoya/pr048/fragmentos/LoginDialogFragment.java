@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr048.fragmentos;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -18,6 +19,7 @@ public class LoginDialogFragment extends DialogFragment {
     private LoginDialogListener mListener = null;
 
     // Interfaz pública para comunicación con la actividad.
+    @SuppressWarnings({"EmptyMethod", "UnusedParameters"})
     public interface LoginDialogListener {
         void onConectarClick(DialogFragment dialog);
 
@@ -25,6 +27,7 @@ public class LoginDialogFragment extends DialogFragment {
     }
 
     // Al crear el diálogo. Retorna el diálogo configurado.
+    @SuppressLint("InflateParams")
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {

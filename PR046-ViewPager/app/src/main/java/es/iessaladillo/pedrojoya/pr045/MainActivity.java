@@ -13,7 +13,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     // Constantes.
-    private static int NUM_PAGINAS = 5;
+    private static final int NUM_PAGINAS = 5;
+    private static final int DEFAULT_PAGE = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private void initVistas() {
         PaginasAdapter adaptador = new PaginasAdapter();
         ViewPager vpPaginas = (ViewPager) findViewById(R.id.vpPaginas);
-        vpPaginas.setAdapter(adaptador);
-        // Establece la página inicial a mostrar.
-        vpPaginas.setCurrentItem(2);
+        if (vpPaginas != null) {
+            vpPaginas.setAdapter(adaptador);
+            // Establece la página inicial a mostrar.
+            vpPaginas.setCurrentItem(DEFAULT_PAGE);
+        }
     }
 
     // Adaptador de páginas para el ViewPager.
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             // Obtiene el TextView y escribe el número de página.
             TextView lblPagina = (TextView) vistaPagina
                     .findViewById(R.id.lblPagina);
-            lblPagina.setText(position + "");
+            lblPagina.setText(String.valueOf(position));
             // Agrega la página al ViewPager.
             collection.addView(vistaPagina, 0);
             // Retorna la vista correspondiente a la página.

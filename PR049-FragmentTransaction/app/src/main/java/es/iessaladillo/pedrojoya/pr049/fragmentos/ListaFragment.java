@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr049.fragmentos;
 
-import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +23,7 @@ public class ListaFragment extends Fragment implements OnItemClickListener {
     // Interfaz para notificación de eventos desde el fragmento.
     public interface OnObraSelectedListener {
         // Cuando se selecciona una obra.
-        public void onObraSelected(Obra obra, int position);
+        void onObraSelected(Obra obra, int position);
     }
 
     // Vistas.
@@ -51,7 +51,7 @@ public class ListaFragment extends Fragment implements OnItemClickListener {
 
     // Cuando se vincula el fragmento a la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             // La actividad actuará como listener cuando se seleccione una obra.
