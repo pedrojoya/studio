@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr028.fragmentos;
 
-import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,11 +34,11 @@ public class ListaAlumnosFragment extends Fragment implements
 
     // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
-        public void onAgregarAlumno();
+        void onAgregarAlumno();
 
-        public void onEditarAlumno(long id);
+        void onEditarAlumno(long id);
 
-        public void onConfirmarEliminarAlumnos();
+        void onConfirmarEliminarAlumnos();
     }
 
     // Variables miembro.
@@ -171,7 +171,7 @@ public class ListaAlumnosFragment extends Fragment implements
 
     // Cuando el fragmento es cargado en la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             // Establece la actividad como objeto listener.

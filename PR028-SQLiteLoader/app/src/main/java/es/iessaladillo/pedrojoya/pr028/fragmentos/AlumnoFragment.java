@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.CursorLoader;
 import android.view.LayoutInflater;
@@ -13,8 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.software.shell.fab.ActionButton;
 
 import java.util.Random;
 
@@ -68,7 +67,7 @@ public class AlumnoFragment extends Fragment {
         // dependiendo del argumento recibido.
         // Dependiendo de la acción.
         String modo = getArguments().getString(EXTRA_MODO);
-        if (modo.equals(MODO_EDITAR)) {
+        if (modo != null && modo.equals(MODO_EDITAR)) {
             setModoEditar();
         } else {
             setModoAgregar();
@@ -137,7 +136,7 @@ public class AlumnoFragment extends Fragment {
     }
 
     // Guarda el alumno en pantalla en la base de datos.
-    public void guardarAlumno() {
+    private void guardarAlumno() {
         // Se llena el objeto Alumno con los datos de las vistas.
         vistasToAlumno();
         // Dependiendo del modo se inserta o actualiza el alumno (siempre y
@@ -166,21 +165,23 @@ public class AlumnoFragment extends Fragment {
                 .getContentResolver()
                 .insert(InstitutoContentProvider.CONTENT_URI_ALUMNOS,
                         Alumno.toContentValues(alumno));
-        long id = Long.parseLong(resultado.getLastPathSegment());
-        // Se informa de si todo ha ido bien.
-        if (id >= 0) {
-            alumno.setId(id);
-            Toast.makeText(this.getActivity(),
-                    getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
-                    .show();
-        } else {
-            Toast.makeText(this.getActivity(),
-                    getString(R.string.insercion_incorrecta),
-                    Toast.LENGTH_SHORT).show();
+        if (resultado != null) {
+            long id = Long.parseLong(resultado.getLastPathSegment());
+            // Se informa de si todo ha ido bien.
+            if (id >= 0) {
+                alumno.setId(id);
+                Toast.makeText(this.getActivity(),
+                        getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(this.getActivity(),
+                        getString(R.string.insercion_incorrecta),
+                        Toast.LENGTH_SHORT).show();
+            }
+            // Se resetean las vistas para poder agregar otro alumno (seguimos en
+            // modo Agregar).
+            resetVistas();
         }
-        // Se resetean las vistas para poder agregar otro alumno (seguimos en
-        // modo Agregar).
-        resetVistas();
     }
 
     // Actualiza un alumno en la base de datos.
@@ -208,7 +209,7 @@ public class AlumnoFragment extends Fragment {
         txtNombre = (EditText) v.findViewById(R.id.txtNombre);
         txtTelefono = (EditText) v.findViewById(R.id.txtTelefono);
         txtDireccion = (EditText) v.findViewById(R.id.txtDireccion);
-        ActionButton btnGuardar = (ActionButton) v.findViewById(R.id.btnGuardar);
+        FloatingActionButton btnGuardar = (FloatingActionButton) v.findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
