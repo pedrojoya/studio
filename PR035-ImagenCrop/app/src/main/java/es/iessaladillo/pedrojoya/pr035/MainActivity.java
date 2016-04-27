@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Envía un intent implícito para seleccionar una foto de la galería.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
+    @SuppressWarnings("SameParameterValue")
     private void seleccionarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Envía un intent implícito para la captura de una foto.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
+    @SuppressWarnings("SameParameterValue")
     private void capturarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
@@ -200,7 +202,9 @@ public class MainActivity extends AppCompatActivity implements
                     Uri uriGaleria = intent.getData();
                     sPathFotoOriginal = getRealPath(uriGaleria);
                     // Se recorta la imagen.
-                    recortarImagen(sPathFotoOriginal);
+                    if (!TextUtils.isEmpty(sPathFotoOriginal)) {
+                        recortarImagen(sPathFotoOriginal);
+                    }
                     break;
                 case RC_RECORTAR_FOTO:
                     // Se obtiene el bitmap resultante.
@@ -222,13 +226,15 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene el path real de una imagen a partir de la URI de Galería obtenido con ACTION_PICK.
     private String getRealPath(Uri uriGaleria) {
+        String path = "";
         // Se consulta en el content provider de la galería el path real del archivo de la foto.
         String[] filePath = {MediaStore.Images.Media.DATA};
         Cursor c = getContentResolver().query(uriGaleria, filePath, null, null, null);
-        c.moveToFirst();
-        int columnIndex = c.getColumnIndex(filePath[0]);
-        String path = c.getString(columnIndex);
-        c.close();
+        if (c != null && c.moveToFirst()) {
+            int columnIndex = c.getColumnIndex(filePath[0]);
+            path = c.getString(columnIndex);
+            c.close();
+        }
         return path;
     }
 

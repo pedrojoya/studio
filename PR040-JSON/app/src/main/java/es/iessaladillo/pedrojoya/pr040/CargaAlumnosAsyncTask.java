@@ -10,6 +10,7 @@ import java.net.URL;
 class CargaAlumnosAsyncTask extends AsyncTask<String, Void, String> {
 
     // Interfaz de comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface Callbacks {
         void onPostExecute(CargaAlumnosAsyncTask object, String result);
     }

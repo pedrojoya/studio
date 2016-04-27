@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr027.bd;
 
 import android.provider.BaseColumns;
 
+@SuppressWarnings("WeakerAccess")
 public class Instituto {
 
 	// Constantes generales de la BD.

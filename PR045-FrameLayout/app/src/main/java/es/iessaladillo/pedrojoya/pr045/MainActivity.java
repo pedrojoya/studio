@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr045;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements
     private RelativeLayout rlPanel;
 
     // Al crear la actividad.
+    @SuppressLint("InlinedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,19 +32,31 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         rlPanel = (RelativeLayout) findViewById(R.id.rlPanel);
-        findViewById(R.id.imgFoto).setOnClickListener(this);
+        ImageView imgFoto = (ImageView) findViewById(R.id.imgFoto);
+        if (imgFoto != null) {
+            imgFoto.setOnClickListener(this);
+        }
         imgDetalle = (ImageView) findViewById(R.id.imgDetalle);
-        imgDetalle.setOnClickListener(this);
+        if (imgDetalle != null) {
+            imgDetalle.setOnClickListener(this);
+        }
         lblDetalle = (TextView) findViewById(R.id.lblDetalle);
-        lblDetalle.setVisibility(View.GONE);
         // Se establece el tipo de letra de los TextView.
-        ((TextView) findViewById(R.id.lblTitulo)).setTypeface(Typeface
-                .createFromAsset(getAssets(), "fonts/alegreya-boldItalic.ttf"));
-        ((TextView) findViewById(R.id.lblSubtitulo)).setTypeface(Typeface
-                .createFromAsset(getAssets(), "fonts/alegreya-bold.ttf"));
-        lblDetalle.setTypeface(Typeface.createFromAsset(getAssets(),
-                "fonts/alegreya-regular.ttf"));
-
+        TextView lblTitulo = (TextView) findViewById(R.id.lblTitulo);
+        if (lblTitulo != null) {
+            lblTitulo.setTypeface(Typeface
+                    .createFromAsset(getAssets(), "fonts/alegreya-boldItalic.ttf"));
+        }
+        TextView lblSubtitulo = (TextView) findViewById(R.id.lblSubtitulo);
+        if (lblSubtitulo != null) {
+            lblSubtitulo.setTypeface(Typeface
+                    .createFromAsset(getAssets(), "fonts/alegreya-bold.ttf"));
+        }
+        if (lblDetalle != null) {
+            lblDetalle.setVisibility(View.GONE);
+            lblDetalle.setTypeface(Typeface.createFromAsset(getAssets(),
+                    "fonts/alegreya-regular.ttf"));
+        }
     }
 
     // Al pulsar sobre una vista cuyo click es gestionada por la actividad.

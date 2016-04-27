@@ -55,8 +55,10 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         vvReproductor = (VideoView) this.findViewById(R.id.vvReproductor);
-        vvReproductor.setEnabled(false);
-        vvReproductor.setOnPreparedListener(this);
+        if (vvReproductor != null) {
+            vvReproductor.setEnabled(false);
+            vvReproductor.setOnPreparedListener(this);
+        }
         mLblSinVideo = (TextView) findViewById(R.id.lblSinVideo);
         mLblSinVideo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +159,9 @@ public class MainActivity extends AppCompatActivity implements
                     mPathVideo = getRealPath(uriGaleria);
                     mPosicionInicial = 0;
                     // Se carga el vídeo en el reproductor.
-                    cargarVideo(mPathVideo);
+                    if (!TextUtils.isEmpty(mPathVideo)) {
+                        cargarVideo(mPathVideo);
+                    }
                     break;
             }
         }
@@ -166,14 +170,16 @@ public class MainActivity extends AppCompatActivity implements
     // Obtiene el path real de un vídeo a partir de la URI de Galería obtenido
     // con ACTION_PICK.
     private String getRealPath(Uri uriGaleria) {
+        String path = "";
         // Se consulta en el content provider de la galería.
         String[] filePath = {MediaStore.Video.Media.DATA};
         Cursor c = getContentResolver()
                 .query(uriGaleria, filePath, null, null, null);
-        c.moveToFirst();
-        int columnIndex = c.getColumnIndex(filePath[0]);
-        String path = c.getString(columnIndex);
-        c.close();
+        if (c != null && c.moveToFirst()) {
+            int columnIndex = c.getColumnIndex(filePath[0]);
+            path = c.getString(columnIndex);
+            c.close();
+        }
         return path;
     }
 

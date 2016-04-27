@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements
     private static final int RC_AGREGAR = 1;
     private static final int RC_EDITAR = 2;
 
-    private FloatingActionButton btnAgregar;
+    FloatingActionButton btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +40,15 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        findViewById(R.id.btnAgregar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onAgregarAlumno();
-            }
-        });
         btnAgregar = (FloatingActionButton) findViewById(R.id.btnAgregar);
+        if (btnAgregar != null) {
+            btnAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onAgregarAlumno();
+                }
+            });
+        }
     }
 
     // Carga el fragmento de la lista.

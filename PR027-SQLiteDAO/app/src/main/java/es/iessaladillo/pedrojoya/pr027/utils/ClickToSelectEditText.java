@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListAdapter;
 
+@SuppressWarnings("unchecked")
 public class ClickToSelectEditText<T> extends AppCompatEditText {
 
     private final CharSequence mHint;
@@ -84,6 +85,7 @@ public class ClickToSelectEditText<T> extends AppCompatEditText {
     }
 
     public interface OnItemSelectedListener<T> {
+        @SuppressWarnings("UnusedParameters")
         void onItemSelectedListener(T item, int selectedIndex);
     }
 

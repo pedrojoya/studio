@@ -17,6 +17,7 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
  * interactuar con la base de datos si hacer uso de sentencias SQL ni conocer
  * detalles internos de ella.
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class DAO {
 
     private static DAO sInstance;

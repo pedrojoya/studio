@@ -22,7 +22,7 @@
             android:name=".AlumnoActivity"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean">
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

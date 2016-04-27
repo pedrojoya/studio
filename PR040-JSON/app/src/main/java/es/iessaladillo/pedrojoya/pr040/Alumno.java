@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr040;
 
 // Clase para modelar el alumno.
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 class Alumno {
 
     // Constantes.

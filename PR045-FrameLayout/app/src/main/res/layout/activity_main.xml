@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:animateLayoutChanges="true">
@@ -31,7 +31,7 @@
             android:layout_toLeftOf="@+id/imgDetalle"
             android:layout_toStartOf="@+id/imgDetalle"
             android:text="@string/foto_del_dia"
-            android:textSize="@dimen/abc_text_size_headline_material"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"/>
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_toStartOf="@+id/imgDetalle"
             android:layout_below="@+id/lblTitulo"
             android:text="@string/londres"
-            android:textSize="@dimen/abc_text_size_subhead_material"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="@android:color/white"/>
 
         <ImageView
@@ -63,11 +63,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblSubtitulo"
-            android:paddingLeft="@dimen/panel_padding"
-            android:paddingTop="@dimen/panel_padding"
+            android:padding="@dimen/panel_padding"
             android:text="@string/detalle"
-            android:textSize="@dimen/abc_text_size_body_2_material"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/white"/>
     </RelativeLayout>
 
-</FrameLayout>
+</merge>

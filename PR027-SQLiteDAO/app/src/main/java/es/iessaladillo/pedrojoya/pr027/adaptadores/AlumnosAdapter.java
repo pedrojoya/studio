@@ -19,13 +19,13 @@ import java.util.List;
 import es.iessaladillo.pedrojoya.pr027.R;
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 
+@SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     public interface OnItemClickListener {
 
         // Interfaz que debe implementar el listener para cuando se haga click
         // sobre un elemento.
-        private final TextDrawable.IBuilder mDrawableBuilder;
         void onItemClick(View view, Alumno alumno, int position);
     }
 
@@ -47,7 +47,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
     private boolean mIsEmpty = true;
-
+    private final TextDrawable.IBuilder mDrawableBuilder;
 
     // Constructores.
     public AlumnosAdapter(ArrayList<Alumno> datos) {

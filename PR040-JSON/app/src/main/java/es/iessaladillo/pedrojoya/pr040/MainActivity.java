@@ -67,11 +67,13 @@ public class MainActivity extends AppCompatActivity implements
         lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
         lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
         swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
-        swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-        swlPanel.setOnRefreshListener(this);
+        if (swlPanel != null) {
+            swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+            swlPanel.setOnRefreshListener(this);
+        }
     }
 
     // Al ser pausada la actividad.
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // Procesa la cadena JSON y retorna el ArrayList de alumnos.
+    @SuppressWarnings("unused")
     private List<Alumno> procesarJSON(String result) {
         // Se crea el ArrayList a retornar.
         List<Alumno> alumnos = new ArrayList<>();

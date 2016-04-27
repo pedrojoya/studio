@@ -73,6 +73,7 @@ public class Alumno implements Parcelable {
         dest.writeString(this.direccion);
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected Alumno(Parcel in) {
         this.id = in.readLong();
         this.nombre = in.readString();

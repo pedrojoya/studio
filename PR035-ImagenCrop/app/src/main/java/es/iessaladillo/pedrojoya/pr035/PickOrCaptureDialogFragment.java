@@ -14,8 +14,9 @@ public class PickOrCaptureDialogFragment extends DialogFragment {
     private Listener mListener = null;
 
     // Interfaz pública para comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface Listener {
-        public void onItemClick(DialogFragment dialog, int which);
+        void onItemClick(DialogFragment dialog, int which);
     }
 
     // Al crear el diálogo. Retorna el diálogo configurado.

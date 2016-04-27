@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR039-SoundPool/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/Users/pedro/studio/PR039-SoundPool/app/build/intermediates/pre-dexed/debug/classes-287854cb9bc4270b71c9bae6311a28ece7dcfeea.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_31ffbe1d01ab9ab7e0313288865155f0965fb474\classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="/Users/pedro/studio/PR039-SoundPool/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-b1c46bc93b4097f34ac94406659df5be532e3461.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="86902af2751937f29ba0d21807a74aaff32e4eed">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_02ca10023a29dc2ee67f6a6f2ecabaf6b1124bdc\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR039-SoundPool/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/Users/pedro/studio/PR039-SoundPool/app/build/intermediates/pre-dexed/debug/classes-7ab0633fbf6e3f2af1c9b5e636154a96fe910302.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8700a197d9dda339ed44f781004f8071fc39afa3">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3fdff4cbe4b1afae37035ba2273884795ac371bb\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR039-SoundPool/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/Users/pedro/studio/PR039-SoundPool/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-efcad0cb792bb4dac8a97fc2705a1d9f33d10a30.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_ea1cd68aeb0010f94b76015f95f85f1645f3acaf\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_5e18492b2ac34b5da163bec33a021663e549f3bb\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_d6b2b22209bb5035152135ca72cc185daa8a85c0\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_d5aa11c0392e2a509a24f0ce4d1dbcb2c18f3ad3\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR039-SoundPool\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_cf6cd28858810019cf5207e9c0fe595218450cbf\classes.dex" />
     </item>
 
 </items>

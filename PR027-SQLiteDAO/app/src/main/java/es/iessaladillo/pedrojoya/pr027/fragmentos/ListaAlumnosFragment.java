@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr027.fragmentos;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -172,7 +172,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
     // Cuando el fragmento es cargado en la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             // Se establece la actividad como objeto listener.

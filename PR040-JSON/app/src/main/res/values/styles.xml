@@ -7,18 +7,4 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <!-- Botón plano -->
-    <style name="AppCompat.Button.Flat.Common" parent="Base.TextAppearance.AppCompat.Button">
-        <item name="android:minWidth">@dimen/btn_flat_min_width</item>
-        <item name="android:minHeight">@dimen/btn_flat_min_height</item>
-        <item name="android:textColor">@drawable/color_btn_flat_selector</item>
-        <item name="android:background">@drawable/btn_flat_selector</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:paddingLeft">@dimen/btn_flat_padding</item>
-        <item name="android:paddingRight">@dimen/btn_flat_padding</item>
-        <item name="android:layout_marginLeft">@dimen/btn_flat_margin</item>
-        <item name="android:layout_marginRight">@dimen/btn_flat_margin</item>
-    </style>
-
 </resources>
