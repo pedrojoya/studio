@@ -1,11 +1,11 @@
 package es.iessaladillo.pedrojoya.pr050;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,9 +17,10 @@ import android.widget.ImageView;
 public class FotoFragment extends Fragment {
 
     // Interfaz pública de comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface Listener {
         // Cuando se solicita Info sobre la foto.
-        public void onInfo(int fotoResId);
+        void onInfo(int fotoResId);
     }
 
     // Constantes.
@@ -68,7 +69,7 @@ public class FotoFragment extends Fragment {
 
     // Cuando el fragmento se enlaza con la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             // Establece la actividad como objeto listener.
@@ -257,6 +258,7 @@ public class FotoFragment extends Fragment {
 
     // Retorna el bitmap recibo aplicándole el cambio de tono dado por la
     // intensidad recibida y el factor de cada color.
+    @SuppressWarnings("SameParameterValue")
     private static Bitmap efectoTono(Bitmap src, int intensidad,
                                      double factorIntesidadRojo, double factorIntensidadVerde,
                                      double factorIntensidadAzul) {

@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr050;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +15,8 @@ public class InfoFragment extends Fragment {
     // Interfaz pública de comunicación con la actividad.
     public interface Listener {
         // Cuando se solicita ver la foto.
-        public void onFoto(int fotoResId);
+        @SuppressWarnings("SameParameterValue")
+        void onFoto(int fotoResId);
     }
 
     private Listener mListener;
@@ -37,7 +38,7 @@ public class InfoFragment extends Fragment {
 
     // Cuando el fragmento se enlaza con la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             // Establece la actividad como objeto mListener.

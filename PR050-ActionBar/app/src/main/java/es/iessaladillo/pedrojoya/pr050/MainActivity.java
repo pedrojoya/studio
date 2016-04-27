@@ -1,13 +1,13 @@
 package es.iessaladillo.pedrojoya.pr050;
 
-import java.lang.reflect.Field;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
+
+import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity implements FotoFragment
         .Listener,
@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity implements FotoFragment
         // menú.
         overflowEnDispositivoConTeclaMenu();
         // Se carga el fragmento con la foto (sólo si no está ya).
-        FotoFragment frg = (FotoFragment) getFragmentManager()
+        FotoFragment frg = (FotoFragment) getSupportFragmentManager()
                 .findFragmentByTag(TAG_FOTO_FRAGMENT);
         if (frg == null) {
             frg = FotoFragment.newInstance(R.drawable.bench);
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frmFragmento, frg, TAG_FOTO_FRAGMENT)
                     .commit();
         }
@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity implements FotoFragment
     public void onInfo(int fotoResId) {
         // Se carga el fragmento Info en la actividad, agregándolo a la
         // BackStack.
-        InfoFragment frg = (InfoFragment) getFragmentManager()
+        InfoFragment frg = (InfoFragment) getSupportFragmentManager()
                 .findFragmentByTag(TAG_INFO_FRAGMENT);
         if (frg == null) {
             frg = new InfoFragment();
         }
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frmFragmento, frg, TAG_INFO_FRAGMENT)
                 .addToBackStack(TAG_INFO_FRAGMENT).commit();
     }
@@ -86,12 +86,12 @@ public class MainActivity extends AppCompatActivity implements FotoFragment
     @Override
     public void onFoto(int fotoResId) {
         // Se carga el fragmento Foto en la actividad.
-        FotoFragment frg = (FotoFragment) getFragmentManager()
+        FotoFragment frg = (FotoFragment) getSupportFragmentManager()
                 .findFragmentByTag(TAG_FOTO_FRAGMENT);
         if (frg == null) {
             frg = FotoFragment.newInstance(fotoResId);
         }
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frmFragmento, frg, TAG_FOTO_FRAGMENT).commit();
     }
 
