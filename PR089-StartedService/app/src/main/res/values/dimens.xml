@@ -15,5 +15,9 @@
     <dimen name="list_dividerHeight">1dp</dimen>
     <dimen name="list_paddingBottom">8dp</dimen>
     <dimen name="avatar_marginBottom">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_pressedTranslationZ">12dp</dimen>
 
 </resources>

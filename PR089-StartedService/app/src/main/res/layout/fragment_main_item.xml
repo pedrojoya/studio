@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_background_selector"
+    android:minHeight="@dimen/three_lines_tile_height">
+
+    <ImageView
+        android:id="@+id/imgPlaying"
+        android:layout_width="@dimen/three_lines_avatar_height"
+        android:layout_height="@dimen/three_lines_avatar_height"
+        android:layout_marginLeft="@dimen/three_lines_avatar_marginLeft"
+        android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
+        android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
+        android:scaleType="center"
+        android:contentDescription="@string/playstop"
+        android:src="@drawable/ic_action_play_arrow" />
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
+        android:paddingTop="@dimen/three_lines_text_paddingTop"
+        tools:text="Nombre"
+        android:textSize="@dimen/three_lines_primary_text_textSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lblAutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
+        tools:text="Autor"
+        android:layout_below="@+id/lblNombre"
+        android:textSize="@dimen/three_lines_secundary_text_textSize"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/lblDuracion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
+        android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
+        tools:text="Dirección"
+        android:layout_below="@+id/lblAutor"
+        android:textSize="@dimen/three_lines_secundary_text_textSize" />
+</RelativeLayout>

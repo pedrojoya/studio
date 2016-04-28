@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             tools:text="Nombre"
-            android:textSize="@dimen/abc_text_size_headline_material"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
             android:textStyle="bold" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblNombre"
             tools:text="Curso"
-            android:textSize="@dimen/abc_text_size_subhead_material"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textStyle="italic" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblCurso"
             tools:text="Telefono"
-            android:textSize="@dimen/abc_text_size_body_1_material" />
+            style="@style/Base.TextAppearance.AppCompat.Body1" />
 
         <TextView
             android:id="@+id/lblDireccion"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblTelefono"
             tools:text="Dirección"
-            android:textSize="@dimen/abc_text_size_body_1_material" />
+            style="@style/Base.TextAppearance.AppCompat.Body1" />
 
         <ImageView
             android:id="@+id/imgPopupMenu"

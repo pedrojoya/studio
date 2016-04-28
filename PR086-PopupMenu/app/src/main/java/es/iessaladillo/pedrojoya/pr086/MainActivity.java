@@ -1,10 +1,10 @@
 package es.iessaladillo.pedrojoya.pr086;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
                 "678678678", "1º CFGS DAM"));
         AlumnosAdapter adaptador = new AlumnosAdapter(this, alumnos);
         ListView lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setAdapter(adaptador);
+        if (lstAlumnos != null) {
+            lstAlumnos.setAdapter(adaptador);
+        }
     }
 
 }

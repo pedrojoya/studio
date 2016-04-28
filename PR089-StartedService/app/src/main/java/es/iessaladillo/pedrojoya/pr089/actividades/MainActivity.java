@@ -1,119 +1,76 @@
 package es.iessaladillo.pedrojoya.pr089.actividades;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-
-import com.software.shell.fab.ActionButton;
-
-import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr089.R;
-import es.iessaladillo.pedrojoya.pr089.data.Cancion;
-import es.iessaladillo.pedrojoya.pr089.data.CancionesAdapter;
-import es.iessaladillo.pedrojoya.pr089.servicios.MusicaOnlineService;
+import es.iessaladillo.pedrojoya.pr089.fragmentos.MainFragment;
 
-public class MainActivity extends AppCompatActivity implements
-        OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.Listener {
 
-    private Intent intentServicio;
-    private ListView lstCanciones;
-    private CancionesAdapter mAdaptador;
-    private ActionButton btnPlayStop;
+    private static final String TAG_MAIN_FRAGMENT = "MainFragment";
+
+    private FloatingActionButton btnPlayStop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initVistas();
-        intentServicio = new Intent(getApplicationContext(),
-                MusicaOnlineService.class);
+        if (getSupportFragmentManager().findFragmentByTag(TAG_MAIN_FRAGMENT) == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.flContenido, MainFragment.newInstance(), TAG_MAIN_FRAGMENT)
+                    .commit();
+        }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Se muestra en el fab el icono adecuado.
-        btnPlayStop.setImageResource(lstCanciones.getCheckedItemPosition() ==
-                AdapterView.INVALID_POSITION ? R.drawable.fab_play : R.drawable.fab_stop);
-    }
-
-    // Obtiene e inicializa las vistas.
     private void initVistas() {
-        lstCanciones = (ListView) findViewById(R.id.lstCanciones);
-        mAdaptador = new CancionesAdapter(this, getListaCanciones(), lstCanciones);
-        lstCanciones.setAdapter(mAdaptador);
-        lstCanciones.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        lstCanciones.setOnItemClickListener(this);
-        lstCanciones.setEmptyView(findViewById(R.id.rlListaVacia));
-        btnPlayStop = (ActionButton) findViewById(R.id.btnPlayStop);
-        btnPlayStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (lstCanciones.getCheckedItemPosition() == AdapterView.INVALID_POSITION) {
-                    reproducirCancion(0);
-                } else {
-                    pararServicio();
+        setupToolbar();
+        setupFAB();
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+    }
+
+    private void setupFAB() {
+        btnPlayStop = (FloatingActionButton) findViewById(R.id.btnPlayStop);
+        if (btnPlayStop != null) {
+            btnPlayStop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    playstop();
                 }
-            }
-        });
+            });
+        }
     }
 
-    // Para el servicio y cambia el aspecto visual.
-    private void pararServicio() {
-        stopService(intentServicio);
-        lstCanciones.setItemChecked(lstCanciones.getCheckedItemPosition(), false);
-        btnPlayStop.setImageResource(R.drawable.fab_play);
+    private void playstop() {
+        Fragment frg = getSupportFragmentManager().findFragmentByTag(TAG_MAIN_FRAGMENT);
+        if (frg instanceof MainFragment) {
+            ((MainFragment) frg).playstop();
+        }
     }
 
-    // Al hacer click sobre un elemento de la lista.
     @Override
-    public void onItemClick(AdapterView<?> lst, View v, int position, long id) {
-        // Se reproduce la canción
-        reproducirCancion(position);
+    public void onReproduciendo() {
+        if (btnPlayStop != null) {
+            btnPlayStop.setImageResource(R.drawable.fab_stop);
+        }
     }
 
-    // Inicia el servicio para reproducir la canción y cambia aspecto visual.
-    private void reproducirCancion(int position) {
-        lstCanciones.setItemChecked(position, true);
-        // Se invalidan los datos paara que se actualice el icono en el elemento que deja de
-        // estar reproduciendose y el que pasa a reproducirse.
-        mAdaptador.notifyDataSetInvalidated();
-        btnPlayStop.setImageResource(R.drawable.fab_stop);
-        // Se inicia el servicio pasándole como extra la URL de la canción a reproducir.
-        Cancion cancion = (Cancion) lstCanciones.getItemAtPosition(position);
-        intentServicio.putExtra(MusicaOnlineService.EXTRA_URL_CANCION,
-                cancion.getUrl());
-        startService(intentServicio);
-    }
-
-    // Crea y retorna el ArrayList de canciones.
-    private ArrayList<Cancion> getListaCanciones() {
-        ArrayList<Cancion> canciones = new ArrayList<>();
-        canciones
-                .add(new Cancion("Morning Mood", "3:43", "Grieg",
-                        "https://www.youtube.com/audiolibrary_download?vid=036500ffbf472dcc"));
-        canciones
-                .add(new Cancion("Brahms Lullaby", "1:46", "Ron Meixsell",
-                        "https://www.youtube.com/audiolibrary_download?vid=9894a50b486c6136"));
-        canciones
-                .add(new Cancion("Triangles", "3:05", "Silent Partner",
-                        "https://www.youtube.com/audiolibrary_download?vid=8c9219f54213cb4f"));
-        canciones
-                .add(new Cancion("From Russia With Love", "2:26", "Huma-Huma",
-                        "https://www.youtube.com/audiolibrary_download?vid=4e8d1a0fdb3bbe12"));
-        canciones
-                .add(new Cancion("Les Toreadors from Carmen",
-                        "2:21", "Bizet",
-                        "https://www.youtube.com/audiolibrary_download?vid=fafb35a907cd6e73"));
-        canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
-        return canciones;
+    @Override
+    public void onParado() {
+        if (btnPlayStop != null) {
+            btnPlayStop.setImageResource(R.drawable.fab_play);
+        }
     }
 
 }

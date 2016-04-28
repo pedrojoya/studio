@@ -22,7 +22,7 @@ public class CancionesAdapter extends ArrayAdapter<Cancion> {
 
     // Constructor.
     public CancionesAdapter(Context contexto, ArrayList<Cancion> canciones, ListView lst) {
-        super(contexto, R.layout.activity_main_item, canciones);
+        super(contexto, R.layout.fragment_main_item, canciones);
         mCanciones = canciones;
         mInflador = LayoutInflater.from(contexto);
         mListView = lst;
@@ -35,7 +35,7 @@ public class CancionesAdapter extends ArrayAdapter<Cancion> {
         // Si no se puede reciclar.
         if (convertView == null) {
             // Se obtiene la vista-fila inflando el layout.
-            convertView = mInflador.inflate(R.layout.activity_main_item, parent, false);
+            convertView = mInflador.inflate(R.layout.fragment_main_item, parent, false);
             // Se crea el contenedor de vistas para la vista-fila.
             holder = new ViewHolder(convertView);
             // Se almacena el contenedor en la vista.
