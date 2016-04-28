@@ -47,11 +47,6 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
         notifyItemInserted(mDatos.size()-1);
     }
 
-    // Retorna el ArrayList con los datos de la lista.
-    public ArrayList<String> getData() {
-        return mDatos;
-    }
-
     // Contenedor de vistas.
     static class ViewHolder extends RecyclerView.ViewHolder {
         // El contenedor de vistas para un elemento de la lista debe contener...
