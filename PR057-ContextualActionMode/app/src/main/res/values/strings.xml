@@ -9,6 +9,9 @@
     <string name="aprobar">Aprobar</string>
     <string name="felicidades">Felicidades %1$s. Estás aprobado</string>
     <string name="has_aprobado">"Has aprobado: "</string>
-    <string name="asignaturas_eliminadas">"%1$d asignaturas eliminadas"</string>
+    <plurals name="asignaturas_eliminadas">
+        <item quantity="one">%1$d asignatura eliminada</item>
+        <item quantity="other">%1$d asignaturas eliminadas</item>
+    </plurals>
 
 </resources>

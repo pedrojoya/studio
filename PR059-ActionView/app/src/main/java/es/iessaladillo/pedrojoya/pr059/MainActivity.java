@@ -29,14 +29,16 @@ public class MainActivity extends AppCompatActivity implements SearchView
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        ListView lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
         // Se llena de datos la lista.
         String[] alumnos = getResources().getStringArray(R.array.alumnos);
         adaptador = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, alumnos);
-        lstAlumnos.setAdapter(adaptador);
-        // La actividad actuará como listener cuando se pulse sobre un elemento.
-        lstAlumnos.setOnItemClickListener(this);
+        ListView lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
+        if (lstAlumnos != null) {
+            lstAlumnos.setAdapter(adaptador);
+            // La actividad actuará como listener cuando se pulse sobre un elemento.
+            lstAlumnos.setOnItemClickListener(this);
+        }
     }
 
     // Al crear la primera vez el menú.

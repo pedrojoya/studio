@@ -12,22 +12,19 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
-import java.util.Random;
-
 import es.iessaladillo.pedrojoya.pr069.R;
 import es.iessaladillo.pedrojoya.pr069.bd.Instituto;
 
 public class AlumnosAdapter extends SimpleCursorAdapter {
 
     private final int mLayout;
-    private final Random mAleatorio;
     private final TextDrawable.IBuilder mDrawableBuilder;
 
+    @SuppressWarnings("SameParameterValue")
     public AlumnosAdapter(Context context, int layout, Cursor c,
-                     String[] from, int[] to, int flags) {
+                          String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
         mLayout = layout;
-        mAleatorio = new Random();
         mDrawableBuilder = TextDrawable.builder()
                 .beginConfig()
                 .width(100)
@@ -49,7 +46,7 @@ public class AlumnosAdapter extends SimpleCursorAdapter {
         holder.lblDireccion.setText(cursor.getString(
                 cursor.getColumnIndexOrThrow(Instituto.Alumno.DIRECCION)));
         holder.imgAvatar.setImageDrawable(mDrawableBuilder.build(nombre.substring(0, 1),
-                ColorGenerator.MATERIAL.getRandomColor()));
+                ColorGenerator.MATERIAL.getColor(nombre)));
     }
 
     // Cuando se va a crear una nueva vista-fila (no es posible reciclar).

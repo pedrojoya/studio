@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr069.fragmentos;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.software.shell.fab.ActionButton;
 
 import es.iessaladillo.pedrojoya.pr069.R;
 import es.iessaladillo.pedrojoya.pr069.bd.DAO;
@@ -59,7 +58,7 @@ public class AlumnoFragment extends Fragment {
         // dependiendo del argumento recibido.
         // Dependiendo de la acción.
         String modo = getArguments().getString(EXTRA_MODO);
-        if (modo.equals(MODO_EDITAR)) {
+        if (modo != null && modo.equals(MODO_EDITAR)) {
             setModoEditar();
         } else {
             setModoAgregar();
@@ -115,7 +114,7 @@ public class AlumnoFragment extends Fragment {
     }
 
     // Guarda el alumno en pantalla en la base de datos.
-    void guardarAlumno() {
+    private void guardarAlumno() {
         // Se llena el objeto Alumno con los datos de las vistas.
         vistasToAlumno();
         // Dependiendo del modo se inserta o actualiza el alumno (siempre y
@@ -176,7 +175,7 @@ public class AlumnoFragment extends Fragment {
             txtNombre = (EditText) getView().findViewById(R.id.txtNombre);
             txtTelefono = (EditText) getView().findViewById(R.id.txtTelefono);
             txtDireccion = (EditText) getView().findViewById(R.id.txtDireccion);
-            ActionButton btnGuardar = (ActionButton) getView().findViewById(R.id.btnGuardar);
+            FloatingActionButton btnGuardar = (FloatingActionButton) getView().findViewById(R.id.btnGuardar);
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

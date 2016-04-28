@@ -106,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Obtiene y configura lstAsignaturas.
     private void configLstAsignaturas() {
-        // Se establece el modo de selección múltiple modal.
-        lstAsignaturas = (ListView) this.findViewById(R.id.lstAsignaturas);
-        lstAsignaturas.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         // Se carga la lista con datos.
         ArrayList<String> asignaturas = new ArrayList<>();
         asignaturas.add("Android");
@@ -116,95 +113,101 @@ public class MainActivity extends AppCompatActivity {
         asignaturas.add("Libre configuración");
         adaptador = new ArrayAdapter<>(this, R.layout.activity_main_item,
                 R.id.lblAsignatura, asignaturas);
-        lstAsignaturas.setAdapter(adaptador);
-        // Se establece el listener para los eventos del modo de acción contextual.
-        lstAsignaturas
-                .setMultiChoiceModeListener(new MultiChoiceModeListener() {
-                    // Al preparse el modo.
-                    @Override
-                    public boolean onPrepareActionMode(ActionMode mode,
-                                                       Menu menu) {
-                        // No se hace nada.
-                        return false;
-                    }
-
-                    // Al destruirse el modo.
-                    @Override
-                    public void onDestroyActionMode(ActionMode mode) {
-                        // No se hace nada.
-                    }
-
-                    // Al crear el modo.
-                    @Override
-                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                        // Se infla la especificación del menú contextual en el menú.
-                        mode.getMenuInflater().inflate(R.menu.txtalumnos_menu,
-                                menu);
-                        // Se retorna que ya se ha gestionado el evento.
-                        return true;
-                    }
-
-                    // Al hacer click sobre un ítem de acción del modo contextual.
-                    @Override
-                    public boolean onActionItemClicked(ActionMode mode,
-                                                       MenuItem item) {
-                        // Dependiendo del elemento pulsado.
-                        switch (item.getItemId()) {
-                            case R.id.mnuAprobar:
-                                String mensaje = "";
-                                // Se obtienen los elementos seleccionados.
-                                ArrayList<String> elementos = getElementosSeleccionados(
-                                        lstAsignaturas, false);
-                                // Se añade cada elemento al mensaje
-                                for (String elemento : elementos) {
-                                    mensaje = mensaje + elemento + " ";
-                                }
-                                // Se muestra el mensaje.
-                                mensaje = getString(R.string.has_aprobado)
-                                        + mensaje;
-                                Toast.makeText(getApplicationContext(), mensaje,
-                                        Toast.LENGTH_LONG).show();
-                                break;
-                            case R.id.mnuEliminar:
-                                // Se obtienen los elementos seleccionados (y se
-                                // quita la selección).
-                                ArrayList<String> elems = getElementosSeleccionados(
-                                        lstAsignaturas, true);
-                                // Se eliminan del adaptador.
-                                for (String elemento : elems) {
-                                    adaptador.remove(elemento);
-                                }
-                                // Se notifica al adaptador que ha habido cambios.
-                                adaptador.notifyDataSetChanged();
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        getString(R.string.asignaturas_eliminadas, elems.size()),
-                                        Toast.LENGTH_LONG).show();
-                                break;
+        // Se establece el modo de selección múltiple modal.
+        lstAsignaturas = (ListView) this.findViewById(R.id.lstAsignaturas);
+        if (lstAsignaturas != null) {
+            lstAsignaturas.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+            lstAsignaturas.setAdapter(adaptador);
+            // Se establece el listener para los eventos del modo de acción contextual.
+            lstAsignaturas
+                    .setMultiChoiceModeListener(new MultiChoiceModeListener() {
+                        // Al preparse el modo.
+                        @Override
+                        public boolean onPrepareActionMode(ActionMode mode,
+                                                           Menu menu) {
+                            // No se hace nada.
+                            return false;
                         }
-                        // Se retorna que se ha procesado el evento.
-                        return true;
-                    }
 
-                    // Al cambiar el estado de selección de un elemento.
-                    @Override
-                    public void onItemCheckedStateChanged(ActionMode mode,
-                                                          int position, long id, boolean checked) {
-                        // Se actualiza el título de la action bar contextual.
-                        mode.setTitle(getString(R.string.de,
-                                lstAsignaturas.getCheckedItemCount(), lstAsignaturas.getCount()));
-                    }
-                });
-        // Un click simple ya activa el modo de acción contextual.
-        lstAsignaturas.setOnItemClickListener(new OnItemClickListener() {
+                        // Al destruirse el modo.
+                        @Override
+                        public void onDestroyActionMode(ActionMode mode) {
+                            // No se hace nada.
+                        }
 
-            @Override
-            public void onItemClick(AdapterView<?> adaptador, View v,
-                                    int position, long id) {
-                // Se selecciona el elemento.
-                lstAsignaturas.setItemChecked(position, true);
-            }
-        });
+                        // Al crear el modo.
+                        @Override
+                        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                            // Se infla la especificación del menú contextual en el menú.
+                            mode.getMenuInflater().inflate(R.menu.txtalumnos_menu,
+                                    menu);
+                            // Se retorna que ya se ha gestionado el evento.
+                            return true;
+                        }
+
+                        // Al hacer click sobre un ítem de acción del modo contextual.
+                        @Override
+                        public boolean onActionItemClicked(ActionMode mode,
+                                                           MenuItem item) {
+                            // Dependiendo del elemento pulsado.
+                            switch (item.getItemId()) {
+                                case R.id.mnuAprobar:
+                                    String mensaje = "";
+                                    // Se obtienen los elementos seleccionados.
+                                    ArrayList<String> elementos = getElementosSeleccionados(
+                                            lstAsignaturas, false);
+                                    // Se añade cada elemento al mensaje
+                                    for (String elemento : elementos) {
+                                        mensaje = mensaje + elemento + " ";
+                                    }
+                                    // Se muestra el mensaje.
+                                    mensaje = getString(R.string.has_aprobado)
+                                            + mensaje;
+                                    Toast.makeText(getApplicationContext(), mensaje,
+                                            Toast.LENGTH_LONG).show();
+                                    break;
+                                case R.id.mnuEliminar:
+                                    // Se obtienen los elementos seleccionados (y se
+                                    // quita la selección).
+                                    ArrayList<String> elems = getElementosSeleccionados(
+                                            lstAsignaturas, true);
+                                    // Se eliminan del adaptador.
+                                    for (String elemento : elems) {
+                                        adaptador.remove(elemento);
+                                    }
+                                    // Se notifica al adaptador que ha habido cambios.
+                                    adaptador.notifyDataSetChanged();
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            getResources().getQuantityString(R.plurals.asignaturas_eliminadas,
+                                                    elems.size(), elems.size()),
+                                            Toast.LENGTH_LONG).show();
+                                    break;
+                            }
+                            // Se retorna que se ha procesado el evento.
+                            return true;
+                        }
+
+                        // Al cambiar el estado de selección de un elemento.
+                        @Override
+                        public void onItemCheckedStateChanged(ActionMode mode,
+                                                              int position, long id, boolean checked) {
+                            // Se actualiza el título de la action bar contextual.
+                            mode.setTitle(getString(R.string.de,
+                                    lstAsignaturas.getCheckedItemCount(), lstAsignaturas.getCount()));
+                        }
+                    });
+            // Un click simple ya activa el modo de acción contextual.
+            lstAsignaturas.setOnItemClickListener(new OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> adaptador, View v,
+                                        int position, long id) {
+                    // Se selecciona el elemento.
+                    lstAsignaturas.setItemChecked(position, true);
+                }
+            });
+        }
     }
 
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y
