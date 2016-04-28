@@ -10,4 +10,6 @@
     <dimen name="tarjeta_repetidor_translationY">5dp</dimen>
     <dimen name="card_padding">8dp</dimen>
     <dimen name="card_content_padding">16dp</dimen>
+    <dimen name="tarjeta_cardCornerRadius">4dp</dimen>
+    <dimen name="tarjeta_cardElevation">4dp</dimen>
 </resources>

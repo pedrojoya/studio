@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr083;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     // Interfaz que debe implementar el listener para cuando se haga click
@@ -20,30 +22,23 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
         void onItemClick(View view, Alumno alumno, int position);
     }
+
     // Interfaz que debe implementar el listener para cuando se haga click
     // largo sobre un elemento.
     public interface OnItemLongClickListener {
 
         void onItemLongClick(View view, Alumno alumno, int position);
     }
-    // Interfaz que debe implementar el listener para cuando la lista pase a
-    // o deje de estar vacía.
-    public interface OnEmptyStateChangedListener {
-
-        void onEmptyStateChanged(boolean isEmpty);
-    }
 
     private ArrayList<Alumno> mDatos;
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
-    private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
-    private boolean mIsEmpty = true;
 
     // Constructor.
+    @SuppressWarnings("SameParameterValue")
     public AlumnosAdapter(ArrayList<Alumno> datos) {
         mDatos = datos;
-        checkEmptyStateChanged();
     }
 
 
@@ -103,7 +98,10 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Retorna el número de ítems gestionados.
     @Override
     public int getItemCount() {
-        return mDatos.size();
+        if (mDatos != null) {
+            return mDatos.size();
+        }
+        return 0;
     }
 
     // Retorna los datos.
@@ -113,7 +111,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     public void swapData(ArrayList<Alumno> alumnos) {
         mDatos = alumnos;
-        checkEmptyStateChanged();
         notifyDataSetChanged();
     }
 
@@ -127,8 +124,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
-        // Se comprueba si pasa a estar vacía.
-        checkEmptyStateChanged();
     }
 
     // Añade un elemento a la lista.
@@ -137,30 +132,11 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mDatos.add(position, alumno);
         // Se notifica que se ha insertado un elemento en la última posición.
         notifyItemInserted(position);
-        // Si comprueba si deja de estar vacía.
-        checkEmptyStateChanged();
-    }
-
-    // Comprueba si ha pasa a estar vacía o deja de estar vacía.
-    private void checkEmptyStateChanged() {
-        // Deja de estar vacía
-        if (mIsEmpty && mDatos.size() > 0) {
-            mIsEmpty = false;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(false);
-            }
-        }
-        else if (!mIsEmpty && mDatos.size()==0) {
-            mIsEmpty = true;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(true);
-            }
-        }
     }
 
     // Retorna si la lista está vacía.
     public boolean isEmpty() {
-        return mIsEmpty;
+        return mDatos == null || mDatos.size() <= 0;
     }
 
     // Establece el listener a informar cuando se hace click sobre un
@@ -173,14 +149,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // elemento de la lista.
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         mOnItemLongClickListener = listener;
-    }
-
-    // Establece el listener a informar cuando la lista pasa a o deja de
-    // estar vacía.
-    public void setOnEmptyStateChangedListener(
-            OnEmptyStateChangedListener listener) {
-        mOnEmptyStateChangedListener = listener;
-        checkEmptyStateChanged();
     }
 
     // Contenedor de vistas para la vista-fila.
@@ -222,9 +190,11 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             // El fondo del TextView con la edad es diferente si es menor de
             // edad.
             if (alumno.getEdad() < 18) {
-                lblEdad.setTextColor(lblEdad.getContext().getResources().getColor(R.color.accent));
+                lblEdad.setTextColor(
+                        ContextCompat.getColor(lblEdad.getContext(), R.color.accent));
             } else {
-                lblEdad.setTextColor(lblEdad.getContext().getResources().getColor(R.color.primary_text));
+                lblEdad.setTextColor(
+                        ContextCompat.getColor(lblEdad.getContext(), R.color.primary_text));
             }
             // Si el alumno es repetidor se muestra el TextView correspondiente.
             if (alumno.isRepetidor()) {

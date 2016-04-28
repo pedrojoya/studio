@@ -5,6 +5,7 @@ import android.app.Application;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+@SuppressWarnings("WeakerAccess")
 public class App extends Application {
 
     private static RequestQueue colaPeticiones;

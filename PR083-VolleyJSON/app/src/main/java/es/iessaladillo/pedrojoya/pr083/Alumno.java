@@ -91,6 +91,7 @@ class Alumno implements Parcelable {
     public Alumno() {
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected Alumno(Parcel in) {
         this.foto = in.readString();
         this.nombre = in.readString();

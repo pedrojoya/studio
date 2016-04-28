@@ -17,8 +17,9 @@ class GsonArrayRequest<T> extends Request<T> {
     private final Gson gson;
     private final Type type;
 
+    @SuppressWarnings("SameParameterValue")
     public GsonArrayRequest(int method, String url, Type type,
-            Listener<T> listener, ErrorListener errorListener, Gson gson) {
+                            Listener<T> listener, ErrorListener errorListener, Gson gson) {
         super(method, url, errorListener);
         this.type = type;
         this.listener = listener;

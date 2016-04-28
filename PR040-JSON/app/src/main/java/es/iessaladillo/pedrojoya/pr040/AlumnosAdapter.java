@@ -16,13 +16,13 @@ import java.util.ArrayList;
 class AlumnosAdapter extends ArrayAdapter<Alumno> {
 
     // Variables miembro.
-    private final ArrayList<Alumno> alumnos;
+    private ArrayList<Alumno> mDatos;
     private final LayoutInflater inflador;
 
     // Constructor.
     public AlumnosAdapter(Context contexto, ArrayList<Alumno> alumnos) {
         super(contexto, R.layout.activity_main_item, alumnos);
-        this.alumnos = alumnos;
+        this.mDatos = alumnos;
         // Se obtiene el objeto inflador de layouts.
         inflador = LayoutInflater.from(contexto);
     }
@@ -54,7 +54,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
     // Cuando se deben escribir los datos en la vista del elemento.
     private void onBindViewHolder(ViewHolder holder, int position) {
         // Se obtiene el alumno que debe mostrar el elemento.
-        Alumno alumno = alumnos.get(position);
+        Alumno alumno = mDatos.get(position);
         // Se escriben los datos del alumno en las vistas.
         holder.bind(alumno);
     }
@@ -107,6 +107,20 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
             }
         }
 
+    }
+
+    @Override
+    public int getCount() {
+        if (mDatos != null) {
+            return mDatos.size();
+        }
+        return 0;
+    }
+
+    // Establece los datos para el adaptador.
+    public void setData(ArrayList<Alumno> datos) {
+        mDatos = datos;
+        notifyDataSetChanged();
     }
 
 }
