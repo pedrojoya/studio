@@ -12,10 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/card_padding"
-        android:paddingBottom="@dimen/card_padding"
-        android:paddingLeft="@dimen/card_padding"
-        android:paddingStart="@dimen/card_padding">
+        android:padding="@dimen/card_padding">
 
         <ImageView
             android:id="@+id/imgFoto"
@@ -26,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
             android:contentDescription="@string/foto_del_alumno"
-            android:src="@drawable/foto"/>
+            android:src="@drawable/placeholder"/>
 
         <TextView
             android:id="@+id/lblNombre"

@@ -20,6 +20,7 @@ class EcoAsyncTask extends AsyncTask<String, Void, String> {
     private static final String KEY_FECHA = "fecha";
 
     // Interfaz de comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface Callbacks {
         void onPostExecute(EcoAsyncTask objeto, String result);
     }

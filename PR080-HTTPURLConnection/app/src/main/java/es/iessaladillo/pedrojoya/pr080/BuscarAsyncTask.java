@@ -12,6 +12,7 @@ import java.net.URLEncoder;
 class BuscarAsyncTask extends AsyncTask<String, Void, String> {
 
     // Interfaz de comunicación con la actividad.
+    @SuppressWarnings("UnusedParameters")
     public interface Callbacks {
         void onPostExecute(BuscarAsyncTask object, String result);
     }

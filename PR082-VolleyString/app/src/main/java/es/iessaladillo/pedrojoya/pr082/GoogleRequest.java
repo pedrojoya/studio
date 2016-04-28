@@ -8,6 +8,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 class GoogleRequest extends StringRequest {
 
     // Constructor.

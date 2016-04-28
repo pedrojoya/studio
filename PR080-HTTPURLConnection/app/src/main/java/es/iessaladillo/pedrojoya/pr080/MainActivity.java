@@ -35,21 +35,27 @@ public class MainActivity extends AppCompatActivity implements
     private void initVistas() {
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         Button btnBuscar = (Button) findViewById(R.id.btnBuscar);
-        btnBuscar.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buscar();
-            }
-        });
+        if (btnBuscar != null) {
+            btnBuscar.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    buscar();
+                }
+            });
+        }
         Button btnEco = (Button) findViewById(R.id.btnEco);
-        btnEco.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                eco();
-            }
-        });
+        if (btnEco != null) {
+            btnEco.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    eco();
+                }
+            });
+        }
         pbProgreso = (ProgressBar) findViewById(R.id.pbProgreso);
-        pbProgreso.setVisibility(View.INVISIBLE);
+        if (pbProgreso != null) {
+            pbProgreso.setVisibility(View.INVISIBLE);
+        }
     }
 
     // Retorna si hay conexión a la red o no.

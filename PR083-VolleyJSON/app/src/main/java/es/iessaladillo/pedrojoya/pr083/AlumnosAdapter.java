@@ -213,8 +213,12 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             //holder.imgFoto.setImageResource(alumno.getFoto());
             lblNombre.setText(alumno.getNombre());
             lblCurso.setText(alumno.getCurso());
-            lblEdad.setText(lblEdad.getContext().getString(R.string.anios, alumno.getEdad()));
-            Picasso.with(imgFoto.getContext()).load(alumno.getFoto()).into(imgFoto);
+            lblEdad.setText(lblEdad.getContext().getResources().getQuantityString(R.plurals.anios,
+                    alumno.getEdad(), alumno.getEdad()));
+            Picasso.with(imgFoto.getContext()).load(alumno.getFoto())
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
+                    .into(imgFoto);
             // El fondo del TextView con la edad es diferente si es menor de
             // edad.
             if (alumno.getEdad() < 18) {

@@ -7,6 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.Map;
 
+@SuppressWarnings("unused")
 class EcoRequest extends StringRequest {
 
     // Constantes.

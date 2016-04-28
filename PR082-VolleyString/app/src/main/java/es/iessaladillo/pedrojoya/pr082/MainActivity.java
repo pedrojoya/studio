@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -26,18 +24,19 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class MainActivity extends AppCompatActivity {
 
     private static final String KEY_NOMBRE = "nombre";
     private static final String KEY_FECHA = "fecha";
 
-    @Bind(R.id.txtNombre)
+    @BindView(R.id.txtNombre)
     public EditText txtNombre;
-    @Bind(R.id.pbProgreso)
+    @BindView(R.id.pbProgreso)
     public ProgressBar pbProgreso;
 
     private RequestQueue colaPeticiones;
@@ -59,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     // Retorna si hay conexión a la red o no.
     private boolean isConnectionAvailable() {
         // Se obtiene del gestor de conectividad la información de red.
-        ConnectivityManager gestorConectividad = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager gestorConectividad =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo infoRed = gestorConectividad.getActiveNetworkInfo();
         // Se retorna si hay conexión.
         return (infoRed != null && infoRed.isConnected());
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
                 // Se crea la petición.
-                GoogleRequest peticion = null;
+                GoogleRequest peticion;
                 try {
                     peticion = new GoogleRequest(URLEncoder.encode(
                             nombre, "UTF-8"), listener, errorListener);
