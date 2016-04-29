@@ -17,5 +17,6 @@
     <dimen name="avatar_marginBottom">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_elevation" tools:ignore="UnusedResources">6dp</dimen>
+    <dimen name="fab_pressedTranslationZ">12dp</dimen>
 
 </resources>

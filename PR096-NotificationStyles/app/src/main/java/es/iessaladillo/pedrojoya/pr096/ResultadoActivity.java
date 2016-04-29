@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import butterknife.BindView;
 
+
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ResultadoActivity extends AppCompatActivity {
 
     // Constantes.
@@ -21,12 +24,14 @@ public class ResultadoActivity extends AppCompatActivity {
     public static final String ACTION_ANSWER =
             "es.iessaladillo.pedrojoya.pr096.action.ANSWER";
 
+    @BindView(R.id.lblMensaje)
+    public TextView lblMensaje;
+
     // Al crear la actividad.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
-        TextView lblMensaje = (TextView) findViewById(R.id.lblMensaje);
         // Se obtiene el gestor de notificaciones por si hay que cancelar alguna.
         NotificationManager gestor =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

@@ -10,7 +10,6 @@
     <string name="operacion_finalizada">Operación finalizada</string>
     <string name="actualizacion_de_datos">Actualización de datos</string>
     <string name="actualizando">Actualizando… (%1$d de %2$d)</string>
-    <string name="de"> de </string>
     <string name="title_activity_resultado">ResultadoActivity</string>
     <string name="enviar">Enviar</string>
     <string name="eliminar">Eliminar</string>
@@ -25,5 +24,6 @@
     <string name="line">Line %1$d</string>
     <string name="heads_up_notification">Heads-up</string>
     <string name="responder">Responder</string>
+    <string name="actualizando_indeterminado">Actualizando…</string>
 
 </resources>

@@ -55,9 +55,9 @@ public class MainFragment extends Fragment implements
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initVistas(getView());
-        intentServicio = new Intent(getActivity().getApplicationContext(),
-                MusicaOnlineService.class);
+            initVistas(getView());
+            intentServicio = new Intent(getActivity().getApplicationContext(),
+                    MusicaOnlineService.class);
     }
 
     private void initVistas(View view) {

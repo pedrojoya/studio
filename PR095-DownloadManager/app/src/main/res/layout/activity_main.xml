@@ -1,39 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/tools"
-    app:ignore="MergeRootFrame">
+    android:layout_height="match_parent">
 
-    <com.github.ksoichiro.android.observablescrollview.ObservableListView
-        android:id="@+id/lstCanciones"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- paddingTop para compatibilidad con CoordinatorLayout en API < 21 -->
+    <FrameLayout
+        android:id="@+id/flContenido"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/list_paddingTop"
-        android:divider="@drawable/item_divider"
-        android:dividerHeight="@dimen/list_dividerHeight"
-        android:paddingBottom="@dimen/list_paddingBottom" />
-    <RelativeLayout
-        android:id="@+id/rlListaVacia"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:gravity="center_horizontal|center_vertical" >
-        <ImageView
-            android:id="@+id/imgNuevaCancion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/avatar_marginBottom"
-            android:contentDescription="@string/no_hay_canciones"
-            android:src="@drawable/ic_action_playlist_add" />
-        <TextView
-            android:id="@+id/lblNoHayCanciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgNuevaCancion"
-            android:layout_centerHorizontal="true"
-            android:text="@string/no_hay_canciones" />
-    </RelativeLayout>
+        android:paddingTop="?attr/actionBarSize"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnPlayStop"
         android:layout_width="wrap_content"
@@ -46,4 +38,4 @@
         app:elevation="@dimen/fab_elevation"
         app:pressedTranslationZ="@dimen/fab_pressedTranslationZ"/>
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

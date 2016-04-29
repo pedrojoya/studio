@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr095.R;
-import es.iessaladillo.pedrojoya.pr095.actividades.MainActivity;
+import es.iessaladillo.pedrojoya.pr095.fragmentos.MainFragment;
 
 // Adaptador para la lista.
 public class CancionesAdapter extends ArrayAdapter<Cancion> {
@@ -25,7 +25,7 @@ public class CancionesAdapter extends ArrayAdapter<Cancion> {
 
     // Constructor.
     public CancionesAdapter(Context contexto, ArrayList<Cancion> canciones, ListView lst) {
-        super(contexto, R.layout.activity_main_item, canciones);
+        super(contexto, R.layout.fragment_main_item, canciones);
         mCanciones = canciones;
         mInflador = LayoutInflater.from(contexto);
         mListView = lst;
@@ -38,7 +38,7 @@ public class CancionesAdapter extends ArrayAdapter<Cancion> {
         // Si no se puede reciclar.
         if (convertView == null) {
             // Se obtiene la vista-fila inflando el layout.
-            convertView = mInflador.inflate(R.layout.activity_main_item, parent, false);
+            convertView = mInflador.inflate(R.layout.fragment_main_item, parent, false);
             // Se crea el contenedor de vistas para la vista-fila.
             holder = new ViewHolder(convertView);
             // Se almacena el contenedor en la vista.
@@ -67,7 +67,7 @@ public class CancionesAdapter extends ArrayAdapter<Cancion> {
         File directory = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
         File fichero = new File(directory, cancion.getNombre()
-                + MainActivity.EXTENSION_ARCHIVO);
+                + MainFragment.EXTENSION_ARCHIVO);
         if (fichero.exists()) {
             holder.imgPlaying.setImageResource(
                     mListView.isItemChecked(position) ? R.drawable.ic_action_equalizer :

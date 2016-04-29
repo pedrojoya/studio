@@ -1,11 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="es.iessaladillo.pedrojoya.pr096">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="es.iessaladillo.pedrojoya.pr096">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name="es.iessaladillo.pedrojoya.pr096.MainActivity"
             android:label="@string/app_name">
@@ -18,7 +20,8 @@
         <activity
             android:name="es.iessaladillo.pedrojoya.pr096.ResultadoActivity"
             android:label="@string/title_activity_resultado"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="es.iessaladillo.pedrojoya.pr096.MainActivity"/>

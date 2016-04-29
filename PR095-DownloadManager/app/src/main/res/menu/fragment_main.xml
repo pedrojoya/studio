@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="es.iessaladillo.pedrojoya.pr095.actividades.MainActivity">
+    
+    <item android:id="@+id/mnuDescargas"
+        android:title="@string/descargas"
+        android:icon="@drawable/ic_action_downloads"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+</menu>
