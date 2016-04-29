@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,6 @@ import android.widget.Toast;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
-import com.software.shell.fab.ActionButton;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final String EXTENSION_ARCHIVO = ".mp3";
 
     private ObservableListView lstCanciones;
-    private ActionButton btnPlayStop;
+    private FloatingActionButton btnPlayStop;
 
     private DownloadManager mGestorDescargas;
     private BroadcastReceiver mReceptorDescargaFinalizada;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         lstCanciones.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstCanciones.setOnItemClickListener(this);
         lstCanciones.setEmptyView(findViewById(R.id.rlListaVacia));
-        btnPlayStop = (ActionButton) findViewById(R.id.btnPlayStop);
+        btnPlayStop = (FloatingActionButton) findViewById(R.id.btnPlayStop);
         btnPlayStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

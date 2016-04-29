@@ -12,7 +12,8 @@
         android:divider="@drawable/item_divider"
         android:dividerHeight="@dimen/list_dividerHeight"
         android:paddingBottom="@dimen/list_paddingBottom"
-        android:paddingTop="@dimen/list_paddingTop"/>
+        android:paddingTop="@dimen/list_paddingTop"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <RelativeLayout
         android:id="@+id/rlListaVacia"

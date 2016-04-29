@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    app:ignore="MergeRootFrame">
 
     <com.github.ksoichiro.android.observablescrollview.ObservableListView
         android:id="@+id/lstCanciones"
@@ -33,7 +34,7 @@
             android:layout_centerHorizontal="true"
             android:text="@string/no_hay_canciones" />
     </RelativeLayout>
-    <com.software.shell.fab.ActionButton
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnPlayStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,10 +42,8 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
-        fab:button_color="@color/accent"
-        fab:button_colorPressed="@color/accent_light"
-        fab:image="@drawable/fab_play"
-        fab:show_animation="@anim/fab_roll_from_down"
-        fab:hide_animation="@anim/fab_roll_to_down" />
+        android:src="@drawable/fab_play"
+        app:elevation="@dimen/fab_elevation"
+        app:pressedTranslationZ="@dimen/fab_pressedTranslationZ"/>
 
 </FrameLayout>

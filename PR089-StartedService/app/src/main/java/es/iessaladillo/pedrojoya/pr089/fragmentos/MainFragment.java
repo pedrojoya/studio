@@ -2,9 +2,11 @@ package es.iessaladillo.pedrojoya.pr089.fragmentos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +68,8 @@ public class MainFragment extends Fragment implements
             lstCanciones.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             lstCanciones.setOnItemClickListener(this);
             lstCanciones.setEmptyView(view.findViewById(R.id.rlListaVacia));
+            // API 21+ funcionará con CoordinatorLayout.
+            ViewCompat.setNestedScrollingEnabled(lstCanciones, true);
         }
     }
 
@@ -158,38 +162,26 @@ public class MainFragment extends Fragment implements
                 .add(new Cancion("Funeral March", "9:25", "Chopin",
                         "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
         canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
+                .add(new Cancion("Dancing on Green Grass", "1:54", "The Green Orbs",
+                        "https://www.youtube.com/audiolibrary_download?vid=81cb790358aa232c"));
         canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
+                .add(new Cancion("Roller Blades", "2:10", "Otis McDonald",
+                        "https://www.youtube.com/audiolibrary_download?vid=42b9cb1799a7110f"));
         canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
+                .add(new Cancion("Aurora Borealis", "1:40", "Bird Creek",
+                        "https://www.youtube.com/audiolibrary_download?vid=71e7af02e3fde394"));
         canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
+                .add(new Cancion("Sour Tennessee Red", "2:11", "John Deley and the 41",
+                        "https://www.youtube.com/audiolibrary_download?vid=f24590587cad9a9b"));
         canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
+                .add(new Cancion("Water Lily", "2:09", "The 126ers",
+                        "https://www.youtube.com/audiolibrary_download?vid=5875315a21edd73b"));
         canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
+                .add(new Cancion("Redhead From Mars", "3:29", "Silent Partner",
+                        "https://www.youtube.com/audiolibrary_download?vid=7b17c89cc371a1bc"));
         canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
-        canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
-        canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
-        canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
-        canciones
-                .add(new Cancion("Funeral March", "9:25", "Chopin",
-                        "https://www.youtube.com/audiolibrary_download?vid=4a7d058f20d31cc4"));
+                .add(new Cancion("Destructoid", "1:34", "MK2",
+                        "https://www.youtube.com/audiolibrary_download?vid=5ad1f342b4676fc1"));
         return canciones;
     }
 

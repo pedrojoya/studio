@@ -19,6 +19,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!-- paddingTop para compatibilidad con CoordinatorLayout en API < 21 -->
     <FrameLayout
         android:id="@+id/flContenido"
         android:layout_width="match_parent"
