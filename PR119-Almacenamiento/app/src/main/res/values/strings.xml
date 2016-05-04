@@ -13,5 +13,6 @@
     <string name="carpeta_destino">Carpeta de destino</string>
     <string name="crear_copia_de_archivo">Crear copia de archivo</string>
     <string name="generado">Generado %1$s</string>
+    <string name="abrir">Abrir</string>
 
 </resources>
