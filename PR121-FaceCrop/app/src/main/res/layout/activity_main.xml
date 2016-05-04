@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/imgFoto"
-        android:layout_width="@dimen/ancho_visor"
-        android:layout_height="@dimen/alto_visor"
-        android:layout_centerInParent="true"
-        android:src="@drawable/placeholder"
-        app:border_width="2dp"
-        app:border_color="#FF000000"
-        android:contentDescription="@string/foto" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="@dimen/ancho_visor"
+            android:layout_height="@dimen/alto_visor"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/foto"
+            android:src="@drawable/placeholder"
+            app:civ_border_color="@color/primary_dark"
+            app:civ_border_width="@dimen/civ_borderWidth" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnCapturar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:src="@drawable/ic_camera_alt"
+        app:elevation="@dimen/fab_elevation"
+        app:pressedTranslationZ="@dimen/fav_pressedTranslationZ" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -9,12 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -54,6 +54,22 @@ public class MainActivity extends AppCompatActivity implements
             Log.d("Mia", pathFoto);
             imgFoto.setImageURI(Uri.fromFile(new File(pathFoto)));
         }
+        setupFAB();
+    }
+
+    // Configura el FAB.
+    private void setupFAB() {
+        FloatingActionButton btnCapturar = (FloatingActionButton) findViewById(R.id.btnCapturar);
+        if (btnCapturar != null) {
+            btnCapturar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PickOrCaptureDialogFragment frgDialogo = new PickOrCaptureDialogFragment();
+                    frgDialogo.show(getSupportFragmentManager(),
+                            "PickOrCaptureDialogFragment");
+                }
+            });
+        }
     }
 
     // Guarda en preferencias el path de archivo mostrado en el ImageView.
@@ -66,24 +82,9 @@ public class MainActivity extends AppCompatActivity implements
         editor.apply();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.mnuFoto) {
-            PickOrCaptureDialogFragment frgDialogo = new PickOrCaptureDialogFragment();
-            frgDialogo.show(this.getSupportFragmentManager(),
-                    "PickOrCaptureDialogFragment");
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     // Envía un intent implícito para seleccionar una foto de la galería.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
+    @SuppressWarnings("SameParameterValue")
     private void seleccionarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Envía un intent implícito para la captura de una foto.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
+    @SuppressWarnings("SameParameterValue")
     private void capturarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
@@ -192,8 +194,10 @@ public class MainActivity extends AppCompatActivity implements
                     // Se obtiene el path real a partir de la uri retornada por la galería.
                     Uri uriGaleria = intent.getData();
                     sPathFotoOriginal = getRealPath(uriGaleria);
-                    // Se recorta la imagen.
-                    recortarImagen(sPathFotoOriginal);
+                    if (!TextUtils.isEmpty(sPathFotoOriginal)) {
+                        // Se recorta la imagen.
+                        recortarImagen(sPathFotoOriginal);
+                    }
                     break;
             }
         }
@@ -204,10 +208,12 @@ public class MainActivity extends AppCompatActivity implements
         // Se consulta en el content provider de la galería el path real del archivo de la foto.
         String[] filePath = {MediaStore.Images.Media.DATA};
         Cursor c = getContentResolver().query(uriGaleria, filePath, null, null, null);
-        c.moveToFirst();
-        int columnIndex = c.getColumnIndex(filePath[0]);
-        String path = c.getString(columnIndex);
-        c.close();
+        String path = "";
+        if (c != null && c.moveToFirst()) {
+            int columnIndex = c.getColumnIndex(filePath[0]);
+            path = c.getString(columnIndex);
+            c.close();
+        }
         return path;
     }
 
