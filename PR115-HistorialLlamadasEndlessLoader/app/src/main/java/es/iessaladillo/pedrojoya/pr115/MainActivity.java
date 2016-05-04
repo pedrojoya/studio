@@ -9,7 +9,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 
 public class MainActivity extends AppCompatActivity implements EndlessListView.LoadAgent,
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements EndlessListView.L
     private static final String ARG_LIMIT = "limit";
     private static final String ARG_OFFSET = "offset";
 
-    @InjectView(R.id.lstLlamadas)
+    @BindView(R.id.lstLlamadas)
     EndlessListView mLstLlamadas;
 
     private int mOffset;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements EndlessListView.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initVistas();
         mLoaderManager = getSupportLoaderManager();
         mLoaderManager.initLoader(DATOS_LOADER, null, this);

@@ -35,10 +35,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SecundaryActivity.class));
             return true;
         }
-        // Configuración.
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 }

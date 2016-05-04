@@ -1,27 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:fab="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <FrameLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.github.ksoichiro.android.observablescrollview.ObservableListView
-            android:id="@+id/lstAlumnos"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <TextView
-            android:id="@+id/lblEmpty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/no_hay_alumnos_en_la_lista"/>
-    </FrameLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    <com.software.shell.fab.ActionButton
+    <!-- paddingTop para compatibilidad con CoordinatorLayout en API < 21 -->
+    <FrameLayout
+        android:id="@+id/flContenido"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="?attr/actionBarSize"/>
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnExportar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,10 +34,8 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
-        fab:button_color="@color/accent"
-        fab:button_colorPressed="@color/accent_light"
-        fab:image="@drawable/ic_action_send"
-        fab:show_animation="@anim/fab_roll_from_down"
-        fab:hide_animation="@anim/fab_roll_to_down" />
+        android:src="@drawable/ic_action_send"
+        app:elevation="@dimen/fab_elevation"
+        app:pressedTranslationZ="@dimen/fab_pressedTranslationZ"/>
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

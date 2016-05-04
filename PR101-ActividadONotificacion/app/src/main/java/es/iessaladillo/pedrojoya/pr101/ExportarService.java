@@ -42,6 +42,7 @@ public class ExportarService extends IntentService {
             } else {
                 rootDir = getFilesDir();
             }
+            //noinspection ResultOfMethodCallIgnored
             rootDir.mkdirs();
             // Se crea el archivo.
             SimpleDateFormat formateadorFecha = new SimpleDateFormat(

@@ -77,7 +77,7 @@ public class Alumno extends SugarRecord<Alumno> implements Parcelable {
         dest.writeString(this.telefono);
         dest.writeString(this.curso);
         dest.writeString(this.direccion);
-        dest.writeValue(this.id);
+        dest.writeValue(this.getId());
     }
 
     private Alumno(Parcel in) {
@@ -86,7 +86,7 @@ public class Alumno extends SugarRecord<Alumno> implements Parcelable {
         this.telefono = in.readString();
         this.curso = in.readString();
         this.direccion = in.readString();
-        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.setId((Long) in.readValue(Long.class.getClassLoader()));
     }
 
     public static final Parcelable.Creator<Alumno> CREATOR = new Parcelable.Creator<Alumno>() {
@@ -98,4 +98,5 @@ public class Alumno extends SugarRecord<Alumno> implements Parcelable {
             return new Alumno[size];
         }
     };
+
 }

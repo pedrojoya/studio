@@ -16,8 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 class Adaptador extends SimpleCursorAdapter {
 
@@ -28,6 +28,7 @@ class Adaptador extends SimpleCursorAdapter {
     private final int mLayout;
     private final SimpleDateFormat mFormateadorFechas;
 
+    @SuppressWarnings("SameParameterValue")
     public Adaptador(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
         mLayout = layout;
@@ -87,20 +88,21 @@ class Adaptador extends SimpleCursorAdapter {
         return vista;
     }
 
+    @SuppressWarnings("unused")
     static class ViewHolder {
-        @InjectView(R.id.lblNombre)
+        @BindView(R.id.lblNombre)
         TextView mLblNombre;
-        @InjectView(R.id.imgTipoLlamada)
+        @BindView(R.id.imgTipoLlamada)
         ImageView mImgTipoLlamada;
-        @InjectView(R.id.lblNumero)
+        @BindView(R.id.lblNumero)
         TextView mLblNumero;
-        @InjectView(R.id.lblFecha)
+        @BindView(R.id.lblFecha)
         TextView mLblFecha;
-        @InjectView(R.id.lblDuracion)
+        @BindView(R.id.lblDuracion)
         TextView mLblDuracion;
 
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

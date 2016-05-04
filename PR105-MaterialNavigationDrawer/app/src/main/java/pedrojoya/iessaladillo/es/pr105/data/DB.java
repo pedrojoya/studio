@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 // Simula un BD.
+@SuppressWarnings("unused")
 public class DB {
 
     // Lista de alumnos.
@@ -42,7 +43,7 @@ public class DB {
         return next++;
     }
 
-    public static Alumno getNextAlumno() {
+    private static Alumno getNextAlumno() {
         int num = next++;
         return new Alumno(
                 "Alumno " + num,

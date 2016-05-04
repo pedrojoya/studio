@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr107;
 import java.util.ArrayList;
 
 // Simula un BD.
+@SuppressWarnings("unused")
 class DB {
 
     // Lista de alumnos.

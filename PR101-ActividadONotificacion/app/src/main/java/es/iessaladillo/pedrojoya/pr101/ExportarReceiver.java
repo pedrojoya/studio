@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
 public class ExportarReceiver extends BroadcastReceiver {
 
@@ -22,8 +23,8 @@ public class ExportarReceiver extends BroadcastReceiver {
         // Se configura la notificación.
         NotificationCompat.Builder b = new NotificationCompat.Builder(context);
         b.setSmallIcon(R.drawable.ic_not_download);
-        BitmapDrawable largeIcon = (BitmapDrawable) context.getResources().getDrawable(
-                R.mipmap.ic_launcher);
+        BitmapDrawable largeIcon =
+                (BitmapDrawable) ContextCompat.getDrawable(context, R.mipmap.ic_launcher);
         if (largeIcon != null) {
             b.setLargeIcon(largeIcon.getBitmap());
         }

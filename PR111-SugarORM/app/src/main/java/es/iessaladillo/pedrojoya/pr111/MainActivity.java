@@ -17,17 +17,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class MainActivity extends AppCompatActivity {
 
-    @InjectView(R.id.lstAlumnos)
+    @BindView(R.id.lstAlumnos)
     ListView mLstAlumnos;
-    @InjectView(R.id.lblNoHayAlumnos)
+    @BindView(R.id.lblNoHayAlumnos)
     TextView mLblNoHayAlumnos;
-    @InjectView(R.id.rlListaVacia)
+    @BindView(R.id.rlListaVacia)
     RelativeLayout rlListaVacia;
 
     private AlumnosAdapter mAdaptador;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         // Se inicializan las vistas.
         initVistas();
     }
@@ -140,13 +141,20 @@ public class MainActivity extends AppCompatActivity {
 
     // Carga en la lista los alumnos de la base de datos.
     private void cargarAlumnos() {
-        List<Alumno> alumnos = Alumno.listAll(Alumno.class);
-        mAdaptador.clear();
-        mAdaptador.addAll(alumnos);
+        // Si la tabla aún no está creada lanza una excepción.
+        List<Alumno> alumnos = null;
+        try {
+            alumnos = Alumno.listAll(Alumno.class);
+            mAdaptador.clear();
+            mAdaptador.addAll(alumnos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y
     // si debe quitarse la selección una vez obtenidos los elementos.
+    @SuppressWarnings("SameParameterValue")
     private ArrayList<Alumno> getElementosSeleccionados(ListView lst,
                                                         boolean uncheck) {
         // ArrayList resultado.

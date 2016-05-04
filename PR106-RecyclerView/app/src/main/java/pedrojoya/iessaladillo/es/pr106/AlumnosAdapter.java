@@ -79,6 +79,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         holder.lblDireccion.setText(alumno.getDireccion());
         Picasso.with(holder.imgAvatar.getContext())
                 .load(alumno.getUrlFoto())
+                .placeholder(R.drawable.ic_user)
+                .error(R.drawable.ic_user)
                 .into(holder.imgAvatar);
 
     }
@@ -104,6 +106,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Intercambia dos elementos de la lista.
+    @SuppressWarnings("unused")
     void swapItems(int from, int to) {
         // Se realiza el intercambio.
         Collections.swap(mDatos, from, to);
@@ -142,11 +145,13 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Alumno alumno, int position);
     }

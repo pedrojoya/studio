@@ -16,16 +16,19 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 // Adaptador para la lista de alumnos.
+@SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     // Interfaz que debe implementar el listener para cuando se haga click
     // sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click
     // largo sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Alumno alumno, int position);
     }
@@ -98,6 +101,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         holder.lblDireccion.setText(alumno.getDireccion());
         Picasso.with(holder.imgAvatar.getContext())
                 .load(alumno.getUrlFoto())
+                .placeholder(R.drawable.ic_user)
+                .error(R.drawable.ic_user)
                 .into(holder.imgAvatar);
         // Se establece el estado de selección del elemento.
         holder.itemView.setActivated(mSelectedItems.get(position, false));
@@ -213,6 +218,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Retorna un array con las posiciones de los elementos seleccionados.
+    @SuppressWarnings("WeakerAccess")
     public List<Integer> getSelectedItemsPositions() {
         List<Integer> items = new ArrayList<>(mSelectedItems.size());
         for (int i = 0; i < mSelectedItems.size(); i++) {

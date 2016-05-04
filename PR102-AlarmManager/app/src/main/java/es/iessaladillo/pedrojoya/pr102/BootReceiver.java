@@ -9,9 +9,11 @@ public class BootReceiver extends BroadcastReceiver {
     // Al recibirse el broadcast.
     @Override
     public void onReceive(Context context, Intent intent) {
-        // Si la alarma debe estar on, se reprograma.
-        if (AvisarReceiver.isAlarmaOn(context)) {
-            AvisarReceiver.reprogramarAlarma(context);
+        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+            // Si la alarma debe estar on, se reprograma.
+            if (AvisarReceiver.isAlarmaOn(context)) {
+                AvisarReceiver.reprogramarAlarma(context);
+            }
         }
     }
 

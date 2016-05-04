@@ -7,22 +7,23 @@ import android.provider.CallLog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int LIMIT = 20;
 
-    @InjectView(R.id.lstLlamadas)
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    @BindView(R.id.lstLlamadas)
     ListView mLstLlamadas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     @Override

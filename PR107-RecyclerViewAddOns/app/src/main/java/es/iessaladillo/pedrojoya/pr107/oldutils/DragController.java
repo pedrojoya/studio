@@ -13,13 +13,14 @@ import android.widget.ImageView;
 import es.iessaladillo.pedrojoya.pr107.AlumnosAdapter;
 
 // Basado en http://blog.stylingandroid.com/material-part-6/#more-2907
+@SuppressWarnings("unused")
 public abstract class DragController implements
         RecyclerView.OnItemTouchListener {
 
-    public static final int ANIMATION_DURATION = 100;
+    private static final int ANIMATION_DURATION = 100;
 
-    private RecyclerView recyclerView;
-    private ImageView overlay;
+    private final RecyclerView recyclerView;
+    private final ImageView overlay;
     private final GestureDetectorCompat gestureDetector;
     private boolean isDragging = false;
     private View draggingView;
@@ -78,6 +79,7 @@ public abstract class DragController implements
     }
 
     // Cuando se produce un evento Touch.
+    @SuppressWarnings("UnusedAssignment")
     @Override
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
         // Obtenemos la vista que está siendo arrastrada

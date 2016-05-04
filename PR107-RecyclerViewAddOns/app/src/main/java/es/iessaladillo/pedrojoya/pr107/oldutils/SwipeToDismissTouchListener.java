@@ -13,16 +13,17 @@ import java.util.List;
 
 // De la librería https://github.com/ismoli/DynamicRecyclerView.
 // Basada a su vez en https://github.com/romannurik/Android-SwipeToDismiss
+@SuppressWarnings("unused")
 public class SwipeToDismissTouchListener implements
         RecyclerView.OnItemTouchListener {
 
     private final RecyclerView mRecyclerView;
-    private int mSlop;
-    private int mMinFlingVelocity;
-    private int mMaxFlingVelocity;
-    private long mAnimationTime;
+    private final int mSlop;
+    private final int mMinFlingVelocity;
+    private final int mMaxFlingVelocity;
+    private final long mAnimationTime;
 
-    private DismissCallbacks mCallbacks;
+    private final DismissCallbacks mCallbacks;
     private int mViewWidth = 1; // 1 and not 0 to prevent dividing by zero
 
     // Transient properties
@@ -35,7 +36,7 @@ public class SwipeToDismissTouchListener implements
     private boolean mPaused = false;
     private View mSwipeView;
     private int mDismissCount = 0;
-    private List<PendingDismissData> mPendingDismisses = new ArrayList<>();
+    private final List<PendingDismissData> mPendingDismisses = new ArrayList<>();
     private SwipeDirection mAllowedSwipeDirection = SwipeDirection.NONE;
 
 
@@ -113,6 +114,7 @@ public class SwipeToDismissTouchListener implements
         return false;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private boolean down(MotionEvent motionEvent) {
         if (mPaused) return false;
 
@@ -277,6 +279,7 @@ public class SwipeToDismissTouchListener implements
         }
     }
 
+    @SuppressWarnings("unused")
     public interface DismissCallbacks {
         SwipeDirection canDismiss(int position);
 
@@ -288,9 +291,9 @@ public class SwipeToDismissTouchListener implements
     }
 
     public class PendingDismissData implements Comparable<PendingDismissData> {
-        public int position;
-        public View view;
-        public SwipeDirection direction;
+        public final int position;
+        public final View view;
+        public final SwipeDirection direction;
 
         public PendingDismissData(int position, View view,
                                   SwipeDirection direction) {

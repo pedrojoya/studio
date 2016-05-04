@@ -22,8 +22,6 @@
     <dimen name="two_line_secundary_text_paddingBottom">20dp</dimen>
     <dimen name="two_line_text_paddingLeft">72dp</dimen>
     <dimen name="two_line_text_marginRight">16dp</dimen>
-    <dimen name="two_line_secundary_icon_width">32dp</dimen>
-    <dimen name="two_line_secundary_icon_height">32dp</dimen>
-    <dimen name="two_line_secundary_icon_marginRight">16dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
 
 </resources>

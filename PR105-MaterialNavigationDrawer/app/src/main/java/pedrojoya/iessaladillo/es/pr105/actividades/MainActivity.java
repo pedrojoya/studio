@@ -10,14 +10,15 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import pedrojoya.iessaladillo.es.pr105.fragmentos.NestedScrollViewFragment;
 import pedrojoya.iessaladillo.es.pr105.R;
-import pedrojoya.iessaladillo.es.pr105.fragmentos.TabLayoutFragment;
 import pedrojoya.iessaladillo.es.pr105.fragmentos.CollapsingToolbarLayoutFragment;
+import pedrojoya.iessaladillo.es.pr105.fragmentos.NestedScrollViewFragment;
+import pedrojoya.iessaladillo.es.pr105.fragmentos.TabLayoutFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,8 +46,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initVistas() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mImgProfile = (CircleImageView) mNavigationView.getHeaderView(0).findViewById(R.id.imgProfile);
-        configNavigationDrawer();
+        if (mNavigationView != null) {
+            View header = mNavigationView.getHeaderView(0);
+            mImgProfile = (CircleImageView) header.findViewById(R.id.imgProfile);
+            configNavigationDrawer();
+        }
     }
 
     // Configura el navigation drawer.

@@ -2,60 +2,74 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.github.ksoichiro/android-observablescrollview/1.5.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ec15c42d9c3a917b4e31c03731342d42db481e33">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/classes-a9378ac6e151458f2b770d72fd69bec8736da12a.jar" />
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4d824006fb0a8d85cf2cbf42e2dff2df9dbfb13a">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a1346a944b4b948d6ad8e18a6f2a6f1baa0787a1/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/classes-cfdd8d8daf8fe16a10dbaa2eccb324c5dde179bb.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-347684c180f28b878482f1330b36c07e3fff5f0d.jar" />
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_77cfca2798865c8996f877178f2f9b8967ef46c3/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.nispok/snackbar/2.10.6/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6d1edea3cbe69b54021aaeb32e43531d83732933">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/classes-ecd1c03219a70ff105a12c4f5a9698969770e73c.jar" />
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5bf4bc5d798befb209dc574d905678bf5b448b2f">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f298f518f3c5b6c8379501a8ff1887f6b8bfe931/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/classes-e12aa9a2e6867b689e42ba3d56a889668ea9a17f.jar" />
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_9a6062b610b9fd43df23b92f012815965913fa09/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/classes-86bdff2d0d6c670f67e78a271b760b40892471ba.jar" />
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_cf3bd3aba894e174cbdc23c261fe79a59b43cfea/classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-b1c46bc93b4097f34ac94406659df5be532e3461.jar" />
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_18f73b9bf87325ba7c2c98fbb4c0162b65ac838d/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c6d79137693d494dee16372d3921f919eb724ced">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/pre-dexed/debug/classes-162bf7350a38b6339de645facfa384336fc75ac2.jar" />
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_b54d207c13b37e5455c7ea9fed3c058c7a2cc3ca/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_3a6161ed4e5adea3acc201942c474cee400eec7a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_48b42df1ac900da542ef07ceed93edbd5a929eff/classes.dex" />
     </item>
 
 </items>

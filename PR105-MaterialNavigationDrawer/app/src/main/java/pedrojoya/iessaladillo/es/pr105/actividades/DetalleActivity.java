@@ -34,20 +34,24 @@ public class DetalleActivity extends AppCompatActivity {
         }
         // Se muestra el título en la collapsing toolbar.
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle(getTitle());
+        if (collapsingToolbarLayout != null) {
+            collapsingToolbarLayout.setTitle(getTitle());
+        }
         nsvScroll = (NestedScrollView) findViewById(R.id.nsvScroll);
         FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(nsvScroll, "Quillo que", Snackbar.LENGTH_SHORT).setAction("Deshacer", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), "Quieres deshacer", Toast.LENGTH_SHORT).show();
-                    }
-                }).show();
-            }
-        });
+        if (fabAccion != null) {
+            fabAccion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(nsvScroll, "Quillo que", Snackbar.LENGTH_SHORT).setAction("Deshacer", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(getApplicationContext(), "Quieres deshacer", Toast.LENGTH_SHORT).show();
+                        }
+                    }).show();
+                }
+            });
+        }
     }
 
 

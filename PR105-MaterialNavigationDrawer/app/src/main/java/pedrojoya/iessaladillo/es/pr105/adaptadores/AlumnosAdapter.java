@@ -15,6 +15,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr105.data.Alumno;
 import pedrojoya.iessaladillo.es.pr105.R;
 
+@SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     private final ArrayList<Alumno> mDatos;
@@ -121,6 +122,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
     }

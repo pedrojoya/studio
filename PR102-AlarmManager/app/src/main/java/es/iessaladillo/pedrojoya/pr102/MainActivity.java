@@ -29,17 +29,19 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
     private void initVistas() {
         txtMensaje = (TextView) findViewById(R.id.txtMensaje);
         txtIntervalo = (TextView) findViewById(R.id.txtIntervalo);
-        SwitchCompat swActivar = (SwitchCompat) findViewById(R.id.swActivar);
         // Se inicializan las vistas en base a los valores de las preferencias.
         SharedPreferences preferencias = getApplicationContext()
                 .getSharedPreferences("alarmas", Context.MODE_PRIVATE);
         txtMensaje.setText(preferencias.getString(AvisarReceiver.PREF_MENSAJE,
                 getString(R.string.quillo_ponte_ya_a_currar)));
-        txtIntervalo.setText(preferencias.getInt(AvisarReceiver.PREF_INTERVALO,
-                AvisarReceiver.DEFAULT_INTERVAL) + "");
-        swActivar
-                .setChecked(AvisarReceiver.isAlarmaOn(getApplicationContext()));
-        swActivar.setOnCheckedChangeListener(this);
+        txtIntervalo.setText(String.valueOf(preferencias.getInt(AvisarReceiver.PREF_INTERVALO,
+                AvisarReceiver.DEFAULT_INTERVAL)));
+        SwitchCompat swActivar = (SwitchCompat) findViewById(R.id.swActivar);
+        if (swActivar != null) {
+            swActivar
+                    .setChecked(AvisarReceiver.isAlarmaOn(getApplicationContext()));
+            swActivar.setOnCheckedChangeListener(this);
+        }
     }
 
     // Cuando cambia el estado de la vista interruptor.

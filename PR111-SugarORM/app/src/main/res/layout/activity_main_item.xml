@@ -13,15 +13,17 @@
         android:layout_marginLeft="@dimen/three_lines_avatar_marginLeft"
         android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
         android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
-        app:border_width="1dp"
-        app:border_color="@color/accent" />
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/accent" />
 
     <TextView
         android:id="@+id/lblNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
         android:paddingTop="@dimen/three_lines_text_paddingTop"
         tools:text="Nombre"
         android:textSize="@dimen/three_lines_primary_text_textSize"
@@ -32,7 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
         tools:text="Curso"
         android:layout_below="@+id/lblNombre"
         android:textSize="@dimen/three_lines_secundary_text_textSize"
@@ -44,7 +48,9 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/three_lines_text_paddingBottom"
         android:paddingLeft="@dimen/three_lines_text_paddingLeft"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
         android:paddingRight="@dimen/three_lines_text_paddingRight"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
         tools:text="Dirección"
         android:layout_below="@+id/lblCurso"
         android:textSize="@dimen/three_lines_secundary_text_textSize" />

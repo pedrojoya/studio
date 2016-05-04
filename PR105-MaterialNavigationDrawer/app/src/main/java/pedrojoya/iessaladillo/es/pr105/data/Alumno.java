@@ -7,6 +7,7 @@ public class Alumno {
     private final String direccion;
     private final String urlFoto;
 
+    @SuppressWarnings("UnusedParameters")
     public Alumno(String nombre, String direccion, int edad, String urlFoto) {
         this.nombre = nombre;
         this.direccion = direccion;

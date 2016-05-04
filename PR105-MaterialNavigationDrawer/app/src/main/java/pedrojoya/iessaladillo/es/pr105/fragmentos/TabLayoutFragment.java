@@ -19,14 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr105.R;
-import pedrojoya.iessaladillo.es.pr105.utils.HideShowNestedScrollListener;
 
 
 public class TabLayoutFragment extends Fragment {
 
     private static final String ARG_TITULO = "titulo";
 
-    private HideShowNestedScrollListener mScrollListener;
     private FloatingActionButton fabAccion;
 
     private String mTitulo;
@@ -89,51 +87,58 @@ public class TabLayoutFragment extends Fragment {
     // Configura el ViewPager.
     private void configViewPager(View view) {
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        viewPagerAdapter.addFragment(Tab1Fragment.newInstance(),
-                getString(R.string.alumnos), R.drawable.ic_action_face_white);
-        viewPagerAdapter.addFragment(Tab2Fragment.newInstance(),
-                getString(R.string.textinputlayout), R.drawable.ic_discuss);
-        viewPager.setAdapter(viewPagerAdapter);
-        final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        // OJO se hace en post por bug en design support library 22.2.1
-        tabLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                tabLayout.setupWithViewPager(viewPager);
-                // Para mostrar iconos en las tabs.
-                for (int i = 0; i < tabLayout.getTabCount(); i++) {
-                    try {
-                        tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        if (viewPager != null) {
+            final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+            viewPagerAdapter.addFragment(Tab1Fragment.newInstance(),
+                    getString(R.string.alumnos), R.drawable.ic_action_face_white);
+            viewPagerAdapter.addFragment(Tab2Fragment.newInstance(),
+                    getString(R.string.textinputlayout), R.drawable.ic_discuss);
+            viewPager.setAdapter(viewPagerAdapter);
+            final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+            if (tabLayout != null) {
+                // OJO se hace en post por bug en design support library 22.2.1
+                tabLayout.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        tabLayout.setupWithViewPager(viewPager);
+                        // Para mostrar iconos en las tabs.
+                        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+                            try {
+                                TabLayout.Tab tab = tabLayout.getTabAt(i);
+                                if (tab != null) {
+                                    tab.setIcon(viewPagerAdapter.getPageIcon(i));
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+            // Se añade un listener para poder mostrar / ocultar el FAB dependiendo
+            // del fragmento que se muestre en el ViewPager.
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset,
+                                           int positionOffsetPixels) {
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    if (position == 0) {
+//                    ViewCompat.animate(fabAccion).scaleX(1).scaleY(1);
+                        fabAccion.show();
+                    } else {
+//                    ViewCompat.animate(fabAccion).scaleX(0).scaleY(0);
+                        fabAccion.hide();
                     }
                 }
-            }
-        });
-        // Se añade un listener para poder mostrar / ocultar el FAB dependiendo
-        // del fragmento que se muestre en el ViewPager.
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset,
-                                       int positionOffsetPixels) {
-            }
 
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 0) {
-//                    ViewCompat.animate(fabAccion).scaleX(1).scaleY(1);
-                    fabAccion.show();
-                } else {
-//                    ViewCompat.animate(fabAccion).scaleX(0).scaleY(0);
-                    fabAccion.hide();
+                @Override
+                public void onPageScrollStateChanged(int state) {
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
+            });
+        }
     }
 
     // Adaptador para el ViewPager.
@@ -176,12 +181,8 @@ public class TabLayoutFragment extends Fragment {
 
         // Retorna el resId del icono asociado a una determinada página.
         @DrawableRes
-        public int getPageIcon(int position) throws Exception{
-            try {
-                return  mFragmentIcons.get(position);
-            } catch (Exception e) {
-                throw e;
-            }
+        public int getPageIcon(int position) {
+            return mFragmentIcons.get(position);
         }
 
     }

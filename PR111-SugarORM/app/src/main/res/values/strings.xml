@@ -4,7 +4,6 @@
     <string name="app_name">SugarORM</string>
     <string name="title_activity_alumno">Alumno</string>
     <string name="nombre">Nombre</string>
-    <string name="guardar">Guardar</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
     <string name="modificar_alumno">Modificar alumno</string>
     <string name="agregar_alumno">Agregar alumno</string>

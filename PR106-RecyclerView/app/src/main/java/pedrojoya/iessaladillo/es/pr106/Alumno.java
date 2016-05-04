@@ -7,7 +7,7 @@ class Alumno {
     private final String direccion;
     private final String urlFoto;
 
-    public Alumno(String nombre, String direccion, int edad, String urlFoto) {
+    public Alumno(String nombre, String direccion, String urlFoto) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.urlFoto = urlFoto;

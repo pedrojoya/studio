@@ -27,6 +27,7 @@ public class CollapsingToolbarLayoutFragment extends Fragment {
     private String mTitulo;
 
     // Retorna una nueva intancia del fragmento.
+    @SuppressWarnings("SameParameterValue")
     public static CollapsingToolbarLayoutFragment newInstance(String titulo) {
         CollapsingToolbarLayoutFragment fragment = new CollapsingToolbarLayoutFragment();
         Bundle args = new Bundle();

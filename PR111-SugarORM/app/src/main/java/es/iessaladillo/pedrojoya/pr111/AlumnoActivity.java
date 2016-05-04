@@ -2,6 +2,8 @@ package es.iessaladillo.pedrojoya.pr111;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,35 +13,34 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.software.shell.fab.ActionButton;
-
 import java.util.Random;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class AlumnoActivity extends AppCompatActivity {
 
     public static final String EXTRA_ALUMNO = "tarea";
-    @InjectView(R.id.txtNombre)
+    @BindView(R.id.txtNombre)
     EditText txtNombre;
-    @InjectView(R.id.spnCurso)
+    @BindView(R.id.spnCurso)
     Spinner spnCurso;
-    @InjectView(R.id.txtTelefono)
+    @BindView(R.id.txtTelefono)
     EditText txtTelefono;
-    @InjectView(R.id.txtDireccion)
+    @BindView(R.id.txtDireccion)
     EditText txtDireccion;
-    @InjectView(R.id.btnGuardar)
-    ActionButton btnGuardar;
-    @InjectView(R.id.lblNombre)
+    @BindView(R.id.btnGuardar)
+    FloatingActionButton btnGuardar;
+    @BindView(R.id.lblNombre)
     TextView lblNombre;
-    @InjectView(R.id.lblCurso)
+    @BindView(R.id.lblCurso)
     TextView lblCurso;
-    @InjectView(R.id.lblTelefono)
+    @BindView(R.id.lblTelefono)
     TextView lblTelefono;
-    @InjectView(R.id.lblDireccion)
+    @BindView(R.id.lblDireccion)
     TextView lblDireccion;
 
     private Alumno mAlumno;
@@ -51,7 +52,7 @@ public class AlumnoActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumno);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         // Se obtiene el alumno enviado como extra (si lo hay).
         if (getIntent() != null && getIntent().hasExtra(EXTRA_ALUMNO)) {
             mAlumno = getIntent().getParcelableExtra(EXTRA_ALUMNO);
@@ -143,11 +144,10 @@ public class AlumnoActivity extends AppCompatActivity {
     // EditText correspondiente tiene el foco o no.
     private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
         if (hasFocus) {
-            lbl.setTextColor(getResources().getColor(R.color.accent));
+            lbl.setTextColor(ContextCompat.getColor(this, R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            lbl.setTextColor(getResources()
-                    .getColor(R.color.accent_light));
+            lbl.setTextColor(ContextCompat.getColor(this, R.color.accent_light));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }

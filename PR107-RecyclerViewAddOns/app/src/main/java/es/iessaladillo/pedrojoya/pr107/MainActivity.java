@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements
     private Toolbar toolbar;
     private LinearLayoutManager mLayoutManager;
     private Parcelable mEstadoLista;
+    private RecyclerView.AdapterDataObserver mObservador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +71,10 @@ public class MainActivity extends AppCompatActivity implements
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+        mObservador = new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
@@ -88,57 +86,66 @@ public class MainActivity extends AppCompatActivity implements
                 super.onItemRangeRemoved(positionStart, itemCount);
                 checkAdapterIsEmpty();
             }
-        });
-        lstAlumnos.setAdapter(mAdaptador);
-        // Se realiza la comprobación inicial.
-        checkAdapterIsEmpty();
-        mLayoutManager = new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false);
-        lstAlumnos.setLayoutManager(mLayoutManager);
-        lstAlumnos.addItemDecoration(new DividerItemDecoration(this,
-                LinearLayoutManager.VERTICAL));
-        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        // Drag & drop y Swipe to dismiss.
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
-                        ItemTouchHelper.DOWN,
-                        ItemTouchHelper.RIGHT) {
-                    @Override
-                    public boolean onMove(RecyclerView recyclerView,
-                                          RecyclerView.ViewHolder viewHolder,
-                                          RecyclerView.ViewHolder target) {
-                        final int fromPos = viewHolder.getAdapterPosition();
-                        final int toPos = target.getAdapterPosition();
-                        mAdaptador.swapItems(fromPos, toPos);
-                        return true;
+        };
+        mAdaptador.registerAdapterDataObserver(mObservador);
+        lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
+        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        if (lstAlumnos != null) {
+            lstAlumnos.setHasFixedSize(true);
+            lstAlumnos.setAdapter(mAdaptador);
+            // Se realiza la comprobación inicial.
+            checkAdapterIsEmpty();
+            mLayoutManager = new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL, false);
+            lstAlumnos.setLayoutManager(mLayoutManager);
+            lstAlumnos.addItemDecoration(new DividerItemDecoration(this,
+                    LinearLayoutManager.VERTICAL));
+            lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+            // Drag & drop y Swipe to dismiss.
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                    new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
+                            ItemTouchHelper.DOWN,
+                            ItemTouchHelper.RIGHT) {
+                        @Override
+                        public boolean onMove(RecyclerView recyclerView,
+                                              RecyclerView.ViewHolder viewHolder,
+                                              RecyclerView.ViewHolder target) {
+                            final int fromPos = viewHolder.getAdapterPosition();
+                            final int toPos = target.getAdapterPosition();
+                            mAdaptador.swapItems(fromPos, toPos);
+                            return true;
+                        }
+
+                        @Override
+                        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                            // Se elimina el elemento.
+                            mAdaptador.removeItem(viewHolder.getAdapterPosition());
+                        }
+                    });
+            itemTouchHelper.attachToRecyclerView(lstAlumnos);
+
+            /* // Hide/Scroll antigüo
+
+            lstAlumnos.addOnScrollListener(new HidingScrollListener() {
+
+                @Override
+                public void onHide() {
+                    // Solo si NO está activo el modo de acción contextual.
+                    if (mActionMode == null) {
+                        hideFloatingViews();
                     }
+                }
 
-                    @Override
-                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                        // Se elimina el elemento.
-                        mAdaptador.removeItem(viewHolder.getAdapterPosition());
+                @Override
+                public void onShow() {
+                    // Solo si NO está activo el modo de acción contextual.
+                    if (mActionMode == null) {
+                        showFloatingViews();
                     }
-                });
-        itemTouchHelper.attachToRecyclerView(lstAlumnos);
-        // Hide / show FAB on scrolling.
-        lstAlumnos.addOnScrollListener(new HidingScrollListener() {
-
-            @Override
-            public void onHide() {
-                // Solo si NO está activo el modo de acción contextual.
-                if (mActionMode == null) {
-                    hideFloatingViews();
                 }
-            }
-
-            @Override
-            public void onShow() {
-                // Solo si NO está activo el modo de acción contextual.
-                if (mActionMode == null) {
-                    showFloatingViews();
-                }
-            }
-        });
+            });
+            */
+        }
     }
 
     private void checkAdapterIsEmpty() {
@@ -258,6 +265,13 @@ public class MainActivity extends AppCompatActivity implements
         if (mEstadoLista != null) {
             mLayoutManager.onRestoreInstanceState(mEstadoLista);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Se quita del registro al observador.
+        mAdaptador.unregisterAdapterDataObserver(mObservador);
+        super.onDestroy();
     }
 
 }

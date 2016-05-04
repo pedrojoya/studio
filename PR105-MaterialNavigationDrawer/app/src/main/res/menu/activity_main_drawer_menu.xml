@@ -17,7 +17,6 @@
     <item android:title="@string/otras_opciones">
         <menu>
             <item
-                android:id="@+id/nav_detalleactivity"
                 android:icon="@drawable/ic_headset"
                 android:title="@string/detalleactivity" />
         </menu>

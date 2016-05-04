@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 // Simula un BD.
+@SuppressWarnings("unused")
 class DB {
 
     // Lista de alumnos.
@@ -47,7 +48,6 @@ class DB {
         return new Alumno(
                 "Alumno " + num,
                 "c/ Su casa, nº " + num,
-                aleatorio.nextInt(9) + 20,
                 "http://lorempixel.com/100/100/abstract/" + (num%10 + 1) + "/"
         );
     }

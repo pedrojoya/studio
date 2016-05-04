@@ -3,6 +3,7 @@ package pedrojoya.iessaladillo.es.pr105.utils;
 import android.support.v4.widget.NestedScrollView;
 import android.view.ViewTreeObserver;
 
+@SuppressWarnings("unused")
 public abstract class HideShowNestedScrollListener implements ViewTreeObserver
         .OnScrollChangedListener {
 

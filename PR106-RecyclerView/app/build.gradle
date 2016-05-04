@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 
+def support_library_version = "23.3.0"
+def picasso_version = "2.5.2"
+def circleimageview_version = "2.0.0"
+
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "pedrojoya.iessaladillo.es.pr106"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -26,9 +30,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.android.support:design:22.2.0'
-    compile 'com.android.support:recyclerview-v7:22.2.0'
-    compile 'com.squareup.picasso:picasso:2.5.0'
-    compile 'de.hdodenhof:circleimageview:1.2.2'
+    compile "com.android.support:appcompat-v7:${support_library_version}"
+    compile "com.android.support:design:${support_library_version}"
+    compile "com.android.support:recyclerview-v7:${support_library_version}"
+    compile "com.squareup.picasso:picasso:${picasso_version}"
+    compile "de.hdodenhof:circleimageview:${circleimageview_version}"
 }

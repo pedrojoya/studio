@@ -24,7 +24,8 @@
         android:layout_marginEnd="@dimen/margenLateral"
         android:layout_alignParentRight="true"
         android:text="@string/titulo"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        tools:ignore="RelativeOverlap"/>
 
     <FrameLayout
         android:id="@+id/frlCuadro"

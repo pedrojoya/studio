@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
 <navigationModel
   ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
   <locations  

@@ -52,19 +52,18 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     // Configura el FAB.
     private void configFab() {
         FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                agregarAlumno(DB.getNextAlumno());
-            }
-        });
+        if (fabAccion != null) {
+            fabAccion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    agregarAlumno(DB.getNextAlumno());
+                }
+            });
+        }
     }
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        TextView lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
@@ -81,12 +80,16 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
                 checkAdapterIsEmpty();
             }
         });
-        lstAlumnos.setAdapter(mAdaptador);
-        checkAdapterIsEmpty();
-        mLayoutManager = new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false);
-        lstAlumnos.setLayoutManager(mLayoutManager);
-        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        if (lstAlumnos != null) {
+            lstAlumnos.setHasFixedSize(true);
+            lstAlumnos.setAdapter(mAdaptador);
+            checkAdapterIsEmpty();
+            mLayoutManager = new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL, false);
+            lstAlumnos.setLayoutManager(mLayoutManager);
+            lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        }
     }
 
     // Muestra u oculta la empty view dependiendo de si el adaptador está vacío.
