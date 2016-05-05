@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr170.tools;
+package es.iessaladillo.pedrojoya.pr170.old;
 
 import android.databinding.BindingAdapter;
 import android.databinding.BindingConversion;

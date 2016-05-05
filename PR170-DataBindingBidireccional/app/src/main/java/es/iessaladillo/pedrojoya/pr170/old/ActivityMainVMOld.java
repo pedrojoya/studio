@@ -1,10 +1,7 @@
-package es.iessaladillo.pedrojoya.pr170;
+package es.iessaladillo.pedrojoya.pr170.old;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import es.iessaladillo.pedrojoya.pr170.tools.BindableBoolean;
-import es.iessaladillo.pedrojoya.pr170.tools.BindableString;
 
 public class ActivityMainVMOld implements Parcelable {
 

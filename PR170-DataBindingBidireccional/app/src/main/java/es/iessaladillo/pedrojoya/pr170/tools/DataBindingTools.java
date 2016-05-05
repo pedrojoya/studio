@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr170.tools;
 import android.databinding.BindingAdapter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -45,9 +46,12 @@ public class DataBindingTools {
 
     @BindingAdapter({"bind:data"})
     public static void setData(final ClickToSelectEditText textView, CharSequence[] data){
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter<>(textView.getContext(), android.R.layout.simple_list_item_1, data);
+        ArrayAdapter<CharSequence> adaptador =
+                new ArrayAdapter<>(textView.getContext(),
+                        android.R.layout.simple_list_item_1, data);
         textView.setAdapter(adaptador);
-        textView.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
+        textView.setOnItemSelectedListener(
+                new ClickToSelectEditText.OnItemSelectedListener<String>() {
             @Override
             public void onItemSelectedListener(String item, int selectedIndex) {
                 textView.setText(item);
@@ -61,6 +65,16 @@ public class DataBindingTools {
                 }
             }
         });
+    }
+
+    // Para establecer un drawable vectorial como drawableLeft de un textview.
+    @BindingAdapter("bind:vectorDrawableLeft")
+    public static void setDrawableLeft(TextView textView, int resourceId) {
+        Drawable drawable = VectorDrawableCompat.create(textView.getResources(),
+                resourceId, textView.getContext().getTheme());
+        Drawable[] drawables = textView.getCompoundDrawables();
+        textView.setCompoundDrawablesWithIntrinsicBounds(drawable, drawables[1],
+                drawables[2], drawables[3]);
     }
 
 }
