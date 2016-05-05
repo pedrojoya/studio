@@ -21,7 +21,8 @@
             app:imageUrl="@{@string/lorempixel}"
             app:placeholder="@{@drawable/placeholder}"
             app:error="@{@drawable/placeholder}"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:onClick="@{viewModel::loadImage}"/>
 
         <TextView
             android:id="@+id/lblNombre"
@@ -37,12 +38,11 @@
             android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.nombre}"
+            android:text="@={viewModel.nombre}"
             android:inputType="text|textPersonName"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            app:binding="@{viewModel.nombre}">
+            android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <requestFocus/>
         </EditText>
@@ -56,7 +56,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            app:binding="@{viewModel.educado}"/>
+            android:checked="@={viewModel.educado}"/>
 
         <es.iessaladillo.pedrojoya.pr170.utils.ClickToSelectEditText
             android:id="@+id/txtTratamiento"
@@ -66,11 +66,12 @@
             android:drawableRight="@drawable/ic_arrow_drop_down"
             android:hint="@string/tratamiento"
             android:inputType="none"
+            app:data="@{@stringArray/tratamientos}"
             android:imeOptions="actionNext"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            app:binding="@{viewModel.tratamiento}"/>
+            android:text="@={viewModel.tratamiento}"/>
 
         <Button
             android:id="@+id/btnSaludar"
@@ -79,7 +80,9 @@
             android:text="@string/saludar"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:enabled="@{viewModel.valido}"
+            android:onLongClick="@{viewModel::saludar}"/>
 
     </LinearLayout>
 

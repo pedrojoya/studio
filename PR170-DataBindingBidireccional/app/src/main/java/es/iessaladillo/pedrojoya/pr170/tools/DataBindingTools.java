@@ -4,12 +4,17 @@ import android.databinding.BindingAdapter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
+import es.iessaladillo.pedrojoya.pr170.utils.ClickToSelectEditText;
+
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class DataBindingTools {
 
     // Adaptador para crear atributo app:font en el que establecer el tipo de
@@ -36,6 +41,26 @@ public class DataBindingTools {
             }
             peticion.into(imageView);
         }
+    }
+
+    @BindingAdapter({"bind:data"})
+    public static void setData(final ClickToSelectEditText textView, CharSequence[] data){
+        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter<>(textView.getContext(), android.R.layout.simple_list_item_1, data);
+        textView.setAdapter(adaptador);
+        textView.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
+            @Override
+            public void onItemSelectedListener(String item, int selectedIndex) {
+                textView.setText(item);
+            }
+        });
+        textView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    textView.showDialog(v);
+                }
+            }
+        });
     }
 
 }

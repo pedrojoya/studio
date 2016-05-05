@@ -5,7 +5,7 @@
     <string name="buenos_dias">Buenos días</string>
     <string name="saludar_educadamente">Saludar educadamente</string>
     <string name="tenga_usted">tenga usted</string>
-    <string name="lorempixel">http://lorempixel.com/400/200/sports/</string>
+    <string name="lorempixel">http://lorempixel.com/200/100/sports/</string>
     <string name="foto">Foto</string>
     <string name="tratamiento">Tratamiento</string>
 </resources>

@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr170;
+package es.iessaldillo.pedrojoya.pr170;
 
 import org.junit.Test;
 

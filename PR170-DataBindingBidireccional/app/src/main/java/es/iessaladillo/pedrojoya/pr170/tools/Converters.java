@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import es.iessaladillo.pedrojoya.pr170.R;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Converters {
 
     // Retorna la cadena correspondiente a la conversión desde un

@@ -83,6 +83,7 @@ public class ClickToSelectEditText<T> extends AppCompatEditText {
         this.onItemSelectedListener = onItemSelectedListener;
     }
 
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemSelectedListener<T> {
         void onItemSelectedListener(T item, int selectedIndex);
     }
