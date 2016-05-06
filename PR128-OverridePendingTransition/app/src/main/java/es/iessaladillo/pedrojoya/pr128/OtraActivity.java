@@ -3,7 +3,6 @@ package es.iessaladillo.pedrojoya.pr128;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
@@ -25,15 +24,15 @@ public class OtraActivity extends AppCompatActivity {
         mResIdAnimReentrada = getIntent().getIntExtra(EXTRA_ANIM_REENTRADA, 0);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // Se navega de vuelta a la actividad llamadora.
-            NavUtils.navigateUpFromSameTask(this);
-            // Se aplica la animación (entrada, salida).
-            overridePendingTransition(mResIdAnimReentrada, mResIdAnimRetorno);
+        int itemId = item.getItemId();
+        switch(itemId){
+            case android.R.id.home:
+                super.onOptionsItemSelected(item);
+                finish();
+                overridePendingTransition(mResIdAnimReentrada, mResIdAnimRetorno);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

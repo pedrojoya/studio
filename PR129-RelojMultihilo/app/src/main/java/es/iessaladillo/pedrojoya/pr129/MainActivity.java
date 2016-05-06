@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity implements
         lblTiempo = (TextView) this.findViewById(R.id.lblTiempo);
         lblTiempo.setText(formateador.format(new Date()));
         btnIniciar = (Button) this.findViewById(R.id.btnIniciar);
-        btnIniciar.setOnClickListener(this);
+        if (btnIniciar != null) {
+            btnIniciar.setOnClickListener(this);
+        }
     }
 
     @Override
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements
     private class Reloj implements Runnable {
 
         // Variables a nivel de clase.
-        final SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss");
+        final SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
         @Override
         public void run() {

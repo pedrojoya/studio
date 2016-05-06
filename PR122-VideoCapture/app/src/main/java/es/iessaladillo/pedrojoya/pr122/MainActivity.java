@@ -173,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Envía un intent implícito para seleccionar un vídeo de la galería.
     // Recibe el nombre que debe tomar la copia privada del archivo seleccionado.
+    @SuppressWarnings("SameParameterValue")
     private void seleccionarVideo(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivoPrivado = nombreArchivoPrivado;
@@ -186,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Envía un intent implícito para la captura de un vídeo.
     // Recibe el nombre que debe tomar la copia privada del vídeo.
+    @SuppressWarnings("SameParameterValue")
     private void capturarVideo(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivoPrivado = nombreArchivoPrivado;
@@ -299,10 +301,12 @@ public class MainActivity extends AppCompatActivity implements
         // Se consulta en el content provider de la galería.
         String[] filePath = {MediaStore.Video.Media.DATA};
         Cursor c = getContentResolver().query(uriGaleria, filePath, null, null, null);
-        c.moveToFirst();
-        int columnIndex = c.getColumnIndex(filePath[0]);
-        String path = c.getString(columnIndex);
-        c.close();
+        String path = "";
+        if (c != null && c.moveToFirst()) {
+            int columnIndex = c.getColumnIndex(filePath[0]);
+            path = c.getString(columnIndex);
+            c.close();
+        }
         return path;
     }
 
@@ -387,6 +391,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // Actualiza las dimensiones del visor acorde al vídeo a reproducir.
+    @SuppressWarnings("unused")
     private void actualizarDimensionesVisor(MediaPlayer mp) {
         // Se obtiene la anchura y altura del vÌdeo y del visor.
         int anchuraVideo = mp.getVideoWidth();

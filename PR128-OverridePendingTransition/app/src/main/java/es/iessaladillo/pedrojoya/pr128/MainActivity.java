@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr128;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Spinner;
 
 
@@ -26,23 +27,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         spnSalida = (Spinner) findViewById(R.id.spnSalida);
         spnEntrada = (Spinner) findViewById(R.id.spnEntrada);
-        // Se selecciona inicialmente la animación de entrada que concuerda
-        // con la animación de salida seleccionada por defecto.
-        spnEntrada.setSelection(ANIM_PULL_RIGHT_INDEX);
-        findViewById(R.id.btnIr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Se lanza la otra actividad (se le envían las animaciones que
-                // deben llevarse a cabo en el retorno.
-                OtraActivity.start(MainActivity.this,
-                        mResIdsAnimacionesSalida[spnEntrada.getSelectedItemPosition()],
-                        mResIdsAnimacionesEntrada[spnSalida.getSelectedItemPosition()]);
-                // Se realiza la animación (entrada, salida).
-                overridePendingTransition(
-                        mResIdsAnimacionesEntrada[spnEntrada.getSelectedItemPosition()],
-                        mResIdsAnimacionesSalida[spnSalida.getSelectedItemPosition()]);
-            }
-        });
+        if (spnEntrada != null) {
+            // Se selecciona inicialmente la animación de entrada que concuerda
+            // con la animación de salida seleccionada por defecto.
+            spnEntrada.setSelection(ANIM_PULL_RIGHT_INDEX);
+        }
+        Button btnIr = (Button) findViewById(R.id.btnIr);
+        if (btnIr != null) {
+            btnIr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Se lanza la otra actividad (se le envían las animaciones que
+                    // deben llevarse a cabo en el retorno.
+                    OtraActivity.start(MainActivity.this,
+                            mResIdsAnimacionesSalida[spnEntrada.getSelectedItemPosition()],
+                            mResIdsAnimacionesEntrada[spnSalida.getSelectedItemPosition()]);
+                    // Se realiza la animación (entrada, salida).
+                    overridePendingTransition(
+                            mResIdsAnimacionesEntrada[spnEntrada.getSelectedItemPosition()],
+                            mResIdsAnimacionesSalida[spnSalida.getSelectedItemPosition()]);
+                }
+            });
+        }
     }
 
 }

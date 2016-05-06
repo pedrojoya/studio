@@ -6,12 +6,12 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Switch;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,30 +24,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         llContentedor = (LinearLayout) findViewById(R.id.llContenedor);
-        (findViewById(R.id.btnAgregar)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                agregarElemento();
-            }
-        });
+        Button btnAgregar = (Button) findViewById(R.id.btnAgregar);
+        if (btnAgregar != null) {
+            btnAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    agregarElemento();
+                }
+            });
+        }
         // Se configuran las transiciones del contenedor.
         configTransicionesContenedor();
         // Si se cambia la opción.
-        ((Switch) findViewById(R.id.swPersonalizado))
-                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    llContentedor.setLayoutTransition(mTransicion);
+        SwitchCompat swPersonalizado = (SwitchCompat) findViewById(R.id.swPersonalizado);
+        if (swPersonalizado != null) {
+            swPersonalizado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        llContentedor.setLayoutTransition(mTransicion);
+                    } else {
+                        llContentedor.setLayoutTransition(mPorDefecto);
+                    }
                 }
-                else {
-                    llContentedor.setLayoutTransition(mPorDefecto);
-                }
-            }
-        });
+
+            });
+        }
     }
 
     // Configura las transiciones del contenedor.
+
     private void configTransicionesContenedor() {
         // Se almacena la transición por defecto.
         mPorDefecto = llContentedor.getLayoutTransition();

@@ -13,6 +13,7 @@ public class TareaSecundariaFragment extends Fragment {
 
     // Definimos una interfaz para que la actividad sea informada cuando se
     // produzca algún evento en la tarea secundaria.
+    @SuppressWarnings("UnusedParameters")
     public interface Callbacks {
 
         void onPreExecute();

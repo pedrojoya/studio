@@ -56,9 +56,10 @@ public class ColorBitmap {
 
     // Retorna el bitmap recibo aplicándole el cambio de tono dado por la
     // intensidad recibida y el factor de cada color.
+    @SuppressWarnings({"SameParameterValue", "WeakerAccess"})
     public static Bitmap efectoTono(Bitmap src, int intensidad,
-            double factorIntesidadRojo, double factorIntensidadVerde,
-            double factorIntensidadAzul) {
+                                    double factorIntesidadRojo, double factorIntensidadVerde,
+                                    double factorIntensidadAzul) {
         // Constantes de factores.
         final double FACTOR_ROJO = 0.3;
         final double FACTOR_VERDE = 0.59;

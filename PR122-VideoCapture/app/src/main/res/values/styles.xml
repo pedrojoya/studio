@@ -7,5 +7,6 @@
         <item name="windowActionBarOverlay">true</item> <!-- Para librería compatibilidad -->
         <!-- A pantalla completa -->
         <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@android:color/black</item>
     </style>
 </resources>

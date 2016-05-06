@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int onPreExecute = 0;
     private static final int onProgressUpdate = 1;
     private static final int onPostExecute = 2;
+    private static final int NUM_PASOS = 10;
 
     private ProgressBar prbBarra;
     private TextView lblMensaje;
@@ -61,14 +62,14 @@ public class MainActivity extends AppCompatActivity {
     // Hace visibles las vistas relacionadas con el progreso.
     private void mostrarBarras() {
         prbBarra.setVisibility(View.VISIBLE);
-        lblMensaje.setText(R.string.trabajando);
+        lblMensaje.setText(getString(R.string.trabajando, 0, NUM_PASOS));
         lblMensaje.setVisibility(View.VISIBLE);
         prbCirculo.setVisibility(View.VISIBLE);
     }
 
     // Actualiza el valor de las barras de progreso.
     private void actualizarBarras(int progreso) {
-        lblMensaje.setText(getString(R.string.trabajando, progreso, 10));
+        lblMensaje.setText(getString(R.string.trabajando, progreso, NUM_PASOS));
         prbBarra.setProgress(progreso);
     }
 
@@ -96,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
             Message msgInicio = new Message();
             msgInicio.what = onPreExecute;
             manejador.sendMessage(msgInicio);
-            // Se realizan diez pasos.
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < NUM_PASOS; i++) {
                 // Se pone a trabajar.
                 trabajar();
                 // Crea y envía un mensaje de actualización al manejador.
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             // Crea y envía el mensaje de fin de ejecución al manejador.
             Message msgFin = new Message();
             msgFin.what = onPostExecute;
-            msgFin.arg1 = 10;
+            msgFin.arg1 = NUM_PASOS;
             manejador.sendMessage(msgFin);
         }
 

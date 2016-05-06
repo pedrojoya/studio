@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR129-RelojMultihilo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="/Users/pedro/studio/PR129-RelojMultihilo/app/build/intermediates/pre-dexed/debug/classes-de946ceecfc71d787b21cf7ef22bbe1000400c53.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="39978e2db624619c7e47f058786b4ee3db68a1a4">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dde57d3cba5d3cbafa38189ac5eb21b5cc0a3133\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR129-RelojMultihilo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/libs/internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="/Users/pedro/studio/PR129-RelojMultihilo/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.0-03b7dadd072810f521795475866389d08fb3ce15.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_a5e68f192fd4fc3cca8d90381dd3e540509f204d\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR129-RelojMultihilo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.0/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="/Users/pedro/studio/PR129-RelojMultihilo/app/build/intermediates/pre-dexed/debug/classes-3d2e51898678dc4c04b7467d4ee13ab3d6f057b3.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_c20c66c187ee629b9e303bcd7aeb67b8a88ede71\classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.0/support-annotations-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="/Users/pedro/studio/PR129-RelojMultihilo/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.0-bd338daf9d8e6767a204dc6b3cc170814e068cef.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_4b5b6c1fd7a4761fb31d0beddc0692e2de04f132\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_d6b2b22209bb5035152135ca72cc185daa8a85c0\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a284dfa6cf1e562188f1ffa8dbe18b7abb10d32c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5483f46ee822dd510445a7d8b76c78082d07feba\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_9c75b02b9602e3b6e6816e7c1eee37c5c4a25037\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR129-RelojMultihilo\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_5e062f9d28fb7cbe58c687369ceb2deaaebd3951\classes.dex" />
     </item>
 
 </items>

@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity implements
     private Button btnIniciar;
     private Button btnCancelar;
 
-    private TareaSecundariaFragment.TareaSecundaria tarea;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

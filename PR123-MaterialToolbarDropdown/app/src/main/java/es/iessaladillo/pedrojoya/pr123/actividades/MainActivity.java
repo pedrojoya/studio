@@ -49,12 +49,14 @@ public class MainActivity extends AppCompatActivity implements
             // constantes de cadena.
             ToolbarSpinnerAdapter adaptador = new ToolbarSpinnerAdapter(
                     getSupportActionBar().getThemedContext(),
-                    new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.opciones))));
+                    new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.opciones))));
             // Se establece el adaptador y el listener para el spinner (que será la
             // propia actividad).
             spnOpciones = (Spinner) findViewById(R.id.spn);
-            spnOpciones.setOnItemSelectedListener(this);
-            spnOpciones.setAdapter(adaptador);
+            if (spnOpciones != null) {
+                spnOpciones.setOnItemSelectedListener(this);
+                spnOpciones.setAdapter(adaptador);
+            }
             // toolbar.addView(spnOpciones);
         }
         // Si venimos de un estado anterior.

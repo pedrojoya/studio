@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="false"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
         revision="23.0.2"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_a932d631f717f0b90fcf2743a578ee1830c15724.jar" />
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_367ced219e8c7663003f6d86c3b800e7c363c7c1\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
         revision="23.0.2"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_b8b5bb2aa084e6944d1402749b6b9986110a0cfc.jar" />
+        sha1="51d5afa916c9c572cda465f834afb144f11d25ff">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_6ffc818c2df1337be667807c4891d4a885a72838\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
-        jumboMode="false"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.2"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_c1f7d9d4ff4970469323452b3ea693214ce7a8c2.jar" />
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_4bd75989ced800ad3150606dcc5a4b5c58e47566\classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
-        jumboMode="false"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.2"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/pedro/studio/PR123-MaterialToolbarDropdown/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_4cefdf1c95082cfc3d5552a180dca2340f933742.jar" />
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_1eca1e1bfe8afea183622a3081b4ea5d7883cc06\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_a146e7a3e5fb674da0bd7b7f328123d75fce0f43\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_d6b2b22209bb5035152135ca72cc185daa8a85c0\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_d7d40734720bc0c374d002d37e8b6b4ca55c0533\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="05c23111131d7387e93e9f1816e21127989118f2">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR123-MaterialToolbarDropdown\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_b8bc53789a840564d1a67a3d416d3abe752da66b\classes.dex" />
     </item>
 
 </items>

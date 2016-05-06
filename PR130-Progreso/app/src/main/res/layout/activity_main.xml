@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_vertical">
 
     <ProgressBar
         android:id="@+id/prbBarra"
@@ -29,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"        
-        android:text="@string/trabajando"
+        tools:text="@string/trabajando"
         android:layout_marginBottom="10dp"       
         android:layout_below="@+id/btnIniciar"
         android:visibility="invisible" >

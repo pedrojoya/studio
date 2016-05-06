@@ -31,6 +31,7 @@ public class FotoFragment extends Fragment {
     private Bitmap mFotoBitmapOriginal;
 
     // Retorna un objeto fragmento bien construido. Recibe el resId de la foto.
+    @SuppressWarnings("SameParameterValue")
     public static FotoFragment newInstance(int fotoResId) {
         // Se crea el objeto fragmento y se le añaden sus argumentos.
         FotoFragment frg = new FotoFragment();

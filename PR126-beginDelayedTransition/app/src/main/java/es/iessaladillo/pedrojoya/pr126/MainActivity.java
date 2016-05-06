@@ -12,9 +12,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+@SuppressWarnings("unused")
 public class MainActivity extends AppCompatActivity {
 
     private static final int ANIM_EXPLODE = 0;
@@ -37,12 +39,15 @@ public class MainActivity extends AppCompatActivity {
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         llContentedor = (LinearLayout) findViewById(R.id.llContenedor);
-        findViewById(R.id.btnAgregar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                agregarElemento();
-            }
-        });
+        Button btnAgregar = (Button) findViewById(R.id.btnAgregar);
+        if (btnAgregar != null) {
+            btnAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    agregarElemento();
+                }
+            });
+        }
         spnAnimaciones = (Spinner) findViewById(R.id.spnAnimacion);
     }
 

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CardView</string>
+    <string name="cuenta">Cuenta</string>
+    <string name="Propina">Propina</string>
+    <string name="porcentaje"> % Prop.</string>
+    <string name="total">Total</string>
+    <string name="redondear">Redondear</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="comensales">Comensales</string>
+    <string name="por_comensal">Por Comensal</string>
+    <string name="simbolo_porcentaje">%</string>
+</resources>

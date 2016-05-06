@@ -10,9 +10,10 @@
         android:layout_height="wrap_content"
         android:text="@string/agregar_elemento"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
-    <Switch
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/swPersonalizado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +22,7 @@
         android:checked="false"
         android:text="@string/transicion_propia"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
         android:layout_alignBaseline="@+id/btnAgregar"/>
 
     <LinearLayout

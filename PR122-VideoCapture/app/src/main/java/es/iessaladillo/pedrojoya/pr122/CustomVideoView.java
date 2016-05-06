@@ -32,7 +32,7 @@ public class CustomVideoView extends VideoView {
     }
 
     // Interfaz para eventos onVideoPlay y onVideoPause.
-    public static interface PlayPauseListener {
+    public interface PlayPauseListener {
         void onVideoPlay();
         void onVideoPause();
     }

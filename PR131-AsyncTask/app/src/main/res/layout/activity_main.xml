@@ -31,13 +31,15 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/activity_margin"
             android:layout_marginEnd="@dimen/activity_margin"
-            android:text="@string/iniciar"/>
+            android:text="@string/iniciar"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnCancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cancelar"/>
+            android:text="@string/cancelar"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
     <TextView

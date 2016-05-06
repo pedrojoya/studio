@@ -29,21 +29,23 @@ public class MainActivity extends AppCompatActivity {
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         // Se carga la lista a partir de las constantes de cadena.
-        ListView lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
         String[] datosArray = getResources().getStringArray(R.array.alumnos);
         ArrayList<String> datosArrayList = new ArrayList<>(
                 Arrays.asList(datosArray));
         mAdaptador = new ArrayAdapter<>(this,
                 R.layout.activity_main_item, datosArrayList);
-        lstAlumnos.setAdapter(mAdaptador);
-        lstAlumnos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view,
-                                    int position, long id) {
-                eliminar(mAdaptador.getItem(position));
-            }
-        });
+        ListView lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
+        if (lstAlumnos != null) {
+            lstAlumnos.setEmptyView(findViewById(R.id.lblEmpty));
+            lstAlumnos.setAdapter(mAdaptador);
+            lstAlumnos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view,
+                                        int position, long id) {
+                    eliminar(mAdaptador.getItem(position));
+                }
+            });
+        }
     }
 
     // Al crear el menú de opciones.
