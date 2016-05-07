@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class BatteryReceiver extends BroadcastReceiver {
 
+        @SuppressWarnings("UnusedAssignment")
         @Override
         public void onReceive(Context context, Intent intent) {
             // Se obtienen los datos relevantes.

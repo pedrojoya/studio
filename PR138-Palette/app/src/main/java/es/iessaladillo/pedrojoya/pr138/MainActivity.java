@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -19,20 +20,32 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener {
 
-    private static final String URL_FOTO = "http://lorempixel.com/400/200/sports/";
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class MainActivity extends AppCompatActivity {
 
-    private ImageView imgFoto;
-    private TextView lblVibrant;
-    private TextView lblLightVibrant;
-    private TextView lblDarkVibrant;
-    private TextView lblMuted;
-    private TextView lblLightMuted;
-    private TextView lblDarkMuted;
-    private Toolbar toolbar;
+    private static final String URL_FOTO = "http://lorempixel.com/400/200/abstract/";
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.imgFoto)
+    ImageView imgFoto;
+    @BindView(R.id.lblVibrant)
+    TextView lblVibrant;
+    @BindView(R.id.lblLightVibrant)
+    TextView lblLightVibrant;
+    @BindView(R.id.lblDarkVibrant)
+    TextView lblDarkVibrant;
+    @BindView(R.id.lblMuted)
+    TextView lblMuted;
+    @BindView(R.id.lblLightMuted)
+    TextView lblLightMuted;
+    @BindView(R.id.lblDarkMuted)
+    TextView lblDarkMuted;
 
     private int mContador = 0;
     private Palette mPaleta;
@@ -41,38 +54,14 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        initVistas();
-    }
-
-    // Obtiene e inicializa las vistas.
-    private void initVistas() {
-        imgFoto = (ImageView) findViewById(R.id.imgFoto);
-        imgFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cargarFoto();
-            }
-        });
-        lblVibrant = (TextView) findViewById(R.id.lblVibrant);
-        lblVibrant.setOnClickListener(this);
-        lblLightVibrant = (TextView) findViewById(R.id.lblLightVibrant);
-        lblLightVibrant.setOnClickListener(this);
-        lblDarkVibrant = (TextView) findViewById(R.id.lblDarkVibrant);
-        lblDarkVibrant.setOnClickListener(this);
-        lblMuted = (TextView) findViewById(R.id.lblMuted);
-        lblMuted.setOnClickListener(this);
-        lblLightMuted = (TextView) findViewById(R.id.lblLightMuted);
-        lblLightMuted.setOnClickListener(this);
-        lblDarkMuted = (TextView) findViewById(R.id.lblDarkMuted);
-        lblDarkMuted.setOnClickListener(this);
-        // Se carga una foto.
         cargarFoto();
     }
 
     // Carga una foto desde Internet en el ImageView.
-    private void cargarFoto() {
+    @OnClick(R.id.imgFoto)
+    public void cargarFoto() {
         Picasso.with(this).load(URL_FOTO + (mContador % 10 + 1) + "/")
                 .into(imgFoto, new Callback() {
                     @Override
@@ -122,31 +111,29 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    // Se ha pulsado sobre alguna muestra de color.
-    @Override
-    public void onClick(View view) {
-        actualizarToolbar((TextView) view);
-    }
-
     // Actualiza los colores de la toolbar y la status bar dependiendo de la
     // muestra.
-    private void actualizarToolbar(TextView lblMuestra) {
-        int defaultColor = getResources().getColor(R.color.colorPrimary);
-        int backgroundColor = getBackgroundColor(lblMuestra, defaultColor);
-        toolbar.setBackgroundColor(backgroundColor);
-        toolbar.setTitleTextColor(lblMuestra.getCurrentTextColor());
-        // Por defecto el color de la status bar será el del tema.
-        int statusBarColor = getResources().getColor(R.color.colorPrimaryDark);
-        switch (lblMuestra.getId()) {
-            case R.id.lblVibrant:
-            case R.id.lblLightVibrant:
-            case R.id.lblDarkVibrant:
-                statusBarColor = mPaleta.getDarkVibrantColor(statusBarColor);
-                break;
-            default:
-                statusBarColor = mPaleta.getDarkMutedColor(statusBarColor);
+    @OnClick({R.id.lblVibrant, R.id.lblLightVibrant, R.id.lblDarkVibrant,
+            R.id.lblMuted, R.id.lblLightMuted, R.id.lblDarkMuted})
+    public void actualizarToolbar(TextView lblMuestra) {
+        if (mPaleta != null) {
+            int defaultColor = ContextCompat.getColor(this, R.color.colorPrimary);
+            int backgroundColor = getBackgroundColor(lblMuestra, defaultColor);
+            toolbar.setBackgroundColor(backgroundColor);
+            toolbar.setTitleTextColor(lblMuestra.getCurrentTextColor());
+            // Por defecto el color de la status bar será el del tema.
+            int statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark);
+            switch (lblMuestra.getId()) {
+                case R.id.lblVibrant:
+                case R.id.lblLightVibrant:
+                case R.id.lblDarkVibrant:
+                    statusBarColor = mPaleta.getDarkVibrantColor(statusBarColor);
+                    break;
+                default:
+                    statusBarColor = mPaleta.getDarkMutedColor(statusBarColor);
+            }
+            setStatusBarcolor(getWindow(), statusBarColor);
         }
-        setStatusBarcolor(getWindow(), statusBarColor);
     }
 
     // Retorna el color del fondo de la vista recibida. Si el fondo no es un

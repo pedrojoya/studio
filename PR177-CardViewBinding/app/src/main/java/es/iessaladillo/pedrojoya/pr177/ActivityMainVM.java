@@ -12,7 +12,8 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-public class ActivityMainVM extends BaseObservable {
+@SuppressWarnings({"WeakerAccess", "unused", "UnusedParameters", "UnusedAssignment"})
+public class ActivityMainVM extends BaseObservable implements Parcelable {
 
     private String cuenta;
     private String propina;
@@ -22,20 +23,18 @@ public class ActivityMainVM extends BaseObservable {
     private String comensales;
     private String moneda;
 
-    private final String mSimboloDecimal;
     private final float mDefaultCuenta;
     private final int mDefaultPorcentaje;
     private final int mDefaultComensales;
     private final NumberFormat mFormateador;
 
+    @SuppressWarnings("SameParameterValue")
     public ActivityMainVM(float defaultCuenta, int defaultPorcentaje, int defaultComensales) {
         mDefaultCuenta = defaultCuenta;
         mDefaultPorcentaje = defaultPorcentaje;
         mDefaultComensales = defaultComensales;
-        DecimalFormatSymbols decimalSymbols = new DecimalFormatSymbols();
-        mSimboloDecimal = decimalSymbols.getDecimalSeparator() + "";
         mFormateador = NumberFormat.getInstance(Locale.getDefault());
-        moneda = decimalSymbols.getCurrencySymbol();
+        setLocaleDefaultMoneda();
         cuenta = formatear(mDefaultCuenta);
         porcentaje = formatear(mDefaultPorcentaje);
         comensales = formatear(mDefaultComensales);
@@ -210,4 +209,57 @@ public class ActivityMainVM extends BaseObservable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.cuenta);
+        dest.writeString(this.propina);
+        dest.writeString(this.porcentaje);
+        dest.writeString(this.total);
+        dest.writeString(this.escote);
+        dest.writeString(this.comensales);
+        dest.writeFloat(this.mDefaultCuenta);
+        dest.writeInt(this.mDefaultPorcentaje);
+        dest.writeInt(this.mDefaultComensales);
+    }
+
+    protected ActivityMainVM(Parcel in) {
+        this.cuenta = in.readString();
+        this.propina = in.readString();
+        this.porcentaje = in.readString();
+        this.total = in.readString();
+        this.escote = in.readString();
+        this.comensales = in.readString();
+        this.mDefaultCuenta = in.readFloat();
+        this.mDefaultPorcentaje = in.readInt();
+        this.mDefaultComensales = in.readInt();
+        mFormateador = NumberFormat.getInstance(Locale.getDefault());
+        setLocaleDefaultMoneda();
+    }
+
+    private void setLocaleDefaultMoneda() {
+        DecimalFormatSymbols decimalSymbols = new DecimalFormatSymbols(Locale.getDefault());
+        this.moneda = decimalSymbols.getCurrencySymbol();
+    }
+
+    public void resetMoneda() {
+        setLocaleDefaultMoneda();
+        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.moneda);
+    }
+
+    public static final Parcelable.Creator<ActivityMainVM> CREATOR = new Parcelable.Creator<ActivityMainVM>() {
+        @Override
+        public ActivityMainVM createFromParcel(Parcel source) {
+            return new ActivityMainVM(source);
+        }
+
+        @Override
+        public ActivityMainVM[] newArray(int size) {
+            return new ActivityMainVM[size];
+        }
+    };
 }
