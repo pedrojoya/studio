@@ -40,6 +40,7 @@ class Foto implements Parcelable {
     public Foto() {
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected Foto(Parcel in) {
         this.url = in.readString();
         this.descripcion = in.readString();

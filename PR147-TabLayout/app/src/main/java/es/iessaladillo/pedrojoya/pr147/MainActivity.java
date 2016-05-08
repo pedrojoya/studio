@@ -5,6 +5,7 @@ import android.support.annotation.DrawableRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,21 +34,25 @@ public class MainActivity extends AppCompatActivity {
 
     // Configura el ViewPager.
     private void configViewPager() {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter viewPagerAdapter =
                 new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addPage(getString(R.string.opcion, 1),
-                R.drawable.ic_tab1, getResources().getColor(R.color.colorPrimary));
+                R.drawable.ic_tab1, ContextCompat.getColor(this, R.color.colorPrimary));
         viewPagerAdapter.addPage(getString(R.string.opcion, 2),
-                R.drawable.ic_tab2, getResources().getColor(R.color.colorAccent));
-        viewPager.setAdapter(viewPagerAdapter);
+                R.drawable.ic_tab2, ContextCompat.getColor(this, R.color.colorAccent));
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        if (viewPager != null) {
+            viewPager.setAdapter(viewPagerAdapter);
+        }
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        /**** Para mostrar iconos en las tabs.
-         for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
-         }
-         ****/
+        if (tabLayout != null) {
+            tabLayout.setupWithViewPager(viewPager);
+            /**** Para mostrar iconos en las tabs.
+             for (int i = 0; i < tabLayout.getTabCount(); i++) {
+             tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
+             }
+             ****/
+        }
     }
 
     @Override
@@ -108,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Retorna el resId del icono asociado a una determinada página.
+        @SuppressWarnings("unused")
         @DrawableRes
         public int getPageIcon(int position) {
             return mIconos.get(position);

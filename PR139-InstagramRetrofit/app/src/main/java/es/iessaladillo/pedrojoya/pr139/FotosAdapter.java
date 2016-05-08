@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
         .ViewHolder> {
 
+    @SuppressWarnings("CanBeFinal")
     private ArrayList<Foto> mDatos;
 
     // Constructor. Recibe contexto y datos.
@@ -51,7 +52,9 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
         Foto foto = mDatos.get(position);
         // Se escriben los datos en la vista.
         holder.lblDescripcion.setText(foto.getDescripcion());
-        Picasso.with(holder.itemView.getContext()).load(foto.getUrl()).into(holder.imgFoto);
+        Picasso.with(holder.itemView.getContext()).load(foto.getUrl())
+                .placeholder(R.drawable.placeholder).error(R.drawable.placeholder)
+                .into(holder.imgFoto);
     }
 
     // Añade un elemento al adaptador.
@@ -63,7 +66,7 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
     }
 
     // Elimina un elemento del adaptador.
-    public void removeItem(int position) {
+    private void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
     }

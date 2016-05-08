@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr139;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+@SuppressWarnings({"SameParameterValue", "UnusedParameters", "WeakerAccess", "FieldCanBeLocal"})
 public abstract class EndlessRecyclerOnScrollListener extends
         RecyclerView.OnScrollListener {
 
@@ -10,11 +11,13 @@ public abstract class EndlessRecyclerOnScrollListener extends
     private int previousTotal = 0;
     private boolean loading = true; // True if we are still waiting for the last set of data to load.
     // Umbral de disparo de carga.
-    private int visibleThreshold = 5;
-    int firstVisibleItem, visibleItemCount, totalItemCount;
+    private final int visibleThreshold = 5;
+    private int firstVisibleItem;
+    private int visibleItemCount;
+    private int totalItemCount;
     private int current_page = 1;
 
-    private LinearLayoutManager mLinearLayoutManager;
+    private final LinearLayoutManager mLinearLayoutManager;
 
     public EndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager) {
         this.mLinearLayoutManager = linearLayoutManager;

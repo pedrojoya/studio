@@ -14,6 +14,7 @@ import java.util.ArrayList;
 // Adaptador para spinner en toolbar. Para que se muestre siguiendo el tema
 // adecuado debe implementar ThemedSpinnerAdapter y recibir el contexto de
 // la toolbar.
+@SuppressWarnings("WeakerAccess")
 public class ToolbarSpinnerAdapter extends ArrayAdapter<String> implements ThemedSpinnerAdapter {
 
     private final Helper mDropDownHelper;

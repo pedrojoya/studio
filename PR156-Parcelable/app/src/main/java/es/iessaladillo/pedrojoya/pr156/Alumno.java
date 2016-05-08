@@ -10,6 +10,7 @@ class Alumno implements Parcelable {
     private String nombre;
     private int edad;
 
+    @SuppressWarnings("SameParameterValue")
     public Alumno(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
@@ -42,6 +43,7 @@ class Alumno implements Parcelable {
         dest.writeInt(this.edad);
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected Alumno(Parcel in) {
         this.nombre = in.readString();
         this.edad = in.readInt();

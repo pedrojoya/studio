@@ -1,5 +1,4 @@
 <android.support.design.widget.CoordinatorLayout
-    android:id="@+id/main_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -24,7 +23,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/imagen_cabecera"
@@ -45,14 +43,12 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nsvScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="@dimen/fab_marginRight"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
-            android:id="@+id/lblTexto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/text_padding"
@@ -66,6 +62,7 @@
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end"
         android:src="@drawable/ic_action_add"
-        android:layout_marginRight="@dimen/fab_marginRight" />
+        android:layout_marginRight="@dimen/fab_marginRight"
+        android:layout_marginEnd="@dimen/fab_marginRight"/>
 
 </android.support.design.widget.CoordinatorLayout>

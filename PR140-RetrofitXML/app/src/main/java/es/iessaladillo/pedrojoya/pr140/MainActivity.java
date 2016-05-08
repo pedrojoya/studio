@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr140;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,7 +16,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.LargeValueFormatter;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 
 import java.util.ArrayList;
 
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         //mChart.setDrawSliceText(true);
         mChart.setNoDataText(getString(R.string.grafico_sin_datos));
         mChart.setDrawHoleEnabled(true);
-        mChart.setHoleColorTransparent(true);
+        mChart.setHoleColor(ContextCompat.getColor(this, android.R.color.transparent));
         mChart.setHoleRadius(26f);
         mChart.setTransparentCircleRadius(28f);
         mChart.setDrawCenterText(true);
@@ -90,20 +91,23 @@ public class MainActivity extends AppCompatActivity {
         for (Poblacion poblacion : mPoblaciones) {
             nombres.add(poblacion.getNombre());
         }
-        ToolbarSpinnerAdapter adaptador = new ToolbarSpinnerAdapter(
-                getSupportActionBar().getThemedContext(), nombres);
-        mSpnToolbar.setAdapter(adaptador);
-        mSpnToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view,
-                                       int i, long l) {
-                obtenerDatos(mPoblaciones.get(i).getCodigo());
-            }
+        if (getSupportActionBar() != null) {
+            ToolbarSpinnerAdapter adaptador = new ToolbarSpinnerAdapter(
+                    getSupportActionBar().getThemedContext(), nombres);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+            mSpnToolbar.setAdapter(adaptador);
+            mSpnToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view,
+                                           int i, long l) {
+                    obtenerDatos(mPoblaciones.get(i).getCodigo());
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                }
+            });
+        }
     }
 
     // Obtiene los datos electorales.

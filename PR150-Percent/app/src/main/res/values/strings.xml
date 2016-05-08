@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Percent support library</string>
+    <string name="anchura_70">Anchura: 70%</string>
+    <string name="anchura_24">Anchura: 24%</string>
+    <string name="anchura_47">Anchura: 47%</string>
+    <string name="anchura_10">Anchura: 10%</string>
+    <string name="anchura_84">Anchura: 84%</string>
 </resources>

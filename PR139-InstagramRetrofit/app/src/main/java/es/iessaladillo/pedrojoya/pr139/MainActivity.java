@@ -72,27 +72,31 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void initVistas() {
         configToolbar();
         swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
-        swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-        swlPanel.setOnRefreshListener(this);
-        RecyclerView lstFotos = (RecyclerView) this.findViewById(R.id.lstFotos);
+        if (swlPanel != null) {
+            swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+            swlPanel.setOnRefreshListener(this);
+        }
         mAdaptador = new FotosAdapter(mDatos);
-        lstFotos.setHasFixedSize(true);
-        lstFotos.setAdapter(mAdaptador);
         mGridLayoutManager = new GridLayoutManager(this, getResources()
                 .getInteger(R.integer.grid_columns),
                 LinearLayoutManager.VERTICAL, false);
-        lstFotos.setLayoutManager(mGridLayoutManager);
-        lstFotos.setItemAnimator(new DefaultItemAnimator());
         mEndlessScrollListener = new EndlessRecyclerOnScrollListener(mGridLayoutManager) {
             @Override
             public void onLoadMore(int current_page) {
                 obtenerDatos();
             }
         };
-        lstFotos.addOnScrollListener(mEndlessScrollListener);
+        RecyclerView lstFotos = (RecyclerView) this.findViewById(R.id.lstFotos);
+        if (lstFotos != null) {
+            lstFotos.setHasFixedSize(true);
+            lstFotos.setAdapter(mAdaptador);
+            lstFotos.setLayoutManager(mGridLayoutManager);
+            lstFotos.setItemAnimator(new DefaultItemAnimator());
+            lstFotos.addOnScrollListener(mEndlessScrollListener);
+        }
     }
 
     private void configToolbar() {

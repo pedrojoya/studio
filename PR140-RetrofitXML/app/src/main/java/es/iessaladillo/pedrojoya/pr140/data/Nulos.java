@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr140.data;
 
 import org.simpleframework.xml.Element;
 
+@SuppressWarnings("unused")
 public class Nulos
 {
     @Element

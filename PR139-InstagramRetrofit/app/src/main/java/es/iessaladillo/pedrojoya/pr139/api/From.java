@@ -4,6 +4,7 @@ package es.iessaladillo.pedrojoya.pr139.api;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("unused")
 public class From {
 
     @Expose

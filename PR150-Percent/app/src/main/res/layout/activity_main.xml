@@ -10,7 +10,7 @@
         android:layout_height="0dp"
         android:background="@color/top_left"
         android:gravity="center"
-        android:text="Anchura: 70%"
+        android:text="@string/anchura_70"
         android:textColor="@android:color/white"
         app:layout_heightPercent="@fraction/views_height"
         app:layout_marginLeftPercent="@fraction/views_margin"
@@ -19,7 +19,6 @@
         app:layout_widthPercent="@fraction/top_left_width"/>
 
     <TextView
-        android:id="@+id/top_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignBottom="@+id/top_left"
@@ -30,7 +29,7 @@
         android:layout_toEndOf="@+id/top_left"
         android:background="@color/top_right"
         android:gravity="center"
-        android:text="Anchura: 24%"
+        android:text="@string/anchura_24"
         android:textColor="@android:color/white"
         app:layout_marginLeftPercent="@fraction/views_margin"
         app:layout_marginStartPercent="@fraction/views_margin"
@@ -45,7 +44,7 @@
         android:layout_below="@+id/top_left"
         android:background="@color/middle_left"
         android:gravity="center"
-        android:text="Anchura: 47%"
+        android:text="@string/anchura_47"
         android:textColor="@android:color/white"
         app:layout_heightPercent="@fraction/views_height"
         app:layout_marginLeftPercent="@fraction/views_margin"
@@ -66,7 +65,7 @@
         android:layout_toEndOf="@+id/middle_left"
         android:background="@color/middle_right"
         android:gravity="center"
-        android:text="Anchura: 47%"
+        android:text="@string/anchura_47"
         android:textColor="@android:color/white"
         app:layout_marginLeftPercent="@fraction/views_margin"
         app:layout_marginStartPercent="@fraction/views_margin"
@@ -81,7 +80,7 @@
         android:layout_below="@+id/middle_left"
         android:background="@color/bottom_left"
         android:gravity="center"
-        android:text="Anchura: 10%"
+        android:text="@string/anchura_10"
         android:textColor="@android:color/white"
         app:layout_marginBottomPercent="@fraction/views_margin"
         app:layout_marginLeftPercent="@fraction/views_margin"
@@ -90,7 +89,6 @@
         app:layout_widthPercent="@fraction/bottom_left_width"/>
 
     <TextView
-        android:id="@+id/bottom_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
@@ -102,7 +100,7 @@
         android:layout_toEndOf="@+id/bottom_left"
         android:background="@color/bottom_right"
         android:gravity="center"
-        android:text="Anchura: 84%"
+        android:text="@string/anchura_84"
         android:textColor="@android:color/white"
         app:layout_marginBottomPercent="@fraction/views_margin"
         app:layout_marginLeftPercent="@fraction/views_margin"

@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/pre-dexed/debug/classes-feaf80aa1f5c52ef37eacbb9b29360c0843e837c.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-9701eda1281052a995f5257dfb3c2a8f1c75569b.jar" />
+        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="21f013a7e8f749e5f5bb6cd2db30e8bd69f9c349">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_16905f28178196cba35637e3debb703477e332d7/classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-f251d9f269bfd32d8715f0b778c44658d7903add.jar" />
+        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_2a45ceb019523f75185d6553625be49ed051600f/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/pre-dexed/debug/classes-82321759bc25c9c3e80c36e48e976a17cdf5bac0.jar" />
+        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_afb2427b57fd1c6c787df5e893b41a70ee7c4262/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_741025207c317b9d0b06532d795cb552b066e82e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="51df1e58a2bba5436ef218858989e4a2bd3c3c8a">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_4a0201ae6548eef47650e9118957856ce4bdb975/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_623b37f8675a50f001883a45c6a2d02fe26e17a8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR156-Parcelable/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_68a82de38e39df31d4c1f185bcfc85923f2be36f/classes.dex" />
     </item>
 
 </items>

@@ -2,46 +2,74 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-7d28c0bddf5c3b696370f511679bc80387b56c04.jar" />
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1dba11578dcfb3dccd23885a677135aa61cb05c2">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a1ac6396a05f613efb7703fb7d2fccf0a7c55345/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\pre-dexed\debug\classes-4c71212247a4aa5f7a4bc745606b912af2bf9d73.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\pre-dexed\debug\classes-4105edbd84ffd38d87e48c3c84d433e66365effe.jar" />
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_84eb85b5de8fd15fa38f9e7a4a5b393007913408/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-704f5f136cab3bc774d2fbc4eff23b53d2336175.jar" />
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_9fb0627ff90df3e3e7bcee97e00194d89a884f11/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\pre-dexed\debug\classes-6dadce29bcf8d2712c73be32a0365640b9a527c4.jar" />
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_217b9187c4f568c61da87ec3582e5dd8c9954176/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR145-CollapsingToolbarLayout\app\build\intermediates\pre-dexed\debug\classes-227a2ab606c4ae9e1ff713534d77d7db6db810f5.jar" />
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_1e1dfc298707eebdd6bbc5e536d8fb794a767acf/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_a6471995aeafa9c269ec180a79727ac88255ba13/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="28c678d8d86997de1d7b1824dd58f507d14f6617">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_24f0921424d64e5b5f204a90bd89c898b9cfaa83/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_b563d46be2abf1a48c56a0a2428d312f47e3cc35/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR145-CollapsingToolbarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_caf9f8fea874c211564205d2bd3fc4b2ebb6f62e/classes.dex" />
     </item>
 
 </items>

@@ -26,10 +26,11 @@ class Instagram {
 
     // Constantes.
     public static final String CLIENT_ID = "c432d0e158dd46f7873950a19a582102";
-    public static final String BASE_URL = "https://api.instagram.com/v1/";
+    private static final String BASE_URL = "https://api.instagram.com/v1/";
     public static final String TIPO_ELEMENTO_IMAGEN = "image";
 
     // Interfaz de trabajo de Retrofit contra la API.
+    @SuppressWarnings("SameParameterValue")
     public interface ApiInterface {
         @GET("tags/{tag}/media/recent")
         Call<TagResponse> getTagPhotos(@Path("tag") String tag,

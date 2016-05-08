@@ -20,8 +20,11 @@ public class MainActivity extends AppCompatActivity {
     // Configura la Toolbar.
     private void configToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        ((CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar))
-                .setTitle(getTitle());
+        CollapsingToolbarLayout collapsingToolbarLayout =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
+        if (collapsingToolbarLayout != null) {
+            collapsingToolbarLayout.setTitle(getTitle());
+        }
     }
 
     @Override

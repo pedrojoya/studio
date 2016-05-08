@@ -6,6 +6,4 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <!-- Color de acento (contraste) -->
     <color name="colorAccent">#E91E63</color>
-    <color name="textColorPrimary">#E8EAF6</color>
-    <color name="textColorSecundary">#FCE4EC</color>
 </resources>

@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr139.api;
 
 import com.google.gson.annotations.Expose;
 
+@SuppressWarnings("unused")
 public class StandardResolution {
 
     @Expose

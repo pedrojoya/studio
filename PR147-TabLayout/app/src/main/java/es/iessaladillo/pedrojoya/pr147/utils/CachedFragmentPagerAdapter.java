@@ -36,6 +36,7 @@ public abstract class CachedFragmentPagerAdapter extends FragmentPagerAdapter {
     }
 
     // Retorna el fragmento correspondiente a dicha posición.
+    @SuppressWarnings("unused")
     @Nullable
     public Fragment getFragment(final int position) {
         // Se obtiene la referencia débil desde SparseArray y a partir

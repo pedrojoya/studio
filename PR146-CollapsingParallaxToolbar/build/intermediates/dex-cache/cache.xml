@@ -2,46 +2,74 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\pre-dexed\debug\classes-e1810c37ffd006b27d4095461fab83cca7ab0579.jar" />
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_00c2e084786fd3ef42f768440b9d3973914e2572/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\pre-dexed\debug\classes-1ba5597b37c0607ed50f524a46f835ab92e8148b.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\pre-dexed\debug\classes-dc049677943325d02aa5addb8e5d8b1b6ed8d265.jar" />
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_4c11826ad8018753fee47847aefaee22e1aef79a/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-5c1d0d7a34aac10316cb005dcd711bb8312b0237.jar" />
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_139c2baa8622f9431613ba7378dfa623abcbb8ae/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\pre-dexed\debug\classes-b28d57e46236259e0472fcc8448353a31a1a898b.jar" />
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fd9dfc1d61d2d62bb611ddb12bb0179ccaf3d0f3">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0c08be50984721c60f2dec8b5050a14cbf9b4383/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR146-CollapsingParallaxToolbar\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-704f5f136cab3bc774d2fbc4eff23b53d2336175.jar" />
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_c88bc5fc2bd71611f5973d82f1227ab9064c933b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_c04e91e254ed98a900a8ef5639b1629290809820/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="abaf0069d7c372c512713085b7283973c4ba848a">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_27e29fd87ae974993d7d5e38c5396cfb5719a0cc/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_cd890cbfcb148b0cee570865293b20bba92b4779/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR146-CollapsingParallaxToolbar/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_872a3a0ce4de05f48fd884a264300db6cd574d79/classes.dex" />
     </item>
 
 </items>

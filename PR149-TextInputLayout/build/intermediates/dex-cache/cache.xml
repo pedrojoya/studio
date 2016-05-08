@@ -2,39 +2,74 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-39c8d603055d959c0afd3853b2d736569bee57d6.jar" />
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_e7691c2f71e57e02674fd5d3daef2157c67fe2c0/classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-85e2061ce3509c3e7e8ff9add3054513fddf8721.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/pre-dexed/debug/classes-61e2a0bfd01c5c048bbd5470ee6758fd1b179665.jar" />
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="58abdcd9c3c19b901fa57ec88df8fa0a808c195e">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_4f7d7e3e3ffd0f67fbcb936839c9dc79f075503c/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/pre-dexed/debug/classes-5360c9605da19a84f09dc5ac3022fd009668f692.jar" />
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_99f3806b75299637d715bce12f3e7cf6d10ce008/classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/pre-dexed/debug/classes-7cf47ada934a47fd2f9ce46f930145a90e1111ad.jar" />
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_3a1511e141099fc31624c18946c0855d0fd4ae46/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="07b06a78576de56a11317da51ba247c48f859d9f">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_c5b3a4a5130763bb5878cc431b033cfd1d8195be/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_7bad98033c224bd37dc21ffdb94b01f339533e54/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_852d9b0bf1967d9e2a5863e3c0a4921e12b29c45/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_7136bb77aaac7d85b16148373f0dba0b57ef319b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR149-TextInputLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_9931eb9ea0fd046504a904d64e25d853d5eb3245/classes.dex" />
     </item>
 
 </items>

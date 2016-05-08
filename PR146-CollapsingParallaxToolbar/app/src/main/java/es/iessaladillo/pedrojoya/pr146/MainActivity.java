@@ -1,13 +1,13 @@
 package es.iessaladillo.pedrojoya.pr146;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
+@SuppressWarnings("SimplifiableIfStatement")
 public class MainActivity extends AppCompatActivity {
 
     @Override

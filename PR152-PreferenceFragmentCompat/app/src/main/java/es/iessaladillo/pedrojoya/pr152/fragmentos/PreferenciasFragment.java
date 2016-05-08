@@ -37,11 +37,6 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onCreatePreferences(Bundle bundle, String key) {
         mPreferenceScreenKey = key;
         // Se construye el fragmento de preferencias a partir de la
@@ -126,7 +121,10 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
             PasswordPreference pref = (PasswordPreference) preferencia;
             // Se establece como summary el valor textual de la preferencia
             // convertida a asteriscos.
-            pref.setSummary(new String(new char[pref.getText().length()]).replace("\0", "*"));
+            String texto = pref.getText();
+            if (texto != null) {
+                pref.setSummary(new String(new char[pref.getText().length()]).replace("\0", "*"));
+            }
         }
         // Si es un EditTextPreference.
         else if (preferencia instanceof EditTextPreference) {
@@ -160,7 +158,8 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
      * @return true if we managed a preference which isn't supported by default, false otherwise.
      */
 
-    public static boolean onDisplayPreferenceDialog(PreferenceFragmentCompat preferenceFragmentCompat, Preference preference) {
+    @SuppressWarnings("UnusedReturnValue")
+    private static boolean onDisplayPreferenceDialog(PreferenceFragmentCompat preferenceFragmentCompat, Preference preference) {
         DialogFragment dialogFragment = (DialogFragment) preferenceFragmentCompat.getFragmentManager().findFragmentByTag(FRAGMENT_DIALOG_TAG);
         if (dialogFragment != null) return false;
 

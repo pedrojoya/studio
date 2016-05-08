@@ -35,20 +35,23 @@ public class MainActivity extends AppCompatActivity {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        ((Spinner) findViewById(R.id.spnAnimacion)).setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view,
-                                       int position, long id) {
-                // Se realiza la animación seleccionada.
-                animar(position);
-            }
+        Spinner spnAnimacion = (Spinner) findViewById(R.id.spnAnimacion);
+        if (spnAnimacion != null) {
+            spnAnimacion.setOnItemSelectedListener(
+                    new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view,
+                                                   int position, long id) {
+                            // Se realiza la animación seleccionada.
+                            animar(position);
+                        }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        });
+                        }
+                    });
+        }
         imgImagen = (ImageView) findViewById(R.id.imgImagen);
     }
 

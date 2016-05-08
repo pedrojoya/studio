@@ -2,46 +2,74 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-b5070680276ffe1b84c1ad094b8531b52fb0e840.jar" />
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\pre-dexed\debug\classes-cbc9ba042e3e1e6898a5e610b417424d9f7691b7.jar" />
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_75d8463d103fb49f13738c6c52b6e5c6c99b7583/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-704f5f136cab3bc774d2fbc4eff23b53d2336175.jar" />
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_e50dafbdc9c774aeea5d08ceddfdc623c9f840f1/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\pre-dexed\debug\classes-b9eba2751569f60beb595f7c9ff102be3be73262.jar" />
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_ee94e178cad4e53e47250afb3f7280c9eedab5a4/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\pre-dexed\debug\classes-3c94b853a7d811aeeb65c51b65267f4622480a1b.jar" />
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3489d76b017fb56a5b75d2b1820fcc18a31bbcc2">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a3a37d3bc95de09cc7556e396547b6a00ad0a94a/classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR144-AppBarLayout\app\build\intermediates\pre-dexed\debug\classes-1df6a4afca0245f97272c14f3e87bbea8eb2bbe2.jar" />
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_46602835b312160a221b77515225f28a66c46a5c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_eaf3b95b4caca7ca13946713efb57a1256907547/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="20838ac1ec408d8fbfff7c43e6d36538983899e9">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f653db0155c944c33dc3e3088c735d09dc129d92/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_9dee22d8c5d13916bcb52577f6ec718d9163ac56/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_c93ddd61a5ede75b26637ca3dbc0fa63c6667132/classes.dex" />
     </item>
 
 </items>
