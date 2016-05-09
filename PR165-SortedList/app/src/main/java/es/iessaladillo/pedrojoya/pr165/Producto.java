@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr165;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@SuppressWarnings("unused")
 public class Producto implements Parcelable {
 
     private String nombre;

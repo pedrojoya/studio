@@ -5,7 +5,7 @@ import android.view.View;
 
 public class CuboTransformer implements ViewPager.PageTransformer {
 
-    public static final float ROTACION_MAX = 90.0f;
+    private static final float ROTACION_MAX = 90.0f;
 
     // Debemos recordar que la traslationX ya se realiza por defecto.
     @Override

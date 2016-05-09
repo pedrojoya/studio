@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr165;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -50,22 +51,27 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupRecyclerView() {
-        lstTareas = (RecyclerView) findViewById(R.id.lstTareas);
-        lstTareas.setHasFixedSize(true);
         mAdaptador = new ProductosAdapter(mDatos);
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        lstTareas.setAdapter(mAdaptador);
         mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
-        lstTareas.setLayoutManager(mLayoutManager);
-        lstTareas.addItemDecoration(
-                new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        lstTareas.setItemAnimator(new DefaultItemAnimator());
+        lstTareas = (RecyclerView) findViewById(R.id.lstTareas);
+        if (lstTareas != null) {
+            lstTareas.setHasFixedSize(true);
+            lstTareas.setAdapter(mAdaptador);
+            lstTareas.setLayoutManager(mLayoutManager);
+            lstTareas.addItemDecoration(
+                    new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+            lstTareas.setItemAnimator(new DefaultItemAnimator());
+        }
     }
 
     private void setupFAB() {
-        findViewById(R.id.fab).setOnClickListener(this);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(this);
+        }
     }
 
     @Override

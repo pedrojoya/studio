@@ -12,10 +12,12 @@ import java.util.ArrayList;
 
 public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.ViewHolder> {
 
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Producto producto, int position);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Producto producto, int position);
     }
@@ -28,7 +30,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
     public ProductosAdapter(ArrayList<Producto> datos) {
         // Se crea y configura el SortedList y el objeto listener se será notificado
         // cada vez que se vaya a realizar una operación sobre la lista..
-        mDatos = new SortedList<Producto>(Producto.class, new SortedList.Callback<Producto>() {
+        mDatos = new SortedList<>(Producto.class, new SortedList.Callback<Producto>() {
 
             // Cuando se deben comparar dos productos para ordenarlos en la lista.
             @Override
@@ -67,8 +69,8 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
             @Override
             public boolean areContentsTheSame(Producto oldItem, Producto newItem) {
                 return oldItem.getNombre().toUpperCase().equals(newItem.getNombre().toUpperCase()) &&
-                       oldItem.getCantidad() == newItem.getCantidad() &&
-                        oldItem.getUnidad().toUpperCase().equals(newItem.getUnidad().toUpperCase()) ;
+                        oldItem.getCantidad() == newItem.getCantidad() &&
+                        oldItem.getUnidad().toUpperCase().equals(newItem.getUnidad().toUpperCase());
             }
 
             // Cuando se debe comprobar si dos productos son el mismo.
@@ -140,6 +142,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
     }
 
     // Añade un elemento a la lista ordenada.
+    @SuppressWarnings("UnusedReturnValue")
     public int addItem(Producto producto) {
         return mDatos.add(producto);
     }

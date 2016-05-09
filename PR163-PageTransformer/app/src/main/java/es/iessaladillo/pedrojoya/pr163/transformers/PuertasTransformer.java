@@ -15,7 +15,7 @@ public class PuertasTransformer implements ViewPager.PageTransformer {
             view.setRotationY(0.0f);
         } else {
             // Se rota sobre el eje Y hasta 30 grados.
-            view.setRotationY(position * -30);
+            view.setRotationY(position * -GIRO_MAX_GRADOS);
         }
     }
 

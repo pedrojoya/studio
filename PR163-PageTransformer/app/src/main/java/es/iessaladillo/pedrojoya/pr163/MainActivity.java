@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // No mostrará título (en su lugar mostrará el spinner).
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
     }
 
     // Configura el ViewPager.
@@ -67,32 +70,34 @@ public class MainActivity extends AppCompatActivity {
     // Configura el spinner.
     private void setupSpinner() {
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        // Se crea el adaptador a partir de un recurso de array de cadenas.
-        // Es importante usar el contexto de la toolbar tematizado y no el
-        // contexto habitual de la actividad, para que el spinner se muestre
-        // correctamente en la toolbar.
-        ToolbarSpinnerAdapter adaptador = new ToolbarSpinnerAdapter(
-                getSupportActionBar().getThemedContext(),
-                new ArrayList<String>(Arrays.asList(
-                        getResources().getStringArray(R.array.transformaciones))));
-        spinner.setAdapter(adaptador);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(final AdapterView<?> parent, final View view,
-                                       final int position, final long id) {
-                // Cuando se selecciona un elemento en el spinner, se establece
-                // la transformación correspondiente en el viewpager.
-                mViewPager.setPageTransformer(true, TRANSFORMACIONES[position]);
-            }
+        if (spinner != null && getSupportActionBar() != null) {
+            // Se crea el adaptador a partir de un recurso de array de cadenas.
+            // Es importante usar el contexto de la toolbar tematizado y no el
+            // contexto habitual de la actividad, para que el spinner se muestre
+            // correctamente en la toolbar.
+            ToolbarSpinnerAdapter adaptador = new ToolbarSpinnerAdapter(
+                    getSupportActionBar().getThemedContext(),
+                    new ArrayList<>(Arrays.asList(
+                            getResources().getStringArray(R.array.transformaciones))));
+            spinner.setAdapter(adaptador);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(final AdapterView<?> parent, final View view,
+                                           final int position, final long id) {
+                    // Cuando se selecciona un elemento en el spinner, se establece
+                    // la transformación correspondiente en el viewpager.
+                    mViewPager.setPageTransformer(true, TRANSFORMACIONES[position]);
+                }
 
-            @Override
-            public void onNothingSelected(final AdapterView<?> parent) {
-                // Si no se ha seleccionado ningún elemento en el spinner
-                // (inicialmente), se establece la primera transforamción en el
-                // viewpager.
-                mViewPager.setPageTransformer(true, TRANSFORMACIONES[0]);
-            }
-        });
+                @Override
+                public void onNothingSelected(final AdapterView<?> parent) {
+                    // Si no se ha seleccionado ningún elemento en el spinner
+                    // (inicialmente), se establece la primera transforamción en el
+                    // viewpager.
+                    mViewPager.setPageTransformer(true, TRANSFORMACIONES[0]);
+                }
+            });
+        }
     }
 
     public static class PaginaFragment extends Fragment {
@@ -119,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) rootView.findViewById(R.id.lblTexto);
             textView.setText(getString(R.string.section_format,
                     getArguments().getInt(ARG_VALOR)));
-            rootView.setBackgroundColor(
-                    getResources().getColor(getArguments().getInt(ARG_COLOR)));
+            rootView.setBackgroundColor(ContextCompat.getColor(getActivity(), getArguments().getInt(ARG_COLOR)));
             return rootView;
         }
     }

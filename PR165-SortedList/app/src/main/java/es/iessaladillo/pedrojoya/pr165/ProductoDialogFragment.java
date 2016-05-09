@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr165;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -31,6 +32,7 @@ public class ProductoDialogFragment extends DialogFragment {
     public interface ProductoDialogListener {
         void onAgregarClick(Producto producto);
 
+        @SuppressWarnings("EmptyMethod")
         void onCancelarClick();
     }
 
@@ -40,7 +42,7 @@ public class ProductoDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
         b.setTitle(R.string.agregar_producto);
-        final View layout = LayoutInflater.from(getActivity()).inflate(
+        @SuppressLint("InflateParams") final View layout = LayoutInflater.from(getActivity()).inflate(
                 R.layout.dialog_producto, null);
         initVistas(layout);
         b.setView(layout);
@@ -172,6 +174,7 @@ public class ProductoDialogFragment extends DialogFragment {
             return false;
         }
         // Unidad.
+        //noinspection RedundantIfStatement
         if (TextUtils.isEmpty(txtUnidad.getText().toString())) {
             return false;
         }
