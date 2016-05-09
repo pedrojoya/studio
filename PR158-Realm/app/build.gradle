@@ -1,8 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+def support_library_version = "23.3.0"
+def glide_version = "3.7.0"
+def circleimageview_version = "1.2.2"
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr158"
@@ -22,10 +27,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'io.realm:realm-android:0.85.1'
-    compile 'com.github.bumptech.glide:glide:3.5.2'
-    compile 'de.hdodenhof:circleimageview:1.2.2'
+    compile "com.android.support:appcompat-v7:${support_library_version}"
+    compile "com.android.support:design:${support_library_version}"
+    compile "com.android.support:recyclerview-v7:${support_library_version}"
+    compile "com.github.bumptech.glide:glide:${glide_version}"
+    compile "de.hdodenhof:circleimageview:${circleimageview_version}"
 }

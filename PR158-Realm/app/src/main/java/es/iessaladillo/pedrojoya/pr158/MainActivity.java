@@ -18,7 +18,7 @@ import io.realm.RealmResults;
 
 
 public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
-        AlumnosAdapter.OnItemLongClickListener, RealmChangeListener {
+        AlumnosAdapter.OnItemLongClickListener, RealmChangeListener<Realm> {
 
     private static final String STATE_LISTA = "estadoLista";
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         // Se obtiene la instancia de Realm y se configura. La actividad actuará
         // como listener cuando se produzcan cambios en ella.
         // a ejecutar.
-        mRealm = Realm.getInstance(getApplicationContext());
+        mRealm = Realm.getDefaultInstance();
         mRealm.addChangeListener(this);
         // Se obtienen e inicializan las vistas.
         initVistas();
@@ -60,28 +60,32 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     // Configura el FAB.
     private void configFab() {
         FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Se inicia la actividad de detalle para añadir.
-                DetalleActivity.start(MainActivity.this);
-            }
-        });
+        if (fabAccion != null) {
+            fabAccion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Se inicia la actividad de detalle para añadir.
+                    DetalleActivity.start(MainActivity.this);
+                }
+            });
+        }
     }
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        RecyclerView lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(mRealm, getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
         mAdaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
-        lstAlumnos.setAdapter(mAdaptador);
-        mLayoutManager = new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false);
-        lstAlumnos.setLayoutManager(mLayoutManager);
-        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        RecyclerView lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        if (lstAlumnos != null) {
+            lstAlumnos.setHasFixedSize(true);
+            lstAlumnos.setAdapter(mAdaptador);
+            mLayoutManager = new LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL, false);
+            lstAlumnos.setLayoutManager(mLayoutManager);
+            lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        }
     }
 
     // Retorna la lista de alumnos ordenados por nombre.
@@ -135,9 +139,8 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         super.onDestroy();
     }
 
-    // Cuando se producen cambios en la base de datos.
     @Override
-    public void onChange() {
+    public void onChange(Realm element) {
         // Se notifica al adaptador para que los dibuje.
         mAdaptador.notifyDataSetChanged();
     }

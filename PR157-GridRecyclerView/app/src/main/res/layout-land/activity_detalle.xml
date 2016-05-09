@@ -2,8 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_content"
-    android:layout_width="match_parent"
+                                                 android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="es.iessaladillo.pedrojoya.pr157.DetalleActivity">
 
@@ -29,7 +28,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nsvScrollView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -39,8 +37,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/cvTarjeta"
-                android:layout_width="match_parent"
+                                                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 card_view:cardCornerRadius="5dp"
                 card_view:cardElevation="6dp"
@@ -64,7 +61,8 @@
             app:layout_widthPercent="@fraction/dimen_imagen"
             android:contentDescription="@string/imagen_cabecera"
             android:scaleType="centerCrop"
-            android:transitionName="@string/nombre_transicion_imagen" />
+            android:transitionName="@string/nombre_transicion_imagen"
+            tools:ignore="UnusedAttribute"/>
 
 
     </android.support.percent.PercentRelativeLayout>

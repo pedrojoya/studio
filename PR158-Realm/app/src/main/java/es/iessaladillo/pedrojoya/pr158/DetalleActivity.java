@@ -61,7 +61,7 @@ public class DetalleActivity extends AppCompatActivity {
         configTransitions();
         mAleatorio = new Random();
         // Se obtiene la instancia de Realm.
-        mRealm = Realm.getInstance(getApplicationContext());
+        mRealm = Realm.getDefaultInstance();
         // Se obtienen e inicializan las vistas.
         initVistas();
         // Si nos han llamado con un id de alumno, se obtiene el alumno y se muestra.
@@ -145,13 +145,15 @@ public class DetalleActivity extends AppCompatActivity {
     private void configFab() {
         FloatingActionButton fabAccion =
                 (FloatingActionButton) findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Se guardan los cambios y se finaliza la actividad.
-                guardar();
-            }
-        });
+        if (fabAccion != null) {
+            fabAccion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Se guardan los cambios y se finaliza la actividad.
+                    guardar();
+                }
+            });
+        }
     }
 
     // Guarda los cambios en la base de datos y finaliza la actividad.

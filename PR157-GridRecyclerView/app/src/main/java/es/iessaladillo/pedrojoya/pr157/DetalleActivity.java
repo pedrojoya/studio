@@ -21,7 +21,6 @@ public class DetalleActivity extends AppCompatActivity {
     private static final String EXTRA_CONCEPTO = "extra_concepto";
 
     private Concepto mConcepto;
-    private ImageView imgFotoDetalle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +36,13 @@ public class DetalleActivity extends AppCompatActivity {
 
     // Configura la Toolbar.
     private void configToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+        }
     }
 
 
@@ -58,15 +62,19 @@ public class DetalleActivity extends AppCompatActivity {
 
     // Inicializa las vistas.
     private void initVistas() {
-        imgFotoDetalle = (ImageView) findViewById(R.id.imgFotoDetalle);
-        WebView wvNavegador = (WebView) findViewById(R.id.wvNavegador);
-        if (mConcepto != null) {
+        ImageView imgFotoDetalle = (ImageView) findViewById(R.id.imgFotoDetalle);
+        if (mConcepto != null && imgFotoDetalle != null) {
             imgFotoDetalle.setImageResource(mConcepto.getFotoResId());
             setTitle(mConcepto.getEnglish());
-            wvNavegador.loadUrl("http://www.thefreedictionary.com/" + mConcepto.getEnglish());
+            WebView wvNavegador = (WebView) findViewById(R.id.wvNavegador);
+            if (wvNavegador != null) {
+                wvNavegador.loadUrl("http://www.thefreedictionary.com/" + mConcepto.getEnglish());
+            }
             // Por defecto se expande la appbar.
             AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-            appbar.setExpanded(true);
+            if (appbar != null) {
+                appbar.setExpanded(true);
+            }
         }
     }
 

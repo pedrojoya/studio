@@ -103,7 +103,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public void removeItem(int position) {
         // Se elimina el alumno de la base de datos.
         mRealm.beginTransaction();
-        mDatos.remove(position);
+        mDatos.deleteFromRealm(position);
         mRealm.commitTransaction();
         // Se notifica al adaptador la eliminación.
         notifyItemRemoved(position);
@@ -112,6 +112,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Añade un elemento a la lista.
+    @SuppressWarnings("unused")
     public void addItem(Alumno alumno) {
         // Se añade el alumno a la base de datos.
         mRealm.beginTransaction();
@@ -179,11 +180,13 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Alumno alumno, int position);
     }

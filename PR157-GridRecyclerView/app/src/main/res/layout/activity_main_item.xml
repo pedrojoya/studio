@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imgFoto"
@@ -10,7 +11,8 @@
         android:layout_height="200dp"
         android:contentDescription="@string/concepto"
         android:scaleType="centerCrop"
-        android:transitionName="@string/nombre_transicion_imagen" />
+        android:transitionName="@string/nombre_transicion_imagen"
+        tools:ignore="UnusedAttribute"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +28,8 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="@dimen/info_textSize"
-            android:transitionName="@string/nombre_transicion_texto"/>
+            android:transitionName="@string/nombre_transicion_texto"
+            tools:ignore="UnusedAttribute"/>
 
         <TextView
             android:id="@+id/lblSpanish"

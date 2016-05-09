@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
+    xmlns:tools="http://schemas.android.com/tools"
     package="es.iessaladillo.pedrojoya.pr157"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -10,7 +11,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -22,7 +24,8 @@
             android:name=".DetalleActivity"
             android:label="@string/concepto"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/CollapsingTheme">
+            android:theme="@style/CollapsingTheme"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="es.iessaladillo.pedrojoya.pr157.MainActivity"/>
