@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private PaginasAdapter mAdaptador;
     private TabLayout tabLayout;
     private FloatingActionButton fab;
+    private ImageView imgCabecera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,51 +52,57 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(getString(R.string.app_name));
         }
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        collapsingToolbarLayout.setTitleEnabled(false);
+        if (collapsingToolbarLayout != null) {
+            collapsingToolbarLayout.setTitleEnabled(false);
+        }
     }
 
     // Configura el viewPager.
     private void setupViewPager() {
         // Se crea y asigna el adaptador de páginas al viewPager.
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         ArrayList<String> titulosPaginas = new ArrayList<>();
         for (int i = 0; i < NUM_PAGINAS; i++) {
             titulosPaginas.add(getString(R.string.tab, i + 1));
         }
         mAdaptador = new PaginasAdapter(getSupportFragmentManager(), titulosPaginas);
-        viewPager.setAdapter(mAdaptador);
-        viewPager.setOffscreenPageLimit(2);
-        // Se configura el tabLayout para que trabaje con el viewPager.
-        tabLayout.setupWithViewPager(viewPager);
-        // Se añade un listener para que al cambiar la página se cambia la
-        // imagen de cabecera.
-        final ImageView imgCabecera = (ImageView) findViewById(R.id.imgCabecera);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        if (viewPager != null) {
+            viewPager.setAdapter(mAdaptador);
+            viewPager.setOffscreenPageLimit(2);
+            // Se configura el tabLayout para que trabaje con el viewPager.
+            tabLayout.setupWithViewPager(viewPager);
+            // Se añade un listener para que al cambiar la página se cambia la
+            // imagen de cabecera.
+            imgCabecera = (ImageView) findViewById(R.id.imgCabecera);
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-            final int[] imagenes = {R.drawable.foto0, R.drawable.foto1, R.drawable.foto2};
+                final int[] imagenes = {R.drawable.foto0, R.drawable.foto1, R.drawable.foto2};
 
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                // Se establece la nueva imagen de cabecera y se fuerza el repintado.
-                imgCabecera.setImageResource(imagenes[position]);
-                imgCabecera.invalidate();
-                // Se muestra u oculta el FAB.
-                if (position == 1) {
-                    fab.hide();
-                } else {
-                    fab.show();
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 }
-            }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+                @Override
+                public void onPageSelected(int position) {
+                    if (imgCabecera != null) {
+                        // Se establece la nueva imagen de cabecera y se fuerza el repintado.
+                        imgCabecera.setImageResource(imagenes[position]);
+                        imgCabecera.invalidate();
+                        // Se muestra u oculta el FAB.
+                        if (position == 1) {
+                            fab.hide();
+                        } else {
+                            fab.show();
+                        }
+                    }
+                }
 
-        });
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                }
+
+            });
+        }
     }
 
     // Configura el FAB.

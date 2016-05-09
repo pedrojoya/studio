@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="es.iessaladillo.pedrojoya.pr157.DetalleActivity">
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -64,7 +63,8 @@
             android:layout_toStartOf="@+id/nsvScrollView"
             android:contentDescription="@string/imagen_cabecera"
             android:scaleType="centerCrop"
-            android:transitionName="@string/nombre_transicion_imagen" />
+            android:transitionName="@string/nombre_transicion_imagen"
+            tools:ignore="UnusedAttribute" />
 
 
     </android.support.percent.PercentRelativeLayout>

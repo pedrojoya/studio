@@ -214,7 +214,7 @@ public class DetalleActivity extends AppCompatActivity {
     private void configTransitions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Transición de entrada.
-            Slide enterTransition = new Slide(Gravity.BOTTOM);
+            Fade enterTransition = new Fade(Fade.IN);
             enterTransition.excludeTarget(android.R.id.statusBarBackground, true);
             enterTransition.excludeTarget(android.R.id.navigationBarBackground, true);
             enterTransition.excludeTarget(R.id.appbar, true);
@@ -233,32 +233,16 @@ public class DetalleActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Se gestiona el Up para que se haga la animación.
-                return gestionarUp();
+                // return gestionarUp();
+                onBackPressed();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    // Gestiona la navegación Up para que se haga la animación.
-    private boolean gestionarUp() {
-        // Se obtiene el intent que apunta a la actividad padre
-        Intent upIntent = NavUtils.getParentActivityIntent(this);
-        upIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        // Si DetalleActivity NO se creó desde MainActivity.
-        if (NavUtils.shouldUpRecreateTask(this, upIntent)
-                || this.isTaskRoot()) {
-            // Se construye la tarea para ligar ambas actividades
-            TaskStackBuilder.create(this)
-                    .addNextIntentWithParentStack(upIntent)
-                    .startActivities();
-        }
-        // Si estamos en Android 5 o superior, se finaliza con animaciones.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            this.finishAfterTransition();
-            return true;
-        }
-        // Si no se ha retornado aún, que el sistema lo gestione.
-        return false;
+    @Override
+    public void onBackPressed() {
+        ActivityCompat.finishAfterTransition(this);
     }
-
 }

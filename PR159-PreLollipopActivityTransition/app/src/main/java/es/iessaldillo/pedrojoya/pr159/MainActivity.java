@@ -27,14 +27,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initVistas() {
-        RecyclerView grdConceptos = (RecyclerView) findViewById(R.id.grdConceptos);
-        grdConceptos.setHasFixedSize(true);
-        // El grid tendrá dos columnas
-        grdConceptos.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
-        grdConceptos.setItemAnimator(new DefaultItemAnimator());
         ConceptosAdapter mAdaptador = new ConceptosAdapter(getDatos());
         mAdaptador.setOnItemClickListener(this);
-        grdConceptos.setAdapter(mAdaptador);
+        RecyclerView grdConceptos = (RecyclerView) findViewById(R.id.grdConceptos);
+        if (grdConceptos != null) {
+            grdConceptos.setHasFixedSize(true);
+            // El grid tendrá dos columnas
+            grdConceptos.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
+            grdConceptos.setItemAnimator(new DefaultItemAnimator());
+            grdConceptos.setAdapter(mAdaptador);
+        }
     }
 
     private ArrayList<Concepto> getDatos() {

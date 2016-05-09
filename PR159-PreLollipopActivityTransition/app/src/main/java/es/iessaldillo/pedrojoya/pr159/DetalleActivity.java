@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebView;
@@ -45,13 +46,15 @@ public class DetalleActivity extends AppCompatActivity {
     private void initVistas() {
         imgFotoDetalle = (ImageView) findViewById(R.id.imgFotoDetalle);
         WebView wvNavegador = (WebView) findViewById(R.id.wvNavegador);
-        if (mConcepto != null) {
+        if (mConcepto != null && wvNavegador != null) {
             imgFotoDetalle.setImageResource(mConcepto.getFotoResId());
             setTitle(mConcepto.getEnglish());
             wvNavegador.loadUrl("http://www.thefreedictionary.com/" + mConcepto.getEnglish());
             // Por defecto se expande la appbar.
             AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-            appbar.setExpanded(true);
+            if (appbar != null) {
+                appbar.setExpanded(true);
+            }
         }
     }
 
@@ -65,6 +68,10 @@ public class DetalleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // Al pulsar atrás se inicia la transición a la inversa.
+        CardView cvTarjeta = (CardView) findViewById(R.id.cvTarjeta);
+        if (cvTarjeta != null) {
+            cvTarjeta.animate().translationY(cvTarjeta.getHeight()).setDuration(1000);
+        }
         mExitTransition.exit(this);
     }
 

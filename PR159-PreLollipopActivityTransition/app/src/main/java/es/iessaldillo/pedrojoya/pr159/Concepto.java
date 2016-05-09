@@ -42,6 +42,7 @@ class Concepto implements Parcelable {
         dest.writeString(this.spanish);
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected Concepto(Parcel in) {
         this.fotoResId = in.readInt();
         this.english = in.readString();

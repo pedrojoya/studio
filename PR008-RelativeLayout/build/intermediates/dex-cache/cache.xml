@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\classes-3d3a0a20b07a20a0c9a8060c08d9d951a2efd0de.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="200262bebd50919101031843c4b8b97723838cfc">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ed314c780810e9657e4cdcad8fc71cf8533b14ba\classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-f48d32cd74c106beeff7f2bee746d81134121580.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_f29587471da80923523041d5566532d29e6fe0b7\classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\classes-01bbe28221f81f5ab0daf0ac09b4ef75178fd877.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_0e0d6cf06f5b7220f2c67baaca30c0eca8cf5e8e\classes.dex" />
     </item>
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-7a0e010d3a34f4facea2614a45246d96db5d393e.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_cfed32b2af9dd3226ad6e3ba97ce84394daac379\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_efb7e2981b5f122444a3d4eb15ea59e06711c6a5\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_d6b2b22209bb5035152135ca72cc185daa8a85c0\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_c8ced565400625a462bad0aecf004019fb1012c3\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="41bbd58e2ddbbbbf2f9ca7148165549cf0361862">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_fc48718185b96e5e9bd8e11449a6cd034d033ce3\classes.dex" />
     </item>
 
 </items>

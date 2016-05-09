@@ -12,12 +12,13 @@ import java.util.ArrayList;
 public class ConceptosAdapter extends RecyclerView.Adapter<ConceptosAdapter.ViewHolder> {
 
     // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Concepto concepto, int position);
     }
 
     private OnItemClickListener onItemClickListener;
-    ArrayList<Concepto> mConceptos;
+    private final ArrayList<Concepto> mConceptos;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
