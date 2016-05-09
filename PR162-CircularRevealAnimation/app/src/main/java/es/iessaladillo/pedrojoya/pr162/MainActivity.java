@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -40,27 +41,36 @@ public class MainActivity extends AppCompatActivity {
 
     private void initVistas() {
         llPanel = (LinearLayout) findViewById(R.id.llPanel);
-        findViewById(R.id.imgGaleria).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), R.string.galeria, Toast.LENGTH_SHORT).show();
-                revelar(llPanel, DURACION_ANIM_MS, true);
-            }
-        });
-        findViewById(R.id.imgVideo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), R.string.video, Toast.LENGTH_SHORT).show();
-                revelar(llPanel, DURACION_ANIM_MS, true);
-            }
-        });
-        findViewById(R.id.imgFoto).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), R.string.foto, Toast.LENGTH_SHORT).show();
-                revelar(llPanel, DURACION_ANIM_MS, true);
-            }
-        });
+        ImageView imgGaleria = (ImageView) findViewById(R.id.imgGaleria);
+        if (imgGaleria != null) {
+            imgGaleria.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), R.string.galeria, Toast.LENGTH_SHORT).show();
+                    revelar(llPanel, DURACION_ANIM_MS, true);
+                }
+            });
+        }
+        ImageView imgVideo = (ImageView) findViewById(R.id.imgVideo);
+        if (imgVideo != null) {
+            imgVideo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), R.string.video, Toast.LENGTH_SHORT).show();
+                    revelar(llPanel, DURACION_ANIM_MS, true);
+                }
+            });
+        }
+        ImageView imgFoto = (ImageView) findViewById(R.id.imgFoto);
+        if (imgFoto != null) {
+            imgFoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), R.string.foto, Toast.LENGTH_SHORT).show();
+                    revelar(llPanel, DURACION_ANIM_MS, true);
+                }
+            });
+        }
     }
 
     private void setupToolbar() {
