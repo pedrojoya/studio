@@ -18,18 +18,21 @@ import java.util.ArrayList;
 import es.iessaladillo.pedrojoya.pr166.R;
 import es.iessaladillo.pedrojoya.pr166.bd.Instituto;
 
+@SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     private final TextDrawable.IBuilder mDrawableBuilder;
 
     // Interfaz que debe implementar el listener para cuando se haga click
     // sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Cursor cursor, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click
     // largo sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Cursor cursor, int position);
     }

@@ -2,13 +2,16 @@ package es.iessaladillo.pedrojoya.pr158;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 // Modelo Alumno.
 @SuppressWarnings("WeakerAccess")
 public class Alumno extends RealmObject {
 
     @PrimaryKey
+    @Required
     private String id;
+    @Required
     private String nombre;
     private String direccion;
     private String urlFoto;

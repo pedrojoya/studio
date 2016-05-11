@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 // Simula un BD.
+@SuppressWarnings("unused")
 class DB {
 
     private static final long MILISEGUNDOS_ESPERA = 1000;

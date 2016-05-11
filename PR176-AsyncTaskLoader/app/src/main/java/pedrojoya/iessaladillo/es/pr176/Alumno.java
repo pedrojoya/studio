@@ -1,6 +1,7 @@
 package pedrojoya.iessaladillo.es.pr176;
 
 // Modelo Alumno.
+@SuppressWarnings("UnusedParameters")
 class Alumno {
 
     private final String nombre;

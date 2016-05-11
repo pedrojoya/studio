@@ -9,6 +9,7 @@ import java.util.Map;
 
 // From: https://github.com/SeanZoR/shared-preferences-helper
 
+@SuppressWarnings({"SameParameterValue", "WeakerAccess", "CanBeFinal", "unused"})
 @SuppressLint("CommitPrefEdits")
 public class SharedPrefHelper {
 
@@ -48,6 +49,7 @@ public class SharedPrefHelper {
         return (mPref.getBoolean(mRes.getString(resId), defValue));
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean getBoolean(int resId) {
         return getBoolean(resId, false);
     }
@@ -152,6 +154,7 @@ public class SharedPrefHelper {
         edit.apply();
     }
 
+    @SuppressWarnings("unchecked")
     private void runOverMap(Map<String, Object> map, SharedPreferences.Editor edit) {
         for (String key : map.keySet()) {
             Object value = map.get(key);

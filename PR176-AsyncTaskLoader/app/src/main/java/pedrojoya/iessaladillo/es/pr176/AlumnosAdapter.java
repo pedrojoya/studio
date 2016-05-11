@@ -10,7 +10,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -110,6 +109,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Intercambia dos elementos de la lista.
+    @SuppressWarnings("unused")
     void swapItems(int from, int to) {
         if (mDatos != null) {
             // Se realiza el intercambio.
@@ -159,11 +159,13 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Alumno alumno, int position);
     }

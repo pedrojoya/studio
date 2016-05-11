@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomSheetBehavior<RelativeLayout> bsb;
     private ImageView imgDetalle;
-    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,29 +28,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        fab = (FloatingActionButton) findViewById(R.id.fab);
         imgDetalle = (ImageView) findViewById(R.id.imgDetalle);
         RelativeLayout rlPanel = (RelativeLayout) findViewById(R.id.rlPanel);
-        bsb = BottomSheetBehavior.from(rlPanel);
-        //bsb.setPeekHeight(getResources().getDimensionPixelSize(R.dimen.bottomSheet_peekHeight));
-        bsb.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(View bottomSheet, int newState) {
-                switch (newState) {
-                    case BottomSheetBehavior.STATE_EXPANDED:
-                        imgDetalle.setImageResource(R.drawable.ic_arrow_drop_down);
-                        break;
-                    case BottomSheetBehavior.STATE_COLLAPSED:
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        imgDetalle.setImageResource(R.drawable.ic_arrow_drop_up);
-                        break;
+        if (rlPanel != null) {
+            bsb = BottomSheetBehavior.from(rlPanel);
+            //bsb.setPeekHeight(getResources().getDimensionPixelSize(R.dimen.bottomSheet_peekHeight));
+            bsb.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                    switch (newState) {
+                        case BottomSheetBehavior.STATE_EXPANDED:
+                            imgDetalle.setImageResource(R.drawable.ic_arrow_drop_down);
+                            break;
+                        case BottomSheetBehavior.STATE_COLLAPSED:
+                        case BottomSheetBehavior.STATE_HIDDEN:
+                            imgDetalle.setImageResource(R.drawable.ic_arrow_drop_up);
+                            break;
+                    }
                 }
-            }
 
-            @Override
-            public void onSlide(View bottomSheet, float slideOffset) {
-            }
-        });
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                }
+            });
+        }
         imgDetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,14 +62,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                intent.putExtra(SearchManager.QUERY, getString(R.string.foto_del_dia));
-                startActivity(intent);
-            }
-        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                    intent.putExtra(SearchManager.QUERY, getString(R.string.foto_del_dia));
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
 }

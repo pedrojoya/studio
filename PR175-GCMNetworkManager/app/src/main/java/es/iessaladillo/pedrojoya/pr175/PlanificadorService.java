@@ -20,9 +20,8 @@ import com.google.android.gms.gcm.TaskParams;
 public class PlanificadorService extends GcmTaskService {
 
     public static final int DEFAULT_INTERVAL = 5000;
-    private static final int TRABAJO_ID = 1;
-    public static final String KEY_MENSAJE = "key_mensaje";
-    public static final String TRABAJO_MENSAJE_TAG = "trabajo_mensaje";
+    private static final String KEY_MENSAJE = "key_mensaje";
+    private static final String TRABAJO_MENSAJE_TAG = "trabajo_mensaje";
 
     private static final int RC_ENTENDIDO = 1;
     private static final int NC_AVISAR = 1;
@@ -118,6 +117,5 @@ public class PlanificadorService extends GcmTaskService {
                 PreferenceManager.getDefaultSharedPreferences(context));
         prefs.applyBoolean(R.string.pref_activo, false);
     }
-
 
 }

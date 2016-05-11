@@ -60,6 +60,7 @@ public class AlumnoActivity extends AppCompatActivity {
     }
 
     // Para iniciar la actividad esperando respuesta.
+    @SuppressWarnings("SameParameterValue")
     public static void startForResult(Activity activity, int requestCode) {
         activity.startActivityForResult(new Intent(activity, AlumnoActivity.class), requestCode);
     }

@@ -17,6 +17,7 @@ import es.iessaladillo.pedrojoya.pr166.modelos.Alumno;
  * interactuar con la base de datos si hacer uso de sentencias SQL ni conocer
  * detalles internos de ella.
  */
+@SuppressWarnings("unused")
 public class DAO {
 
     // Variables a nivel de clase.
@@ -63,6 +64,7 @@ public class DAO {
 
     // Borra de la BD un alumno. Recibe el _id del alumno a borrar. Retorna true
     // si se ha realizado la eliminación con éxito.
+    @SuppressWarnings("UnusedReturnValue")
     public boolean deleteAlumno(long id) {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();

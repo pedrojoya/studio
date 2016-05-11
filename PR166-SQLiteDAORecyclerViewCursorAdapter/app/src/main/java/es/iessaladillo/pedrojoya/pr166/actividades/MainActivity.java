@@ -37,13 +37,15 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        findViewById(R.id.btnAgregar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onAgregarAlumno();
-            }
-        });
         btnAgregar = (FloatingActionButton) findViewById(R.id.btnAgregar);
+        if (btnAgregar != null) {
+            btnAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onAgregarAlumno();
+                }
+            });
+        }
     }
 
     // Carga el fragmento de la lista.

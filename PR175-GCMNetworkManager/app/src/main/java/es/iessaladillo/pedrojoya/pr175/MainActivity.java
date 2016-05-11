@@ -9,17 +9,18 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.txtMensaje)
+    @BindView(R.id.txtMensaje)
     EditText txtMensaje;
-    @Bind(R.id.txtIntervalo)
+    @BindView(R.id.txtIntervalo)
     EditText txtIntervalo;
-    @Bind(R.id.swActivar)
+    @BindView(R.id.swActivar)
     SwitchCompat swActivar;
 
     private int mTrabajoId;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         swActivar.setChecked(prefs.getBoolean(R.string.pref_activo, false));
     }
 
+    @SuppressWarnings("UnusedParameters")
     @OnCheckedChanged(R.id.swActivar)
     public void swActivarOnCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Dependiendo del estado en el que ha quedado

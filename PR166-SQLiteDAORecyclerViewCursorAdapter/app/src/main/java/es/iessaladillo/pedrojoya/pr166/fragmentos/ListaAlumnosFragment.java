@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr166.fragmentos;
 
-import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -79,7 +79,9 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         });
         RecyclerView lstAlumnos = (RecyclerView) v.findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
-        mAdaptador = new AlumnosAdapter();
+        if (mAdaptador == null) {
+            mAdaptador = new AlumnosAdapter();
+        }
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
         mAdaptador.setOnEmptyStateChangedListener(new AlumnosAdapter.OnEmptyStateChangedListener() {
@@ -155,7 +157,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
     // Cuando el fragmento es cargado en la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             // Se establece la actividad como objeto listener.

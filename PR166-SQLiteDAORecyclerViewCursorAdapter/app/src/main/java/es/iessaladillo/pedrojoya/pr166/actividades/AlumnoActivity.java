@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr166.actividades;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -33,16 +34,19 @@ public class AlumnoActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        findViewById(R.id.btnGuardar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Se llama al método guardarAlumno del fragmento.
-                AlumnoFragment frg = (AlumnoFragment) getSupportFragmentManager().findFragmentByTag(TAG_FRG_ALUMNO);
-                if (frg != null) {
-                    frg.guardarAlumno();
+        FloatingActionButton btnGuardar = (FloatingActionButton) findViewById(R.id.btnGuardar);
+        if (btnGuardar != null) {
+            btnGuardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Se llama al método guardarAlumno del fragmento.
+                    AlumnoFragment frg = (AlumnoFragment) getSupportFragmentManager().findFragmentByTag(TAG_FRG_ALUMNO);
+                    if (frg != null) {
+                        frg.guardarAlumno();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     // Carga el fragmento del alumno.

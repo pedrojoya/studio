@@ -2,13 +2,15 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/translucent_grey"
     android:padding="@dimen/panel_padding"
     app:layout_behavior="@string/bottom_sheet_behavior"
     app:behavior_peekHeight="@dimen/bottomSheet_peekHeight"
-    app:behavior_hideable="true">
+    app:behavior_hideable="true"
+    tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/lblTitulo"
@@ -21,7 +23,7 @@
         android:layout_toStartOf="@+id/imgDetalle"
         android:text="@string/foto_del_dia"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/abc_text_size_headline_material"/>
+        style="@style/Base.TextAppearance.AppCompat.Headline"/>
 
     <TextView
         android:id="@+id/lblSubtitulo"
@@ -34,7 +36,7 @@
         android:layout_toStartOf="@+id/imgDetalle"
         android:text="@string/londres"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/abc_text_size_subhead_material"/>
+        style="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
     <ImageView
         android:id="@+id/imgDetalle"
@@ -49,13 +51,15 @@
         android:src="@drawable/ic_arrow_drop_up"/>
 
     <TextView
-        android:id="@+id/lblDetalle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblSubtitulo"
         android:paddingLeft="@dimen/panel_padding"
+        android:paddingStart="@dimen/panel_padding"
+        android:paddingRight="@dimen/panel_padding"
+        android:paddingEnd="@dimen/panel_padding"
         android:paddingTop="@dimen/panel_padding"
         android:text="@string/detalle"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/abc_text_size_body_2_material"/>
+        style="@style/Base.TextAppearance.AppCompat.Body2"/>
 </RelativeLayout>

@@ -23,13 +23,11 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         AlumnosAdapter.OnItemLongClickListener, LoaderManager.LoaderCallbacks<ArrayList<Alumno>>,
         SwipeRefreshLayout.OnRefreshListener {
 
-    private static final String STATE_LISTA = "estadoLista";
     private static final int LOADER_ID = 1;
     private static final int RC_AGREGAR = 1;
 
     private RecyclerView lstAlumnos;
     private AlumnosAdapter mAdaptador;
-    private LinearLayoutManager mLayoutManager;
     private TextView mEmptyView;
     private SwipeRefreshLayout swlPanel;
 
@@ -65,20 +63,19 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     // Configura el FAB.
     private void configFab() {
         FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //agregarAlumno(DB.getNextAlumno());
-                AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR);
-            }
-        });
+        if (fabAccion != null) {
+            fabAccion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //agregarAlumno(DB.getNextAlumno());
+                    AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR);
+                }
+            });
+        }
     }
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        TextView lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
-        lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter();
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
@@ -95,23 +92,28 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
                 checkAdapterIsEmpty();
             }
         });
-        lstAlumnos.setAdapter(mAdaptador);
-        checkAdapterIsEmpty();
-        mLayoutManager = new LinearLayoutManager(this,
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
-        lstAlumnos.setLayoutManager(mLayoutManager);
-        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        if (lstAlumnos != null) {
+            lstAlumnos.setHasFixedSize(true);
+            lstAlumnos.setAdapter(mAdaptador);
+            lstAlumnos.setLayoutManager(mLayoutManager);
+            lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        }
+        checkAdapterIsEmpty();
     }
 
     // Configura el SwipeRefreshLayout.
     private void configPanel() {
         swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
-        swlPanel.setOnRefreshListener(this);
-
-        swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+        if (swlPanel != null) {
+            swlPanel.setOnRefreshListener(this);
+            swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+        }
     }
 
     // Cuando el usuario hace swipe to refresh.
@@ -133,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     }
 
     // Agrega un alumno a la ArrayLista.
+    @SuppressWarnings("unused")
     private void agregarAlumno(Alumno alumno) {
         // Se agrega el alumno.
         mAdaptador.addItem(alumno);

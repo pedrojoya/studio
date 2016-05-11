@@ -1,14 +1,12 @@
 package pedrojoya.iessaladillo.es.pr176;
 
 import android.content.Context;
-import android.content.IntentFilter;
 import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-public class AlumnosLoader extends AsyncTaskLoader<ArrayList<Alumno>> {
+class AlumnosLoader extends AsyncTaskLoader<ArrayList<Alumno>> {
 
     private ArrayList<Alumno> mDatos;
 
