@@ -58,30 +58,31 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin">
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:hint="@string/nombre">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nombre"
                     android:inputType="textPersonName">
 
                     <requestFocus/>
-                </EditText>
+                </android.support.design.widget.TextInputEditText>
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin">
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:hint="@string/direccion">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtDireccion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/direccion"/>
+                    android:inputType="text"/>
 
             </android.support.design.widget.TextInputLayout>
 

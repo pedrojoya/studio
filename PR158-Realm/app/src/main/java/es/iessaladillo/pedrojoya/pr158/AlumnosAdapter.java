@@ -174,8 +174,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             String url = alumno.getUrlFoto();
             Glide.with(imgAvatar.getContext())
                     .load(url)
-                    .placeholder(R.drawable.ic_user)
-                    .error(R.drawable.ic_user)
+//                    .placeholder(R.drawable.ic_user)
+ //                   .error(R.drawable.ic_user)
                     .into(imgAvatar);
         }
 

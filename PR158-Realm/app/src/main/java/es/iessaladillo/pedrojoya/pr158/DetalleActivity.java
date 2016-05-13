@@ -81,7 +81,8 @@ public class DetalleActivity extends AppCompatActivity {
         }
         // Se muestra la foto. Cuando esté cargada, se inicia la transición
         // que había sido pospuesta.
-        Glide.with(this).load(mUrlFoto).placeholder(R.drawable.placeholder)
+        Glide.with(this).load(mUrlFoto)
+                .placeholder(R.drawable.placeholder)
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, String model,
@@ -104,7 +105,7 @@ public class DetalleActivity extends AppCompatActivity {
 
     // Obtiene una foto aleatoria.
     private String getFotoAleatoria() {
-        return "http://lorempixel.com/300/300/nature/" + (mAleatorio.nextInt(8) + 1) + "/";
+        return "http://lorempixel.com/200/200/abstract/" + (mAleatorio.nextInt(8) + 1) + "/";
     }
 
     // Muestra los datos del alumno
@@ -126,7 +127,8 @@ public class DetalleActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mUrlFoto = getFotoAleatoria();
                 Glide.with(view.getContext()).load(mUrlFoto)
-                        .placeholder(R.drawable.placeholder).into(imgFoto);
+                        .placeholder(R.drawable.placeholder)
+                        .into(imgFoto);
             }
         });
     }
@@ -158,23 +160,26 @@ public class DetalleActivity extends AppCompatActivity {
 
     // Guarda los cambios en la base de datos y finaliza la actividad.
     private void guardar() {
-        mRealm.beginTransaction();
-        if (TextUtils.isEmpty(mIdAlumno)) {
-            // Si es un alumno nuevo.
-            mAlumno.setId(UUID.randomUUID().toString());
-            mAlumno.setNombre(txtNombre.getText().toString());
-            mAlumno.setDireccion(txtDireccion.getText().toString());
-            mAlumno.setUrlFoto(mUrlFoto);
-            mAlumno.setTimestamp(System.currentTimeMillis());
-        } else {
-            // Si se está actualizando.
-            mAlumno.setNombre(txtNombre.getText().toString());
-            mAlumno.setDireccion(txtDireccion.getText().toString());
-            mAlumno.setUrlFoto(mUrlFoto);
-        }
-        // Se añade o actualiza el alumno a la base de datos.
-        mRealm.copyToRealmOrUpdate(mAlumno);
-        mRealm.commitTransaction();
+        mRealm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                if (TextUtils.isEmpty(mIdAlumno)) {
+                    // Si es un alumno nuevo.
+                    mAlumno.setId(UUID.randomUUID().toString());
+                    mAlumno.setNombre(txtNombre.getText().toString());
+                    mAlumno.setDireccion(txtDireccion.getText().toString());
+                    mAlumno.setUrlFoto(mUrlFoto);
+                    mAlumno.setTimestamp(System.currentTimeMillis());
+                } else {
+                    // Si se está actualizando.
+                    mAlumno.setNombre(txtNombre.getText().toString());
+                    mAlumno.setDireccion(txtDireccion.getText().toString());
+                    mAlumno.setUrlFoto(mUrlFoto);
+                }
+                // Se añade o actualiza el alumno a la base de datos (en el hilo secundario).
+                realm.copyToRealmOrUpdate(mAlumno);
+            }
+        });
         // Se finaliza la actividad.
         ActivityCompat.finishAfterTransition(DetalleActivity.this);
     }
