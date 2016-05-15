@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr158;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -15,6 +16,8 @@ public class Alumno extends RealmObject {
     private String nombre;
     private String direccion;
     private String urlFoto;
+    private RealmList<Asignatura> asignaturas;
+
     private long timestamp;
 
     public Alumno() {
@@ -59,6 +62,14 @@ public class Alumno extends RealmObject {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public RealmList<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(RealmList<Asignatura> asignaturas) {
+        this.asignaturas = asignaturas;
     }
 
 }

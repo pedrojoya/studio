@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 // Adaptador para la lista de alumnos.
@@ -17,7 +18,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     private final RealmResults<Alumno> mDatos;
     private final Realm mRealm;
-    private View emptyView;
     private OnItemLongClickListener onItemLongClickListener;
     private OnItemClickListener onItemClickListener;
 
@@ -94,8 +94,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Además el RecyclerView debe tener rv.setStableIds(true).
     @Override
     public long getItemId(int position) {
-        // Muestra la empty view si  la lista está vacía.
-        checkIfEmpty();
         return mDatos.get(position).getTimestamp();
     }
 
@@ -107,8 +105,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mRealm.commitTransaction();
         // Se notifica al adaptador la eliminación.
         notifyItemRemoved(position);
-        // Muestra la empty view si  la lista está vacía.
-        checkIfEmpty();
     }
 
     // Añade un elemento a la lista.
@@ -121,21 +117,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // Se indica al adaptador que han cambiado los datos (ojo NO se indoca
         // cual porque Realm no lo permite.
         notifyDataSetChanged();
-        // Muestra la empty view si  la lista está vacía.
-        checkIfEmpty();
-    }
-
-    // Comprueba si la lista está vacía.
-    private void checkIfEmpty() {
-        if (emptyView != null) {
-            // Muestra u oculta la empty view dependiendo de si la lista está vacía o no.
-            emptyView.setVisibility(getItemCount() > 0 ? View.GONE : View.VISIBLE);
-        }
-    }
-
-    // Establece la empty view para la lista.
-    public void setEmptyView(View emptyView) {
-        this.emptyView = emptyView;
     }
 
     // Establece el listener a informar cuando se hace click sobre un elemento de la lista.
@@ -170,12 +151,17 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         public void bind(Alumno alumno) {
             // Se escriben los mDatos en la vista.
             lblNombre.setText(alumno.getNombre());
-            lblDireccion.setText(alumno.getDireccion());
+            RealmList<Asignatura> asignaturas = alumno.getAsignaturas();
+            String sAsignaturas = "";
+            for (Asignatura asignatura: asignaturas) {
+                sAsignaturas = sAsignaturas + asignatura.getId() + " ";
+            }
+            lblDireccion.setText(sAsignaturas);
             String url = alumno.getUrlFoto();
             Glide.with(imgAvatar.getContext())
                     .load(url)
 //                    .placeholder(R.drawable.ic_user)
- //                   .error(R.drawable.ic_user)
+//                    .error(R.drawable.ic_user)
                     .into(imgAvatar);
         }
 

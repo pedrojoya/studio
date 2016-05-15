@@ -2,30 +2,42 @@ package es.iessaladillo.pedrojoya.pr158;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 
 public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
-        AlumnosAdapter.OnItemLongClickListener, RealmChangeListener<Realm> {
+        AlumnosAdapter.OnItemLongClickListener, RealmChangeListener<RealmResults<Alumno>> {
 
-    private static final String STATE_LISTA = "estadoLista";
+    private static final int RC_DETALLE = 1;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.lstAlumnos)
+    RecyclerView lstAlumnos;
+    @BindView(R.id.lblNoHayAlumnos)
+    TextView lblNoHayAlumnos;
+    @BindView(R.id.fabAccion)
+    FloatingActionButton fabAccion;
 
     private AlumnosAdapter mAdaptador;
-    private LinearLayoutManager mLayoutManager;
-    private Parcelable mEstadoLista;
     private Realm mRealm;
+    private RecyclerView.AdapterDataObserver mObservador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         // Se obtiene la instancia de Realm y se configura. La actividad actuará
         // como listener cuando se produzcan cambios en ella.
         // a ejecutar.
         mRealm = Realm.getDefaultInstance();
-        mRealm.addChangeListener(this);
         // Se obtienen e inicializan las vistas.
         initVistas();
     }
@@ -48,56 +60,67 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     private void initVistas() {
         configToolbar();
         configRecyclerView();
-        configFab();
+        crearAsignaturas();
+    }
+
+    private void crearAsignaturas() {
+        Asignatura asignatura = new Asignatura();
+        asignatura.setId("PMDMO");
+        asignatura.setNombre("Android");
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(asignatura);
+        mRealm.commitTransaction();
+        Asignatura asignatura2 = new Asignatura();
+        asignatura.setId("PSPRO");
+        asignatura.setNombre("Multihilo");
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(asignatura);
+        mRealm.commitTransaction();
     }
 
     // Configura la Toolbar.
     private void configToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
-    // Configura el FAB.
-    private void configFab() {
-        FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
-        if (fabAccion != null) {
-            fabAccion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Se inicia la actividad de detalle para añadir.
-                    DetalleActivity.start(MainActivity.this);
-                }
-            });
-        }
+    @OnClick(R.id.fabAccion)
+    public void agregar() {
+        // Se inicia la actividad de detalle para añadir.
+        DetalleActivity.startForResult(MainActivity.this, RC_DETALLE);
     }
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
         mAdaptador = new AlumnosAdapter(mRealm, getAlumnos());
-        mAdaptador.setOnItemClickListener(this);
-        mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.setEmptyView(findViewById(R.id.lblNoHayAlumnos));
-        RecyclerView lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
-        if (lstAlumnos != null) {
-            lstAlumnos.setHasFixedSize(true);
-            lstAlumnos.setAdapter(mAdaptador);
-            mLayoutManager = new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false);
-            lstAlumnos.setLayoutManager(mLayoutManager);
-            lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        }
+        mAdaptador.setOnItemClickListener(MainActivity.this);
+        mAdaptador.setOnItemLongClickListener(MainActivity.this);
+        lstAlumnos.setHasFixedSize(true);
+        lstAlumnos.setAdapter(mAdaptador);
+        lstAlumnos.setLayoutManager(new LinearLayoutManager(MainActivity.this,
+                LinearLayoutManager.VERTICAL, false));
+        lstAlumnos.setItemAnimator(new DefaultItemAnimator());
+        checkAdapterIsEmpty();
+    }
+
+    private void checkAdapterIsEmpty() {
+        lblNoHayAlumnos.setVisibility(
+                mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     // Retorna la lista de alumnos ordenados por nombre.
     private RealmResults<Alumno> getAlumnos() {
-         return mRealm.where(Alumno.class).findAllSortedAsync("nombre");
+        RealmResults<Alumno> datos = mRealm.where(Alumno.class).findAllSorted("nombre");
+        datos.addChangeListener(this);
+        return datos;
     }
+
 
     // Cuando se hace click sobre un elemento de la lista.
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
         // Se inicia la actividad de detalle para actualización.
-        DetalleActivity.start(this, alumno.getId(), view.findViewById(R.id.imgFoto));
+        DetalleActivity.startForResult(this, RC_DETALLE, alumno.getId(),
+                view.findViewById(R.id.imgFoto));
     }
 
     // Cuando se hace long click sobre un elemento de la lista.
@@ -105,30 +128,6 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     public void onItemLongClick(View view, Alumno alumno, int position) {
         // Se elimina el alumno.
         mAdaptador.removeItem(position);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Se salva el estado del RecyclerView.
-        mEstadoLista = mLayoutManager.onSaveInstanceState();
-        outState.putParcelable(STATE_LISTA, mEstadoLista);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // Se obtiene el estado anterior de la lista.
-        mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Se retaura el estado de la lista.
-        if (mEstadoLista != null) {
-            mLayoutManager.onRestoreInstanceState(mEstadoLista);
-        }
     }
 
     @Override
@@ -140,9 +139,10 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     }
 
     @Override
-    public void onChange(Realm element) {
+    public void onChange(RealmResults<Alumno> element) {
         // Se notifica al adaptador para que los dibuje.
+        Log.d("Mia", "Actualización");
         mAdaptador.notifyDataSetChanged();
+        checkAdapterIsEmpty();
     }
-
 }

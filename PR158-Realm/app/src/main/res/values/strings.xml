@@ -6,5 +6,7 @@
     <string name="avatar">Avatar</string>
     <string name="nombre">Nombre</string>
     <string name="direccion">Dirección</string>
+    <string name="actualizar_alumno">Actualizar alumno</string>
+    <string name="agregar_alumno">Agregar alumno</string>
 
 </resources>

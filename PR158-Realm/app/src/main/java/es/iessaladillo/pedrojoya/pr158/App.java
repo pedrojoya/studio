@@ -12,6 +12,6 @@ public class App extends Application {
         super.onCreate();
         // Se configura Realm. La BD se llamará instituto
         Realm.setDefaultConfiguration(
-                new RealmConfiguration.Builder(this).name("instituto").build());
+                new RealmConfiguration.Builder(this).name("instituto.realm").build());
     }
 }

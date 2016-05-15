@@ -4,23 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.NavUtils;
-import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Fade;
-import android.transition.Slide;
-import android.view.Gravity;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.EditText;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -30,7 +32,12 @@ import com.bumptech.glide.request.target.Target;
 import java.util.Random;
 import java.util.UUID;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnEditorAction;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class DetalleActivity extends AppCompatActivity {
@@ -40,14 +47,24 @@ public class DetalleActivity extends AppCompatActivity {
     private static final String TN_FOTO = "transition_foto";
     private static final long ENTER_TRANSITION_DURATION_MILIS = 500;
 
+    @BindView(R.id.imgFoto)
+    ImageView imgFoto;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.collapsingToolbarLayout)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.txtNombre)
+    TextInputEditText txtNombre;
+    @BindView(R.id.txtDireccion)
+    TextInputEditText txtDireccion;
+    @BindView(R.id.fabAccion)
+    FloatingActionButton fabAccion;
+
     private Realm mRealm;
-    private EditText txtNombre;
-    private EditText txtDireccion;
     private String mIdAlumno;
     private Alumno mAlumno;
     private Random mAleatorio;
     private String mUrlFoto;
-    private ImageView imgFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +74,7 @@ public class DetalleActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
+        ButterKnife.bind(this);
         // Se configuran las transiciones.
         configTransitions();
         mAleatorio = new Random();
@@ -70,10 +88,12 @@ public class DetalleActivity extends AppCompatActivity {
             mAlumno = mRealm.where(Alumno.class).equalTo("id", mIdAlumno).findFirst();
             mUrlFoto = mAlumno.getUrlFoto();
             alumnoToVistas();
+            setTitle(R.string.actualizar_alumno);
         } else {
             // Se crea un nuevo alumno con foto aleatoria.
             mAlumno = new Alumno();
             mUrlFoto = getFotoAleatoria();
+            setTitle(R.string.agregar_alumno);
         }
         // Si venimos de un estado anterior dejamos la foto tal y como estaba.
         if (savedInstanceState != null) {
@@ -81,8 +101,10 @@ public class DetalleActivity extends AppCompatActivity {
         }
         // Se muestra la foto. Cuando esté cargada, se inicia la transición
         // que había sido pospuesta.
+        Log.d("Mia", mUrlFoto);
         Glide.with(this).load(mUrlFoto)
                 .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, String model,
@@ -105,7 +127,7 @@ public class DetalleActivity extends AppCompatActivity {
 
     // Obtiene una foto aleatoria.
     private String getFotoAleatoria() {
-        return "http://lorempixel.com/200/200/abstract/" + (mAleatorio.nextInt(8) + 1) + "/";
+        return "http://lorempixel.com/200/200/abstract/" + (mAleatorio.nextInt(7) + 1) + "/";
     }
 
     // Muestra los datos del alumno
@@ -117,49 +139,40 @@ public class DetalleActivity extends AppCompatActivity {
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         configToolbar();
-        configFab();
-        txtNombre = (EditText) findViewById(R.id.txtNombre);
-        txtDireccion = (EditText) findViewById(R.id.txtDireccion);
-        imgFoto = (ImageView) findViewById(R.id.imgFoto);
         ViewCompat.setTransitionName(imgFoto, TN_FOTO);
-        imgFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mUrlFoto = getFotoAleatoria();
-                Glide.with(view.getContext()).load(mUrlFoto)
-                        .placeholder(R.drawable.placeholder)
-                        .into(imgFoto);
-            }
-        });
+    }
+
+    @OnClick(R.id.imgFoto)
+    public void cambiarFoto(View view) {
+        mUrlFoto = getFotoAleatoria();
+        Glide.with(view.getContext()).load(mUrlFoto)
+                .placeholder(R.drawable.placeholder)
+                .into(imgFoto);
     }
 
     // Configura la Toolbar.
     private void configToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        setTitle("");
+        collapsingToolbarLayout.setExpandedTitleColor(
+                ContextCompat.getColor(this, android.R.color.transparent));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(
+                ContextCompat.getColor(this, android.R.color.white));
     }
 
-    // Configura el FAB.
-    private void configFab() {
-        FloatingActionButton fabAccion =
-                (FloatingActionButton) findViewById(R.id.fabAccion);
-        if (fabAccion != null) {
-            fabAccion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Se guardan los cambios y se finaliza la actividad.
-                    guardar();
-                }
-            });
+    @OnEditorAction(R.id.txtDireccion)
+    public boolean onDatosIntroducidos(TextView textView, int actionId, KeyEvent keyEvent) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            guardar();
+            return true;
         }
+        return false;
     }
 
-    // Guarda los cambios en la base de datos y finaliza la actividad.
-    private void guardar() {
+    @OnClick(R.id.fabAccion)
+    public void guardar() {
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -177,9 +190,16 @@ public class DetalleActivity extends AppCompatActivity {
                     mAlumno.setUrlFoto(mUrlFoto);
                 }
                 // Se añade o actualiza el alumno a la base de datos (en el hilo secundario).
-                realm.copyToRealmOrUpdate(mAlumno);
+                Alumno realmAlumno = realm.copyToRealmOrUpdate(mAlumno);
+                // Se le añaden las asignaturas
+                RealmResults<Asignatura> asignaturas = realm.where(Asignatura.class).findAll();
+                for (Asignatura asignatura : asignaturas) {
+                    realmAlumno.getAsignaturas().add(asignatura);
+                }
+                //realm.copyToRealmOrUpdate(realmAlumno);
             }
         });
+        setResult(RESULT_OK);
         // Se finaliza la actividad.
         ActivityCompat.finishAfterTransition(DetalleActivity.this);
     }
@@ -192,20 +212,20 @@ public class DetalleActivity extends AppCompatActivity {
     }
 
     // Método estático para llamar a la actividad (para actualizar).
-    public static void start(Activity activity, String idAlumno, View foto) {
+    public static void startForResult(Activity activity, int requestCode, String idAlumno, View foto) {
         Intent intent = new Intent(activity, DetalleActivity.class);
         intent.putExtra(EXTRA_ID_ALUMNO, idAlumno);
         Bundle opciones = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(
                         activity,
                         foto, TN_FOTO).toBundle();
-        ActivityCompat.startActivity(activity, intent, opciones);
+        ActivityCompat.startActivityForResult(activity, intent, requestCode, opciones);
     }
 
     // Método estático para llamar a la actividad (para añadir).
-    public static void start(Activity activity) {
+    public static void startForResult(Activity activity, int requestCode) {
         Intent intent = new Intent(activity, DetalleActivity.class);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override
@@ -250,4 +270,5 @@ public class DetalleActivity extends AppCompatActivity {
     public void onBackPressed() {
         ActivityCompat.finishAfterTransition(this);
     }
+
 }
