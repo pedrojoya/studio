@@ -8,5 +8,6 @@
         <item>Cubo</item>
         <item>Texto</item>
         <item>Profundidad</item>
+        <item>Vertical</item>
     </string-array>
 </resources>

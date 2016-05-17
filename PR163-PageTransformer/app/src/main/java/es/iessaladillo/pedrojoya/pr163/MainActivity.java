@@ -25,6 +25,7 @@ import es.iessaladillo.pedrojoya.pr163.transformers.RotateTransformer;
 import es.iessaladillo.pedrojoya.pr163.transformers.ScaleTransformer;
 import es.iessaladillo.pedrojoya.pr163.transformers.TextoTransformer;
 import es.iessaladillo.pedrojoya.pr163.transformers.UpTransformer;
+import es.iessaladillo.pedrojoya.pr163.transformers.VerticalTransformer;
 import es.iessaladillo.pedrojoya.pr163.utils.ToolbarSpinnerAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
                     new PuertasTransformer(),
                     new CuboTransformer(),
                     new TextoTransformer(),
-                    new ProfundidadTransformer()
+                    new ProfundidadTransformer(),
+                    new VerticalTransformer()
             };
 
     private ViewPager mViewPager;
