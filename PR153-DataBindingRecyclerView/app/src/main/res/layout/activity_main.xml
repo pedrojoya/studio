@@ -1,4 +1,5 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -14,12 +15,10 @@
             android:background="@color/primary_dark"/>
 
         <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.design.widget.AppBarLayout
-                android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -62,7 +61,8 @@
                 android:layout_marginEnd="@dimen/fab_margin"
                 android:layout_marginRight="@dimen/fab_margin"
                 android:elevation="@dimen/fab_elevation"
-                android:src="@drawable/ic_action_add"/>
+                android:src="@drawable/ic_action_add"
+                tools:ignore="UnusedAttribute" />
 
         </android.support.design.widget.CoordinatorLayout>
 

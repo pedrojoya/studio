@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr153;
+package es.iessaladillo.pedrojoya.pr153.dbutils;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -7,28 +7,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-// Adaptador para la lista de alumnos.
-public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
+@SuppressWarnings("unused")
+public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> extends RecyclerView.Adapter<RecyclerBindingAdapter.ViewHolder> {
 
-    private final ArrayList<Alumno> mDatos;
-    private View emptyView;
-    private OnItemLongClickListener onItemLongClickListener;
-    private OnItemClickListener onItemClickListener;
-
-    // Constructor.
-    public AlumnosAdapter(ArrayList<Alumno> datos) {
-        mDatos = datos;
+    public interface  ViewModel {
+        @SuppressWarnings("SameReturnValue")
+        int getLayoutId();
     }
 
-    // Cuando se debe crear una nueva vista para el elemento.
+    // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
+    public interface OnItemClickListener<T extends RecyclerBindingAdapter.ViewModel> {
+        void onItemClick(View view, T model, int position);
+    }
+
+    // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
+    @SuppressWarnings("UnusedParameters")
+    public interface OnItemLongClickListener<T extends RecyclerBindingAdapter.ViewModel> {
+        void onItemLongClick(View view, T model, int position);
+    }
+
+    private final List<T> mData;
+    private final int mModelBRId;
+    private OnItemLongClickListener<T> onItemLongClickListener;
+    private OnItemClickListener<T> onItemClickListener;
+
+    @SuppressWarnings("SameParameterValue")
+    public RecyclerBindingAdapter(List<T> data, int modelBRId) {
+        this.mData = data;
+        this.mModelBRId = modelBRId;
+    }
+
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public int getItemViewType(int position) {
+        // Se retorna el id del layout correspondiente a ese elemento.
+        return mData.get(position).getLayoutId();
+    }
+
+    @Override
+    public RecyclerBindingAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación XML para obtener la vista-fila.
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false);
+                .inflate(viewType, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -42,7 +65,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
                 if (onItemClickListener != null) {
                     // Se informa al listener.
                     onItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
+                            mData.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }
@@ -54,7 +77,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
                 if (onItemLongClickListener != null) {
                     // Se informa al listener.
                     onItemLongClickListener.onItemLongClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
+                            mData.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                     return true;
                 } else {
@@ -66,73 +89,51 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         return viewHolder;
     }
 
-    // Cuando se deben escribir los datos en las subvistas de la
-    // vista correspondiente al ítem.
     @Override
-    public void onBindViewHolder(AlumnosAdapter.ViewHolder holder, int position) {
-        // Se obtiene el alumno correspondiente.
-        Alumno alumno = mDatos.get(position);
-        // Se establece la variable del data binding.
-        holder.getBinding().setVariable(es.iessaladillo.pedrojoya.pr153.BR
-                .alumno, alumno);
-        // Se fuerza a que se actualice la IU.
+    public void onBindViewHolder(RecyclerBindingAdapter.ViewHolder holder, int position) {
+        final T model = mData.get(position);
+        holder.getBinding().setVariable(mModelBRId, model);
         holder.getBinding().executePendingBindings();
     }
 
-    // Retorna el número de ítems gestionados.
     @Override
     public int getItemCount() {
-        return mDatos.size();
+        if (mData != null) {
+            return mData.size();
+        }
+        return 0;
     }
 
     // Elimina un elemento de la lista.
     public void removeItem(int position) {
-        mDatos.remove(position);
+        mData.remove(position);
         notifyItemRemoved(position);
-        // Si la lista ha quedado vacía se muestra la empty view.
-        checkIfEmpty();
     }
 
     // Añade un elemento a la lista.
-    public void addItem(Alumno alumno) {
+    public void addItem(T model) {
         // Se añade el elemento.
-        mDatos.add(alumno);
+        mData.add(model);
         // Se notifica que se ha insertado un elemento en la última posición.
-        notifyItemInserted(mDatos.size() - 1);
-        // Si la lista estaba vacía se oculta la empty view.
-        checkIfEmpty();
+        notifyItemInserted(mData.size() - 1);
     }
 
     // Intercambia dos elementos de la lista.
     void swapItems(int from, int to) {
         // Se realiza el intercambio.
-        Collections.swap(mDatos, from, to);
+        Collections.swap(mData, from, to);
         // Se notifica el movimiento.
         notifyItemMoved(from, to);
     }
 
-    // Comprueba si la lista está vacía.
-    private void checkIfEmpty() {
-        if (emptyView != null) {
-            // Muestra u oculta la empty view dependiendo de si la lista está vacía o no.
-            emptyView.setVisibility(getItemCount() > 0 ? View.GONE : View.VISIBLE);
-        }
-    }
-
-    // Establece la empty view para la lista.
-    public void setEmptyView(View emptyView) {
-        this.emptyView = emptyView;
-        // Muestra la empty view si  la lista está vacía.
-        checkIfEmpty();
-    }
 
     // Establece el listener a informar cuando se hace click sobre un elemento de la lista.
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener<T> listener) {
         this.onItemClickListener = listener;
     }
 
     // Establece el listener a informar cuando se hace click largo sobre un elemento de la lista.
-    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+    public void setOnItemLongClickListener(OnItemLongClickListener<T> listener) {
         this.onItemLongClickListener = listener;
     }
 
@@ -154,16 +155,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             return binding;
         }
 
-    }
-
-    // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
-    public interface OnItemClickListener {
-        void onItemClick(View view, Alumno alumno, int position);
-    }
-
-    // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
-    public interface OnItemLongClickListener {
-        void onItemLongClick(View view, Alumno alumno, int position);
     }
 
 }

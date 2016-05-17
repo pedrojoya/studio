@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 // Simula un BD.
+@SuppressWarnings("unused")
 class DB {
 
     // Lista de alumnos.

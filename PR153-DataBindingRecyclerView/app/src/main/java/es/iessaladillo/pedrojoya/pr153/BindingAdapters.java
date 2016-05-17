@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class BindingAdapters {
     // El pseudoatributo app:imageUrl ejecuta este método.
     @BindingAdapter("bind:imageUrl")

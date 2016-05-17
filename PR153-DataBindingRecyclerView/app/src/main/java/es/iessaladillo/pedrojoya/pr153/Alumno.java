@@ -3,8 +3,11 @@ package es.iessaladillo.pedrojoya.pr153;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import es.iessaladillo.pedrojoya.pr153.dbutils.RecyclerBindingAdapter;
+
 // Modelo Alumno.
-public class Alumno extends BaseObservable {
+@SuppressWarnings({"unused", "UnusedParameters"})
+public class Alumno extends BaseObservable implements RecyclerBindingAdapter.ViewModel {
 
     private  String nombre;
     private  String direccion;
@@ -47,4 +50,8 @@ public class Alumno extends BaseObservable {
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr153.BR.direccion);
     }
 
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main_item;
+    }
 }
