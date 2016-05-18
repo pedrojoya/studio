@@ -76,6 +76,12 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         mRealm.beginTransaction();
         mRealm.copyToRealmOrUpdate(asignatura);
         mRealm.commitTransaction();
+        Asignatura asignatura3 = new Asignatura();
+        asignatura.setId("HLC");
+        asignatura.setNombre("Horas de libre configuración");
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(asignatura);
+        mRealm.commitTransaction();
     }
 
     // Configura la Toolbar.

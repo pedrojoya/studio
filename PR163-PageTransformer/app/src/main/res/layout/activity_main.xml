@@ -25,7 +25,7 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <android.support.v4.view.ViewPager
+    <es.iessaladillo.pedrojoya.pr163.utils.VerticalViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

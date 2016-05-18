@@ -27,6 +27,7 @@ import es.iessaladillo.pedrojoya.pr163.transformers.TextoTransformer;
 import es.iessaladillo.pedrojoya.pr163.transformers.UpTransformer;
 import es.iessaladillo.pedrojoya.pr163.transformers.VerticalTransformer;
 import es.iessaladillo.pedrojoya.pr163.utils.ToolbarSpinnerAdapter;
+import es.iessaladillo.pedrojoya.pr163.utils.VerticalViewPager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     new VerticalTransformer()
             };
 
-    private ViewPager mViewPager;
+    private VerticalViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Configura el ViewPager.
     private void setupViewPager() {
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (VerticalViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(new PaginasAdapter(getSupportFragmentManager()));
     }
 
@@ -88,7 +89,13 @@ public class MainActivity extends AppCompatActivity {
                                            final int position, final long id) {
                     // Cuando se selecciona un elemento en el spinner, se establece
                     // la transformación correspondiente en el viewpager.
-                    mViewPager.setPageTransformer(true, TRANSFORMACIONES[position]);
+                    if (position == TRANSFORMACIONES.length - 1) {
+                        mViewPager.setSwipeOrientation(VerticalViewPager.VERTICAL);
+                    }
+                    else {
+                        mViewPager.setSwipeOrientation(VerticalViewPager.HORIZONTAL);
+                        mViewPager.setPageTransformer(true, TRANSFORMACIONES[position]);
+                    }
                 }
 
                 @Override

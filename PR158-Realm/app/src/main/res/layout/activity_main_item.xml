@@ -42,7 +42,6 @@
         android:id="@+id/lblDireccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
         android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:paddingRight="@dimen/two_line_text_paddingLeft"
@@ -53,6 +52,25 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         tools:text="c/ La casa de Baldomero"
+        android:layout_marginRight="@dimen/two_line_text_marginRight"
+        android:layout_marginEnd="@dimen/two_line_text_marginRight"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/lblAsignaturas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
+        android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:paddingStart="@dimen/two_line_text_paddingLeft"
+        android:paddingRight="@dimen/two_line_text_paddingLeft"
+        android:paddingEnd="@dimen/two_line_text_paddingLeft"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/lblDireccion"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:text="@string/ninguna"
         android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
         android:textSize="14sp" />

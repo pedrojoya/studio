@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -29,6 +30,8 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -36,16 +39,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
+import butterknife.OnFocusChange;
+import es.iessaladillo.pedrojoya.pr158.utils.ClickToSelectEditText;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 
-public class DetalleActivity extends AppCompatActivity {
+public class DetalleActivity extends AppCompatActivity implements ClickToSelectEditText.OnMultipleItemsSelectedListener {
 
     private static final String EXTRA_ID_ALUMNO = "idAlumno";
     private static final String STATE_URL_FOTO = "urlFoto";
     private static final String TN_FOTO = "transition_foto";
     private static final long ENTER_TRANSITION_DURATION_MILIS = 500;
+    private static final String STATE_INDICES_ASIGNATURAS_SELECCIONADAS = "indicesAsignaturasSeleccionadas";
 
     @BindView(R.id.imgFoto)
     ImageView imgFoto;
@@ -57,6 +64,8 @@ public class DetalleActivity extends AppCompatActivity {
     TextInputEditText txtNombre;
     @BindView(R.id.txtDireccion)
     TextInputEditText txtDireccion;
+    @BindView(R.id.txtAsignaturas)
+    ClickToSelectEditText txtAsignaturas;
     @BindView(R.id.fabAccion)
     FloatingActionButton fabAccion;
 
@@ -65,6 +74,7 @@ public class DetalleActivity extends AppCompatActivity {
     private Alumno mAlumno;
     private Random mAleatorio;
     private String mUrlFoto;
+    RealmResults<Asignatura> mAsignaturas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +97,7 @@ public class DetalleActivity extends AppCompatActivity {
             mIdAlumno = getIntent().getStringExtra(EXTRA_ID_ALUMNO);
             mAlumno = mRealm.where(Alumno.class).equalTo("id", mIdAlumno).findFirst();
             mUrlFoto = mAlumno.getUrlFoto();
-            alumnoToVistas();
+            alumnoToVistas(savedInstanceState);
             setTitle(R.string.actualizar_alumno);
         } else {
             // Se crea un nuevo alumno con foto aleatoria.
@@ -125,21 +135,70 @@ public class DetalleActivity extends AppCompatActivity {
                 }).into(imgFoto);
     }
 
+    private void cargarAsignaturas() {
+        // Se le añaden las asignaturas
+        mAsignaturas = mRealm.where(Asignatura.class).findAll();
+        ArrayList<String> nombresAsignaturas = new ArrayList<>();
+        for (Asignatura asignatura : mAsignaturas) {
+            nombresAsignaturas.add(asignatura.getId());
+        }
+        txtAsignaturas.setListener(this);
+        txtAsignaturas.setItems(nombresAsignaturas);
+    }
+
+    @OnFocusChange(R.id.txtAsignaturas)
+    public void mostrarAsignaturas(View v) {
+        txtAsignaturas.showDialog(v);
+    }
+
     // Obtiene una foto aleatoria.
     private String getFotoAleatoria() {
         return "http://lorempixel.com/200/200/abstract/" + (mAleatorio.nextInt(7) + 1) + "/";
     }
 
     // Muestra los datos del alumno
-    private void alumnoToVistas() {
+    private void alumnoToVistas(Bundle saveInstanceState) {
         txtNombre.setText(mAlumno.getNombre());
         txtDireccion.setText(mAlumno.getDireccion());
+        if (saveInstanceState == null) {
+            RealmList<Asignatura> asignaturasAlumno = mAlumno.getAsignaturas();
+            ArrayList<Integer> indicesAsignaturasAlumno = new ArrayList<>();
+            for (int i = 0; i < mAsignaturas.size(); i++) {
+                // Se busca esa asignatura entre las del alumno.
+                for (int j = 0; j < asignaturasAlumno.size(); j++) {
+                    if (mAsignaturas.get(i).getId().equals(asignaturasAlumno.get(j).getId())) {
+                        indicesAsignaturasAlumno.add(new Integer(i));
+                        break;
+                    }
+                }
+            }
+            int[] indices = IntegerListToArray(indicesAsignaturasAlumno);
+            txtAsignaturas.setSelection(indices);
+            ArrayList<String> nombresAsignaturasAlumno = new ArrayList<String>();
+            for (Asignatura asignaturaAlumno : asignaturasAlumno) {
+                nombresAsignaturasAlumno.add(asignaturaAlumno.getId());
+            }
+            txtAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturasAlumno));
+        }
+        else {
+            int[] indices = IntegerListToArray(saveInstanceState.getIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS));
+            txtAsignaturas.setSelection(indices);
+        }
+    }
+
+    private int[] IntegerListToArray(ArrayList<Integer> indicesAsignaturasAlumno) {
+        int[] indices = new int[indicesAsignaturasAlumno.size()];
+        for (int i = 0; i < indicesAsignaturasAlumno.size(); i++) {
+            indices[i] = indicesAsignaturasAlumno.get(i);
+        }
+        return indices;
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         configToolbar();
         ViewCompat.setTransitionName(imgFoto, TN_FOTO);
+        cargarAsignaturas();
     }
 
     @OnClick(R.id.imgFoto)
@@ -192,9 +251,12 @@ public class DetalleActivity extends AppCompatActivity {
                 // Se añade o actualiza el alumno a la base de datos (en el hilo secundario).
                 Alumno realmAlumno = realm.copyToRealmOrUpdate(mAlumno);
                 // Se le añaden las asignaturas
-                RealmResults<Asignatura> asignaturas = realm.where(Asignatura.class).findAll();
-                for (Asignatura asignatura : asignaturas) {
-                    realmAlumno.getAsignaturas().add(asignatura);
+                realmAlumno.getAsignaturas().clear();
+                List<Integer> indicesAsignaturasAlumno = txtAsignaturas.getSelectedIndices();
+                if (indicesAsignaturasAlumno != null) {
+                    for (int i = 0; i < indicesAsignaturasAlumno.size(); i++) {
+                        realmAlumno.getAsignaturas().add(mAsignaturas.get(indicesAsignaturasAlumno.get(i)));
+                    }
                 }
                 //realm.copyToRealmOrUpdate(realmAlumno);
             }
@@ -232,6 +294,7 @@ public class DetalleActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         // Se almacena la url de la foto.
         outState.putString(STATE_URL_FOTO, mUrlFoto);
+        outState.putIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS, new ArrayList<Integer>(txtAsignaturas.getSelectedIndices()));
         super.onSaveInstanceState(outState);
     }
 
@@ -270,5 +333,24 @@ public class DetalleActivity extends AppCompatActivity {
     public void onBackPressed() {
         ActivityCompat.finishAfterTransition(this);
     }
+
+    @Override
+    public void selectedIndices(List<Integer> indices) {
+    }
+
+    @Override
+    public void selectedStrings(List<String> strings) {
+        txtAsignaturas.setText(getCadenaAsignaturas(strings));
+    }
+
+    private String getCadenaAsignaturas(List<String> nombresAsignaturas) {
+        if (nombresAsignaturas.size() > 0) {
+            return TextUtils.join(", ", nombresAsignaturas);
+        }
+        else {
+            return getString(R.string.ninguna);
+        }
+    }
+
 
 }

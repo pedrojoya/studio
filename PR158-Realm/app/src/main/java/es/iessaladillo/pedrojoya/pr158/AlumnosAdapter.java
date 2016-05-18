@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr158;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -133,36 +138,47 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
-        private final TextView lblNombre;
-        private final TextView lblDireccion;
-        private final CircleImageView imgAvatar;
-
+        @BindView(R.id.lblNombre)
+        public TextView lblNombre;
+        @BindView(R.id.lblDireccion)
+        public TextView lblDireccion;
+        @BindView(R.id.imgFoto)
+        public CircleImageView imgAvatar;
+        @BindView(R.id.lblAsignaturas)
+        public TextView lblAsignaturas;
 
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
             super(itemView);
-            // Se obtienen las vistas de la vista-fila.
-            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
-            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
-            imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgFoto);
+            ButterKnife.bind(this, itemView);
         }
 
         // Escribe el alumno en las vistas.
         public void bind(Alumno alumno) {
             // Se escriben los mDatos en la vista.
             lblNombre.setText(alumno.getNombre());
+            lblDireccion.setText(alumno.getDireccion());
             RealmList<Asignatura> asignaturas = alumno.getAsignaturas();
-            String sAsignaturas = "";
+            ArrayList<String> nombresAsignaturas = new ArrayList<>();
             for (Asignatura asignatura: asignaturas) {
-                sAsignaturas = sAsignaturas + asignatura.getId() + " ";
+                nombresAsignaturas.add(asignatura.getId());
             }
-            lblDireccion.setText(sAsignaturas);
+            lblAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturas));
             String url = alumno.getUrlFoto();
             Glide.with(imgAvatar.getContext())
                     .load(url)
-//                    .placeholder(R.drawable.ic_user)
-//                    .error(R.drawable.ic_user)
+                    .placeholder(R.drawable.ic_user)
+                    .error(R.drawable.ic_user)
                     .into(imgAvatar);
+        }
+
+        private String getCadenaAsignaturas(ArrayList<String> nombresAsignaturas) {
+            if (nombresAsignaturas.size() > 0) {
+                return TextUtils.join(", ", nombresAsignaturas);
+            }
+            else {
+                return itemView.getContext().getString(R.string.ninguna);
+            }
         }
 
     }

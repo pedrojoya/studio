@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-def support_library_version = "23.3.0"
+def support_library_version = "23.4.0"
 
 android {
     compileSdkVersion 23

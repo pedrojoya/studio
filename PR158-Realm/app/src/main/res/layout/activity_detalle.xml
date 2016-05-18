@@ -88,6 +88,21 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:hint="@string/asignaturas">
+
+                <es.iessaladillo.pedrojoya.pr158.utils.ClickToSelectEditText
+                    android:id="@+id/txtAsignaturas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawableRight="@drawable/ic_arrow_drop_down"
+                    android:inputType="none"/>
+
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
