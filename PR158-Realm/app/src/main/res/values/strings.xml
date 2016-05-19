@@ -10,5 +10,6 @@
     <string name="agregar_alumno">Agregar alumno</string>
     <string name="asignaturas">Asignaturas</string>
     <string name="ninguna"><![CDATA[<Ninguna>]]></string>
+    <string name="seleccionar">Seleccionar</string>
 
 </resources>

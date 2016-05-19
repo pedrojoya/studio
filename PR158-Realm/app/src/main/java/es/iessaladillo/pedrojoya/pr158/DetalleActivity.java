@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -143,6 +142,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToSelectE
             nombresAsignaturas.add(asignatura.getId());
         }
         txtAsignaturas.setListener(this);
+        txtAsignaturas.setDialogTitle(getString(R.string.asignaturas));
         txtAsignaturas.setItems(nombresAsignaturas);
     }
 
