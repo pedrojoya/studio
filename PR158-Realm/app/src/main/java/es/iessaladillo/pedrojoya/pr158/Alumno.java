@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
 // Modelo Alumno.
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Alumno extends RealmObject {
 
     @PrimaryKey

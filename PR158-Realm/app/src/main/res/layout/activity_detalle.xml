@@ -94,7 +94,7 @@
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:hint="@string/asignaturas">
 
-                <es.iessaladillo.pedrojoya.pr158.utils.ClickToSelectEditText
+                <es.iessaladillo.pedrojoya.pr158.utils.ClickToMultipleSelectEditText
                     android:id="@+id/txtAsignaturas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

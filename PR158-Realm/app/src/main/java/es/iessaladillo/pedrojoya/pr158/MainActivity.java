@@ -21,6 +21,7 @@ import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
         AlumnosAdapter.OnItemLongClickListener, RealmChangeListener<RealmResults<Alumno>> {
 
@@ -71,16 +72,16 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         mRealm.copyToRealmOrUpdate(asignatura);
         mRealm.commitTransaction();
         Asignatura asignatura2 = new Asignatura();
-        asignatura.setId("PSPRO");
-        asignatura.setNombre("Multihilo");
+        asignatura2.setId("PSPRO");
+        asignatura2.setNombre("Multihilo");
         mRealm.beginTransaction();
-        mRealm.copyToRealmOrUpdate(asignatura);
+        mRealm.copyToRealmOrUpdate(asignatura2);
         mRealm.commitTransaction();
         Asignatura asignatura3 = new Asignatura();
-        asignatura.setId("HLC");
-        asignatura.setNombre("Horas de libre configuración");
+        asignatura3.setId("HLC");
+        asignatura3.setNombre("Horas de libre configuración");
         mRealm.beginTransaction();
-        mRealm.copyToRealmOrUpdate(asignatura);
+        mRealm.copyToRealmOrUpdate(asignatura3);
         mRealm.commitTransaction();
     }
 

@@ -135,6 +135,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Contenedor de vistas para la vista-fila.
+    @SuppressWarnings("unused")
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...

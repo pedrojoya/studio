@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RecyclerView</string>
+    <string name="no_hay_alumnos">No hay alumnos</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="avatar">Avatar</string>
+    <string name="llamar">Llamar</string>
+    <string name="enviar_mensaje">Enviar mensaje</string>
+    <string name="ver_notas">Ver notas</string>
+    <string name="opciones">Opciones</string>
+    <string name="llamar_a">Llamar a %1$s</string>
+    <string name="enviar_mensaje_a">Enviar mensaje a %1$s</string>
+    <string name="ver_notas_de">Ver notas de %1$s</string>
+
+
+</resources>

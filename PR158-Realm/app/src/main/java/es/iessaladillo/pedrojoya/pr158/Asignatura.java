@@ -4,6 +4,7 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Asignatura extends RealmObject {
 
     @PrimaryKey

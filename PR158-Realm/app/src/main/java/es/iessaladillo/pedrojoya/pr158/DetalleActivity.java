@@ -39,13 +39,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import butterknife.OnFocusChange;
-import es.iessaladillo.pedrojoya.pr158.utils.ClickToSelectEditText;
+import es.iessaladillo.pedrojoya.pr158.utils.ClickToMultipleSelectEditText;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
 
-public class DetalleActivity extends AppCompatActivity implements ClickToSelectEditText.OnMultipleItemsSelectedListener {
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class DetalleActivity extends AppCompatActivity implements ClickToMultipleSelectEditText.OnMultipleItemsSelectedListener {
 
     private static final String EXTRA_ID_ALUMNO = "idAlumno";
     private static final String STATE_URL_FOTO = "urlFoto";
@@ -64,7 +65,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToSelectE
     @BindView(R.id.txtDireccion)
     TextInputEditText txtDireccion;
     @BindView(R.id.txtAsignaturas)
-    ClickToSelectEditText txtAsignaturas;
+    ClickToMultipleSelectEditText txtAsignaturas;
     @BindView(R.id.fabAccion)
     FloatingActionButton fabAccion;
 
@@ -167,14 +168,14 @@ public class DetalleActivity extends AppCompatActivity implements ClickToSelectE
                 // Se busca esa asignatura entre las del alumno.
                 for (int j = 0; j < asignaturasAlumno.size(); j++) {
                     if (mAsignaturas.get(i).getId().equals(asignaturasAlumno.get(j).getId())) {
-                        indicesAsignaturasAlumno.add(new Integer(i));
+                        indicesAsignaturasAlumno.add(i);
                         break;
                     }
                 }
             }
             int[] indices = IntegerListToArray(indicesAsignaturasAlumno);
             txtAsignaturas.setSelection(indices);
-            ArrayList<String> nombresAsignaturasAlumno = new ArrayList<String>();
+            ArrayList<String> nombresAsignaturasAlumno = new ArrayList<>();
             for (Asignatura asignaturaAlumno : asignaturasAlumno) {
                 nombresAsignaturasAlumno.add(asignaturaAlumno.getId());
             }
@@ -252,7 +253,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToSelectE
                 Alumno realmAlumno = realm.copyToRealmOrUpdate(mAlumno);
                 // Se le añaden las asignaturas
                 realmAlumno.getAsignaturas().clear();
-                List<Integer> indicesAsignaturasAlumno = txtAsignaturas.getSelectedIndices();
+                @SuppressWarnings("unchecked") List<Integer> indicesAsignaturasAlumno = txtAsignaturas.getSelectedIndices();
                 if (indicesAsignaturasAlumno != null) {
                     for (int i = 0; i < indicesAsignaturasAlumno.size(); i++) {
                         realmAlumno.getAsignaturas().add(mAsignaturas.get(indicesAsignaturasAlumno.get(i)));
@@ -274,6 +275,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToSelectE
     }
 
     // Método estático para llamar a la actividad (para actualizar).
+    @SuppressWarnings("SameParameterValue")
     public static void startForResult(Activity activity, int requestCode, String idAlumno, View foto) {
         Intent intent = new Intent(activity, DetalleActivity.class);
         intent.putExtra(EXTRA_ID_ALUMNO, idAlumno);
@@ -285,6 +287,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToSelectE
     }
 
     // Método estático para llamar a la actividad (para añadir).
+    @SuppressWarnings("SameParameterValue")
     public static void startForResult(Activity activity, int requestCode) {
         Intent intent = new Intent(activity, DetalleActivity.class);
         activity.startActivityForResult(intent, requestCode);
@@ -294,6 +297,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToSelectE
     protected void onSaveInstanceState(Bundle outState) {
         // Se almacena la url de la foto.
         outState.putString(STATE_URL_FOTO, mUrlFoto);
+        //noinspection unchecked,Convert2Diamond
         outState.putIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS, new ArrayList<Integer>(txtAsignaturas.getSelectedIndices()));
         super.onSaveInstanceState(outState);
     }

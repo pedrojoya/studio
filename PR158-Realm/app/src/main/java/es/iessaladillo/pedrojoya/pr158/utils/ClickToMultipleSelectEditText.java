@@ -3,10 +3,11 @@ package es.iessaladillo.pedrojoya.pr158.utils;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -16,10 +17,18 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr158.R;
 
-public class ClickToSelectEditText<T> extends TextInputEditText implements
+@SuppressWarnings("unused")
+public class ClickToMultipleSelectEditText<T> extends TextInputEditText implements
         DialogInterface.OnMultiChoiceClickListener {
 
+    private static final String STATE_ITEMS = "state_items";
+    private static final String STATE_SELECTION = "state_selection";
+    private static final String STATE_SUPER = "superState";
+    private static final String STATE_SELECTION_AT_START = "state_selection_at_start";
+    private static final String STATE_ITEMS_AT_START = "state_items_at_start";
+
     // Interfaz de comunicación para cuando se haga la selección.
+    @SuppressWarnings({"EmptyMethod", "UnusedParameters"})
     public interface OnMultipleItemsSelectedListener{
         void selectedIndices(List<Integer> indices);
         void selectedStrings(List<String> strings);
@@ -28,32 +37,29 @@ public class ClickToSelectEditText<T> extends TextInputEditText implements
     // Listener que será notificado cuando se realice la selección.
     private OnMultipleItemsSelectedListener listener;
     // Cadenas que se mostrarán en el diálogo de multiselección.
-    String[] _items = null;
+    private String[] _items = null;
     // Elementos seleccionados
-    boolean[] mSelection = null;
+    private boolean[] mSelection = null;
     // Elementos seleccionados inicialmente (para dar marcha atrás si se cancela).
-    boolean[] mSelectionAtStart = null;
+    private boolean[] mSelectionAtStart = null;
     // Elementos seleccionados inicialmente (en forma de cadena).
-    String _itemsAtStart = null;
+    @SuppressWarnings({"unused", "FieldCanBeLocal"})
+    private String _itemsAtStart = null;
     private String mDialogTitle;
-    private final CharSequence mHint;
 
     // Constructores.
-    public ClickToSelectEditText(Context context) {
+    public ClickToMultipleSelectEditText(Context context) {
         super(context);
-        mHint = getHint();
         mDialogTitle = context.getString(R.string.seleccionar);
     }
 
-    public ClickToSelectEditText(Context context, AttributeSet attrs) {
+    public ClickToMultipleSelectEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mHint = getHint();
         mDialogTitle = context.getString(R.string.seleccionar);
     }
 
-    public ClickToSelectEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ClickToMultipleSelectEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mHint = getHint();
         mDialogTitle = context.getString(R.string.seleccionar);
     }
 
@@ -136,13 +142,11 @@ public class ClickToSelectEditText<T> extends TextInputEditText implements
     // Establece los elementos a mostrar en el diálogo (cadenas)
     public void setItems(String[] items) {
         _items = items;
-        // Se crean los array de selección del tamaño adecuado y por defecto sólo el primer
+        // Se crean los array de selección del tamaño adecuado. Por defecto ningún
         // elemento estará seleccionado.
         mSelection = new boolean[_items.length];
         mSelectionAtStart = new boolean[_items.length];
         Arrays.fill(mSelection, false);
-        mSelection[0] = true;
-        mSelectionAtStart[0] = true;
         // Se configura la vista para que al hacer click u obtener el foco se muestre el diálogo.
         configureOnClickListener();
     }
@@ -225,7 +229,7 @@ public class ClickToSelectEditText<T> extends TextInputEditText implements
     }
 
     // Retorna la lista de elementos seleccionados (cadenas).
-    public List<String> getSelectedStrings() {
+    private List<String> getSelectedStrings() {
         List<String> selection = new LinkedList<>();
         for (int i = 0; i < _items.length; ++i) {
             if (mSelection[i]) {
@@ -264,7 +268,7 @@ public class ClickToSelectEditText<T> extends TextInputEditText implements
     }
 
     // Retorna una cadena única con los elementos seleccionados.
-    public String getSelectedItemsAsString() {
+    private String getSelectedItemsAsString() {
         StringBuilder sb = new StringBuilder();
         boolean foundOne = false;
 
@@ -280,25 +284,30 @@ public class ClickToSelectEditText<T> extends TextInputEditText implements
         return sb.toString();
     }
 
- /*   @Override
+    @Override
     public Parcelable onSaveInstanceState()
     {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("superState", super.onSaveInstanceState());
-        bundle.putIn("stuff", this.stuff); // ... save stuff
+        bundle.putParcelable(STATE_SUPER, super.onSaveInstanceState());
+        bundle.putStringArray(STATE_ITEMS, _items);
+        bundle.putBooleanArray(STATE_SELECTION, mSelection);
+        bundle.putBooleanArray(STATE_SELECTION_AT_START, mSelectionAtStart);
+        bundle.putString(STATE_ITEMS_AT_START, _itemsAtStart);
         return bundle;
     }
 
     @Override
     public void onRestoreInstanceState(Parcelable state)
     {
-        if (state instanceof Bundle) // implicit null check
-        {
+        if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
-            this.stuff = bundle.getInt("stuff"); // ... load stuff
-            state = bundle.getParcelable("superState");
+            _items = bundle.getStringArray(STATE_ITEMS);
+            mSelection = bundle.getBooleanArray(STATE_SELECTION);
+            mSelectionAtStart = bundle.getBooleanArray(STATE_SELECTION_AT_START);
+            _itemsAtStart = bundle.getString(STATE_ITEMS_AT_START);
+            state = bundle.getParcelable(STATE_SUPER);
         }
         super.onRestoreInstanceState(state);
     }
-*/
+
 }
