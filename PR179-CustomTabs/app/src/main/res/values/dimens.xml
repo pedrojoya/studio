@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="info_height">68dp</dimen>
+    <dimen name="info_padding">16dp</dimen>
+    <dimen name="info_textSize">14sp</dimen>
+</resources>
