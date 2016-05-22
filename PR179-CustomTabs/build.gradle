@@ -16,6 +16,12 @@ allprojects {
     repositories {
         jcenter()
     }
+    // Variables globales.
+    ext {
+        compileSdkVersion = 23
+        buildToolsVersion = "23.0.2"
+        support_library_version = "23.4.0"
+    }
 }
 
 task clean(type: Delete) {

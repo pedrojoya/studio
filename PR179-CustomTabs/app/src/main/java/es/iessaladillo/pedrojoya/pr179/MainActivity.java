@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity
     private static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
 
     private CustomTabsServiceConnection mCustomTabsServiceConnection;
-    private CustomTabsClient mClient;
+    private CustomTabsClient mCustomTabsClient;
     private CustomTabsSession mCustomTabsSession;
     private CustomTabsIntent mCustomTabsIntent;
     private ArrayList<Concepto> mConceptos;
@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onCustomTabsServiceConnected(ComponentName componentName, CustomTabsClient customTabsClient) {
                 // Una vez conectados, almacenamos el cliente de conexión.
-                mClient = customTabsClient;
+                mCustomTabsClient = customTabsClient;
                 // Indicamos al navegador que se vaya inicializando.
-                mClient.warmup(0L);
+                mCustomTabsClient.warmup(0L);
                 // Iniciamos una nueva sesión con el navegador.
-                mCustomTabsSession = mClient.newSession(null);
+                mCustomTabsSession = mCustomTabsClient.newSession(null);
                 // Se realiza la vinculación.
                 CustomTabsClient.bindCustomTabsService(MainActivity.this, CUSTOM_TAB_PACKAGE_NAME, mCustomTabsServiceConnection);
                 // Se preparan las posibles URL.
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 // Al desconectar liberamos los recursos asignados al cliente.
-                mClient = null;
+                mCustomTabsClient = null;
             }
         };
         // Creamos el intent personalizado para CustomTabs.
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-        mClient = null;
+        mCustomTabsClient = null;
         mCustomTabsSession = null;
         mCustomTabsServiceConnection = null;
     }
