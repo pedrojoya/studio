@@ -62,18 +62,24 @@ class BuscarAsyncTask extends AsyncTask<String, Void, String> {
                 }
                 lector.close();
                 // Se busca en el contenido la palabra Aproximadamente.
-                int ini = contenido.indexOf("Aproximadamente");
-                if (ini != -1) {
-                    // Se busca el siguiente espacio en blanco después de
-                    // Aproximadamente.
-                    int fin = contenido.indexOf(" ", ini + 16);
-                    // El resultado corresponde a lo que sigue a
-                    // Aproximadamente, hasta el siguiente espacio en blanco.
-                    resultado = contenido.substring(ini + 16, fin);
-                }
+                resultado = extractResultado(contenido);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return resultado;
+    }
+
+    private String extractResultado(String contenido) {
+        String resultado = "";
+        int ini = contenido.indexOf("Aproximadamente");
+        if (ini != -1) {
+            // Se busca el siguiente espacio en blanco después de
+            // Aproximadamente.
+            int fin = contenido.indexOf(" ", ini + 16);
+            // El resultado corresponde a lo que sigue a
+            // Aproximadamente, hasta el siguiente espacio en blanco.
+            resultado = contenido.substring(ini + 16, fin);
         }
         return resultado;
     }

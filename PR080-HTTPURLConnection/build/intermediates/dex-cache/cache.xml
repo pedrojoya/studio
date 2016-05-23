@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/classes-dc76a9d251922464b141667b6338de0411339b58.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="676fabec529a5e41e49a122042fc1d80c86d0612">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_4c1cfc5b42ca544fa831406ad0c71b8c0adfe93f\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/classes-ec64df0d7739a5b8f45fee256595d937d34ec676.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="708fa3e26f3d6d7bc1fa5568d600ad2672a928c3">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_531686b234b2b66c202fe3f1c36ba55314bf6834\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-653ce51a5df89094eeb29aeb1a8b2a8d507ae70b.jar" />
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_06a593830fb069969763778b4eea133dcfe7a4aa\classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="/Users/pedro/studio/PR080-HTTPURLConnection/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-b1c46bc93b4097f34ac94406659df5be532e3461.jar" />
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_d6b2b22209bb5035152135ca72cc185daa8a85c0\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_574019943085dca89e3829c069835c9f2b5578d8\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_3de78e6a012ecb140ef7660c429b3e85f1132298\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_828822d69dbd3ce23e107a831db64aedf90950bf\classes.dex" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR080-HTTPURLConnection\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_73b98216255e263a644e150093a0f92a99bd8882\classes.dex" />
     </item>
 
 </items>
