@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr179;
 import android.content.ComponentName;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsCallback;
 import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
@@ -14,6 +15,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     private CustomTabsSession mCustomTabsSession;
     private CustomTabsIntent mCustomTabsIntent;
     private ArrayList<Concepto> mConceptos;
+    private String mEnlaces = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,14 @@ public class MainActivity extends AppCompatActivity
                 mCustomTabsClient = customTabsClient;
                 // Indicamos al navegador que se vaya inicializando.
                 mCustomTabsClient.warmup(0L);
-                // Iniciamos una nueva sesión con el navegador.
-                mCustomTabsSession = mCustomTabsClient.newSession(null);
+                // Iniciamos una nueva sesión con el navegador. La actividad actuará
+                mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback(){
+                    @Override
+                    public void onNavigationEvent(int navigationEvent, Bundle extras) {
+                        Toast.makeText(MainActivity.this, navigationEvent, Toast.LENGTH_SHORT).show();
+                        super.onNavigationEvent(navigationEvent, extras);
+                    }
+                });
                 // Se realiza la vinculación.
                 CustomTabsClient.bindCustomTabsService(MainActivity.this, CUSTOM_TAB_PACKAGE_NAME, mCustomTabsServiceConnection);
                 // Se preparan las posibles URL.
