@@ -113,7 +113,7 @@ public class MainActivityTests {
     }
 
     @Test
-    public void validateBtnAceptarEnabledWhenEdadIncorrecta() {
+    public void validateBtnAceptarDisabledWhenEdadIncorrecta() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr005"));
         onView(withId(R.id.txtNombre)).perform(clearText());

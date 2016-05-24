@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements
             lbl.setTextColor(ContextCompat.getColor(this, R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            lbl.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
+            lbl.setTextColor(ContextCompat.getColor(this, R.color.primary));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }

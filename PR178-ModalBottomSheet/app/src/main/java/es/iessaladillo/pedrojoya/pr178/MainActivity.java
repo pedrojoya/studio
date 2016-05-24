@@ -123,28 +123,6 @@ public class MainActivity extends AppCompatActivity implements
                         }
                     });
             itemTouchHelper.attachToRecyclerView(lstAlumnos);
-
-            /* // Hide/Scroll antiguo
-
-            lstAlumnos.addOnScrollListener(new HidingScrollListener() {
-
-                @Override
-                public void onHide() {
-                    // Solo si NO está activo el modo de acción contextual.
-                    if (mActionMode == null) {
-                        hideFloatingViews();
-                    }
-                }
-
-                @Override
-                public void onShow() {
-                    // Solo si NO está activo el modo de acción contextual.
-                    if (mActionMode == null) {
-                        showFloatingViews();
-                    }
-                }
-            });
-            */
         }
     }
 
@@ -206,11 +184,6 @@ public class MainActivity extends AppCompatActivity implements
             toggleSelection(position);
         } else {
             showBottomSheetDialogFragment(alumno);
-/*
-            Toast.makeText(getApplicationContext(),
-                    getString(R.string.has_pulsado_sobre, mAdaptador.getItem(position).getNombre()),
-                    Toast.LENGTH_SHORT).show();
-*/
         }
     }
 
