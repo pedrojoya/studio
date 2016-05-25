@@ -22,10 +22,12 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
+import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -55,17 +57,14 @@ public class MainActivityTests {
 
     @Test
     public void validateBtnAceptarEnabledWhenFormularioCorrecto() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
+        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"));
         onView(withId(R.id.btnAceptar)).check(matches(isEnabled()));
     }
 
     @Test
     public void validateLblUsuarioVisibleWhenTxtUsuarioHasData() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
+        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
         onView(withId(R.id.lblUsuario)).check(matches(isDisplayed()));
     }
 
@@ -77,24 +76,20 @@ public class MainActivityTests {
 
     @Test
     public void validateLblUsuarioColorWhenTxtUsuarioHasFocus() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
+        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
         onView(withId(R.id.lblUsuario)).check(matches(withCurrentTextColor(R.color.accent)));
     }
 
     @Test
     public void validateLblUsuarioColorWhenTxtUsuarioNoFocus() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
         onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
         onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
         onView(withId(R.id.lblUsuario)).check(matches(withCurrentTextColor(R.color.primary)));
     }
 
     @Test
     public void validateLblClaveVisibleWhenTxtClaveHasData() {
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
+        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"));
         onView(withId(R.id.lblClave)).check(matches(isDisplayed()));
     }
 
@@ -106,7 +101,6 @@ public class MainActivityTests {
 
     @Test
     public void validateLblClaveColorWhenTxtClaveHasFocus() {
-        onView(withId(R.id.txtClave)).perform(clearText());
         onView(withId(R.id.txtClave)).perform(typeText("Baldomero"));
         onView(withId(R.id.lblClave)).check(matches(withCurrentTextColor(R.color.accent)));
     }
@@ -120,25 +114,31 @@ public class MainActivityTests {
 
     @Test
     public void validateToastShownWhenBtnAceptarPressed() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"), closeSoftKeyboard());
+        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"), closeSoftKeyboard());
         onView(withId(R.id.btnAceptar)).perform(click());
         onView(withText("Conectando con el usuario Baldomero…"))
                 .inRoot(withDecorView(Matchers.not(mActivityRule.getActivity()
                         .getWindow().getDecorView()))).check(matches(isDisplayed()));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void validateResetFieldsWhenBtnCancelarPressed() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"), closeSoftKeyboard());
+        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"), closeSoftKeyboard());
         onView(withId(R.id.btnCancelar)).perform(click());
         onView(withId(R.id.txtUsuario)).check(matches(withText("")));
         onView(withId(R.id.txtClave)).check(matches(withText("")));
+    }
+
+    @Test
+    public void validateTxtUsuarioHasFocusInitially() {
+        onView(withId(R.id.txtUsuario)).check(matches(hasFocus()));
     }
 
     /**

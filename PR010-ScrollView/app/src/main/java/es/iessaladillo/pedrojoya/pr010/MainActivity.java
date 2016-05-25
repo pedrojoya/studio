@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr010;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         txtMensaje = (EditText) findViewById(R.id.txtMensaje);
         btnEnviar = (ImageView) findViewById(R.id.btnEnviar);
         scvTexto = (ScrollView) findViewById(R.id.scvTexto);
+        txtMensaje.setHorizontallyScrolling(false);
+        txtMensaje.setMaxLines(getResources().getInteger(R.integer.txtMensaje_maxLines));
+        txtMensaje.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         txtMensaje.setOnEditorActionListener(new OnEditorActionListener() {
 
             @Override
@@ -116,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 scv.fullScroll(focus);
                 // scv.scrollTo(0, scv.getBottom());
+                txtMensaje.requestFocus();
             }
         });
     }

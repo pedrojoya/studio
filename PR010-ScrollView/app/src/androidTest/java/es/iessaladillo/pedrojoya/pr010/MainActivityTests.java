@@ -1,19 +1,14 @@
 package es.iessaladillo.pedrojoya.pr010;
 
-import android.content.Context;
-import android.support.annotation.ColorRes;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v4.content.ContextCompat;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.widget.TextView;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,15 +17,15 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
-import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
@@ -42,135 +37,53 @@ public class MainActivityTests {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void validateBtnAceptarDisabledWhenTxtUsuarioEmpty() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
+    public void validateTxtMensajeHasFocusInitially() {
+        onView(withId(R.id.txtMensaje)).check(matches(hasFocus()));
     }
 
     @Test
-    public void validateBtnAceptarDisabledWhenTxtEdadEmpty() {
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
+    public void validateMessageAddedAtTheEnd() {
+        onView(withId(R.id.txtMensaje)).perform(closeSoftKeyboard(), replaceText("Quillo que"));
+        onView(withId(R.id.btnEnviar)).perform(click());
+        onView(withId(R.id.lblTexto)).check(matches(withText(endsWith("Quillo que\n\n"))));
     }
 
     @Test
-    public void validateBtnAceptarEnabledWhenFormularioCorrecto() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
-        onView(withId(R.id.btnAceptar)).check(matches(isEnabled()));
+    public void validateTxtMensajeImeActionDone() {
+        onView(withId(R.id.txtMensaje)).perform(replaceText("Quillo que"), pressImeActionButton());
+        onView(withId(R.id.lblTexto)).check(matches(withText(endsWith("Quillo que\n\n"))));
     }
 
     @Test
-    public void validateLblUsuarioVisibleWhenTxtUsuarioHasData() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.lblUsuario)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void validateLblUsuarioInvisibleWhenTxtUsuarioisEmpty() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.lblUsuario)).check(matches(not(isDisplayed())));
-    }
-
-    @Test
-    public void validateLblUsuarioColorWhenTxtUsuarioHasFocus() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.lblUsuario)).check(matches(withCurrentTextColor(R.color.accent)));
-    }
-
-    @Test
-    public void validateLblUsuarioColorWhenTxtUsuarioNoFocus() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
-        onView(withId(R.id.lblUsuario)).check(matches(withCurrentTextColor(R.color.primary)));
-    }
-
-    @Test
-    public void validateLblClaveVisibleWhenTxtClaveHasData() {
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
-        onView(withId(R.id.lblClave)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void validateLblClaveInvisibleWhenTxtClaveisEmpty() {
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.lblClave)).check(matches(not(isDisplayed())));
-    }
-
-    @Test
-    public void validateLblClaveColorWhenTxtClaveHasFocus() {
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("Baldomero"));
-        onView(withId(R.id.lblClave)).check(matches(withCurrentTextColor(R.color.accent)));
-    }
-
-    @Test
-    public void validateLblClaveColorWhenTxtClaveNoFocus() {
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.lblClave)).check(matches(withCurrentTextColor(R.color.primary)));
-    }
-
-    @Test
-    public void validateToastShownWhenBtnAceptarPressed() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"), closeSoftKeyboard());
-        onView(withId(R.id.btnAceptar)).perform(click());
-        onView(withText("Conectando con el usuario Baldomero…"))
-                .inRoot(withDecorView(Matchers.not(mActivityRule.getActivity()
-                        .getWindow().getDecorView()))).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void validateResetFieldsWhenBtnCancelarPressed() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"), closeSoftKeyboard());
-        onView(withId(R.id.btnCancelar)).perform(click());
-        onView(withId(R.id.txtUsuario)).check(matches(withText("")));
-        onView(withId(R.id.txtClave)).check(matches(withText("")));
+    public void validateBtnEnviarDisabledWhenTxtMensajeEmpty() {
+        onView(withId(R.id.txtMensaje)).perform(clearText());
+        onView(withId(R.id.btnEnviar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtMensaje)).perform(replaceText("Quillo que"));
+        onView(withId(R.id.btnEnviar)).check(matches(isEnabled()));
     }
 
     /**
-     * Returns a matcher that matches {@link TextView}s based on text property value. Note: View's
-     * text property is never null. If you setText(null) it will still be "". Do not use null
-     * matcher.
+     * Matches a string to a specific pattern
      *
-     * @param integerMatcher {@link Matcher} of {@link String} with text to match
+     * @param pattern regular expression
+     * @return the matcher result
+     *
+     * VER https://developer.android.com/reference/java/util/regex/Pattern.html
      */
-    public static Matcher<View> withCurrentTextColor(final Matcher<Integer> integerMatcher) {
-        checkNotNull(integerMatcher);
+    public static Matcher<View> matchesPattern(final String pattern){
+        checkNotNull(pattern);
         return new BoundedMatcher<View, TextView>(TextView.class) {
             @Override
-            public void describeTo(Description description) {
-                description.appendText("with text color: ");
-                integerMatcher.describeTo(description);
+            public void describeTo(final Description description) {
+                description.appendText("The textview does not conform to the pattern: ")
+                        .appendText(pattern);
             }
 
             @Override
-            public boolean matchesSafely(TextView textView) {
-                return integerMatcher.matches(textView.getCurrentTextColor());
+            protected boolean matchesSafely(TextView textView) {
+                return textView.getText().toString().matches(pattern);
             }
         };
-    }
-
-    /**
-     * Returns a matcher that matches {@link TextView} based on it's text property value. Note:
-     * View's Sugar for withTextColor(is("string")).
-     */
-    public static Matcher<View> withCurrentTextColor(@ColorRes int color) {
-        Context context = InstrumentationRegistry.getTargetContext();
-        return withCurrentTextColor(is(ContextCompat.getColor(context, color)));
     }
 
 }

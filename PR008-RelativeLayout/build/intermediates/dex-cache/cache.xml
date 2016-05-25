@@ -2,137 +2,137 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.2/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a890ee8445927649d9ed50f625a315d8758688be">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-idling-resource-2.2.2_33b1621f75cef54fb82566b4394df9271cf8578d.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_b2c0d87114947831446ebe33cd0564b92eaa63bb.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_c2ae18529b0a749fc7829a97b14528bf146a6ec0.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.5/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-exposed-instrumentation-api-publish-0.5_fa985ebdc0f7aedcb6b962e18f319123a034fef7.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-rules-0.5_db095ac96aa88aaf820f9d77745f23acc8453f19.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_5c39bf27ad39f608a6bf396b3720c261b8344858.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_53666571a1a11a7ea2e5d9a1f14575ed274b0d68.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/junit-4.12_df3ebbc9db9c5f2622742248323642bcac127c81.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="479c1e06db31c432330183f5cae684163f186146">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/javax.annotation-api-1.2_e19522440f22160c74c77258406796f3f929d8d2.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_750717d0f432599493544f905f7a1275de603d47.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-core-1.3_3ef5297e9a5b75d33769a6e9b6d9d0ff5fdf2c9a.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/javax.inject-1_64bb995531c1168e702709f18b86135cbe401dc9.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\javax.inject-1_a200a3f93ad5c547608fa892a1d3a382a898c993.jar" />
     </item>
     <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/jsr305-2.0.1_4a2107a4583409f5899e414ecbb56db21d453da8.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\jsr305-2.0.1_35755958026e2739b7b885153f5ad1891060264b.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/jars/classes.jar"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-runner-0.5_3a492d1eb9f351e1e7c553f36bb8f01e4b1f7c92.jar" />
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-core-1.3_c3e3a49ab1020ba5b5088a10781cb819f3a47a23.jar" />
     </item>
     <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support.test\rules\0.5\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-library-1.3_88afaabf4060bef3c29d5d97c7c56bfb9e80c71f.jar" />
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\com.android.support.test-rules-0.5_19d53ff3fbb93bee49c9840a9bc1b514453eea14.jar" />
     </item>
     <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\javax.annotation\javax.annotation-api\1.2\479c1e06db31c432330183f5cae684163f186146\javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\javax.annotation-api-1.2_126e1c17308a3be2027ad90b38bed760c3ca9c2f.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_0231e28402df5fa19505d53b5b2bbb109a9033db.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support.test.espresso\espresso-idling-resource\2.2.2\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\com.android.support.test.espresso-espresso-idling-resource-2.2.2_bda68fccf5ea52933b64c0c00bf9f2190a70ca20.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_56c3687c76f823a1cee8de130a0f932cf659d64a.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_e4dbc47e43631599f914a8721cb5abb312e5d784.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_1ebedf8db9b180b1c47dde7ecedc3fb87fb330e6.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.squareup\javawriter\2.1.1\67ff45d9ae02e583d0f9b3432a5ebbe05c30c966\javawriter-2.1.1.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/javawriter-2.1.1_4b12a6d112a744189295f5dd5aac578766f6d21f.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\javawriter-2.1.1_d31391e7e3a13d1eba01aad6d9ac4d51248dce66.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_80ed51579b2bb53225b5bb786e9b65a7723db646.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-core/2.2.2/jars/classes.jar"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support.test.espresso\espresso-core\2.2.2\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-core-2.2.2_c03d6616867420d4f76c5ccc1a194f4db95ab9f6.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\com.android.support.test.espresso-espresso-core-2.2.2_cf3f4f8ece9c5a92a1ac76ca9be54bf950484111.jar" />
     </item>
     <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-integration\1.3\5de0c73fef18917cd85d0ab70bb23818685e4dfd\hamcrest-integration-1.3.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
-        <dex dex="/Users/pedro/studio/PR008-RelativeLayout/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-integration-1.3_68ac4342d0c3ca19ee9a8c73a3a25283925b934f.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-integration-1.3_e3d347bb5bede2c2bd6a4fdeed6eb85bb4aa3ed4.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support.test\exposed-instrumentation-api-publish\0.5\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\com.android.support.test-exposed-instrumentation-api-publish-0.5_757ecee64086c2dfaf49b938836a3b2af792b319.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support.test\runner\0.5\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\com.android.support.test-runner-0.5_06447ea53037dbc94b8d13f87db9324dc12de60b.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\junit-4.12_7f90326cf671bd51c3e636dcc416a6299e2492aa.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_ec449d10474e81657a0a9093191389e543a79a33.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_019f84d832e7102da2f71ecce72e7e616e79153b.jar" />
+    </item>
+    <item
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-library\1.3\4785a3c21320980282f9f33d0d1264a69040538f\hamcrest-library-1.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR008-RelativeLayout\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-library-1.3_7c8e895924d7c27a9c071933a9260f8501a9ec26.jar" />
     </item>
 
 </items>

@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
@@ -44,8 +45,8 @@ public class MainActivityTests {
     public void validateObtencionDatos() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr005"));
-        onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(clearText()).perform(typeText("18"));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
         onView(withId(R.id.btnAceptar)).perform(click());
         onView(withId(R.id.lblDatos)).check(matches(withText("Nombre: Baldomero\nEdad: 18")));
     }
@@ -70,8 +71,8 @@ public class MainActivityTests {
     @Test
     public void validateEnvioDatos() {
         onView(withId(R.id.btnSolicitar)).perform(click());
-        onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(clearText()).perform(typeText("18"));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
         onView(withId(R.id.btnAceptar)).perform(click());
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(allOf(
@@ -105,10 +106,8 @@ public class MainActivityTests {
     public void validateBtnAceptarEnabledWhenFormularioCorrecto() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr005"));
-        onView(withId(R.id.txtNombre)).perform(clearText());
-        onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(clearText());
-        onView(withId(R.id.txtEdad)).perform(typeText("18"));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
         onView(withId(R.id.btnAceptar)).check(matches(isEnabled()));
     }
 
@@ -116,18 +115,16 @@ public class MainActivityTests {
     public void validateBtnAceptarDisabledWhenEdadIncorrecta() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr005"));
-        onView(withId(R.id.txtNombre)).perform(clearText());
-        onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(clearText());
-        onView(withId(R.id.txtEdad)).perform(typeText("131"));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtEdad)).perform(replaceText("131"));
         onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateEnvioDatosAfterRotation() {
         onView(withId(R.id.btnSolicitar)).perform(click());
-        onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(clearText()).perform(typeText("18"));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
         onView(withId(R.id.btnAceptar)).perform(click());
         rotateScreen();
         onView(withId(R.id.btnSolicitar)).perform(click());

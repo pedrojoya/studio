@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr002;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.widget.Toast;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
@@ -42,17 +44,33 @@ public class MainActivityInstrumentationTest {
     // Valida que saluda educadamente.
     @Test
     public void validateSaludoEducado() {
-        onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
         onView(withId(R.id.btnSaludar)).perform(click());
-        onView(withText("Buenos días tenga usted Baldomero")).inRoot(withDecorView(not(activityTestRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+        onView(withText("Buenos días tenga usted Baldomero"))
+                .inRoot(withDecorView(not(activityTestRule.getActivity().getWindow()
+                        .getDecorView()))).check(matches(isDisplayed()));
+        // Se espera que desaparezca el Toast (para enlazar tests).
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void validateSaludoNoEducado() {
-        onView(withId(R.id.txtNombre)).perform(typeText("Baldomero"));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
         onView(withId(R.id.chkEducado)).perform(click());
         onView(withId(R.id.btnSaludar)).perform(click());
-        onView(withText("Buenos días Baldomero")).inRoot(withDecorView(not(activityTestRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+        onView(withText("Buenos días Baldomero")).inRoot(withDecorView(
+                not(activityTestRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+        // Se espera que desaparezca el Toast (para enlazar tests).
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
