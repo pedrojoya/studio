@@ -5,6 +5,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import org.hamcrest.Description;
@@ -22,6 +23,7 @@ import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
 import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
+import static android.support.test.espresso.matcher.ViewMatchers.hasImeAction;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -50,6 +52,7 @@ public class MainActivityTests {
 
     @Test
     public void validateTxtMensajeImeActionDone() {
+        onView(withId(R.id.txtMensaje)).check(matches(hasImeAction(EditorInfo.IME_ACTION_DONE)));
         onView(withId(R.id.txtMensaje)).perform(replaceText("Quillo que"), pressImeActionButton());
         onView(withId(R.id.lblTexto)).check(matches(withText(endsWith("Quillo que\n\n"))));
     }
