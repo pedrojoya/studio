@@ -11,5 +11,7 @@
     <string name="cursociclo">%1$s del %2$s</string>
     <string name="Notas">Notas</string>
     <string name="Llamar">Llamar</string>
+    <string name="llamar_a">Llamar a %1$s</string>
+    <string name="ver_notas_de">Ver notas de %1$s</string>
 
 </resources>

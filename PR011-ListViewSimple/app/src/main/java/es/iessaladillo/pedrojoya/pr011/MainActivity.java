@@ -1,7 +1,12 @@
 package es.iessaladillo.pedrojoya.pr011;
 
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements
         btnAgregar = (ImageButton) findViewById(R.id.btnAgregar);
         if (btnAgregar != null) {
             btnAgregar.setOnClickListener(this);
+            tintButton(btnAgregar);
         }
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtNombre.addTextChangedListener(new TextWatcher() {
@@ -166,6 +172,13 @@ public class MainActivity extends AppCompatActivity implements
         if (mEstadoLista != null) {
             lstAlumnos.onRestoreInstanceState(mEstadoLista);
         }
+    }
+
+    private void tintButton(@NonNull ImageButton btn) {
+        ColorStateList colores = ContextCompat.getColorStateList(this, R.color.btn_color);
+        Drawable d = DrawableCompat.wrap(btn.getDrawable());
+        DrawableCompat.setTintList(d, colores);
+        btn.setImageDrawable(d);
     }
 
 }

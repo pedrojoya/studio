@@ -3,6 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:paddingBottom="@dimen/panel_margin"
                 android:paddingTop="@dimen/panel_margin">
 
@@ -37,7 +38,7 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/divider_height"
         android:layout_above="@+id/btnAgregar"
         android:layout_marginTop="@dimen/panel_margin"
         android:background="@android:drawable/divider_horizontal_textfield"/>
@@ -64,18 +65,18 @@
 
     <ImageButton
         android:id="@+id/btnAgregar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/btnAgregar_width"
+        android:layout_height="@dimen/btnAgregar_width"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="@dimen/panel_margin"
         android:layout_marginEnd="@dimen/panel_margin"
         android:layout_marginTop="@dimen/panel_margin"
-        android:background="@drawable/fondo_boton"
-        android:padding="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/btnAgregar_padding"
         android:contentDescription="@string/agregar"
         android:scaleType="center"
-        android:src="@drawable/ic_action_add"/>
+        app:srcCompat="@drawable/ic_person_add"/>
 
 </RelativeLayout>

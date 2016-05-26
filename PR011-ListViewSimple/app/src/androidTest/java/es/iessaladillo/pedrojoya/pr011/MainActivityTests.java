@@ -1,9 +1,15 @@
 package es.iessaladillo.pedrojoya.pr011;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 
@@ -18,9 +24,11 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
+import static android.support.test.espresso.matcher.ViewMatchers.hasImeAction;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -44,6 +52,17 @@ public class MainActivityTests {
         onView(withId(R.id.btnAgregar)).perform(click());
         //onData(allOf(is(instanceOf(String.class)), is("Baldomero")))
         //        .inAdapterView(withId(R.id.lstAlumnos)).perform(click());
+        onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
+    }
+
+    @Test
+    public void validateNombreStillOnAdapterAfterRotation() {
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.btnAgregar)).perform(click());
+        //onData(allOf(is(instanceOf(String.class)), is("Baldomero")))
+        //        .inAdapterView(withId(R.id.lstAlumnos)).perform(click());
+        onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
+        rotateScreen();
         onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
     }
 
@@ -87,6 +106,14 @@ public class MainActivityTests {
         onView(withId(R.id.txtNombre)).check(matches(hasFocus()));
     }
 
+    @Test
+    public void validateTxtNombreImeActionDone() {
+        onView(withId(R.id.txtNombre)).check(matches(hasImeAction(EditorInfo.IME_ACTION_DONE)));
+        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"), pressImeActionButton());
+        onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
+    }
+
+
     private static Matcher<View> withAdaptedData(final Matcher<String> dataMatcher) {
         return new TypeSafeMatcher<View>() {
 
@@ -112,5 +139,18 @@ public class MainActivityTests {
             }
         };
     }
+
+    // Rota la pantalla.
+    private void rotateScreen() {
+        Context context = InstrumentationRegistry.getTargetContext();
+        int orientation
+                = context.getResources().getConfiguration().orientation;
+        Activity activity = mActivityRule.getActivity();
+        activity.setRequestedOrientation(
+                (orientation == Configuration.ORIENTATION_PORTRAIT) ?
+                        ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE :
+                        ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
 
 }

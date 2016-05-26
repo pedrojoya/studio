@@ -2,5 +2,8 @@
 
     <dimen name="panel_margin">8dp</dimen>
     <dimen name="empty_drawablePadding">10dp</dimen>
+    <dimen name="btnAgregar_padding">8dp</dimen>
+    <dimen name="btnAgregar_width">48dp</dimen>
+    <dimen name="divider_height">2dp</dimen>
 
 </resources>
