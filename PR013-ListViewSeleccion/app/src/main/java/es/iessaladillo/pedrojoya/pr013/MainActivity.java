@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements
     private int mPuntuacion = 100;
 
     // Constantes.
-    private static final long CONTADOR_INICIAL = 5000; // milisegundos
+    private static final long CONTADOR_INICIAL = 10000; // milisegundos
 
     // Al crear la actividad.
     @Override
@@ -176,13 +176,10 @@ public class MainActivity extends AppCompatActivity implements
                     // Cuando termina la animación.
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        // Si era la respuesta correcta se finaliza la activdad.
-                        if (correcta) {
-                            finish();
-                        } else {
-                            // Si la respuesta estaba equivocada, se recoloca
-                            // la puntuación para que funciona una futura
-                            // animación.
+                        // Si la respuesta estaba equivocada, se recoloca
+                        // la puntuación para que funciona una futura
+                        // animación.
+                        if (!correcta) {
                             recolocarPuntuacion();
                         }
                     }
