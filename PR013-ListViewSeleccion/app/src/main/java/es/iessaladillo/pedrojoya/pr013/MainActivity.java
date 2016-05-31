@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements
     private int mPuntuacion = 100;
 
     // Constantes.
-    private static final long CONTADOR_INICIAL = 10000; // milisegundos
+    private static final long CONTADOR_INICIAL = 5000; // milisegundos
 
     // Al crear la actividad.
     @Override

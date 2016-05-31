@@ -9,7 +9,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 
@@ -22,17 +21,11 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
-import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
-import static android.support.test.espresso.matcher.ViewMatchers.hasImeAction;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -51,7 +44,7 @@ public class MainActivityTests {
     public void validateBtnComprobarInitialState() {
         onView(withId(R.id.btnComprobar)).check(matches(not(isDisplayed())));
         try {
-            Thread.sleep(11000);
+            Thread.sleep(6000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -69,7 +62,7 @@ public class MainActivityTests {
     @Test
     public void validateRespuestaCorrecta() {
         try {
-            Thread.sleep(11000);
+            Thread.sleep(6000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -77,31 +70,19 @@ public class MainActivityTests {
                 .inAdapterView(withId(R.id.lstRespuestas)).perform(click());
         onView(withId(R.id.btnComprobar)).perform(click());
         onView(withId(R.id.lblPuntuacion)).check(matches(isDisplayed()));
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        onView(withId(R.id.lblPuntuacion)).check(matches(not(isDisplayed())));
     }
 
     @Test
     public void validateRespuestaIncorrecta() {
         try {
-            Thread.sleep(11000);
+            Thread.sleep(6000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         onData(allOf(is(instanceOf(String.class)), is("Negro")))
                 .inAdapterView(withId(R.id.lstRespuestas)).perform(click());
         onView(withId(R.id.btnComprobar)).perform(click());
-        onView(withId(R.id.lblPuntuacion)).check(matches(isDisplayed()));
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        onView(withId(R.id.lblPuntuacion)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.lstRespuestas)).check(matches(not(withAdaptedData(is("Negro")))));
     }
 
     /*@Test
