@@ -8,4 +8,6 @@ public interface MainView {
     void showStudentList(List<Student> students);
     void notifyStudentAdded(Student student);
     void notifyStudentRemoved(int position, Student student);
+    void showLoading();
+    void hideLoading();
 }

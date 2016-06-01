@@ -4,13 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr181.R;
 import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
+import pedrojoya.iessaladillo.es.pr181.component.UIImageLoader;
 
 public class MainViewHolder extends RecyclerView.ViewHolder {
 
@@ -29,11 +28,8 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
     public void bind(Student alumno) {
         lblNombre.setText(alumno.getNombre());
         lblDireccion.setText(alumno.getDireccion());
-        Picasso.with(imgAvatar.getContext())
-                .load(alumno.getUrlFoto())
-                .placeholder(R.drawable.ic_user)
-                .error(R.drawable.ic_user)
-                .into(imgAvatar);
+        UIImageLoader.loadImageIntoImageView(alumno.getUrlFoto(), imgAvatar, R.drawable.ic_user,
+                R.drawable.ic_user);
     }
 
 }

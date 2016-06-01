@@ -11,8 +11,8 @@ import pedrojoya.iessaladillo.es.pr181.main.view.MainView;
 
 public class MainPresenter implements BasePresenter, MainRepositoryCallback {
 
-    private final MainView mView;
-    private final DBMainRepository mRepository;
+    private MainView mView;
+    private DBMainRepository mRepository;
 
     public MainPresenter(MainView view) {
         mView = view;
@@ -24,15 +24,14 @@ public class MainPresenter implements BasePresenter, MainRepositoryCallback {
     // =====================
 
     @Override
-    public void initialize() {
-        mRepository.getList(this);
-
+    public void onResume() {
+        getStudents();
     }
 
     // Destruye el presentador. Procede de la interfaz BasePresenter.
     @Override
-    public void destroy() {
-
+    public void onDestroy() {
+        mView = null;
     }
 
     // ===================================
@@ -47,23 +46,35 @@ public class MainPresenter implements BasePresenter, MainRepositoryCallback {
         mRepository.removeElement(position, student, this);
     }
 
+    public void getStudents() {
+        mView.showLoading();
+        mRepository.getList(this);
+    }
+
     // ===============================
     // Interfaz MainRepositoryCallback
     // ===============================
 
     @Override
     public void onListReceived(List<Student> list) {
-        mView.showStudentList(list);
+        if (mView != null) {
+            mView.showStudentList(list);
+            mView.hideLoading();
+        }
     }
 
     @Override
     public void onElementAdded(Student student) {
-        mView.notifyStudentAdded(student);
+        if (mView != null) {
+            mView.notifyStudentAdded(student);
+        }
     }
 
     @Override
     public void onElementRemoved(int position, Student student) {
-        mView.notifyStudentRemoved(position, student);
+        if (mView != null) {
+            mView.notifyStudentRemoved(position, student);
+        }
     }
 
 }

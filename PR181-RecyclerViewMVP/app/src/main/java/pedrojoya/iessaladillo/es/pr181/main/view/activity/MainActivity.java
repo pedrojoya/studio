@@ -2,6 +2,8 @@ package pedrojoya.iessaladillo.es.pr181.main.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pedrojoya.iessaladillo.es.pr181.R;
+import pedrojoya.iessaladillo.es.pr181.component.UITemporaryMessanger;
 import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
 import pedrojoya.iessaladillo.es.pr181.main.presenter.MainPresenter;
 import pedrojoya.iessaladillo.es.pr181.main.view.MainView;
@@ -25,9 +27,8 @@ import pedrojoya.iessaladillo.es.pr181.main.view.listener.OnMainItemClickListene
 import pedrojoya.iessaladillo.es.pr181.main.view.listener.OnMainItemLongClickListener;
 
 public class MainActivity extends AppCompatActivity implements MainView, OnMainItemClickListener,
-        OnMainItemLongClickListener {
+        OnMainItemLongClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private static final String STATE_LISTA = "estadoLista";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.lstAlumnos)
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
     TextView lblNoHayAlumnos;
     @BindView(R.id.fabAccion)
     FloatingActionButton fabAccion;
+    @BindView(R.id.swlPanel)
+    SwipeRefreshLayout swlPanel;
 
     private MainAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
@@ -51,20 +54,17 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initVistas();
-        // Se crea el presentador si no existe y se inicializa.
         if (mPresenter == null) {
             mPresenter = new MainPresenter(this);
         }
-        mPresenter.initialize();
     }
 
-    // Obtiene e inicializa las vistas.
     private void initVistas() {
         configToolbar();
         configRecyclerView();
+        configSwipeRefreshLayout();
     }
 
-    // Configura la Toolbar.
     private void configToolbar() {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
         }
     }
 
-    // Configura el RecyclerView.
     private void configRecyclerView() {
         mAdapter = new MainAdapter();
         mAdapter.setOnItemClickListener(this);
@@ -102,6 +101,11 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
         }
     }
 
+    private void configSwipeRefreshLayout() {
+        swlPanel.setColorSchemeColors(ContextCompat.getColor(this, R.color.accent));
+        swlPanel.setOnRefreshListener(this);
+    }
+
     private void checkAdapterIsEmpty() {
         lblNoHayAlumnos.setVisibility(mAdapter.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
@@ -112,12 +116,24 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
     }
 
     private void showStudent(Student student) {
-        Toast.makeText(this, student.getNombre(), Toast.LENGTH_SHORT).show();
+        UITemporaryMessanger.showMessage(lstAlumnos, student.getNombre());
     }
 
     // ============================
     // Interacción con el Presenter
     // ============================
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.onDestroy();
+        super.onDestroy();
+    }
 
     @Override
     public void onItemLongClick(View view, Student student, int position) {
@@ -129,9 +145,14 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
         mPresenter.addStudent();
     }
 
-    // ===========================
-    // Llamadas desde el Presenter
-    // ===========================
+    @Override
+    public void onRefresh() {
+        mPresenter.getStudents();
+    }
+
+    // ===================================
+    // Métodos llamados desde el Presenter
+    // ===================================
 
     @Override
     public void showStudentList(List<Student> students) {
@@ -143,16 +164,29 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
     public void notifyStudentAdded(Student student) {
         mAdapter.addItem(student);
         checkAdapterIsEmpty();
-        Toast.makeText(this, R.string.alumno_agregado, Toast.LENGTH_SHORT).show();
+        UITemporaryMessanger.showMessage(lstAlumnos, getString(R.string.alumno_agregado));
     }
 
     @Override
     public void notifyStudentRemoved(int position, Student student) {
         mAdapter.removeItem(position);
         checkAdapterIsEmpty();
-        Toast.makeText(this, R.string.alumno_eliminado, Toast.LENGTH_SHORT).show();
+        UITemporaryMessanger.showMessage(lstAlumnos, getString(R.string.alumno_eliminado));
     }
 
-    // ************
+    @Override
+    public void showLoading() {
+        swlPanel.post(new Runnable() {
+            @Override
+            public void run() {
+                swlPanel.setRefreshing(true);
+            }
+        });
+    }
+
+    @Override
+    public void hideLoading() {
+        swlPanel.setRefreshing(false);
+    }
 
 }

@@ -1,5 +1,7 @@
 package pedrojoya.iessaladillo.es.pr181.main.model.repository;
 
+import android.os.Handler;
+
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
@@ -7,9 +9,12 @@ import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
 public class DBMainRepository implements MainRepository {
 
     @Override
-    public void getList(MainRepositoryCallback listener) {
-        List<Student> list = DB.getStudents();
-        listener.onListReceived(list);
+    public void getList(final MainRepositoryCallback listener) {
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                listener.onListReceived(DB.getStudents());
+            }
+        }, 5000);
     }
 
     @Override
