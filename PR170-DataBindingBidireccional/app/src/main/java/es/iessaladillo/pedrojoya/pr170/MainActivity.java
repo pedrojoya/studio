@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String STATE_SALUDO = "saludo";
 
-    private ActivityMainVM mViewModel;
+    private MainViewModel mViewModel;
     // private Random mAleatorio;
 
     @Override
@@ -18,11 +18,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (savedInstanceState == null) {
-            mViewModel = new ActivityMainVM();
+            mViewModel = new MainViewModel();
         } else {
             mViewModel = savedInstanceState.getParcelable(STATE_SALUDO);
         }
         mBinding.setViewModel(mViewModel);
+        mBinding.setPresenter(new MainPresenter());
         // Se establecen los listeners.
         // setListeners();
         // mAleatorio = new Random();

@@ -1,10 +1,10 @@
 package pedrojoya.iessaladillo.es.pr181.main.view.activity;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,13 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pedrojoya.iessaladillo.es.pr181.BasePresenterActivity;
+import pedrojoya.iessaladillo.es.pr181.PresenterFactory;
 import pedrojoya.iessaladillo.es.pr181.R;
-import pedrojoya.iessaladillo.es.pr181.component.UITemporaryMessanger;
+import pedrojoya.iessaladillo.es.pr181.component.UIMessageManager;
 import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
 import pedrojoya.iessaladillo.es.pr181.main.presenter.MainPresenter;
 import pedrojoya.iessaladillo.es.pr181.main.view.MainView;
@@ -26,8 +29,10 @@ import pedrojoya.iessaladillo.es.pr181.main.view.adapter.MainAdapter;
 import pedrojoya.iessaladillo.es.pr181.main.view.listener.OnMainItemClickListener;
 import pedrojoya.iessaladillo.es.pr181.main.view.listener.OnMainItemLongClickListener;
 
-public class MainActivity extends AppCompatActivity implements MainView, OnMainItemClickListener,
+public class MainActivity extends BasePresenterActivity<MainPresenter, MainView> implements MainView, OnMainItemClickListener,
         OnMainItemLongClickListener, SwipeRefreshLayout.OnRefreshListener {
+
+    private static final String STATE_STUDENTS = "state_students";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
     private MainAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private MainPresenter mPresenter;
+    private List<Student> mStudents;
 
     // =============
     // Configuración
@@ -55,7 +61,10 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
         ButterKnife.bind(this);
         initVistas();
         if (mPresenter == null) {
-            mPresenter = new MainPresenter(this);
+            mPresenter = new MainPresenter();
+        }
+        if (savedInstanceState != null) {
+            mStudents = savedInstanceState.getParcelableArrayList(STATE_STUDENTS);
         }
     }
 
@@ -116,17 +125,64 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
     }
 
     private void showStudent(Student student) {
-        UITemporaryMessanger.showMessage(lstAlumnos, student.getNombre());
+        UIMessageManager.showMessage(lstAlumnos, student.getNombre());
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList(STATE_STUDENTS, (ArrayList<? extends Parcelable>) mStudents);
+        super.onSaveInstanceState(outState);
+    }
+
+    // ===========================================
+    // Métodos abstractos de BasePresenterActivity
+    // ===========================================
+
+    @Override
+    protected PresenterFactory<MainPresenter> getPresenterFactory() {
+        return new PresenterFactory<MainPresenter>() {
+            @Override
+            public MainPresenter create() {
+                return new MainPresenter();
+            }
+        };
+    }
+
+    @Override
+    protected void onPresenterPrepared(MainPresenter presenter) {
+        mPresenter = presenter;
     }
 
     // ============================
     // Interacción con el Presenter
     // ============================
 
+
+    /*** LO HACE AUTOMÁTICAMENTE LA ACTIVIDAD BASE
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.onViewAttach(this);
+    }
+
+    @Override
+    protected void onStop() {
+        mPresenter.onViewDetach();
+        super.onStop();
+    }
+    ***/
+
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenter.onResume();
+        if (mStudents == null) {
+            if (mPresenter != null) {
+                mPresenter.getStudents();
+            }
+        }
+        else {
+            mAdapter.setData(mStudents);
+        }
     }
 
     @Override
@@ -156,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
 
     @Override
     public void showStudentList(List<Student> students) {
+        mStudents = students;
         mAdapter.setData(students);
         checkAdapterIsEmpty();
     }
@@ -164,14 +221,14 @@ public class MainActivity extends AppCompatActivity implements MainView, OnMainI
     public void notifyStudentAdded(Student student) {
         mAdapter.addItem(student);
         checkAdapterIsEmpty();
-        UITemporaryMessanger.showMessage(lstAlumnos, getString(R.string.alumno_agregado));
+        UIMessageManager.showMessage(lstAlumnos, getString(R.string.alumno_agregado));
     }
 
     @Override
     public void notifyStudentRemoved(int position, Student student) {
         mAdapter.removeItem(position);
         checkAdapterIsEmpty();
-        UITemporaryMessanger.showMessage(lstAlumnos, getString(R.string.alumno_eliminado));
+        UIMessageManager.showMessage(lstAlumnos, getString(R.string.alumno_eliminado));
     }
 
     @Override

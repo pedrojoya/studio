@@ -1,5 +1,7 @@
 package pedrojoya.iessaladillo.es.pr181.main.presenter;
 
+import android.util.Log;
+
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr181.BasePresenter;
@@ -9,13 +11,12 @@ import pedrojoya.iessaladillo.es.pr181.main.model.repository.MainRepositoryCallb
 import pedrojoya.iessaladillo.es.pr181.main.view.MainView;
 
 
-public class MainPresenter implements BasePresenter, MainRepositoryCallback {
+public class MainPresenter implements BasePresenter<MainView>, MainRepositoryCallback {
 
     private MainView mView;
     private DBMainRepository mRepository;
 
-    public MainPresenter(MainView view) {
-        mView = view;
+    public MainPresenter() {
         mRepository = new DBMainRepository();
     }
 
@@ -24,14 +25,18 @@ public class MainPresenter implements BasePresenter, MainRepositoryCallback {
     // =====================
 
     @Override
-    public void onResume() {
-        getStudents();
+    public void onViewAttach(MainView view) {
+        mView = view;
     }
 
-    // Destruye el presentador. Procede de la interfaz BasePresenter.
+    @Override
+    public void onViewDetach() {
+        mView = null;
+    }
+
     @Override
     public void onDestroy() {
-        mView = null;
+        //
     }
 
     // ===================================
@@ -47,7 +52,10 @@ public class MainPresenter implements BasePresenter, MainRepositoryCallback {
     }
 
     public void getStudents() {
-        mView.showLoading();
+        Log.d("Mia", "Pidiendo datos");
+        if (mView != null) {
+            mView.showLoading();
+        }
         mRepository.getList(this);
     }
 

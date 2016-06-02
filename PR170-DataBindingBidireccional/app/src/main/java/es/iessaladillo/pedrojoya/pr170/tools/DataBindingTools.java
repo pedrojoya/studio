@@ -50,6 +50,7 @@ public class DataBindingTools {
                 new ArrayAdapter<>(textView.getContext(),
                         android.R.layout.simple_list_item_1, data);
         textView.setAdapter(adaptador);
+        //noinspection unchecked
         textView.setOnItemSelectedListener(
                 new ClickToSelectEditText.OnItemSelectedListener<String>() {
             @Override

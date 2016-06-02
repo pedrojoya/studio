@@ -71,6 +71,7 @@ public class ClickToSelectEditText<T> extends AppCompatEditText {
             @Override
             public void onClick(DialogInterface dialogInterface, int selectedIndex) {
                 if (onItemSelectedListener != null) {
+                    //noinspection unchecked
                     onItemSelectedListener.onItemSelectedListener((T) mSpinnerAdapter.getItem(selectedIndex), selectedIndex);
                 }
             }
