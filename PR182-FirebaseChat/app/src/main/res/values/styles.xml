@@ -42,4 +42,9 @@
         <item name="colorButtonNormal">@color/primary_dark</item>
     </style>
 
+    <!-- Theme for LoginActivity circular progress bar -->
+    <style name="LoginCircularProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/icons</item>
+    </style>
+
 </resources>

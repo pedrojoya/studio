@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr182.login;
 
+import android.os.Handler;
+
 public class LoginPresenterImpl implements LoginPresenter {
 
     private LoginView mView;
@@ -7,16 +9,28 @@ public class LoginPresenterImpl implements LoginPresenter {
     @Override
     public void doSignIn() {
         if (mView != null) {
+            mView.onLoadingStarted();
             // TODO Do sign in.
-            mView.onUserSignedIn();
+            new Handler().postDelayed(new Runnable() {
+                @Override public void run() {
+                    mView.onUserSignedIn();
+                    mView.onLoadingFinished();
+                }
+            }, 2000);
         }
     }
 
     @Override
     public void doSignUp() {
         if (mView != null) {
+            mView.onLoadingStarted();
             // TODO Do sign up.
-            mView.onUserSignedUp();
+            new Handler().postDelayed(new Runnable() {
+                @Override public void run() {
+                    mView.onUserSignedUp();
+                    mView.onLoadingFinished();
+                }
+            }, 2000);
         }
     }
 

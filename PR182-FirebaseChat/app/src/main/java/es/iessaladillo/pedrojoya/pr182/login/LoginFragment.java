@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr182.login;
 
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,22 +9,29 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
 import com.marlonmafra.android.widget.EditTextPassword;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnEditorAction;
 import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import es.iessaladillo.pedrojoya.pr182.R;
+import es.iessaladillo.pedrojoya.pr182.utils.DotProgressBarManager;
 import es.iessaladillo.pedrojoya.pr182.utils.ToastManager;
 import es.iessaladillo.pedrojoya.pr182.utils.UIMessageManager;
+import es.iessaladillo.pedrojoya.pr182.utils.UIProgressManager;
 
 public class LoginFragment extends Fragment implements LoginView {
 
@@ -41,10 +49,13 @@ public class LoginFragment extends Fragment implements LoginView {
     Button btnSignIn;
     @BindView(R.id.lblSignUp)
     TextView lblSignUp;
+    @BindView(R.id.pbLoading)
+    DotProgressBar pbLoading;
 
     private Unbinder mUnbinder;
     private LoginPresenterImpl mPresenter;
     private UIMessageManager mUIMessageManager;
+    private UIProgressManager mUIProgressManager;
 
     public LoginFragment() {
     }
@@ -69,6 +80,13 @@ public class LoginFragment extends Fragment implements LoginView {
         lblAppName.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/Pacifico.ttf"));
         mPresenter = new LoginPresenterImpl();
         mUIMessageManager = new ToastManager();
+        mUIProgressManager = new DotProgressBarManager(pbLoading);
+        txtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                return false;
+            }
+        });
         checkFormValid();
     }
 
@@ -97,6 +115,22 @@ public class LoginFragment extends Fragment implements LoginView {
     @OnTextChanged(value = R.id.txtPassword, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void txtPasswordAfterTextChanged(Editable s) {
         checkFormValid();
+    }
+
+    @OnEditorAction(R.id.txtPassword)
+    public boolean txtPasswordOnEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            hideKeyboard(textView);
+            btnSignInOnClick(btnSignIn);
+            return true;
+        }
+        return false;
+    }
+
+    private void hideKeyboard(View v) {
+        InputMethodManager imm =
+                (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
     private void checkFormValid() {
@@ -148,11 +182,12 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void onLoadingStarted() {
-
+        mUIProgressManager.showIndeterminateProgress();
     }
 
     @Override
     public void onLoadingFinished() {
-
+        mUIProgressManager.hideProgress();
     }
+
 }

@@ -6,4 +6,5 @@
     <dimen name="login.lblAppName.padding">40dp</dimen>
     <dimen name="login.root.padding">24dp</dimen>
     <dimen name="login.root.vertical_margin">24dp</dimen>
+    <dimen name="login.progress.height">24dp</dimen>
 </resources>

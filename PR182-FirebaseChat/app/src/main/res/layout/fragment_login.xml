@@ -1,10 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/login.root.padding"
-    tools:context="es.iessaladillo.pedrojoya.pr182.login.LoginFragment">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/login.root.padding">
 
     <TextView
         android:id="@+id/lblAppName"
@@ -14,7 +13,7 @@
         android:gravity="center"
         android:padding="@dimen/login.lblAppName.padding"
         android:text="@string/app_name"
-        android:textColor="@color/icons" />
+        android:textColor="@color/icons"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tilEmail"
@@ -29,11 +28,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login.email.hint"
-            android:textColor="@color/icons"
             android:inputType="textEmailAddress"
+            android:textColor="@color/icons"
             android:theme="@style/LoginEditText">
 
             <requestFocus />
+
         </android.support.design.widget.TextInputEditText>
 
     </android.support.design.widget.TextInputLayout>
@@ -53,10 +53,10 @@
             android:hint="@string/login.password.hint"
             android:inputType="textPassword"
             android:textColor="@color/icons"
-            app:iconPosition="right"
-            app:showPasswordIcon="@drawable/ic_visibility_off"
+            android:theme="@style/LoginEditText"
             app:hidePasswordIcon="@drawable/ic_visibility"
-            android:theme="@style/LoginEditText" />
+            app:iconPosition="right"
+            app:showPasswordIcon="@drawable/ic_visibility_off"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -67,19 +67,30 @@
         android:layout_below="@+id/tilPassword"
         android:layout_marginBottom="@dimen/login.root.vertical_margin"
         android:text="@string/login.loginbutton.text"
-        android:theme="@style/LoginButton" />
+        android:theme="@style/LoginButton"/>
 
     <TextView
         android:id="@+id/lblSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_below="@+id/btnSignIn"
         android:clickable="true"
-        android:textColor="@color/login_singup_label"
-        android:textColorLink="@color/login_singup_label"
-        android:text="@string/login.signupbutton.text"
+        android:focusable="true"
+        android:gravity="center"
         android:paddingBottom="@dimen/login.root.vertical_margin"
-        android:focusable="true" />
+        android:text="@string/login.signupbutton.text"
+        android:textColor="@color/login_singup_label"
+        android:textColorLink="@color/login_singup_label"/>
+
+    <com.github.silvestrpredko.dotprogressbar.DotProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login.progress.height"
+        android:layout_below="@+id/lblSignUp"
+        android:visibility="gone"
+        app:amount="@integer/login.progress.amount"
+        app:duration="@android:integer/config_mediumAnimTime"
+        app:endColor="@color/icons"
+        app:startColor="@color/primary_light"/>
 
 </RelativeLayout>

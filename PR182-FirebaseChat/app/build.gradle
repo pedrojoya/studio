@@ -23,14 +23,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
-    compile "com.github.bumptech.glide:glide:$glideVersion"
-    compile "com.jakewharton:butterknife:$butterknifeVersion"
-    apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
-    compile "com.f2prateek.dart:dart:$dartVersion"
-    provided "com.f2prateek.dart:dart-processor:$dartVersion"
-    compile "com.marlonmafra.android.widget:edittext-password:$edittextpasswordVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    compile "com.f2prateek.dart:dart:$rootProject.ext.dartVersion"
+    provided "com.f2prateek.dart:dart-processor:$rootProject.ext.dartVersion"
+    compile "com.marlonmafra.android.widget:edittext-password:$rootProject.ext.edittextpasswordVersion"
+    compile 'com.github.silvestrpredko:dot-progress-bar:0.1.4@aar'
     // Testing
-    testCompile "junit:junit:$jUnitVersion"
-    testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockitoVersion"
+    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powerMockitoVersion"
 }
