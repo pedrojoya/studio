@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">PR182-FirebaseChat</string>
+    <string name="app_name">Class Chat</string>
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login.email.hint">Email</string>
+    <string name="login.password.hint">Password</string>
+    <string name="login.loginbutton.text">Sign in</string>
+    <string name="login.signupbutton.text">No account yet? <a href="#">Sign up</a></string>
+    <string name="login.usersignedin.message">User signed in successfully</string>
+    <string name="login_usersignedup_message">User signed up successfully</string>
+    <string name="login_usersignedin_error_message">Error trying to sing in user</string>
+    <string name="login_usersignedup_error_message">Error trying to sign up user</string>
 </resources>

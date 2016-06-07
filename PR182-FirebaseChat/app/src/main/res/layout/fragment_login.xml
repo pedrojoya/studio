@@ -1,13 +1,85 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="es.iessaladillo.pedrojoya.pr182.login.LoginFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/login.root.padding"
+    tools:context="es.iessaladillo.pedrojoya.pr182.login.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/lblAppName"
+        style="@style/Base.TextAppearance.AppCompat.Display2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/login.lblAppName.padding"
+        android:text="@string/app_name"
+        android:textColor="@color/icons" />
 
-</FrameLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblAppName"
+        android:layout_marginBottom="@dimen/login.root.vertical_margin"
+        app:hintTextAppearance="@style/LoginHintText">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login.email.hint"
+            android:textColor="@color/icons"
+            android:inputType="textEmailAddress"
+            android:theme="@style/LoginEditText">
+
+            <requestFocus />
+        </android.support.design.widget.TextInputEditText>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilEmail"
+        android:layout_marginBottom="@dimen/login.root.vertical_margin"
+        app:hintTextAppearance="@style/LoginHintText">
+
+        <com.marlonmafra.android.widget.EditTextPassword
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login.password.hint"
+            android:inputType="textPassword"
+            android:textColor="@color/icons"
+            app:iconPosition="right"
+            app:showPasswordIcon="@drawable/ic_visibility_off"
+            app:hidePasswordIcon="@drawable/ic_visibility"
+            android:theme="@style/LoginEditText" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilPassword"
+        android:layout_marginBottom="@dimen/login.root.vertical_margin"
+        android:text="@string/login.loginbutton.text"
+        android:theme="@style/LoginButton" />
+
+    <TextView
+        android:id="@+id/lblSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/btnSignIn"
+        android:clickable="true"
+        android:textColor="@color/login_singup_label"
+        android:textColorLink="@color/login_singup_label"
+        android:text="@string/login.signupbutton.text"
+        android:paddingBottom="@dimen/login.root.vertical_margin"
+        android:focusable="true" />
+
+</RelativeLayout>

@@ -10,28 +10,27 @@ public class LoginActivity extends SingleFragmentActivity {
 
     @Override
     protected int getLayoutResId() {
-        return 0;
+        return R.layout.activity_login;
     }
 
     @Override
     protected int getFragmentContainerResId() {
-        return 0;
+        return R.id.flFragmentContainer;
     }
 
     @Override
     protected Fragment getFragment() {
-        return null;
+        return new LoginFragment();
     }
 
     @Override
     protected String getTag() {
-        return null;
+        return "LoginFragment";
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
     }
 
 }

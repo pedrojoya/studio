@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -28,8 +28,11 @@ ext {
     buildToolsVersion = "23.0.2"
     minSdkVersion = 14
     targetSdkVersion = 23
+    jUnitVersion = "4.12"
+    mockitoVersion = "1.10.19"
     supportLibraryVersion = "23.4.0"
     glideVersion = "3.7.0"
     butterknifeVersion = "8.0.1"
     dartVersion = "2.0.0"
+    edittextpasswordVersion = "1.0.0"
 }

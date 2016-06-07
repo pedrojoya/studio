@@ -2,7 +2,7 @@ package es.iessaladillo.pedrojoya.pr182.login;
 
 import es.iessaladillo.pedrojoya.pr182.utils.BasePresenter;
 
-public interface LoginPresenter extends BasePresenter {
+public interface LoginPresenter extends BasePresenter<LoginView> {
 
     void doSignIn();
     void doSignUp();
