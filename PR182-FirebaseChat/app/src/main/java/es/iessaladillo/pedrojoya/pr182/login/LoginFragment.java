@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr182.login;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,7 +29,9 @@ import butterknife.OnEditorAction;
 import butterknife.OnTextChanged;
 import butterknife.Unbinder;
 import es.iessaladillo.pedrojoya.pr182.R;
+import es.iessaladillo.pedrojoya.pr182.contacts.ContactsActivity;
 import es.iessaladillo.pedrojoya.pr182.utils.DotProgressBarManager;
+import es.iessaladillo.pedrojoya.pr182.utils.SnackbarManager;
 import es.iessaladillo.pedrojoya.pr182.utils.ToastManager;
 import es.iessaladillo.pedrojoya.pr182.utils.UIMessageManager;
 import es.iessaladillo.pedrojoya.pr182.utils.UIProgressManager;
@@ -79,7 +82,7 @@ public class LoginFragment extends Fragment implements LoginView {
         super.onActivityCreated(savedInstanceState);
         lblAppName.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/Pacifico.ttf"));
         mPresenter = new LoginPresenterImpl();
-        mUIMessageManager = new ToastManager();
+        mUIMessageManager = new SnackbarManager();
         mUIProgressManager = new DotProgressBarManager(pbLoading);
         txtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -99,12 +102,12 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @OnClick(R.id.btnSignIn)
     public void btnSignInOnClick(View view) {
-        mPresenter.doSignIn();
+        mPresenter.wantToSignIn(txtEmail.getText().toString(), txtPassword.getText().toString());
     }
 
     @OnClick(R.id.lblSignUp)
     public void lblSignUpOnClick(View view) {
-        mPresenter.doSignUp();
+        mPresenter.wantToSignUp(txtEmail.getText().toString(), txtPassword.getText().toString());
     }
 
     @OnTextChanged(value = R.id.txtEmail, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -147,6 +150,7 @@ public class LoginFragment extends Fragment implements LoginView {
     public void onStart() {
         super.onStart();
         mPresenter.onViewAttached(this);
+        mPresenter.wantToCheckAuthenticated();
     }
 
     @Override
@@ -156,28 +160,28 @@ public class LoginFragment extends Fragment implements LoginView {
     }
 
     @Override
-    public void onUserSignedIn() {
+    public void showUserHasSignedIn() {
         mUIMessageManager.showMessage(btnSignIn, getString(R.string.login_usersignedin_message));
     }
 
     @Override
-    public void onUserSignedUp() {
+    public void showUserHasSignedUp() {
         mUIMessageManager.showMessage(btnSignIn, getString(R.string.login_usersignedup_message));
     }
 
     @Override
-    public void onErrorSigningIn() {
-        mUIMessageManager.showMessage(btnSignIn, getString(R.string.login_usersignedin_error_message));
+    public void showErrorSigningIn(String errorMessage) {
+        mUIMessageManager.showMessage(lblSignUp, errorMessage);
     }
 
     @Override
-    public void onErrorSingingUp() {
-        mUIMessageManager.showMessage(btnSignIn, getString(R.string.login_usersignedup_error_message));
+    public void showErrorSigningUp(String errorMessage) {
+        mUIMessageManager.showMessage(lblSignUp, errorMessage);
     }
 
     @Override
     public void navigateToContactsActivity() {
-
+        startActivity(new Intent(getActivity(), ContactsActivity.class));
     }
 
     @Override

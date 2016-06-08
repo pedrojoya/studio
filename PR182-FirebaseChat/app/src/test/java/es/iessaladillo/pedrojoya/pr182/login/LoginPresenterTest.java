@@ -25,17 +25,17 @@ public class LoginPresenterTest {
 
     @Test
     public void clickOnBtnSignIn_CallsOnUserSignInInView() {
-        mLoginPresenter.doSignIn();
+        mLoginPresenter.wantToSignIn();
         verify(mLoginView).onLoadingStarted();
-        verify(mLoginView).onUserSignedIn();
+        verify(mLoginView).showUserHasSignedIn();
         verify(mLoginView).onLoadingFinished();
     }
 
     @Test
     public void clickOnBtnSignUp_CallsOnUserSignInInView() {
-        mLoginPresenter.doSignUp();
+        mLoginPresenter.wantToSignUp();
         verify(mLoginView).onLoadingStarted();
-        verify(mLoginView).onUserSignedUp();
+        verify(mLoginView).showUserHasSignedUp();
         verify(mLoginView).onLoadingFinished();
     }
 

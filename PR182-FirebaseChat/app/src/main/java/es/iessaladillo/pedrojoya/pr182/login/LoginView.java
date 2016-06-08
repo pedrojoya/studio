@@ -4,10 +4,10 @@ import es.iessaladillo.pedrojoya.pr182.utils.LoadingView;
 
 public interface LoginView extends LoadingView {
 
-    void onUserSignedIn();
-    void onUserSignedUp();
-    void onErrorSigningIn();
-    void onErrorSingingUp();
+    void showUserHasSignedIn();
+    void showUserHasSignedUp();
+    void showErrorSigningIn(String errorMessage);
+    void showErrorSigningUp(String errorMessage);
     void navigateToContactsActivity();
 
 }
