@@ -9,4 +9,7 @@
     <string name="login_usersignedup_message">User signed up successfully</string>
     <string name="login_usersignedin_error_message">Error trying to sing in user</string>
     <string name="login_usersignedup_error_message">Error trying to sign up user</string>
+    <string name="contacts.no_contacts">No contacts</string>
+    <string name="contacts.contacts">Contacts</string>
+    <string name="contacts.menu.logout">Logout</string>
 </resources>

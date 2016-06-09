@@ -36,7 +36,11 @@ public class LoginActivity extends SingleFragmentActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
+    }
 
+    @Override
+    public void onBackPressed() {
+        // Prevent from going back to previous activity after user logged out.
     }
 
 }

@@ -32,7 +32,6 @@ import es.iessaladillo.pedrojoya.pr182.R;
 import es.iessaladillo.pedrojoya.pr182.contacts.ContactsActivity;
 import es.iessaladillo.pedrojoya.pr182.utils.DotProgressBarManager;
 import es.iessaladillo.pedrojoya.pr182.utils.SnackbarManager;
-import es.iessaladillo.pedrojoya.pr182.utils.ToastManager;
 import es.iessaladillo.pedrojoya.pr182.utils.UIMessageManager;
 import es.iessaladillo.pedrojoya.pr182.utils.UIProgressManager;
 

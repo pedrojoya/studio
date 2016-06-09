@@ -25,7 +25,7 @@ public class LoginPresenterTest {
 
     @Test
     public void clickOnBtnSignIn_CallsOnUserSignInInView() {
-        mLoginPresenter.wantToSignIn();
+        mLoginPresenter.wantToSignIn("baldomero@gmail.com", "quilloque");
         verify(mLoginView).onLoadingStarted();
         verify(mLoginView).showUserHasSignedIn();
         verify(mLoginView).onLoadingFinished();
@@ -33,7 +33,7 @@ public class LoginPresenterTest {
 
     @Test
     public void clickOnBtnSignUp_CallsOnUserSignInInView() {
-        mLoginPresenter.wantToSignUp();
+        mLoginPresenter.wantToSignUp("baldomero@gmail.com", "quilloque");
         verify(mLoginView).onLoadingStarted();
         verify(mLoginView).showUserHasSignedUp();
         verify(mLoginView).onLoadingFinished();
