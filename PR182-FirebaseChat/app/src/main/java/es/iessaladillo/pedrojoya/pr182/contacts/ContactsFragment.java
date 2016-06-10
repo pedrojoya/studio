@@ -6,11 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,7 +24,6 @@ import butterknife.ButterKnife;
 import es.iessaladillo.pedrojoya.pr182.R;
 import es.iessaladillo.pedrojoya.pr182.entity.Contact;
 import es.iessaladillo.pedrojoya.pr182.login.LoginActivity;
-import es.iessaladillo.pedrojoya.pr182.utils.DividerItemDecoration;
 
 public class ContactsFragment extends Fragment implements ContactsView {
 
@@ -74,6 +71,7 @@ public class ContactsFragment extends Fragment implements ContactsView {
     }
 
     private void setupRecyclerView() {
+/*
         mAdapter = new ContactsAdapter();
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemLongClickListener(this);
@@ -117,11 +115,14 @@ public class ContactsFragment extends Fragment implements ContactsView {
                     }
                 });
         itemTouchHelper.attachToRecyclerView(lstContacts);
+*/
     }
 
     private void checkAdapterIsEmpty() {
+/*
         lblEmptyView.setVisibility(mAdaptador.getItemCount() == 0 ?
                 View.VISIBLE : View.INVISIBLE);
+*/
     }
 
     @Override

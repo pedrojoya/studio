@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr182.login;
 
-import android.os.Handler;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
