@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr182.login;
 
+import android.support.annotation.VisibleForTesting;
+
 public class LoginInteractorImpl implements LoginInteractor {
 
     private LoginRepository mRepository;
@@ -8,13 +10,18 @@ public class LoginInteractorImpl implements LoginInteractor {
         mRepository = new LoginFirebaseRepository();
     }
 
+    @VisibleForTesting
+    public LoginInteractorImpl(LoginRepository repository) {
+        mRepository = repository;
+    }
+
     @Override
-    public void doToSignIn(String email, String password) {
+    public void doSignIn(String email, String password) {
         mRepository.signIn(email, password);
     }
 
     @Override
-    public void doToSignUp(String email, String password) {
+    public void doSignUp(String email, String password) {
         mRepository.signUp(email, password);
     }
 

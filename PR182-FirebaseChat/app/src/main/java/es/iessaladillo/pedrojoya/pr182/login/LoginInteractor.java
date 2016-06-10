@@ -4,8 +4,8 @@ import es.iessaladillo.pedrojoya.pr182.utils.BasePresenter;
 
 public interface LoginInteractor {
 
-    void doToSignIn(String email, String password);
-    void doToSignUp(String email, String password);
+    void doSignIn(String email, String password);
+    void doSignUp(String email, String password);
     void doCheckAuthenticated();
 
 }

@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr182.login;
 
 import android.os.Handler;
+import android.support.annotation.VisibleForTesting;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -16,25 +17,52 @@ public class LoginFirebaseRepository implements LoginRepository {
         mEventBus = EventBus.getDefault();
     }
 
+    @VisibleForTesting
+    public LoginFirebaseRepository(EventBus eventBus) {
+        mEventBus = eventBus;
+    }
+
     private final EventBus mEventBus;
 
     @Override
     public void signIn(String email, String password) {
-        new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
-                mEventBus.post(new SignedInEvent());
-               //mEventBus.post(new ErrorSigningInEvent("Error signing in"));
-            }
-        }, 2000);
+        // TODO Work with Firebase.
+        if ("baldomero".equals(email) && "llegateligero".equals(password)) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mEventBus.post(new SignedInEvent());
+                    //mEventBus.post(new ErrorSigningInEvent("Error signing in"));
+                }
+            }, 2000);
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mEventBus.post(new ErrorSigningInEvent("Error signing in"));
+                }
+            }, 2000);
+        }
     }
 
     @Override
     public void signUp(String email, String password) {
-        new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
-                mEventBus.post(new ErrorSigningUpEvent("Error signing up"));
-            }
-        }, 2000);
+        // TODO Work with Firebase.
+        if ("baldomero".equals(email) && "llegateligero".equals(password)) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mEventBus.post(new ErrorSigningInEvent("Error signing up"));
+                }
+            }, 2000);
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mEventBus.post(new SignedUpEvent());
+                }
+            }, 2000);
+        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr182.login;
 
+import android.support.annotation.VisibleForTesting;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -20,24 +22,34 @@ public class LoginPresenterImpl implements LoginPresenter {
         mEventBus = EventBus.getDefault();
     }
 
+    @VisibleForTesting
+    public LoginPresenterImpl(LoginView view, LoginInteractor interactor, EventBus eventBus) {
+        mView = view;
+        mInteractor = interactor;
+        mEventBus = eventBus;
+    }
+
     @Override
     public void wantToSignIn(String email, String password) {
         if (mView != null) {
             mView.onLoadingStarted();
-            mInteractor.doToSignIn(email, password);
         }
+        mInteractor.doSignIn(email, password);
     }
 
     @Override
     public void wantToSignUp(String email, String password) {
         if (mView != null) {
             mView.onLoadingStarted();
-            mInteractor.doToSignUp(email, password);
         }
+        mInteractor.doSignUp(email, password);
     }
 
     @Override
     public void wantToCheckAuthenticated() {
+        if (mView != null) {
+            mView.onLoadingStarted();
+        }
         mInteractor.doCheckAuthenticated();
     }
 
@@ -59,7 +71,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Subscribe
-    public void onEvent(SignedInEvent event){
+    public void onSignedIn(SignedInEvent event){
         if (mView != null) {
             mView.onLoadingFinished();
             mView.showUserHasSignedIn();
@@ -68,7 +80,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Subscribe
-    public void onEvent(ErrorSigningInEvent event){
+    public void onErrorSigningIn(ErrorSigningInEvent event){
         if (mView != null) {
             mView.onLoadingFinished();
             mView.showErrorSigningIn(event.getErrorMessage());
@@ -76,15 +88,16 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Subscribe
-    public void onEvent(SignedUpEvent event){
+    public void onSignedUp(SignedUpEvent event){
         if (mView != null) {
             mView.onLoadingFinished();
             mView.showUserHasSignedUp();
+            mView.navigateToContactsActivity();
         }
     }
 
     @Subscribe
-    public void onEvent(ErrorSigningUpEvent event){
+    public void onErrorSigningUp(ErrorSigningUpEvent event){
         if (mView != null) {
             mView.onLoadingFinished();
             mView.showErrorSigningUp(event.getErrorMessage());
@@ -92,11 +105,11 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Subscribe
-    public void onEvent(AuthenticatedEvent event){
+    public void onAuthenticated(AuthenticatedEvent event){
         if (mView != null) {
+            mView.onLoadingFinished();
             mView.navigateToContactsActivity();
         }
     }
-
 
 }
