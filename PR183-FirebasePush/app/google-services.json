@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "108825266254",
+    "firebase_url": "https://pushnotificationsexample-ce98b.firebaseio.com",
+    "project_id": "pushnotificationsexample-ce98b",
+    "storage_bucket": "pushnotificationsexample-ce98b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108825266254:android:75b1c6758ed5ad07",
+        "android_client_info": {
+          "package_name": "es.iessaldillo.pedrojoya.pr183"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108825266254-f6n4ikjmim211ua0h3fmq751u41119u3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMR4JwBdRSh6q9oYVfjIeHAHXXvScOs5E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
