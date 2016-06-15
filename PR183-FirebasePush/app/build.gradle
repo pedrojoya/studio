@@ -10,13 +10,33 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "TITULO", "\"" + TITULO + "\"")
+        resValue("string", "texto", "\"" + TEXTO + "\"")
+        buildConfigField("String", "SECRETO1", "\"" + getSecreto() + "\"")
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String", "NUEVOTEXTO", "\"" +
+                    project.property('NUEVOTEXTO') + "\""
+        }
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String", "SECRETO2", "\"" +
+                    getSecreto() + "\""
+        }
     }
+
+}
+
+// Obtiene del archivo secret.properties el valor de la propiedad correspodiente
+def getSecreto() {
+    def Properties props = new Properties()
+    props.load(new FileInputStream(new File('secret.properties')))
+    return props['SECRETO']
 }
 
 dependencies {
