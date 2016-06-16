@@ -10,7 +10,8 @@
     tools:context="es.iessaldillo.pedrojoya.pr183.MainActivity">
 
     <TextView
+        android:id="@+id/lblMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/texto" />
 </RelativeLayout>
