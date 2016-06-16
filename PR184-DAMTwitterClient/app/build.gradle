@@ -1,0 +1,77 @@
+// Para Fabric.
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        // The Fabric Gradle plugin uses an open ended version to react
+        // quickly to Android tooling updates
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+// ***
+
+apply plugin: 'com.android.application'
+
+// Para Butterknife y Dagger 2
+apply plugin: 'com.neenbedankt.android-apt'
+// ****
+
+// Para Fabric.
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+// ***
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr184"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        // Para Fabric.
+        buildConfigField("String", "TWITTER_KEY", "\"" + TWITTER_KEY + "\"")
+        buildConfigField("String", "TWITTER_SECRET", "\"" + TWITTER_SECRET + "\"")
+        // ****
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportlibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportlibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.ext.supportlibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportlibraryVersion"
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    compile "org.greenrobot:eventbus:$rootProject.ext.eventbusVersion"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    // Para Fabric.
+    compile('com.twitter.sdk.android:twitter:1.13.3@aar') {
+        transitive = true;
+    }
+    // ***
+    // Para Dagger 2
+    apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    provided "javax.annotation:jsr250-api:$rootProject.ext.jsr250apiVersion"
+    // ***
+
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
+}
