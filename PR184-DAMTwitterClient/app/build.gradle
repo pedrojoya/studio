@@ -59,15 +59,15 @@ dependencies {
     compile "org.greenrobot:eventbus:$rootProject.ext.eventbusVersion"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
-    compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    compile "com.marlonmafra.android.widget:edittext-password:$rootProject.ext.edittextpasswordVersion"
+    compile 'com.github.silvestrpredko:dot-progress-bar:0.1.4@aar'
     // Para Fabric.
     compile('com.twitter.sdk.android:twitter:1.13.3@aar') {
         transitive = true;
     }
     // ***
     // Para Dagger 2
+    apt 'com.squareup:javapoet:1.7.0'
     apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     provided "javax.annotation:jsr250-api:$rootProject.ext.jsr250apiVersion"

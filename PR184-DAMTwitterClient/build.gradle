@@ -39,6 +39,5 @@ ext {
     butterknifeVersion="8.1.0"
     daggerVersion="2.2"
     jsr250apiVersion="1.0"
-    retrofitVersion="2.1.0"
-    gsonVersion="2.7"
+    edittextpasswordVersion = "1.0.0"
 }

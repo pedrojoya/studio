@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">PR184-DAMTwitterClient</string>
+    <string name="app_name">DAM Twitter</string>
+    <string name="login_btnLogin_error">Login error: %1$s</string>
 </resources>
