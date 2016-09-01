@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Animales</string>
+    <string name="mensaje">Soy un animal</string>
+    <string name="buscar">Buscar</string>
+</resources>

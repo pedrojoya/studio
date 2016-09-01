@@ -1,14 +1,13 @@
-package es.iessaladillo.pedrojoya.pr184;
+package es.iessaladillo.pedrojoya.pr184.login;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
@@ -17,11 +16,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import es.iessaladillo.pedrojoya.pr184.utils.dagger.DaggerManagersDaggerComponent;
-import es.iessaladillo.pedrojoya.pr184.utils.dagger.ManagersDaggerComponent;
-import es.iessaladillo.pedrojoya.pr184.utils.dagger.ManagersDaggerModule;
+import es.iessaladillo.pedrojoya.pr184.App;
+import es.iessaladillo.pedrojoya.pr184.R;
+import es.iessaladillo.pedrojoya.pr184.main.MainActivity;
 import es.iessaladillo.pedrojoya.pr184.utils.managers.uimessage.UIMessageManager;
-import io.fabric.sdk.android.Fabric;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,23 +32,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Para Fabric.
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(BuildConfig.TWITTER_KEY, BuildConfig.TWITTER_SECRET);
-        Fabric.with(this, new Twitter(authConfig));
-        // ****
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        DaggerManagersDaggerComponent
-                .builder()
-                .managersDaggerModule(new ManagersDaggerModule())
-                .build()
-                .inject(this);
+        ((App) getApplication()).getManagersComponent().inject(this);
 
         if (Twitter.getSessionManager().getActiveSession() != null) {
             navigateToMainScreen();
         }
 
-        btnLogin.setCallback(new Callback<TwitterSession>() {
+        Callback<TwitterSession> callback = new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
                 navigateToMainScreen();
@@ -61,7 +51,8 @@ public class LoginActivity extends AppCompatActivity {
                 String msgError = String.format(getString(R.string.login_btnLogin_error), exception.getMessage());
                 uiMessageManager.showMessage(btnLogin, msgError);
             }
-        });
+        };
+        btnLogin.setCallback(callback);
     }
 
     @Override
@@ -71,9 +62,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void navigateToMainScreen() {
-        uiMessageManager.showMessage(btnLogin, "Conectado");
+        //uiMessageManager.showMessage(btnLogin, "Conectado");
+        MainActivity.start(this);
+    }
 
-        //startActivity(new Intent(this, MainActivity.class));
+    public static void start(Activity activity) {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
     }
 
 }

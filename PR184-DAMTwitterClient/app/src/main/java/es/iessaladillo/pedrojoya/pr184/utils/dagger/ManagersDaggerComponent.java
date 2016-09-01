@@ -3,7 +3,7 @@ package es.iessaladillo.pedrojoya.pr184.utils.dagger;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import es.iessaladillo.pedrojoya.pr184.LoginActivity;
+import es.iessaladillo.pedrojoya.pr184.login.LoginActivity;
 
 // Componente de inyección de Dagger2 para el módulo de Managers.
 @Singleton

@@ -3,4 +3,6 @@
     <string name="nombre">Nombre</string>
     <string name="telefono">Teléfono</string>
     <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="cambiar_visualizacion">Cambiar visualización</string>
 </resources>

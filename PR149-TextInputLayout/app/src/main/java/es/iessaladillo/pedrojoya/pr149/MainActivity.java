@@ -1,13 +1,13 @@
 package es.iessaladillo.pedrojoya.pr149;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
-import android.widget.EditText;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     // Configura la validación del teléfono.
     private void setupValidacionTelefono() {
         final TextInputLayout tilTelefono = (TextInputLayout) findViewById(R.id.tilTelefono);
-        final EditText txtTelefono = (EditText) findViewById(R.id.txtTelefono);
+        final TextInputEditText txtTelefono = (TextInputEditText) findViewById(R.id.txtTelefono);
         if (txtTelefono != null && tilTelefono != null) {
             txtTelefono.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     // Configura la validación del email.
     private void setupValidacionEmail() {
         final TextInputLayout tilEmail = (TextInputLayout) findViewById(R.id.tilEmail);
-        final EditText txtEmail = (EditText) findViewById(R.id.txtEmail);
+        final TextInputEditText txtEmail = (TextInputEditText) findViewById(R.id.txtEmail);
         if (txtEmail != null && tilEmail != null) {
             txtEmail.addTextChangedListener(new TextWatcher() {
                 @Override

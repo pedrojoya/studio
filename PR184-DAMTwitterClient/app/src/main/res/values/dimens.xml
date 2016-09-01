@@ -3,5 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="login.root.padding">16dp</dimen>
-    <dimen name="login.lblAppName.padding">40dp</dimen>
+    <dimen name="login.lblAppName.padding">60dp</dimen>
 </resources>
