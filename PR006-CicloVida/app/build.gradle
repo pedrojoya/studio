@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
-def support_library_version = "23.3.0"
+def support_library_version = "24.2.0"
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr006"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }

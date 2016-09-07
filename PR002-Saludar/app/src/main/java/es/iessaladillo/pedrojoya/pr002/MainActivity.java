@@ -1,9 +1,11 @@
 package es.iessaladillo.pedrojoya.pr002;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -51,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     @Override
     public void onClick(View v) {
         // Dependiendo del botón pulsado.
-        switch (v.getId()) {
-            case R.id.btnSaludar:
-                btnSaludarOnClick();
-                break;
+        int id = v.getId();
+        if (id == R.id.btnSaludar) {
+            btnSaludarOnClick();
+
         }
     }
 
@@ -66,8 +68,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
             mensaje = mensaje + " " + getString(R.string.tenga_usted);
         }
         mensaje += " " + txtNombre.getText();
+        // Se oculta el teclado virtual.
+        hideKeyboard(chkEducado);
         // Se muestra el mensaje en un Toast.
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+    }
+
+    // Oculta el teclado virtual. Recibe una vista de referencia
+    private void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     // Cuando se cambia de estado del checkbox.

@@ -2,60 +2,109 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="9d391cdccf450d581fb9936653e825e108ad2a95">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_caa213369b52a876c03d268fc7a52dfc5965f119/classes.dex" />
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_285f0120a1cd4e2e1c8d19b8185a37e1cfb2ead5.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
-        jumboMode="true"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_282a11ca826f7790b0c24432944fb11a0273bbb9/classes.dex" />
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_6297d1fca9d80e7ba7ac94933ebf22badd2a50f8.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_10f3180ca4db55458103cd5240d219716149607a/classes.dex" />
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_d88cc8a0bc639b9786215b5b4ad4da66b034cd3c.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
-        jumboMode="true"
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_8b83b72c7ad346e26dbc2f9cdc6f7fab58de8034/classes.dex" />
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_accdb47e6d67d77e0b8318d858c7123a70a0b9c8.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
-        jumboMode="true"
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_d851c8893b12f2cf9f029152a3df762c0a779b8d/classes.dex" />
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_bea0de107d9e6c43b02b426dc0677ab52b9fb252.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_6ba85c373fbdbf8f3b44db56e4b63959d90fd2d3/classes.dex" />
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_24fea598fdfe068c56f464496b470101de4772e0.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="6614c7192f3b045596b518f94ce3779f0b939733">
-        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9c7a349b656506f6d82ddeaa799c1ac0b4adaa63/classes.dex" />
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_ffa855810d299c2162d9ca7e765039a70fa665ca.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_e130408bd405190e1e42ed1a72b69d746f8165ac.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_92af79d9e21b1915140a360855a8f2c332b0bdd1.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_6492754d97b8812cecae43bbcf2046fef176f0bf.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_0cbfacb98b43969d03afaa59eeb5275cebb16e52.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_7bb4da3a2f67e7c96d71f7743d740c11110c7754.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_9d8c3067ff61c9b7c3ff5a240fdf7da3dbb4c20e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/pedro/studio/PR003-CheckBox/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_6db7426aa9a914a9c85b5836dc6e93ace517e9b7.jar" />
     </item>
 
 </items>

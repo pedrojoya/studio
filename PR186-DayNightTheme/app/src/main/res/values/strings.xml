@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DayNightTheme</string>
+    <string name="texto">Día</string>
+    <string name="imagen">Imagen de día o noche</string>
+</resources>

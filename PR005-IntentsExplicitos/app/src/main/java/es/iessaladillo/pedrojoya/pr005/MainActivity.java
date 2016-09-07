@@ -41,11 +41,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     // Cuando se hace click.
     public void onClick(View vista) {
         // Dependiendo del botón.
-        switch (vista.getId()) {
-            case R.id.btnSolicitar:
-                // Solicito los datos del alumno.
-                solicitarDatos();
-                break;
+        int id = vista.getId();
+        if (id == R.id.btnSolicitar) {
+            // Solicito los datos del alumno.
+            solicitarDatos();
         }
     }
 
@@ -57,14 +56,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     // Cuando llega una respuesta.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Si el resultado es satisfactorio.
-        if (resultCode == RESULT_OK) {
-            // Depeniendo del código de petición (Request Code)
-            switch (requestCode) {
-                case RC_ALUMNO:
-                    // Se obtienen los datos de retorno.
-                    getDatosRetorno(data);
-            }
+        // Si el resultado es satisfactorio y el código de petición el adecuado.
+        if (resultCode == RESULT_OK && requestCode == RC_ALUMNO) {
+            // Se obtienen los datos de retorno.
+            getDatosRetorno(data);
         }
     }
 

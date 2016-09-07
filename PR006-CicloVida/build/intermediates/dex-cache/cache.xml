@@ -2,32 +2,109 @@
 <items version="2" >
 
     <item
-        jar="D:\Documents\GitHub\studio\PR006-CicloVida\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="D:\Documents\GitHub\studio\PR006-CicloVida\app\build\intermediates\pre-dexed\debug\classes-c3688c055f18270bf88da5619c5a759265441856.jar" />
+        revision="23.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR006-CicloVida\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="D:\Documents\GitHub\studio\PR006-CicloVida\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-32b210ee367a0c7932d11102af5248915cbb3294.jar" />
+        revision="23.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_31f5d73e5d7a5c7ddaa67b886c5f466e91e29d84.jar" />
     </item>
     <item
-        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="D:\Documents\GitHub\studio\PR006-CicloVida\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d9dd8d504358a13cde778c25cd9515bdffda856c.jar" />
+        revision="23.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_df7bca9a148e1ea881694c8f6ee89f961ce3ee0a.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR006-CicloVida\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="D:\Documents\GitHub\studio\PR006-CicloVida\app\build\intermediates\pre-dexed\debug\classes-296888d53e7082ddb201897e16807d7e6e75a33e.jar" />
+        revision="23.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_9e3330f645890d925969d1642bdd70e91b5ef920.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_2e386bad567c5d616e6e2d294c42338c83138983.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_b18a18282bcbb03859145fe7a4f36a0e6c613acb.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_68782f77dd9a3f4e15dfadca6bde990f379c6ee5.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_f6aed7756322b7bd2c3321442a988ec3b84df4a7.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_52ba7642e8de2374e7b0e79dca61fdd8dfb565b2.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_afa52af50ab61283bdfc9acf070a3088b4b01f66.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_4abf9b2cd0a97479ffd76e96e3478e7c5fc99996.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_aa7fdef6c04550ef359aa0b5ff39daaf42a5ec09.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_4c7d77b5d95881748bebfea73fa3988489ef3891.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_abb724622d95aaba06e74fc7c7ed3867d8530450.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/pedro/studio/PR006-CicloVida/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_b3bd939509de5c6204ea06baf7152e581e078adc.jar" />
     </item>
 
 </items>

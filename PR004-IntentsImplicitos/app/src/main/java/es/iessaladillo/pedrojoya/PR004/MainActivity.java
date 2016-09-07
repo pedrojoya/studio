@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements
                             Toast.LENGTH_SHORT).show();
                 }
                 break;
+            default:
         }
     }
 
