@@ -1,2 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_9f34728e5d3a1b5b24b744348b7c31e6e43c5119.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_40ad3c315a4e107c253f9b0f9aee098d80c4c5b7.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_c4ce8d5ead0768f2b4c9e9870272b4085c6e01d9.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_8b793600b6a426d44b94d45688d06f2949810ab1.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="96e33a7aaee00ab64270e2a9887b8f9ef32c8b73">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-24.2.0_406aeaca496c50e2cdef4d5179cf93e515082a68.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_140ad90293fabe69e251756ad3492f44ee6beec0.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_74680364bee3620a12d33bc2ca6e350fa57c9800.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_2c8afe57b86618a88770b93da01fc918bf68a57e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_66663513f084340d294f40e947ed8ea4fca33a1f.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_a7d9854ba91ba6e04cf2295d51aad15b4ffd0b92.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_aaf82ab92e8034c1d7b90f426c5dd08c7fff1071.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_89b948a09fc2b533b8291be006b7e51b0571b5af.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_c90bf811393639470f7646fb35124d6cc965e79f.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_61f228f16e2b9b51550da9a038108d3c76d7ea5d.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/pedro/studio/PR012-ListViewOptimizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_e9260e0210b6488dc47c3b6030c8abbe51b263d2.jar" />
+    </item>
+
+</items>

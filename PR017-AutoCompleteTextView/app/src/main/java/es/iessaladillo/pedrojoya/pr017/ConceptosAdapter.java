@@ -142,7 +142,7 @@ class ConceptosAdapter extends ArrayAdapter<Concepto> {
     }
 
     // Contenedor de vistas para la vista-fila.
-    public class ViewHolder {
+    public static class ViewHolder {
 
         // El contenedor de vistas para un elemento de la lista debe contener...
         private final ImageView imgFoto;

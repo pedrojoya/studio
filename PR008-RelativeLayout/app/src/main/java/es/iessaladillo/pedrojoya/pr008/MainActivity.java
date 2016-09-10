@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements
                 // Se resetean las vistas.
                 resetVistas();
                 break;
+            default:
         }
     }
 

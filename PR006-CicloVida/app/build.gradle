@@ -4,7 +4,7 @@ def support_library_version = "24.2.0"
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr006"

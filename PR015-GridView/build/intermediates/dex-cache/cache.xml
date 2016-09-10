@@ -2,32 +2,109 @@
 <items version="2" >
 
     <item
-        jar="D:\Documents\GitHub\studio\PR015-GridView\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="D:\Documents\GitHub\studio\PR015-GridView\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-68f1826a4c4696318431ff0c04cb6e9ebd0f568e.jar" />
+        revision="23.0.3"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_a55c6daa58bdd4378c83c06c7a88783e4eeab742.jar" />
     </item>
     <item
-        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="D:\Documents\GitHub\studio\PR015-GridView\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-fd46c506161dfcacc9c9c5e3eddbd85ccd4b0d08.jar" />
+        revision="23.0.3"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_0d93b4b4ca9006719278bf9a94da2ac111c0ce50.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR015-GridView\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="D:\Documents\GitHub\studio\PR015-GridView\app\build\intermediates\pre-dexed\debug\classes-210075d158b63bcc3ecafa6f978489852e8a876a.jar" />
+        revision="23.0.3"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_1f8fd58aa6a928c0736d1d3ca882207be70f974e.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR015-GridView\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="D:\Documents\GitHub\studio\PR015-GridView\app\build\intermediates\pre-dexed\debug\classes-595a769342849e9446748bbba613db3ef416712b.jar" />
+        revision="23.0.3"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_df33dc8930d036d4cd7ed4cd8949c8836fc4f07e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_ba70927560ea12140d6f1d663519f15915eadb69.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_462ce5d5b9b635272afeb3dc11b8b66fe2c61570.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_1a2e7f24bdee39c7dd85caed365305805c782d74.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_eeb66e50953c91ff97d3b5f784bba259850e76ee.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_62befc4a7fde0a64c14e37cf51a19f4d2386b43c.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_4985540c235e642203bf3b43bcf0b1f302a0b673.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_c11935cf03b37ff40f6b4660b2a730dd6a8f66fe.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_01944c171abeef2b8b60c53a377b71c84f28e352.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_ea96377929d323357e2d75b30e3a4e11f829cc44.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR015-GridView/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/pedro/studio/PR015-GridView/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_2cb1639a2e7f5919a4798a71a2591bb34a8ec704.jar" />
     </item>
 
 </items>

@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.btnTraducir:
                 wvWeb.loadUrl(URL_BASE + txtConcepto.getText().toString());
                 break;
+            default:
         }
     }
 

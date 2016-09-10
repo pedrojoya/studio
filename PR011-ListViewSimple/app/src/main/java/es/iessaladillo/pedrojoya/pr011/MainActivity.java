@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements
                     agregarAlumno(nombre);
                 }
                 break;
+            default:
         }
     }
 

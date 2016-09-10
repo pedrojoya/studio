@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // Clase adaptador de la lista de alumnos.
-    private class AdaptadorAlumnos extends BaseExpandableListAdapter {
+    private static class AdaptadorAlumnos extends BaseExpandableListAdapter {
 
         // Variables miembro.
         private final ArrayList<String> mGrupos; // Nombres de los grupos.
@@ -112,13 +112,13 @@ public class MainActivity extends AppCompatActivity implements
         private final int mColorMayorDeEdad;
 
         // Clase interna privada contenedor de vistas de hijo.
-        private class ContenedorVistasHijo {
+        private static class ContenedorVistasHijo {
             TextView lblNombre;
             TextView lblCurso;
         }
 
         // Clase interna privada contenedor de vistas de grupo.
-        private class ContenedorVistasGrupo {
+        private static class ContenedorVistasGrupo {
             TextView lblEncCiclo;
             ImageView imgIndicador;
             LinearLayout llEncColumnas;

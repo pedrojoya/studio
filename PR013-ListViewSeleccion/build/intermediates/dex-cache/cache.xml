@@ -1,2 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_b805d6ef18adf7de8840251e49cc2caab2cf89c8.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_1b1a70d3d47b86b33bc36b7f520752c2be3bfe4f.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_ab4d643dd7e8b81abf00549debe24291f804b6b1.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_f8d9638e8bc87bbcef2f328cd452d0aa9a108af4.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_bd56b851c9f5fc006d7161a35f6701e5eedcdc70.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_10f7659e012379085558996879a5b76831cf19f7.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_87d1c7064cc0d483a27681d213b05143c06b011e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_74a49f2a598f262336f18123324519a5888c3370.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_4321381873677e6ac34f792ee2584a6231a83a2e.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_37d0e547e4a4b0d29943d11d12920fbae83c6774.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_4374275d00bdbc0053b0c2bf2d9baa6c33d59e19.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_82a409c907e8ab5fd36f7ee9eeedaaf09fc58d89.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_09a45ef2e2112e9931b034f38f4007732777080b.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/pedro/studio/PR013-ListViewSeleccion/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_2c9b768ef464561678857767fe58358f9e8d126d.jar" />
+    </item>
+
+</items>
