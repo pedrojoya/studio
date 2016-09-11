@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 def support_library_version = "24.2.0"
+def leak_canary_version = "1.4-beta2"
 
 android {
     compileSdkVersion 24
@@ -25,4 +26,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:${support_library_version}"
+    debugCompile "com.squareup.leakcanary:leakcanary-android:${leak_canary_version}"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leak_canary_version}"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leak_canary_version}"
 }

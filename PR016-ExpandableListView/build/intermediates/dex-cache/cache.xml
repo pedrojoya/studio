@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/leakcanary-watcher/1.4-beta2/6a920fb0d14e5e3b36e37cf33b1eeef2bcce4c92/leakcanary-watcher-1.4-beta2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6a920fb0d14e5e3b36e37cf33b1eeef2bcce4c92">
+        <dex dex="/Users/pedro/studio/PR016-ExpandableListView/app/build/intermediates/pre-dexed/debug/leakcanary-watcher-1.4-beta2_c4949c0aaa4a4f6212f1d0a784529ca53fae5933.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/leakcanary-analyzer/1.4-beta2/449777cd466ac0a16f7e8d0dc508e70e2cdd13a9/leakcanary-analyzer-1.4-beta2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="449777cd466ac0a16f7e8d0dc508e70e2cdd13a9">
+        <dex dex="/Users/pedro/studio/PR016-ExpandableListView/app/build/intermediates/pre-dexed/debug/leakcanary-analyzer-1.4-beta2_92cc1517cffc365d73f3797c551d30d526b3cd67.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR016-ExpandableListView/app/build/intermediates/exploded-aar/com.squareup.leakcanary/leakcanary-android/1.4-beta2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="9c8472f8e10502af60d0f63ea11eed68bdf690c2">
+        <dex dex="/Users/pedro/studio/PR016-ExpandableListView/app/build/intermediates/pre-dexed/debug/com.squareup.leakcanary-leakcanary-android-1.4-beta2_753195c52f2fcc5ece322bef91ce3fc340035dd3.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.haha/haha/2.0.2/fd65b84d12d6adc77ec0e4fcaca623fc391d8679/haha-2.0.2.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="fd65b84d12d6adc77ec0e4fcaca623fc391d8679">
+        <dex dex="/Users/pedro/studio/PR016-ExpandableListView/app/build/intermediates/pre-dexed/debug/haha-2.0.2_eda00f812c094a2e1b082004b053209cb2d4d428.jar" />
+    </item>
+
+</items>
