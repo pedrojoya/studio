@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.BufferedInputStream;
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup mRgDestino;
     @BindView(R.id.btnCopiar)
     Button mBtnCopiar;
+    @BindView(R.id.rbExternoPropio)
+    RadioButton mRbExternoPropio;
+    @BindView(R.id.rbExternoPublico)
+    RadioButton mRbExternoPublico;
+    @BindView(R.id.rbCacheExterno)
+    RadioButton mRbCacheExterno;
 
     File mCarpetaDestino;
     InputStream mEntrada;
@@ -100,14 +107,9 @@ public class MainActivity extends AppCompatActivity {
                     mNombreArchivo = ASSET_FILE_NAME;
                 }
                 // Si no tenemos el permiso, lo solicitamos.
-                if (permisoRequerido && ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            RP_ALMACEN_EXTERNO);
-                }
-                else {
+                if (permisoRequerido && puedeEscribirEnAlmacenamientoExterno()) {
+                    solicitarPermisoEscrituraAlmacenamientoExterno();
+                } else {
                     // Se copia el archivo en la carpeta de destino.
                     copiarArchivo();
                 }
@@ -116,6 +118,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private boolean tienePermiso(String permissionName) {
+        return ContextCompat.checkSelfPermission(this, permissionName) !=
+                PackageManager.PERMISSION_GRANTED;
+    }
+
+    private boolean puedeEscribirEnAlmacenamientoExterno() {
+        return tienePermiso(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
+
+    private void solicitarPermisoEscrituraAlmacenamientoExterno() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                RP_ALMACEN_EXTERNO);
     }
 
     @Override
@@ -129,8 +146,30 @@ public class MainActivity extends AppCompatActivity {
                     // Se copia el archivo en la carpeta de destino.
                     copiarArchivo();
                 }
+                else {
+                    // Comprobamos si el usuario ha marcado No volver a preguntar.
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        // Aún tenemos esperanza. Informamos.
+                        Snackbar.make(mBtnCopiar,
+                                "Imposible realizar la acción si no se concede el permiso", Snackbar.LENGTH_LONG)
+                                .show();
+                    }
+                    else {
+                        // El usuario ha indicado que No se le vuelva a preguntar.
+                        Snackbar.make(mBtnCopiar,
+                                "Funciones deshabilitadas al no obtener permiso", Snackbar.LENGTH_LONG)
+                                .show();
+                        deshabilitarOpcionesExterno();
+                    }
+                }
             }
         }
+    }
+
+    private void deshabilitarOpcionesExterno() {
+        mRbExternoPropio.setEnabled(false);
+        mRbExternoPublico.setEnabled(false);
+        mRbCacheExterno.setEnabled(false);
     }
 
     // Copia el archivo representado por el flujo de entrada ya abierto en la carpeta

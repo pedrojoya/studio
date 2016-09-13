@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
-def support_library_version = "23.3.0"
-def butterknife_version = "8.0.1"
+def support_library_version = "24.2.0"
+def butterknife_version = "8.4.0"
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr119"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
