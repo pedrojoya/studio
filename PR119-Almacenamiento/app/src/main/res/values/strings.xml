@@ -14,5 +14,10 @@
     <string name="crear_copia_de_archivo">Crear copia de archivo</string>
     <string name="generado">Generado %1$s</string>
     <string name="abrir">Abrir</string>
+    <string name="configurar">Configurar</string>
+    <string name="no_se_pudo">No se pudo realizar la acción al no ser concedido el permiso necesario</string>
+    <string name="accion_no_disponible">Acción no disponible si no se concede permiso</string>
+    <string name="es_necesario">Para poder realizar la acción de almacenar un archivo en almacenamiento externo es necesario que conceda el permiso de escritura en almacenamiento externo</string>
+    <string name="permiso_requerido">Permiso requerido</string>
 
 </resources>
