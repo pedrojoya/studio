@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PermissionsDispatcher</string>
+    <string name="interno">Almacenamiento interno</string>
+    <string name="externo_propio">Almacenamiento externo propio</string>
+    <string name="externo_publico">Almacenamiento externo público</string>
+    <string name="cache_interno">Caché en almacenamiento interno</string>
+    <string name="cache_externo">Caché en almacenamiento externo</string>
+    <string name="fichero_origen">Fichero origen</string>
+    <string name="raw">res/raw/lorem.txt</string>
+    <string name="assets">/assets/audio.mp3</string>
+    <string name="carpeta_destino">Carpeta de destino</string>
+    <string name="crear_copia_de_archivo">Crear copia de archivo</string>
+    <string name="generado">Generado %1$s</string>
+    <string name="abrir">Abrir</string>
+    <string name="configurar">Configurar</string>
+    <string name="no_se_pudo">No se pudo realizar la acción al no ser concedido el permiso necesario</string>
+    <string name="accion_no_disponible">Acción no disponible si no se concede permiso</string>
+    <string name="es_necesario">Para poder realizar la acción de almacenar un archivo en almacenamiento externo es necesario que conceda el permiso de escritura en almacenamiento externo</string>
+    <string name="permiso_requerido">Permiso requerido</string>
+
+</resources>
