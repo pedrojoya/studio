@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_c99bee3562bb10523ebacce85206779c9d584fc6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_ac1ceb6cec85ec733cfe959bb42f4ea1a75e6dbc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_637aaa34b2d0075948df0c5ec42c7bfd7004568b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_ee13d74713a0de53d1c9e1e683bf854221d15d19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_578e78054aed5cb426c9312353067f552c215a91.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_873c01d5429b141c7abb74d7a9e394fc260e229a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_866ac4ccd91904496314300e4fd8f85c17a1a1fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_c926ed6a4067e5ac0e643890725eadd48605bb0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_32733b5504db878431c764c1a6a5e8c177a8e487.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_4200b6a46bb9c7b1063a4a593637fc30516f206e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_cb04f3bde5f9456fcf51c50be86660593682f605.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_4cc9219a469ff6969558302b16973d735ed04514.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_1724c1f6b982980ccac6e3e3e8f27c59bc6b0b94.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_e40748a237277edfa6e7ec8e18f37e3fcc63a6dc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_725f4df44988ab7e6956096f31bdb0e2b7ab2fda.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_7f61efb0149dfd6254d7c4b258f70735857203e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/pedro/studio/PR189-Retrolambda/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_bb482541e48554ad211c1e734bf6f503c3dd9b85.jar" />
+    </item>
+
+</items>

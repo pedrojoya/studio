@@ -2,7 +2,6 @@ package es.iessaladillo.pedrojoya.pr188;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -72,14 +70,16 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
-        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this,
+                requestCode, grantResults);
     }
 
     @OnClick(R.id.btnCopiar)
     public void btnCopiarOnClick() {
         // Si no tenemos el permiso, lo solicitamos.
         if (isPermisoRequerido()) {
-            MainActivityPermissionsDispatcher.copiarArchivoConPermisoWithCheck(this);
+            MainActivityPermissionsDispatcher
+                    .copiarArchivoConPermisoWithCheck(this);
         } else {
             // Se copia el archivo en la carpeta de destino.
             copiarArchivo();
@@ -97,14 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage(R.string.es_necesario)
                 .setTitle(R.string.permiso_requerido)
                 .setPositiveButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        RP_ALMACEN_EXTERNO);
-                            }
-                        })
+                        (dialogInterface, i) -> ActivityCompat
+                                .requestPermissions(MainActivity.this,
+                                        new String[]{Manifest.permission
+                                                .WRITE_EXTERNAL_STORAGE},
+                                        RP_ALMACEN_EXTERNO))
                 .show();
     }
 
@@ -120,13 +117,8 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(mBtnCopiar,
                 R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
                 .setAction(R.string.configurar,
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                startInstalledAppDetailsActivity(
-                                        MainActivity.this);
-                            }
-                        })
+                        view -> startInstalledAppDetailsActivity(
+                                MainActivity.this))
                 .show();
     }
 
@@ -194,7 +186,8 @@ public class MainActivity extends AppCompatActivity {
         BufferedInputStream lector;
         try {
             lector = new BufferedInputStream(getFlujoEntrada());
-            final File fichero = new File(getCarpetaDestino(), getNombreArchivo());
+            final File fichero = new File(getCarpetaDestino(),
+                    getNombreArchivo());
             Log.d(getString(R.string.app_name), fichero.getPath());
             FileOutputStream salida = new FileOutputStream(fichero);
             BufferedOutputStream escritor = new BufferedOutputStream(salida);
@@ -209,12 +202,8 @@ public class MainActivity extends AppCompatActivity {
             Snackbar.make(mBtnCopiar,
                     getString(R.string.generado, fichero.getPath()),
                     Snackbar.LENGTH_LONG)
-                    .setAction(R.string.abrir, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            abrirArchivo(fichero);
-                        }
-                    }).show();
+                    .setAction(R.string.abrir, v -> abrirArchivo(fichero))
+                    .show();
         } catch (IOException e) {
             e.printStackTrace();
         }

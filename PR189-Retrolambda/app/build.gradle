@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+def support_library_version = "24.2.1"
+def espresso_version = "2.2.2"
+def testrunner_version = "0.5"
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr189"
+        minSdkVersion 14
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:${support_library_version}"
+    compile "com.android.support:design:${support_library_version}"
+    androidTestCompile "com.android.support:support-annotations:${support_library_version}"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:${espresso_version}"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:${espresso_version}"
+    androidTestCompile "com.android.support.test:runner:${testrunner_version}"
+    androidTestCompile "com.android.support.test:rules:${testrunner_version}"
+}

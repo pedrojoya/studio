@@ -55,19 +55,9 @@ public class MainFragment extends Fragment {
         lblMensaje = (TextView) v.findViewById(R.id.lblMensaje);
         prbCirculo = (ProgressBar) v.findViewById(R.id.prbCirculo);
         btnIniciar = (Button) v.findViewById(R.id.btnIniciar);
-        btnIniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iniciar();
-            }
-        });
+        btnIniciar.setOnClickListener(view -> iniciar());
         btnCancelar = (Button) v.findViewById(R.id.btnCancelar);
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cancelar();
-            }
-        });
+        btnCancelar.setOnClickListener(view -> cancelar());
         actualizarVistas(mIsTareaStarted);
     }
 

@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
-def support_library_version = "24.2.0"
+
+def support_library_version = "24.2.1"
 def eventbus_version = "3.0.0"
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr187"
@@ -20,6 +22,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -27,5 +34,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:$support_library_version"
     compile "org.greenrobot:eventbus:$eventbus_version"
-    compile 'com.android.support:support-v4:24.2.0'
 }

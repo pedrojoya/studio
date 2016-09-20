@@ -4,7 +4,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,24 +21,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageView imgImagen = (ImageView) findViewById(R.id.imgImagen);
-        imgImagen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentNightMode = getResources().getConfiguration().uiMode
-                        & Configuration.UI_MODE_NIGHT_MASK;
-                switch (currentNightMode) {
-                    case Configuration.UI_MODE_NIGHT_NO:
-                        getDelegate().setLocalNightMode(
-                                AppCompatDelegate.MODE_NIGHT_YES);
-                        break;
-                    case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                    case Configuration.UI_MODE_NIGHT_YES:
-                        getDelegate().setLocalNightMode(
-                                AppCompatDelegate.MODE_NIGHT_NO);
-                        break;
-                }
-                recreate();
-            }
-        });
+        imgImagen.setOnClickListener(view -> cambiarModo());
     }
+
+    private void cambiarModo() {
+        int currentNightMode = getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+        switch (currentNightMode) {
+            case Configuration.UI_MODE_NIGHT_NO:
+                getDelegate().setLocalNightMode(
+                        AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+            case Configuration.UI_MODE_NIGHT_YES:
+                getDelegate().setLocalNightMode(
+                        AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+        }
+        recreate();
+    }
+
 }
