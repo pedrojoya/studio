@@ -64,10 +64,8 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
     private void configFab() {
         FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
         if (fabAccion != null) {
-            fabAccion.setOnClickListener(view -> {
-                //agregarAlumno(DB.getNextAlumno());
-                AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR);
-            });
+            fabAccion.setOnClickListener(
+                    view -> AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR));
         }
     }
 

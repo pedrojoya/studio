@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private void cargarDatos() {
         SharedPrefHelper prefs = new SharedPrefHelper(getResources(),
                 PreferenceManager.getDefaultSharedPreferences(this));
-        txtMensaje.setText(prefs.getString(R.string.pref_mensaje, getString(R.string.quillo_ponte_ya_a_currar)));
+        txtMensaje.setText(prefs.getString(R.string.pref_mensaje,
+                getString(R.string.quillo_ponte_ya_a_currar)));
         txtIntervalo.setText(String.valueOf(
                 prefs.getInt(R.string.pref_intervalo, PlanificadorService.DEFAULT_INTERVAL)));
         swActivar.setChecked(prefs.getBoolean(R.string.pref_activo, false));
@@ -50,9 +51,8 @@ public class MainActivity extends AppCompatActivity {
         // Dependiendo del estado en el que ha quedado
         if (isChecked) {
             // Se planifica el trabajo con los datos introducidos por el usuario.
-            String mensaje = TextUtils.isEmpty(txtMensaje.getText().toString()) ?
-                    getString(R.string.quillo_ponte_ya_a_currar)
-                    : txtMensaje.getText().toString();
+            String mensaje = TextUtils.isEmpty(txtMensaje.getText().toString()) ? getString(
+                    R.string.quillo_ponte_ya_a_currar) : txtMensaje.getText().toString();
             int intervalo;
             try {
                 intervalo = Integer.parseInt(txtIntervalo.getText().toString());
@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (PlanificadorService.planificarTrabajo(this, mensaje, intervalo)) {
                 Toast.makeText(this, R.string.trabajo_planificado, Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
                 Toast.makeText(this, R.string.gps_no_disponbile, Toast.LENGTH_SHORT).show();
             }
         } else {

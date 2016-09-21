@@ -46,8 +46,8 @@ public class PlanificadorService extends JobService {
 
     private void mostrarNotificacion(String mensaje) {
         // Se obtiene el gestor de notificaciones del sistema.
-        NotificationManager mGestor = (NotificationManager)
-                getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mGestor = (NotificationManager) getSystemService(
+                Context.NOTIFICATION_SERVICE);
         // Se configura la notificación.
         NotificationCompat.Builder b = new NotificationCompat.Builder(this);
         b.setSmallIcon(R.drawable.ic_info_outline);
@@ -58,8 +58,7 @@ public class PlanificadorService extends JobService {
         b.setAutoCancel(true);
         // Al pulsarse la notificación se mostrará la actividad principal.
         Intent i = new Intent(this, MainActivity.class);
-        PendingIntent pi = PendingIntent.getActivity(this, RC_ENTENDIDO, i,
-                0);
+        PendingIntent pi = PendingIntent.getActivity(this, RC_ENTENDIDO, i, 0);
         b.setContentIntent(pi);
         // Se construye y muestra la notificación.
         mGestor.notify(NC_AVISAR, b.build());
@@ -72,8 +71,7 @@ public class PlanificadorService extends JobService {
         // para el trabajo y el nombre de la clase correspondiente al servicio
         // que será llamado cuando se "dispare" el trabajo.
         JobInfo.Builder builder = new JobInfo.Builder(TRABAJO_ID,
-                new ComponentName(context.getPackageName(),
-                        PlanificadorService.class.getName()));
+                new ComponentName(context.getPackageName(), PlanificadorService.class.getName()));
         // Se especifican las condiciones de disparo.
         builder.setPeriodic(intervalo);
         builder.setPersisted(true);
@@ -81,8 +79,8 @@ public class PlanificadorService extends JobService {
         extras.putString(PlanificadorService.KEY_MENSAJE, mensaje);
         builder.setExtras(extras);
         // Se planifica el trabajo.
-        JobScheduler planificador =
-                (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        JobScheduler planificador = (JobScheduler) context.getSystemService(
+                Context.JOB_SCHEDULER_SERVICE);
         int trabajoId = planificador.schedule(builder.build());
         if (trabajoId > 0) {
             // Se guardan las preferencias.
@@ -98,8 +96,8 @@ public class PlanificadorService extends JobService {
     // Cancela la planificación del trabajo.
     public static void cancelarPlanificacionTrabajo(Context context, int trabajoId) {
         // Se obtiene el planificador de trabajos.
-        JobScheduler planificador =
-                (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        JobScheduler planificador = (JobScheduler) context.getSystemService(
+                Context.JOB_SCHEDULER_SERVICE);
         // Se cancela.
         planificador.cancel(trabajoId);
         // Se guarda la preferencia.

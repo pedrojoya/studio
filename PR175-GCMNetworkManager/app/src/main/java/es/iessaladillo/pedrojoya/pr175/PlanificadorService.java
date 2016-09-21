@@ -57,8 +57,8 @@ public class PlanificadorService extends GcmTaskService {
     // Muestra una notificación con el mensaje.
     private void mostrarNotificacion(String mensaje) {
         // Se obtiene el gestor de notificaciones del sistema.
-        NotificationManager mGestor = (NotificationManager)
-                getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mGestor = (NotificationManager) getSystemService(
+                Context.NOTIFICATION_SERVICE);
         // Se configura la notificación.
         NotificationCompat.Builder b = new NotificationCompat.Builder(this);
         b.setSmallIcon(R.drawable.ic_info_outline);
@@ -69,8 +69,7 @@ public class PlanificadorService extends GcmTaskService {
         b.setAutoCancel(true);
         // Al pulsarse la notificación se mostrará la actividad principal.
         Intent i = new Intent(this, es.iessaladillo.pedrojoya.pr175.MainActivity.class);
-        PendingIntent pi = PendingIntent.getActivity(this, RC_ENTENDIDO, i,
-                0);
+        PendingIntent pi = PendingIntent.getActivity(this, RC_ENTENDIDO, i, 0);
         b.setContentIntent(pi);
         // Se construye y muestra la notificación.
         mGestor.notify(NC_AVISAR, b.build());
@@ -78,12 +77,10 @@ public class PlanificadorService extends GcmTaskService {
 
     // Planifica un trabajo periódico persistente con el mensaje
     // y el intervalo recibidos.
-    public static boolean planificarTrabajo(Context context,
-                                            String mensaje, int intervalo) {
+    public static boolean planificarTrabajo(Context context, String mensaje, int intervalo) {
         Bundle extras = new Bundle();
         extras.putString(KEY_MENSAJE, mensaje);
-        Task task = new PeriodicTask.Builder()
-                .setService(PlanificadorService.class)
+        Task task = new PeriodicTask.Builder().setService(PlanificadorService.class)
                 .setPeriod(intervalo / 1000)
                 .setFlex(1)
                 .setUpdateCurrent(true)
@@ -110,8 +107,8 @@ public class PlanificadorService extends GcmTaskService {
     // Cancela la planificación del trabajo.
     public static void cancelarPlanificacionTrabajo(Context context) {
         // Se cancela.
-        GcmNetworkManager.getInstance(context).cancelTask(
-                PlanificadorService.TRABAJO_MENSAJE_TAG, PlanificadorService.class);
+        GcmNetworkManager.getInstance(context)
+                .cancelTask(PlanificadorService.TRABAJO_MENSAJE_TAG, PlanificadorService.class);
         // Se guarda la preferencia.
         SharedPrefHelper prefs = new SharedPrefHelper(context.getResources(),
                 PreferenceManager.getDefaultSharedPreferences(context));

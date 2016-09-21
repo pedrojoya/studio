@@ -22,7 +22,7 @@ public class SharedPrefHelper {
     }
 
     public boolean isPrefContains(int resId) {
-        return (mPref.contains(mRes.getString(resId)));
+        return mPref.contains(mRes.getString(resId));
     }
 
     public void removePref(int resId) {
@@ -30,7 +30,7 @@ public class SharedPrefHelper {
     }
 
     public String getString(int resId, String defValue) {
-        return (mPref.getString(mRes.getString(resId), defValue));
+        return mPref.getString(mRes.getString(resId), defValue);
     }
 
     public String getString(int resId) {
@@ -46,7 +46,7 @@ public class SharedPrefHelper {
     }
 
     public boolean getBoolean(int resId, boolean defValue) {
-        return (mPref.getBoolean(mRes.getString(resId), defValue));
+        return mPref.getBoolean(mRes.getString(resId), defValue);
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
@@ -71,7 +71,7 @@ public class SharedPrefHelper {
     }
 
     public int getInt(int resId, int defValue) {
-        return (mPref.getInt(mRes.getString(resId), defValue));
+        return mPref.getInt(mRes.getString(resId), defValue);
     }
 
     public int getInt(int resId) {
@@ -87,7 +87,7 @@ public class SharedPrefHelper {
     }
 
     public long getLong(int resId, long defValue) {
-        return (mPref.getLong(mRes.getString(resId), defValue));
+        return mPref.getLong(mRes.getString(resId), defValue);
     }
 
     public long getLong(int resId) {
@@ -103,7 +103,7 @@ public class SharedPrefHelper {
     }
 
     public float getFloat(int resId, float defValue) {
-        return (mPref.getFloat(mRes.getString(resId), defValue));
+        return mPref.getFloat(mRes.getString(resId), defValue);
     }
 
     public float getFloat(int resId) {
@@ -123,9 +123,10 @@ public class SharedPrefHelper {
      * This can be used also on values which are maps themselves
      * Limitation:
      * <ul>
-     *     <li> Can't parse a value which is a list
-     *     <li> Float will be case to Double
+     * <li> Can't parse a value which is a list
+     * <li> Float will be case to Double
      * </ul>
+     *
      * @param map The Map containing values to commit
      */
     public void commitMap(Map<String, Object> map) {
@@ -141,9 +142,10 @@ public class SharedPrefHelper {
      * This can be used also on values which are maps themselves
      * Limitation:
      * <ul>
-     *     <li> Can't parse a value which is a list
-     *     <li> Float will be case to Double
+     * <li> Can't parse a value which is a list
+     * <li> Float will be case to Double
      * </ul>
+     *
      * @param map The Map containing values to apply
      */
     public void applyMap(Map<String, Object> map) {
@@ -156,9 +158,11 @@ public class SharedPrefHelper {
 
     @SuppressWarnings("unchecked")
     private void runOverMap(Map<String, Object> map, SharedPreferences.Editor edit) {
-        for (String key : map.keySet()) {
-            Object value = map.get(key);
-
+        String key;
+        Object value;
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            key = entry.getKey();
+            value = entry.getValue();
             if (value instanceof String) {
                 edit.putString(key, (String) value);
             } else if (value instanceof Boolean) {
@@ -177,8 +181,8 @@ public class SharedPrefHelper {
                 runOverMap((Map) value, edit);
             } else {
                 Log.e("PreferenceUtil",
-                        "Trying to enter unknown type inside a shared pref map. type=" +
-                                value.getClass().getSimpleName());
+                        "Trying to enter unknown type inside a shared pref map. type="
+                                + value.getClass().getSimpleName());
             }
         }
     }

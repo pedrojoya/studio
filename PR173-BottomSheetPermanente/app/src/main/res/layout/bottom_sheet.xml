@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/translucent_grey"
-    android:padding="@dimen/panel_padding"
-    app:layout_behavior="@string/bottom_sheet_behavior"
-    app:behavior_peekHeight="@dimen/bottomSheet_peekHeight"
-    app:behavior_hideable="true"
-    tools:ignore="Overdraw">
-
-    <TextView
-        android:id="@+id/lblTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/imgDetalle"
-        android:layout_toStartOf="@+id/imgDetalle"
-        android:text="@string/foto_del_dia"
-        android:textColor="@android:color/white"
-        style="@style/Base.TextAppearance.AppCompat.Headline"/>
-
-    <TextView
-        android:id="@+id/lblSubtitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/lblTitulo"
-        android:layout_toLeftOf="@+id/imgDetalle"
-        android:layout_toStartOf="@+id/imgDetalle"
-        android:text="@string/londres"
-        android:textColor="@android:color/white"
-        style="@style/Base.TextAppearance.AppCompat.Subhead"/>
-
-    <ImageView
-        android:id="@+id/imgDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/lblSubtitulo"
-        android:layout_alignBottom="@+id/lblSubtitulo"
-        android:clickable="true"
-        android:contentDescription="@string/abrir_detalle"
-        android:src="@drawable/ic_arrow_drop_up"/>
-
-    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblSubtitulo"
-        android:paddingLeft="@dimen/panel_padding"
-        android:paddingStart="@dimen/panel_padding"
-        android:paddingRight="@dimen/panel_padding"
-        android:paddingEnd="@dimen/panel_padding"
-        android:paddingTop="@dimen/panel_padding"
-        android:text="@string/detalle"
-        android:textColor="@android:color/white"
-        style="@style/Base.TextAppearance.AppCompat.Body2"/>
+        android:background="@color/translucent_grey"
+        android:padding="@dimen/panel_padding"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="@dimen/bottomSheet_peekHeight"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        tools:ignore="Overdraw">
+
+    <TextView
+            android:id="@+id/lblTitulo"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/imgDetalle"
+            android:layout_toStartOf="@+id/imgDetalle"
+            android:text="@string/foto_del_dia"
+            android:textColor="@android:color/white"/>
+
+    <TextView
+            android:id="@+id/lblSubtitulo"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lblTitulo"
+            android:layout_toLeftOf="@+id/imgDetalle"
+            android:layout_toStartOf="@+id/imgDetalle"
+            android:text="@string/londres"
+            android:textColor="@android:color/white"/>
+
+    <ImageView
+            android:id="@+id/imgDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/lblSubtitulo"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/lblSubtitulo"
+            android:clickable="true"
+            android:contentDescription="@string/abrir_detalle"
+            android:src="@drawable/ic_arrow_drop_up"/>
+
+    <TextView
+            style="@style/Base.TextAppearance.AppCompat.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblSubtitulo"
+            android:paddingEnd="@dimen/panel_padding"
+            android:paddingLeft="@dimen/panel_padding"
+            android:paddingRight="@dimen/panel_padding"
+            android:paddingStart="@dimen/panel_padding"
+            android:paddingTop="@dimen/panel_padding"
+            android:text="@string/detalle"
+            android:textColor="@android:color/white"/>
 </RelativeLayout>
