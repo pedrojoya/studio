@@ -20,8 +20,7 @@ class AlumnosLoader extends AsyncTaskLoader<ArrayList<Alumno>> {
         if (takeContentChanged() || mDatos == null) {
             Log.d(getContext().getString(R.string.app_name), "forceLoad");
             forceLoad();
-        }
-        else {
+        } else {
             // Se entregan los datos disponibles.
             deliverResult(mDatos);
         }

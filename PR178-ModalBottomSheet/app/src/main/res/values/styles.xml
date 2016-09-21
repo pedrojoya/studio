@@ -12,8 +12,12 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@drawable/cab_background</item>
         <!-- Fondo para elementos activados -->
-        <item name="selectableItemBackground">@drawable/activity_main_item_background</item>
-        <item name="android:selectableItemBackground">@drawable/activity_main_item_background</item>
+        <item name="selectableItemBackground">
+            @drawable/activity_main_item_background
+        </item>
+        <item name="android:selectableItemBackground">
+            @drawable/activity_main_item_background
+        </item>
     </style>
 
     <!-- Tema de la aplicación -->

@@ -1,60 +1,61 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/lblNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/nombre"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:id="@+id/lblNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/nombre"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <EditText
-        android:id="@+id/txtNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/lblNombre"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:ems="10"
-        android:inputType="textPersonName" >
+            android:id="@+id/txtNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lblNombre"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:ems="10"
+            android:inputType="textPersonName">
 
-        <requestFocus />
+        <requestFocus/>
     </EditText>
 
     <Button
-        android:id="@+id/btnBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNombre"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/buscar" />
+            android:id="@+id/btnBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNombre"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/buscar"/>
+
     <Button
-        android:id="@+id/btnEco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNombre"
-        android:layout_toRightOf="@+id/btnBuscar"
-        android:layout_toEndOf="@+id/btnBuscar"
-        android:layout_alignTop="@+id/btnBuscar"
-        android:text="@string/eco" />
+            android:id="@+id/btnEco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNombre"
+            android:layout_toRightOf="@+id/btnBuscar"
+            android:layout_toEndOf="@+id/btnBuscar"
+            android:layout_alignTop="@+id/btnBuscar"
+            android:text="@string/eco"/>
 
     <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pbProgreso"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pbProgreso"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

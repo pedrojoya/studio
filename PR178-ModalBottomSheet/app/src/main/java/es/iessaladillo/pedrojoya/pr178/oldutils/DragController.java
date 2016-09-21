@@ -14,8 +14,7 @@ import es.iessaladillo.pedrojoya.pr178.AlumnosAdapter;
 
 // Basado en http://blog.stylingandroid.com/material-part-6/#more-2907
 @SuppressWarnings("unused")
-public abstract class DragController implements
-        RecyclerView.OnItemTouchListener {
+public abstract class DragController implements RecyclerView.OnItemTouchListener {
 
     private static final int ANIMATION_DURATION = 100;
 
@@ -34,26 +33,25 @@ public abstract class DragController implements
         this.recyclerView = recyclerView;
         this.overlay = overlay;
         // Se usa un detector de gestor para detectar el click largo.
-        GestureDetector.SimpleOnGestureListener longClickGestureListener =
-                new GestureDetector.SimpleOnGestureListener() {
-                    @Override
-                    public void onLongPress(MotionEvent e) {
-                        super.onLongPress(e);
-                        // Si está habilitado y la vista es aún válida
-                        // (problemas con swipeToDismiss)
-                        if (recyclerView.findChildViewUnder(e.getX(), e.getY())
-                                != null) {
-                            // Ya se ha producido el long click.
-                            // Para iniciar el drag es necesario que se haga
-                            // click largo y además se mueva (es necesario
-                            // hacerlo así ya que el click largo se reserva
-                            // para el modo de acción contextual).
-                            isLongClick = true;
-                        }
-                    }
-                };
-        this.gestureDetector = new GestureDetectorCompat(
-                recyclerView.getContext(), longClickGestureListener);
+        GestureDetector.SimpleOnGestureListener longClickGestureListener = new GestureDetector
+                .SimpleOnGestureListener() {
+            @Override
+            public void onLongPress(MotionEvent e) {
+                super.onLongPress(e);
+                // Si está habilitado y la vista es aún válida
+                // (problemas con swipeToDismiss)
+                if (recyclerView.findChildViewUnder(e.getX(), e.getY()) != null) {
+                    // Ya se ha producido el long click.
+                    // Para iniciar el drag es necesario que se haga
+                    // click largo y además se mueva (es necesario
+                    // hacerlo así ya que el click largo se reserva
+                    // para el modo de acción contextual).
+                    isLongClick = true;
+                }
+            }
+        };
+        this.gestureDetector = new GestureDetectorCompat(recyclerView.getContext(),
+                longClickGestureListener);
     }
 
     // Se llama antes de que sea procesado el evento Touch
@@ -83,7 +81,6 @@ public abstract class DragController implements
     @Override
     public void onTouchEvent(RecyclerView rv, MotionEvent e) {
         // Obtenemos la vista que está siendo arrastrada
-        int x = (int) e.getX();
         int y = (int) e.getY();
         if (e.getAction() == MotionEvent.ACTION_UP) {
             // Si se suelta, se finaliza el arrastre.
@@ -139,8 +136,7 @@ public abstract class DragController implements
             // Se obtiene la vista sobre la que se encuentra y se intercambia
             //  con la vista original.
             View view = recyclerView.findChildViewUnder(0, y);
-            if (recyclerView.getChildAdapterPosition(view) != 0 &&
-                    view != null) {
+            if (recyclerView.getChildAdapterPosition(view) != 0 && view != null) {
                 swapViews(view);
             }
         }
@@ -177,8 +173,7 @@ public abstract class DragController implements
     public boolean isInPreviousBounds() {
         float overlayTop = overlay.getTop() + overlay.getTranslationY();
         float overlayBottom = overlay.getBottom() + overlay.getTranslationY();
-        return overlayTop < startBounds.bottom &&
-                overlayBottom > startBounds.top;
+        return overlayTop < startBounds.bottom && overlayBottom > startBounds.top;
     }
 
     // Cuando finaliza el arrastre.
@@ -191,8 +186,7 @@ public abstract class DragController implements
         // la vista overlay hasta su posición original.
         float translationY = overlay.getTranslationY();
         draggingView.setTranslationY(translationY - startBounds.top);
-        draggingView.animate().translationY(0f).setDuration(ANIMATION_DURATION)
-                .start();
+        draggingView.animate().translationY(0f).setDuration(ANIMATION_DURATION).start();
         onDragEnded();
     }
 

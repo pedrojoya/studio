@@ -19,9 +19,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
-        AlumnosAdapter.OnItemLongClickListener, LoaderManager.LoaderCallbacks<ArrayList<Alumno>>,
-        SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements AlumnosAdapter
+        .OnItemClickListener, AlumnosAdapter.OnItemLongClickListener, LoaderManager
+        .LoaderCallbacks<ArrayList<Alumno>>, SwipeRefreshLayout.OnRefreshListener {
 
     private static final int LOADER_ID = 1;
     private static final int RC_AGREGAR = 1;
@@ -64,12 +64,9 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     private void configFab() {
         FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
         if (fabAccion != null) {
-            fabAccion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //agregarAlumno(DB.getNextAlumno());
-                    AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR);
-                }
+            fabAccion.setOnClickListener(view -> {
+                //agregarAlumno(DB.getNextAlumno());
+                AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR);
             });
         }
     }
@@ -110,8 +107,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         if (swlPanel != null) {
             swlPanel.setOnRefreshListener(this);
             swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light,
+                    android.R.color.holo_green_light, android.R.color.holo_orange_light,
                     android.R.color.holo_red_light);
         }
     }
@@ -182,12 +178,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         // Se comprueba si hay que mostrar la emptyview.
         checkAdapterIsEmpty();
         // Se cancela la animación del panel.
-        swlPanel.post(new Runnable() {
-            @Override
-            public void run() {
-                swlPanel.setRefreshing(false);
-            }
-        });
+        swlPanel.post(() -> swlPanel.setRefreshing(false));
     }
 
     @Override

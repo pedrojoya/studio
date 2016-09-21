@@ -30,7 +30,9 @@ class Alumno implements Parcelable {
         return nombre;
     }
 
-    public long getId() { return id;}
+    public long getId() {
+        return id;
+    }
 
     @Override
     public int describeContents() {

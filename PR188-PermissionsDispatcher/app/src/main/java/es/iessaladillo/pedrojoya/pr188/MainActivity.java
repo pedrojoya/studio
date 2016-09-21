@@ -61,25 +61,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        habilitarOpciones(
-                Environment.getExternalStorageState().equals(
-                        Environment.MEDIA_MOUNTED));
+        habilitarOpciones(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED));
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this,
-                requestCode, grantResults);
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
+                grantResults);
     }
 
     @OnClick(R.id.btnCopiar)
     public void btnCopiarOnClick() {
         // Si no tenemos el permiso, lo solicitamos.
         if (isPermisoRequerido()) {
-            MainActivityPermissionsDispatcher
-                    .copiarArchivoConPermisoWithCheck(this);
+            MainActivityPermissionsDispatcher.copiarArchivoConPermisoWithCheck(this);
         } else {
             // Se copia el archivo en la carpeta de destino.
             copiarArchivo();
@@ -93,39 +89,32 @@ public class MainActivity extends AppCompatActivity {
 
     @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void mostrarDialogoInformativoPermiso(PermissionRequest request) {
-        new AlertDialog.Builder(this)
-                .setMessage(R.string.es_necesario)
+        new AlertDialog.Builder(this).setMessage(R.string.es_necesario)
                 .setTitle(R.string.permiso_requerido)
                 .setPositiveButton(android.R.string.ok,
-                        (dialogInterface, i) -> ActivityCompat
-                                .requestPermissions(MainActivity.this,
-                                        new String[]{Manifest.permission
-                                                .WRITE_EXTERNAL_STORAGE},
-                                        RP_ALMACEN_EXTERNO))
+                        (dialogInterface, i) -> ActivityCompat.requestPermissions(MainActivity.this,
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                RP_ALMACEN_EXTERNO))
                 .show();
     }
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void mostrarError() {
-        Snackbar.make(mBtnCopiar,
-                R.string.no_se_pudo, Snackbar.LENGTH_LONG)
-                .show();
+        Snackbar.make(mBtnCopiar, R.string.no_se_pudo, Snackbar.LENGTH_LONG).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void mostrarNoDisponible() {
-        Snackbar.make(mBtnCopiar,
-                R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
+        Snackbar.make(mBtnCopiar, R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
                 .setAction(R.string.configurar,
-                        view -> startInstalledAppDetailsActivity(
-                                MainActivity.this))
+                        view -> startInstalledAppDetailsActivity(MainActivity.this))
                 .show();
     }
 
     private String getTipoSubcarpeta() {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                Environment.DIRECTORY_DOWNLOADS :
-                Environment.DIRECTORY_MUSIC;
+        return mRgOrigen.getCheckedRadioButtonId()
+                       == R.id.rbRaw ? Environment.DIRECTORY_DOWNLOADS : Environment
+                       .DIRECTORY_MUSIC;
     }
 
     private File getCarpetaDestino() {
@@ -133,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rbExternoPropio:
                 return getExternalFilesDir(getTipoSubcarpeta());
             case R.id.rbExternoPublico:
-                return Environment.getExternalStoragePublicDirectory(
-                        getTipoSubcarpeta());
+                return Environment.getExternalStoragePublicDirectory(getTipoSubcarpeta());
             case R.id.rbCacheInterno:
                 return getCacheDir();
             case R.id.rbCacheExterno:
@@ -145,30 +133,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private InputStream getFlujoEntrada() throws IOException {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                getResources().openRawResource(R.raw.lorem) :
-                getAssets().open(getNombreArchivo());
+        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ? getResources().openRawResource(
+                R.raw.lorem) : getAssets().open(getNombreArchivo());
     }
 
     private String getNombreArchivo() {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                RAW_FILE_NAME : ASSET_FILE_NAME;
+        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ? RAW_FILE_NAME : ASSET_FILE_NAME;
     }
 
     @NonNull
     private String getMimeType() {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                "text/plain" : "audio/mp3";
+        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ? "text/plain" : "audio/mp3";
     }
 
     private boolean isPermisoRequerido() {
         int id = mRgDestino.getCheckedRadioButtonId();
-        return (id == R.id.rbExternoPropio) || (id == R.id.rbExternoPublico) ||
-                (id == R.id.rbCacheExterno);
+        return (id == R.id.rbExternoPropio) || (id == R.id.rbExternoPublico) || (id
+                == R.id.rbCacheExterno);
     }
 
-    public static void startInstalledAppDetailsActivity(
-            @NonNull final Activity context) {
+    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
         final Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -186,8 +170,7 @@ public class MainActivity extends AppCompatActivity {
         BufferedInputStream lector;
         try {
             lector = new BufferedInputStream(getFlujoEntrada());
-            final File fichero = new File(getCarpetaDestino(),
-                    getNombreArchivo());
+            final File fichero = new File(getCarpetaDestino(), getNombreArchivo());
             Log.d(getString(R.string.app_name), fichero.getPath());
             FileOutputStream salida = new FileOutputStream(fichero);
             BufferedOutputStream escritor = new BufferedOutputStream(salida);
@@ -199,8 +182,7 @@ public class MainActivity extends AppCompatActivity {
             }
             escritor.close();
             lector.close();
-            Snackbar.make(mBtnCopiar,
-                    getString(R.string.generado, fichero.getPath()),
+            Snackbar.make(mBtnCopiar, getString(R.string.generado, fichero.getPath()),
                     Snackbar.LENGTH_LONG)
                     .setAction(R.string.abrir, v -> abrirArchivo(fichero))
                     .show();

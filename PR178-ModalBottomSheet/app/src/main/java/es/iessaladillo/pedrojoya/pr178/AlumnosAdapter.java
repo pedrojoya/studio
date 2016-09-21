@@ -60,30 +60,23 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // y de las subvistas.
 
         // Cuando se hace click sobre el elemento.
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    // Se informa al listener.
-                    mOnItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                }
+        itemView.setOnClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                // Se informa al listener.
+                mOnItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
             }
         });
         // Cuando se hace click largo sobre el elemento.
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (mOnItemLongClickListener != null) {
-                    // Se informa al listener.
-                    mOnItemLongClickListener.onItemLongClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                    return true;
-                } else {
-                    return false;
-                }
+        itemView.setOnLongClickListener(v -> {
+            if (mOnItemLongClickListener != null) {
+                // Se informa al listener.
+                mOnItemLongClickListener.onItemLongClick(v,
+                        mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
+                return true;
+            } else {
+                return false;
             }
         });
         // Se retorna el contenedor.
@@ -155,8 +148,12 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // Se intercambia también el estado de selección de from y to.
         boolean fromSelected = mSelectedItems.get(from, false);
         boolean toSelected = mSelectedItems.get(to, false);
-        if (fromSelected) mSelectedItems.delete(from);
-        if (toSelected) mSelectedItems.delete(to);
+        if (fromSelected) {
+            mSelectedItems.delete(from);
+        }
+        if (toSelected) {
+            mSelectedItems.delete(to);
+        }
         if (fromSelected) {
             mSelectedItems.put(to, true);
         }

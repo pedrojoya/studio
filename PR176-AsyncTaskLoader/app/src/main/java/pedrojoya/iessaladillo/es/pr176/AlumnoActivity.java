@@ -2,12 +2,11 @@ package pedrojoya.iessaladillo.es.pr176;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 public class AlumnoActivity extends AppCompatActivity {
 
@@ -37,13 +36,10 @@ public class AlumnoActivity extends AppCompatActivity {
     private void configFab() {
         FloatingActionButton fabAgregar = (FloatingActionButton) findViewById(R.id.fabAgregar);
         if (fabAgregar != null) {
-            fabAgregar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DB.addAlumno(DB.getNextAlumno());
-                    setResult(RESULT_OK);
-                    finish();
-                }
+            fabAgregar.setOnClickListener(v -> {
+                DB.addAlumno(DB.getNextAlumno());
+                setResult(RESULT_OK);
+                finish();
             });
         }
     }

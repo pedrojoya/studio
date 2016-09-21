@@ -18,6 +18,9 @@ class DB {
         }
     }
 
+    private DB() {
+    }
+
     // Retorna la lista de alumnos.
     public static ArrayList<Alumno> getAlumnos() {
         return datos;
@@ -43,12 +46,8 @@ class DB {
 
     public static Alumno getNextAlumno() {
         int num = next++;
-        return new Alumno(
-                num,
-                "Alumno " + num,
-                "c/ Su casa, nº " + num,
-                "http://lorempixel.com/100/100/abstract/" + (num%10 + 1) + "/"
-        );
+        return new Alumno(num, "Alumno " + num, "c/ Su casa, nº " + num,
+                "http://lorempixel.com/100/100/abstract/" + (num % 10 + 1) + "/");
     }
 
 }

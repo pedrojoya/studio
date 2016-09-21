@@ -1,3 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_2f5062fb522a556b1a6fa6044f6c463fe2291b74.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_0e30f5980a01a01bc60fd4de386b579e940dffab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_e63026f09f431959a5fbc3c76b002a9de6879483.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho-okhttp3/1.4.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="7ff6b36b86cc5d50475d396ee60671200dbe419c">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-okhttp3-1.4.1_2210005c3e1f2ab323af5156a7a140519a131400.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_40a893bf5e5bf0a8dffd66ed6a2fc84af209854d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_44486375cfc383c670d4a21c9d96cbea44bfc6a5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_0970f837bea8a7d50eb07d4412f78d85d50fb705.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_c5caaf14492345e283a253abecdb424d6cb7391e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_26e2586a418a06edb25f0bb0b4af8eeb51d1e86c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_70ea73966e596aea785d1cdd6ad0903992d1369c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_6a069cb57fb3a3a976d3fdab39b5d82bf9c80986.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_a956a90244b5c367d566e5e1804a56d8beef98af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/okio-1.9.0_206feab69e7efd1a8263fae933ffe52a01943a25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_4a2107a4583409f5899e414ecbb56db21d453da8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="26b6f0185cbba8917ba9d9d0bd170f95311622ab">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-1.4.1_b20d38e8eeccba45294808b7298e171bdef04898.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_abb2ba4fa9b5f4a3245f2d571792f30edf425c79.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_ac9e706a99a99bbc41c11b12420718862c882519.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_5de1a7c54527100fbdfc099b44c69694b45426b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_3b9d07d6164304d36f213c8a470b68a3741fec93.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_7f61efb0149dfd6254d7c4b258f70735857203e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/pedro/studio/PR180-OkHttp/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_0896c47aa8b3878227974efd3b330c1e38d4edc1.jar" />
+    </item>
+
+</items>

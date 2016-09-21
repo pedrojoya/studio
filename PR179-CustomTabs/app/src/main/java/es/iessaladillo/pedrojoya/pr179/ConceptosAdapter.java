@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class ConceptosAdapter extends RecyclerView.Adapter<ConceptosAdapter.ViewHolder> {
 
-    // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    // Interfaz que debe implementar el listener para cuando se haga click
+    // sobre un elemento.
     @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Concepto concepto, int position);
@@ -23,19 +24,16 @@ public class ConceptosAdapter extends RecyclerView.Adapter<ConceptosAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación de layout del elemento.
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_main_item, parent, false);
         // Se crea el viewholder para el elemento.
         final ViewHolder viewHolder = new ViewHolder(itemView);
         // Cuando se hace click sobre el elemento.
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            mConceptos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                }
+        itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                // Se informa al listener.
+                onItemClickListener.onItemClick(v, mConceptos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
             }
         });
         // Se retorna el contenedor.
@@ -76,12 +74,9 @@ public class ConceptosAdapter extends RecyclerView.Adapter<ConceptosAdapter.View
         public ViewHolder(View itemView) {
             super(itemView);
             // Se obtienen las vistas del elemento.
-            imgFoto = (ImageView) itemView
-                    .findViewById(R.id.imgFoto);
-            lblEnglish = (TextView) itemView
-                    .findViewById(R.id.lblEnglish);
-            lblSpanish = (TextView) itemView
-                    .findViewById(R.id.lblSpanish);
+            imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
+            lblEnglish = (TextView) itemView.findViewById(R.id.lblEnglish);
+            lblSpanish = (TextView) itemView.findViewById(R.id.lblSpanish);
         }
 
         // Escribe los datos del concepto en las vistas.

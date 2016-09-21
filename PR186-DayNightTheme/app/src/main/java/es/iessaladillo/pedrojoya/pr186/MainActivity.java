@@ -8,12 +8,10 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Si queremos que este modo se aplique en todas las actividades de la
-    // aplicación, se recomienda situarlo en la clase que extienda de
-    // Application.
+    // Si queremos que este modo se aplique en todas las actividades de la aplicación, se
+    // recomienda situarlo en la clase que extienda de Application.
     static {
-        AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_AUTO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
     }
 
     @Override
@@ -25,18 +23,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cambiarModo() {
-        int currentNightMode = getResources().getConfiguration().uiMode
-                & Configuration.UI_MODE_NIGHT_MASK;
-        switch (currentNightMode) {
-            case Configuration.UI_MODE_NIGHT_NO:
-                getDelegate().setLocalNightMode(
-                        AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-            case Configuration.UI_MODE_NIGHT_UNDEFINED:
-            case Configuration.UI_MODE_NIGHT_YES:
-                getDelegate().setLocalNightMode(
-                        AppCompatDelegate.MODE_NIGHT_NO);
-                break;
+        int currentNightMode =
+                getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
         recreate();
     }

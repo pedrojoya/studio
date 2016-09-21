@@ -62,13 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressWarnings({"WeakerAccess", "UnusedParameters"})
     public void navegar(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://www.genbeta.com"));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.genbeta.com"));
         if (estaDisponible(this, intent)) {
             startActivity(intent);
         } else {
-            Toast.makeText(this, R.string.no_hay_navegador,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_hay_navegador, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -79,15 +77,13 @@ public class MainActivity extends AppCompatActivity {
         if (estaDisponible(this, intent)) {
             startActivity(intent);
         } else {
-            Toast.makeText(this, R.string.no_hay_buscador,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_hay_buscador, Toast.LENGTH_SHORT).show();
         }
     }
 
     @SuppressWarnings("WeakerAccess")
     public void quiereLlamar() {
-        Intent intent = new Intent(Intent.ACTION_CALL,
-                Uri.parse("tel:(+34)123456789"));
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:(+34)123456789"));
         if (estaDisponible(this, intent)) {
             if (!puedeLlamar()) {
                 solicitarPermisoLlamar();
@@ -95,81 +91,71 @@ public class MainActivity extends AppCompatActivity {
                 llamar();
             }
         } else {
-            Toast.makeText(this, R.string.no_se_puede_llamar,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_se_puede_llamar, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void llamar() {
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.CALL_PHONE) !=
-                PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        startActivity(new Intent(Intent.ACTION_CALL,
-                Uri.parse("tel:(+34)123456789")));
+        startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:(+34)123456789")));
     }
 
     @SuppressWarnings("UnusedParameters")
     private void marcar(View v) {
-        Intent intent = new Intent(Intent.ACTION_DIAL,
-                Uri.parse("tel:(+34)12345789"));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:(+34)12345789"));
         if (estaDisponible(this, intent)) {
             startActivity(intent);
         } else {
-            Toast.makeText(this, R.string.no_hay_dial, Toast.LENGTH_SHORT)
-                    .show();
+            Toast.makeText(this, R.string.no_hay_dial, Toast.LENGTH_SHORT).show();
         }
     }
 
     @SuppressWarnings({"WeakerAccess", "UnusedParameters"})
     public void mostrarEnMapa(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("geo:36.1121,-5.44347?z=19"));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:36.1121,-5.44347?z=19"));
         if (estaDisponible(this, intent)) {
             startActivity(intent);
         } else {
-            Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas, Toast.LENGTH_SHORT).show();
         }
     }
 
     @SuppressWarnings({"WeakerAccess", "UnusedParameters"})
     public void buscarEnMapa(View v) {
         Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("geo:0,0?q=duque de rivas, Algeciras"));
+                Uri.parse("geo:0,0?q=duque de rivas, " + "Algeciras"));
         if (estaDisponible(this, intent)) {
             startActivity(intent);
         } else {
-            Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_hay_aplicaci_n_de_mapas, Toast.LENGTH_SHORT).show();
         }
     }
 
     @SuppressWarnings({"WeakerAccess", "UnusedParameters"})
     public void mostrarContactos(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("content://contacts/people/"));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"));
         if (estaDisponible(this, intent)) {
             startActivity(intent);
         } else {
-            Toast.makeText(this, R.string.no_hay_gestor_de_contactos,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_hay_gestor_de_contactos, Toast.LENGTH_SHORT).show();
         }
     }
 
     // Retorna si hay alguna actividad que pueda recibir el intent.
     private boolean estaDisponible(Context ctx, Intent intent) {
         final PackageManager gestorPaquetes = ctx.getPackageManager();
-        List<ResolveInfo> listaApps = gestorPaquetes.queryIntentActivities(
-                intent, PackageManager.MATCH_DEFAULT_ONLY);
+        List<ResolveInfo> listaApps = gestorPaquetes.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
         return listaApps.size() > 0;
     }
 
     @SuppressWarnings("SameParameterValue")
     private boolean tienePermiso(String permissionName) {
-        return ContextCompat.checkSelfPermission(this, permissionName) ==
-                PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(this, permissionName)
+                == PackageManager.PERMISSION_GRANTED;
     }
 
     private boolean puedeLlamar() {
@@ -177,14 +163,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void solicitarPermisoLlamar() {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.CALL_PHONE},
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},
                 RP_LLAMAR);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == RP_LLAMAR && puedeLlamar()) {
             llamar();
@@ -198,16 +182,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void informar() {
-        Snackbar.make(btnLlamar,
-                R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
-                .setAction(R.string.configurar,
-                        view -> startInstalledAppDetailsActivity(this))
+        Snackbar.make(btnLlamar, R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
+                .setAction(R.string.configurar, view -> startInstalledAppDetailsActivity(this))
                 .show();
 
     }
 
-    private static void startInstalledAppDetailsActivity(
-            @NonNull final Activity context) {
+    private static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
         final Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.addCategory(Intent.CATEGORY_DEFAULT);

@@ -33,30 +33,23 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // y de las subvistas.
 
         // Cuando se hace click sobre el elemento.
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                }
+        itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                // Se informa al listener.
+                onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
             }
         });
         // Cuando se hace click largo sobre el elemento.
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (onItemLongClickListener != null) {
-                    // Se informa al listener.
-                    onItemLongClickListener.onItemLongClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                    return true;
-                } else {
-                    return false;
-                }
+        itemView.setOnLongClickListener(v -> {
+            if (onItemLongClickListener != null) {
+                // Se informa al listener.
+                onItemLongClickListener.onItemLongClick(v,
+                        mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
+                return true;
+            } else {
+                return false;
             }
         });
         // Se retorna el contenedor.
@@ -78,8 +71,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public int getItemCount() {
         if (mDatos != null) {
             return mDatos.size();
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -151,9 +143,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         public void bind(Alumno alumno) {
             lblNombre.setText(alumno.getNombre());
             lblDireccion.setText(alumno.getDireccion());
-            Picasso.with(imgAvatar.getContext())
-                    .load(alumno.getUrlFoto())
-                    .into(imgAvatar);
+            Picasso.with(imgAvatar.getContext()).load(alumno.getUrlFoto()).into(imgAvatar);
         }
 
     }

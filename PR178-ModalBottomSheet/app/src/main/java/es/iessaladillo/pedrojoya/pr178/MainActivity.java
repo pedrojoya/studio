@@ -17,9 +17,8 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity implements
-        AlumnosAdapter.OnItemClickListener, AlumnosAdapter.OnItemLongClickListener,
-        ActionMode.Callback {
+public class MainActivity extends AppCompatActivity implements AlumnosAdapter
+        .OnItemClickListener, AlumnosAdapter.OnItemLongClickListener, ActionMode.Callback {
 
     private static final String STATE_LISTA = "estadoLista";
     private static final String TAG_BOTTOMSHEET_FRAGMENT = "tagBottomSheetFragment";
@@ -61,12 +60,7 @@ public class MainActivity extends AppCompatActivity implements
     // Configura el FAB.
     private void configFab() {
         fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
-        fabAccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                agregarAlumno(DB.getNextAlumno());
-            }
-        });
+        fabAccion.setOnClickListener(view -> agregarAlumno(DB.getNextAlumno()));
     }
 
     // Configura el RecyclerView.
@@ -95,16 +89,14 @@ public class MainActivity extends AppCompatActivity implements
             lstAlumnos.setAdapter(mAdaptador);
             // Se realiza la comprobación inicial.
             checkAdapterIsEmpty();
-            mLayoutManager = new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false);
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             lstAlumnos.setLayoutManager(mLayoutManager);
-            lstAlumnos.addItemDecoration(new DividerItemDecoration(this,
-                    LinearLayoutManager.VERTICAL));
+            lstAlumnos.addItemDecoration(
+                    new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
             lstAlumnos.setItemAnimator(new DefaultItemAnimator());
             // Drag & drop y Swipe to dismiss.
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                    new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
-                            ItemTouchHelper.DOWN,
+                    new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                             ItemTouchHelper.RIGHT) {
                         @Override
                         public boolean onMove(RecyclerView recyclerView,
@@ -127,7 +119,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void checkAdapterIsEmpty() {
-        lblNoHayAlumnos.setVisibility(mAdaptador.getItemCount()==0 ? View.VISIBLE : View.INVISIBLE);
+        lblNoHayAlumnos.setVisibility(
+                mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     // Muestra las vistas flotantes.
@@ -137,17 +130,16 @@ public class MainActivity extends AppCompatActivity implements
 
     // Oculta las vistas flotantes.
     private void hideFloatingViews() {
-        ViewCompat.animate(fabAccion).translationY(fabAccion
-                .getHeight() + getResources()
-                .getDimensionPixelOffset(R.dimen.fab_margin));
+        ViewCompat.animate(fabAccion)
+                .translationY(fabAccion.getHeight() + getResources().getDimensionPixelOffset(
+                        R.dimen.fab_margin));
     }
 
     // Al crear el modo de acción contextual.
     @Override
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
         mActionMode = actionMode;
-        actionMode.getMenuInflater().inflate(R.menu.activity_main_contextual,
-                menu);
+        actionMode.getMenuInflater().inflate(R.menu.activity_main_contextual, menu);
         // Se ocultan las vistas flotantes.
         hideFloatingViews();
         return true;
@@ -189,7 +181,8 @@ public class MainActivity extends AppCompatActivity implements
 
     // Muestra el fragmento de diálogo del bottomsheet.
     private void showBottomSheetDialogFragment(Alumno alumno) {
-        MenuBottomSheetDialogFragment dialogFragment = MenuBottomSheetDialogFragment.newInstance(alumno);
+        MenuBottomSheetDialogFragment dialogFragment = MenuBottomSheetDialogFragment.newInstance(
+                alumno);
         dialogFragment.show(getSupportFragmentManager(), TAG_BOTTOMSHEET_FRAGMENT);
     }
 
@@ -209,10 +202,9 @@ public class MainActivity extends AppCompatActivity implements
         // Se cambia el estado de selección
         mAdaptador.toggleSelection(position);
         // Se actualiza el texto del action mode contextual.
-        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " +
-                mAdaptador.getItemCount());
-        // Si ya no hay ningún elemento seleccionado se finaliza el modo de
-        // acción contextual
+        mActionMode.setTitle(getString(R.string.tantos_de_tantos, mAdaptador.getSelectedItemCount(),
+                mAdaptador.getItemCount()));
+        // Si ya no hay ningún elemento seleccionado se finaliza el modo de acción contextual
         if (mAdaptador.getSelectedItemCount() == 0) {
             mActionMode.finish();
         }

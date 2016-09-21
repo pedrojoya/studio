@@ -14,11 +14,15 @@ import java.util.Locale;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class DataBindingTools {
 
+    private DataBindingTools() {
+    }
+
     // Adaptador para crear atributo app:font en el que establecer el tipo de
     // letra para un TextView.
     @BindingAdapter({"bind:font"})
-    public static void setFont(TextView textView, String fontName){
-        textView.setTypeface(Typeface.createFromAsset(textView.getContext().getAssets(), "fonts/" + fontName));
+    public static void setFont(TextView textView, String fontName) {
+        textView.setTypeface(
+                Typeface.createFromAsset(textView.getContext().getAssets(), "fonts/" + fontName));
     }
 
     @BindingAdapter({"bind:emptyValue"})

@@ -31,8 +31,7 @@ class BuscarAsyncTask extends AsyncTask<String, Void, String> {
     // Constructor.
     public BuscarAsyncTask(Callbacks listener) {
         this.listener = listener;
-        mOkHttpClient = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
+        mOkHttpClient = new OkHttpClient.Builder().addNetworkInterceptor(new StethoInterceptor())
                 .build();
     }
 
@@ -44,12 +43,11 @@ class BuscarAsyncTask extends AsyncTask<String, Void, String> {
         String nombre = params[0];
         try {
             // Se obtiene la url de búsqueda.
-            URL url = new URL("https://www.google.es/search?hl=es&q=\""
-                    + URLEncoder.encode(nombre, "UTF-8") + "\"");
-            Request request = new Request.Builder()
-                    .url(url)
-                    .header("User-Agent",
-                            "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)")
+            URL url = new URL(
+                    "https://www.google.es/search?hl=es&q=\"" + URLEncoder.encode(nombre, "UTF-8")
+                            + "\"");
+            Request request = new Request.Builder().url(url)
+                    .header("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5" + ".1)")
                     .build();
             mOkHttpCall = mOkHttpClient.newCall(request);
             Response response = mOkHttpCall.execute();
@@ -71,8 +69,8 @@ class BuscarAsyncTask extends AsyncTask<String, Void, String> {
             // Se busca el siguiente espacio en blanco después de
             // Aproximadamente.
             int fin = contenido.indexOf(" ", ini + 16);
-            // El resultado corresponde a lo que sigue a
-            // Aproximadamente, hasta el siguiente espacio en blanco.
+            // El resultado corresponde a lo que sigue a Aproximadamente, hasta el siguiente
+            // espacio en blanco.
             resultado = contenido.substring(ini + 16, fin);
         }
         return resultado;

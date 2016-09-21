@@ -12,6 +12,7 @@
     <string name="llamar_a">Llamar a %1$s</string>
     <string name="enviar_mensaje_a">Enviar mensaje a %1$s</string>
     <string name="ver_notas_de">Ver notas de %1$s</string>
+    <string name="tantos_de_tantos">%1$d de %2$d</string>
 
 
 </resources>

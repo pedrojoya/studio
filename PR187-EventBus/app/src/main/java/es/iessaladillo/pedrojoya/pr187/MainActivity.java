@@ -13,7 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (getSupportFragmentManager().findFragmentById(R.id.flContent) == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new MainFragment()).commitNow();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.flContent, new MainFragment())
+                    .commitNow();
             Log.d("Mia", "Fragmento cargado");
         }
     }

@@ -40,10 +40,8 @@ class EcoAsyncTask extends AsyncTask<String, Void, String> {
     // Constructor. Recibe el objeto que actuará de listener.
     public EcoAsyncTask(Callbacks listener) {
         this.listener = listener;
-        formateador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss",
-                Locale.getDefault());
-        mOkHttpClient = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
+        formateador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        mOkHttpClient = new OkHttpClient.Builder().addNetworkInterceptor(new StethoInterceptor())
                 .build();
     }
 
@@ -56,14 +54,10 @@ class EcoAsyncTask extends AsyncTask<String, Void, String> {
         try {
             // Se obtiene la url de búsqueda.
             URL url = new URL("http://www.informaticasaladillo.es/echo.php");
-            RequestBody formBody = new FormBody.Builder()
-                    .addEncoded(KEY_NOMBRE, nombre)
+            RequestBody formBody = new FormBody.Builder().addEncoded(KEY_NOMBRE, nombre)
                     .addEncoded(KEY_FECHA, formateador.format(new Date()))
                     .build();
-            Request request = new Request.Builder()
-                    .url(url)
-                    .post(formBody)
-                    .build();
+            Request request = new Request.Builder().url(url).post(formBody).build();
             mOkHttpCall = mOkHttpClient.newCall(request);
             Response response = mOkHttpCall.execute();
             if (response.isSuccessful()) {

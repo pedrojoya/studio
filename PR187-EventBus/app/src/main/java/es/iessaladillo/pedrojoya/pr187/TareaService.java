@@ -22,6 +22,7 @@ public class TareaService extends IntentService {
     private boolean isCancelled;
 
     // Constructor.
+    @SuppressWarnings("WeakerAccess")
     public TareaService() {
         // El constructor del padre requiere que se le pase un nombre al
         // servicio.

@@ -55,10 +55,10 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
     }
 
     public void setCuenta(String cuenta) {
-        this.cuenta = cuenta;
         if (TextUtils.isEmpty(cuenta)) {
             cuenta = formatear(mDefaultCuenta);
         }
+        this.cuenta = cuenta;
         calcular();
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.cuenta);
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.propina);
@@ -83,10 +83,10 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
     }
 
     public void setPorcentaje(String porcentaje) {
-        this.porcentaje = porcentaje;
         if (TextUtils.isEmpty(porcentaje)) {
             porcentaje = formatear(mDefaultPorcentaje);
         }
+        this.porcentaje = porcentaje;
         calcular();
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.cuenta);
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.propina);
@@ -121,10 +121,10 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
     }
 
     public void setComensales(String comensales) {
-        this.comensales = comensales;
         if (TextUtils.isEmpty(comensales)) {
             comensales = formatear(mDefaultComensales);
         }
+        this.comensales = comensales;
         calcular();
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.comensales);
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.escote);
@@ -251,7 +251,8 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.moneda);
     }
 
-    public static final Parcelable.Creator<ActivityMainVM> CREATOR = new Parcelable.Creator<ActivityMainVM>() {
+    public static final Parcelable.Creator<ActivityMainVM> CREATOR = new Parcelable
+            .Creator<ActivityMainVM>() {
         @Override
         public ActivityMainVM createFromParcel(Parcel source) {
             return new ActivityMainVM(source);

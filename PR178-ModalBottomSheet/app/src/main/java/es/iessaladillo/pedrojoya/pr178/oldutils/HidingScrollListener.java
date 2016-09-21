@@ -19,8 +19,8 @@ public abstract class HidingScrollListener extends RecyclerView.OnScrollListener
             onHide();
             controlsVisible = false;
             scrolledDistance = 0;
-        // Si se ha desplazado lo suficiente hacia arriba y los controles no
-        // están visibles.
+            // Si se ha desplazado lo suficiente hacia arriba y los controles no
+            // están visibles.
         } else if (scrolledDistance < -HIDE_THRESHOLD && !controlsVisible) {
             // Se muestran.
             onShow();
@@ -29,12 +29,13 @@ public abstract class HidingScrollListener extends RecyclerView.OnScrollListener
             scrolledDistance = 0;
         }
         // Acumulamos la distancia recorrida (sólo si tiene sentido).
-        if((controlsVisible && dy>0) || (!controlsVisible && dy<0)) {
+        if ((controlsVisible && dy > 0) || (!controlsVisible && dy < 0)) {
             scrolledDistance += dy;
         }
     }
 
     public abstract void onHide();
+
     public abstract void onShow();
 
 }

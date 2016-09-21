@@ -19,8 +19,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-        implements ConceptosAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements ConceptosAdapter
+        .OnItemClickListener {
 
     private static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
 
@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity
     private CustomTabsSession mCustomTabsSession;
     private CustomTabsIntent mCustomTabsIntent;
     private ArrayList<Concepto> mConceptos;
-    private String mEnlaces = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +46,29 @@ public class MainActivity extends AppCompatActivity
         // Se crea el servicio de conexión con CustomTabs.
         mCustomTabsServiceConnection = new CustomTabsServiceConnection() {
             @Override
-            public void onCustomTabsServiceConnected(ComponentName componentName, CustomTabsClient customTabsClient) {
+            public void onCustomTabsServiceConnected(ComponentName componentName,
+                                                     CustomTabsClient customTabsClient) {
                 // Una vez conectados, almacenamos el cliente de conexión.
                 mCustomTabsClient = customTabsClient;
                 // Indicamos al navegador que se vaya inicializando.
                 mCustomTabsClient.warmup(0L);
-                // Iniciamos una nueva sesión con el navegador. La actividad actuará
-                mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback(){
+                // Iniciamos una nueva sesión con el navegador. La actividad
+                // actuará
+                mCustomTabsSession = mCustomTabsClient.newSession(new CustomTabsCallback() {
                     @Override
                     public void onNavigationEvent(int navigationEvent, Bundle extras) {
-                        Toast.makeText(MainActivity.this, navigationEvent, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, navigationEvent, Toast.LENGTH_SHORT)
+                                .show();
                         super.onNavigationEvent(navigationEvent, extras);
                     }
                 });
                 // Se realiza la vinculación.
-                CustomTabsClient.bindCustomTabsService(MainActivity.this, CUSTOM_TAB_PACKAGE_NAME, mCustomTabsServiceConnection);
+                CustomTabsClient.bindCustomTabsService(MainActivity.this, CUSTOM_TAB_PACKAGE_NAME,
+                        mCustomTabsServiceConnection);
                 // Se preparan las posibles URL.
                 prepararCustomTabs(mConceptos);
             }
+
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 // Al desconectar liberamos los recursos asignados al cliente.
@@ -72,12 +76,14 @@ public class MainActivity extends AppCompatActivity
             }
         };
         // Creamos el intent personalizado para CustomTabs.
-        mCustomTabsIntent = new CustomTabsIntent.Builder(mCustomTabsSession)
-                .setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        mCustomTabsIntent = new CustomTabsIntent.Builder(mCustomTabsSession).setToolbarColor(
+                ContextCompat.getColor(this, R.color.colorPrimary))
                 .setSecondaryToolbarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
                 .setShowTitle(true)
-                .setStartAnimations(this, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                .setExitAnimations(this, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                .setStartAnimations(this, android.R.anim.slide_in_left,
+                        android.R.anim.slide_out_right)
+                .setExitAnimations(this, android.R.anim.slide_in_left,
+                        android.R.anim.slide_out_right)
                 .build();
     }
 
@@ -86,7 +92,8 @@ public class MainActivity extends AppCompatActivity
         if (grdConceptos != null) {
             grdConceptos.setHasFixedSize(true);
             // El grid tendrá dos o tres columnas depediendo de la orientación.
-            grdConceptos.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
+            grdConceptos.setLayoutManager(
+                    new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
             grdConceptos.setItemAnimator(new DefaultItemAnimator());
             mConceptos = getDatos();
             ConceptosAdapter adaptador = new ConceptosAdapter(mConceptos);
@@ -96,8 +103,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void prepararCustomTabs(ArrayList<Concepto> conceptos) {
-        for (Concepto concepto: conceptos) {
-            mCustomTabsSession.mayLaunchUrl(Uri.parse("http://www.thefreedictionary.com/" + concepto.getEnglish()), null, null);
+        for (Concepto concepto : conceptos) {
+            mCustomTabsSession.mayLaunchUrl(
+                    Uri.parse("http://www.thefreedictionary.com/" + concepto.getEnglish()), null,
+                    null);
         }
     }
 
@@ -114,8 +123,7 @@ public class MainActivity extends AppCompatActivity
         conceptos.add(new Concepto(R.drawable.sea, "Sea", "Mar"));
         conceptos.add(new Concepto(R.drawable.space, "Space", "Espacio"));
         conceptos.add(new Concepto(R.drawable.art, "Art", "Arte"));
-        conceptos.add(new Concepto(R.drawable.furniture, "Furniture",
-                "Mobiliario"));
+        conceptos.add(new Concepto(R.drawable.furniture, "Furniture", "Mobiliario"));
         return conceptos;
     }
 
