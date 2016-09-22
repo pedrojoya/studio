@@ -16,8 +16,7 @@ public class TextoTransformer implements ViewPager.PageTransformer {
         // Si la página no está visible no tendrá traslación X.
         if (position <= -1 || position >= 1) {
             lblTexto.setTranslationX(0.0f);
-        }
-        else {
+        } else {
             // Hacemos que el TextView se traslade horizontalmente en sentido inverso
             // lo que se está trasladando el resto de elementos.
             lblTexto.setTranslationX(-(view.getWidth() * position));

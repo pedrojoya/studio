@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:padding="@dimen/grupo_padding">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:padding="@dimen/grupo_padding">
 
     <TextView
         android:id="@+id/lblEncCiclo"
@@ -17,7 +17,7 @@
         android:layout_toStartOf="@+id/imgIndicador"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imgIndicador"
@@ -26,7 +26,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/expandir_contraer_grupo"
-        android:src="@drawable/ic_arrow_drop_down"/>
+        android:src="@drawable/ic_arrow_drop_down" />
 
 
 </RelativeLayout>

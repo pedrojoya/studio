@@ -1,9 +1,8 @@
 package es.iessaladillo.pedrojoya.pr165;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
@@ -46,22 +45,15 @@ public class ProductoDialogFragment extends DialogFragment {
                 R.layout.dialog_producto, null);
         initVistas(layout);
         b.setView(layout);
-        b.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Se obtiene el producto.
-                Producto producto = vistasToProducto();
-                // Se notifica el evento al listener.
-                mListener.onAgregarClick(producto);
-            }
+        b.setPositiveButton(R.string.aceptar, (dialog, which) -> {
+            // Se obtiene el producto.
+            Producto producto = vistasToProducto();
+            // Se notifica el evento al listener.
+            mListener.onAgregarClick(producto);
         });
-        b.setNeutralButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-            // Al pulsar el botón negativo.
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Se notifica el evento al listener.
-                mListener.onCancelarClick();
-            }
+        b.setNeutralButton(R.string.cancelar, (dialog, which) -> {
+            // Se notifica el evento al listener.
+            mListener.onCancelarClick();
         });
         return b.create();
     }
@@ -193,7 +185,7 @@ public class ProductoDialogFragment extends DialogFragment {
 
     // Al enlazar el fragmento con la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         // Establece la actividad como listener de los eventos del diálogo.
         try {

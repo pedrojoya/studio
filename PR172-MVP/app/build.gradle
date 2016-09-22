@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 // Variables.
-def support_library_version = "23.2.1"
-def butterknife_version = "7.0.1"
+def support_library_version = "24.2.1"
+def butterknife_version = "8.4.0"
 def junit_version = '4.12'
 def mockito_version = '1.10.19'
 def powerMockito_version = '1.6.4'
@@ -11,13 +12,13 @@ def espresso_version = "2.2.2"
 def support_test_version = "0.5"
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr172"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         // Necesario para ui testing con Espresso.
@@ -29,6 +30,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 

@@ -1,16 +1,14 @@
 package es.iessaladillo.pedrojoya.pr172.saludo;
 
 import android.support.annotation.NonNull;
-import android.widget.Toast;
-
-import es.iessaladillo.pedrojoya.pr172.R;
 
 public class SaludoPresenter implements SaludoContract.UserActionsListener {
 
     private SaludoContract.Repository mRepositorio;
     private SaludoContract.View mVista;
 
-    public SaludoPresenter(@NonNull SaludoContract.Repository repositorio, @NonNull SaludoContract.View vista) {
+    public SaludoPresenter(@NonNull SaludoContract.Repository repositorio, @NonNull
+            SaludoContract.View vista) {
         mRepositorio = repositorio;
         mVista = vista;
     }

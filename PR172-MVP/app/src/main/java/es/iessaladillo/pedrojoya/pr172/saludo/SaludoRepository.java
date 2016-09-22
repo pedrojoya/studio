@@ -2,8 +2,6 @@ package es.iessaladillo.pedrojoya.pr172.saludo;
 
 import android.support.annotation.NonNull;
 
-import es.iessaladillo.pedrojoya.pr172.R;
-
 public class SaludoRepository implements SaludoContract.Repository {
 
     private static SaludoRepository instance = null;
@@ -15,7 +13,8 @@ public class SaludoRepository implements SaludoContract.Repository {
         return instance;
     }
 
-    private SaludoRepository() {}
+    private SaludoRepository() {
+    }
 
     @Override
     public void getSaludo(String nombre, boolean educado, @NonNull GetSaludoCallback callback) {

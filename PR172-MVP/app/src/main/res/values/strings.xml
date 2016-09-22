@@ -3,14 +3,8 @@
     <string name="app_name">Saludar</string>
     <string name="introduzca_nombre">Introduzca su nombre</string>
     <string name="saludar">Saludar</string>
-    <string name="buenos_dias">Buenos días %1$s%2$s</string>
     <string name="saludar_educadamente">Modo educado: Activado</string>
     <string name="saludar_normal">Modo educado: Desactivado</string>
-    <string name="modo_educado">Modo educado</string>
-    <string name="on">Activado</string>
-    <string name="off">Desactivado</string>
-    <string name="tenga_usted">tenga usted</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

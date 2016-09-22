@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/introduzca_nombre"/>
+        android:text="@string/introduzca_nombre" />
 
     <EditText
         android:id="@+id/txtNombre"
@@ -19,7 +19,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:inputType="text|textPersonName">
 
-        <requestFocus/>
+        <requestFocus />
     </EditText>
 
     <CheckBox
@@ -28,13 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:checked="false"
-        android:text="@string/saludar_normal"/>
+        android:text="@string/saludar_normal" />
 
     <Button
         android:id="@+id/btnSaludar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/saludar"/>
+        android:text="@string/saludar" />
 
 </LinearLayout>

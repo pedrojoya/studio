@@ -1,9 +1,6 @@
 package es.iessaladillo.pedrojoya.pr172.saludo;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-
-import java.util.List;
 
 public interface SaludoContract {
 
@@ -11,6 +8,7 @@ public interface SaludoContract {
     interface UserActionsListener {
         // Se ha solicitado saludar.
         void onSaludar(String nombre, boolean educado);
+
         // Se ha solicitado cambiar el modo de saludo.
         void onCambiarModoSaludo(boolean eduacado);
     }
@@ -19,6 +17,7 @@ public interface SaludoContract {
     interface View {
         // Para mostrar el saludo.
         void mostrarSaludo(String mensaje);
+
         // Para cambiar el texto del modo de saludo.
         void cambiarTextoModo(boolean educado);
     }
@@ -29,6 +28,7 @@ public interface SaludoContract {
         interface GetSaludoCallback {
             void onSaludoLoaded(String mensaje);
         }
+
         // Para obtener el saludo (desde el Presentador al Repositorio)
         void getSaludo(String nombre, boolean educado, @NonNull GetSaludoCallback callback);
     }

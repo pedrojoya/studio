@@ -11,8 +11,7 @@ public class UpTransformer implements ViewPager.PageTransformer {
         // Si la página no está visible no tendrá traslación Y.
         if (position <= -1 || position >= 1) {
             view.setTranslationY(0.0f);
-        }
-        else {
+        } else {
             // Si se trata del panel de la derecha (0, 1)
             if (position > 0) {
                 // Se traslada hacia arriba. El máximo es -(altura * 1)

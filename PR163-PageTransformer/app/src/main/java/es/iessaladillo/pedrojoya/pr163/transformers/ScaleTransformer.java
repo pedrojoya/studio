@@ -14,19 +14,18 @@ public class ScaleTransformer implements ViewPager.PageTransformer {
         if (position <= -1 || position >= 1) {
             view.setScaleX(1);
             view.setScaleY(1);
-        }
-        else {
+        } else {
             // Si se trata del panel de la derecha (0, 1)
             if (position > 0) {
                 // Se escala como hasta como máximo la mitad de su tamaño.
-                view.setScaleX(Math.max(ESCALA_MINIMA, (1 - position)));
-                view.setScaleY(Math.max(ESCALA_MINIMA, (1 - position)));
+                view.setScaleX(Math.max(ESCALA_MINIMA, 1 - position));
+                view.setScaleY(Math.max(ESCALA_MINIMA, 1 - position));
             }
             // Si se trata del panel de la izquierda o visible entero (-1, 0]
             else {
                 // Se escala como hasta como máximo la mitad de su tamaño.
-                view.setScaleX(Math.max(ESCALA_MINIMA, (1 + position)));
-                view.setScaleY(Math.max(ESCALA_MINIMA, (1 + position)));
+                view.setScaleX(Math.max(ESCALA_MINIMA, 1 + position));
+                view.setScaleY(Math.max(ESCALA_MINIMA, 1 + position));
             }
         }
     }

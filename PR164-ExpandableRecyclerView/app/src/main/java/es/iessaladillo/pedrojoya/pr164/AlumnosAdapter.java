@@ -179,8 +179,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             // Se escriben los datos en la vista.
             lblEncCiclo.setText(grupo.getNombre());
             imgIndicador.setImageResource(
-                    grupo.getHiddenChildren()==null?
-                            R.drawable.ic_arrow_drop_up:
+                    grupo.getHiddenChildren() == null ?
+                            R.drawable.ic_arrow_drop_up :
                             R.drawable.ic_arrow_drop_down);
         }
 

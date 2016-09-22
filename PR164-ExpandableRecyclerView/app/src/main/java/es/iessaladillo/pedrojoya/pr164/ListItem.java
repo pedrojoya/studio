@@ -16,7 +16,7 @@ public abstract class ListItem implements Parcelable {
     // el fichero .class
     @Retention(RetentionPolicy.SOURCE)
     // Declaramos el nombre de la anotación.
-    public @interface ListItemType {}
+    public @interface ListItemType { }
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CHILD = 1;

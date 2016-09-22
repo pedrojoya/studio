@@ -41,17 +41,21 @@ public class VerticalViewPager extends ViewPager {
     }
 
     public void setSwipeOrientation(int swipeOrientation) {
-        if (swipeOrientation == HORIZONTAL || swipeOrientation == VERTICAL)
+        if (swipeOrientation == HORIZONTAL || swipeOrientation == VERTICAL) {
             mSwipeOrientation = swipeOrientation;
-        else
-            throw new IllegalStateException("La orientación debe ser VerticalViewPager.HORIZONTAL" +
-                    " o VerticalViewPager.VERTICAL");
+        }
+        else {
+            throw new IllegalStateException("La orientación debe ser VerticalViewPager.HORIZONTAL"
+                    + " o VerticalViewPager.VERTICAL");
+        }
         initSwipeMethods();
     }
 
     private void setSwipeOrientation(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.VerticalViewPager);
-        mSwipeOrientation = typedArray.getInteger(R.styleable.VerticalViewPager_swipe_orientation, 0);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable
+                .VerticalViewPager);
+        mSwipeOrientation = typedArray.getInteger(R.styleable
+                .VerticalViewPager_swipe_orientation, 0);
         typedArray.recycle();
         initSwipeMethods();
     }
@@ -60,7 +64,8 @@ public class VerticalViewPager extends ViewPager {
         if (mSwipeOrientation == VERTICAL) {
             // The majority of the work is done over here
             setPageTransformer(true, new VerticalTransformer());
-            // The easiest way to get rid of the overscroll drawing that happens on the left and right
+            // The easiest way to get rid of the overscroll drawing that happens on the left and
+            // right
             setOverScrollMode(OVER_SCROLL_NEVER);
         }
     }

@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             mDatos = getDatos();
-        }
-        else {
+        } else {
             mDatos = savedInstanceState.getParcelableArrayList(STATE_DATOS);
             mEstadoLista = savedInstanceState.getParcelable(STATE_LISTA);
         }

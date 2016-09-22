@@ -91,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     // la transformación correspondiente en el viewpager.
                     if (position == TRANSFORMACIONES.length - 1) {
                         mViewPager.setSwipeOrientation(VerticalViewPager.VERTICAL);
-                    }
-                    else {
+                    } else {
                         mViewPager.setSwipeOrientation(VerticalViewPager.HORIZONTAL);
                         mViewPager.setPageTransformer(true, TRANSFORMACIONES[position]);
                     }
@@ -133,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) rootView.findViewById(R.id.lblTexto);
             textView.setText(getString(R.string.section_format,
                     getArguments().getInt(ARG_VALOR)));
-            rootView.setBackgroundColor(ContextCompat.getColor(getActivity(), getArguments().getInt(ARG_COLOR)));
+            rootView.setBackgroundColor(ContextCompat.getColor(getActivity(), getArguments()
+                    .getInt(ARG_COLOR)));
             return rootView;
         }
     }

@@ -12,7 +12,7 @@ public class CuboTransformer implements ViewPager.PageTransformer {
     public void transformPage(View view, float position) {
         // Si la página no está visible no tendrá rotación Y.
         if (position <= -1 || position >= 1) {
-            view.setPivotX(view.getWidth()/2);
+            view.setPivotX(view.getWidth() / 2);
             view.setRotationY(0.0f);
         } else {
             // Si se trata del panel de la derecha (0, 1)

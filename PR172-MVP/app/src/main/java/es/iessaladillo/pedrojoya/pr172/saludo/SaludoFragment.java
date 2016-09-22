@@ -73,7 +73,7 @@ public class SaludoFragment extends Fragment implements SaludoContract.View {
 
     @Override
     public void cambiarTextoModo(boolean educado) {
-        chkEducado.setText(educado?getString(R.string.saludar_educadamente):
+        chkEducado.setText(educado ? getString(R.string.saludar_educadamente) :
                 getString(R.string.saludar_normal));
     }
 

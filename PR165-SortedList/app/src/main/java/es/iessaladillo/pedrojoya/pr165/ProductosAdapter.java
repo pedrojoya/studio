@@ -68,9 +68,9 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
             // los mismos. Retorna true si son iguales todos los campos.
             @Override
             public boolean areContentsTheSame(Producto oldItem, Producto newItem) {
-                return oldItem.getNombre().toUpperCase().equals(newItem.getNombre().toUpperCase()) &&
-                        oldItem.getCantidad() == newItem.getCantidad() &&
-                        oldItem.getUnidad().toUpperCase().equals(newItem.getUnidad().toUpperCase());
+                return oldItem.getNombre().toUpperCase().equals(newItem.getNombre().toUpperCase()
+                ) && oldItem.getCantidad() == newItem.getCantidad() && oldItem.getUnidad()
+                        .toUpperCase().equals(newItem.getUnidad().toUpperCase());
             }
 
             // Cuando se debe comprobar si dos productos son el mismo.
@@ -97,30 +97,24 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
         // Se establece el listener para cuando se hace click sobre el elemento.
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    // Se informa al listener.
-                    mOnItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                }
+        itemView.setOnClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                // Se informa al listener.
+                mOnItemClickListener.onItemClick(v,
+                        mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
             }
         });
         // Se establece el listener para cuando se hace click largo sobre el elemento.
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (mOnItemLongClickListener != null) {
-                    // Se informa al listener.
-                    mOnItemLongClickListener.onItemLongClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                    return true;
-                } else {
-                    return false;
-                }
+        itemView.setOnLongClickListener(v -> {
+            if (mOnItemLongClickListener != null) {
+                // Se informa al listener.
+                mOnItemLongClickListener.onItemLongClick(v,
+                        mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
+                return true;
+            } else {
+                return false;
             }
         });
         // Se retorna el contenedor de vistas.
@@ -206,8 +200,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
             if (valor == producto.getCantidad()) {
                 texto = itemView.getContext()
                         .getString(R.string.unidades_data, valor, producto.getUnidad());
-            }
-            else {
+            } else {
                 texto = itemView.getContext()
                         .getString(R.string.unidades_data, producto.getCantidad(),
                                 producto.getUnidad());
@@ -217,11 +210,12 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
             // el producto está marcado como comprado o no.
             if (producto.isComprado()) {
                 lblNombre.setPaintFlags(lblNombre.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                lblUnidades.setPaintFlags(lblUnidades.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            }
-            else {
+                lblUnidades.setPaintFlags(lblUnidades.getPaintFlags() | Paint
+                        .STRIKE_THRU_TEXT_FLAG);
+            } else {
                 lblNombre.setPaintFlags(lblNombre.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
-                lblUnidades.setPaintFlags(lblUnidades.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+                lblUnidades.setPaintFlags(lblUnidades.getPaintFlags() & ~Paint
+                        .STRIKE_THRU_TEXT_FLAG);
             }
         }
     }

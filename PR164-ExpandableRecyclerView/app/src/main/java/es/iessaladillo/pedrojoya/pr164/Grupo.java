@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class Grupo  extends ListItem implements Parcelable {
+public class Grupo extends ListItem implements Parcelable {
 
     private String nombre;
     private ArrayList<Alumno> mHiddenChildren;
