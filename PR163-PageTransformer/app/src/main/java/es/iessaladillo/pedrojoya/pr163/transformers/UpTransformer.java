@@ -16,9 +16,8 @@ public class UpTransformer implements ViewPager.PageTransformer {
             if (position > 0) {
                 // Se traslada hacia arriba. El máximo es -(altura * 1)
                 view.setTranslationY(-(view.getHeight() * position));
-            }
-            // Si se trata del panel de la izquierda o visible entero (-1, 0]
-            else {
+            } else {
+                // Se trata del panel de la izquierda o visible entero (-1, 0]
                 // Se traslada hacia arriba. El máximo es (-altura * 1)
                 view.setTranslationY(-(view.getHeight() * Math.abs(position)));
             }

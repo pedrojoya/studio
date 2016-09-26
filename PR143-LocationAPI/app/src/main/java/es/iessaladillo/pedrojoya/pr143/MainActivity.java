@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr143;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,10 +11,14 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -30,22 +35,27 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import icepick.Icepick;
 import icepick.State;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 
-
-public class MainActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+@SuppressWarnings("WeakerAccess")
+@RuntimePermissions
+public class MainActivity extends AppCompatActivity implements GoogleApiClient
+        .ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private static final long LOCATION_REQUEST_INTERVAL = 5000;
     private static final int PRC_LOCATION = 1;
     private static final int RC_CONFIGURACION = 2;
     private static final int RC_ACTUALIZAR_PLAY = 3;
+    private static final int RP_LOCALIZACION = 1;
 
     private TextView lblLocation;
 
@@ -77,16 +87,13 @@ public class MainActivity extends AppCompatActivity implements
             // Cuando se recibe el intent.
             @Override
             public void onReceive(Context context, Intent intent) {
-                boolean success = intent.getBooleanExtra(
-                        GeocodingService.EXTRA_SUCCESS, false);
-                String resultado = intent.getStringExtra(
-                        GeocodingService.EXTRA_RESULTADO);
+                boolean success = intent.getBooleanExtra(GeocodingService.EXTRA_SUCCESS, false);
+                String resultado = intent.getStringExtra(GeocodingService.EXTRA_RESULTADO);
                 if (success) {
                     // Si ha ido bien, se muestra la dirección.
                     lblLocation.append("\n" + resultado);
                 } else {
-                    Toast.makeText(MainActivity.this, resultado,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, resultado, Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -125,9 +132,10 @@ public class MainActivity extends AppCompatActivity implements
 
     // Para la actualización periódica de la localización.
     private void pararLocalizacion() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(
-                mGoogleApiClient, this);
-        mLocalizacionIniciada = false;
+        if (mLocalizacionIniciada) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+            mLocalizacionIniciada = false;
+        }
     }
 
     // Quita el registro del broadcast receiver.
@@ -142,11 +150,10 @@ public class MainActivity extends AppCompatActivity implements
         registrarReceptor();
         // Si no está disponible GooglePlayServices se muestra el diálogo para
         // su instalación.
-        int estado =
-                GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+        int estado = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
         if (estado != ConnectionResult.SUCCESS) {
-            Dialog dlg = GoogleApiAvailability.getInstance().getErrorDialog(this,
-                    estado, RC_ACTUALIZAR_PLAY);
+            Dialog dlg = GoogleApiAvailability.getInstance().getErrorDialog(this, estado,
+                    RC_ACTUALIZAR_PLAY);
             dlg.show();
         }
         if (mGoogleApiClient.isConnected() && !mLocalizacionIniciada) {
@@ -173,8 +180,7 @@ public class MainActivity extends AppCompatActivity implements
         // Se quiere acceder a la api de localización.
         // La actividad actuará como listener cuando se conecte o cuando falle
         // la conexión.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
+        mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
@@ -187,8 +193,8 @@ public class MainActivity extends AppCompatActivity implements
         if (!tienePermisos()) {
             // Se solicitan los permisos.
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission
+                            .ACCESS_COARSE_LOCATION},
                     PRC_LOCATION);
         } else {
             // Se inicia la localización.
@@ -198,26 +204,22 @@ public class MainActivity extends AppCompatActivity implements
 
 
     // Comprueba los permisos necesarios.
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean tienePermisos() {
-        return ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED;
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     // Cuando se regresa del diálogo para conceder permisos.
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
         if (requestCode == PRC_LOCATION) {
             if (!tienePermisos()) {
                 // Si el usuario no quiere dar los permisos necesarios se
                 // finaliza la app (mejor con un diálogo).
-                Toast.makeText(this, R.string.permisos_requeridos,
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.permisos_requeridos, Toast.LENGTH_SHORT).show();
                 finish();
             } else {
                 // Se inicia la localización.
@@ -227,14 +229,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // Obtiene la última localización (incluyendo la dirección).
-    private void obtenerUltimaPosicion() {
-        mLastLocation =
-                LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission
+            .ACCESS_COARSE_LOCATION})
+    void obtenerUltimaPosicion() {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLastLocation != null) {
             // Se actualiza la vista.
-            lblLocation.setText(
-                    getString(R.string.coordenadas, mLastLocation.getLatitude(),
-                            mLastLocation.getLongitude()));
+            lblLocation.setText(getString(R.string.coordenadas, mLastLocation.getLatitude(),
+                    mLastLocation.getLongitude()));
             // Se busca la dirección correspondiente a la localización.
             buscarDireccion();
         }
@@ -245,8 +247,7 @@ public class MainActivity extends AppCompatActivity implements
         if (Geocoder.isPresent()) {
             GeocodingService.start(this, mLastLocation);
         } else {
-            Toast.makeText(MainActivity.this, R.string.sin_geocoding,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.sin_geocoding, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -266,46 +267,50 @@ public class MainActivity extends AppCompatActivity implements
 
     private void comprobarConfiguracion() {
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(mLocationRequest);
-        // Muestra el formulario de activación de GPS si es neceario.
+                .addLocationRequest(
+                mLocationRequest);
+        // Muestra el formulario de activación de GPS si es necesario.
         builder.setAlwaysShow(true);
-        PendingResult<LocationSettingsResult> result =
-                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,
-                        builder.build());
+        PendingResult<LocationSettingsResult> result = LocationServices.SettingsApi
+                .checkLocationSettings(
+                mGoogleApiClient, builder.build());
         result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
             @Override
             public void onResult(@NonNull LocationSettingsResult result) {
                 final Status status = result.getStatus();
-                final LocationSettingsStates state = result.getLocationSettingsStates();
+                //final LocationSettingsStates state = result.getLocationSettingsStates();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
                         // La configuración es adecuada.
                         obtenerUltimaPosicion();
                         realizarSolicitud();
+                        break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         // La configuración no es adecuada pero se puede activar
                         // con un diálogo.
                         try {
                             // Se muestra el diálogo para activar la configuración.
-                            status.startResolutionForResult(
-                                    MainActivity.this, RC_CONFIGURACION);
+                            status.startResolutionForResult(MainActivity.this, RC_CONFIGURACION);
                         } catch (IntentSender.SendIntentException e) {
                             // Se ignora el error.
                         }
                         break;
                     case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                        Toast.makeText(MainActivity.this,
-                                R.string.configuracion_inadecuada,
+                        Toast.makeText(MainActivity.this, R.string.configuracion_inadecuada,
                                 Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
                 }
             }
         });
     }
 
     // Realiza la solicitud de actualización periódica de posición.
-    private void realizarSolicitud() {
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, MainActivity.this);
+    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission
+            .ACCESS_COARSE_LOCATION})
+    void realizarSolicitud() {
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest,
+                MainActivity.this);
         mLocalizacionIniciada = true;
     }
 
@@ -318,10 +323,8 @@ public class MainActivity extends AppCompatActivity implements
                 // periódica.
                 obtenerUltimaPosicion();
                 realizarSolicitud();
-            }
-            else {
-                Toast.makeText(MainActivity.this,
-                        R.string.sin_configuracion_adecuada,
+            } else {
+                Toast.makeText(MainActivity.this, R.string.sin_configuracion_adecuada,
                         Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -340,14 +343,13 @@ public class MainActivity extends AppCompatActivity implements
     // Cuando cambia la localización.
     @Override
     public void onLocationChanged(Location location) {
-        if (mLastLocation == null ||
-                mLastLocation.getLatitude() != location.getLatitude() ||
-                mLastLocation.getLongitude() != location.getLongitude()) {
+        if (mLastLocation == null || mLastLocation.getLatitude() != location.getLatitude()
+                || mLastLocation.getLongitude() != location.getLongitude()) {
             // Se copia la localización.
             mLastLocation = location;
             // Se escribe la localización actual.
-            lblLocation.setText(getString(R.string.coordenadas,
-                    mLastLocation.getLatitude(), mLastLocation.getLongitude()));
+            lblLocation.setText(getString(R.string.coordenadas, mLastLocation.getLatitude(),
+                    mLastLocation.getLongitude()));
             // Se busca la dirección correspondiente a la localización.
             buscarDireccion();
             Log.d(getString(R.string.app_name), "Localización actualizada");
@@ -357,8 +359,49 @@ public class MainActivity extends AppCompatActivity implements
     // Cuando falla la conexión con la API.
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d(getString(R.string.app_name), "GoogleApiClient connection failed: " +
-                connectionResult.getErrorCode());
+        Log.d(getString(R.string.app_name),
+                "GoogleApiClient connection failed: " + connectionResult.getErrorCode());
     }
+
+    @SuppressWarnings("UnusedParameters")
+    @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission
+            .ACCESS_COARSE_LOCATION})
+    void showRationaleForCamera(PermissionRequest request) {
+        new AlertDialog.Builder(this).setMessage(R.string.es_necesario)
+                .setTitle(R.string.permiso_requerido)
+                .setPositiveButton(android.R.string.ok,
+                        (dialogInterface, i) -> ActivityCompat.requestPermissions(MainActivity.this,
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                RP_LOCALIZACION))
+                .show();
+    }
+
+    @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission
+            .ACCESS_COARSE_LOCATION})
+    void mostrarError() {
+        Snackbar.make(lblLocation, R.string.no_se_pudo, Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission
+            .ACCESS_COARSE_LOCATION})
+    void mostrarNoDisponible() {
+        Snackbar.make(lblLocation, R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
+                .setAction(R.string.configurar,
+                        view -> startInstalledAppDetailsActivity(MainActivity.this))
+                .show();
+    }
+
+    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse("package:" + context.getPackageName()));
+        // Para que deje rastro en la pila de actividades se añaden flags.
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        context.startActivity(intent);
+    }
+
 
 }

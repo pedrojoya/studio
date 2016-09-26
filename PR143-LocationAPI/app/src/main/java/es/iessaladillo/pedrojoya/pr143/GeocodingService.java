@@ -55,9 +55,7 @@ public class GeocodingService extends IntentService {
         // Se obtiene la lista de direcciones correspondientes a la
         // localización, a través del geocoder (máximo 1 dirección)
         try {
-            direcciones = geocoder.getFromLocation(
-                    location.getLatitude(),
-                    location.getLongitude(),
+            direcciones = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(),
                     MAX_DIRECCIONES);
         } catch (IOException e) {
             // Si se produce un error es que el servicio de Geocoder no
@@ -85,9 +83,7 @@ public class GeocodingService extends IntentService {
             }
             // Se entrega la dirección resultante al cliente del servicio,
             // en forma de cadena.
-            entregarRespuesta(true,
-                    TextUtils.join(System.getProperty("line.separator"),
-                            lineas));
+            entregarRespuesta(true, TextUtils.join(System.getProperty("line.separator"), lineas));
         }
     }
 

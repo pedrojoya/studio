@@ -30,7 +30,7 @@ public class PaginaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_pagina, container, false);
     }
 
@@ -40,8 +40,7 @@ public class PaginaFragment extends Fragment {
         // Se escribe el texto adecuado.
         if (savedInstanceState != null) {
             mTexto = savedInstanceState.getString(STATE_TEXTO);
-        }
-        else {
+        } else {
             mTexto = getString(R.string.numero_pagina, getArguments().getInt(ARG_NUMERO_PAGINA));
         }
         if (getView() != null) {
@@ -62,9 +61,7 @@ public class PaginaFragment extends Fragment {
     public void fabOnClick(View view) {
         mTexto = getString(R.string.has_pulsado_sobre_el_fab, lblTexto.getText());
         lblTexto.setText(mTexto);
-        Snackbar.make(view,
-                mTexto,
-                Snackbar.LENGTH_LONG).show();
+        Snackbar.make(view, mTexto, Snackbar.LENGTH_LONG).show();
     }
 
 }

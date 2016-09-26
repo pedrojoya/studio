@@ -2,6 +2,7 @@ package es.iessaldillo.pedrojoya.pr159;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,11 @@ public class DetalleActivity extends AppCompatActivity {
     private static final String EXTRA_CONCEPTO = "extra_concepto";
 
     private Concepto mConcepto;
+    private ImageView imgAppbar;
     private ImageView imgFotoDetalle;
+    private WebView wvNavegador;
+    private AppBarLayout appbar;
+    private boolean mCambioOrientacion;
     private ExitActivityTransition mExitTransition;
 
     @Override
@@ -32,9 +37,7 @@ public class DetalleActivity extends AppCompatActivity {
         }
         configToolbar();
         initVistas();
-        // Se realiza la animación.
-        mExitTransition = ActivityTransition.with(getIntent()).to(imgFotoDetalle)
-                .duration(getResources().getInteger(R.integer.duracion)).start(savedInstanceState);
+        realizarAnimacion(savedInstanceState);
     }
 
     // Configura la Toolbar.
@@ -45,17 +48,42 @@ public class DetalleActivity extends AppCompatActivity {
     // Inicializa las vistas.
     private void initVistas() {
         imgFotoDetalle = (ImageView) findViewById(R.id.imgFotoDetalle);
-        WebView wvNavegador = (WebView) findViewById(R.id.wvNavegador);
-        if (mConcepto != null && wvNavegador != null) {
-            imgFotoDetalle.setImageResource(mConcepto.getFotoResId());
-            setTitle(mConcepto.getEnglish());
-            wvNavegador.loadUrl("http://www.thefreedictionary.com/" + mConcepto.getEnglish());
-            // Por defecto se expande la appbar.
-            AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-            if (appbar != null) {
-                appbar.setExpanded(true);
-            }
+        imgAppbar = (ImageView) findViewById(R.id.imgAppbar);
+        wvNavegador = (WebView) findViewById(R.id.wvNavegador);
+        // Por defecto se expande la appbar.
+        appbar = (AppBarLayout) findViewById(R.id.appbar);
+        appbar.setVisibility(View.INVISIBLE);
+        appbar.setExpanded(true);
+        if (mConcepto != null) {
+            mostrarConcepto();
         }
+    }
+
+    // Carga los datos del concepto en las vistas correspondientes.
+    private void mostrarConcepto() {
+        imgFotoDetalle.setImageResource(mConcepto.getFotoResId());
+        // imgAppbar sólo está disponible en orientación portrait.
+        if (imgAppbar != null) {
+            imgAppbar.setImageResource(mConcepto.getFotoResId());
+        }
+        setTitle(mConcepto.getEnglish());
+        wvNavegador.loadUrl("http://www.thefreedictionary.com/" + mConcepto.getEnglish());
+    }
+
+    // Realiza la animación y adapta la visibilidad de las vistas.
+    private void realizarAnimacion(Bundle savedInstanceState) {
+        mExitTransition = ActivityTransition.with(getIntent()).to(imgFotoDetalle).duration(
+                getResources().getInteger(R.integer.duracion)).start(savedInstanceState);
+        appbar.postDelayed(() -> {
+            appbar.setVisibility(View.VISIBLE);
+            if (getResources().getConfiguration().orientation
+                    == Configuration.ORIENTATION_PORTRAIT) {
+                imgFotoDetalle.setVisibility(View.INVISIBLE);
+            }
+        }, getResources().getInteger(R.integer.duracion));
+        // Es necesario saber si venimos de un cambio de orientación para NO realizar la
+        // animación de salida.
+        mCambioOrientacion = savedInstanceState != null;
     }
 
     // Inicia la actividad. Recibe la vista a animar.
@@ -67,12 +95,19 @@ public class DetalleActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Al pulsar atrás se inicia la transición a la inversa.
         CardView cvTarjeta = (CardView) findViewById(R.id.cvTarjeta);
         if (cvTarjeta != null) {
-            cvTarjeta.animate().translationY(cvTarjeta.getHeight()).setDuration(1000);
+            cvTarjeta.animate().translationY(cvTarjeta.getHeight()).setDuration(3000);
         }
-        mExitTransition.exit(this);
+        imgFotoDetalle.setVisibility(View.VISIBLE);
+        appbar.setVisibility(View.INVISIBLE);
+        // Sólo se realiza la transición de salida a la inversa que la de entrada si no ha habido
+        // un cambio de orientación.
+        if (!mCambioOrientacion) {
+            mExitTransition.exit(this);
+        } else {
+            finish();
+        }
     }
 
 }

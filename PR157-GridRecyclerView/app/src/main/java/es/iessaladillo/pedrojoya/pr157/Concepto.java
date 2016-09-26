@@ -58,4 +58,5 @@ class Concepto implements Parcelable {
             return new Concepto[size];
         }
     };
+
 }

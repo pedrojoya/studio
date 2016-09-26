@@ -6,6 +6,6 @@
         android:id="@+id/mnuAdjuntar"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_action_attach"
-        android:title="@string/adjuntar" />
+        android:title="@string/adjuntar"/>
 
 </menu>

@@ -31,17 +31,11 @@ import es.iessaladillo.pedrojoya.pr163.utils.VerticalViewPager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final ViewPager.PageTransformer[] TRANSFORMACIONES =
-            new ViewPager.PageTransformer[]{
-                    new UpTransformer(),
-                    new RotateTransformer(),
-                    new ScaleTransformer(),
-                    new PuertasTransformer(),
-                    new CuboTransformer(),
-                    new TextoTransformer(),
-                    new ProfundidadTransformer(),
-                    new VerticalTransformer()
-            };
+    private static final ViewPager.PageTransformer[] TRANSFORMACIONES = new ViewPager
+            .PageTransformer[]{new UpTransformer(), new RotateTransformer(),
+                               new ScaleTransformer(), new PuertasTransformer(),
+                               new CuboTransformer(), new TextoTransformer(),
+                               new ProfundidadTransformer(), new VerticalTransformer()};
 
     private VerticalViewPager mViewPager;
 
@@ -79,14 +73,13 @@ public class MainActivity extends AppCompatActivity {
             // contexto habitual de la actividad, para que el spinner se muestre
             // correctamente en la toolbar.
             ToolbarSpinnerAdapter adaptador = new ToolbarSpinnerAdapter(
-                    getSupportActionBar().getThemedContext(),
-                    new ArrayList<>(Arrays.asList(
-                            getResources().getStringArray(R.array.transformaciones))));
+                    getSupportActionBar().getThemedContext(), new ArrayList<>(
+                    Arrays.asList(getResources().getStringArray(R.array.transformaciones))));
             spinner.setAdapter(adaptador);
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(final AdapterView<?> parent, final View view,
-                                           final int position, final long id) {
+                        final int position, final long id) {
                     // Cuando se selecciona un elemento en el spinner, se establece
                     // la transformación correspondiente en el viewpager.
                     if (position == TRANSFORMACIONES.length - 1) {
@@ -127,13 +120,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+                Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.lblTexto);
-            textView.setText(getString(R.string.section_format,
-                    getArguments().getInt(ARG_VALOR)));
-            rootView.setBackgroundColor(ContextCompat.getColor(getActivity(), getArguments()
-                    .getInt(ARG_COLOR)));
+            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_VALOR)));
+            rootView.setBackgroundColor(
+                    ContextCompat.getColor(getActivity(), getArguments().getInt(ARG_COLOR)));
             return rootView;
         }
     }

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:orientation="horizontal"
             android:baselineAligned="false"
+            android:orientation="horizontal"
             android:padding="@dimen/panel_padding">
 
             <LinearLayout
@@ -37,14 +40,14 @@
                     android:id="@+id/imgGaleria"
                     android:layout_width="@dimen/panel_button_width"
                     android:layout_height="@dimen/panel_button_width"
-                    android:contentDescription="@string/galeria"
-                    android:background="@drawable/ic_photo" />
+                    android:background="@drawable/ic_photo"
+                    android:contentDescription="@string/galeria"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/panel_descripcion_marginTop"
-                    android:text="@string/galeria" />
+                    android:text="@string/galeria"/>
             </LinearLayout>
 
             <LinearLayout
@@ -58,14 +61,14 @@
                     android:id="@+id/imgVideo"
                     android:layout_width="@dimen/panel_button_width"
                     android:layout_height="@dimen/panel_button_width"
-                    android:contentDescription="@string/video"
-                    android:background="@drawable/ic_videocam" />
+                    android:background="@drawable/ic_videocam"
+                    android:contentDescription="@string/video"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/panel_descripcion_marginTop"
-                    android:text="@string/video" />
+                    android:text="@string/video"/>
             </LinearLayout>
 
             <LinearLayout
@@ -79,14 +82,14 @@
                     android:id="@+id/imgFoto"
                     android:layout_width="@dimen/panel_button_width"
                     android:layout_height="@dimen/panel_button_width"
-                    android:contentDescription="@string/foto"
-                    android:background="@drawable/ic_camera" />
+                    android:background="@drawable/ic_camera"
+                    android:contentDescription="@string/foto"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/panel_descripcion_marginTop"
-                    android:text="@string/foto" />
+                    android:text="@string/foto"/>
             </LinearLayout>
 
         </LinearLayout>

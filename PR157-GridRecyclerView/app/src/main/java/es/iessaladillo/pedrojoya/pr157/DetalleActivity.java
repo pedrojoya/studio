@@ -79,15 +79,11 @@ public class DetalleActivity extends AppCompatActivity {
     }
 
     // Inicia la actividad.
-    public static void start(Activity activity, Concepto concepto, View vFotoCompartida)  {
+    public static void start(Activity activity, Concepto concepto, View vFotoCompartida) {
         Intent intent = new Intent(activity, DetalleActivity.class);
         intent.putExtra(EXTRA_CONCEPTO, concepto);
-        ActivityOptionsCompat options = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(
-                        activity,
-                        vFotoCompartida,
-                        ViewCompat.getTransitionName(vFotoCompartida)
-                );
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
+                vFotoCompartida, ViewCompat.getTransitionName(vFotoCompartida));
         ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
 

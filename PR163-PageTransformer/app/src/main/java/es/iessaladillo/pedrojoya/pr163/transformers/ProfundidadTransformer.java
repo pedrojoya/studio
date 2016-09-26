@@ -20,9 +20,7 @@ public class ProfundidadTransformer implements ViewPager.PageTransformer {
             // Desplazamos la vista horizontalmente en sentido inverso
             // para que aparezca siempre centrada.
             view.setTranslationX(view.getWidth() * -position);
-        }
-        // Se realiza el desplazamiento por defecto.
-        else {
+        } else {
             view.setAlpha(1);
             view.setTranslationX(0);
             view.setScaleX(1);

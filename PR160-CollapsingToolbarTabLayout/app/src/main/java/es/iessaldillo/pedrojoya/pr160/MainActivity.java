@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
             // se mostraría encima del TabLayout.
             getSupportActionBar().setTitle(getString(R.string.app_name));
         }
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(
+                R.id.collapsingToolbar);
         if (collapsingToolbarLayout != null) {
             collapsingToolbarLayout.setTitleEnabled(false);
         }
@@ -79,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 final int[] imagenes = {R.drawable.foto0, R.drawable.foto1, R.drawable.foto2};
 
                 @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                public void onPageScrolled(int position, float positionOffset,
+                        int positionOffsetPixels) {
                 }
 
                 @Override
@@ -111,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Se llama al fabOnClick del fragmento actual.
-                PaginaFragment frg = ((PaginaFragment) mAdaptador.getFragment(tabLayout
-                        .getSelectedTabPosition()));
+                PaginaFragment frg = (PaginaFragment) mAdaptador.getFragment(
+                        tabLayout.getSelectedTabPosition());
                 if (frg != null) {
                     frg.fabOnClick(view);
                 }
@@ -137,12 +139,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Adaptador de páginas para el viewPager.
-    public class PaginasAdapter extends CachedFragmentPagerAdapter {
+    public static class PaginasAdapter extends CachedFragmentPagerAdapter {
 
         // Títulos de las páginas.
         private final ArrayList<String> mTitulos;
 
-        public PaginasAdapter(FragmentManager fm, ArrayList<String> titulos) {
+        PaginasAdapter(FragmentManager fm, ArrayList<String> titulos) {
             super(fm);
             this.mTitulos = titulos;
         }

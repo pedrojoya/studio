@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,7 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -27,31 +28,35 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <!-- El WebView debe estar incluido en un NestedScrollView para que
+             el scroll en él pueda mover la AppBar -->
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/nsvScrollView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:layout_widthPercent="@fraction/dimen_webview"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_alignParentRight="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_widthPercent="@fraction/dimen_webview">
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <android.support.v7.widget.CardView
                 android:id="@+id/cvTarjeta"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                card_view:cardCornerRadius="5dp"
-                card_view:cardElevation="6dp"
+                card_view:cardCornerRadius="@dimen/cardCornerRadius"
+                card_view:cardElevation="@dimen/cardElevation"
                 card_view:cardUseCompatPadding="true">
 
                 <WebView
                     android:id="@+id/wvNavegador"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
             </android.support.v7.widget.CardView>
 
         </android.support.v4.widget.NestedScrollView>
 
+        <!-- Importante: Definida al final para que quede por encima -->
         <ImageView
             android:id="@+id/imgFotoDetalle"
             android:layout_width="0dp"
@@ -64,7 +69,7 @@
             android:contentDescription="@string/imagen_cabecera"
             android:scaleType="centerCrop"
             android:transitionName="@string/nombre_transicion_imagen"
-            tools:ignore="UnusedAttribute" />
+            tools:ignore="UnusedAttribute"/>
 
 
     </android.support.percent.PercentRelativeLayout>

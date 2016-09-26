@@ -1,6 +1,7 @@
 package es.iessaldillo.pedrojoya.pr159;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,8 +11,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-        implements ConceptosAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements ConceptosAdapter
+        .OnItemClickListener {
 
 
     @Override
@@ -23,7 +24,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void configToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // La librería para la transición hacía que perdiera el color en algunos casos.
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        setSupportActionBar(toolbar);
     }
 
     private void initVistas() {
@@ -33,7 +37,8 @@ public class MainActivity extends AppCompatActivity
         if (grdConceptos != null) {
             grdConceptos.setHasFixedSize(true);
             // El grid tendrá dos columnas
-            grdConceptos.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
+            grdConceptos.setLayoutManager(
+                    new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
             grdConceptos.setItemAnimator(new DefaultItemAnimator());
             grdConceptos.setAdapter(mAdaptador);
         }
@@ -52,8 +57,7 @@ public class MainActivity extends AppCompatActivity
         conceptos.add(new Concepto(R.drawable.sea, "Sea", "Mar"));
         conceptos.add(new Concepto(R.drawable.space, "Space", "Espacio"));
         conceptos.add(new Concepto(R.drawable.art, "Art", "Arte"));
-        conceptos.add(new Concepto(R.drawable.furniture, "Furniture",
-                "Mobiliario"));
+        conceptos.add(new Concepto(R.drawable.furniture, "Furniture", "Mobiliario"));
         return conceptos;
     }
 

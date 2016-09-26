@@ -20,9 +20,8 @@ public class ScaleTransformer implements ViewPager.PageTransformer {
                 // Se escala como hasta como máximo la mitad de su tamaño.
                 view.setScaleX(Math.max(ESCALA_MINIMA, 1 - position));
                 view.setScaleY(Math.max(ESCALA_MINIMA, 1 - position));
-            }
-            // Si se trata del panel de la izquierda o visible entero (-1, 0]
-            else {
+            } else {
+                // Se trata del panel de la izquierda o visible entero (-1, 0]
                 // Se escala como hasta como máximo la mitad de su tamaño.
                 view.setScaleX(Math.max(ESCALA_MINIMA, 1 + position));
                 view.setScaleY(Math.max(ESCALA_MINIMA, 1 + position));

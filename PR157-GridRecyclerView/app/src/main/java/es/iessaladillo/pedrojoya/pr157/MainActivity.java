@@ -10,8 +10,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-        implements ConceptosAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements ConceptosAdapter
+        .OnItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity
         if (grdConceptos != null) {
             grdConceptos.setHasFixedSize(true);
             // El grid tendrá dos o tres columnas depediendo de la orientación.
-            grdConceptos.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
+            grdConceptos.setLayoutManager(
+                    new GridLayoutManager(this, getResources().getInteger(R.integer.gridColumns)));
             grdConceptos.setItemAnimator(new DefaultItemAnimator());
             ConceptosAdapter adaptador = new ConceptosAdapter(getDatos());
             adaptador.setOnItemClickListener(this);
@@ -51,8 +52,7 @@ public class MainActivity extends AppCompatActivity
         conceptos.add(new Concepto(R.drawable.sea, "Sea", "Mar"));
         conceptos.add(new Concepto(R.drawable.space, "Space", "Espacio"));
         conceptos.add(new Concepto(R.drawable.art, "Art", "Arte"));
-        conceptos.add(new Concepto(R.drawable.furniture, "Furniture",
-                "Mobiliario"));
+        conceptos.add(new Concepto(R.drawable.furniture, "Furniture", "Mobiliario"));
         return conceptos;
     }
 

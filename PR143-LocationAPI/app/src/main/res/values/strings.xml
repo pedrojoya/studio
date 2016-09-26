@@ -10,4 +10,9 @@
     <string name="configuracion_inadecuada">No es posible establecer la configuración adecuada</string>
     <string name="sin_configuracion_adecuada">Si no establece la configuración necesaria la app no puede funcionar</string>
     <string name="sin_geocoding">No hay servicio de geocodificación inversa</string>
+    <string name="es_necesario">Es necesario que conceda los permisos de localización para poder localizar su posición</string>
+    <string name="permiso_requerido">Permiso requerido</string>
+    <string name="no_se_pudo">No se pudo acceder a su localización al no conceder los permisos necesarios</string>
+    <string name="accion_no_disponible">Localización imposible si no se conceden los permisos necesarios</string>
+    <string name="configurar">Configurar</string>
 </resources>

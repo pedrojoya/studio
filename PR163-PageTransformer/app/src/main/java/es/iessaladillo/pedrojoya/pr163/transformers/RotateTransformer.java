@@ -21,9 +21,8 @@ public class RotateTransformer implements ViewPager.PageTransformer {
                 // Se rota hasta -30 grados sobre el eje Z.
                 view.setRotation(-(GIRO_MAX_GRADOS * position));
                 view.setAlpha(1 - position);
-            }
-            // Si se trata del panel de la izquierda o visible entero (-1, 0]
-            else {
+            } else {
+                // Se trata del panel de la izquierda o visible entero (-1, 0]
                 // Se rota hasta -30 grados sobre el eje Z
                 view.setRotation(+(GIRO_MAX_GRADOS * Math.abs(position)));
                 view.setAlpha(1 - Math.abs(position));
@@ -32,4 +31,3 @@ public class RotateTransformer implements ViewPager.PageTransformer {
     }
 
 }
-

@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void restaurarVisibilidadPanel(Bundle savedInstanceState) {
         if (savedInstanceState != null && savedInstanceState.getBoolean(STATE_PANEL_VISIBLE)) {
             llPanel.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             llPanel.setVisibility(View.INVISIBLE);
         }
     }
@@ -43,32 +42,24 @@ public class MainActivity extends AppCompatActivity {
         llPanel = (LinearLayout) findViewById(R.id.llPanel);
         ImageView imgGaleria = (ImageView) findViewById(R.id.imgGaleria);
         if (imgGaleria != null) {
-            imgGaleria.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), R.string.galeria, Toast.LENGTH_SHORT).show();
-                    revelar(llPanel, DURACION_ANIM_MS, true);
-                }
+            imgGaleria.setOnClickListener(view -> {
+                Toast.makeText(getApplicationContext(), R.string.galeria, Toast.LENGTH_SHORT)
+                        .show();
+                revelar(llPanel, DURACION_ANIM_MS, true);
             });
         }
         ImageView imgVideo = (ImageView) findViewById(R.id.imgVideo);
         if (imgVideo != null) {
-            imgVideo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), R.string.video, Toast.LENGTH_SHORT).show();
-                    revelar(llPanel, DURACION_ANIM_MS, true);
-                }
+            imgVideo.setOnClickListener(view -> {
+                Toast.makeText(getApplicationContext(), R.string.video, Toast.LENGTH_SHORT).show();
+                revelar(llPanel, DURACION_ANIM_MS, true);
             });
         }
         ImageView imgFoto = (ImageView) findViewById(R.id.imgFoto);
         if (imgFoto != null) {
-            imgFoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), R.string.foto, Toast.LENGTH_SHORT).show();
-                    revelar(llPanel, DURACION_ANIM_MS, true);
-                }
+            imgFoto.setOnClickListener(view -> {
+                Toast.makeText(getApplicationContext(), R.string.foto, Toast.LENGTH_SHORT).show();
+                revelar(llPanel, DURACION_ANIM_MS, true);
             });
         }
     }
@@ -105,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Realiza una animación de revelación circular. Recibe la vista, la
     // duración y si se trata del modo inverso (ocultar).
+    @SuppressWarnings("SameParameterValue")
     private void revelar(final View vista, long duracion, boolean reverse) {
         // El origen del círculo de revelación será la esquina superior derecha
         // del panel.
@@ -113,15 +105,12 @@ public class MainActivity extends AppCompatActivity {
         int radio = Math.max(vista.getWidth(), vista.getHeight());
         Animator anim;
         if (!reverse) {
-            anim = ViewAnimationUtils.createCircularReveal(vista, origenX,
-                    origenY, 0, radio);
+            anim = ViewAnimationUtils.createCircularReveal(vista, origenX, origenY, 0, radio);
             // La vista se hace visible antes de realizar la animación.
             vista.setVisibility(View.VISIBLE);
         } else {
             // Al ser el modo inverso, el radio final será 0.
-            anim =
-                    ViewAnimationUtils.createCircularReveal(vista, origenX,
-                            origenY, radio, 0);
+            anim = ViewAnimationUtils.createCircularReveal(vista, origenX, origenY, radio, 0);
             anim.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {

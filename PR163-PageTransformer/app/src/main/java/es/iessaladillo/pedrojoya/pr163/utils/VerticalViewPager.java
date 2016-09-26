@@ -43,8 +43,7 @@ public class VerticalViewPager extends ViewPager {
     public void setSwipeOrientation(int swipeOrientation) {
         if (swipeOrientation == HORIZONTAL || swipeOrientation == VERTICAL) {
             mSwipeOrientation = swipeOrientation;
-        }
-        else {
+        } else {
             throw new IllegalStateException("La orientación debe ser VerticalViewPager.HORIZONTAL"
                     + " o VerticalViewPager.VERTICAL");
         }
@@ -52,10 +51,10 @@ public class VerticalViewPager extends ViewPager {
     }
 
     private void setSwipeOrientation(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable
-                .VerticalViewPager);
-        mSwipeOrientation = typedArray.getInteger(R.styleable
-                .VerticalViewPager_swipe_orientation, 0);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs,
+                R.styleable.VerticalViewPager);
+        mSwipeOrientation = typedArray.getInteger(R.styleable.VerticalViewPager_swipe_orientation,
+                0);
         typedArray.recycle();
         initSwipeMethods();
     }
