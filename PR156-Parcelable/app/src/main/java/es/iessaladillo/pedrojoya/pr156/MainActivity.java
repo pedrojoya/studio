@@ -8,8 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements
-        OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     // Constantes.
     private static final int RC_ALUMNO = 1;
@@ -42,12 +41,8 @@ public class MainActivity extends AppCompatActivity implements
 
     // Cuando se hace click.
     public void onClick(View vista) {
-        // Dependiendo del botón.
-        switch (vista.getId()) {
-            case R.id.btnSolicitar:
-                // Solicito los datos del alumno.
-                solicitarDatos();
-                break;
+        if (vista.getId() == R.id.btnSolicitar) {
+            solicitarDatos();
         }
     }
 
@@ -60,13 +55,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Si el resultado es satisfactorio.
-        if (resultCode == RESULT_OK) {
-            // Depeniendo del código de petición (Request Code)
-            switch (requestCode) {
-                case RC_ALUMNO:
-                    // Se obtienen los datos de retorno.
-                    getDatosRetorno(data);
-            }
+        if (resultCode == RESULT_OK && requestCode == RC_ALUMNO) {
+            getDatosRetorno(data);
         }
     }
 
@@ -75,8 +65,7 @@ public class MainActivity extends AppCompatActivity implements
         // Se actualiza el alumno en base a los datos recibidos.
         if (intentRetorno != null) {
             if (intentRetorno.hasExtra(AlumnoActivity.EXTRA_ALUMNO)) {
-                mAlumno = intentRetorno
-                        .getParcelableExtra(AlumnoActivity.EXTRA_ALUMNO);
+                mAlumno = intentRetorno.getParcelableExtra(AlumnoActivity.EXTRA_ALUMNO);
             }
         }
         // Se muestran los datos del alumno.
@@ -85,8 +74,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Muestra los datos del alumno en las vistas.
     private void alumnoToViews() {
-        lblDatos.setText(getString(R.string.datos, mAlumno.getNombre(),
-                mAlumno.getEdad()));
+        lblDatos.setText(getString(R.string.datos, mAlumno.getNombre(), mAlumno.getEdad()));
     }
 
 }

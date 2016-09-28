@@ -107,22 +107,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        // Se realiza la conexión con la API.
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    protected void onStop() {
-        // Se realiza la desconexión de la API.
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
-        super.onStop();
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         pararLocalizacion();
@@ -180,9 +164,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient
         // Se quiere acceder a la api de localización.
         // La actividad actuará como listener cuando se conecte o cuando falle
         // la conexión.
-        mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API)
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
                 .build();
     }
 

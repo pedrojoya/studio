@@ -4,7 +4,7 @@ apply plugin: 'android-apt'
 
 def multidex_version = "1.0.0"
 def support_library_version = "24.2.1"
-def play_services_version = "9.4.0"
+def play_services_version = "9.6.1"
 def icepick_version = "3.2.0"
 def permissionsdispatcher_version = "2.2.0"
 
@@ -41,7 +41,6 @@ dependencies {
     compile "com.android.support:multidex:${multidex_version}"
     compile "com.android.support:appcompat-v7:${support_library_version}"
     compile "com.android.support:design:${support_library_version}"
-    //noinspection GradleDependency
     compile "com.google.android.gms:play-services:${play_services_version}"
     compile "frankiesardo:icepick:${icepick_version}"
     provided "frankiesardo:icepick-processor:${icepick_version}"
