@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnuFavoritos"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite_24dp"
+        android:title="@string/favoritos"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mnuCalendario"
+        android:enabled="true"
+        android:icon="@drawable/ic_access_time_24dp"
+        android:title="@string/calendario"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mnuMusica"
+        android:enabled="true"
+        android:icon="@drawable/ic_audiotrack_24dp"
+        android:title="@string/musica"
+        app:showAsAction="ifRoom" />
+</menu>
