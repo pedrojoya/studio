@@ -124,6 +124,7 @@ public class ListaAlumnosFragment extends Fragment implements
                             listener.onConfirmarEliminarAlumnos();
                         }
                         break;
+                    default:
                 }
                 // Se retorna que se ha procesado el evento.
                 return true;
@@ -161,9 +162,8 @@ public class ListaAlumnosFragment extends Fragment implements
         gestor.initLoader(0, null, this);
         // Se establece el adaptador para la lista, que inicialmente manejará un cursor nulo.
         String[] from = {Instituto.Alumno.NOMBRE, Instituto.Alumno.CURSO,
-                Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION};
-        int[] to = {R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono,
-                R.id.lblDireccion};
+                         Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION};
+        int[] to = {R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono, R.id.lblDireccion};
         adaptador = new AlumnosAdapter(this.getActivity(),
                 R.layout.fragment_lista_alumnos_item, null, from, to, 0);
         lstAlumnos.setAdapter(adaptador);

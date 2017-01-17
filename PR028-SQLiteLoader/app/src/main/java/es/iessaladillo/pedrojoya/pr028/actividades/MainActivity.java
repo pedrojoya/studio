@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         // Se carga el layout que incluye de forma estática el fragmento.
         setContentView(R.layout.activity_main);
-        // Se carga el fragmento.
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.flContenido, new ListaAlumnosFragment(), TAG_LISTA_FRAGMENT)
-                .commit();
+        if (savedInstanceState == null) {
+            // Se carga el fragmento.
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContenido, new
+                    ListaAlumnosFragment(), TAG_LISTA_FRAGMENT).commit();
+        }
     }
 
     // Muestra la actividad de alumno en "modo agregar".

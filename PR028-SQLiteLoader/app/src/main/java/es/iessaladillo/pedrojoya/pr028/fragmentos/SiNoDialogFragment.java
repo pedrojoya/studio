@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr028.fragmentos;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
@@ -48,7 +48,7 @@ public class SiNoDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         // Establece la actividad como listener de los eventos del diálogo.
         try {

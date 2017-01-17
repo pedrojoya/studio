@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr028.fragmentos;
 
+import android.content.AsyncQueryHandler;
+import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +31,9 @@ public class AlumnoFragment extends Fragment {
     public static final String EXTRA_ID = "id";
     public static final String MODO_AGREGAR = "AGREGAR";
     public static final String MODO_EDITAR = "EDITAR";
+    private static final String BASE_URL = "http://lorempixel.com/100/100/";
+    private static final int TOKEN_INSERT = 0;
+    private static final int TOKEN_UPDATE = 1;
 
     // Variables a nivel de clase.
     private EditText txtNombre;
@@ -40,8 +45,9 @@ public class AlumnoFragment extends Fragment {
     private Alumno alumno;
     private ArrayAdapter<CharSequence> adaptadorCursos;
     private Random mAleatorio;
+    private AlumnoAsyncQueryHandler mAlumnoAsyncQueryHandler;
 
-    static public AlumnoFragment newInstance(String modo, long id) {
+    public static AlumnoFragment newInstance(String modo, long id) {
         AlumnoFragment frg = new AlumnoFragment();
         Bundle argumentos = new Bundle();
         argumentos.putString(EXTRA_MODO, modo);
@@ -52,7 +58,7 @@ public class AlumnoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_alumno, container, false);
     }
 
@@ -73,6 +79,9 @@ public class AlumnoFragment extends Fragment {
             setModoAgregar();
         }
         mAleatorio = new Random();
+        // Se crea el objeto para realizar las operaciones sobre el content provider en segundo
+        // plano.
+        mAlumnoAsyncQueryHandler = new AlumnoAsyncQueryHandler(getActivity().getContentResolver());
     }
 
     // Carga los cursos en el spinner.
@@ -81,10 +90,9 @@ public class AlumnoFragment extends Fragment {
         // tanto para cuando no está desplegado como para cuando sí lo está. La
         // fuente de datos para el adaptador es un array de constantes de
         // cadena.
-        adaptadorCursos = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.cursos, android.R.layout.simple_spinner_item);
-        adaptadorCursos
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adaptadorCursos = ArrayAdapter.createFromResource(this.getActivity(), R.array.cursos,
+                android.R.layout.simple_spinner_item);
+        adaptadorCursos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnCurso.setAdapter(adaptadorCursos);
     }
 
@@ -114,10 +122,9 @@ public class AlumnoFragment extends Fragment {
     private void cargarAlumno(long id) {
         // Se consulta en la BD los datos del alumno a través del content
         // provider en un hilo diferente al hilo principal.
-        Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/"
-                + id);
-        CursorLoader cLoader = new CursorLoader(this.getActivity(), uri,
-                Instituto.Alumno.TODOS, null, null, null);
+        Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/" + id);
+        CursorLoader cLoader = new CursorLoader(this.getActivity(), uri, Instituto.Alumno.TODOS,
+                null, null, null);
         Cursor cursor = cLoader.loadInBackground();
         // Si no se ha encontrado el alumno, se informa y se pasa al modo
         // Agregar.
@@ -127,8 +134,8 @@ public class AlumnoFragment extends Fragment {
             // Se carga en el objeto Alumno.
             alumno = Alumno.fromCursor(cursor);
         } else {
-            Toast.makeText(this.getActivity(), R.string.alumno_no_encontrado,
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getActivity(), R.string.alumno_no_encontrado, Toast.LENGTH_LONG)
+                    .show();
             setModoAgregar();
         }
         // Se cierra el cursor.
@@ -141,16 +148,14 @@ public class AlumnoFragment extends Fragment {
         vistasToAlumno();
         // Dependiendo del modo se inserta o actualiza el alumno (siempre y
         // cuando se hayan introducido los datos obligatorios).
-        if (alumno.getNombre().length() > 0
-                && alumno.getTelefono().length() > 0) {
+        if (alumno.getNombre().length() > 0 && alumno.getTelefono().length() > 0) {
             if (modo.equals(MODO_AGREGAR)) {
                 agregarAlumno();
             } else {
                 actualizarAlumno();
             }
         } else {
-            Toast.makeText(this.getActivity(),
-                    this.getString(R.string.datos_obligatorios),
+            Toast.makeText(this.getActivity(), this.getString(R.string.datos_obligatorios),
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -158,49 +163,17 @@ public class AlumnoFragment extends Fragment {
     // Agrega un alumno a la base de datos.
     private void agregarAlumno() {
         alumno.setAvatar(getRandomAvatarUrl());
-        // Realizo el insert a través del content provider. Como resultado se
-        // obtiene la uri del alumno insertado, de la que se extrae su id.
-        Uri resultado = this
-                .getActivity()
-                .getContentResolver()
-                .insert(InstitutoContentProvider.CONTENT_URI_ALUMNOS,
-                        Alumno.toContentValues(alumno));
-        if (resultado != null) {
-            long id = Long.parseLong(resultado.getLastPathSegment());
-            // Se informa de si todo ha ido bien.
-            if (id >= 0) {
-                alumno.setId(id);
-                Toast.makeText(this.getActivity(),
-                        getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
-                        .show();
-            } else {
-                Toast.makeText(this.getActivity(),
-                        getString(R.string.insercion_incorrecta),
-                        Toast.LENGTH_SHORT).show();
-            }
-            // Se resetean las vistas para poder agregar otro alumno (seguimos en
-            // modo Agregar).
-            resetVistas();
-        }
+        // Se realiza la inserción a través del AsyncQueryHandler.
+        mAlumnoAsyncQueryHandler.startInsert(TOKEN_INSERT, null,
+                InstitutoContentProvider.CONTENT_URI_ALUMNOS, Alumno.toContentValues(alumno));
     }
 
     // Actualiza un alumno en la base de datos.
     private void actualizarAlumno() {
-        // Se realiza el update en la BD a través del content provider. Como
-        // resultado obtenemos el número de registros actualizados.
-        Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/"
-                + alumno.getId());
-        if (this.getActivity().getContentResolver()
-                .update(uri, Alumno.toContentValues(alumno), null, null) > 0) {
-            Toast.makeText(this.getActivity(),
-                    getString(R.string.actualizacion_correcta),
-                    Toast.LENGTH_SHORT).show();
-            getActivity().finish();
-        } else {
-            Toast.makeText(this.getActivity(),
-                    getString(R.string.actualizacion_incorrecta),
-                    Toast.LENGTH_SHORT).show();
-        }
+        // Se realiza la actualización a través del AsyncQueryHandler.
+        Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/" + alumno.getId());
+        mAlumnoAsyncQueryHandler.startUpdate(TOKEN_UPDATE, null, uri,
+                Alumno.toContentValues(alumno), null, null);
     }
 
     // Obtiene la referencia a las vistas del layout.
@@ -230,8 +203,7 @@ public class AlumnoFragment extends Fragment {
         txtNombre.setText(alumno.getNombre());
         txtTelefono.setText(alumno.getTelefono());
         txtDireccion.setText(alumno.getDireccion());
-        spnCurso.setSelection(adaptadorCursos.getPosition(alumno.getCurso()),
-                true);
+        spnCurso.setSelection(adaptadorCursos.getPosition(alumno.getCurso()), true);
     }
 
     // Llena el objeto Alumno con los datos de las vistas.
@@ -244,11 +216,56 @@ public class AlumnoFragment extends Fragment {
 
     // Retorna una url aleatoria correspondiente a una imagen para el avatar.
     private String getRandomAvatarUrl() {
-        final String BASE_URL = "http://lorempixel.com/100/100/";
         final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
-                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
-        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
-                (mAleatorio.nextInt(10) + 1) + "/";
+                                "night", "life", "fashion", "people", "nature", "sports",
+                                "technics", "transport"};
+        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" + (mAleatorio.nextInt(10)
+                + 1) + "/";
+    }
+
+    // Clase para ejecutar las operaciones sobre el content provider en un hilo secundario.
+    private class AlumnoAsyncQueryHandler extends AsyncQueryHandler {
+
+        public AlumnoAsyncQueryHandler(ContentResolver cr) {
+            super(cr);
+        }
+
+        @Override
+        protected void onInsertComplete(int token, Object cookie, Uri uri) {
+            super.onInsertComplete(token, cookie, uri);
+            // Como resultado de la inserción se obtiene la uri del alumno insertado, de la que se
+            // extrae su id.
+            if (uri != null) {
+                long id = Long.parseLong(uri.getLastPathSegment());
+                // Se informa de si ha ido bien.
+                if (id >= 0) {
+                    alumno.setId(id);
+                    Toast.makeText(getActivity(), getString(R.string.insercion_correcta),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.insercion_incorrecta),
+                            Toast.LENGTH_SHORT).show();
+                }
+                // Se resetean las vistas para poder agregar otro alumno (seguimos en
+                // modo Agregar).
+                resetVistas();
+            }
+        }
+
+        @Override
+        protected void onUpdateComplete(int token, Object cookie, int result) {
+            super.onUpdateComplete(token, cookie, result);
+            // Como resultado obtenemos el número de registros actualizados.
+            if (result > 0) {
+                Toast.makeText(getActivity(), getString(R.string.actualizacion_correcta),
+                        Toast.LENGTH_SHORT).show();
+                getActivity().finish();
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
 }
