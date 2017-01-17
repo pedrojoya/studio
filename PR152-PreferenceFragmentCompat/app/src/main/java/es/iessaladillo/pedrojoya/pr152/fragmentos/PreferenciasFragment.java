@@ -13,6 +13,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.SeekBarPreference;
 
 import java.util.Set;
 
@@ -143,13 +144,27 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
             Set<String> seleccionados = pref.getValues();
             pref.setSummary(seleccionados.toString());
         }
+        // Si es un SeekBarPreference.
+        else if (preferencia instanceof SeekBarPreference) {
+            SeekBarPreference pref = (SeekBarPreference) preferencia;
+            pref.setSummary(String.valueOf(pref.getValue()));
+        }
     }
 
     // Hack para que funcione MultiSelectListPreferenceDialog.
     // Referencia: https://github.com/caarmen/network-monitor/tree/master/networkmonitor/src/main/java/ca/rmen/android/networkmonitor/app/prefs/hack
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
-        onDisplayPreferenceDialog(this, preference);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH
+                && ((preference instanceof MultiSelectListPreference)
+                || (preference instanceof PasswordPreference))) {
+            // Diálogo personalizado.
+            onDisplayPreferenceDialog(this, preference);
+        }
+        else {
+            // Diálogo estándar.
+            super.onDisplayPreferenceDialog(preference);
+        }
     }
 
     /**
@@ -179,7 +194,6 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements
             dialogFragment.show(preferenceFragmentCompat.getFragmentManager(), FRAGMENT_DIALOG_TAG);
             return true;
         }
-
         return false;
     }
 }

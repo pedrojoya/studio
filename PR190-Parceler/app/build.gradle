@@ -1,23 +1,24 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
+def sdk_version = 24
+def buildtools_version = "24.0.3"
+def application_id = "es.iessaladillo.pedrojoya.pr190"
+def minsdk_version = 14
 def support_library_version = "24.2.1"
+
 def parceler_version = "1.1.5"
 
 //noinspection GroovyMissingReturnStatement
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
-    dexOptions {
-        maxProcessCount 2
-        javaMaxHeapSize "2g"
-    }
+    compileSdkVersion sdk_version
+    buildToolsVersion buildtools_version
 
     defaultConfig {
-        applicationId "es.iessaladillo.pedrojoya.pr190"
-        minSdkVersion 14
-        targetSdkVersion 24
+        applicationId application_id
+        minSdkVersion minsdk_version
+        targetSdkVersion sdk_version
         versionCode 1
         versionName "1.0"
     }
@@ -26,6 +27,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dexOptions {
+        maxProcessCount 2
+        javaMaxHeapSize "2g"
     }
 }
 

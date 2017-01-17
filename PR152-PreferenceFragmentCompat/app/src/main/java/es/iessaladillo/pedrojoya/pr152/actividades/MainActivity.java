@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
             sb.append(getString(R.string.red)).append(": ")
                     .append(preferencias.getBoolean("prefRed", false))
                     .append("\n");
+            sb.append(getString(R.string.rendimiento)).append(": ")
+                    .append(String.valueOf(preferencias.getInt("prefRendimiento", 3)))
+                    .append("\n");
             lblPreferencias.setText(sb.toString());
         }
         super.onResume();

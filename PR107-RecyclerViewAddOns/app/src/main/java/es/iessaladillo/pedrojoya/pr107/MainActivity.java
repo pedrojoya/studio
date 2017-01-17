@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 public class MainActivity extends AppCompatActivity implements
         AlumnosAdapter.OnItemClickListener, AlumnosAdapter.OnItemLongClickListener,
@@ -123,28 +123,6 @@ public class MainActivity extends AppCompatActivity implements
                         }
                     });
             itemTouchHelper.attachToRecyclerView(lstAlumnos);
-
-            /* // Hide/Scroll antigüo
-
-            lstAlumnos.addOnScrollListener(new HidingScrollListener() {
-
-                @Override
-                public void onHide() {
-                    // Solo si NO está activo el modo de acción contextual.
-                    if (mActionMode == null) {
-                        hideFloatingViews();
-                    }
-                }
-
-                @Override
-                public void onShow() {
-                    // Solo si NO está activo el modo de acción contextual.
-                    if (mActionMode == null) {
-                        showFloatingViews();
-                    }
-                }
-            });
-            */
         }
     }
 
