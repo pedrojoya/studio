@@ -24,12 +24,16 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar prbCirculo;
     private Button btnIniciar;
 
-    private Manejador manejador;
+    private Manejador mManejador;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Se crea el manejador, que estará asociado al hilo desde el que se crea
+        // (hilo IU). Se le pasa la actividad, para que al manejar los mensajes ejecute métodos
+        // de la misma.
+        mManejador = new Manejador(this);
         initVistas();
     }
 
@@ -50,13 +54,8 @@ public class MainActivity extends AppCompatActivity {
     // Cuando se hace click en btnIniciar.
     private void iniciar() {
         btnIniciar.setEnabled(false);
-        // Se crea el manejador.
-        manejador = new Manejador(this);
-        // Se crea la tarea secundaria.
-        Runnable tarea = new TareaSecundaria();
-        // Se crea el hilo y se inicia.
-        Thread hiloSecundario = new Thread(tarea);
-        hiloSecundario.start();
+        // Se crea la tarea secundaria, un hilo para ella y se inicia.
+        (new Thread(new TareaSecundaria(mManejador))).start();
     }
 
     // Hace visibles las vistas relacionadas con el progreso.
@@ -75,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Muestra el total de tareas realizadas.
     private void mostrarRealizadas(int tareas) {
-        lblMensaje.setText(getResources().getQuantityString(
-                R.plurals.realizadas, tareas, tareas));
+        lblMensaje.setText(getResources().getQuantityString(R.plurals.realizadas, tareas, tareas));
     }
 
     // Resetea las vistas relacionadas con el progreso.
@@ -88,25 +86,45 @@ public class MainActivity extends AppCompatActivity {
         btnIniciar.setEnabled(true);
     }
 
-    // Clase interna para la Tarea Secundaria.
-    private class TareaSecundaria implements Runnable {
+    // Clase interna para la tarea secundaria. Debe ser static para evitar memory leaks.
+    private static class TareaSecundaria implements Runnable {
+
+        // El manejador no genera memory leaks porque posee una referencia fuerte a la actividad,
+        // sino tan solo una referencia débil.
+        private final Manejador manejador;
+
+        public TareaSecundaria(Manejador manejador) {
+            this.manejador = manejador;
+        }
 
         @Override
         public void run() {
             // Crea y envía el mensaje de inicio de ejecución al manejador.
-            Message msgInicio = new Message();
-            msgInicio.what = onPreExecute;
-            manejador.sendMessage(msgInicio);
+            enviarMensajeInicio();
             for (int i = 0; i < NUM_PASOS; i++) {
                 // Se pone a trabajar.
                 trabajar();
                 // Crea y envía un mensaje de actualización al manejador.
-                Message msgProgreso = new Message();
-                msgProgreso.what = onProgressUpdate;
-                msgProgreso.arg1 = i + 1;
-                manejador.sendMessage(msgProgreso);
+                enviarMensajeProgreso(i);
             }
             // Crea y envía el mensaje de fin de ejecución al manejador.
+            enviarMensajeFin();
+        }
+
+        private void enviarMensajeInicio() {
+            Message msgInicio = new Message();
+            msgInicio.what = onPreExecute;
+            manejador.sendMessage(msgInicio);
+        }
+
+        private void enviarMensajeProgreso(int i) {
+            Message msgProgreso = new Message();
+            msgProgreso.what = onProgressUpdate;
+            msgProgreso.arg1 = i + 1;
+            manejador.sendMessage(msgProgreso);
+        }
+
+        private void enviarMensajeFin() {
             Message msgFin = new Message();
             msgFin.what = onPostExecute;
             msgFin.arg1 = NUM_PASOS;
@@ -124,12 +142,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Clase interna para el Manejador.
+    // Clase interna para el Manejador. Debe ser static para no generar memory leaks.
     static class Manejador extends Handler {
 
-        private final WeakReference<MainActivity> mActivityWeakReference;
+        private final WeakReference<MainActivity>
+                mActivityWeakReference;
 
         Manejador(MainActivity activity) {
+            // Se llama implícitamente al constructor por defecto de la clase {{Handler}}, que es
+            // Handler(), que asocia el handler al looper del hilo desde el que se está creando (en
+            // este caso el hilo de la interfaz de usuario).
+
             // Se almacena una referencia débil de la actividad.
             mActivityWeakReference = new WeakReference<>(activity);
         }
