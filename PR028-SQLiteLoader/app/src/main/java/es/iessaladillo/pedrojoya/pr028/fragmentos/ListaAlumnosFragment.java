@@ -22,15 +22,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import es.iessaladillo.pedrojoya.pr028.R;
 import es.iessaladillo.pedrojoya.pr028.adaptadores.AlumnosAdapter;
 import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
 import es.iessaladillo.pedrojoya.pr028.modelos.Alumno;
+import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoAsyncQueryHandler;
 import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoContentProvider;
 
 public class ListaAlumnosFragment extends Fragment implements
-        LoaderCallbacks<Cursor> {
+        LoaderCallbacks<Cursor>, InstitutoAsyncQueryHandler.Callbacks {
+
+    private static final int TOKEN_DELETE = 0;
+    private InstitutoAsyncQueryHandler mAlumnoAsyncQueryHandler;
 
     // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
@@ -59,6 +64,11 @@ public class ListaAlumnosFragment extends Fragment implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas(View v) {
+        // Se crea el objeto para realizar las operaciones sobre el content provider en segundo
+        // plano.
+        mAlumnoAsyncQueryHandler = new InstitutoAsyncQueryHandler(getActivity()
+                .getContentResolver(), this);
+
         lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
         RelativeLayout rlListaVacia = (RelativeLayout) v.findViewById(R.id.rlListaVacia);
         // Si la lista está vacía se muestra un icono y un texto para que al
@@ -203,7 +213,7 @@ public class ListaAlumnosFragment extends Fragment implements
                 Uri uri = Uri
                         .parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS
                                 + "/" + alu.getId());
-                getActivity().getContentResolver().delete(uri, null, null);
+                mAlumnoAsyncQueryHandler.startDelete(TOKEN_DELETE, null, uri, null, null);
             }
         }
         // Se finaliza el modo contextual.
@@ -233,4 +243,24 @@ public class ListaAlumnosFragment extends Fragment implements
         // Se vacía de datos el adaptador.
         adaptador.changeCursor(null);
     }
+
+    @Override
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+    }
+
+    @Override
+    public void onInsertComplete(int token, Object cookie, Uri uri) {
+    }
+
+    @Override
+    public void onUpdateComplete(int token, Object cookie, int result) {
+    }
+
+    @Override
+    public void onDeleteComplete(int token, Object cookie, int result) {
+        if (result > 0) {
+            Toast.makeText(getContext(), "Eliminación realizada correctamente", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr028.fragmentos;
 
-import android.content.AsyncQueryHandler;
-import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,9 +20,10 @@ import java.util.Random;
 import es.iessaladillo.pedrojoya.pr028.R;
 import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
 import es.iessaladillo.pedrojoya.pr028.modelos.Alumno;
+import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoAsyncQueryHandler;
 import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoContentProvider;
 
-public class AlumnoFragment extends Fragment {
+public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandler.Callbacks {
 
     // Constantes.
     public static final String EXTRA_MODO = "modo";
@@ -45,7 +44,7 @@ public class AlumnoFragment extends Fragment {
     private Alumno alumno;
     private ArrayAdapter<CharSequence> adaptadorCursos;
     private Random mAleatorio;
-    private AlumnoAsyncQueryHandler mAlumnoAsyncQueryHandler;
+    private InstitutoAsyncQueryHandler mAlumnoAsyncQueryHandler;
 
     public static AlumnoFragment newInstance(String modo, long id) {
         AlumnoFragment frg = new AlumnoFragment();
@@ -58,7 +57,7 @@ public class AlumnoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_alumno, container, false);
     }
 
@@ -81,7 +80,8 @@ public class AlumnoFragment extends Fragment {
         mAleatorio = new Random();
         // Se crea el objeto para realizar las operaciones sobre el content provider en segundo
         // plano.
-        mAlumnoAsyncQueryHandler = new AlumnoAsyncQueryHandler(getActivity().getContentResolver());
+        mAlumnoAsyncQueryHandler = new InstitutoAsyncQueryHandler(getActivity()
+                .getContentResolver(), this);
     }
 
     // Carga los cursos en el spinner.
@@ -217,55 +217,52 @@ public class AlumnoFragment extends Fragment {
     // Retorna una url aleatoria correspondiente a una imagen para el avatar.
     private String getRandomAvatarUrl() {
         final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
-                                "night", "life", "fashion", "people", "nature", "sports",
-                                "technics", "transport"};
+                "night", "life", "fashion", "people", "nature", "sports",
+                "technics", "transport"};
         return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" + (mAleatorio.nextInt(10)
                 + 1) + "/";
     }
 
-    // Clase para ejecutar las operaciones sobre el content provider en un hilo secundario.
-    private class AlumnoAsyncQueryHandler extends AsyncQueryHandler {
+    @Override
+    public void onQueryComplete(int token, Object cookie, Cursor cursor) {
+    }
 
-        public AlumnoAsyncQueryHandler(ContentResolver cr) {
-            super(cr);
-        }
-
-        @Override
-        protected void onInsertComplete(int token, Object cookie, Uri uri) {
-            super.onInsertComplete(token, cookie, uri);
-            // Como resultado de la inserción se obtiene la uri del alumno insertado, de la que se
-            // extrae su id.
-            if (uri != null) {
-                long id = Long.parseLong(uri.getLastPathSegment());
-                // Se informa de si ha ido bien.
-                if (id >= 0) {
-                    alumno.setId(id);
-                    Toast.makeText(getActivity(), getString(R.string.insercion_correcta),
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), getString(R.string.insercion_incorrecta),
-                            Toast.LENGTH_SHORT).show();
-                }
-                // Se resetean las vistas para poder agregar otro alumno (seguimos en
-                // modo Agregar).
-                resetVistas();
-            }
-        }
-
-        @Override
-        protected void onUpdateComplete(int token, Object cookie, int result) {
-            super.onUpdateComplete(token, cookie, result);
-            // Como resultado obtenemos el número de registros actualizados.
-            if (result > 0) {
-                Toast.makeText(getActivity(), getString(R.string.actualizacion_correcta),
+    @Override
+    public void onInsertComplete(int token, Object cookie, Uri uri) {
+        // Como resultado de la inserción se obtiene la uri del alumno insertado, de la que se
+        // extrae su id.
+        if (uri != null) {
+            long id = Long.parseLong(uri.getLastPathSegment());
+            // Se informa de si ha ido bien.
+            if (id >= 0) {
+                alumno.setId(id);
+                Toast.makeText(getActivity(), getString(R.string.insercion_correcta),
                         Toast.LENGTH_SHORT).show();
-                getActivity().finish();
             } else {
-                Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
+                Toast.makeText(getActivity(), getString(R.string.insercion_incorrecta),
                         Toast.LENGTH_SHORT).show();
             }
+            // Se resetean las vistas para poder agregar otro alumno (seguimos en
+            // modo Agregar).
+            resetVistas();
         }
+    }
 
+    @Override
+    public void onUpdateComplete(int token, Object cookie, int result) {
+        // Como resultado obtenemos el número de registros actualizados.
+        if (result > 0) {
+            Toast.makeText(getActivity(), getString(R.string.actualizacion_correcta),
+                    Toast.LENGTH_SHORT).show();
+            getActivity().finish();
+        } else {
+            Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDeleteComplete(int token, Object cookie, int result) {
     }
 
 }
