@@ -217,8 +217,8 @@ public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandl
     // Retorna una url aleatoria correspondiente a una imagen para el avatar.
     private String getRandomAvatarUrl() {
         final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
-                "night", "life", "fashion", "people", "nature", "sports",
-                "technics", "transport"};
+                                "night", "life", "fashion", "people", "nature", "sports",
+                                "technics", "transport"};
         return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" + (mAleatorio.nextInt(10)
                 + 1) + "/";
     }
