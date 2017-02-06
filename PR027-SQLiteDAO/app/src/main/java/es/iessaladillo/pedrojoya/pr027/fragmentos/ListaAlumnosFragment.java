@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import es.iessaladillo.pedrojoya.pr027.R;
 import es.iessaladillo.pedrojoya.pr027.adaptadores.AlumnosAdapter;
 import es.iessaladillo.pedrojoya.pr027.bd.Dao;
-import es.iessaladillo.pedrojoya.pr027.bd.Instituto;
+import es.iessaladillo.pedrojoya.pr027.bd.DbContract;
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 import es.iessaladillo.pedrojoya.pr027.utils.HidingScrollListener;
 import es.iessaladillo.pedrojoya.pr027.utils.SimpleCursorLoader;
@@ -320,7 +320,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
 
             @Override
             protected Uri getUri() {
-                return Uri.parse(Instituto.Alumno.URI);
+                return Uri.parse(DbContract.Alumno.URI);
             }
         };
     }

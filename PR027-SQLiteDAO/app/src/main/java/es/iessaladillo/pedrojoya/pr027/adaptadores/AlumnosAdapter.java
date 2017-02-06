@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr027.adaptadores;
 
+
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr027.R;
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
+
 
 @SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {

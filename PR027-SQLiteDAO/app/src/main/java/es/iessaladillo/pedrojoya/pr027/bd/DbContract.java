@@ -3,7 +3,7 @@ package es.iessaladillo.pedrojoya.pr027.bd;
 import android.provider.BaseColumns;
 
 @SuppressWarnings("WeakerAccess")
-public class Instituto {
+public class DbContract {
 
     // Constantes generales de la BD.
     public static final String BD_NOMBRE = "instituto";
@@ -21,7 +21,7 @@ public class Instituto {
     }
 
     // Constructor privado para que NO pueda instanciarse.
-    private Instituto() {
+    private DbContract() {
     }
 
 }

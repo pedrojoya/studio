@@ -23,13 +23,13 @@ public class Dao {
 
     private static Dao sInstance;
 
-    private final Helper mHelper; // Ayudante para la creación y gestión de la BD.
+    private final DbHelper mHelper; // Ayudante para la creación y gestión de la BD.
     private final ContentResolver mContentResolver;
 
     // Constructor. Recibe el contexto.
     private Dao(Context contexto) {
         // Se obtiene el mHelper.
-        mHelper = Helper.getInstance(contexto);
+        mHelper = DbHelper.getInstance(contexto);
         mContentResolver = contexto.getContentResolver();
     }
 
@@ -64,17 +64,17 @@ public class Dao {
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares campo-valor para realizar la inserción.
         ContentValues valores = new ContentValues();
-        valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
-        valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
-        valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
-        valores.put(Instituto.Alumno.DIRECCION, alumno.getDireccion());
+        valores.put(DbContract.Alumno.NOMBRE, alumno.getNombre());
+        valores.put(DbContract.Alumno.CURSO, alumno.getCurso());
+        valores.put(DbContract.Alumno.TELEFONO, alumno.getTelefono());
+        valores.put(DbContract.Alumno.DIRECCION, alumno.getDireccion());
         // Se realiza el insert
-        long resultado = bd.insert(Instituto.Alumno.TABLA, null, valores);
+        long resultado = bd.insert(DbContract.Alumno.TABLA, null, valores);
         // Se cierra la base de datos.
         mHelper.close();
         // Se notifica.
         mContentResolver.notifyChange(
-                Uri.parse(Instituto.Alumno.URI), null);
+                Uri.parse(DbContract.Alumno.URI), null);
         // Se retorna el _id del alumno insertado o -1 si error.
         return resultado;
     }
@@ -85,7 +85,7 @@ public class Dao {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se realiza el delete.
-        long resultado = bd.delete(Instituto.Alumno.TABLA, Instituto.Alumno._ID + " = "
+        long resultado = bd.delete(DbContract.Alumno.TABLA, DbContract.Alumno._ID + " = "
                 + id, null);
         // Se cierra la base de datos.
         mHelper.close();
@@ -104,18 +104,18 @@ public class Dao {
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares clave-valor con cada campo-valor.
         ContentValues valores = new ContentValues();
-        valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
-        valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
-        valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
-        valores.put(Instituto.Alumno.DIRECCION, alumno.getDireccion());
+        valores.put(DbContract.Alumno.NOMBRE, alumno.getNombre());
+        valores.put(DbContract.Alumno.CURSO, alumno.getCurso());
+        valores.put(DbContract.Alumno.TELEFONO, alumno.getTelefono());
+        valores.put(DbContract.Alumno.DIRECCION, alumno.getDireccion());
         // Se realiza el update.
-        long resultado = bd.update(Instituto.Alumno.TABLA, valores, Instituto.Alumno._ID
+        long resultado = bd.update(DbContract.Alumno.TABLA, valores, DbContract.Alumno._ID
                 + " = " + alumno.getId(), null);
         // Se cierra la base de datos.
         mHelper.close();
         // Se notifica.
         mContentResolver.notifyChange(
-                Uri.parse(Instituto.Alumno.URI), null);
+                Uri.parse(DbContract.Alumno.URI), null);
         // Se retorna si ha actualizado algún alumno.
         return resultado > 0;
 
@@ -127,8 +127,8 @@ public class Dao {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se realiza la query SQL sobre la BD.
-        Cursor cursor = bd.query(true, Instituto.Alumno.TABLA,
-                Instituto.Alumno.TODOS, Instituto.Alumno._ID + " = " + id,
+        Cursor cursor = bd.query(true, DbContract.Alumno.TABLA,
+                DbContract.Alumno.TODOS, DbContract.Alumno._ID + " = " + id,
                 null, null, null, null, null);
         // Se mueve al primer registro del cursor.
         Alumno alumno = null;
@@ -150,8 +150,8 @@ public class Dao {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se realiza la consulta y se retorna el cursor.
-        return  bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
-                null, null, null, Instituto.Alumno.NOMBRE);
+        return  bd.query(DbContract.Alumno.TABLA, DbContract.Alumno.TODOS, null,
+                null, null, null, DbContract.Alumno.NOMBRE);
     }
 
     // Consulta en la VD todos los alumnos. Retorna una lista de objeto Alumno,
@@ -192,15 +192,15 @@ public class Dao {
         // del registro actual del cursor.
         Alumno alumno = new Alumno();
         alumno.setId(cursorAlumno.getLong(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno._ID)));
+                cursorAlumno.getColumnIndexOrThrow(DbContract.Alumno._ID)));
         alumno.setNombre(cursorAlumno.getString(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE)));
+                cursorAlumno.getColumnIndexOrThrow(DbContract.Alumno.NOMBRE)));
         alumno.setCurso(cursorAlumno.getString(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.CURSO)));
+                cursorAlumno.getColumnIndexOrThrow(DbContract.Alumno.CURSO)));
         alumno.setTelefono(cursorAlumno.getString(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.TELEFONO)));
+                cursorAlumno.getColumnIndexOrThrow(DbContract.Alumno.TELEFONO)));
         alumno.setDireccion(cursorAlumno.getString(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.DIRECCION)));
+                cursorAlumno.getColumnIndexOrThrow(DbContract.Alumno.DIRECCION)));
         // Se retorna el objeto Alumno.
         return alumno;
     }
