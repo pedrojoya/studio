@@ -1,9 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
-
-def support_library_version = "23.3.0"
-def picasso_version = "2.5.2"
-def circleimageview_version = "2.0.0"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -11,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "pedrojoya.iessaladillo.es.pr181"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -37,5 +32,5 @@ dependencies {
     compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
-    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
 }

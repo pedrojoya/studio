@@ -50,7 +50,7 @@ public class CollapsingToolbarLayoutFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_collapsingtoolbarlayout, container, false);
     }
 
@@ -65,7 +65,7 @@ public class CollapsingToolbarLayoutFragment extends Fragment {
     // Obtiene e inicializa las vistas.
     private void initVistas(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        AppCompatActivity actividad = ((AppCompatActivity) getActivity());
+        AppCompatActivity actividad = (AppCompatActivity) getActivity();
         actividad.setSupportActionBar(toolbar);
         actividad.setTitle(mTitulo);
         if (actividad.getSupportActionBar() != null) {
@@ -73,25 +73,25 @@ public class CollapsingToolbarLayoutFragment extends Fragment {
             actividad.getSupportActionBar().setHomeButtonEnabled(true);
             actividad.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         }
-        CollapsingToolbarLayout collapsingToolbarLayout =
-                (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) view
+                .findViewById(
+                R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(mTitulo);
         nsvScroll = (NestedScrollView) view.findViewById(R.id.nsvScroll);
         FloatingActionButton fabAccion = (FloatingActionButton) view.findViewById(R.id.fabAccion);
         fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSnackbar = Snackbar.make(nsvScroll,
-                        getString(R.string.fab_pulsado),
+                mSnackbar = Snackbar.make(nsvScroll, getString(R.string.fab_pulsado),
                         Snackbar.LENGTH_SHORT).setAction(getString(R.string.deshacer),
-                            new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getActivity(),
-                                getString(R.string.deshaciendo_accion),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(getActivity(),
+                                        getString(R.string.deshaciendo_accion), Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        });
                 mSnackbar.show();
             }
         });

@@ -25,7 +25,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 import es.iessaladillo.pedrojoya.pr027.R;
-import es.iessaladillo.pedrojoya.pr027.bd.DAO;
+import es.iessaladillo.pedrojoya.pr027.bd.Dao;
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 import es.iessaladillo.pedrojoya.pr027.utils.ClickToSelectEditText;
 
@@ -54,13 +54,13 @@ public class AlumnoFragment extends Fragment {
     private Random mAleatorio;
 
     // Retorna una nueva instancia del fragmento (para agregar)
-    static public AlumnoFragment newInstance() {
+    public static AlumnoFragment newInstance() {
         return new AlumnoFragment();
     }
 
     // Retorna una nueva instancia del fragmento. Recibe el id del mAlumno
     // (para actualizar).
-    static public AlumnoFragment newInstance(long idAlumno) {
+    public static AlumnoFragment newInstance(long idAlumno) {
         AlumnoFragment frg = new AlumnoFragment();
         Bundle argumentos = new Bundle();
         argumentos.putLong(EXTRA_ID, idAlumno);
@@ -76,7 +76,7 @@ public class AlumnoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_alumno, container, false);
     }
 
@@ -114,17 +114,20 @@ public class AlumnoFragment extends Fragment {
             txtNombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_face);
+                    Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                            R.drawable.ic_face);
                     drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
-                        if (tilNombre.isErrorEnabled() && checkRequiredEditText(txtNombre, tilNombre)) {
+                        if (tilNombre.isErrorEnabled() && checkRequiredEditText(txtNombre,
+                                tilNombre)) {
                             tilNombre.setError("");
                             tilNombre.setErrorEnabled(false);
                         }
                         DrawableCompat.setTintList(drawable, null);
                     } else {
                         DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
-                        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.accent));
+                        DrawableCompat.setTint(drawable,
+                                ContextCompat.getColor(getActivity(), R.color.accent));
                     }
                     imgNombre.setImageDrawable(drawable);
                 }
@@ -135,17 +138,20 @@ public class AlumnoFragment extends Fragment {
             spnCurso.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_create);
+                    Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                            R.drawable.ic_create);
                     drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
-                        if (tilCurso.isErrorEnabled() && checkRequiredEditText(spnCurso, tilCurso)) {
+                        if (tilCurso.isErrorEnabled() && checkRequiredEditText(spnCurso,
+                                tilCurso)) {
                             tilCurso.setError("");
                             tilCurso.setErrorEnabled(false);
                         }
                         DrawableCompat.setTintList(drawable, null);
                     } else {
                         DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
-                        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.accent));
+                        DrawableCompat.setTint(drawable,
+                                ContextCompat.getColor(getActivity(), R.color.accent));
                         spnCurso.showDialog(v);
                     }
                     imgCurso.setImageDrawable(drawable);
@@ -156,17 +162,20 @@ public class AlumnoFragment extends Fragment {
             txtTelefono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_phone);
+                    Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                            R.drawable.ic_phone);
                     drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
-                        if (tilTelefono.isErrorEnabled() && checkRequiredEditText(txtTelefono, tilTelefono)) {
+                        if (tilTelefono.isErrorEnabled() && checkRequiredEditText(txtTelefono,
+                                tilTelefono)) {
                             tilTelefono.setError("");
                             tilTelefono.setErrorEnabled(false);
                         }
                         DrawableCompat.setTintList(drawable, null);
                     } else {
                         DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
-                        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.accent));
+                        DrawableCompat.setTint(drawable,
+                                ContextCompat.getColor(getActivity(), R.color.accent));
                     }
                     imgTelefono.setImageDrawable(drawable);
                 }
@@ -177,13 +186,15 @@ public class AlumnoFragment extends Fragment {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!tilDireccion.isErrorEnabled()) {
-                        Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_home);
+                        Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                                R.drawable.ic_home);
                         drawable = DrawableCompat.wrap(drawable);
                         if (!hasFocus) {
                             DrawableCompat.setTintList(drawable, null);
                         } else {
                             DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
-                            DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.accent));
+                            DrawableCompat.setTint(drawable,
+                                    ContextCompat.getColor(getActivity(), R.color.accent));
                         }
                         imgDireccion.setImageDrawable(drawable);
                     }
@@ -216,12 +227,13 @@ public class AlumnoFragment extends Fragment {
         ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
                 R.array.cursos, android.R.layout.simple_list_item_1);
         spnCurso.setAdapter(adaptadorCursos);
-        spnCurso.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
-            @Override
-            public void onItemSelectedListener(String item, int selectedIndex) {
-                spnCurso.setText(item);
-            }
-        });
+        spnCurso.setOnItemSelectedListener(
+                new ClickToSelectEditText.OnItemSelectedListener<String>() {
+                    @Override
+                    public void onItemSelectedListener(String item, int selectedIndex) {
+                        spnCurso.setText(item);
+                    }
+                });
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Agregar.
@@ -243,12 +255,11 @@ public class AlumnoFragment extends Fragment {
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(long id) {
         // Se consulta en la BD los datos del mAlumno a través del objeto DAO.
-        mAlumno = DAO.getInstance(getActivity()).queryAlumno(id);
+        mAlumno = Dao.getInstance(getActivity()).queryAlumno(id);
         // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
         // Agregar.
         if (mAlumno == null) {
-            Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.alumno_no_encontrado, Toast.LENGTH_LONG).show();
             setModoAgregar();
         }
     }
@@ -297,18 +308,16 @@ public class AlumnoFragment extends Fragment {
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
         // Se realiza el insert a través del objeto DAO.
-        long id = DAO.getInstance(getActivity()).createAlumno(mAlumno);
+        long id = Dao.getInstance(getActivity()).createAlumno(mAlumno);
         // Se informa de si ha ido bien.
         if (id >= 0) {
             mAlumno.setId(id);
-            Toast.makeText(getActivity(),
-                    getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
-                    .show();
+            Toast.makeText(getActivity(), getString(R.string.insercion_correcta),
+                    Toast.LENGTH_SHORT).show();
             retornar();
             getActivity().finish();
         } else {
-            Toast.makeText(getActivity(),
-                    getString(R.string.insercion_incorrecta),
+            Toast.makeText(getActivity(), getString(R.string.insercion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -316,14 +325,12 @@ public class AlumnoFragment extends Fragment {
     // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
         // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
-        if (DAO.getInstance(getActivity()).updateAlumno(mAlumno)) {
-            Toast.makeText(getActivity(),
-                    getString(R.string.actualizacion_correcta),
+        if (Dao.getInstance(getActivity()).updateAlumno(mAlumno)) {
+            Toast.makeText(getActivity(), getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
             retornar();
         } else {
-            Toast.makeText(getActivity(),
-                    getString(R.string.actualizacion_incorrecta),
+            Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -369,10 +376,12 @@ public class AlumnoFragment extends Fragment {
 
     // Retorna una url aleatoria correspondiente a una imagen para el avatar.
     private String getRandomAvatarUrl() {
-        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String baseUrl = "http://lorempixel.com/100/100/";
         final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
-                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
-        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
+                                "night", "life", "fashion", "people", "nature", "sports",
+                                "technics", "transport"};
+        return baseUrl + tipos[mAleatorio.nextInt(tipos.length)] + "/"
+                +
                 (mAleatorio.nextInt(10) + 1) + "/";
     }
 }

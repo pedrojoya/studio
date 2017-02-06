@@ -1,12 +1,13 @@
 package es.iessaladillo.pedrojoya.pr027.bd;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
 
@@ -18,24 +19,26 @@ import es.iessaladillo.pedrojoya.pr027.modelos.Alumno;
  * detalles internos de ella.
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class DAO {
+public class Dao {
 
-    private static DAO sInstance;
+    private static Dao sInstance;
 
     private final Helper mHelper; // Ayudante para la creación y gestión de la BD.
+    private final ContentResolver mContentResolver;
 
     // Constructor. Recibe el contexto.
-    private DAO(Context contexto) {
+    private Dao(Context contexto) {
         // Se obtiene el mHelper.
         mHelper = Helper.getInstance(contexto);
+        mContentResolver = contexto.getContentResolver();
     }
 
     // Retorna la instancia (única) del helper.
-    public static synchronized DAO getInstance(Context context) {
+    public static synchronized Dao getInstance(Context context) {
         // Al usar el contexto de la aplicación nos aseguramos de que no haya
         // memory leaks si el recibido es el contexto de una actividad.
         if (sInstance == null) {
-            sInstance = new DAO(context);
+            sInstance = new Dao(context);
         }
         return sInstance;
     }
@@ -69,6 +72,9 @@ public class DAO {
         long resultado = bd.insert(Instituto.Alumno.TABLA, null, valores);
         // Se cierra la base de datos.
         mHelper.close();
+        // Se notifica.
+        mContentResolver.notifyChange(
+                Uri.parse(Instituto.Alumno.URI), null);
         // Se retorna el _id del alumno insertado o -1 si error.
         return resultado;
     }
@@ -83,6 +89,9 @@ public class DAO {
                 + id, null);
         // Se cierra la base de datos.
         mHelper.close();
+        // Se notifica.
+        //mContentResolver.notifyChange(
+        //        Uri.parse(Instituto.Alumno.URI), null);
         // Se retorna si se ha eliminado algún alumno.
         return resultado > 0;
 
@@ -104,6 +113,9 @@ public class DAO {
                 + " = " + alumno.getId(), null);
         // Se cierra la base de datos.
         mHelper.close();
+        // Se notifica.
+        mContentResolver.notifyChange(
+                Uri.parse(Instituto.Alumno.URI), null);
         // Se retorna si ha actualizado algún alumno.
         return resultado > 0;
 
@@ -123,7 +135,7 @@ public class DAO {
         if (cursor != null) {
             cursor.moveToFirst();
             // Retorno el objeto Alumno correspondiente.
-            alumno = cursorToAlumno (cursor);
+            alumno = cursorToAlumno(cursor);
         }
         // Se cierra la base de datos.
         mHelper.close();
@@ -134,7 +146,9 @@ public class DAO {
     // Consulta en la BD todos los alumnos. Retorna el cursor resultado de la
     // consulta (puede ser null si no hay alumnos), ordenados alfabéticamente
     // por nombre.
-    public Cursor queryAllAlumnos(SQLiteDatabase bd) {
+    public Cursor queryAllAlumnos() {
+        // Se abre la base de datos.
+        SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se realiza la consulta y se retorna el cursor.
         return  bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
                 null, null, null, Instituto.Alumno.NOMBRE);
@@ -142,12 +156,23 @@ public class DAO {
 
     // Consulta en la VD todos los alumnos. Retorna una lista de objeto Alumno,
     // ordenados alfabéticamente por nombre.
-    public List<Alumno> getAllAlumnos() {
-        // Se abre la base de datos.
-        SQLiteDatabase bd = mHelper.getWritableDatabase();
-        List<Alumno> lista = new ArrayList<>();
+    public ArrayList<Alumno> getAllAlumnos() {
+        ArrayList<Alumno> lista = new ArrayList<>();
         // Se consultan todos los alumnos en la BD y obtiene un cursor.
-        Cursor cursor = this.queryAllAlumnos(bd);
+        Cursor cursor = this.queryAllAlumnos();
+        if (cursor != null) {
+            lista = cursorToAlumnos(cursor);
+        }
+        // Se cierra el cursor (IMPORTANTE).
+        cursor.close();
+        // Se cierra la base de datos.
+        mHelper.close();
+        // Se retorna la lista.
+        return lista;
+    }
+
+    public ArrayList<Alumno> cursorToAlumnos(Cursor cursor) {
+        ArrayList<Alumno> lista = new ArrayList<>();
         // Se convierte cada registro del cursor en un elemento de la lista.
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -155,10 +180,6 @@ public class DAO {
             lista.add(alumno);
             cursor.moveToNext();
         }
-        // Se cierra el cursor (IMPORTANTE).
-        cursor.close();
-        // Se cierra la base de datos.
-        mHelper.close();
         // Se retorna la lista.
         return lista;
     }

@@ -74,7 +74,7 @@ public class TabLayoutFragment extends Fragment {
     // Configura la toolbar.
     private void configToolbar(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        AppCompatActivity actividad = ((AppCompatActivity) getActivity());
+        AppCompatActivity actividad = (AppCompatActivity) getActivity();
         actividad.setSupportActionBar(toolbar);
         actividad.setTitle(mTitulo);
         if (actividad.getSupportActionBar() != null) {

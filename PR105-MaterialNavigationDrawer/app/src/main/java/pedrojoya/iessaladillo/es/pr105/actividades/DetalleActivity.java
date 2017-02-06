@@ -33,7 +33,8 @@ public class DetalleActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
         // Se muestra el título en la collapsing toolbar.
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(
+                R.id.collapsing_toolbar);
         if (collapsingToolbarLayout != null) {
             collapsingToolbarLayout.setTitle(getTitle());
         }
@@ -43,12 +44,14 @@ public class DetalleActivity extends AppCompatActivity {
             fabAccion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(nsvScroll, "Quillo que", Snackbar.LENGTH_SHORT).setAction("Deshacer", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(getApplicationContext(), "Quieres deshacer", Toast.LENGTH_SHORT).show();
-                        }
-                    }).show();
+                    Snackbar.make(nsvScroll, "Quillo que", Snackbar.LENGTH_SHORT).setAction(
+                            "Deshacer", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(getApplicationContext(), "Quieres deshacer",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }).show();
                 }
             });
         }

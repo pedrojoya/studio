@@ -37,7 +37,7 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_tab1, container, false);
     }
 
@@ -64,8 +64,7 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
         mAdaptador.setOnItemClickListener(this);
         lstAlumnos.setAdapter(mAdaptador);
         lstAlumnos.setLayoutManager(
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
-                        false));
+                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         // Hide & Show FAB.
         lstAlumnos.addOnScrollListener(new HideShowRecyclerScrollListener() {
@@ -74,9 +73,9 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
                 if (mSnackbar != null) {
                     mSnackbar.dismiss();
                 }
-//                int translationY = getResources().getDimensionPixelSize(R
-//                        .dimen.fab_margin) + fabAccion.getHeight();
-//                ViewCompat.animate(fabAccion).translationY(translationY);
+                //                int translationY = getResources().getDimensionPixelSize(R
+                //                        .dimen.fab_margin) + fabAccion.getHeight();
+                //                ViewCompat.animate(fabAccion).translationY(translationY);
                 fabAccion.hide();
             }
 
@@ -85,7 +84,7 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
                 if (mSnackbar != null) {
                     mSnackbar.dismiss();
                 }
-//                ViewCompat.animate(fabAccion).translationY(0);
+                //                ViewCompat.animate(fabAccion).translationY(0);
                 fabAccion.show();
             }
         });
@@ -93,21 +92,20 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView,
-                                  RecyclerView.ViewHolder viewHolder,
-                                  RecyclerView.ViewHolder target) {
-                final int fromPos = viewHolder.getAdapterPosition();
-                final int toPos = target.getAdapterPosition();
-                mAdaptador.swapItems(fromPos, toPos);
-                return true;
-            }
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView,
+                            RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                        final int fromPos = viewHolder.getAdapterPosition();
+                        final int toPos = target.getAdapterPosition();
+                        mAdaptador.swapItems(fromPos, toPos);
+                        return true;
+                    }
 
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                // Se elimina el elemento.
-                mAdaptador.removeItem(viewHolder.getAdapterPosition());
-            }
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        // Se elimina el elemento.
+                        mAdaptador.removeItem(viewHolder.getAdapterPosition());
+                    }
                 });
         itemTouchHelper.attachToRecyclerView(lstAlumnos);
     }
@@ -117,15 +115,14 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
         fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSnackbar = Snackbar.make(lstAlumnos,
-                        getString(R.string.fab_pulsado),
+                mSnackbar = Snackbar.make(lstAlumnos, getString(R.string.fab_pulsado),
                         Snackbar.LENGTH_SHORT).setAction(getString(R.string.deshacer),
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Toast.makeText(getActivity(),
-                                        getString(R.string.deshaciendo_accion),
-                                        Toast.LENGTH_SHORT).show();
+                                        getString(R.string.deshaciendo_accion), Toast.LENGTH_SHORT)
+                                        .show();
                             }
                         });
                 mSnackbar.show();
@@ -137,7 +134,7 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
         Toast.makeText(getActivity(), getString(R.string.ha_pulsado_sobre) +
-                        " " + alumno.getNombre(), Toast.LENGTH_SHORT).show();
+                " " + alumno.getNombre(), Toast.LENGTH_SHORT).show();
     }
 
 }

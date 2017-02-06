@@ -44,7 +44,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
     // Añade un elemento a la lista ordenada.
     public void addItem(String elemento) {
         mDatos.add(elemento);
-        notifyItemInserted(mDatos.size()-1);
+        notifyItemInserted(mDatos.size() - 1);
     }
 
     // Contenedor de vistas.

@@ -35,18 +35,10 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         void onItemLongClick(View view, Alumno alumno, int position);
     }
 
-    // Interfaz que debe implementar el listener para cuando la lista pase a
-    // o deje de estar vacía.
-    public interface OnEmptyStateChangedListener {
-        void onEmptyStateChanged(boolean isEmpty);
-    }
-
     private ArrayList<Alumno> mDatos;
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemClickListener mOnItemClickListener;
-    private OnEmptyStateChangedListener mOnEmptyStateChangedListener;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
-    private boolean mIsEmpty = true;
     private final TextDrawable.IBuilder mDrawableBuilder;
 
     // Constructores.
@@ -69,7 +61,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Cambia los datos.
     public void swapData(ArrayList<Alumno> datos) {
         mDatos = datos;
-        checkEmptyStateChanged();
         notifyDataSetChanged();
     }
 
@@ -77,8 +68,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación XML para obtener la vista-fila.
-        final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_lista_alumnos_item, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.fragment_lista_alumnos_item, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -128,12 +119,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             holder.lblDireccion.setText(alumno.getDireccion());
             holder.itemView.setActivated(mSelectedItems.get(position, false));
             holder.imgAvatar.setImageDrawable(mDrawableBuilder.build(
-                    holder.itemView.isActivated() ?
-                            "\u2713" :
-                            alumno.getNombre().substring(0, 1),
-                    holder.itemView.isActivated() ?
-                            Color.GRAY :
-                            ColorGenerator.MATERIAL.getColor(alumno.getNombre())));
+                    holder.itemView.isActivated() ? "\u2713" : alumno.getNombre().substring(0, 1),
+                    holder.itemView.isActivated() ? Color.GRAY : ColorGenerator.MATERIAL.getColor(
+                            alumno.getNombre())));
         }
     }
 
@@ -153,9 +141,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     public Alumno getItemAtPosition(int posicion) {
         if (mDatos != null) {
-            return  mDatos.get(posicion);
-        }
-        else {
+            return mDatos.get(posicion);
+        } else {
             return null;
         }
     }
@@ -164,8 +151,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     public void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
-        // Se comprueba si pasa a estar vacía.
-        checkEmptyStateChanged();
     }
 
     // Elimina los elementos seleccionados.
@@ -180,8 +165,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             toggleSelection(pos);
             removeItem(pos);
         }
-        // Se comprueba si pasa a estar vacía.
-        checkEmptyStateChanged();
     }
 
     // Añade un elemento a la lista.
@@ -190,29 +173,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         mDatos.add(position, alumno);
         // Se notifica que se ha insertado un elemento en la última posición.
         notifyItemInserted(position);
-        // Si comprueba si deja de estar vacía.
-        checkEmptyStateChanged();
-    }
-
-    // Retorna si la lista está vacía.
-    public boolean isEmpty() {
-        return mIsEmpty;
-    }
-
-    // Comprueba si ha pasa a estar vacía o deja de estar vacía.
-    private void checkEmptyStateChanged() {
-        // Deja de estar vacía
-        if (mIsEmpty && mDatos != null && mDatos.size() > 0) {
-            mIsEmpty = false;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(false);
-            }
-        } else if (!mIsEmpty && mDatos != null && mDatos.size() == 0) {
-            mIsEmpty = true;
-            if (mOnEmptyStateChangedListener != null) {
-                mOnEmptyStateChangedListener.onEmptyStateChanged(true);
-            }
-        }
     }
 
     // Establece el listener a informar cuando se hace click sobre un
@@ -225,14 +185,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // elemento de la lista.
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         mOnItemLongClickListener = listener;
-    }
-
-    // Establece el listener a informar cuando la lista pasa a o deja de
-    // estar vacía.
-    public void setOnEmptyStateChangedListener(
-            OnEmptyStateChangedListener listener) {
-        mOnEmptyStateChangedListener = listener;
-        checkEmptyStateChanged();
     }
 
     // Cambia el estado de selección de un elemento.
@@ -293,12 +245,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             imgAvatar = (ImageView) itemView.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView
-                    .findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView
-                    .findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) itemView
-                    .findViewById(R.id.lblDireccion);
+            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
+            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
+            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
         }
 
     }

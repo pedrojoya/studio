@@ -52,9 +52,9 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
         android:elevation="@dimen/fab_elevation"
         android:src="@drawable/ic_action_add"
-        tools:ignore="UnusedAttribute" />
+        tools:ignore="UnusedAttribute"
+        android:layout_marginRight="@dimen/fab_margin"/>
 
 </android.support.design.widget.CoordinatorLayout>

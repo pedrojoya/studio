@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +22,8 @@ import pedrojoya.iessaladillo.es.pr105.fragmentos.NestedScrollViewFragment;
 import pedrojoya.iessaladillo.es.pr105.fragmentos.TabLayoutFragment;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView
+        .OnNavigationItemSelectedListener {
 
     private static final String PREFERENCES_FILE = "prefs";
     private static final String PREF_NAV_DRAWER_OPENED = "navdrawerOpened";
@@ -74,15 +76,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (itemId) {
             case R.id.nav_nestedscrollview:
                 frg = NestedScrollViewFragment.newInstance(title);
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content, frg, title)
+                        .commit();
                 break;
             case R.id.nav_tablayout:
                 frg = TabLayoutFragment.newInstance(title);
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content, frg, title)
+                        .commit();
                 break;
             case R.id.nav_collapsingtoolbarlayout:
                 frg = CollapsingToolbarLayoutFragment.newInstance("Collapsing toolbar");
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, frg, title).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content, frg, title)
+                        .commit();
                 break;
             default:
                 startActivity(new Intent(this, DetalleActivity.class));
@@ -102,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Cuando se selecciona una opción del nav drawer.
     @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         // Se muestra el fragmento o actividad correspondiente.
         mostrarOpcion(menuItem.getItemId(), menuItem.getTitle().toString());
         // Se selecciona el elemento (necesario para cuando se selecciona desde código).
@@ -114,7 +122,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Guarda la preferencia de que el nav drawer ya ha sido abierto.
     private void guardarPreferencia() {
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
+                PREFERENCES_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(PREF_NAV_DRAWER_OPENED, true);
         editor.apply();
@@ -122,7 +131,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Retorna la preferencia de si el nav drawer ya ha sido abierto.
     private boolean leerPreferencia() {
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
+                PREFERENCES_FILE, Context.MODE_PRIVATE);
         return sharedPref.getBoolean(PREF_NAV_DRAWER_OPENED, false);
     }
 

@@ -13,12 +13,12 @@
         android:layout_width="@dimen/two_line_avatar_width"
         android:layout_height="@dimen/two_line_avatar_height"
         android:contentDescription="@string/avatar"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/two_line_avatar_marginTop"
-        android:layout_marginLeft="@dimen/two_line_avatar_marginLeft"
         android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
-        android:src="@drawable/ic_user" />
+        android:src="@drawable/ic_user"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/two_line_avatar_marginLeft"/>
 
     <TextView
         android:id="@+id/lblNombre"
@@ -29,14 +29,14 @@
         android:paddingRight="@dimen/two_line_text_paddingLeft"
         android:paddingEnd="@dimen/two_line_text_paddingLeft"
         android:paddingTop="@dimen/two_line_text_paddingTop"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         tools:text="Baldomero Llegate Ligero"
-        android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        style="@style/Base.TextAppearance.AppCompat.Subhead" />
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="@dimen/two_line_text_marginRight"/>
 
     <TextView
         android:id="@+id/lblDireccion"
@@ -47,14 +47,14 @@
         android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:paddingRight="@dimen/two_line_text_paddingLeft"
         android:paddingEnd="@dimen/two_line_text_paddingLeft"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/lblNombre"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         tools:text="c/ La casa de Baldomero"
-        android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="@dimen/two_line_text_marginRight"/>
 
 </RelativeLayout>

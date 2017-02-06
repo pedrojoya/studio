@@ -2,8 +2,6 @@ package pedrojoya.iessaladillo.es.pr181.main.model.repository;
 
 import android.os.Handler;
 
-import java.util.List;
-
 import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
 
 public class DBMainRepository implements MainRepository {

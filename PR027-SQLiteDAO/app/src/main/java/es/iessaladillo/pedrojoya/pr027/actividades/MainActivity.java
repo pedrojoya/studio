@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements
     private static final int RC_AGREGAR = 1;
     private static final int RC_EDITAR = 2;
 
-    FloatingActionButton btnAgregar;
+    private FloatingActionButton btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

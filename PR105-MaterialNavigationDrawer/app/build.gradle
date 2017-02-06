@@ -1,17 +1,13 @@
 apply plugin: 'com.android.application'
 
-def support_library_version = "23.3.0"
-def picasso_version = "2.5.2"
-def circleimageview_version = "2.0.0"
-
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "pedrojoya.iessaladillo.es.pr105"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }

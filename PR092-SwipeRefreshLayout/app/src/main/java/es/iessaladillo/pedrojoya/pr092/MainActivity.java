@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import es.iessaladillo.pedrojoya.pr092.utils.DividerItemDecoration;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -31,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         // Se carga el fragmento principal si no venimos de estado anterior.
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new MainFragment()).commit();
+                    .add(R.id.container, new MainFragment())
+                    .commit();
         }
     }
 
@@ -40,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Fragmento principal
-    public static class MainFragment extends Fragment implements
-            OnRefreshListener {
+    public static class MainFragment extends Fragment implements OnRefreshListener {
 
         private static final long MILISEGUNDOS_ESPERA = 2000;
         private SwipeRefreshLayout swlPanel;
-        private final SimpleDateFormat mFormateador = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        private final SimpleDateFormat mFormateador = new SimpleDateFormat("HH:mm:ss",
+                Locale.getDefault());
         private RecyclerView lstLista;
         private ListaAdapter mAdaptador;
         private LinearLayoutManager mLayoutManager;
@@ -62,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_main, container,
-                    false);
+                Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.fragment_main, container, false);
         }
 
         @Override
@@ -92,25 +90,24 @@ public class MainActivity extends AppCompatActivity {
             lstLista.setHasFixedSize(true);
             mAdaptador = new ListaAdapter(mDatos);
             lstLista.setAdapter(mAdaptador);
-            mLayoutManager = new LinearLayoutManager(getActivity(),
-                    LinearLayoutManager.VERTICAL, false);
+            mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
+                    false);
             lstLista.setLayoutManager(mLayoutManager);
             lstLista.addItemDecoration(
-                    new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                    new android.support.v7.widget.DividerItemDecoration(getActivity(),
+                            LinearLayoutManager.VERTICAL));
             lstLista.setItemAnimator(new DefaultItemAnimator());
         }
 
         // Configura el SwipeRefreshLayout.
         private void setupPanel() {
             if (getView() != null) {
-                swlPanel = (SwipeRefreshLayout) getView()
-                        .findViewById(R.id.swlPanel);
+                swlPanel = (SwipeRefreshLayout) getView().findViewById(R.id.swlPanel);
                 // El fragmento actuará como listener del gesto de swipe.
                 swlPanel.setOnRefreshListener(this);
                 // Se establecen los colores que debe usar la animación.
                 swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
-                        android.R.color.holo_green_light,
-                        android.R.color.holo_orange_light,
+                        android.R.color.holo_green_light, android.R.color.holo_orange_light,
                         android.R.color.holo_red_light);
             }
         }
