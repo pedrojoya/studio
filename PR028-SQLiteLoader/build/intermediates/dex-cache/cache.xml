@@ -12,30 +12,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.0_256d722c662c1a34df26030070d625a3885827bc.jar" />
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_688d0ecac33b779ad7b9f1ca1bff2508b2c785b4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.0_f58c44099c6b954549d432def573c780ee09375c.jar" />
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_e994b51d38b6060b4e147a162b0a46b77fcca02c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.0_75e944fc377e861170d305b9151be85362447a9a.jar" />
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_124b2b9a6692a432a1e16422d916d57d45afb0c5.jar" />
     </item>
     <item
         is-multidex="false"
@@ -48,30 +48,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.0_0a5abc3aa26c2be72ba8079ee5c9a60f2b406c40.jar" />
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_91d9b8f7b5a525b108046cfd1cd7655c78320557.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/design/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.0_12a7d30134ca4cb2e55c56b678c967a3f93135b0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.0_e9122087afccc6cac1c9704dffde3909ecc039eb.jar" />
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_0842b98a46433c81b332843f9df4021d7e03c6ef.jar" />
     </item>
     <item
         is-multidex="false"
@@ -84,21 +75,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.0_c4cbf6ad9bdd7666e1fc2bc6135f54e5916e9fce.jar" />
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_4a2107a4583409f5899e414ecbb56db21d453da8.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.0_74709f45f059e8aeaf4be47e94884e600bf89dd2.jar" />
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_c770ddae149a0b5a80a137488eb9a46d67811149.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_98d457e2fc25037799682716654547ade7cb3b7f.jar" />
     </item>
     <item
         is-multidex="false"
@@ -111,6 +111,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_ab5e57126866dcb49010043c2598d8d4bb136e8e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.squareup.leakcanary/leakcanary-android/1.5/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -120,21 +129,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.0_1ec7cf40681a41bcc74b01b5c48fa089d07c2520.jar" />
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_f8cf2ed72dd734152fd4881d8a5c86a4649a1786.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.0_da580453ae8930f021b87b38bc527ba160ae0fcd.jar" />
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
     </item>
     <item
         is-multidex="false"
@@ -147,30 +156,48 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.0_7b4024119a881b64a85f6ac9af4f7964e0d6eba7.jar" />
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_a956a90244b5c367d566e5e1804a56d8beef98af.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.0_589e7bc7b1fa7ce9e6a222ac478a38fffb02d177.jar" />
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_6c88b6ec6e8de35fb9568b3ac4b9b668f266d34d.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.0/jars/classes.jar"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.0_767d623b89c539652621de7e5700d1ecbc9f16c9.jar" />
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_da6fcb912e4de0651835e6a2a7ea6c3fcce49475.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="32f45bd44a3e7efc235bbfed120029290f5d674a">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-1.4.2_8e1d04672adc916e6854cfc6b3890e183861d98f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="/Users/pedro/studio/PR028-SQLiteLoader/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_b27f28e4b08fdd7f8e887af84da82d89f21dbd32.jar" />
     </item>
 
 </items>

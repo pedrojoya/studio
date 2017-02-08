@@ -3,7 +3,7 @@ package es.iessaladillo.pedrojoya.pr028.modelos;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
+import es.iessaladillo.pedrojoya.pr028.bd.DbContract;
 
 public class Alumno {
 
@@ -81,17 +81,17 @@ public class Alumno {
         // del registro actual del cursor.
         Alumno alumno = new Alumno();
         alumno.setId(cursorAlumno.getLong(cursorAlumno
-                .getColumnIndex(Instituto.Alumno._ID)));
+                .getColumnIndex(DbContract.Alumno._ID)));
         alumno.setAvatar(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(Instituto.Alumno.AVATAR)));
+                .getColumnIndex(DbContract.Alumno.AVATAR)));
         alumno.setNombre(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(Instituto.Alumno.NOMBRE)));
+                .getColumnIndex(DbContract.Alumno.NOMBRE)));
         alumno.setCurso(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(Instituto.Alumno.CURSO)));
+                .getColumnIndex(DbContract.Alumno.CURSO)));
         alumno.setTelefono(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(Instituto.Alumno.TELEFONO)));
+                .getColumnIndex(DbContract.Alumno.TELEFONO)));
         alumno.setDireccion(cursorAlumno.getString(cursorAlumno
-                .getColumnIndex(Instituto.Alumno.DIRECCION)));
+                .getColumnIndex(DbContract.Alumno.DIRECCION)));
         // Retorno el objeto Alumno.
         return alumno;
     }
@@ -100,11 +100,11 @@ public class Alumno {
     public static ContentValues toContentValues(Alumno alumno) {
         // Creamos un la lista de pares clave-valor con cada campo-valor.
         ContentValues valores = new ContentValues();
-        valores.put(Instituto.Alumno.AVATAR, alumno.getAvatar());
-        valores.put(Instituto.Alumno.NOMBRE, alumno.getNombre());
-        valores.put(Instituto.Alumno.CURSO, alumno.getCurso());
-        valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
-        valores.put(Instituto.Alumno.DIRECCION, alumno.getDireccion());
+        valores.put(DbContract.Alumno.AVATAR, alumno.getAvatar());
+        valores.put(DbContract.Alumno.NOMBRE, alumno.getNombre());
+        valores.put(DbContract.Alumno.CURSO, alumno.getCurso());
+        valores.put(DbContract.Alumno.TELEFONO, alumno.getTelefono());
+        valores.put(DbContract.Alumno.DIRECCION, alumno.getDireccion());
         return valores;
     }
 

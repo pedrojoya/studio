@@ -1,0 +1,52 @@
+VERSIONS
+
+ext {
+    compileSdkVersion = 25
+    minSdkVersion = 14
+    buildToolsVersion = "25.0.1"
+    support_library_version = "25.1.1"
+    picasso_version = "2.5.2"
+    circleimageview_version = "2.1.0"
+    butterknife_version = "8.5.1"
+    stetho_version = "1.4.2"
+    textdrawable_version = "1.0.1"
+    leakcanary_version = "1.5"
+    glide_version = "3.7.0"
+    junit_version = "4.12"
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
+    }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:support-annotations:${support_library_version}"
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
+    compile "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
+    compile “com.github.bumptech.glide:$rootProject.ext.glade_version"
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
+
+}

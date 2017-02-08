@@ -7,7 +7,7 @@ import android.net.Uri;
 
 import java.lang.ref.WeakReference;
 
-public class InstitutoAsyncQueryHandler extends AsyncQueryHandler {
+public class DbAsyncQueryHandler extends AsyncQueryHandler {
 
     private final WeakReference<Callbacks> mListener;
 
@@ -22,7 +22,7 @@ public class InstitutoAsyncQueryHandler extends AsyncQueryHandler {
         void onDeleteComplete(int token, Object cookie, int result);
     }
 
-    public InstitutoAsyncQueryHandler(ContentResolver cr, Callbacks listener) {
+    public DbAsyncQueryHandler(ContentResolver cr, Callbacks listener) {
         super(cr);
         mListener = new WeakReference<>(listener);
     }

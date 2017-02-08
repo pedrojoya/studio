@@ -18,12 +18,12 @@ import android.widget.Toast;
 import java.util.Random;
 
 import es.iessaladillo.pedrojoya.pr028.R;
-import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
+import es.iessaladillo.pedrojoya.pr028.bd.DbContract;
 import es.iessaladillo.pedrojoya.pr028.modelos.Alumno;
-import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoAsyncQueryHandler;
-import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoContentProvider;
+import es.iessaladillo.pedrojoya.pr028.proveedores.DbAsyncQueryHandler;
+import es.iessaladillo.pedrojoya.pr028.proveedores.DbContentProvider;
 
-public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandler.Callbacks {
+public class AlumnoFragment extends Fragment implements DbAsyncQueryHandler.Callbacks {
 
     // Constantes.
     public static final String EXTRA_MODO = "modo";
@@ -44,7 +44,7 @@ public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandl
     private Alumno alumno;
     private ArrayAdapter<CharSequence> adaptadorCursos;
     private Random mAleatorio;
-    private InstitutoAsyncQueryHandler mAlumnoAsyncQueryHandler;
+    private DbAsyncQueryHandler mAlumnoAsyncQueryHandler;
 
     public static AlumnoFragment newInstance(String modo, long id) {
         AlumnoFragment frg = new AlumnoFragment();
@@ -57,7 +57,7 @@ public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandl
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_alumno, container, false);
     }
 
@@ -80,8 +80,8 @@ public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandl
         mAleatorio = new Random();
         // Se crea el objeto para realizar las operaciones sobre el content provider en segundo
         // plano.
-        mAlumnoAsyncQueryHandler = new InstitutoAsyncQueryHandler(getActivity()
-                .getContentResolver(), this);
+        mAlumnoAsyncQueryHandler = new DbAsyncQueryHandler(getActivity().getContentResolver(),
+                this);
     }
 
     // Carga los cursos en el spinner.
@@ -122,8 +122,8 @@ public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandl
     private void cargarAlumno(long id) {
         // Se consulta en la BD los datos del alumno a través del content
         // provider en un hilo diferente al hilo principal.
-        Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/" + id);
-        CursorLoader cLoader = new CursorLoader(this.getActivity(), uri, Instituto.Alumno.TODOS,
+        Uri uri = Uri.parse(DbContentProvider.CONTENT_URI_ALUMNOS + "/" + id);
+        CursorLoader cLoader = new CursorLoader(this.getActivity(), uri, DbContract.Alumno.TODOS,
                 null, null, null);
         Cursor cursor = cLoader.loadInBackground();
         // Si no se ha encontrado el alumno, se informa y se pasa al modo
@@ -165,13 +165,14 @@ public class AlumnoFragment extends Fragment implements InstitutoAsyncQueryHandl
         alumno.setAvatar(getRandomAvatarUrl());
         // Se realiza la inserción a través del AsyncQueryHandler.
         mAlumnoAsyncQueryHandler.startInsert(TOKEN_INSERT, null,
-                InstitutoContentProvider.CONTENT_URI_ALUMNOS, Alumno.toContentValues(alumno));
+                DbContentProvider.CONTENT_URI_ALUMNOS, Alumno.toContentValues(alumno));
     }
 
     // Actualiza un alumno en la base de datos.
     private void actualizarAlumno() {
         // Se realiza la actualización a través del AsyncQueryHandler.
-        Uri uri = Uri.parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS + "/" + alumno.getId());
+        Uri uri = Uri.withAppendedPath(DbContentProvider.CONTENT_URI_ALUMNOS,
+                String.valueOf(alumno.getId()));
         mAlumnoAsyncQueryHandler.startUpdate(TOKEN_UPDATE, null, uri,
                 Alumno.toContentValues(alumno), null, null);
     }

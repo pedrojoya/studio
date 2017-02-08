@@ -15,29 +15,34 @@ import android.text.TextUtils;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
-import es.iessaladillo.pedrojoya.pr028.bd.Helper;
+import es.iessaladillo.pedrojoya.pr028.BuildConfig;
+import es.iessaladillo.pedrojoya.pr028.bd.DbContract;
+import es.iessaladillo.pedrojoya.pr028.bd.DbHelper;
 
 @SuppressWarnings("ConstantConditions")
-public class InstitutoContentProvider extends ContentProvider {
+public class DbContentProvider extends ContentProvider {
 
     // Constantes generales.
     // Autoridad. Debe ser similar al valor de android:authority de la etiqueta
     // <provider> en el manifiesto.
-    private static final String AUTHORITY = "es.iessaladillo.instituto.provider";
-    private static final Uri CONTENT_URI_BASE = Uri.parse("content://"
-            + AUTHORITY); // Uri base de acceso al proveedor.
+    private static final String AUTHORITY = String.format("%s.provider", BuildConfig.APPLICATION_ID);
+    private static final Uri CONTENT_URI_BASE = new Uri.Builder()
+            .scheme(ContentResolver.SCHEME_CONTENT)
+            .authority(AUTHORITY)
+            .build(); // Uri base de acceso al proveedor.
 
     // Constantes para la entidad Alumnos.
     private static final String BASE_PATH_ALUMNOS = "alumnos"; // Segmento path.
     public static final Uri CONTENT_URI_ALUMNOS = Uri.withAppendedPath(
-            CONTENT_URI_BASE, BASE_PATH_ALUMNOS); // Uri pública de acceso a
-    // alumnos.
-    private static final String MIME_TYPE_ALUMNOS = ContentResolver.CURSOR_DIR_BASE_TYPE
-            + "/vnd.es.iessaladillo.instituto.alumnos"; // Tipo MIME alumnos.
-    private static final String MIME_ITEM_TYPE_ALUMNOS = ContentResolver.CURSOR_ITEM_BASE_TYPE
-            + "/vnd.es.iessaladillo.instituto.alumno"; // Tipo MIME alumno.
-
+            CONTENT_URI_BASE, BASE_PATH_ALUMNOS); // Uri pública de acceso a alumnos.
+    private static final String MIME_TYPE_ALUMNOS = String.format("%s/vnd.%s.%s",
+            ContentResolver.CURSOR_DIR_BASE_TYPE,
+            AUTHORITY,
+            BASE_PATH_ALUMNOS); // Tipo MIME alumnos.
+    private static final String MIME_ITEM_TYPE_ALUMNOS = String.format("%s/vnd.%s.%s",
+            ContentResolver.CURSOR_ITEM_BASE_TYPE,
+            AUTHORITY,
+            BASE_PATH_ALUMNOS); // Tipo MIME alumno.
     // Constantes para tipos de Uris (deben tener todos un valor diferente).
     private static final int URI_TYPE_ALUMNOS_LIST = 10; // Tipo para alumnos.
     private static final int URI_TYPE_ALUMNOS_ID = 20; // Tipo para alumno.
@@ -69,15 +74,13 @@ public class InstitutoContentProvider extends ContentProvider {
         }
     }
 
-    // Variables miembro.
-    // private SQLiteDatabase bd;
-    private Helper helper;
+    private DbHelper mHelper;
 
     // Retorna si ha ido bien.
     @Override
     public boolean onCreate() {
         // Se crea el helper para el acceso a la bd.
-        helper = new Helper(getContext());
+        mHelper = DbHelper.getInstance(getContext());
         return true;
     }
 
@@ -87,7 +90,7 @@ public class InstitutoContentProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         // Se abre la base de datos.
-        SQLiteDatabase bd = helper.getReadableDatabase();
+        SQLiteDatabase bd = mHelper.getReadableDatabase();
         // Se crea un constructor de consultas.
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         // Dependiendo de la uri solicitada.
@@ -96,18 +99,18 @@ public class InstitutoContentProvider extends ContentProvider {
             case URI_TYPE_ALUMNOS_LIST:
                 // Se compueba si el llamador ha solicitado una columna que no
                 // existe.
-                checkColumns(Instituto.Alumno.TODOS, projection);
+                checkColumns(DbContract.Alumno.TODOS, projection);
                 // Se establece la tabla para la consulta.
-                builder.setTables(Instituto.Alumno.TABLA);
+                builder.setTables(DbContract.Alumno.TABLA);
                 break;
             case URI_TYPE_ALUMNOS_ID:
                 // Se compueba si el llamador ha solicitado una columna que no
                 // existe.
-                checkColumns(Instituto.Alumno.TODOS, projection);
+                checkColumns(DbContract.Alumno.TODOS, projection);
                 // Se establece la tabla para la consulta.
-                builder.setTables(Instituto.Alumno.TABLA);
+                builder.setTables(DbContract.Alumno.TABLA);
                 // Se agrega al where la selección de ese alumno.
-                builder.appendWhere(Instituto.Alumno._ID + " = "
+                builder.appendWhere(DbContract.Alumno._ID + " = "
                         + uri.getLastPathSegment());
                 break;
             default:
@@ -129,20 +132,20 @@ public class InstitutoContentProvider extends ContentProvider {
         // Se inicializa la selección.
         String where = selection;
         // Se obtiene la base de datos.
-        SQLiteDatabase bd = helper.getWritableDatabase();
+        SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Dependiendo de la uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
             case URI_TYPE_ALUMNOS_LIST:
                 // Se realiza el borrado.
-                filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
+                filasBorradas = bd.delete(DbContract.Alumno.TABLA, where, selectionArgs);
                 break;
             case URI_TYPE_ALUMNOS_ID:
                 // Se agrega al where la selección de ese alumno.
-                where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
+                where = DbContract.Alumno._ID + "=" + uri.getLastPathSegment()
                         + (TextUtils.isEmpty(selection) ? "" : " and " + where);
                 // Se realiza el borrado.
-                filasBorradas = bd.delete(Instituto.Alumno.TABLA, where, selectionArgs);
+                filasBorradas = bd.delete(DbContract.Alumno.TABLA, where, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("URI desconocida: " + uri);
@@ -160,12 +163,12 @@ public class InstitutoContentProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, ContentValues values) {
         long id;
         // Se obtiene la base de datos.
-        SQLiteDatabase bd = helper.getWritableDatabase();
+        SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Dependiendo de la uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
             case URI_TYPE_ALUMNOS_LIST:
-                id = bd.insert(Instituto.Alumno.TABLA, null, values);
+                id = bd.insert(DbContract.Alumno.TABLA, null, values);
                 break;
             default:
                 throw new IllegalArgumentException("URI desconocida: " + uri);
@@ -185,19 +188,19 @@ public class InstitutoContentProvider extends ContentProvider {
         // Se inicializa la parte del where.
         String where = selection;
         // Se obtiene la base de datos.
-        SQLiteDatabase bd = helper.getWritableDatabase();
+        SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Depndiendo del tipo de uri solicitada.
         int tipoURI = validadorURIs.match(uri);
         switch (tipoURI) {
             case URI_TYPE_ALUMNOS_LIST:
-                filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
+                filasActualizadas = bd.update(DbContract.Alumno.TABLA, values, where,
                         selectionArgs);
                 break;
             case URI_TYPE_ALUMNOS_ID:
                 // Se agrega al where la selección de ese alumno.
-                where = Instituto.Alumno._ID + "=" + uri.getLastPathSegment()
+                where = DbContract.Alumno._ID + "=" + uri.getLastPathSegment()
                         + (TextUtils.isEmpty(selection) ? "" : " and " + where);
-                filasActualizadas = bd.update(Instituto.Alumno.TABLA, values, where,
+                filasActualizadas = bd.update(DbContract.Alumno.TABLA, values, where,
                         selectionArgs);
                 break;
             default:

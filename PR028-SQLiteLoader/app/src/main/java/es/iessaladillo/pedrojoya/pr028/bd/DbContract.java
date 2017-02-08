@@ -2,7 +2,7 @@ package es.iessaladillo.pedrojoya.pr028.bd;
 
 import android.provider.BaseColumns;
 
-public class Instituto {
+public class DbContract {
 
     // Constantes generales de la BD.
     public static final String BD_NOMBRE = "instituto";
@@ -21,7 +21,7 @@ public class Instituto {
     }
 
     // Constructor privado para que NO pueda instanciarse.
-    private Instituto() {
+    private DbContract() {
     }
 
 }

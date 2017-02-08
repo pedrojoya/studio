@@ -26,16 +26,16 @@ import android.widget.Toast;
 
 import es.iessaladillo.pedrojoya.pr028.R;
 import es.iessaladillo.pedrojoya.pr028.adaptadores.AlumnosAdapter;
-import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
+import es.iessaladillo.pedrojoya.pr028.bd.DbContract;
 import es.iessaladillo.pedrojoya.pr028.modelos.Alumno;
-import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoAsyncQueryHandler;
-import es.iessaladillo.pedrojoya.pr028.proveedores.InstitutoContentProvider;
+import es.iessaladillo.pedrojoya.pr028.proveedores.DbAsyncQueryHandler;
+import es.iessaladillo.pedrojoya.pr028.proveedores.DbContentProvider;
 
 public class ListaAlumnosFragment extends Fragment implements
-        LoaderCallbacks<Cursor>, InstitutoAsyncQueryHandler.Callbacks {
+        LoaderCallbacks<Cursor>, DbAsyncQueryHandler.Callbacks {
 
     private static final int TOKEN_DELETE = 0;
-    private InstitutoAsyncQueryHandler mAlumnoAsyncQueryHandler;
+    private DbAsyncQueryHandler mAlumnoAsyncQueryHandler;
 
     // Interfaz de comunicación con la actividad.
     public interface OnListaAlumnosFragmentListener {
@@ -66,7 +66,7 @@ public class ListaAlumnosFragment extends Fragment implements
     private void initVistas(View v) {
         // Se crea el objeto para realizar las operaciones sobre el content provider en segundo
         // plano.
-        mAlumnoAsyncQueryHandler = new InstitutoAsyncQueryHandler(getActivity()
+        mAlumnoAsyncQueryHandler = new DbAsyncQueryHandler(getActivity()
                 .getContentResolver(), this);
 
         lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
@@ -171,8 +171,8 @@ public class ListaAlumnosFragment extends Fragment implements
         // Se inicializa el cargador.
         gestor.initLoader(0, null, this);
         // Se establece el adaptador para la lista, que inicialmente manejará un cursor nulo.
-        String[] from = {Instituto.Alumno.NOMBRE, Instituto.Alumno.CURSO,
-                         Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION};
+        String[] from = {DbContract.Alumno.NOMBRE, DbContract.Alumno.CURSO,
+                         DbContract.Alumno.TELEFONO, DbContract.Alumno.DIRECCION};
         int[] to = {R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono, R.id.lblDireccion};
         adaptador = new AlumnosAdapter(this.getActivity(),
                 R.layout.fragment_lista_alumnos_item, null, from, to, 0);
@@ -210,9 +210,8 @@ public class ListaAlumnosFragment extends Fragment implements
                 Cursor cursor = (Cursor) lstAlumnos.getItemAtPosition(position);
                 Alumno alu = Alumno.fromCursor(cursor);
                 // Se borra de la base de datos a través del content provider.
-                Uri uri = Uri
-                        .parse(InstitutoContentProvider.CONTENT_URI_ALUMNOS
-                                + "/" + alu.getId());
+                Uri uri = Uri.withAppendedPath(DbContentProvider.CONTENT_URI_ALUMNOS, String.valueOf(alu
+                        .getId()));
                 mAlumnoAsyncQueryHandler.startDelete(TOKEN_DELETE, null, uri, null, null);
             }
         }
@@ -226,7 +225,7 @@ public class ListaAlumnosFragment extends Fragment implements
         // Se retorna el cargador del cursor. Se le pasa el contexto, la uri en
         // la que consultar los datos y las columnas a obtener.
         return new CursorLoader(getActivity(),
-                InstitutoContentProvider.CONTENT_URI_ALUMNOS, Instituto.Alumno.TODOS,
+                DbContentProvider.CONTENT_URI_ALUMNOS, DbContract.Alumno.TODOS,
                 null, null, null);
     }
 

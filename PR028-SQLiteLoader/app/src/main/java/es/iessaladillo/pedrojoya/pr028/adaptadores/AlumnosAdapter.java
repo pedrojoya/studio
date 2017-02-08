@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.iessaladillo.pedrojoya.pr028.R;
-import es.iessaladillo.pedrojoya.pr028.bd.Instituto;
+import es.iessaladillo.pedrojoya.pr028.bd.DbContract;
 
 public class AlumnosAdapter extends SimpleCursorAdapter {
 
@@ -30,13 +30,13 @@ public class AlumnosAdapter extends SimpleCursorAdapter {
     public void bindView(@NonNull View view, Context context, @NonNull Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
         viewHolder.lblNombre.setText(
-                cursor.getString(cursor.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE)));
+                cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Alumno.NOMBRE)));
         viewHolder.lblCurso.setText(
-                cursor.getString(cursor.getColumnIndexOrThrow(Instituto.Alumno.CURSO)));
+                cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Alumno.CURSO)));
         viewHolder.lblDireccion.setText(
-                cursor.getString(cursor.getColumnIndexOrThrow(Instituto.Alumno.DIRECCION)));
+                cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Alumno.DIRECCION)));
         Glide.with(context).load(
-                cursor.getString(cursor.getColumnIndexOrThrow(Instituto.Alumno.AVATAR)))
+                cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Alumno.AVATAR)))
                 .into(viewHolder.imgAvatar);
     }
 
