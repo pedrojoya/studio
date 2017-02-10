@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr139;
 import android.content.Context;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,6 +95,8 @@ class Instagram {
         builder.addInterceptor(logInterceptor);
         // Se añade el interceptor para Stetho.
         builder.addInterceptor(new StethoInterceptor());
+        // Se añade el interceptor para Chuck.
+        builder.addInterceptor(new ChuckInterceptor(context));
         // Se construye el cliente HTTP.
         OkHttpClient client = builder.build();
         // Se construye el objeto Retrofit y a partir de él se retorna el

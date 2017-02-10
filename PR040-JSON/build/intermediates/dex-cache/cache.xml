@@ -2,81 +2,121 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_3cfaec670b64a895724020fa7a3d9f227bd992f8/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_4bb027f253bbb42098bcc8e211e7d2d4c8e51c12.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="70e4e716abcf87e594400d93ac52a1dd7257b88e">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_09617131115c19bf8c094f9a98187f6912326373/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-25.1.1_fe4251a34682a6b26bf9f516558b60e382ca6f38.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_1eb4ae772962f97ab6002428ca52186414885d03/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/gson-2.8.0_73e78ebc6293a309e1fc003d237b0a581214ab6c.jar" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_97e7b70ff8824b0acaf222d72cadcd6d05baf6f1.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="1813c86dc0b9e8d3a5791ba3f1bd5fd38a9d4f4b">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_31c0769befcccd99b6f0d26cbf3ef5e8513dfe4c/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_529526f85457249dcd2a2f6242c45d02db0d982f.jar" />
     </item>
     <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_32c826ad1b222e7e02e83ed1e8da0c0ad582def7.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="true"
-        revision="23.0.2"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_aeac0f872beecddb37c6d323742e769eaee52510/classes.dex" />
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_aeac0f872beecddb37c6d323742e769eaee52510.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_51e28d06f4f6e81e1aa9a5f0bb77a3ae05473f47/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_2d3bb02b0864428ef5278504951be1ba3d5ea234/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_9fedf83a08d8354091043228311252092598e5c0.jar" />
     </item>
     <item
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.2/f1bc476cc167b18e66c297df599b2377131a8947/gson-2.6.2.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.2_6988a57cf5c9989ef70773b7841ace51a3631fbb/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_3b5518c02bcda80b67caab57a49984519b2600d9.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_fa08d6a011876ea651237a5108508ddfa539cacf/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_3e4e74e60269bebbe8b656eb0807035d98dc020e.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_7c6bec4dd8c75250ef878d075168794e69cf80ba/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_6b50ac6b2a5f5446b371be7908227b1464d103dc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_f4375bf38197c8bc78d2f632b7331787953606cf.jar" />
     </item>
 
 </items>

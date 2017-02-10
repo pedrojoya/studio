@@ -8,8 +8,10 @@ import retrofit2.http.Query;
 // Interfaz para Retrofit de acceso a la API de Yandex.
 public interface YandexAPI {
 
+    @SuppressWarnings("SameParameterValue")
     @GET("translate")
     Call<TranslateResponse> getTranslation(
+            @Query(Constants.PARAM_API_KEY) String key,
             @Query(Constants.PARAM_TEXT) String text,
             @Query(Constants.PARAM_LANG) String lang);
 

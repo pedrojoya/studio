@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tarjeta -->
+    <dimen name="tarjeta_foto_width">81dp</dimen>
+    <dimen name="tarjeta_foto_height">108dp</dimen>
+    <dimen name="tarjeta_repetidor_textSize">10sp</dimen>
+    <dimen name="tarjeta_repetidor_verticalPadding">5dp</dimen>
+    <dimen name="tarjeta_repetidor_horizontalPadding">40dp</dimen>
+    <dimen name="tarjeta_repetidor_translationX">-35dp</dimen>
+    <dimen name="tarjeta_repetidor_translationY">5dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+    <dimen name="card_content_padding">16dp</dimen>
+    <dimen name="tarjeta_cardCornerRadius">4dp</dimen>
+    <dimen name="tarjeta_cardElevation">4dp</dimen>
+</resources>

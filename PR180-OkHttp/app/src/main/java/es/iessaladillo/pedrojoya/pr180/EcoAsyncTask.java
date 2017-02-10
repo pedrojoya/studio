@@ -1,8 +1,10 @@
 package es.iessaladillo.pedrojoya.pr180;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,10 +40,11 @@ class EcoAsyncTask extends AsyncTask<String, Void, String> {
     private final SimpleDateFormat formateador;
 
     // Constructor. Recibe el objeto que actuará de listener.
-    public EcoAsyncTask(Callbacks listener) {
+    public EcoAsyncTask(Callbacks listener, Context context) {
         this.listener = listener;
         formateador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
         mOkHttpClient = new OkHttpClient.Builder().addNetworkInterceptor(new StethoInterceptor())
+                .addInterceptor(new ChuckInterceptor(context))
                 .build();
     }
 
@@ -54,9 +57,8 @@ class EcoAsyncTask extends AsyncTask<String, Void, String> {
         try {
             // Se obtiene la url de búsqueda.
             URL url = new URL("http://www.informaticasaladillo.es/echo.php");
-            RequestBody formBody = new FormBody.Builder().addEncoded(KEY_NOMBRE, nombre)
-                    .addEncoded(KEY_FECHA, formateador.format(new Date()))
-                    .build();
+            RequestBody formBody = new FormBody.Builder().addEncoded(KEY_NOMBRE, nombre).addEncoded(
+                    KEY_FECHA, formateador.format(new Date())).build();
             Request request = new Request.Builder().url(url).post(formBody).build();
             mOkHttpCall = mOkHttpClient.newCall(request);
             Response response = mOkHttpCall.execute();

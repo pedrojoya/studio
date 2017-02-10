@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements BuscarAsyncTask.C
             if (isConnectionAvailable()) {
                 pbProgreso.setVisibility(View.VISIBLE);
                 // Se lanza la tarea asíncrona de búsqueda pasándole el nombre que debe buscarse.
-                tareaBuscar = new BuscarAsyncTask(this);
+                tareaBuscar = new BuscarAsyncTask(this, this);
                 tareaBuscar.execute(nombre);
             } else {
                 mostrarToast(getString(R.string.no_hay_conexion_a_internet));
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements BuscarAsyncTask.C
             if (isConnectionAvailable()) {
                 pbProgreso.setVisibility(View.VISIBLE);
                 // Se lanza la tarea asíncrona de búsqueda pasándole el nombre que debe buscarse.
-                tareaEco = new EcoAsyncTask(this);
+                tareaEco = new EcoAsyncTask(this, this);
                 tareaEco.execute(nombre);
             } else {
                 mostrarToast(getString(R.string.no_hay_conexion_a_internet));

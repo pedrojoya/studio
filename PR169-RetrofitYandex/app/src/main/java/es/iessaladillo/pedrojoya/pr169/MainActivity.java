@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                         if (actionId == getResources().getInteger(R.integer.imeTraducir)) {
-                            traducir(v);
+                            traducir();
                             toggleSoftKeyboard();
                             return true;
                         } else {
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        traducir(view);
+                        traducir();
                     }
                 }
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         inputManager.toggleSoftInput(0, 0);
     }
 
-    private void traducir(View view) {
+    private void traducir() {
         resetViews();
         if (!TextUtils.isEmpty(txtTermino.getText().toString())) {
             getTraduccion(txtTermino.getText().toString());
@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void getTraduccion(String text) {
         YandexAPI apiService = App.getAPIService();
-        Call<TranslateResponse> call = apiService.getTranslation(text, Constants.LANG);
+        Call<TranslateResponse> call = apiService.getTranslation(Constants.API_KEY, text,
+                Constants.LANG);
         call.enqueue(new Callback<TranslateResponse>() {
             @Override
             public void onResponse(Call<TranslateResponse> call, Response<TranslateResponse> response) {

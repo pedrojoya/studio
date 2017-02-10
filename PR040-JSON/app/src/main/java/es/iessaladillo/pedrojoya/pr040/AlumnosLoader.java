@@ -156,7 +156,7 @@ class AlumnosLoader extends
                         Context.CONNECTIVITY_SERVICE);
         NetworkInfo infoRed = gestorConectividad.getActiveNetworkInfo();
         // Se retorna si hay conexión.
-        return (infoRed != null && infoRed.isConnected());
+        return infoRed != null && infoRed.isConnected();
     }
 
 }

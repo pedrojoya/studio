@@ -1,8 +1,10 @@
 package es.iessaladillo.pedrojoya.pr180;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,9 +31,10 @@ class BuscarAsyncTask extends AsyncTask<String, Void, String> {
     private Callbacks listener;
 
     // Constructor.
-    public BuscarAsyncTask(Callbacks listener) {
+    public BuscarAsyncTask(Callbacks listener, Context context) {
         this.listener = listener;
         mOkHttpClient = new OkHttpClient.Builder().addNetworkInterceptor(new StethoInterceptor())
+                .addInterceptor(new ChuckInterceptor(context))
                 .build();
     }
 
@@ -46,9 +49,8 @@ class BuscarAsyncTask extends AsyncTask<String, Void, String> {
             URL url = new URL(
                     "https://www.google.es/search?hl=es&q=\"" + URLEncoder.encode(nombre, "UTF-8")
                             + "\"");
-            Request request = new Request.Builder().url(url)
-                    .header("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5" + ".1)")
-                    .build();
+            Request request = new Request.Builder().url(url).header("User-Agent",
+                    "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5" + ".1)").build();
             mOkHttpCall = mOkHttpClient.newCall(request);
             Response response = mOkHttpCall.execute();
             if (response.isSuccessful()) {

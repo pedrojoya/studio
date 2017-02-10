@@ -1,18 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
-def support_library_version = "24.2.1"
-def okhttp_version = "3.4.1"
-def stetho_version = "1.4.1"
-
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr180"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -32,8 +28,10 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.squareup.okhttp3:okhttp:${okhttp_version}"
-    compile "com.facebook.stetho:stetho:${stetho_version}"
-    compile "com.facebook.stetho:stetho-okhttp3:${stetho_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttp_version"
+    compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
+    compile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
+    debugCompile "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
+    releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
 }

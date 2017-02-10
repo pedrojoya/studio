@@ -1,18 +1,14 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
-def support_library_version = "24.2.1"
-def butterknife_version = "8.4.0"
-
 android {
-    compileSdkVersion 24
+    compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr174"
         minSdkVersion 21
-        targetSdkVersion 24
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -32,8 +28,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.jakewharton:butterknife:${butterknife_version}"
-    apt "com.jakewharton:butterknife-compiler:${butterknife_version}"
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
 }

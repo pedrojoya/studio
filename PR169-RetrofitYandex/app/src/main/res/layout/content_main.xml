@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/termino"
         android:layout_below="@+id/lblTermino"
-        android:singleLine="true"
+        android:maxLines="1"
         android:imeOptions=""
         android:imeActionLabel="@string/traducir"
         android:imeActionId="@integer/imeTraducir"
