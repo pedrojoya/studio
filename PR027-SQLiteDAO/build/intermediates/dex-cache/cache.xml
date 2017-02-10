@@ -2,175 +2,193 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_e22e5b25791314f8d19a3e0a49d92e41184b33ba.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_d76f04edcd7d1fd8483bcf06aa844a83db1caa81.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.2/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="32f45bd44a3e7efc235bbfed120029290f5d674a">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-1.4.2_df1c5a33f9f8e807fcf7da0d5814be0d267b9240.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_27ca9e8052501e50ea7e4940abe173252babb7c2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_aeac0f872beecddb37c6d323742e769eaee52510.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_a956a90244b5c367d566e5e1804a56d8beef98af.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/de.hdodenhof-circleimageview-2.1.0_c34167cf4c09ef659d4bf2f5c1baa1509f6b9939.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_b7792d4a92d71227fbfc8960d32cfac218cf6649.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d237556caead5b93d97e18a071059a2c0045978e">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.amulyakhare-com.amulyakhare.textdrawable-1.0.1_c07ab2c0714e5d30c085f29fc1ba85ffcec22eab.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_313f7b061f01d6f84f977187349607806ac15101.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.1_62805fdd5bb2ed1d44ac7285bdf40551ac66cdf2\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_825480ae05f827d9ee212080f2c05acbd5747eb8.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.1_741263f692129a4fc368fedcad45732c9d967f06\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_6fdd8ca34b89c42b654ed153b29fa6ad18581e48.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_bbd7210859955ef986d101eb94173444c93752b5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_93c66811012f6ff3b5fe3e8c0c257771d318a84d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_9dfa8c470952cf03ca691a328617b8200e4f276c.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.1_613e81eb783b57b6fc2bf2bda53994c97392d058\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_aa0b5146c041d2b8ccf541b16b8428dc3bed6809.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_4a2107a4583409f5899e414ecbb56db21d453da8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\design\25.1.1\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
-        <dex dex="/Users/pedro/studio/PR027-SQLiteDAO/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_5d2d87593f67fd49154f31e39d48139de331ba10.jar" />
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.1_676dccedf6d9e8826d72bc61d5b0eb0ec33bf4ca\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.1_5475e823755182aaf6de4468a7b7b88ee4f3b849\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\commons-cli\commons-cli\1.2\2bf96b7aa8b611c177d329452af1dc933e14501c\commons-cli-1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\commons-cli-1.2_c5fe043f8bfec5a84330a3849fa6ec6b42888ad1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_ba02996f391cce078a2abb805b4ee394e494cd2c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.1_16b5c494641dde84e958459a52a4479df0cc01e5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.facebook.stetho\stetho\1.4.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="32f45bd44a3e7efc235bbfed120029290f5d674a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.stetho-stetho-1.4.2_5e9c175f6927362a195fee10bcfe98e33efd3142\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.1_a4040f21ae2795fa9eef258a47772d19077cf6f3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.1_1a5251d01ebd18c88d41934e95d5103cb5616580\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\2.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\de.hdodenhof-circleimageview-2.1.0_d7c28622b4f70dca5529d009b1c6e83abe2684a0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_cf5871a64a056d5d714b8dbc9c97d413943bda78\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0f198e21668a30ffee4ce444a6c5b923fedb4fb5">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_85c31401cb36916f64baa1e9503738a1444fa7b5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.1_ccdc26341e2235964dff8d250e3d6fce2203cd5f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\jsr305-2.0.1_35755958026e2739b7b885153f5ad1891060264b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.1_f9c60eb37b4167e29dc1f6546b3784dd98a74cce\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_c8d41c4e6eea2a20001d5a819f0c8aaf5ebc653b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_6e3f6ce184f27d1a0908dc003821109856b862c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="9aed3038d39c369f1ce52c916d22994ec415d24a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7824c83191676defe668a5aa66dacdbe892ce59f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\exploded-aar\com.amulyakhare\com.amulyakhare.textdrawable\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d237556caead5b93d97e18a071059a2c0045978e">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR027-SQLiteDAO\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.amulyakhare-com.amulyakhare.textdrawable-1.0.1_a298917f90cfdb2494ba7bbadb85418ac0200a72\classes.dex" />
     </item>
 
 </items>

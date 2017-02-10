@@ -254,7 +254,7 @@ public class AlumnoFragment extends Fragment {
 
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(long id) {
-        // Se consulta en la BD los datos del mAlumno a través del objeto DAO.
+        // Se consulta en la BD los datos del mAlumno a través del objeto Dao.
         mAlumno = Dao.getInstance(getActivity()).queryAlumno(id);
         // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
         // Agregar.
@@ -307,7 +307,7 @@ public class AlumnoFragment extends Fragment {
 
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
-        // Se realiza el insert a través del objeto DAO.
+        // Se realiza el insert a través del objeto Dao.
         long id = Dao.getInstance(getActivity()).createAlumno(mAlumno);
         // Se informa de si ha ido bien.
         if (id >= 0) {
@@ -324,7 +324,7 @@ public class AlumnoFragment extends Fragment {
 
     // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
-        // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
+        // Realiza el update en la BD a través del objeto Dao y se informa de si ha ido bien.
         if (Dao.getInstance(getActivity()).updateAlumno(mAlumno)) {
             Toast.makeText(getActivity(), getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();

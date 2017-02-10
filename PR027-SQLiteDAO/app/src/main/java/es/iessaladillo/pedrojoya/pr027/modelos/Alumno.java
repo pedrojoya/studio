@@ -1,7 +1,10 @@
 package es.iessaladillo.pedrojoya.pr027.modelos;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import es.iessaladillo.pedrojoya.pr027.bd.DbContract;
 
 public class Alumno implements Parcelable {
 
@@ -57,6 +60,16 @@ public class Alumno implements Parcelable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    // Retorna un ContentValues con los datos del alumno.
+    public ContentValues toContentValues() {
+        ContentValues valores = new ContentValues();
+        valores.put(DbContract.Alumno.NOMBRE, nombre);
+        valores.put(DbContract.Alumno.CURSO, curso);
+        valores.put(DbContract.Alumno.TELEFONO, telefono);
+        valores.put(DbContract.Alumno.DIRECCION, direccion);
+        return valores;
     }
 
     @Override

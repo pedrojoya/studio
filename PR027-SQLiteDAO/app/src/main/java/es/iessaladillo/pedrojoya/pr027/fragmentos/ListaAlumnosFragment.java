@@ -173,7 +173,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
 
     // Crea el adaptador y carga la lista de alumnos.
     public void cargarAlumnos() {
-        // Se obtienen los datos de los alumnos a través del DAO.
+        // Se obtienen los datos de los alumnos a través del Dao.
         ArrayList<Alumno> alumnos = (ArrayList<Alumno>) (mDao.getAllAlumnos());
         mAdaptador.swapData(alumnos);
     }
@@ -328,7 +328,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null) {
-            mAdaptador.swapData(mDao.cursorToAlumnos(data));
+            mAdaptador.swapData(Dao.cursorToAlumnos(data));
             checkAdapterIsEmpty();
         }
 

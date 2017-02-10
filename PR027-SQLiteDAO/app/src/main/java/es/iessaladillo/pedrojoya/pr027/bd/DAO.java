@@ -63,11 +63,7 @@ public class Dao {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares campo-valor para realizar la inserción.
-        ContentValues valores = new ContentValues();
-        valores.put(DbContract.Alumno.NOMBRE, alumno.getNombre());
-        valores.put(DbContract.Alumno.CURSO, alumno.getCurso());
-        valores.put(DbContract.Alumno.TELEFONO, alumno.getTelefono());
-        valores.put(DbContract.Alumno.DIRECCION, alumno.getDireccion());
+        ContentValues valores = alumno.toContentValues();
         // Se realiza el insert
         long resultado = bd.insert(DbContract.Alumno.TABLA, null, valores);
         // Se cierra la base de datos.
@@ -103,11 +99,7 @@ public class Dao {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se crea la lista de pares clave-valor con cada campo-valor.
-        ContentValues valores = new ContentValues();
-        valores.put(DbContract.Alumno.NOMBRE, alumno.getNombre());
-        valores.put(DbContract.Alumno.CURSO, alumno.getCurso());
-        valores.put(DbContract.Alumno.TELEFONO, alumno.getTelefono());
-        valores.put(DbContract.Alumno.DIRECCION, alumno.getDireccion());
+        ContentValues valores = alumno.toContentValues();
         // Se realiza el update.
         long resultado = bd.update(DbContract.Alumno.TABLA, valores, DbContract.Alumno._ID
                 + " = " + alumno.getId(), null);
@@ -171,7 +163,7 @@ public class Dao {
         return lista;
     }
 
-    public ArrayList<Alumno> cursorToAlumnos(Cursor cursor) {
+    public static ArrayList<Alumno> cursorToAlumnos(Cursor cursor) {
         ArrayList<Alumno> lista = new ArrayList<>();
         // Se convierte cada registro del cursor en un elemento de la lista.
         cursor.moveToFirst();
