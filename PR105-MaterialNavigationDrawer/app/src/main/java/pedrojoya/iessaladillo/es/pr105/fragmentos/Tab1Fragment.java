@@ -133,8 +133,9 @@ public class Tab1Fragment extends Fragment implements AlumnosAdapter.OnItemClick
     // Cuando se hace click sobre un elemento de la lista.
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
-        Toast.makeText(getActivity(), getString(R.string.ha_pulsado_sobre) +
-                " " + alumno.getNombre(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),
+                getString(R.string.ha_pulsado_sobre) + " " + alumno.getNombre(), Toast.LENGTH_SHORT)
+                .show();
     }
 
 }

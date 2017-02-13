@@ -20,6 +20,8 @@ public class DB {
         }
     }
 
+    private DB() { }
+
     // Retorna la lista de alumnos.
     public static ArrayList<Alumno> getAlumnos() {
         return datos;

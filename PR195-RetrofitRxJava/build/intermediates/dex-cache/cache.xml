@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_8fffbf852655925a89a8ff55887f81a8f5d37435.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_330ab71f2f4c1597d4168c592cfdfff1553b5ccf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_529526f85457249dcd2a2f6242c45d02db0d982f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/okio-1.11.0_835c1e3343e5f3e6faa53ad63a7c069d942b5040.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_3b5cd2c3f8a85e4e01dd85f6641358ca26973694.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_a47e11db9fee3f7a0ed5ee5ff670d66816158602.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_3b5518c02bcda80b67caab57a49984519b2600d9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_4a2107a4583409f5899e414ecbb56db21d453da8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_c28137c68553daaf21ef43006f9cdaaf5501c3d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_f4375bf38197c8bc78d2f632b7331787953606cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="32f45bd44a3e7efc235bbfed120029290f5d674a">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-1.4.2_025b19db4f2b6aebf500524725de6b88026758a8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/io.reactivex.rxjava2/rxandroid/2.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4119ea97a7191ff9b8f33b534ea220448f62f491">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/io.reactivex.rxjava2-rxandroid-2.0.1_e1d9edefb967367a342839310c26876591a5c005.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_23df02de7768b7cc5019ed1bba5204172c50146d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.jakewharton.retrofit/retrofit2-rxjava2-adapter/1.0.0/e117362a2103f8ec01091ebd2f40aca4e1ada599/retrofit2-rxjava2-adapter-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e117362a2103f8ec01091ebd2f40aca4e1ada599">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/retrofit2-rxjava2-adapter-1.0.0_d9ac782ab0daccbe6f315fd884e1996f052ed969.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_aeac0f872beecddb37c6d323742e769eaee52510.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho-okhttp3/1.4.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="79c3d4a8ca3c04c5fd5a4a72d43a29fe6d3667b4">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-okhttp3-1.4.2_d37ec8fe502444709b15862b93ecca2ff638be2a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_619b3e64b632f75d6fe426b7d4f68fde465cf0d1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.0.5/4f1ac7ec0215e8f87ac80269baadc82878b87ed8/rxjava-2.0.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4f1ac7ec0215e8f87ac80269baadc82878b87ed8">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/rxjava-2.0.5_e026f77e4c071207ff17d1feaf66facb9266e447.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_6b50ac6b2a5f5446b371be7908227b1464d103dc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/converter-gson-2.1.0_98f4370d4351538a635ca49190fce1eace3a054c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_898afd498fea05cc49d17d653c21b329814990bf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.6.0/81887458b69ddc32722df7e4c35235fd74e6a8ba/logging-interceptor-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="81887458b69ddc32722df7e4c35235fd74e6a8ba">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/logging-interceptor-3.6.0_66316dc0548a582814e615ab5d46ac4f379617ce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.readystatesoftware.chuck/library/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9c478bb426373a307ced1820e36f4fd822279371">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.readystatesoftware.chuck-library-1.0.0_66a3f9b2ecf839351e93690f2babc1805a5829bd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_fbee0017e28f73bff8bf8c30e6658e8861531838.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/gson-2.8.0_73e78ebc6293a309e1fc003d237b0a581214ab6c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_3fe07827903cc8bbf664825918240f39d1f032c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_97e7b70ff8824b0acaf222d72cadcd6d05baf6f1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_32c826ad1b222e7e02e83ed1e8da0c0ad582def7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_4bb027f253bbb42098bcc8e211e7d2d4c8e51c12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-25.1.1_fe4251a34682a6b26bf9f516558b60e382ca6f38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_08b57f87efeaa4ea7788a5c1ac923d5a9ef478a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_72e435d8664c56318fabd7cffeea0862f9022107.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_12fa57909a955ca69730a2483bbfa0004eab3c84.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-25.1.1_6c57754e56273ef8c62844526a232de3f3bb7a7b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_9fedf83a08d8354091043228311252092598e5c0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_f2f358c3d7dad082bc653fd22abcaab91cb529ce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_a956a90244b5c367d566e5e1804a56d8beef98af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/nl.qbusict/cupboard/2.2.0/dc6f78fc951c5bdeec92c14c6dd6adc9ce6195d0/cupboard-2.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dc6f78fc951c5bdeec92c14c6dd6adc9ce6195d0">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/cupboard-2.2.0_164229660a11320e724101fa2ff65b28136f7c42.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR040-JSON/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/pedro/studio/PR040-JSON/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_3e4e74e60269bebbe8b656eb0807035d98dc020e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/Users/pedro/studio/PR195-RetrofitRxJava/app/build/intermediates/pre-dexed/debug/retrofit-2.1.0_296deb8e22f57169c77b883291b14f9d1fa84ab4.jar" />
+    </item>
+
+</items>

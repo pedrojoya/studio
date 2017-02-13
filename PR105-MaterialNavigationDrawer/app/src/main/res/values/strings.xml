@@ -30,5 +30,7 @@ Integer et sagittis dui. Donec a accumsan libero. Fusce cursus tincidunt purus, 
     <string name="nombre">Nombre</string>
     <string name="telefono">Teléfono</string>
     <string name="direccion">Dirección</string>
+    <string name="navigation_drawer_open">Panel abierto</string>
+    <string name="navigation_drawer_close">Panel cerrado</string>
 
 </resources>

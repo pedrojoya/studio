@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getTraduccion(String text) {
         YandexAPI apiService = App.getAPIService();
-        Call<TranslateResponse> call = apiService.getTranslation(Constants.API_KEY, text,
+        Call<TranslateResponse> call = apiService.getTranslation(BuildConfig.YANDEX_API_KEY, text,
                 Constants.LANG);
         call.enqueue(new Callback<TranslateResponse>() {
             @Override

@@ -4,6 +4,7 @@ ext {
     compileSdkVersion = 25
     minSdkVersion = 14
     buildToolsVersion = "25.0.2"
+    retrolambdaVersion = "3.5.0" 
     support_library_version = "25.1.1"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
@@ -18,7 +19,21 @@ ext {
     chuck_version = "1.0.0"
     okhttp_version = "3.6.0" 
     gson_version = "2.8.0"
-    retrofit_version = "2.1.0" 
+    retrofit_version = "2.1.0"
+    retrolambdaVersion = "3.5.0"
+    eventbus_version = "3.0.0" 
+    volley_version = "1.0.0"
+    rxjava_version = "2.0.5"
+    rxandroid_version = "2.0.1"
+    retrofitrxjava2adapter_version = "1.0.0"
+}
+
+buildscript {
+
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:ext.retrolambdaVersion”
+    }
+
 }
 
 android {
@@ -67,6 +82,10 @@ dependencies {
     compile "com.google.code.gson:gson:$rootProject.ext.gson_version"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
-
-
+    compile "org.greenrobot:eventbus:$rootProject.ext.eventbus_version"
+    compile "com.android.volley:volley:$rootProject.ext.volley_version"
+    compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
+    compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofitrxjava2adapter_version"
+    compile 'com.l4digital.rxloader:rxloader:2.0.1'
 }

@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+// Carga como propiedades el archivo secret.properties
+def Properties props = new Properties()
+props.load(new FileInputStream(new File('secrets.properties')))
+
 //noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -11,6 +15,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        buildConfigField("String", "YANDEX_API_KEY", "\"" + props['YANDEX_API_KEY'] + "\"")
     }
     buildTypes {
         release {

@@ -8,7 +8,6 @@ import android.util.Log;
 import java.util.Map;
 
 // From: https://github.com/SeanZoR/shared-preferences-helper
-
 @SuppressWarnings({"SameParameterValue", "WeakerAccess", "CanBeFinal", "unused"})
 @SuppressLint("CommitPrefEdits")
 public class SharedPrefHelper {
