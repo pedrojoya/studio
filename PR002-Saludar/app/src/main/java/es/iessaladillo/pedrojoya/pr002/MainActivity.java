@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
 
     // Oculta el teclado virtual. Recibe una vista de referencia
     private void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(
+                Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -84,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // Se crea el mensaje.
-        chkEducado.setText(isChecked ? getString(R.string.saludar_educadamente) : getString(R.string.saludar_normal));
+        chkEducado.setText(isChecked ? getString(R.string.saludar_educadamente) : getString(
+                R.string.saludar_normal));
     }
 
 }

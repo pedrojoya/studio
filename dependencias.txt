@@ -15,6 +15,7 @@ ext {
     glide_version = "3.7.0"
     junit_version = "4.12"
     espresso_version = "2.2.2"
+    support_test_version = "0.5"
     firebasejobdispatcher_version = "0.5.2"
     chuck_version = "1.0.0"
     okhttp_version = "3.6.0" 
@@ -76,6 +77,8 @@ dependencies {
     androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.support_test_version"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.support_test_version"
     compile "com.firebase:firebase-jobdispatcher:$rootProject.ext.firebasejobdispatcher_version"
     debugCompile "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
     releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"

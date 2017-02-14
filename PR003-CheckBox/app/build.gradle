@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
-def support_library_version = "24.2.0"
-
+//noinspection GroovyMissingReturnStatement
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr003"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -24,6 +23,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
 }
 
