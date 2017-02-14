@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_957c1c0eacbbd96ab2101cc04026f89cc6122dcd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_6edb2161b98f7433d85f109293c672ab799ac719.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.facebook.stetho/stetho/1.4.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="32f45bd44a3e7efc235bbfed120029290f5d674a">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.facebook.stetho-stetho-1.4.2_c5e62f9d0d9384fde2d85c62bfdbee807d3f9f1a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_aeac0f872beecddb37c6d323742e769eaee52510.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_a956a90244b5c367d566e5e1804a56d8beef98af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_af10a91349a9b04fd77afc7dbb93320f8a266136.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.0.5/4f1ac7ec0215e8f87ac80269baadc82878b87ed8/rxjava-2.0.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4f1ac7ec0215e8f87ac80269baadc82878b87ed8">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/rxjava-2.0.5_e026f77e4c071207ff17d1feaf66facb9266e447.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_f525591e2d257b2d28481e80073c6d13c673f916.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/de.hdodenhof-circleimageview-2.1.0_2d8f60d6fb0dade77c4719552f882bd1278f920f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_7fe07a904c6b468c9e0c1a53f0cfefb42090150c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d237556caead5b93d97e18a071059a2c0045978e">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.amulyakhare-com.amulyakhare.textdrawable-1.0.1_10f33297883a7230bbcca736ddbbc38a4eff4bfa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_1267eef441475a5a314ee474c4d197d58848ba87.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_960ddefffc1db336a291aebbdccad92849fa0243.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/io.reactivex.rxjava2/rxandroid/2.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4119ea97a7191ff9b8f33b534ea220448f62f491">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/io.reactivex.rxjava2-rxandroid-2.0.1_55a91f79ae651ded4962a81bfd83b804a505fdc6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_1ffecb5748099d12f38a657dbf599065fe12f454.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_d3c90952b9f6958c4cd4e0a2ba3114e4a6c9ca16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_0c4b17130423a5ca532bbc8a6ef4f070287ccc86.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_72e435d8664c56318fabd7cffeea0862f9022107.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_e186b5cfb36d13414f4c47cbb7b4631bfe321a4b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_4a2107a4583409f5899e414ecbb56db21d453da8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="/Users/pedro/studio/PR196-SQLiteDAORxJava/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_0e389b24696de1ea6b39b970c787923bc6aa420b.jar" />
+    </item>
+
+</items>
