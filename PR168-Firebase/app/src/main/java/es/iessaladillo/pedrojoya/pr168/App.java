@@ -3,13 +3,10 @@ package es.iessaladillo.pedrojoya.pr168;
 import android.app.Application;
 import android.text.TextUtils;
 
-import com.facebook.stetho.Stetho;
-import com.firebase.client.Firebase;
-import com.firebase.client.Logger;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
 
 public class App extends Application {
-
-    public static final String FIREBASE_URL = "https://saladillo.firebaseio.com/";
 
     private static String sUid;
 
@@ -22,21 +19,19 @@ public class App extends Application {
     }
 
     public static String getUidAlumnosUrl() {
-        return FIREBASE_URL + "users/" + (TextUtils.isEmpty(sUid)?"":sUid + "/") + "alumnos/";
+        return "users/" + (TextUtils.isEmpty(sUid) ? "" : sUid + "/") + "alumnos/";
     }
 
     public static String getUidCursosUrl() {
-        return FIREBASE_URL + "users/" + (TextUtils.isEmpty(sUid)?"":sUid + "/") + "cursos/";
+        return "users/" + (TextUtils.isEmpty(sUid) ? "" : sUid + "/") + "cursos/";
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Stetho.initializeWithDefaults(this);
         // Se inicializa Firebase.
-        Firebase.setAndroidContext(this);
-        Firebase.getDefaultConfig().setLogLevel(Logger.Level.DEBUG);
-        Firebase.getDefaultConfig().setPersistenceEnabled(true);
+        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 
 }

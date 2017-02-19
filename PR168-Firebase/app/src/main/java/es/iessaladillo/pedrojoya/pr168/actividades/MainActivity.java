@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr168.actividades;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,22 +11,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.firebase.client.AuthData;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-
-import java.util.Map;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import es.iessaladillo.pedrojoya.pr168.App;
 import es.iessaladillo.pedrojoya.pr168.R;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.ListaAlumnosFragment;
-import es.iessaladillo.pedrojoya.pr168.fragmentos.ListaAlumnosFragment.OnListaAlumnosFragmentListener;
+import es.iessaladillo.pedrojoya.pr168.fragmentos.ListaAlumnosFragment
+        .OnListaAlumnosFragmentListener;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.LoginFragment;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.SiNoDialogFragment;
 import es.iessaladillo.pedrojoya.pr168.fragmentos.SiNoDialogFragment.SiNoDialogListener;
 
-public class MainActivity extends AppCompatActivity implements
-        OnListaAlumnosFragmentListener, SiNoDialogListener, LoginFragment.OnLoginFragmentListener {
+public class MainActivity extends AppCompatActivity implements OnListaAlumnosFragmentListener,
+        SiNoDialogListener, LoginFragment.OnLoginFragmentListener {
 
     private static final String TAG_LISTA_FRAGMENT = "tag_lista_fragment";
     private static final String TAG_LOGIN_FRAGMENT = "tag_login_fragment";
@@ -35,7 +42,9 @@ public class MainActivity extends AppCompatActivity implements
     private static final int RC_EDITAR = 2;
 
     private FloatingActionButton btnAgregar;
-    private Firebase firebase;
+    private DatabaseReference mFirebase;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,79 +52,99 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         setupToolbar();
         initVistas();
-        // Se comprueba si el usuario está conectado.
-        firebase = new Firebase(App.FIREBASE_URL);
-        if (firebase.getAuth() == null || haExpirado(firebase.getAuth())) {
-            // Se muestra el fragmento de login.
-            cargarFragmentoLogin();
-        }
-        else {
-            App.setUid(firebase.getAuth().getUid());
-            cargarFragmentoLista();
-        }
-    }
-
-    // Retorna si el login ha expirado.
-    private boolean haExpirado(AuthData auth) {
-        return (System.currentTimeMillis() / 1000) >= auth.getExpires();
+        // Se obtiene la referencia a la base de datos.
+        mFirebase = FirebaseDatabase.getInstance().getReference();
+        // Se obtiene el objeto de autenticación y se crea el listener
+        // de autenticación.
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // El usuario NO está logueado o su conexión ha expirado.
+                    // Se muestra el fragmento de login.
+                    cargarFragmentoLogin();
+                } else {
+                    // El usuario está logueado correctamente.
+                    App.setUid(user.getUid());
+                    cargarFragmentoLista();
+                }
+            }
+        };
     }
 
     @Override
     public void onLogin(String email, String password) {
-        firebase.authWithPassword(email, password, new Firebase.AuthResultHandler() {
-            @Override
-            public void onAuthenticated(AuthData authData) {
-                App.setUid(firebase.getAuth().getUid());
-                invalidateOptionsMenu();
-                cargarFragmentoLista();
-            }
-
-            @Override
-            public void onAuthenticationError(FirebaseError firebaseError) {
-                String mensaje;
-                switch (firebaseError.getCode()) {
-                    case FirebaseError.USER_DOES_NOT_EXIST:
-                        mensaje = "El usuario especificado no existe";
-                        break;
-                    case FirebaseError.INVALID_EMAIL:
-                        mensaje = "El email especificado no es válido";
-                        break;
-                    case FirebaseError.INVALID_PASSWORD:
-                        mensaje = "La contraseña especificada no es válida";
-                        break;
-                    default:
-                        mensaje = "Se ha producido un error al conectarse";
-                }
-                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show() ;
-            }
-        });
+        // Se hace el login por email y password, y se añade un listener.
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this,
+                new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // El usuario ha hecho login correctamente.
+                            App.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            invalidateOptionsMenu();
+                            cargarFragmentoLista();
+                        } else {
+                            // El usuario NO ha hecho login correctamente. Se informa
+                            // La excepción puede ser:
+                            // FirebaseAuthInvalidUserException: No existe o está deshabilitada.
+                            // FirebaseAuthInvalidCredentialsException: Password incorrecto.
+                            String mensaje = "";
+                            if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                                mensaje = " El usuario especificado no exite o su cuenta ha sido "
+                                        + "deshabilitada.";
+                            } else if (task.getException()
+                                    instanceof FirebaseAuthInvalidCredentialsException) {
+                                mensaje = " El usuario especificado no exite o su cuenta ha sido "
+                                        + "deshabilitada.";
+                            }
+                            Toast.makeText(MainActivity.this, "No se pudo conectar." + mensaje,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override
     public void onSignup(final String email, final String password) {
-        firebase.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
-            @Override
-            public void onSuccess(Map<String, Object> result) {
-                onLogin(email, password);
-            }
-
-            @Override
-            public void onError(FirebaseError firebaseError) {
-                String mensaje;
-                switch (firebaseError.getCode()) {
-                    case FirebaseError.EMAIL_TAKEN:
-                        mensaje = "Error: ya existe un usuario con ese email";
-                        break;
-                    default:
-                        mensaje = "Se ha producido un error al crear el usuario";
-                }
-                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
-            }
-        });
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this,
+                new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Se ha creado el usuario correctamente.
+                            // Además se hace el login automáticamente, por lo que se ejecutará
+                            // el método onAuthStateChanged del AuthStateListener.
+                        } else {
+                            // NO se pudo crear el usuario.
+                            // La excepción puede ser:
+                            //  FirebaseAuthWeakPasswordException: Password débil
+                            //  FirebaseAuthInvalidCredentialsException: email mal formado
+                            //  FirebaseAuthUserCollisionException: Ya existe un usuario con ese
+                            // email.
+                            String mensaje = "";
+                            if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
+                                mensaje = " El password especificado es demasiado débil.";
+                            } else if (task.getException()
+                                    instanceof FirebaseAuthInvalidCredentialsException) {
+                                mensaje = " El email especificado no es correcto.";
+                            } else if (task.getException()
+                                instanceof FirebaseAuthUserCollisionException) {
+                                mensaje = " Ya existe un usuario con el email especificado.";
+                            }
+                            Toast.makeText(MainActivity.this,
+                                    "Fallo en la creación del usuario." + mensaje,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void onLogout() {
-        firebase.unauth();
+        // El usuario se desconecta.
+        FirebaseAuth.getInstance().signOut();
         invalidateOptionsMenu();
         cargarFragmentoLogin();
     }
@@ -139,20 +168,16 @@ public class MainActivity extends AppCompatActivity implements
     // Carga el fragmento de login.
     private void cargarFragmentoLogin() {
         if (getSupportFragmentManager().findFragmentByTag(TAG_LOGIN_FRAGMENT) == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.flContenido, new LoginFragment(), TAG_LOGIN_FRAGMENT)
-                    .commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContenido,
+                    new LoginFragment(), TAG_LOGIN_FRAGMENT).commit();
         }
     }
 
     // Carga el fragmento de la lista.
     private void cargarFragmentoLista() {
         if (getSupportFragmentManager().findFragmentByTag(TAG_LISTA_FRAGMENT) == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.flContenido, new ListaAlumnosFragment(), TAG_LISTA_FRAGMENT)
-                    .commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContenido,
+                    new ListaAlumnosFragment(), TAG_LISTA_FRAGMENT).commit();
         }
     }
 
@@ -165,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements
     // Muestra la actividad de notas del alumno. Recibe la key del alumno.
     @Override
     public void onVerNotasAlumno(String key) {
-        Toast.makeText(MainActivity.this, "Ver notas de " +  key, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "Ver notas de " + key, Toast.LENGTH_SHORT).show();
     }
 
     // Muestra la actividad de alumno para editar. Recibe la key del alumno.
@@ -187,7 +212,8 @@ public class MainActivity extends AppCompatActivity implements
         // Se llama al método del fragmento para eliminar los alumnos
         // seleccionados.
         ListaAlumnosFragment frg = (ListaAlumnosFragment) getSupportFragmentManager()
-                .findFragmentByTag(TAG_LISTA_FRAGMENT);
+                .findFragmentByTag(
+                TAG_LISTA_FRAGMENT);
         if (frg != null) {
             frg.eliminarAlumnosSeleccionados();
         }
@@ -226,7 +252,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.mnuLogout).setVisible(!(firebase.getAuth() == null || haExpirado(firebase.getAuth())));
+        menu.findItem(R.id.mnuLogout).setVisible(
+                FirebaseAuth.getInstance().getCurrentUser() != null);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -235,4 +262,21 @@ public class MainActivity extends AppCompatActivity implements
         super.onResume();
         invalidateOptionsMenu();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Se enlaza el listener de autenticación.
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        // Se desvincula el listener de autenticación.
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
 }

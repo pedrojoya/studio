@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PR197-FirebaseDemo</string>
+    <string name="sin_alumnado_agregue_un_alumno">No hay alumnos</string>
+    <string name="nombre">Nombre</string>
+    <string name="curso">Curso</string>
+    <string name="telefono">Teléfono</string>
+    <string name="direccion">Dirección</string>
+    <string name="agregar_alumno">Agregar</string>
+    <string name="editar_alumno">Actualizar</string>
+    <string name="eliminar_alumno">Eliminar</string>
+    <string name="actualizacion_incorrecta">Se ha producido un error al actualizar el alumno</string>
+    <string name="no">No</string>
+    <string name="si">Sí</string>
+    <string name="title_activity_alumno">AlumnoActivity</string>
+    <string name="esta_seguro_de_eliminar_los_alumnos">¿Está seguro de eliminar los alumnos?</string>
+    <string name="avatar">avatar</string>
+    <string name="campo_obligatorio">Campo obligatorio</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Conectarse</string>
+    <string name="action_sign_in_short">Sign in</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="desconectarse">Desconectar</string>
+    <string name="action_sign_up">Registrarse</string>
+    <string name="datos_actualizados">Se han obtenido datos actualizados</string>
+    <string name="alumno_eliminado">Se ha eliminado el alumno</string>
+    <string name="deshacer">Deshacer</string>
+    <string name="notas">Notas</string>
+
+</resources>

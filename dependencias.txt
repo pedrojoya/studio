@@ -14,6 +14,7 @@ ext {
     leakcanary_version = "1.5"
     glide_version = "3.7.0"
     junit_version = "4.12"
+    powermockito_version = "1.6.5"
     hamcrest_version = "1.3"
     espresso_version = "2.2.2"
     support_test_version = "0.5"
@@ -27,6 +28,8 @@ ext {
     rxjava_version = "2.0.5"
     rxandroid_version = "2.0.1"
     retrofitrxjava2adapter_version = "1.0.0"
+    firebase_version = "10.2.0"
+    firebaseui_version = "1.1.1"
 }
 
 buildscript {
@@ -91,5 +94,9 @@ dependencies {
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
     compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofitrxjava2adapter_version"
-    compile 'com.l4digital.rxloader:rxloader:2.0.1'
+    compile "com.google.firebase:firebase-database:$rootProject.ext.firebase_version"
+    compile "com.google.firebase:firebase-config:$rootProject.ext.firebase_version"
+    compile "com.firebaseui:firebase-ui:$rootProject.ext.firebaseui_version"
+    compile "com.google.firebase:firebase-auth:$rootProject.ext.firebase_version"
+    compile "com.google.android.gms:play-services-auth:$rootProject.ext.firebase_version"
 }

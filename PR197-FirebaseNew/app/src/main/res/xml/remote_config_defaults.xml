@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap xmlns:tools="http://schemas.android.com/tools"
+             tools:ignore="UnusedResources">
+    <entry>
+        <key>saludo</key>
+        <value>Quillo que, na aqui</value>
+    </entry>
+</defaultsMap>
+    <!-- END xml_defaults -->

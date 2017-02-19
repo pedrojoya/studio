@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
-import com.firebase.client.Firebase;
-import com.firebase.client.Query;
-import com.firebase.ui.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
     // sobre un elemento.
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, String key, int position);
+
         void onNotasButtonClick(View view, Alumno alumno, String key, int position);
     }
 
@@ -50,7 +51,7 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray();
     private boolean mIsEmpty = true;
 
-    public AlumnosAdapter(Firebase ref) {
+    public AlumnosAdapter(DatabaseReference ref) {
         super(Alumno.class, R.layout.fragment_lista_alumnos_item, ViewHolder.class, ref);
         mDrawableBuilder = TextDrawable.builder()
                 .beginConfig()
@@ -77,8 +78,8 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación XML para obtener la vista-fila.
-        final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_lista_alumnos_item, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.fragment_lista_alumnos_item, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -91,8 +92,8 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
                     // Se informa al listener.
-                    mOnItemClickListener.onItemClick(v,
-                            getItem(viewHolder.getAdapterPosition()), getRef(viewHolder.getAdapterPosition()).getKey(),
+                    mOnItemClickListener.onItemClick(v, getItem(viewHolder.getAdapterPosition()),
+                            getRef(viewHolder.getAdapterPosition()).getKey(),
                             viewHolder.getAdapterPosition());
                 }
             }
@@ -103,7 +104,8 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
                 if (mOnItemClickListener != null) {
                     // Se informa al listener.
                     mOnItemClickListener.onNotasButtonClick(v,
-                            getItem(viewHolder.getAdapterPosition()), getRef(viewHolder.getAdapterPosition()).getKey(),
+                            getItem(viewHolder.getAdapterPosition()),
+                            getRef(viewHolder.getAdapterPosition()).getKey(),
                             viewHolder.getAdapterPosition());
                 }
             }
@@ -134,12 +136,9 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
         holder.lblDireccion.setText(alumno.getDireccion());
         holder.itemView.setActivated(mSelectedItems.get(position, false));
         holder.imgAvatar.setImageDrawable(mDrawableBuilder.build(
-                holder.itemView.isActivated() ?
-                        "\u2713" :
-                        alumno.getNombre().substring(0, 1),
-                holder.itemView.isActivated() ?
-                        Color.GRAY :
-                        ColorGenerator.MATERIAL.getColor(alumno.getNombre())));
+                holder.itemView.isActivated() ? "\u2713" : alumno.getNombre().substring(0, 1),
+                holder.itemView.isActivated() ? Color.GRAY : ColorGenerator.MATERIAL.getColor(
+                        alumno.getNombre())));
     }
 
     // Retorna si la lista está vacía.
@@ -218,14 +217,10 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
         public ViewHolder(View itemView) {
             super(itemView);
             imgAvatar = (ImageView) itemView.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView
-                    .findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView
-                    .findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) itemView
-                    .findViewById(R.id.lblDireccion);
-            btnNotas = (Button) itemView
-                    .findViewById(R.id.btnNotas);
+            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
+            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
+            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
+            btnNotas = (Button) itemView.findViewById(R.id.btnNotas);
         }
 
     }

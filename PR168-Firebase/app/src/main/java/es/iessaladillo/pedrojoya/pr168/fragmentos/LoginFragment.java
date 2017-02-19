@@ -33,7 +33,7 @@ public class LoginFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -85,7 +85,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onLogin(txtEmail.getText().toString(), txtPassword.getText().toString());
+                    mListener.onLogin(txtEmail.getText().toString(),
+                            txtPassword.getText().toString());
                 }
             }
         });
@@ -94,7 +95,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onSignup(txtEmail.getText().toString(), txtPassword.getText().toString());
+                    mListener.onSignup(txtEmail.getText().toString(),
+                            txtPassword.getText().toString());
                 }
             }
         });
@@ -102,8 +104,11 @@ public class LoginFragment extends Fragment {
     }
 
     private void checkForm() {
-        btnLogin.setEnabled(!TextUtils.isEmpty(txtEmail.getText().toString()) && !TextUtils.isEmpty(txtPassword.getText().toString()));
-        btnSignUp.setEnabled(!TextUtils.isEmpty(txtEmail.getText().toString()) && !TextUtils.isEmpty(txtPassword.getText().toString()));
+        btnLogin.setEnabled(!TextUtils.isEmpty(txtEmail.getText().toString()) && !TextUtils.isEmpty(
+                txtPassword.getText().toString()));
+        btnSignUp.setEnabled(
+                !TextUtils.isEmpty(txtEmail.getText().toString()) && !TextUtils.isEmpty(
+                        txtPassword.getText().toString()));
     }
 
     @Override
@@ -112,8 +117,8 @@ public class LoginFragment extends Fragment {
         if (context instanceof OnLoginFragmentListener) {
             mListener = (OnLoginFragmentListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnLoginFragmentListener");
+            throw new RuntimeException(
+                    context.toString() + " must implement OnLoginFragmentListener");
         }
     }
 
@@ -125,6 +130,7 @@ public class LoginFragment extends Fragment {
 
     public interface OnLoginFragmentListener {
         void onLogin(String email, String password);
+
         void onSignup(String email, String password);
     }
 }

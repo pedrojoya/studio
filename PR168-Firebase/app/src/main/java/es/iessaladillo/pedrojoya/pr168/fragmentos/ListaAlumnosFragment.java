@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr168.fragmentos;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -17,12 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -33,7 +30,8 @@ import es.iessaladillo.pedrojoya.pr168.modelos.Alumno;
 import es.iessaladillo.pedrojoya.pr168.utils.DividerItemDecoration;
 import es.iessaladillo.pedrojoya.pr168.utils.HidingScrollListener;
 
-public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
+public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
+        .OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
 
     private static final String STATE_LISTA = "state_lista";
     private static final String STATE_DATOS = "state_datos";
@@ -64,6 +62,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     }
 
     private OnListaAlumnosFragmentListener listener;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +71,10 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_lista_alumnos, container,
-                false);
+            Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_lista_alumnos, container, false);
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -97,7 +96,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         });
         RecyclerView lstAlumnos = (RecyclerView) v.findViewById(R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
-        Firebase ref = new Firebase(App.getUidAlumnosUrl());
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(App.getUidAlumnosUrl());
         mAdaptador = new AlumnosAdapter(ref.orderByChild("nombre"));
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
@@ -122,21 +121,19 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         };
         mAdaptador.registerAdapterDataObserver(mObservador);
         lstAlumnos.setAdapter(mAdaptador);
-        mLayoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.VERTICAL, false);
+        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
+                false);
         lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.addItemDecoration(
                 new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         // Drag & drop y Swipe to dismiss.
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
-                        ItemTouchHelper.DOWN,
+                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.RIGHT) {
                     @Override
                     public boolean onMove(RecyclerView recyclerView,
-                                          RecyclerView.ViewHolder viewHolder,
-                                          RecyclerView.ViewHolder target) {
+                            RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                         return false;
                     }
 
@@ -183,15 +180,15 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
     // Cuando el fragmento es cargado en la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             // Se establece la actividad como objeto listener.
             listener = (OnListaAlumnosFragmentListener) activity;
         } catch (ClassCastException e) {
             // La actividad no implementa la interfaz.
-            throw new ClassCastException(activity.toString()
-                    + " debe implementar OnElementoSeleccionadoListener");
+            throw new ClassCastException(
+                    activity.toString() + " debe implementar OnElementoSeleccionadoListener");
         }
     }
 
@@ -203,24 +200,25 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         // Por cada selección.
         for (int i = 0; i < seleccionados.size(); i++) {
             // Se obtiene la referencia al alumno.
-            Firebase refAlumno = mAdaptador.getRef(seleccionados.get(i));
+            DatabaseReference refAlumno = mAdaptador.getRef(seleccionados.get(i));
             // Se elimina el alumo de la bd.
             refAlumno.removeValue();
         }
-        lblNuevoAlumno.setVisibility(mAdaptador.isEmpty()?View.VISIBLE:View.INVISIBLE);
+        lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
         // Se finaliza el modo contextual.
         mActionMode.finish();
     }
 
     private void eliminarAlumno(int position) {
         // Se obtiene la referencia al alumno.
-        Firebase refAlumno = mAdaptador.getRef(position);
+        DatabaseReference refAlumno = mAdaptador.getRef(position);
         final String key = refAlumno.getKey();
         final Alumno alumno = mAdaptador.getItem(position);
         // Se borra de la base de datos.
         refAlumno.removeValue();
         lblNuevoAlumno.setVisibility(mAdaptador.isEmpty() ? View.VISIBLE : View.INVISIBLE);
-        Snackbar snackbar = Snackbar.make(lblNuevoAlumno, R.string.alumno_eliminado, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(lblNuevoAlumno, R.string.alumno_eliminado,
+                Snackbar.LENGTH_LONG);
         snackbar.setAction(R.string.deshacer, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,7 +230,9 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
     // Agrega el alumno a la base de datos.
     private void agregarAlumno(String key, Alumno alumno) {
-        Firebase ref = (new Firebase(App.getUidAlumnosUrl())).child(key);
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference(App.getUidAlumnosUrl())
+                .child(key);
         ref.setValue(alumno);
     }
 
@@ -268,8 +268,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         // Se cambia el estado de selección
         mAdaptador.toggleSelection(position);
         // Se actualiza el texto del action mode contextual.
-        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " +
-                mAdaptador.getItemCount());
+        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " + mAdaptador.getItemCount());
         // Si ya no hay ningún elemento seleccionado se finaliza el modo de
         // acción contextual
         if (mAdaptador.getSelectedItemCount() == 0) {
@@ -281,8 +280,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
         // Se infla la especificación del menú contextual en el
         // menú.
-        actionMode.getMenuInflater().inflate(R.menu.fragment_lista_alumnos,
-                menu);
+        actionMode.getMenuInflater().inflate(R.menu.fragment_lista_alumnos, menu);
         // Se retorna que ya se ha gestionado el evento.
         return true;
     }
@@ -333,4 +331,5 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         mAdaptador.unregisterAdapterDataObserver(mObservador);
         mAdaptador.cleanup();
     }
+
 }

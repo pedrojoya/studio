@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+//noinspection GroovyMissingReturnStatement
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr197"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    compile "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
+    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    compile "com.google.firebase:firebase-database:$rootProject.ext.firebase_version"
+    compile "com.google.firebase:firebase-auth:$rootProject.ext.firebase_version"
+    compile "com.firebaseui:firebase-ui-database:$rootProject.ext.firebaseui_version"
+    compile "com.google.firebase:firebase-config:$rootProject.ext.firebase_version"
+    compile "com.google.android.gms:play-services-auth:$rootProject.ext.firebase_version"
+
+    // Pruebas
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
+
+    apply plugin: 'com.google.gms.google-services'

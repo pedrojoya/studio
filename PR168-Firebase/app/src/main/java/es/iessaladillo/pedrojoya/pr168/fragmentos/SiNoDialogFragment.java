@@ -54,8 +54,8 @@ public class SiNoDialogFragment extends DialogFragment {
             listener = (SiNoDialogListener) activity;
         } catch (ClassCastException e) {
             // La actividad no implementa la interfaz, se lanza excepción.
-            throw new ClassCastException(activity.toString()
-                    + " debe implementar SiNoDialogListener");
+            throw new ClassCastException(
+                    activity.toString() + " debe implementar SiNoDialogListener");
         }
     }
 

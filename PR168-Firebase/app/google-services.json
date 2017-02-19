@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "597037721315",
+    "firebase_url": "https://pr168-firebase.firebaseio.com",
+    "project_id": "pr168-firebase",
+    "storage_bucket": "pr168-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597037721315:android:d0946f3b973fcfbf",
+        "android_client_info": {
+          "package_name": "es.iessaladillo.pedrojoya.pr168"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597037721315-qcdb9urdnmj25a17bs0k7oskc7knifc5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.iessaladillo.pedrojoya.pr168",
+            "certificate_hash": "DE2544CC0394EF936D8E7E42928616449A282B5B"
+          }
+        },
+        {
+          "client_id": "597037721315-cr11ovr0m7uhqofp9emdpjvc1mmdbldf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-Xn74CazhStZTkD53hGZ6HdIs1eZ9nr0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597037721315-cr11ovr0m7uhqofp9emdpjvc1mmdbldf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
