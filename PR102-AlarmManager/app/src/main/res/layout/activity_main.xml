@@ -21,8 +21,8 @@
         android:imeOptions="actionNext"
         android:inputType="text"
         android:paddingTop="0dp"
-        android:singleLine="true"
-        android:text="@string/quillo_ponte_ya_a_currar">
+        android:text="@string/quillo_ponte_ya_a_currar"
+        android:maxLines="1">
 
         <requestFocus />
     </EditText>
@@ -49,8 +49,8 @@
         android:gravity="end"
         android:maxLength="7"
         android:paddingTop="0dp"
-        android:singleLine="true"
-        android:text="@string/default_intervalo"/>
+        android:text="@string/default_intervalo"
+        android:maxLines="1" />
 
     <TextView
         android:id="@+id/lblActivar"

@@ -2,60 +2,112 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        is-multidex="true"
+        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="85029aa62ab274ca940d11b32cfea5b4402bab56">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_a0ed7b5ce9850a5e12c61fab402e61ecfbae62c1/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_c78d6f7655674273eeaabf0e5815b6c67d20eb27\classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="624560cd2d5c82d72c49f085437cbc0c507a9fb2">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_271bef352fdd21d2902e52643258d96cbf802a31\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="c24a7fe49b6b6567397da275bb5fe8b6869c79e0">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_804d80b45ee2d681e421adc9cfdcee37e1c2b190/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.1_1f345b98279a962afef313bb01381d123ed421a4\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_62f1a53516f452f66285ae753aa1eb299126f30b/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca89483e0ae645e53744587bdb5bcddd1dff71c2">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dd76f263afd4caf7db99ff7f25324fd3be884207\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_c684faa96a1d03ba596af09c2d69e20e4af18968/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.1_ab12bf573c26345cbee772426bca0ea93cb06398\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_7157a7502b15c1ac5d2d698b3b2131a2d9e54eba/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.1_d11a6e7eb0002668b2d2159f9d66c4cc926f8773\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_7fae36e9a14d73a06738f229206dbda289a1fa54/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.1_e55463e20f6e2bac3dc740d8cdffc57e249bd5ed\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/Users/pedro/studio/PR102-AlarmManager/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_f1415aad9bf637800445181b10996f3b3cbab51e/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.1_552bcc4929cdf62c8696dac9295032f047f94b05\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.1_f53b27c3c1aed40336e21a5f2265bfb4848f3e85\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_7439b2101cce120bdc434ba324b3112ddf08350c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.1_bbd1b35a3807c1d2aadec9d4704963f363feb009\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="D:\Documents\GitHub\studio\PR102-AlarmManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_74143bb2a7ece37eac76742a80ed9ecc5ec1f90c\classes.dex" />
     </item>
 
 </items>

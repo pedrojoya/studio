@@ -81,8 +81,8 @@ public class PlanificadorService extends JobService {
         builder.setService(PlanificadorService.class);
         builder.setTag(TRABAJO_MENSAJE_TAG);
         // Se especifican las condiciones de disparo.
-        builder.setRecurring(false); // Periódico.
-        builder.setTrigger(Trigger.executionWindow(0, 60));
+        builder.setRecurring(true); // Periódico.
+        builder.setTrigger(Trigger.executionWindow(0, 5));
         builder.setRetryStrategy(RetryStrategy.DEFAULT_LINEAR);
         builder.setLifetime(Lifetime.FOREVER); // Persistirá tras reinicio.
         Bundle extras = new Bundle();

@@ -23,13 +23,7 @@ ext {
     minSdkVersion = 14
     buildToolsVersion = "25.0.2"
     support_library_version = "25.1.1"
-    picasso_version = "2.5.2"
-    circleimageview_version = "2.1.0"
     butterknife_version = "8.5.1"
-    stetho_version = "1.4.2"
-    textdrawable_version = "1.0.1"
-    leakcanary_version = "1.5"
-    glide_version = "3.7.0"
     junit_version = "4.12"
     espresso_version = "2.2.2"
     firebasejobdispatcher_version = "0.5.2"
