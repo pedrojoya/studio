@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewCompat;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -66,9 +67,6 @@ public class MainFragment extends Fragment {
                         (ExportarService
                                 .EXTRA_FILENAME));
                 mostrarSnackbar(uri);
-                // Se aborta la propagación del broadcast para que no lo reciba
-                // nadie más.
-                abortBroadcast();
             }
         };
     }
@@ -186,14 +184,14 @@ public class MainFragment extends Fragment {
         // Se registra el receptor para la acción.
         IntentFilter exportarFilter = new IntentFilter(
                 "es.iessaladillo.pedrojoya.pr101.action.EXPORTED");
-        getActivity().registerReceiver(mExportarReceiver, exportarFilter);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mExportarReceiver, exportarFilter);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         // Se quita del registro el receptor.
-        getActivity().unregisterReceiver(mExportarReceiver);
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mExportarReceiver);
     }
 
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y

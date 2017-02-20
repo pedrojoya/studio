@@ -1,4 +1,4 @@
-VERSIONS
+﻿VERSIONS
 
 ext {
     compileSdkVersion = 25

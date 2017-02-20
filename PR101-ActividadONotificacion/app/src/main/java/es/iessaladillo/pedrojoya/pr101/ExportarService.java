@@ -1,9 +1,16 @@
 package es.iessaladillo.pedrojoya.pr101;
 
 import android.app.IntentService;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -19,6 +26,7 @@ public class ExportarService extends IntentService {
     public static final String EXTRA_FILENAME = "extra_filename";
     private static final long ESPERA = 2;
     private static final String NOMBRE_ARCHIVO = "alumnos";
+    private static final int NC_EXPORTADO = 5;
 
     // Constructor.
     public ExportarService() {
@@ -57,16 +65,45 @@ public class ExportarService extends IntentService {
                 escritor.println(alumno);
             }
             escritor.close();
-            // Se envía un broadcast ordenado con el intent de confirmación de
-            // la exportación.
+            // Se envía un broadcast.
+            Uri uriFichero = Uri.fromFile(outputFile);
             Intent respuestaIntent = new Intent();
             respuestaIntent
                     .setAction("es.iessaladillo.pedrojoya.pr101.action.EXPORTED");
-            respuestaIntent.putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile)
-                    .toString());
-            sendOrderedBroadcast(respuestaIntent, null);
+            respuestaIntent.putExtra(EXTRA_FILENAME, uriFichero.toString());
+            Thread.sleep(3000);
+            if (!LocalBroadcastManager.getInstance(this).sendBroadcast(respuestaIntent)) {
+                enviarNotificacion(uriFichero);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private void enviarNotificacion(Uri uriFichero) {
+        // Se obtiene el gestor de notificaciones del sistema.
+        NotificationManager mGestor = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        // Se configura la notificación.
+        NotificationCompat.Builder b = new NotificationCompat.Builder(this);
+        b.setSmallIcon(R.drawable.ic_not_download);
+        BitmapDrawable largeIcon =
+                (BitmapDrawable) ContextCompat.getDrawable(this, R.mipmap.ic_launcher);
+        if (largeIcon != null) {
+            b.setLargeIcon(largeIcon.getBitmap());
+        }
+        b.setContentTitle(getString(R.string.listado_de_alumnos));
+        b.setContentText(getString(R.string.fichero_generado_con_exito));
+        b.setTicker(getString(R.string.lista_de_alumnos_exportada));
+        b.setAutoCancel(true);
+        // Se crea el pending intent.
+        Intent mostrarIntent = new Intent(Intent.ACTION_VIEW);
+        mostrarIntent.setDataAndType(uriFichero, "text/plain");
+        PendingIntent pi = PendingIntent.getActivity(this, 0, mostrarIntent,
+                0);
+        b.setContentIntent(pi);
+        // Se construye y muestra la notificación, asignándole un código de
+        // notificación entero.
+        mGestor.notify(NC_EXPORTADO, b.build());
+    }
+
 }

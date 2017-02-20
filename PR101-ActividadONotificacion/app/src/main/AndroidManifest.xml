@@ -25,13 +25,6 @@
 
         <service android:name=".ExportarService" />
 
-        <receiver
-            android:name=".ExportarReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="es.iessaladillo.pedrojoya.pr101.action.EXPORTED" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

@@ -2,74 +2,139 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        is-multidex="true"
+        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="4d824006fb0a8d85cf2cbf42e2dff2df9dbfb13a">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a1346a944b4b948d6ad8e18a6f2a6f1baa0787a1/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_c78d6f7655674273eeaabf0e5815b6c67d20eb27\classes.dex" />
     </item>
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="2612cae1b9f85aa36c9ebc4888700aaa0dd2be5a">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ef6853adae7f23034e108e3b43ecce28ae4c56a6\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\design\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_77cfca2798865c8996f877178f2f9b8967ef46c3/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.1_786f2cfa579e8008f3ea4a6330a0d7052cc6e6c3\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="5bf4bc5d798befb209dc574d905678bf5b448b2f">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f298f518f3c5b6c8379501a8ff1887f6b8bfe931/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.1_59b177ec8279d54f74d687efcb4a898398c4f6ed\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_9a6062b610b9fd43df23b92f012815965913fa09/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.1_3785635af4b8cf3d320b5847e2d88419930f6513\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_cf3bd3aba894e174cbdc23c261fe79a59b43cfea/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.1_9fe6130588fb3653efd35936071c1d05c7434f34\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_18f73b9bf87325ba7c2c98fbb4c0162b65ac838d/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_741c2c96826828141c56875ee77edd3b423e190a\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="debf30ce0a7560396b6235edef77e447006454c2">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_b54d207c13b37e5455c7ea9fed3c058c7a2cc3ca/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="268ba083c52bf605c9d3bcae1f547a8ddbc7043f">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0911f79cf5f8fa91fd53054f8e0b99446f1abc5c\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_3a6161ed4e5adea3acc201942c474cee400eec7a/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.1_ce802655b7af3f3fb73e80966c678948806fbc3c\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/Users/pedro/studio/PR101-ActividadONotificacion/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_48b42df1ac900da542ef07ceed93edbd5a929eff/classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_63124d7e631f4d8ae1783c649a42afd5866328ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.1_e9a7d768a7db9d24a94e7c5517896bfe0b1c1157\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.1_0273f4132c1addb2b1eefc8971c5deb651028d93\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.1_d007ea12edc89254664643e0c2a259023fbee2b6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.1_30b9aa16308d5556ea2acdbedf554920271abd07\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.1_0000212fdd06ff7595f52059cbe427a0137017ae\classes.dex" />
     </item>
 
 </items>
