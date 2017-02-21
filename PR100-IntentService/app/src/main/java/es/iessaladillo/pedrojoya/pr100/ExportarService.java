@@ -52,6 +52,11 @@ public class ExportarService extends IntentService {
     private void informar(File outputFile) {
         Intent respuestaIntent = new Intent(ACTION_COMPLETADA);
         respuestaIntent.putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         LocalBroadcastManager.getInstance(this).sendBroadcast(
                 respuestaIntent);
     }

@@ -24,6 +24,8 @@ public class ExportarService extends IntentService {
     // Constantes.
     public static final String EXTRA_DATOS = "extra_datos";
     public static final String EXTRA_FILENAME = "extra_filename";
+    public static final String ACTION_COMPLETADA =
+            "es.iessaladillo.pedrojoya.pr101.action_completada";
     private static final long ESPERA = 2;
     private static final String NOMBRE_ARCHIVO = "alumnos";
     private static final int NC_EXPORTADO = 5;
@@ -67,10 +69,8 @@ public class ExportarService extends IntentService {
             escritor.close();
             // Se envía un broadcast.
             Uri uriFichero = Uri.fromFile(outputFile);
-            Intent respuestaIntent = new Intent();
-            respuestaIntent
-                    .setAction("es.iessaladillo.pedrojoya.pr101.action.EXPORTED");
-            respuestaIntent.putExtra(EXTRA_FILENAME, uriFichero.toString());
+            Intent respuestaIntent = new Intent(ACTION_COMPLETADA);
+            respuestaIntent.putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile));
             Thread.sleep(3000);
             if (!LocalBroadcastManager.getInstance(this).sendBroadcast(respuestaIntent)) {
                 enviarNotificacion(uriFichero);

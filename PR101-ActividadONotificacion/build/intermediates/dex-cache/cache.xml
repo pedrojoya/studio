@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="2612cae1b9f85aa36c9ebc4888700aaa0dd2be5a">
+        sha1="8d2d429335e87843428b556a36f9569b920d3e1a">
         <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ef6853adae7f23034e108e3b43ecce28ae4c56a6\classes.dex" />
     </item>
     <item
@@ -70,7 +70,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="268ba083c52bf605c9d3bcae1f547a8ddbc7043f">
+        sha1="8bedf5856080c33f30efba28ef103147989ab938">
         <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0911f79cf5f8fa91fd53054f8e0b99446f1abc5c\classes.dex" />
     </item>
     <item
@@ -135,6 +135,15 @@
         revision="25.0.2"
         sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
         <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.1_0000212fdd06ff7595f52059cbe427a0137017ae\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\exploded-aar\com.github.hotchemi\permissionsdispatcher\2.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="14b7671602012d7822c2c9328dbeecb91ff2588b">
+        <dex dex="D:\Documents\GitHub\studio\PR101-ActividadONotificacion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.hotchemi-permissionsdispatcher-2.3.1_ea837d4c3e633c3ceba7ac4b3c3ff093cd7399aa\classes.dex" />
     </item>
 
 </items>

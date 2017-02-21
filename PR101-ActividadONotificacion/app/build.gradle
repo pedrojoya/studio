@@ -25,4 +25,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher_version"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
 }

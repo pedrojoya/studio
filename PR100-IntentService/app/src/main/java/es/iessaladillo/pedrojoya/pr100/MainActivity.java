@@ -1,10 +1,15 @@
 package es.iessaladillo.pedrojoya.pr100;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +29,8 @@ import permissions.dispatcher.RuntimePermissions;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_MAIN_FRAGMENT = "MainFragment";
+
+    FloatingActionButton btnExportar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +56,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFAB() {
-        FloatingActionButton btnExportar = (FloatingActionButton) findViewById(R.id.btnExportar);
+        btnExportar = (FloatingActionButton) findViewById(R.id.btnExportar);
         if (btnExportar != null) {
             btnExportar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     MainActivityPermissionsDispatcher.exportarWithCheck(MainActivity.this);
-                    exportar();
                 }
             });
         }
@@ -70,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnShowRationale(Manifest.permission.CAMERA)
-    void showRationaleForCamera(final PermissionRequest request) {
+    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void showRationaleForWriteExternalStorage(final PermissionRequest request) {
         new AlertDialog.Builder(this).setMessage(
                 R.string.permission_write_external_storage_rationale).setPositiveButton(
                 R.string.permitir, new DialogInterface.OnClickListener() {
@@ -80,28 +86,46 @@ public class MainActivity extends AppCompatActivity {
                         request.cancel();
                     }
                 }).setNegativeButton(R.string.rechazar, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.cancel();
-                    }
-                }).show();
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                request.cancel();
+            }
+        }).show();
     }
 
-    @OnPermissionDenied(Manifest.permission.CAMERA)
-    void showDeniedForCamera() {
-        Toast.makeText(this, R.string.permission_write_external_storage_denied, Toast.LENGTH_SHORT)
+    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void showDeniedForWriteExternalStorage() {
+        Snackbar.make(btnExportar, R.string.permission_write_external_storage_denied, Snackbar.LENGTH_SHORT)
                 .show();
     }
 
-    @OnNeverAskAgain(Manifest.permission.CAMERA)
-    void showNeverAskForCamera() {
-        Toast.makeText(this, R.string.permission_write_external_storage_neverask,
-                Toast.LENGTH_SHORT).show();
+    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void showNeverAskForWriteExternalStorage() {
+        Snackbar.make(btnExportar, R.string.permission_write_external_storage_neverask, Snackbar.LENGTH_LONG)
+                .setAction(R.string.configurar, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startInstalledAppDetailsActivity(MainActivity.this);
+                    }
+                })
+                .show();
+    }
+
+    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse("package:" + context.getPackageName()));
+        // Para que deje rastro en la pila de actividades se añaden flags.
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        context.startActivity(intent);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // NOTE: delegate the permission handling to generated method
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,

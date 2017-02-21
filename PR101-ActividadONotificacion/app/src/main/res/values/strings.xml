@@ -10,5 +10,11 @@
     <string name="lista_de_alumnos_exportada">Lista de alumnos exportada</string>
     <string name="listado_exportado">Listado exportado</string>
     <string name="abrir">Abrir</string>
+    <string name="permission_write_external_storage_rationale">Para realizar la operación es necesario que nos conceda permiso de escritura en almacenamiento externo</string>
+    <string name="permitir">Permitir</string>
+    <string name="rechazar">Rechazar</string>
+    <string name="permission_write_external_storage_denied">Permiso rechazado</string>
+    <string name="permission_write_external_storage_neverask">No volver a solicitar el permiso</string>
+    <string name="configurar">Configurar</string>
 
 </resources>

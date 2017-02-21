@@ -24,5 +24,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     compile "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher_version"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
-    compile 'com.yalantis:ucrop:2.2.0'
+    compile "com.yalantis:ucrop:$rootProject.ext.ucrop_version"
 }

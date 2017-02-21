@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr121;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -9,13 +11,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +30,14 @@ import java.util.Date;
 import java.util.Locale;
 
 import cat.lafosca.facecropper.FaceCropper;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 
+@RuntimePermissions
 public class MainActivity extends AppCompatActivity implements
         PickOrCaptureDialogFragment.Listener {
 
@@ -85,7 +98,8 @@ public class MainActivity extends AppCompatActivity implements
     // Envía un intent implícito para seleccionar una foto de la galería.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
     @SuppressWarnings("SameParameterValue")
-    private void seleccionarFoto(String nombreArchivoPrivado) {
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    public void seleccionarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
         // Se seleccionará un imagen de la galería.
@@ -96,10 +110,50 @@ public class MainActivity extends AppCompatActivity implements
         startActivityForResult(i, RC_SELECCIONAR_FOTO);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
+                grantResults);
+    }
+
+    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showRationaleForReadExternalStorage(final PermissionRequest request) {
+        new AlertDialog.Builder(this).setMessage(R.string.permission_readexternalstorage_rationale)
+                .setPositiveButton(R.string.permitir, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.rechazar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showDeniedForReadExternalStorage() {
+        Toast.makeText(this, R.string.no_se_pudo, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showNeverAskForReadExternalStorage() {
+        Toast.makeText(this, R.string.permission_readexternalstorage_rationale, Toast.LENGTH_SHORT)
+                .show();
+    }
+
+
     // Envía un intent implícito para la captura de una foto.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
     @SuppressWarnings("SameParameterValue")
-    private void capturarFoto(String nombreArchivoPrivado) {
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    public void capturarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -114,8 +168,11 @@ public class MainActivity extends AppCompatActivity implements
             if (fotoFile != null) {
                 // Se guarda el path del archivo para cuando se haya hecho la captura.
                 sPathFotoOriginal = fotoFile.getAbsolutePath();
+                Uri fotoURI = FileProvider.getUriForFile(this,
+                        "es.iessaladillo.pedrojoya.pr121.fileprovider",
+                        fotoFile);
                 // Se añade como extra del intent la uri donde debe guardarse.
-                i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fotoFile));
+                i.putExtra(MediaStore.EXTRA_OUTPUT, fotoURI);
                 startActivityForResult(i, RC_CAPTURAR_FOTO);
             }
         }
@@ -250,10 +307,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onItemClick(DialogFragment dialog, int which) {
         if (which == OPTION_PICK) {
-            seleccionarFoto("mifoto.jgp"); // Si BD, por ejemplo ID_alumno.jpg.
-        }
-        else {
-            capturarFoto("mifoto.jpg"); // Si BD, por ejemplo ID_alumno.jpg.
+            MainActivityPermissionsDispatcher.seleccionarFotoWithCheck(this, "mifoto.jgp");
+        } else {
+            MainActivityPermissionsDispatcher.capturarFotoWithCheck(this, "mifoto.jgp");
         }
     }
 

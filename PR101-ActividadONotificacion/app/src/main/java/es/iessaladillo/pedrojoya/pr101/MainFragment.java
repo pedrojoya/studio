@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewCompat;
 import android.util.SparseBooleanArray;
@@ -22,6 +23,7 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -63,9 +65,8 @@ public class MainFragment extends Fragment {
             @Override
             public void onReceive(Context context, Intent intent) {
                 // Se informa de la localización del archivo generado.
-                Uri uri = Uri.parse(intent.getStringExtra
-                        (ExportarService
-                                .EXTRA_FILENAME));
+                Uri uri = intent.getParcelableExtra(ExportarService
+                        .EXTRA_FILENAME);
                 mostrarSnackbar(uri);
             }
         };
@@ -85,7 +86,13 @@ public class MainFragment extends Fragment {
     // Envía un intent implícito para ver el archivo.
     private void verArchivo(Uri uri) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, "text/plain");
+        Uri uriProvider = FileProvider
+                .getUriForFile(getActivity(),
+                        "es.iessaladillo.pedrojoya.pr101.fileprovider",
+                        new File(uri.getPath()));
+
+        intent.setDataAndType(uriProvider, "text/plain");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         try {
             startActivity(intent);
         } catch (Exception e) {
@@ -182,8 +189,7 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         // Se registra el receptor para la acción.
-        IntentFilter exportarFilter = new IntentFilter(
-                "es.iessaladillo.pedrojoya.pr101.action.EXPORTED");
+        IntentFilter exportarFilter = new IntentFilter(ExportarService.ACTION_COMPLETADA);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mExportarReceiver, exportarFilter);
     }
 

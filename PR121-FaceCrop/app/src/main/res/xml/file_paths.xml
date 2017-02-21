@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress XmlUnusedNamespaceDeclaration -->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Subcarpeta Pictures dentro de almacenamiento privado -->
+    <files-path name="private_pictures" path="Pictures"/>
+    <!-- Subcarpeta Pictures dentro de almacenamiento de ficheros propios
+         en almacenamiento externo -->
+    <external-files-path name="specific_pictures" path="Pictures" />
+    <!-- Subcarpeta Pictures dentro de almacenamiento público en almacenamiento
+         externo -->
+    <external-path name="public_pictures" path="Pictures" />
+    <external-path name="public_photos" path="DCIM" />
+</paths>

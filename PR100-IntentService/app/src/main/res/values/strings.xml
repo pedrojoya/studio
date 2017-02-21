@@ -12,5 +12,6 @@
     <string name="rechazar">Rechazar</string>
     <string name="permission_write_external_storage_denied">Permiso rechazado</string>
     <string name="permission_write_external_storage_neverask">No volver a solicitar el permiso</string>
+    <string name="configurar">Configurar</string>
 
 </resources>

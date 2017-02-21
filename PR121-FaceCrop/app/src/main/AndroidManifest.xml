@@ -21,6 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- FileProvider para compartir archivos (necesario para proporcionar
+la URI del archivo al programa de captura de imágenes -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="es.iessaladillo.pedrojoya.pr121.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!-- En file_paths indicamos las carpetas que se "compartirán" -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+
     </application>
 
 </manifest>
