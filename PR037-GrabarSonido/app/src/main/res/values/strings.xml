@@ -3,5 +3,13 @@
 
     <string name="app_name">Grabar sonido</string>
     <string name="grabar">Grabar</string>
+    <string name="permission_write_external_storage_rationale">Para realizar la operación es necesario que nos conceda permiso de escritura en almacenamiento externo y el permiso de grabación de audio</string>
+    <string name="permitir">Permitir</string>
+    <string name="rechazar">Rechazar</string>
+    <string name="permission_write_external_storage_neverask">No volver a solicitar el permiso</string>
+    <string name="configurar">Configurar</string>
+    <string name="lo_sentimos">Lo sentimos, pero la aplicación no puede funcionar sin dichos permisos</string>
+    <string name="cerrar_app">Salir</string>
+
 
 </resources>

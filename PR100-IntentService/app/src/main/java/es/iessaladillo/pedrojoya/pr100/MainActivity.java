@@ -15,7 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -83,32 +82,31 @@ public class MainActivity extends AppCompatActivity {
                 R.string.permitir, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        request.cancel();
+                        request.proceed();
                     }
                 }).setNegativeButton(R.string.rechazar, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                request.cancel();
-            }
-        }).show();
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    request.cancel();
+                }
+            }).show();
     }
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void showDeniedForWriteExternalStorage() {
-        Snackbar.make(btnExportar, R.string.permission_write_external_storage_denied, Snackbar.LENGTH_SHORT)
-                .show();
+        Snackbar.make(btnExportar, R.string.permission_write_external_storage_denied,
+                Snackbar.LENGTH_SHORT).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void showNeverAskForWriteExternalStorage() {
-        Snackbar.make(btnExportar, R.string.permission_write_external_storage_neverask, Snackbar.LENGTH_LONG)
-                .setAction(R.string.configurar, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startInstalledAppDetailsActivity(MainActivity.this);
-                    }
-                })
-                .show();
+        Snackbar.make(btnExportar, R.string.permission_write_external_storage_neverask,
+                Snackbar.LENGTH_LONG).setAction(R.string.configurar, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startInstalledAppDetailsActivity(MainActivity.this);
+            }
+        }).show();
     }
 
     public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
@@ -125,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // NOTE: delegate the permission handling to generated method
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,

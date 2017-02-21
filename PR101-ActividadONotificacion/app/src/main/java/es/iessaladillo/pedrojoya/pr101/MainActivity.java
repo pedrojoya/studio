@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 R.string.permitir, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        request.cancel();
+                        request.proceed();
                     }
                 }).setNegativeButton(R.string.rechazar, new DialogInterface.OnClickListener() {
             @Override

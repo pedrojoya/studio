@@ -1,0 +1,48 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_padding">
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/reproducir"
+        android:src="@drawable/ic_play_circle_outline"/>
+
+    <ImageButton
+        android:id="@+id/btnPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/pausar"
+        android:layout_toRightOf="@+id/btnPlay"
+        android:layout_toEndOf="@+id/btnPlay"
+        android:src="@drawable/ic_pause"/>
+
+    <ImageButton
+        android:id="@+id/btnStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/btnPause"
+        android:layout_toEndOf="@+id/btnPause"
+        android:contentDescription="@string/parar"
+        android:src="@drawable/ic_stop"/>
+
+    <ImageButton
+        android:id="@+id/btnGrabar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/grabar"
+        android:layout_toRightOf="@+id/btnStop"
+        android:layout_toEndOf="@+id/btnStop"
+        android:src="@drawable/ic_fiber_manual_record"/>
+
+    <SeekBar
+        android:id="@+id/skbBarra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnPlay"
+        android:layout_marginTop="@dimen/activity_padding"/>
+
+</RelativeLayout>

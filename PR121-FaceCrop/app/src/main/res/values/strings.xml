@@ -7,4 +7,5 @@
     <string name="rechazar">Rechazar</string>
     <string name="permission_readexternalstorage_rationale">Para realizar la operación es necesario que nos conceda el permiso de lectura en almacenamiento externo</string>
     <string name="no_se_pudo">No se puede realizar la operación sin el permiso correspondiente</string>
+    <string name="configurar">Configurar</string>
 </resources>

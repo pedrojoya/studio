@@ -2,32 +2,130 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\libs\internal_impl-22.1.0.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="025cb89f2896c63200ff4c2e6c467a95691d880a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.0-940edf8dd1c816ae6693e7a4feb95e69a068654a.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_9f5c911f6fdc7eab38dd1f8e28adae8c312f3f44.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.0\classes.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="eeebabdfd8203f6ab639ccea4ffa1f20e1adee3a">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\classes-2a32717b5d2663c174ec743f534e2d680668606c.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_2b0ef9ce4cdc61dd76143d1fe45462fb4dcd99a4.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.0\support-annotations-22.1.0.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.github.hotchemi/permissionsdispatcher/2.3.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="281bc6c58ecb3644c23fbc5ee0452019f67b4d5d">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.0-7a0e010d3a34f4facea2614a45246d96db5d393e.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="14b7671602012d7822c2c9328dbeecb91ff2588b">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.github.hotchemi-permissionsdispatcher-2.3.1_2760500db8cfe9564392ce0cb38296dfbbdba445.jar" />
     </item>
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.0\classes.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="983e2f375504bc04def18e709c35192afe92e65f">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR034-VideoViewMediaController\app\build\intermediates\pre-dexed\debug\classes-abc7001592297b8f0f58a9a49189b51ec78ca437.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_e3b34922eb511aa64c0c95b78fc83088fcd3ffcf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_de30a92b0cf22de66966075d9dec23ddecc6606b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_67de402dfaf4036e93cc9521e2e4cf53dec580ae.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_734255f472a4c492026bbc7c6137a58e2268dbe6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_d5006b8d3a5c075cedaf5dee84fc3433e20c1329.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_f8a68b2a2d3ab49e6eebf558acf010695001b28f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_be5ea727f44d218a0cf2a3a009db7dfca2961460.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_6ca17e5ff0a90f765d2932648a5bd21ac6d2554c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_821479471045ce85490ed4e6a7bc359ff03ebe04.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/pedro/studio/PR034-VideoViewMediaController/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_dc8a6f1c2f287f25fa4f57c2406e8e2ddee32781.jar" />
     </item>
 
 </items>

@@ -1,5 +1,9 @@
 package es.iessaladillo.pedrojoya.pr037;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -8,10 +12,15 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnInfoListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,6 +30,14 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
+
+@RuntimePermissions
 public class MainActivity extends AppCompatActivity implements OnTouchListener,
         OnPreparedListener, OnCompletionListener, OnInfoListener {
 
@@ -44,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements OnTouchListener,
         if (btnRec != null) {
             btnRec.setOnTouchListener(this);
         }
+        MainActivityPermissionsDispatcher.configButtonWithCheck(this);
+    }
+
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO})
+    public void configButton() {
+        btnRec.setEnabled(true);
     }
 
     // Al pulsar el botón.
@@ -54,8 +77,8 @@ public class MainActivity extends AppCompatActivity implements OnTouchListener,
             iniciarGrabacion();
         }
         // Si se suelta el botón, se finaliza la grabación.
-        if ((event.getAction() == MotionEvent.ACTION_UP ||
-                event.getAction() == MotionEvent.ACTION_CANCEL)) {
+        if (event.getAction() == MotionEvent.ACTION_UP
+                || event.getAction() == MotionEvent.ACTION_CANCEL) {
             pararGrabacion();
         }
         return false;
@@ -63,13 +86,14 @@ public class MainActivity extends AppCompatActivity implements OnTouchListener,
 
     // Inicia la grabación.
     private void iniciarGrabacion() {
-        prepararGrabacion();
+        MainActivityPermissionsDispatcher.prepararGrabacionWithCheck(this);
         mGrabadora.start();
         cambiarEstadoGrabacion(true);
     }
 
     // Prepara la grabación.
-    private void prepararGrabacion() {
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO})
+    public void prepararGrabacion() {
         // Se crea el objeto grabadora.
         mGrabadora = new MediaRecorder();
         // Se configura la grabación con fichero de salida, origen, formato,
@@ -89,6 +113,90 @@ public class MainActivity extends AppCompatActivity implements OnTouchListener,
             Log.e(getString(R.string.app_name), "Fallo en grabación");
         }
     }
+
+    @OnShowRationale({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO})
+    void showRationaleForWriteExternalStorage(final PermissionRequest request) {
+        new AlertDialog.Builder(this).setMessage(
+                R.string.permission_write_external_storage_rationale).setPositiveButton(
+                R.string.permitir, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                }).setNegativeButton(R.string.rechazar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                }).show();
+    }
+
+    @OnPermissionDenied({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO})
+    void showDeniedForWriteExternalStorage() {
+        new AlertDialog.Builder(this).setMessage(
+                R.string.lo_sentimos).setPositiveButton(
+                R.string.permitir, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivityPermissionsDispatcher.configButtonWithCheck(MainActivity.this);
+                    }
+                }).setNegativeButton(R.string.cerrar_app, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).show();
+    }
+
+    @OnNeverAskAgain({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO})
+    void showNeverAskForWriteExternalStorage() {
+        new AlertDialog.Builder(this).setMessage(
+                R.string.lo_sentimos).setPositiveButton(
+                R.string.permitir, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startInstalledAppDetailsActivity(MainActivity.this);
+                        finish();
+                    }
+                }).setNegativeButton(R.string.cerrar_app, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).show();
+
+
+
+        Snackbar.make(btnRec, R.string.permission_write_external_storage_neverask,
+                Snackbar.LENGTH_LONG).setAction(R.string.configurar, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startInstalledAppDetailsActivity(MainActivity.this);
+                    }
+                }).show();
+    }
+
+    private static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse("package:" + context.getPackageName()));
+        // Para que deje rastro en la pila de actividades se añaden flags.
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        context.startActivity(intent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
+                grantResults);
+    }
+
 
     // Cuando se ha producido un evento de información en la grabador.
     @Override

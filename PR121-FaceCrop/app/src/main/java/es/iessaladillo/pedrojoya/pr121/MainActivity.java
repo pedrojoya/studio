@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr121;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,8 +12,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -38,8 +41,8 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity implements
-        PickOrCaptureDialogFragment.Listener {
+public class MainActivity extends AppCompatActivity implements PickOrCaptureDialogFragment
+        .Listener {
 
     private static final int RC_CAPTURAR_FOTO = 0;
     private static final int RC_SELECCIONAR_FOTO = 1;
@@ -78,8 +81,7 @@ public class MainActivity extends AppCompatActivity implements
                 @Override
                 public void onClick(View v) {
                     PickOrCaptureDialogFragment frgDialogo = new PickOrCaptureDialogFragment();
-                    frgDialogo.show(getSupportFragmentManager(),
-                            "PickOrCaptureDialogFragment");
+                    frgDialogo.show(getSupportFragmentManager(), "PickOrCaptureDialogFragment");
                 }
             });
         }
@@ -104,15 +106,14 @@ public class MainActivity extends AppCompatActivity implements
         sNombreArchivo = nombreArchivoPrivado;
         // Se seleccionará un imagen de la galería.
         // (el segundo parámetro es el Data, que corresponde a la Uri de la galería.)
-        Intent i = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         i.setType("image/*");
         startActivityForResult(i, RC_SELECCIONAR_FOTO);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // NOTE: delegate the permission handling to generated method
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
@@ -144,10 +145,26 @@ public class MainActivity extends AppCompatActivity implements
 
     @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showNeverAskForReadExternalStorage() {
-        Toast.makeText(this, R.string.permission_readexternalstorage_rationale, Toast.LENGTH_SHORT)
-                .show();
+        Snackbar.make(imgFoto, R.string.permission_readexternalstorage_rationale,
+                Snackbar.LENGTH_LONG).setAction(R.string.configurar, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startInstalledAppDetailsActivity(MainActivity.this);
+                    }
+                }).show();
     }
 
+    private static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse("package:" + context.getPackageName()));
+        // Para que deje rastro en la pila de actividades se añaden flags.
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        context.startActivity(intent);
+    }
 
     // Envía un intent implícito para la captura de una foto.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
@@ -161,16 +178,15 @@ public class MainActivity extends AppCompatActivity implements
         if (i.resolveActivity(getPackageManager()) != null) {
             // Se crea el archivo para la foto en el directorio público (true).
             // Se obtiene la fecha y hora actual.
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-                    Locale.getDefault()).format(new Date());
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(
+                    new Date());
             String nombre = "IMG_" + timestamp + "_" + ".jpg";
             File fotoFile = crearArchivoFoto(nombre, true);
             if (fotoFile != null) {
                 // Se guarda el path del archivo para cuando se haya hecho la captura.
                 sPathFotoOriginal = fotoFile.getAbsolutePath();
                 Uri fotoURI = FileProvider.getUriForFile(this,
-                        "es.iessaladillo.pedrojoya.pr121.fileprovider",
-                        fotoFile);
+                        "es.iessaladillo.pedrojoya.pr121.fileprovider", fotoFile);
                 // Se añade como extra del intent la uri donde debe guardarse.
                 i.putExtra(MediaStore.EXTRA_OUTPUT, fotoURI);
                 startActivityForResult(i, RC_CAPTURAR_FOTO);
@@ -208,8 +224,8 @@ public class MainActivity extends AppCompatActivity implements
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (publico) {
                 // En el directorio público para imágenes del almacenamiento externo.
-                directorio = Environment
-                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                directorio = Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES);
             } else {
                 directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             }
@@ -228,16 +244,14 @@ public class MainActivity extends AppCompatActivity implements
         // directorio.
         File archivo = null;
         if (directorio != null) {
-            archivo = new File(directorio.getPath() + File.separator +
-                    nombre);
+            archivo = new File(directorio.getPath() + File.separator + nombre);
             Log.d(getString(R.string.app_name), archivo.getAbsolutePath());
         }
         // Se retorna el archivo creado.
         return archivo;
     }
 
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent intent) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
@@ -291,8 +305,7 @@ public class MainActivity extends AppCompatActivity implements
     // Guarda el bitamp de la foto en un archivo. Retorna si ha ido bien.
     private boolean guardarBitmapEnArchivo(Bitmap bitmapFoto, File archivo) {
         try {
-            FileOutputStream flujoSalida = new FileOutputStream(
-                    archivo);
+            FileOutputStream flujoSalida = new FileOutputStream(archivo);
             bitmapFoto.compress(Bitmap.CompressFormat.JPEG, 100, flujoSalida);
             flujoSalida.flush();
             flujoSalida.close();
