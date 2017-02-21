@@ -4,4 +4,8 @@
     <string name="foto">Foto realizada por el usuario</string>
     <string name="capturar_foto">Capturar foto</string>
     <string name="elige_opcion">Elige opción</string>
+    <string name="permitir">Permitir</string>
+    <string name="rechazar">Rechazar</string>
+    <string name="permission_readexternalstorage_rationale">Para realizar la operación es necesario que nos conceda el permiso de lectura en almacenamiento externo</string>
+    <string name="no_se_pudo">No se puede realizar la operación sin el permiso correspondiente</string>
 </resources>

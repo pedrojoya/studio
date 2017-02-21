@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.imagencapturaescalamediastore;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -10,13 +12,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,8 +30,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements
-        PickOrCaptureDialogFragment.Listener {
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
+
+@RuntimePermissions
+public class MainActivity extends AppCompatActivity implements PickOrCaptureDialogFragment
+        .Listener {
 
     private static final int RC_CAPTURAR_FOTO = 0;
     private static final int RC_SELECCIONAR_FOTO = 1;
@@ -73,16 +87,25 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuFoto) {
             PickOrCaptureDialogFragment frgDialogo = new PickOrCaptureDialogFragment();
-            frgDialogo.show(this.getSupportFragmentManager(),
-                    "PickOrCaptureDialogFragment");
+            frgDialogo.show(this.getSupportFragmentManager(), "PickOrCaptureDialogFragment");
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
+                grantResults);
     }
 
     // Envía un intent implícito para seleccionar una foto de la galería.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
     @SuppressWarnings("SameParameterValue")
-    private void seleccionarFoto(String nombreArchivoPrivado) {
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    public void seleccionarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
         // Se seleccionará un imagen de la galería.
@@ -93,10 +116,40 @@ public class MainActivity extends AppCompatActivity implements
         startActivityForResult(i, RC_SELECCIONAR_FOTO);
     }
 
+    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showRationaleForReadExternalStorage(final PermissionRequest request) {
+        new AlertDialog.Builder(this).setMessage(R.string.permission_readexternalstorage_rationale)
+                .setPositiveButton(R.string.permitir, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.rechazar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showDeniedForReadExternalStorage() {
+        Toast.makeText(this, R.string.no_se_pudo, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showNeverAskForReadExternalStorage() {
+        Toast.makeText(this, R.string.permission_readexternalstorage_rationale, Toast.LENGTH_SHORT)
+                .show();
+    }
+
     // Envía un intent implícito para la captura de una foto.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
     @SuppressWarnings("SameParameterValue")
-    private void capturarFoto(String nombreArchivoPrivado) {
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    public void capturarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -104,15 +157,21 @@ public class MainActivity extends AppCompatActivity implements
         if (i.resolveActivity(getPackageManager()) != null) {
             // Se crea el archivo para la foto en el directorio público (true).
             // Se obtiene la fecha y hora actual.
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-                    Locale.getDefault()).format(new Date());
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(
+                    new Date());
             String nombre = "IMG_" + timestamp + "_" + ".jpg";
             File fotoFile = crearArchivoFoto(nombre, true);
             if (fotoFile != null) {
                 // Se guarda el path del archivo para cuando se haya hecho la captura.
                 sPathFotoOriginal = fotoFile.getAbsolutePath();
+                // Se obtiene la Uri correspondiente al archivo creado a través del FileProvider,
+                // cuyo autorithies debe coincidir con lo especificado para el FileProvider en el
+                // manifiesto (necesario para API >= 25).
+                Uri fotoURI = FileProvider.getUriForFile(this,
+                        "es.iessaladillo.pedrojoya.imagencapturaescalamediastore.fileprovider",
+                        fotoFile);
                 // Se añade como extra del intent la uri donde debe guardarse.
-                i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fotoFile));
+                i.putExtra(MediaStore.EXTRA_OUTPUT, fotoURI);
                 startActivityForResult(i, RC_CAPTURAR_FOTO);
             }
         }
@@ -128,8 +187,8 @@ public class MainActivity extends AppCompatActivity implements
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (publico) {
                 // En el directorio público para imágenes del almacenamiento externo.
-                directorio = Environment
-                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                directorio = Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES);
             } else {
                 directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             }
@@ -148,16 +207,14 @@ public class MainActivity extends AppCompatActivity implements
         // directorio.
         File archivo = null;
         if (directorio != null) {
-            archivo = new File(directorio.getPath() + File.separator +
-                    nombre);
+            archivo = new File(directorio.getPath() + File.separator + nombre);
             Log.d(getString(R.string.app_name), archivo.getAbsolutePath());
         }
         // Se retorna el archivo creado.
         return archivo;
     }
 
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent intent) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
@@ -220,9 +277,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onItemClick(DialogFragment dialog, int which) {
         if (which == OPTION_PICK) {
-            seleccionarFoto("mifoto.jgp"); // Si BD, por ejemplo ID_alumno.jpg.
+            MainActivityPermissionsDispatcher.seleccionarFotoWithCheck(this, "mifoto.jgp");
+            //seleccionarFoto(); // Si BD, por ejemplo ID_alumno.jpg.
         } else {
-            capturarFoto("mifoto.jpg"); // Si BD, por ejemplo ID_alumno.jpg.
+            MainActivityPermissionsDispatcher.capturarFotoWithCheck(this, "mifoto.jgp");
+            //capturarFoto("mifoto.jpg"); // Si BD, por ejemplo ID_alumno.jpg.
         }
     }
 
@@ -234,11 +293,8 @@ public class MainActivity extends AppCompatActivity implements
         protected Bitmap doInBackground(String... params) {
             // Se escala la foto, cuyo path corresponde al primer parámetro,
             // retornado el Bitmap correspondiente.
-            return escalarFoto(
-                    params[0],
-                    getResources().getDimensionPixelSize(R.dimen.ancho_visor),
-                    getResources().getDimensionPixelSize(
-                            R.dimen.alto_visor));
+            return escalarFoto(params[0], getResources().getDimensionPixelSize(R.dimen.ancho_visor),
+                    getResources().getDimensionPixelSize(R.dimen.alto_visor));
         }
 
         // Una vez finalizado el hilo de trabajo. Se ejecuta en el hilo
@@ -263,8 +319,7 @@ public class MainActivity extends AppCompatActivity implements
         // Escala la foto indicada, para ser mostarda en un visor determinado.
         // Retorna el bitmap correspondiente a la imagen escalada o null si
         // se ha producido un error.
-        private Bitmap escalarFoto(String pathFoto, int anchoVisor,
-                                   int altoVisor) {
+        private Bitmap escalarFoto(String pathFoto, int anchoVisor, int altoVisor) {
             try {
                 // Se obtiene el tamaño de la imagen.
                 BitmapFactory.Options opciones = new BitmapFactory.Options();
@@ -273,8 +328,7 @@ public class MainActivity extends AppCompatActivity implements
                 int anchoFoto = opciones.outWidth;
                 int altoFoto = opciones.outHeight;
                 // Se obtiene el factor de escalado para la imagen.
-                int factorEscalado = Math.min(anchoFoto / anchoVisor, altoFoto
-                        / altoVisor);
+                int factorEscalado = Math.min(anchoFoto / anchoVisor, altoFoto / altoVisor);
                 // Se escala la imagen con dicho factor de escalado.
                 opciones.inJustDecodeBounds = false; // Se escalará.
                 opciones.inSampleSize = factorEscalado;
@@ -288,8 +342,7 @@ public class MainActivity extends AppCompatActivity implements
         // Guarda el bitamp de la foto en un archivo. Retorna si ha ido bien.
         private boolean guardarBitmapEnArchivo(Bitmap bitmapFoto, File archivo) {
             try {
-                FileOutputStream flujoSalida = new FileOutputStream(
-                        archivo);
+                FileOutputStream flujoSalida = new FileOutputStream(archivo);
                 bitmapFoto.compress(Bitmap.CompressFormat.JPEG, 100, flujoSalida);
                 flujoSalida.flush();
                 flujoSalida.close();

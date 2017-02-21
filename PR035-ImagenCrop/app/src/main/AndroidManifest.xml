@@ -5,7 +5,8 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +23,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Actiividad de uCrop -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <!-- FileProvider para compartir archivos (necesario para proporcionar
+     la URI del archivo al programa de captura de imágenes -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="es.iessaladillo.pedrojoya.pr035.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!-- En file_paths indicamos las carpetas que se "compartirán" -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+
     </application>
 
 </manifest>

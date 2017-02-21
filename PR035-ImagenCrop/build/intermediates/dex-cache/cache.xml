@@ -2,32 +2,130 @@
 <items version="2" >
 
     <item
-        jar="D:\Documents\GitHub\studio\PR035-ImagenCrop\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.yalantis/ucrop/2.2.0/jars/classes.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="D:\Documents\GitHub\studio\PR035-ImagenCrop\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-4b95f209009cb09f9f8d1fcae1a935d51410ff41.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="515960f41b2032bbff45af39c0c9628db4956d3e">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.yalantis-ucrop-2.2.0_7a3a73d6b73a636a96e493b84b7ccc230429629b.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR035-ImagenCrop\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="D:\Documents\GitHub\studio\PR035-ImagenCrop\app\build\intermediates\pre-dexed\debug\classes-dc6de111d2024ea79c0a532cf86333f0bc70e935.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_44bad6c54b1322798c9b1b1fe6d73c5c7d7cf0bc.jar" />
     </item>
     <item
-        jar="D:\Documents\GitHub\studio\PR035-ImagenCrop\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="D:\Documents\GitHub\studio\PR035-ImagenCrop\app\build\intermediates\pre-dexed\debug\classes-196fadfa6d93fc14d96955dbedf6a563f917bd5d.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_624edb1c9115a83a6af734aed958f83fb33b4d42.jar" />
     </item>
     <item
-        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="D:\Documents\GitHub\studio\PR035-ImagenCrop\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-f40af08601c03ad5bf24ac0b138e2e10bb81d86b.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_7ff0e1a0a716eb0c5eab8cb662c088679d068dee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_4355159cd8d345b2f275d76d3f90c0fc0efa7f6a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_e63026f09f431959a5fbc3c76b002a9de6879483.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_ec0066761ef2d25955b4cdb14e55a6467ccabebf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/okio-1.9.0_206feab69e7efd1a8263fae933ffe52a01943a25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_a7d332d684e51416c8aab4d7ba1a48a5a1c8f895.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_a5bdeb62212994b3b4a40de3a58dd89fa994c151.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.github.hotchemi/permissionsdispatcher/2.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="14b7671602012d7822c2c9328dbeecb91ff2588b">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.github.hotchemi-permissionsdispatcher-2.3.1_b69950f783f5b02f55851411e088de9f4ea9a83e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_363ed3913d73e2d004aa757bfa88cf1b64bddf66.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/pedro/studio/PR035-ImagenCrop/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_5a3f30097fd243da601034ce266db093dbe68711.jar" />
     </item>
 
 </items>

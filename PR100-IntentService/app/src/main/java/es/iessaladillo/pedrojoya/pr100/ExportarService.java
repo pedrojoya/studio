@@ -1,5 +1,11 @@
 package es.iessaladillo.pedrojoya.pr100;
 
+import android.app.IntentService;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.support.v4.content.LocalBroadcastManager;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -7,12 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-
-import android.app.IntentService;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Environment;
-import android.support.v4.content.LocalBroadcastManager;
 
 public class ExportarService extends IntentService {
 
@@ -51,8 +51,7 @@ public class ExportarService extends IntentService {
     // la exportación, incluyendo como extra la uri del archivo generado.
     private void informar(File outputFile) {
         Intent respuestaIntent = new Intent(ACTION_COMPLETADA);
-        respuestaIntent.putExtra(EXTRA_FILENAME,
-                Uri.fromFile(outputFile.getAbsoluteFile()).toString());
+        respuestaIntent.putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile));
         LocalBroadcastManager.getInstance(this).sendBroadcast(
                 respuestaIntent);
     }
@@ -69,7 +68,7 @@ public class ExportarService extends IntentService {
 
     // Retorna el fichero en el que realizar la exportación.
     private File getFichero() {
-        final String NOMBRE_ARCHIVO = "alumnos";
+        final String nombre = "alumnos";
         // Se obtiene el directorio en el que crear el archivo (preferiblemente
         // en almacenamiento externo).
         String estadoSD = Environment.getExternalStorageState();
@@ -85,7 +84,7 @@ public class ExportarService extends IntentService {
         // Se crea el archivo.
         SimpleDateFormat formateadorFecha = new SimpleDateFormat(
                 "yyyyMMddHHmm", Locale.getDefault());
-        String nombreArchivo = NOMBRE_ARCHIVO
+        String nombreArchivo = nombre
                 + formateadorFecha.format(new Date()) + ".txt";
         return new File(rootDir, nombreArchivo);
     }

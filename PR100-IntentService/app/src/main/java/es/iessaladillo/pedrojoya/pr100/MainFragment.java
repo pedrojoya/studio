@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewCompat;
 import android.util.SparseBooleanArray;
@@ -22,6 +23,7 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,7 +34,8 @@ public class MainFragment extends Fragment {
     private ArrayAdapter<String> mAdaptador;
     private LocalBroadcastManager mGestor;
 
-    public MainFragment() {}
+    public MainFragment() {
+    }
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -46,7 +49,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -65,9 +68,8 @@ public class MainFragment extends Fragment {
             @Override
             public void onReceive(Context context, Intent intent) {
                 // Se informa de la localización del archivo generado.
-                Uri uri = Uri.parse(intent.getStringExtra
-                        (ExportarService
-                                .EXTRA_FILENAME));
+                Uri uri = intent.getParcelableExtra(ExportarService
+                        .EXTRA_FILENAME);
                 mostrarSnackbar(uri);
             }
         };
@@ -75,8 +77,8 @@ public class MainFragment extends Fragment {
 
     // Muestra una snackbar con el mensaje y la accion deshacer.
     private void mostrarSnackbar(final Uri uri) {
-        Snackbar.make(lstAlumnos, R.string.listado_exportado, Snackbar.LENGTH_LONG)
-                .setAction(R.string.abrir, new View.OnClickListener() {
+        Snackbar.make(lstAlumnos, R.string.listado_exportado, Snackbar.LENGTH_LONG).setAction(
+                R.string.abrir, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         verArchivo(uri);
@@ -87,7 +89,13 @@ public class MainFragment extends Fragment {
     // Envía un intent implícito para ver el archivo.
     private void verArchivo(Uri uri) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, "text/plain");
+        Uri uriProvider = FileProvider
+                .getUriForFile(getActivity(),
+                        "es.iessaladillo.pedrojoya.pr100.fileprovider",
+                        new File(uri.getPath()));
+
+        intent.setDataAndType(uriProvider, "text/plain");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         try {
             startActivity(intent);
         } catch (Exception e) {
@@ -103,10 +111,9 @@ public class MainFragment extends Fragment {
         // Se carga la lista a partir de las constantes de cadena.
         if (mAdaptador == null) {
             String[] datosArray = getResources().getStringArray(R.array.alumnos);
-            ArrayList<String> datosArrayList = new ArrayList<>(
-                    Arrays.asList(datosArray));
-            mAdaptador = new ArrayAdapter<>(getActivity(),
-                    R.layout.fragment_main_item, datosArrayList);
+            ArrayList<String> datosArrayList = new ArrayList<>(Arrays.asList(datosArray));
+            mAdaptador = new ArrayAdapter<>(getActivity(), R.layout.fragment_main_item,
+                    datosArrayList);
         }
         lstAlumnos = (ListView) view.findViewById(R.id.lstAlumnos);
         if (lstAlumnos != null) {
@@ -129,8 +136,7 @@ public class MainFragment extends Fragment {
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     // Se infla el menú contextual.
-                    getActivity().getMenuInflater()
-                            .inflate(R.menu.activity_main_contextual, menu);
+                    getActivity().getMenuInflater().inflate(R.menu.activity_main_contextual, menu);
                     // Se retorna que el evento ha sido gestionado.
                     return true;
                 }
@@ -151,11 +157,11 @@ public class MainFragment extends Fragment {
                 // Cuando el cambio el estado de selección de un elemento de la
                 // lista.
                 @Override
-                public void onItemCheckedStateChanged(ActionMode mode,
-                                                      int position, long id, boolean checked) {
+                public void onItemCheckedStateChanged(ActionMode mode, int position, long id,
+                        boolean checked) {
                     // Se actualiza el título de la action bar contextual.
-                    mode.setTitle(getString(R.string.de,
-                            lstAlumnos.getCheckedItemCount(), lstAlumnos.getCount()));
+                    mode.setTitle(getString(R.string.de, lstAlumnos.getCheckedItemCount(),
+                            lstAlumnos.getCount()));
                 }
             });
             // API 21+ funcionará con CoordinatorLayout.
@@ -184,8 +190,7 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         // Se registra el receptor para la acción.
-        IntentFilter exportarFilter = new IntentFilter(
-                ExportarService.ACTION_COMPLETADA);
+        IntentFilter exportarFilter = new IntentFilter(ExportarService.ACTION_COMPLETADA);
         mGestor.registerReceiver(mExportarReceiver, exportarFilter);
     }
 
@@ -199,8 +204,7 @@ public class MainFragment extends Fragment {
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y
     // si debe quitarse la selección una vez obtenidos los elementos.
     @SuppressWarnings("SameParameterValue")
-    private ArrayList<String> getElementosSeleccionados(ListView lst,
-                                                        boolean uncheck) {
+    private ArrayList<String> getElementosSeleccionados(ListView lst, boolean uncheck) {
         // ArrayList resultado.
         ArrayList<String> datos = new ArrayList<>();
         // Se obtienen los elementos seleccionados de la lista.

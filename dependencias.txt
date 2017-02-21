@@ -1,4 +1,4 @@
-﻿VERSIONS
+VERSIONS
 
 ext {
     compileSdkVersion = 25
@@ -30,6 +30,7 @@ ext {
     retrofitrxjava2adapter_version = "1.0.0"
     firebase_version = "10.2.0"
     firebaseui_version = "1.1.1"
+    permissionsdispatcher_version = "2.3.1"
 }
 
 buildscript {

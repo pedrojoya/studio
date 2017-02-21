@@ -1,35 +1,46 @@
 package es.iessaladillo.pedrojoya.pr035;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements
-        PickOrCaptureDialogFragment.Listener {
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
+
+@RuntimePermissions
+public class MainActivity extends AppCompatActivity implements PickOrCaptureDialogFragment
+        .Listener {
 
     private static final int RC_CAPTURAR_FOTO = 0;
     private static final int RC_SELECCIONAR_FOTO = 1;
-    private static final int RC_RECORTAR_FOTO = 2;
 
     private static final String PREF_PATH_FOTO = "prefPathFoto";
     private static final int OPTION_PICK = 0;
@@ -38,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements
     private String sNombreArchivo; // Nombre para guardar en privado la foto escalada.
 
     private ImageView imgFoto;
+    private File mArchivoRecortado;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,8 +87,7 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuFoto) {
             PickOrCaptureDialogFragment frgDialogo = new PickOrCaptureDialogFragment();
-            frgDialogo.show(this.getSupportFragmentManager(),
-                    "PickOrCaptureDialogFragment");
+            frgDialogo.show(this.getSupportFragmentManager(), "PickOrCaptureDialogFragment");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -84,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements
     // Envía un intent implícito para seleccionar una foto de la galería.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
     @SuppressWarnings("SameParameterValue")
-    private void seleccionarFoto(String nombreArchivoPrivado) {
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    public void seleccionarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
         // Se seleccionará un imagen de la galería.
@@ -95,10 +107,41 @@ public class MainActivity extends AppCompatActivity implements
         startActivityForResult(i, RC_SELECCIONAR_FOTO);
     }
 
+    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showRationaleForReadExternalStorage(final PermissionRequest request) {
+        new AlertDialog.Builder(this).setMessage(R.string.permission_readexternalstorage_rationale)
+                .setPositiveButton(R.string.permitir, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.rechazar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showDeniedForReadExternalStorage() {
+        Toast.makeText(this, R.string.no_se_pudo, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showNeverAskForReadExternalStorage() {
+        Toast.makeText(this, R.string.permission_readexternalstorage_rationale, Toast.LENGTH_SHORT)
+                .show();
+    }
+
+
     // Envía un intent implícito para la captura de una foto.
     // Recibe el nombre que debe tomar el archivo con la foto escalada y guardada en privado.
     @SuppressWarnings("SameParameterValue")
-    private void capturarFoto(String nombreArchivoPrivado) {
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    public void capturarFoto(String nombreArchivoPrivado) {
         // Se guarda el nombre para uso posterior.
         sNombreArchivo = nombreArchivoPrivado;
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -106,15 +149,20 @@ public class MainActivity extends AppCompatActivity implements
         if (i.resolveActivity(getPackageManager()) != null) {
             // Se crea el archivo para la foto en el directorio público (true).
             // Se obtiene la fecha y hora actual.
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-                    Locale.getDefault()).format(new Date());
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(
+                    new Date());
             String nombre = "IMG_" + timestamp + "_" + ".jpg";
             File fotoFile = crearArchivoFoto(nombre, true);
             if (fotoFile != null) {
                 // Se guarda el path del archivo para cuando se haya hecho la captura.
                 sPathFotoOriginal = fotoFile.getAbsolutePath();
+                // Se obtiene la Uri correspondiente al archivo creado a través del FileProvider,
+                // cuyo autorithies debe coincidir con lo especificado para el FileProvider en el
+                // manifiesto (necesario para API >= 25).
+                Uri fotoURI = FileProvider.getUriForFile(this,
+                        "es.iessaladillo.pedrojoya.pr035.fileprovider", fotoFile);
                 // Se añade como extra del intent la uri donde debe guardarse.
-                i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fotoFile));
+                i.putExtra(MediaStore.EXTRA_OUTPUT, fotoURI);
                 startActivityForResult(i, RC_CAPTURAR_FOTO);
             }
         }
@@ -123,29 +171,11 @@ public class MainActivity extends AppCompatActivity implements
     // Envía un intent implícito para recortar la imagen. Recibe el path de la foto a recortar.
     // Si no es posible recortar, se llama a cargarImagenEscalada().
     private void recortarImagen(String pathFoto) {
-        // Se guarda el nombre para uso posterior.
-        Intent i = new Intent("com.android.camera.action.CROP");
-        i.setDataAndType(Uri.fromFile(new File(pathFoto)), "image/*");
-        // Si hay alguna actividad que sepa realizar la acción de recortar.
-        if (i.resolveActivity(getPackageManager()) != null) {
-            i.putExtra("crop", "true");
-            // Ratio.
-            i.putExtra("aspectX",
-                    getResources().getDimensionPixelSize(R.dimen.ancho_visor));
-            i.putExtra("aspectY",
-                    getResources().getDimensionPixelSize(R.dimen.alto_visor));
-            // Tamaño de salida.
-            i.putExtra("outputX",
-                    getResources().getDimensionPixelSize(R.dimen.ancho_visor));
-            i.putExtra("outputY",
-                    getResources().getDimensionPixelSize(R.dimen.alto_visor));
-            i.putExtra("return-data", true);
-            // Inicio la actividad esperando el resultado.
-            startActivityForResult(i, RC_RECORTAR_FOTO);
-        } else {
-            // Si no se puede recortar, se escala la imagen y se muestra.
-            cargarImagenEscalada(pathFoto);
-        }
+        mArchivoRecortado = crearArchivoFoto(sNombreArchivo, false);
+        UCrop.of(Uri.fromFile(new File(pathFoto)), Uri.fromFile(mArchivoRecortado))
+                .withMaxResultSize(getResources().getDimensionPixelSize(R.dimen.ancho_visor),
+                        getResources().getDimensionPixelSize(R.dimen.alto_visor))
+                .start(this);
     }
 
     // Crea un archivo de foto con el nombre indicado en almacenamiento externo si es posible, o si
@@ -158,8 +188,8 @@ public class MainActivity extends AppCompatActivity implements
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (publico) {
                 // En el directorio público para imágenes del almacenamiento externo.
-                directorio = Environment
-                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                directorio = Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES);
             } else {
                 directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             }
@@ -178,16 +208,14 @@ public class MainActivity extends AppCompatActivity implements
         // directorio.
         File archivo = null;
         if (directorio != null) {
-            archivo = new File(directorio.getPath() + File.separator +
-                    nombre);
+            archivo = new File(directorio.getPath() + File.separator + nombre);
             Log.d(getString(R.string.app_name), archivo.getAbsolutePath());
         }
         // Se retorna el archivo creado.
         return archivo;
     }
 
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent intent) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
@@ -206,20 +234,13 @@ public class MainActivity extends AppCompatActivity implements
                         recortarImagen(sPathFotoOriginal);
                     }
                     break;
-                case RC_RECORTAR_FOTO:
-                    // Se obtiene el bitmap resultante.
-                    Bitmap bitmapFotoRecortada = intent.getExtras().getParcelable(
-                            "data");
-                    // Se guarda la copia propia de la imagen.
-                    File archivo = crearArchivoFoto(sNombreArchivo, false);
-                    if (archivo != null) {
-                        if (guardarBitmapEnArchivo(bitmapFotoRecortada, archivo)) {
-                            // Se almacena el path de la foto a mostrar en el ImageView.
-                            guardarEnPreferencias(archivo.getAbsolutePath());
-                            // Se muestra la foto en el ImageView.
-                            imgFoto.setImageBitmap(bitmapFotoRecortada);
-                        }
-                    }
+                case UCrop.REQUEST_CROP:
+                    // Se almacena el path de la foto a mostrar en el ImageView.
+                    guardarEnPreferencias(mArchivoRecortado.getAbsolutePath());
+                    // Se muestra la foto en el ImageView.
+                    imgFoto.setImageBitmap(
+                            BitmapFactory.decodeFile(mArchivoRecortado.getAbsolutePath()));
+                    break;
             }
         }
     }
@@ -252,97 +273,14 @@ public class MainActivity extends AppCompatActivity implements
         this.sendBroadcast(i);
     }
 
-    // Escala y muestra la imagen en el visor.
-    private void cargarImagenEscalada(String pathFoto) {
-        // Se utiliza una tarea asíncrona, para escalar, guardar en archivo propio y mostrar
-        // la foto en el ImageView.
-        MostrarFotoAsyncTask tarea = new MostrarFotoAsyncTask();
-        tarea.execute(pathFoto);
-    }
-
-    // Guarda el bitamp de la foto en un archivo. Retorna si ha ido bien.
-    private boolean guardarBitmapEnArchivo(Bitmap bitmapFoto, File archivo) {
-        try {
-            FileOutputStream flujoSalida = new FileOutputStream(
-                    archivo);
-            bitmapFoto.compress(Bitmap.CompressFormat.JPEG, 100, flujoSalida);
-            flujoSalida.flush();
-            flujoSalida.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     // Cuando se selecciona una opción del diálogo PickOrCaptureDialogFragment.
     @Override
     public void onItemClick(DialogFragment dialog, int which) {
         if (which == OPTION_PICK) {
-            seleccionarFoto("mifoto.jgp"); // Si BD, por ejemplo ID_alumno.jpg.
+            MainActivityPermissionsDispatcher.seleccionarFotoWithCheck(this, "mifoto.jgp");
         } else {
-            capturarFoto("mifoto.jpg"); // Si BD, por ejemplo ID_alumno.jpg.
+            MainActivityPermissionsDispatcher.capturarFotoWithCheck(this, "mifoto.jgp");
         }
-    }
-
-    // Tarea asíncrona que obtiene una foto a partir de su path y la muestra en
-    // un visor.
-    private class MostrarFotoAsyncTask extends AsyncTask<String, Void, Bitmap> {
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            // Se escala la foto, cuyo path corresponde al primer parámetro,
-            // retornado el Bitmap correspondiente.
-            return escalarFoto(
-                    params[0],
-                    getResources().getDimensionPixelSize(R.dimen.ancho_visor),
-                    getResources().getDimensionPixelSize(
-                            R.dimen.alto_visor));
-        }
-
-        // Una vez finalizado el hilo de trabajo. Se ejecuta en el hilo
-        // principal. Recibe el Bitmap de la foto escalada (o null si error).
-        @Override
-        protected void onPostExecute(Bitmap bitmapFoto) {
-            if (bitmapFoto != null) {
-                // Se guarda la copia propia de la imagen.
-                File archivo = crearArchivoFoto(sNombreArchivo, false);
-                if (archivo != null) {
-                    if (guardarBitmapEnArchivo(bitmapFoto, archivo)) {
-                        // Se almacena el path de la foto a mostrar en el ImageView.
-                        guardarEnPreferencias(archivo.getAbsolutePath());
-                        // Se muestra la foto en el ImageView.
-                        imgFoto.setImageBitmap(bitmapFoto);
-                    }
-                }
-            }
-        }
-
-        // Escala la foto indicada, para ser mostarda en un visor determinado.
-        // Retorna el bitmap correspondiente a la imagen escalada o null si
-        // se ha producido un error.
-        private Bitmap escalarFoto(String pathFoto, int anchoVisor,
-                                   int altoVisor) {
-            try {
-                // Se obtiene el tamaño de la imagen.
-                BitmapFactory.Options opciones = new BitmapFactory.Options();
-                opciones.inJustDecodeBounds = true; // Solo para cálculo.
-                BitmapFactory.decodeFile(pathFoto, opciones);
-                int anchoFoto = opciones.outWidth;
-                int altoFoto = opciones.outHeight;
-                // Se obtiene el factor de escalado para la imagen.
-                int factorEscalado = Math.min(anchoFoto / anchoVisor, altoFoto
-                        / altoVisor);
-                // Se escala la imagen con dicho factor de escalado.
-                opciones.inJustDecodeBounds = false; // Se escalará.
-                opciones.inSampleSize = factorEscalado;
-                return BitmapFactory.decodeFile(pathFoto, opciones);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
     }
 
 }

@@ -25,6 +25,20 @@
         <service
             android:name="ExportarService"
             android:exported="false"/>
+        <!-- FileProvider para compartir archivos (necesario para proporcionar
+     la URI del archivo al programa que lo visualice -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="es.iessaladillo.pedrojoya.pr100.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!-- En file_paths indicamos las carpetas que se "compartirán" -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+
     </application>
 
 </manifest>
