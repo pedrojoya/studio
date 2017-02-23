@@ -1,6 +1,9 @@
 package es.iessaladillo.pedrojoya.pr038;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -8,24 +11,39 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import icepick.Icepick;
 import icepick.State;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 
+@RuntimePermissions
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class MainActivity extends AppCompatActivity implements OnPreparedListener,
         OnCompletionListener {
 
     private static final int RC_GRABAR = 0;
+    private static final int RC_SELECCIONAR_AUDIO = 1;
 
     @BindView(R.id.btnPlay)
     ImageButton btnPlay;
@@ -35,8 +53,12 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
     ImageButton btnStop;
     @BindView(R.id.btnGrabar)
     ImageButton btnGrabar;
+    @BindView(R.id.btnSeleccionar)
+    ImageButton btnSeleccionar;
     @BindView(R.id.skbBarra)
     SeekBar skbBarra;
+    @BindView(R.id.lblNombre)
+    TextView lblNombre;
 
     @State
     boolean mIsPlaying;
@@ -99,16 +121,69 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         btnPause.setEnabled(false);
         // Se envía un intent para grabar sonido.
         Intent i = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-        startActivityForResult(i, RC_GRABAR);
+        try {
+            startActivityForResult(i, RC_GRABAR);
+        } catch (Exception e) {
+            Snackbar.make(skbBarra, R.string.no_hay, Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    @OnClick(R.id.btnSeleccionar)
+    public void btnSeleccionarOnClick() {
+        // Se deshabilitan los botones de reproducción.
+        btnPlay.setEnabled(mBtnPlayEnabled = false);
+        btnStop.setEnabled(false);
+        btnPause.setEnabled(false);
+        // Se envía un intent para seleccionar sonido.
+//        Intent i = new Intent(Intent.ACTION_PICK,
+//                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+//        i.setType("audio/*");
+//        try {
+//            startActivityForResult(i, RC_SELECCIONAR_AUDIO);
+//        } catch (Exception e) {
+//            Snackbar.make(skbBarra, R.string.no_hay, Snackbar.LENGTH_SHORT).show();
+//        }
+        MainActivityPermissionsDispatcher.solicitarAudioWithCheck(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == RC_GRABAR) {
-            // Se obtiene la uri de la grabación.
-            mUriGrabacion = data.getData();
+        if (resultCode == RESULT_OK) {
+            if (requestCode == RC_GRABAR) {
+                // Se obtiene la uri de la grabación.
+                mUriGrabacion = data.getData();
+                btnPlay.setEnabled(mBtnPlayEnabled = true);
+                lblNombre.setText(mUriGrabacion.getLastPathSegment());
+            } else if (requestCode == RC_SELECCIONAR_AUDIO) {
+                // Se obtiene la Uri real del archivo.
+//                mUriGrabacion = Uri.parse(getRealPath(data.getData()));
+                mUriGrabacion = data.getData();
+                btnPlay.setEnabled(mBtnPlayEnabled = true);
+                lblNombre.setText(getFileName(mUriGrabacion));
+            }
         }
-        btnPlay.setEnabled(mBtnPlayEnabled = true);
+    }
+
+    public String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 
     @OnClick(R.id.btnPlay)
@@ -149,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
             btnStop.setEnabled(false);
             // Se habilita el botón de grabar.
             btnGrabar.setEnabled(true);
+            btnSeleccionar.setEnabled(true);
         }
     }
 
@@ -192,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         btnPause.setImageResource(R.drawable.ic_pause);
         btnStop.setEnabled(true);
         btnGrabar.setEnabled(false);
+        btnSeleccionar.setEnabled(false);
     }
 
     // Actualiza la barra en base al progreso del contenido del reproductor.
@@ -221,6 +298,8 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         btnPause.setImageResource(R.drawable.ic_pause);
         btnStop.setEnabled(false);
         btnGrabar.setEnabled(true);
+        btnSeleccionar.setEnabled(true);
+
     }
 
     @Override
@@ -239,6 +318,71 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
     protected void onResume() {
         super.onResume();
         skbBarra.setProgress(0);
+    }
+
+    // Obtiene el path real de un audio a partir de la URI de Galería obtenido
+    // con ACTION_PICK.
+    private String getRealPath(Uri uriGaleria) {
+        // Se consulta en el content provider de la galería.
+        String[] filePath = {MediaStore.Audio.Media.DATA};
+        Cursor c = getContentResolver().query(uriGaleria, filePath, null, null, null);
+        c.moveToFirst();
+        int columnIndex = c.getColumnIndex(filePath[0]);
+        String path = c.getString(columnIndex);
+        c.close();
+        return path;
+    }
+
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void solicitarAudio() {
+        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+        i.setType("audio/*");
+        try {
+            startActivityForResult(i, RC_SELECCIONAR_AUDIO);
+        } catch (Exception e) {
+            Snackbar.make(skbBarra, R.string.no_hay_audio, Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
+                grantResults);
+    }
+
+    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void onShowRationale(final PermissionRequest request) {
+    }
+
+    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void onPermissionDenied() {
+        Snackbar.make(btnSeleccionar, R.string.permission_denied,
+                Snackbar.LENGTH_SHORT).show();
+    }
+
+    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void onNeverAskAgain() {
+        Snackbar.make(btnSeleccionar, R.string.permission_neverask,
+                Snackbar.LENGTH_LONG).setAction(R.string.configurar, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startInstalledAppDetailsActivity(MainActivity.this);
+            }
+        }).show();
+    }
+
+    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
+        final Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse("package:" + context.getPackageName()));
+        // Para que deje rastro en la pila de actividades se añaden flags.
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        context.startActivity(intent);
     }
 
 }

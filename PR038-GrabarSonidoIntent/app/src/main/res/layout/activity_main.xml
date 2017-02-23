@@ -38,11 +38,28 @@
         android:layout_toEndOf="@+id/btnStop"
         android:src="@drawable/ic_fiber_manual_record"/>
 
+    <ImageButton
+        android:id="@+id/btnSeleccionar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/seleccionar"
+        android:layout_toRightOf="@+id/btnGrabar"
+        android:layout_toEndOf="@+id/btnGrabar"
+        android:src="@drawable/ic_album"/>
+
     <SeekBar
         android:id="@+id/skbBarra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnPlay"
+        android:layout_marginTop="@dimen/activity_padding"/>
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/skbBarra"
+        android:freezesText="true"
         android:layout_marginTop="@dimen/activity_padding"/>
 
 </RelativeLayout>

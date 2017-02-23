@@ -33,6 +33,7 @@ ext {
     permissionsdispatcher_version = "2.3.1"
     ucrop_version = "2.2.0"
     icepick_version = "3.2.0"
+    sharedpreferenceshelper_version = "1.1.0"
 }
 
 buildscript {
@@ -110,4 +111,5 @@ dependencies {
     compile "com.yalantis:ucrop:$rootProject.ext.ucrop_version"
     compile "frankiesardo:icepick:$rootProject.ext.icepick_version"
     provided "frankiesardo:icepick-processor:$rootProject.ext.icepick_version"
+    compile "com.github.seanzor:shared-preferences-helper:$rootProject.ext.sharedpreferenceshelper_version"
 }

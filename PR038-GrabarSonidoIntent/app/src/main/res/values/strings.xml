@@ -6,5 +6,11 @@
     <string name="pausar">Pausar</string>
     <string name="parar">Parar</string>
     <string name="grabar">Grabar</string>
+    <string name="no_hay">No hay aplicación de grabación</string>
+    <string name="seleccionar">Seleccionar</string>
+    <string name="no_hay_audio">No se pudo seleccionar audio</string>
+    <string name="permission_denied">No se puede realizar la operación sin el permiso correspondiente</string>
+    <string name="permission_neverask">Para realizar la operación es necesario que conceda el permiso necesario</string>
+    <string name="configurar">Configurar</string>
 
 </resources>
