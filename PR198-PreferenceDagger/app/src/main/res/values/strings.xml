@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PreferenceFragment</string>
+    <string name="preferencias">Preferencias</string>
+    <string name="title_activity_preferencias">Preferencias</string>
+    <string name="sincronizacion">Sincronización</string>
+    <string name="sincronizar">Sincronizar</string>
+    <string name="tipo_conexion">Tipo de conexión</string>
+    <string-array name="tipo_conexion_entries">
+        <item>Por wifi</item>
+        <item>Tarifa de datos</item>
+    </string-array>
+    <string-array name="tipo_conexion_values">
+        <item>wifi</item>
+        <item>datos</item>
+    </string-array>
+    <string name="tipo_conexion_default">wifi</string>
+    <string name="apariencia">Apariencia</string>
+    <string name="letras_grandes">Letras grandes</string>
+    <string name="otras">Otras preferencias</string>
+    <string name="lema">Lema</string>
+    <string name="lema_detalle">Lema de la organización</string>
+    <string name="tono_notificacion">Tono de notificación</string>
+    <string name="red">En red</string>
+    <string name="red_detalle_on">Jugar en red</string>
+    <string name="red_detalle_off">No jugar en red</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="web_oficial">Web oficial</string>
+    <string name="turnos">Turnos</string>
+    <string name="turnos_detalle">Turnos de actualización</string>
+    <string-array name="turnos_entries">
+        <item>Mañana</item>
+        <item>Tarde</item>
+        <item>Noche</item>
+    </string-array>
+    <string-array name="turnos_values">
+        <item>mañana</item>
+        <item>tarde</item>
+        <item>noche</item>
+    </string-array>
+    <string-array name="turnos_default">
+        <item>mañana</item>
+        <item>tarde</item>
+    </string-array>
+</resources>
