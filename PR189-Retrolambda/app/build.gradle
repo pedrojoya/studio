@@ -1,21 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
-def support_library_version = "24.2.1"
-def espresso_version = "2.2.2"
-def testrunner_version = "0.5"
-
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr189"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,11 +29,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.android.support:design:${support_library_version}"
-    androidTestCompile "com.android.support:support-annotations:${support_library_version}"
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:${espresso_version}"
-    androidTestCompile "com.android.support.test.espresso:espresso-core:${espresso_version}"
-    androidTestCompile "com.android.support.test:runner:${testrunner_version}"
-    androidTestCompile "com.android.support.test:rules:${testrunner_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.android.support:support-annotations:$rootProject.ext.support_library_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espresso_version"
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.testrunner_version"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.testrunner_version"
 }

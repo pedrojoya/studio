@@ -1,11 +1,11 @@
-VERSIONS
+﻿VERSIONS
 
 ext {
     compileSdkVersion = 25
     minSdkVersion = 14
     buildToolsVersion = "25.0.2"
-    retrolambdaVersion = "3.5.0" 
-    support_library_version = "25.2.0”
+    retrolambdaVersion = "3.6.0" 
+    support_library_version = "25.2.0"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
     butterknife_version = "8.5.1"
@@ -19,17 +19,17 @@ ext {
     espresso_version = "2.2.2"
     support_test_version = "0.5"
     firebasejobdispatcher_version = "0.5.2"
-    chuck_version = "1.0.0"
+    chuck_version = "1.0.4"
     okhttp_version = "3.6.0" 
     gson_version = "2.8.0"
-    retrofit_version = "2.1.0"
+    retrofit_version = "2.2.0"
     eventbus_version = "3.0.0" 
     volley_version = "1.0.0"
-    rxjava_version = "2.0.5"
+    rxjava_version = "2.0.6"
     rxandroid_version = "2.0.1"
     retrofitrxjava2adapter_version = "1.0.0"
     firebase_version = "10.2.0"
-    firebaseui_version = "1.1.1"
+    firebaseui_version = "1.2.0"
     permissionsdispatcher_version = "2.3.1"
     ucrop_version = "2.2.0"
     icepick_version = "3.2.0"
@@ -70,7 +70,6 @@ dependencies {
     compile "com.android.support:design:$rootProject.ext.support_library_version"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
     compile "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support:support-annotations:$rootProject.ext.support_library_version"
     compile "com.android.support:gridlayout-v7:$rootProject.ext.support_library_version"
     compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
