@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+// Carga como propiedades el archivo secret.properties
+def Properties props = new Properties()
+props.load(new FileInputStream(new File('secrets.properties')))
+
+//noinspection GroovyMissingReturnStatement
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    //noinspection GroovyMissingReturnStatement
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr199"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+        buildConfigField("String", "YANDEX_API_KEY", "\"" + props['YANDEX_API_KEY'] + "\"")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.google.code.gson:gson:$rootProject.ext.gson_version"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp_version"
+    compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
+    compile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
+    debugCompile "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
+    releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
+    compile "com.google.dagger:dagger:$rootProject.ext.dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger_version"
+}
