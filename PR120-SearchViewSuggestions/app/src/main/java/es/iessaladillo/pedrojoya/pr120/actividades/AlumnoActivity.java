@@ -18,7 +18,7 @@ public class AlumnoActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         // Se carga el fragmento de detalle en el FrameLayout de la actividad
         // principal, pasándole como argumento el modo en el que debe funcionar

@@ -4,5 +4,12 @@
     <string name="app_name">Historial de Llamadas</string>
     <string name="desconocido">Desconocido</string>
     <string name="tipo_de_llamada">Tipo de llamada</string>
+    <string name="permission_rationale">Para realizar la operación es necesario que nos conceda permiso de lectura de registro de llamadas y de contactos</string>
+    <string name="solicitar">Solicitar</string>
+    <string name="rechazar">Rechazar</string>
+    <string name="permission_neverask">No volver a solicitar el permiso</string>
+    <string name="configurar">Configurar</string>
+    <string name="lo_sentimos">Lo sentimos, pero la aplicación no puede funcionar sin dichos permisos</string>
+    <string name="cerrar_app">Salir</string>
 
 </resources>

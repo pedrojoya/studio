@@ -10,17 +10,23 @@
         android:layout_height="wrap_content"
         android:text="@string/agregar_elemento"
         android:layout_marginStart="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        tools:ignore="RtlHardcoded"/>
 
     <Spinner
         android:id="@+id/spnAnimacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/btnAgregar"
         android:layout_toEndOf="@+id/btnAgregar"
         android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:entries="@array/animaciones"
-        android:layout_alignBaseline="@+id/btnAgregar"/>
+        android:layout_alignBaseline="@+id/btnAgregar"
+        tools:ignore="RtlHardcoded"/>
 
     <LinearLayout
         android:id="@+id/llContenedor"

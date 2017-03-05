@@ -1,17 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
-def support_library_version = "23.3.0"
-def butterknife_version = "8.0.1"
-
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr115"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion 16
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -25,7 +22,18 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.jakewharton:butterknife:${butterknife_version}"
-    apt "com.jakewharton:butterknife-compiler:${butterknife_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    // Usamos apt y no annotationProcessor porque permissionsdispatcher no está
+    // actualizado y aún usa apt, por lo que crea incompatibilidad con
+    // anotationProcessor. Así que usamos apt también con Butterknife.
+    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
+    compile "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher_version"
+    apt "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
+
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

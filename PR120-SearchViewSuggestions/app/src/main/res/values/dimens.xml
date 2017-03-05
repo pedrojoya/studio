@@ -1,6 +1,6 @@
 <resources>
-    <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="fragment_alumno_padding">10dp</dimen>
     <dimen name="fragment_alumno_marginBottom">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

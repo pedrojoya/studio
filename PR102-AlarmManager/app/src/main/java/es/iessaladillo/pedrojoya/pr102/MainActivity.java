@@ -30,16 +30,15 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         txtMensaje = (TextView) findViewById(R.id.txtMensaje);
         txtIntervalo = (TextView) findViewById(R.id.txtIntervalo);
         // Se inicializan las vistas en base a los valores de las preferencias.
-        SharedPreferences preferencias = getApplicationContext()
-                .getSharedPreferences("alarmas", Context.MODE_PRIVATE);
+        SharedPreferences preferencias = getApplicationContext().getSharedPreferences("alarmas",
+                Context.MODE_PRIVATE);
         txtMensaje.setText(preferencias.getString(AvisarReceiver.PREF_MENSAJE,
                 getString(R.string.quillo_ponte_ya_a_currar)));
         txtIntervalo.setText(String.valueOf(preferencias.getInt(AvisarReceiver.PREF_INTERVALO,
                 AvisarReceiver.DEFAULT_INTERVAL)));
         SwitchCompat swActivar = (SwitchCompat) findViewById(R.id.swActivar);
         if (swActivar != null) {
-            swActivar
-                    .setChecked(AvisarReceiver.isAlarmaOn(getApplicationContext()));
+            swActivar.setChecked(AvisarReceiver.isAlarmaOn(getApplicationContext()));
             swActivar.setOnCheckedChangeListener(this);
         }
     }
@@ -50,16 +49,15 @@ public class MainActivity extends AppCompatActivity implements OnCheckedChangeLi
         // Dependiendo del estado en el que ha quedado
         if (isChecked) {
             // Se programa la alarma con los datos introducidos por el usuario.
-            String mensaje = TextUtils.isEmpty(txtMensaje.getText().toString()) ? getString(R.string.quillo_ponte_ya_a_currar)
-                    : txtMensaje.getText().toString();
+            String mensaje = TextUtils.isEmpty(txtMensaje.getText().toString()) ? getString(
+                    R.string.quillo_ponte_ya_a_currar) : txtMensaje.getText().toString();
             int intervalo;
             try {
                 intervalo = Integer.parseInt(txtIntervalo.getText().toString());
             } catch (NumberFormatException e) {
                 intervalo = AvisarReceiver.DEFAULT_INTERVAL;
             }
-            AvisarReceiver.programarAlarma(getApplicationContext(), mensaje,
-                    intervalo);
+            AvisarReceiver.programarAlarma(getApplicationContext(), mensaje, intervalo);
         } else {
             // Se desactiva la alarma.
             AvisarReceiver.cancelarAlarma(getApplicationContext());

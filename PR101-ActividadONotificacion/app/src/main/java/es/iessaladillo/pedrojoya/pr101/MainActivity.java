@@ -24,6 +24,7 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
+@SuppressWarnings("unused")
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
@@ -36,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initVistas();
         if (getSupportFragmentManager().findFragmentByTag(TAG_MAIN_FRAGMENT) == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.flContenido, MainFragment.newInstance(), TAG_MAIN_FRAGMENT)
-                    .commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContenido,
+                    MainFragment.newInstance(), TAG_MAIN_FRAGMENT).commit();
         }
     }
 
@@ -99,17 +99,16 @@ public class MainActivity extends AppCompatActivity {
 
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void showNeverAskForWriteExternalStorage() {
-        Snackbar.make(btnExportar, R.string.permission_write_external_storage_neverask, Snackbar.LENGTH_LONG)
-                .setAction(R.string.configurar, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startInstalledAppDetailsActivity(MainActivity.this);
-                    }
-                })
-                .show();
+        Snackbar.make(btnExportar, R.string.permission_write_external_storage_neverask,
+                Snackbar.LENGTH_LONG).setAction(R.string.configurar, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startInstalledAppDetailsActivity(MainActivity.this);
+            }
+        }).show();
     }
 
-    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
+    private static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
         final Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -123,9 +122,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // NOTE: delegate the permission handling to generated method
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
                 grantResults);
     }

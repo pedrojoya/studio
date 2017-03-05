@@ -23,8 +23,8 @@ import es.iessaladillo.pedrojoya.pr118.datos.InstitutoProvider;
 import es.iessaladillo.pedrojoya.pr118.models.Alumno;
 
 
-public class BusquedaActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
+public class BusquedaActivity extends AppCompatActivity implements LoaderManager
+        .LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
 
     private static final int LOADER_BUSQUEDA = 1;
     private String mTermino;
@@ -39,7 +39,9 @@ public class BusquedaActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         initVistas();
         // Se obtiene el intent y se verifica la acción.
         Intent intent = getIntent();
@@ -57,7 +59,8 @@ public class BusquedaActivity extends AppCompatActivity implements
         mLstResultados = (ListView) findViewById(R.id.lstResultados);
         String[] from = {InstitutoContract.Alumno.NOMBRE};
         int[] to = {android.R.id.text1};
-        mAdaptador = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, null, from, to, 0);
+        mAdaptador = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, null, from,
+                to, 0);
         mLstResultados.setAdapter(mAdaptador);
         mLstResultados.setOnItemClickListener(this);
     }
@@ -81,7 +84,8 @@ public class BusquedaActivity extends AppCompatActivity implements
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         // Se consultan los alumnos cuyo nombre contiene el término introducido.
         String criteria = InstitutoContract.Alumno.NOMBRE + " LIKE '%" + mTermino + "%'";
-        return new CursorLoader(this, InstitutoProvider.CONTENT_URI_ALUMNOS, InstitutoContract.Alumno.TODOS, criteria, null, null);
+        return new CursorLoader(this, InstitutoProvider.CONTENT_URI_ALUMNOS,
+                InstitutoContract.Alumno.TODOS, criteria, null, null);
     }
 
     @Override

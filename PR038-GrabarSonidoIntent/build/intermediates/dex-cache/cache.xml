@@ -3,87 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.github.hotchemi/permissionsdispatcher/2.3.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="14b7671602012d7822c2c9328dbeecb91ff2588b">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.github.hotchemi-permissionsdispatcher-2.3.1_9ab1ee2eceb2c4d7cc43f80a4ce5a26d49bb7b63.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_a2775fd73eaefcd61558913d51db012cd3b9d902.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_6c5d490fa93421e0513e2579e9f7f5daee1886fd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_4552419cc78cfcc2b273460d732ae77e7d1bebfe.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_ae8ec83856c5be470936920b9c1718967bb829d2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_57ff72e9408ed53c79a1cfcaec603e46647a0910.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_73c1a673778e7dc34372c50144ca117c3ba7f0c1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_b273f7469859bb04139e0819f70f7782cb2885f1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.5.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.jakewharton-butterknife-8.5.1_7492f5914a6089fb149752691fc9093ac4cce9b7.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.5.1/bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc/butterknife-annotations-8.5.1.jar"
         jumboMode="false"
         optimize="true"
@@ -93,66 +12,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_905540cfca2d2902049f351fea9387ce1b7c8293.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_6af0695f9778b3cca46f4c8bf7422dddc56070a9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_8b58e60932b143d769cf207c1066e0a0a2166e8b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_266b7ca78195cd495db4fb39deda10fe100fa7b0.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/frankiesardo/icepick/3.2.0/5ab94f3bba3f9315532eb1ca5547d120c4f71dae/icepick-3.2.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="5ab94f3bba3f9315532eb1ca5547d120c4f71dae">
         <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/icepick-3.2.0_e2cbcd316b596e46e6b9e4710faad05d126f233d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_7c318eaafb6e814c8978da79500c3db7758ce83c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="/Users/pedro/studio/PR038-GrabarSonidoIntent/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_8bd1fe135ffa85aff1a5cdf9580c6f402e589548.jar" />
     </item>
 
 </items>

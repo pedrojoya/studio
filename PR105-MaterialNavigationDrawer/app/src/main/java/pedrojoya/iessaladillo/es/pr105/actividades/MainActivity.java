@@ -108,17 +108,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-//        if (id == android.R.id.home) {
-//            // Cuando se pulsa el icono de la toolbar se abre el panel.
-//            mDrawerLayout.openDrawer(GravityCompat.START);
-//            return true;
-//        }
-        if (mToogle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        // int id = item.getItemId();
+        //        if (id == android.R.id.home) {
+        //            // Cuando se pulsa el icono de la toolbar se abre el panel.
+        //            mDrawerLayout.openDrawer(GravityCompat.START);
+        //            return true;
+        //        }
+        return mToogle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     // Cuando se selecciona una opción del nav drawer.

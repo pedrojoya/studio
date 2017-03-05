@@ -10,7 +10,7 @@ public class EndlessListView extends ListView implements AbsListView.OnScrollLis
     // Interfaz que debe implementar el objeto que cargará los datos.
     public interface LoadAgent {
         // Método que será llamado para cargar más datos.
-        public void loadData();
+        void loadData();
     }
 
     // Listener para cuando haya que cargar más datos.
@@ -44,11 +44,10 @@ public class EndlessListView extends ListView implements AbsListView.OnScrollLis
     // Cuando se hace scroll.
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
         // Si no tiene adaptador o no tiene datos, no se hace nada.
-        if (getAdapter() == null || getAdapter().getCount() == 0)
+        if (getAdapter() == null || getAdapter().getCount() == 0) {
             return;
-
+        }
         // Si se ha llegado al final del scroll y no se está cargando ya.
         int l = visibleItemCount + firstVisibleItem;
         if (l >= totalItemCount && !mIsLoading) {

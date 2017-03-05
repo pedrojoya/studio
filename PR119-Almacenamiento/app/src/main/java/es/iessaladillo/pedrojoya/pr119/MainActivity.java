@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class MainActivity extends AppCompatActivity {
 
     private static final String RAW_FILE_NAME = "lorem.txt";
@@ -58,9 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        habilitarOpciones(
-                Environment.getExternalStorageState().equals(
-                        Environment.MEDIA_MOUNTED));
+        habilitarOpciones(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED));
     }
 
     private void habilitarOpciones(boolean mounted) {
@@ -81,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getTipoSubcarpeta() {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                Environment.DIRECTORY_DOWNLOADS :
-                Environment.DIRECTORY_MUSIC;
+        return mRgOrigen.getCheckedRadioButtonId()
+                       == R.id.rbRaw ? Environment.DIRECTORY_DOWNLOADS : Environment
+                       .DIRECTORY_MUSIC;
     }
 
     private File getCarpetaDestino() {
@@ -91,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rbExternoPropio:
                 return getExternalFilesDir(getTipoSubcarpeta());
             case R.id.rbExternoPublico:
-                return Environment.getExternalStoragePublicDirectory(
-                        getTipoSubcarpeta());
+                return Environment.getExternalStoragePublicDirectory(getTipoSubcarpeta());
             case R.id.rbCacheInterno:
                 return getCacheDir();
             case R.id.rbCacheExterno:
@@ -103,31 +100,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private InputStream getFlujoEntrada() throws IOException {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                getResources().openRawResource(R.raw.lorem) :
-                getAssets().open(getNombreArchivo());
+        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ? getResources().openRawResource(
+                R.raw.lorem) : getAssets().open(getNombreArchivo());
     }
 
     private String getNombreArchivo() {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                RAW_FILE_NAME : ASSET_FILE_NAME;
+        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ? RAW_FILE_NAME : ASSET_FILE_NAME;
     }
 
     @NonNull
     private String getMimeType() {
-        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ?
-                "text/plain" : "audio/mp3";
+        return mRgOrigen.getCheckedRadioButtonId() == R.id.rbRaw ? "text/plain" : "audio/mp3";
     }
 
     private boolean isPermisoRequerido() {
         int id = mRgDestino.getCheckedRadioButtonId();
-        return (id == R.id.rbExternoPropio) || (id == R.id.rbExternoPublico) ||
-                (id == R.id.rbCacheExterno);
+        return (id == R.id.rbExternoPropio) || (id == R.id.rbExternoPublico) || (id
+                == R.id.rbCacheExterno);
     }
 
     private boolean tienePermiso(String permissionName) {
-        return ContextCompat.checkSelfPermission(this, permissionName) ==
-                PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(this, permissionName)
+                == PackageManager.PERMISSION_GRANTED;
     }
 
     private boolean puedeEscribirEnAlmacenamientoExterno() {
@@ -141,29 +135,24 @@ public class MainActivity extends AppCompatActivity {
             mostrarDialogoInformativoPermiso();
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    RP_ALMACEN_EXTERNO);
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, RP_ALMACEN_EXTERNO);
         }
     }
 
     private void mostrarDialogoInformativoPermiso() {
-        new AlertDialog.Builder(this)
-                .setMessage(R.string.es_necesario)
-                .setTitle(R.string.permiso_requerido)
-                .setPositiveButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        RP_ALMACEN_EXTERNO);
-                            }
-                        })
-                .show();
+        new AlertDialog.Builder(this).setMessage(R.string.es_necesario).setTitle(
+                R.string.permiso_requerido).setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ActivityCompat.requestPermissions(MainActivity.this,
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                RP_ALMACEN_EXTERNO);
+                    }
+                }).show();
     }
 
-    public static void startInstalledAppDetailsActivity(
-            @NonNull final Activity context) {
+    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
         final Intent intent = new Intent();
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -176,12 +165,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+            @NonNull int[] grantResults) {
         if (requestCode == RP_ALMACEN_EXTERNO) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Se copia el archivo en la carpeta de destino.
                 copiarArchivo();
             } else {
@@ -189,21 +176,16 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     // Aún tenemos esperanza. Informamos.
-                    Snackbar.make(mBtnCopiar,
-                            R.string.no_se_pudo, Snackbar.LENGTH_LONG)
-                            .show();
+                    Snackbar.make(mBtnCopiar, R.string.no_se_pudo, Snackbar.LENGTH_LONG).show();
                 } else {
                     // El usuario ha indicado que No se le vuelva a preguntar.
-                    Snackbar.make(mBtnCopiar,
-                            R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
-                            .setAction(R.string.configurar,
-                                    new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            startInstalledAppDetailsActivity(
-                                                    MainActivity.this);
-                                        }
-                                    })
+                    Snackbar.make(mBtnCopiar, R.string.accion_no_disponible, Snackbar.LENGTH_LONG)
+                            .setAction(R.string.configurar, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    startInstalledAppDetailsActivity(MainActivity.this);
+                                }
+                            })
                             .show();
                 }
             }
@@ -228,15 +210,13 @@ public class MainActivity extends AppCompatActivity {
             }
             escritor.close();
             lector.close();
-            Snackbar.make(mBtnCopiar,
-                    getString(R.string.generado, fichero.getPath()),
-                    Snackbar.LENGTH_LONG)
-                    .setAction(R.string.abrir, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            abrirArchivo(fichero);
-                        }
-                    }).show();
+            Snackbar.make(mBtnCopiar, getString(R.string.generado, fichero.getPath()),
+                    Snackbar.LENGTH_LONG).setAction(R.string.abrir, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    abrirArchivo(fichero);
+                }
+            }).show();
         } catch (IOException e) {
             e.printStackTrace();
         }

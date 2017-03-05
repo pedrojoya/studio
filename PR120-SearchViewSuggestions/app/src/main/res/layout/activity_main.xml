@@ -26,6 +26,6 @@
             android:src="@drawable/foto"
             android:contentDescription="@string/foto"
             android:scaleType="centerCrop"
-            android:id="@+id/imgFoto" />
+            />
     </RelativeLayout>
 </RelativeLayout>

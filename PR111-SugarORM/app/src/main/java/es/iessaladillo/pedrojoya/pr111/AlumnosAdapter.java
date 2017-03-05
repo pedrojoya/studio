@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr111;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,10 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
     }
 
     // Retorna la vista que se debe "dibujar" para un determinado elemento.
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
-        // Si no se puede reciclar.
         if (convertView == null) {
             // Se obtiene la vista-fila inflando el layout.
             convertView = mInflador.inflate(R.layout.activity_main_item, parent, false);
@@ -38,9 +39,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
             holder = new ViewHolder(convertView);
             // Se almacena el contenedor en la vista.
             convertView.setTag(holder);
-        }
-        // Si se puede reciclar.
-        else {
+        } else {
             // Se obtiene el contenedor de vistas desde la vista reciclada.
             holder = (ViewHolder) convertView.getTag();
         }
@@ -58,9 +57,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         holder.lblNombre.setText(alumno.getNombre());
         holder.lblCurso.setText(alumno.getCurso());
         holder.lblDireccion.setText(alumno.getDireccion());
-        Glide.with(getContext()).load(
-                alumno.getAvatar())
-                .into(holder.imgAvatar);
+        Glide.with(getContext()).load(alumno.getAvatar()).into(holder.imgAvatar);
     }
 
     // Contenedor de vistas para la vista-fila.
@@ -76,12 +73,9 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         public ViewHolder(View itemView) {
             // Se obtienen las vistas de la vista-fila.
             imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView
-                    .findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView
-                    .findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) itemView
-                    .findViewById(R.id.lblDireccion);
+            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
+            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
+            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
         }
 
     }

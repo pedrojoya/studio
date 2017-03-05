@@ -51,8 +51,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación XML para obtener la vista-fila.
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_item, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -65,8 +65,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
                     // Se informa al listener.
-                    mOnItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
+                    mOnItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }
@@ -99,11 +98,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // Se escriben los mDatos en la vista.
         holder.lblNombre.setText(alumno.getNombre());
         holder.lblDireccion.setText(alumno.getDireccion());
-        Picasso.with(holder.imgAvatar.getContext())
-                .load(alumno.getUrlFoto())
-                .placeholder(R.drawable.ic_user)
-                .error(R.drawable.ic_user)
-                .into(holder.imgAvatar);
+        Picasso.with(holder.imgAvatar.getContext()).load(alumno.getUrlFoto()).placeholder(
+                R.drawable.ic_user).error(R.drawable.ic_user).into(holder.imgAvatar);
         // Se establece el estado de selección del elemento.
         holder.itemView.setActivated(mSelectedItems.get(position, false));
     }
@@ -155,8 +151,12 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // Se intercambia también el estado de selección de from y to.
         boolean fromSelected = mSelectedItems.get(from, false);
         boolean toSelected = mSelectedItems.get(to, false);
-        if (fromSelected) mSelectedItems.delete(from);
-        if (toSelected) mSelectedItems.delete(to);
+        if (fromSelected) {
+            mSelectedItems.delete(from);
+        }
+        if (toSelected) {
+            mSelectedItems.delete(to);
+        }
         if (fromSelected) {
             mSelectedItems.put(to, true);
         }

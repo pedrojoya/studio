@@ -12,17 +12,18 @@ import java.io.InputStream;
 import es.iessaladillo.pedrojoya.pr120.R;
 import es.iessaladillo.pedrojoya.pr120.models.Alumno;
 
+@SuppressWarnings("SameParameterValue")
 public class InstitutoHelper extends SQLiteOpenHelper {
 
-    private static final String TBL_ALUMNO_CREATE = "create table "
-            + InstitutoContract.Alumno.TABLA + "(" + InstitutoContract.Alumno._ID
-            + " integer primary key autoincrement, " + InstitutoContract.Alumno.NOMBRE
-            + " text not null, " + InstitutoContract.Alumno.CURSO + " text not null, "
-            + InstitutoContract.Alumno.TELEFONO + " text not null, "
-            + InstitutoContract.Alumno.DIRECCION + " text, "
-            + InstitutoContract.Alumno.FOTO + " text);";
-    private static final String TBL_ALUMNO_DROP = "drop table if exists "
-            + InstitutoContract.Alumno.TABLA;
+    private static final String TBL_ALUMNO_CREATE =
+            "create table " + InstitutoContract.Alumno.TABLA + "(" + InstitutoContract.Alumno._ID
+                    + " integer primary key autoincrement, " + InstitutoContract.Alumno.NOMBRE
+                    + " text not null, " + InstitutoContract.Alumno.CURSO + " text not null, "
+                    + InstitutoContract.Alumno.TELEFONO + " text not null, "
+                    + InstitutoContract.Alumno.DIRECCION + " text, " + InstitutoContract.Alumno.FOTO
+                    + " text);";
+    private static final String TBL_ALUMNO_DROP =
+            "drop table if exists " + InstitutoContract.Alumno.TABLA;
     private final Context mContexto;
 
     public InstitutoHelper(Context ctx) {
@@ -43,7 +44,8 @@ public class InstitutoHelper extends SQLiteOpenHelper {
             if (!TextUtils.isEmpty(alumnosJson)) {
                 JSONArray array = new JSONArray(alumnosJson);
                 for (int i = 0; i < array.length(); i++) {
-                    db.insert(InstitutoContract.Alumno.TABLA, null, Alumno.toContentValues(new Alumno(array.getJSONObject(i))));
+                    db.insert(InstitutoContract.Alumno.TABLA, null,
+                            Alumno.toContentValues(new Alumno(array.getJSONObject(i))));
                 }
             }
         } catch (Exception e) {
@@ -59,6 +61,7 @@ public class InstitutoHelper extends SQLiteOpenHelper {
         db.execSQL(TBL_ALUMNO_CREATE);
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static String jsonFileFromRawFolderToString(int resId, Context context) {
         try {
             InputStream entrada = context.getResources().openRawResource(resId);

@@ -6,14 +6,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.util.ArrayList;
-
-import es.iessaladillo.pedrojoya.pr165.utils.DividerItemDecoration;
 
 public class MainActivity extends AppCompatActivity
         implements ProductosAdapter.OnItemClickListener, View.OnClickListener,

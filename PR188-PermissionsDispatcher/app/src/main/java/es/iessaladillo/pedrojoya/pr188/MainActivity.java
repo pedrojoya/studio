@@ -34,7 +34,7 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+            @NonNull int[] grantResults) {
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
                 grantResults);
     }
@@ -89,13 +89,11 @@ public class MainActivity extends AppCompatActivity {
 
     @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void mostrarDialogoInformativoPermiso(PermissionRequest request) {
-        new AlertDialog.Builder(this).setMessage(R.string.es_necesario)
-                .setTitle(R.string.permiso_requerido)
-                .setPositiveButton(android.R.string.ok,
-                        (dialogInterface, i) -> ActivityCompat.requestPermissions(MainActivity.this,
-                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                RP_ALMACEN_EXTERNO))
-                .show();
+        new AlertDialog.Builder(this).setMessage(R.string.es_necesario).setTitle(
+                R.string.permiso_requerido).setPositiveButton(android.R.string.ok,
+                (dialogInterface, i) -> ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        RP_ALMACEN_EXTERNO)).show();
     }
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)

@@ -6,8 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.android.tools.build:gradle:2.3.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,4 +17,18 @@ allprojects {
     repositories {
         jcenter()
     }
+}
+
+ext {
+    compileSdkVersion = 25
+    minSdkVersion = 14
+    buildToolsVersion = "25.0.2"
+    junit_version = "4.12"
+    espresso_version = "2.2.2"
+    support_library_version = "25.2.0"
+    circleimageview_version = "2.1.0"
+    butterknife_version = "8.5.1"
+    stetho_version = "1.4.2"
+    glide_version = "3.7.0"
+    sugar_version = "1.5"
 }

@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.orm.SugarRecord;
 
-public class Alumno extends SugarRecord<Alumno> implements Parcelable {
+public class Alumno extends SugarRecord implements Parcelable {
 
     private String avatar;
     private String nombre;

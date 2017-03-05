@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr195"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 16
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
@@ -24,9 +24,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
     compile "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit_version"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp_version"
     compile "com.google.code.gson:gson:$rootProject.ext.gson_version"
     compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
@@ -36,5 +38,4 @@ dependencies {
     releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
-    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofitrxjava2adapter_version"
 }

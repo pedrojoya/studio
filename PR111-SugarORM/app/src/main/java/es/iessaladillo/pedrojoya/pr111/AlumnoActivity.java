@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class AlumnoActivity extends AppCompatActivity {
 
     public static final String EXTRA_ALUMNO = "tarea";
@@ -117,8 +117,8 @@ public class AlumnoActivity extends AppCompatActivity {
 
     // Agrega el alumno a la base de datos.
     private void agregar() {
-        if (!TextUtils.isEmpty(txtNombre.getText().toString()) &&
-                !TextUtils.isEmpty(txtTelefono.getText().toString())) {
+        if (!TextUtils.isEmpty(txtNombre.getText().toString()) && !TextUtils.isEmpty(
+                txtTelefono.getText().toString())) {
             mAlumno = new Alumno();
             mAlumno.setAvatar(getRandomAvatarUrl());
             vistasToAlumno();
@@ -130,8 +130,8 @@ public class AlumnoActivity extends AppCompatActivity {
     }
 
     private void actualizar() {
-        if (!TextUtils.isEmpty(txtNombre.getText().toString()) &&
-                !TextUtils.isEmpty(txtTelefono.getText().toString())) {
+        if (!TextUtils.isEmpty(txtNombre.getText().toString()) && !TextUtils.isEmpty(
+                txtTelefono.getText().toString())) {
             vistasToAlumno();
             mAlumno.save();
             finish();
@@ -167,8 +167,7 @@ public class AlumnoActivity extends AppCompatActivity {
         txtNombre.setText(mAlumno.getNombre());
         txtTelefono.setText(mAlumno.getTelefono());
         txtDireccion.setText(mAlumno.getDireccion());
-        spnCurso.setSelection(adaptadorCursos.getPosition(mAlumno.getCurso()),
-                true);
+        spnCurso.setSelection(adaptadorCursos.getPosition(mAlumno.getCurso()), true);
     }
 
     // Carga los cursos en el spinner.
@@ -177,10 +176,9 @@ public class AlumnoActivity extends AppCompatActivity {
         // tanto para cuando no está desplegado como para cuando sí lo está. La
         // fuente de datos para el adaptador es un array de constantes de
         // cadena.
-        adaptadorCursos = ArrayAdapter.createFromResource(this,
-                R.array.cursos, android.R.layout.simple_spinner_item);
-        adaptadorCursos
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adaptadorCursos = ArrayAdapter.createFromResource(this, R.array.cursos,
+                android.R.layout.simple_spinner_item);
+        adaptadorCursos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnCurso.setAdapter(adaptadorCursos);
     }
 
@@ -194,11 +192,12 @@ public class AlumnoActivity extends AppCompatActivity {
 
     // Retorna una url aleatoria correspondiente a una imagen para el avatar.
     private String getRandomAvatarUrl() {
-        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String baseUrl = "http://lorempixel.com/100/100/";
         final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
-                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
-        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
-                (mAleatorio.nextInt(10) + 1) + "/";
+                                "night", "life", "fashion", "people", "nature", "sports",
+                                "technics", "transport"};
+        return baseUrl + tipos[mAleatorio.nextInt(tipos.length)] + "/" + (mAleatorio.nextInt(10)
+                + 1) + "/";
     }
 
 }

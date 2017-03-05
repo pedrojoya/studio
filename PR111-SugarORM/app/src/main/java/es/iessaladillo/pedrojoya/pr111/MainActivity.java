@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.lstAlumnos)
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
     // Carga en la lista los alumnos de la base de datos.
     private void cargarAlumnos() {
         // Si la tabla aún no está creada lanza una excepción.
-        List<Alumno> alumnos = null;
+        List<Alumno> alumnos;
         try {
             alumnos = Alumno.listAll(Alumno.class);
             mAdaptador.clear();

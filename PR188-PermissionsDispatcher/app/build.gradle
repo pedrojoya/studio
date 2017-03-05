@@ -2,23 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
-def sdk_version = 24
-def buildtools_version = "24.0.3"
-def application_id = "es.iessaladillo.pedrojoya.pr188"
-def minsdk_version = 14
-def support_library_version = "24.2.1"
-
-def butterknife_version = "8.4.0"
-def permissions_dispatcher_version = "2.1.3"
-
 android {
-    compileSdkVersion sdk_version
-    buildToolsVersion buildtools_version
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId application_id
-        minSdkVersion minsdk_version
-        targetSdkVersion sdk_version
+        applicationId "es.iessaladillo.pedrojoya.pr188"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -44,10 +35,18 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.android.support:design:${support_library_version}"
-    compile "com.jakewharton:butterknife:${butterknife_version}"
-    apt "com.jakewharton:butterknife-compiler:${butterknife_version}"
-    compile "com.github.hotchemi:permissionsdispatcher:${permissions_dispatcher_version}"
-    apt "com.github.hotchemi:permissionsdispatcher-processor:${permissions_dispatcher_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    // Usamos apt y no annotationProcessor porque permissionsdispatcher no está
+    // actualizado y aún usa apt, por lo que crea incompatibilidad con
+    // anotationProcessor. Así que usamos apt también con Butterknife.
+    apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
+    compile "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher_version"
+    apt "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
+
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

@@ -51,7 +51,7 @@ public class ProductoDialogFragment extends DialogFragment {
             // Se notifica el evento al listener.
             mListener.onAgregarClick(producto);
         });
-        b.setNeutralButton(R.string.cancelar, (dialog, which) -> {
+        b.setNegativeButton(R.string.cancelar, (dialog, which) -> {
             // Se notifica el evento al listener.
             mListener.onCancelarClick();
         });

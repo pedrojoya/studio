@@ -19,11 +19,11 @@ import es.iessaladillo.pedrojoya.pr118.R;
 import es.iessaladillo.pedrojoya.pr118.datos.BusquedaProvider;
 
 
+@SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private SearchView svBuscar;
-    private MenuItem mnuLimpiar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,39 +42,17 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         // Se obtiene y configura el SearchView en base al archivo XML de configuración.
         svBuscar = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.mnuBuscar));
+        svBuscar.setIconifiedByDefault(true);
+        svBuscar.setSubmitButtonEnabled(false);
         SearchManager gestorBusquedas = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         svBuscar.setSearchableInfo(gestorBusquedas.getSearchableInfo(
                 new ComponentName(this, BusquedaActivity.class)));
-        // Se crea y establece el Listener para cuando se expande o contrae el searchview.
-        mnuLimpiar = menu.findItem(R.id.mnuLimpiar);
-        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.mnuBuscar),
-                new MenuItemCompat.OnActionExpandListener() {
-                    // Cuando se expande.
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                        mnuLimpiar.setVisible(false);
-                        //mToolbar.setNavigationIcon(R.drawable.ic_back);
-                        return true;
-                    }
-                    // Cuando se colapsa.
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                        //mToolbar.setNavigationIcon(R.drawable.ic_burger);
-                        mnuLimpiar.setVisible(true);
-                        return true;
-                    }
-                });
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // Se colapsa el searchview.
-            //svBuscar.onActionViewCollapsed();
-            return true;
-        }
         if (id == R.id.mnuLimpiar) {
             limpiarHistorialBusqueda();
             return true;
@@ -105,4 +83,5 @@ public class MainActivity extends AppCompatActivity {
             // Ignorar
         }
     }
+
 }

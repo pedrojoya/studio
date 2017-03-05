@@ -11,13 +11,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 // El problema de esta implementación es que si se produce una nueva llamada, el loader no
 // es notificado, ya que está subscripto sólo a los últimos registros obtenidos, y la nueva
 // llamada sería la primera.
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity implements LoaderManager
+        .LoaderCallbacks<Cursor> {
 
     private static final int LIMIT = 10;
     private static final int DATOS_LOADER = 0;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final String ARG_OFFSET = "offset";
     private static final String ARG_MAS = "mas";
 
-    @InjectView(R.id.lstLlamadas)
+    @BindView(R.id.lstLlamadas)
     ListView mLstLlamadas;
 
     private int mOffset;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initVistas();
         mLoaderManager = getSupportLoaderManager();
         mLoaderManager.initLoader(DATOS_LOADER, null, this);
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Se crea el cargador, que realiza una consulta al content provider.
         // Recibe: contexto, uri del content provider, array de nombres de campos
         // a seleccionar, condición where, parámetros del where y orden.
-        String[] campos = {CallLog.Calls._ID, CallLog.Calls.NUMBER, CallLog.Calls.CACHED_NAME, CallLog.Calls.TYPE, CallLog.Calls.DATE, CallLog.Calls.DURATION};
+        String[] campos = {CallLog.Calls._ID, CallLog.Calls.NUMBER, CallLog.Calls.CACHED_NAME,
+                           CallLog.Calls.TYPE, CallLog.Calls.DATE, CallLog.Calls.DURATION};
         String orden = CallLog.Calls.DATE + " DESC LIMIT " + offset + "," + LIMIT;
         return new CursorLoader(this, CallLog.Calls.CONTENT_URI, campos, null, null, orden);
     }

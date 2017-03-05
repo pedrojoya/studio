@@ -51,9 +51,8 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
         mSlop = vc.getScaledTouchSlop();
         mMinFlingVelocity = vc.getScaledMinimumFlingVelocity() * 4;
         mMaxFlingVelocity = vc.getScaledMaximumFlingVelocity();
-        mAnimationTime = recyclerView.getContext()
-                .getResources()
-                .getInteger(android.R.integer.config_shortAnimTime);
+        mAnimationTime = recyclerView.getContext().getResources().getInteger(
+                android.R.integer.config_shortAnimTime);
         mRecyclerView = recyclerView;
         mCallbacks = callbacks;
     }
@@ -170,8 +169,8 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
             // dismiss
             final int pos = mRecyclerView.getChildAdapterPosition(mSwipeView);
             final View swipeViewCopy = mSwipeView;
-            final SwipeDirection swipeDirection = dismissRight ? SwipeDirection.RIGHT :
-                                                  SwipeDirection.LEFT;
+            final SwipeDirection swipeDirection = dismissRight ? SwipeDirection.RIGHT
+                                                               : SwipeDirection.LEFT;
             ++mDismissCount;
             mSwipeView.animate()
                     .translationX(dismissRight ? mViewWidth : -mViewWidth)
@@ -188,11 +187,8 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
 
         } else if (mSwiping) {
             // cancel
-            mSwipeView.animate()
-                    .translationX(0)
-                    .alpha(1)
-                    .setDuration(mAnimationTime)
-                    .setListener(null);
+            mSwipeView.animate().translationX(0).alpha(1).setDuration(mAnimationTime).setListener(
+                    null);
         }
 
 

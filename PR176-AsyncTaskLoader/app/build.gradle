@@ -1,19 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
-
-def support_library_version = "24.2.1"
-def picasso_version = "2.5.2"
-def circleimageview_version = "2.1.0"
-
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "pedrojoya.iessaladillo.es.pr176"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -32,9 +27,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.android.support:design:${support_library_version}"
-    compile "com.android.support:recyclerview-v7:${support_library_version}"
-    compile "com.squareup.picasso:picasso:${picasso_version}"
-    compile "de.hdodenhof:circleimageview:${circleimageview_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

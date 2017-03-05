@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
-        AlumnosAdapter.OnItemLongClickListener {
+public class MainActivity extends AppCompatActivity implements AlumnosAdapter
+        .OnItemClickListener, AlumnosAdapter.OnItemLongClickListener {
 
     private static final String STATE_LISTA = "estadoLista";
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
             fabAccion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    agregarAlumno(DB.getNextAlumno());
+                    agregarAlumno(DB.getInstance().getNextAlumno());
                 }
             });
         }
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        mAdaptador = new AlumnosAdapter(DB.getAlumnos());
+        mAdaptador = new AlumnosAdapter(DB.getInstance().getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
         mAdaptador.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
@@ -85,8 +85,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
             lstAlumnos.setHasFixedSize(true);
             lstAlumnos.setAdapter(mAdaptador);
             checkAdapterIsEmpty();
-            mLayoutManager = new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false);
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             lstAlumnos.setLayoutManager(mLayoutManager);
             lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         }

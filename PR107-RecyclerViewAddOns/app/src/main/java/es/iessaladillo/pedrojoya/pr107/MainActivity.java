@@ -18,9 +18,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements
-        AlumnosAdapter.OnItemClickListener, AlumnosAdapter.OnItemLongClickListener,
-        ActionMode.Callback {
+public class MainActivity extends AppCompatActivity implements AlumnosAdapter
+        .OnItemClickListener, AlumnosAdapter.OnItemLongClickListener, ActionMode.Callback {
 
     private static final String STATE_LISTA = "estadoLista";
 
@@ -64,14 +63,14 @@ public class MainActivity extends AppCompatActivity implements
         fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                agregarAlumno(DB.getNextAlumno());
+                agregarAlumno(DB.getInstance().getNextAlumno());
             }
         });
     }
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        mAdaptador = new AlumnosAdapter(DB.getAlumnos());
+        mAdaptador = new AlumnosAdapter(DB.getInstance().getAlumnos());
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
         mObservador = new RecyclerView.AdapterDataObserver() {
@@ -95,21 +94,19 @@ public class MainActivity extends AppCompatActivity implements
             lstAlumnos.setAdapter(mAdaptador);
             // Se realiza la comprobación inicial.
             checkAdapterIsEmpty();
-            mLayoutManager = new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false);
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             lstAlumnos.setLayoutManager(mLayoutManager);
-            lstAlumnos.addItemDecoration(new DividerItemDecoration(this,
-                    LinearLayoutManager.VERTICAL));
+            lstAlumnos.addItemDecoration(
+                    new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
             lstAlumnos.setItemAnimator(new DefaultItemAnimator());
             // Drag & drop y Swipe to dismiss.
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                    new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
-                            ItemTouchHelper.DOWN,
+                    new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                             ItemTouchHelper.RIGHT) {
                         @Override
                         public boolean onMove(RecyclerView recyclerView,
-                                              RecyclerView.ViewHolder viewHolder,
-                                              RecyclerView.ViewHolder target) {
+                                RecyclerView.ViewHolder viewHolder,
+                                RecyclerView.ViewHolder target) {
                             final int fromPos = viewHolder.getAdapterPosition();
                             final int toPos = target.getAdapterPosition();
                             mAdaptador.swapItems(fromPos, toPos);
@@ -127,7 +124,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void checkAdapterIsEmpty() {
-        lblNoHayAlumnos.setVisibility(mAdaptador.getItemCount()==0 ? View.VISIBLE : View.INVISIBLE);
+        lblNoHayAlumnos.setVisibility(
+                mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     // Muestra las vistas flotantes.
@@ -137,17 +135,15 @@ public class MainActivity extends AppCompatActivity implements
 
     // Oculta las vistas flotantes.
     private void hideFloatingViews() {
-        ViewCompat.animate(fabAccion).translationY(fabAccion
-                .getHeight() + getResources()
-                .getDimensionPixelOffset(R.dimen.fab_margin));
+        ViewCompat.animate(fabAccion).translationY(
+                fabAccion.getHeight() + getResources().getDimensionPixelOffset(R.dimen.fab_margin));
     }
 
     // Al crear el modo de acción contextual.
     @Override
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
         mActionMode = actionMode;
-        actionMode.getMenuInflater().inflate(R.menu.activity_main_contextual,
-                menu);
+        actionMode.getMenuInflater().inflate(R.menu.activity_main_contextual, menu);
         // Se ocultan las vistas flotantes.
         hideFloatingViews();
         return true;
@@ -205,8 +201,7 @@ public class MainActivity extends AppCompatActivity implements
         // Se cambia el estado de selección
         mAdaptador.toggleSelection(position);
         // Se actualiza el texto del action mode contextual.
-        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " +
-                mAdaptador.getItemCount());
+        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " + mAdaptador.getItemCount());
         // Si ya no hay ningún elemento seleccionado se finaliza el modo de
         // acción contextual
         if (mAdaptador.getSelectedItemCount() == 0) {

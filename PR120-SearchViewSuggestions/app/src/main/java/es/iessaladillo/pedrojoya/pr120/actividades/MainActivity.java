@@ -18,7 +18,6 @@ import es.iessaladillo.pedrojoya.pr120.datos.InstitutoHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
     private SearchView svBuscar;
 
     @Override
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // La toolbar actuará como action bar.
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_burger);
         setSupportActionBar(mToolbar);
         // Se inicializa la base de datos (para que se carguen los datos iniciales).
@@ -47,26 +46,8 @@ public class MainActivity extends AppCompatActivity {
         // Se obtiene y configura el SearchView en base al archivo XML de configuración.
         svBuscar = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.mnuBuscar));
         SearchManager gestorBusquedas = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        svBuscar.setSearchableInfo(gestorBusquedas.getSearchableInfo(
-                new ComponentName(this, BusquedaActivity.class)));
-        // Se crea y establece el Listener para cuando se expande o contrae el searchview.
-/*
-        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.mnuBuscar),
-                new MenuItemCompat.OnActionExpandListener() {
-                    // Cuando se expande.
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                        mToolbar.setNavigationIcon(R.drawable.ic_back);
-                        return true;
-                    }
-                    // Cuando se colapsa.
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                        mToolbar.setNavigationIcon(R.drawable.ic_burger);
-                        return true;
-                    }
-                });
-*/
+        svBuscar.setSearchableInfo(
+                gestorBusquedas.getSearchableInfo(new ComponentName(this, BusquedaActivity.class)));
         return true;
     }
 
@@ -78,11 +59,8 @@ public class MainActivity extends AppCompatActivity {
             svBuscar.onActionViewCollapsed();
             return true;
         }
-        if (id == R.id.mnuBuscar) {
-            // Se consume el evento mostrando el actionview correspondiente al SearchView.
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        // Se consume el evento mostrando el actionview correspondiente al SearchView.
+        return id == R.id.mnuBuscar || super.onOptionsItemSelected(item);
     }
 
 }

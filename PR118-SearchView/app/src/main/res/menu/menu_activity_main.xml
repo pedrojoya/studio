@@ -5,13 +5,11 @@
     <item
         android:id="@+id/mnuBuscar"
         android:title="@string/buscar"
-        android:orderInCategory="100"
-        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:icon="@drawable/ic_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/mnuLimpiar"
         android:title="@string/limpiar_historial_busqueda"
-        android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>
