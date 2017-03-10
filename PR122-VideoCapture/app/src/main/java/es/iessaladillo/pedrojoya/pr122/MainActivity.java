@@ -348,11 +348,11 @@ public class MainActivity extends AppCompatActivity implements
 
     // Carga en el reproductor el vídeo con el path recibido.
     private void cargarVideo(final String path) {
-        /** Para crear un bitmap de un vídeo.
+        /* Para crear un bitmap de un vídeo.
             Bitmap thumb = ThumbnailUtils.createVideoThumbnail(path,
                     MediaStore.Images.Thumbnails.MINI_KIND);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(thumb);
-         **/
+         */
         // Se obtienen los metadatos del vídeo.
         new GetMetadataTask().execute();
         mReproductor.setVideoPath(path);

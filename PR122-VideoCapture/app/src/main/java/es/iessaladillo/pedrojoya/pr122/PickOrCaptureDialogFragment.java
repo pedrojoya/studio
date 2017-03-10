@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr122;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,7 +41,7 @@ public class PickOrCaptureDialogFragment extends DialogFragment {
 
     // Cuando se enlaza el fragmento con la actividad.
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         // Establece la actividad como listener de los eventos del diálogo.
         try {

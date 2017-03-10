@@ -12,10 +12,11 @@ import android.widget.Spinner;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         intiVistas();
         // Se obtiene la interfaz de acceso a la api.
-        mApiClient = APIClient.getApiInterface();
+        mApiClient = APIClient.getApiInterface(this);
         // Se selecciona la primera población.
         mSpnToolbar.setSelection(0);
 
@@ -66,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Configura el gráfico.
     private void configChart() {
-        //mChart.setUsePercentValues(true);
-        mChart.setDescription("Concejales");
+        Description description = new Description();
+        description.setText("Concejales");
+        mChart.setDescription(description);
         //mChart.setDescriptionPosition(0, 0);
         //mChart.setDrawSliceText(true);
         mChart.setNoDataText(getString(R.string.grafico_sin_datos));
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Establece los datos del gráfico en base al escrutinio y se redibuja.
     private void setChartData(Escrutinio_sitio escrutinio) {
-        ArrayList<Entry> valores = new ArrayList<>();
+        ArrayList<PieEntry> valores = new ArrayList<>();
         ArrayList<String> nombres = new ArrayList<>();
         ArrayList<Integer> colores = new ArrayList<>();
         // Cada entrada debe tener un identificador único (en este caso i)
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 int color = getColorPartido(escrutinio.getResultados()
                         .getPartidos().get(i).getId_partido());
                 colores.add(color);
-                valores.add(new Entry(electos, i));
+                valores.add(new PieEntry(electos, i));
                 nombres.add(
                         escrutinio.getResultados().getPartidos().get(i).getNombre());
             }
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
          */
         // Se crea y asigna el Data del gráfico a partir del DataSet y el
         // ArrayList de nombres.
-        PieData data = new PieData(nombres, dataSet);
+        PieData data = new PieData(dataSet);
         data.setValueFormatter(new LargeValueFormatter()); // Format. valores
         data.setValueTextSize(14f);
         data.setValueTextColor(Color.WHITE);

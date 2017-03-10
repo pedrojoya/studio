@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class MainActivity extends AppCompatActivity {
 
     private static final String URL_FOTO = "http://lorempixel.com/400/200/abstract/";

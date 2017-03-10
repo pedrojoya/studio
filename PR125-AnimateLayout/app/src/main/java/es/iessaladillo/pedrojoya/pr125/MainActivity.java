@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
         // Cuando desparece un elemento, el resto de elementos del contenedor se animan
         // desplazándose toda su altura hacia arriba y a la vez encogiéndose a la mitad de su
         // ancho y alto para después volver a su tamaño habitual.
-        PropertyValuesHolder pvhSlide = PropertyValuesHolder.ofFloat("y", 0, 1);
-        PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat("scaleY", 1f, 0.5f, 1f);
-        PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofFloat("scaleX", 1f, 0.5f, 1f);
+        PropertyValuesHolder pvhSlide = PropertyValuesHolder.ofFloat(View.Y, 0, 1);
+        PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f, 0.5f, 1f);
+        PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 1f, 0.5f, 1f);
         Animator changingAppearingAnim = ObjectAnimator.ofPropertyValuesHolder(
                 this, pvhSlide, pvhScaleY, pvhScaleX)
                 .setDuration(mTransicion.getDuration(LayoutTransition.CHANGE_DISAPPEARING));

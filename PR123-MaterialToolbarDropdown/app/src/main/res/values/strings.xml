@@ -10,7 +10,7 @@
     <string name="verdoso">Verdoso</string>
     <string name="art">Bench, by Simon Funk</string>
     <string name="me_gusta">Me gusta</string>
-    <string name="gusta">%1$s</string>
+    <string name="gusta">%1$d</string>
     <string-array name="opciones">
         <item >Fotografía</item>
         <item >Información</item>
