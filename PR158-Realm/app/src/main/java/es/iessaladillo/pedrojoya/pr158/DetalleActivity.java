@@ -45,7 +45,7 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class DetalleActivity extends AppCompatActivity implements ClickToMultipleSelectEditText.OnMultipleItemsSelectedListener {
 
     private static final String EXTRA_ID_ALUMNO = "idAlumno";
