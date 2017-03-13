@@ -19,6 +19,7 @@ public class Grupo extends ListItem implements Parcelable {
         return nombre;
     }
 
+    @SuppressWarnings("unused")
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -47,7 +48,7 @@ public class Grupo extends ListItem implements Parcelable {
         dest.writeTypedList(mHiddenChildren);
     }
 
-    protected Grupo(Parcel in) {
+    private Grupo(Parcel in) {
         this.nombre = in.readString();
         this.mHiddenChildren = in.createTypedArrayList(Alumno.CREATOR);
     }

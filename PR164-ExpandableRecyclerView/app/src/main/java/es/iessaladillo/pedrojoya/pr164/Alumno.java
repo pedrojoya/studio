@@ -25,6 +25,7 @@ class Alumno extends ListItem implements Parcelable {
         return nombre;
     }
 
+    @SuppressWarnings("unused")
     public int getEdad() {
         return edad;
     }
@@ -55,7 +56,7 @@ class Alumno extends ListItem implements Parcelable {
         dest.writeString(this.curso);
     }
 
-    protected Alumno(Parcel in) {
+    private Alumno(Parcel in) {
         this.nombre = in.readString();
         this.edad = in.readInt();
         this.ciclo = in.readString();

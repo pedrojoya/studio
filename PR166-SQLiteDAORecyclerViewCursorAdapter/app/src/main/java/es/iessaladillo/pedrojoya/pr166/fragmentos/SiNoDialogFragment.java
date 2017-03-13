@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr166.fragmentos;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
@@ -48,15 +48,15 @@ public class SiNoDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         // Establece la actividad como listener de los eventos del diálogo.
         try {
             listener = (SiNoDialogListener) activity;
         } catch (ClassCastException e) {
             // La actividad no implementa la interfaz, se lanza excepción.
-            throw new ClassCastException(activity.toString()
-                    + " debe implementar SiNoDialogListener");
+            throw new ClassCastException(
+                    activity.toString() + " debe implementar SiNoDialogListener");
         }
     }
 

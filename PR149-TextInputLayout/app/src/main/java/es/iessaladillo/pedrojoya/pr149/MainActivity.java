@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void afterTextChanged(Editable editable) {
                     if (!TextUtils.isEmpty(txtEmail.getText().toString())) {
-                        if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString()).matches()) {
+                        if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText().toString())
+                                .matches()) {
                             tilEmail.setError("Debe tener el formato usuario@dominio.tipo");
                         } else {
                             tilEmail.setErrorEnabled(false);
@@ -92,10 +93,13 @@ public class MainActivity extends AppCompatActivity {
     // Retorna si la cadena recibida es un número de teléfono válido.
     @SuppressWarnings({"RedundantIfStatement", "BooleanMethodIsAlwaysInverted"})
     private boolean isValidPhoneNumber(String cadena) {
-        if (cadena.length() > 0 && cadena.length() < 9) return false;
-        if (!cadena.startsWith("6") && !cadena.startsWith("7") &&
-                !cadena.startsWith("8") && !cadena.startsWith("9"))
+        if (cadena.length() > 0 && cadena.length() < 9) {
             return false;
+        }
+        if (!cadena.startsWith("6") && !cadena.startsWith("7") && !cadena.startsWith("8") && !cadena
+                .startsWith("9")) {
+            return false;
+        }
         return true;
     }
 

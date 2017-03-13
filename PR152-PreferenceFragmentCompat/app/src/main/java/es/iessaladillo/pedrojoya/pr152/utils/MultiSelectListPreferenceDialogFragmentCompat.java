@@ -37,7 +37,8 @@ public class MultiSelectListPreferenceDialogFragmentCompat extends PreferenceDia
     }
 
     public static MultiSelectListPreferenceDialogFragmentCompat newInstance(String key) {
-        MultiSelectListPreferenceDialogFragmentCompat fragment = new MultiSelectListPreferenceDialogFragmentCompat();
+        MultiSelectListPreferenceDialogFragmentCompat fragment = new
+                MultiSelectListPreferenceDialogFragmentCompat();
         Bundle b = new Bundle(1);
         b.putString("key", key);
         fragment.setArguments(b);
@@ -53,26 +54,30 @@ public class MultiSelectListPreferenceDialogFragmentCompat extends PreferenceDia
         final MultiSelectListPreference preference = getListPreference();
         if (preference.getEntries() != null && preference.getEntryValues() != null) {
             boolean[] checkedItems = getSelectedItems();
-            builder.setMultiChoiceItems(preference.getEntries(), checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                    mPreferenceChanged = true;
-                    if (isChecked) {
-                        mNewValues.add(preference.getEntryValues()[which].toString());
-                    } else {
-                        mNewValues.remove(preference.getEntryValues()[which].toString());
-                    }
-                }
-            });
+            builder.setMultiChoiceItems(preference.getEntries(), checkedItems,
+                    new DialogInterface.OnMultiChoiceClickListener() {
+                        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                            mPreferenceChanged = true;
+                            if (isChecked) {
+                                mNewValues.add(preference.getEntryValues()[which].toString());
+                            } else {
+                                mNewValues.remove(preference.getEntryValues()[which].toString());
+                            }
+                        }
+                    });
             mNewValues.clear();
             mNewValues.addAll(preference.getValues());
         } else {
-            throw new IllegalStateException("MultiSelectListPreference requires an entries array and an entryValues array.");
+            throw new IllegalStateException(
+                    "MultiSelectListPreference requires an entries array and an entryValues array"
+                            + ".");
         }
     }
 
     /**
      * If the user tapped on "ok", we update our Preference's selected values, based on the values
      * our alert dialog listener saved.
+     *
      * @param positiveResult true if the user tapped on "ok".
      */
     public void onDialogClosed(boolean positiveResult) {

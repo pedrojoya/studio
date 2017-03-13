@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         if (tabLayout != null) {
             tabLayout.setupWithViewPager(viewPager);
-            /**** Para mostrar iconos en las tabs.
+            /* Para mostrar iconos en las tabs.
              for (int i = 0; i < tabLayout.getTabCount(); i++) {
              tabLayout.getTabAt(i).setIcon(viewPagerAdapter.getPageIcon(i));
              }
-             ****/
+             */
         }
     }
 

@@ -46,7 +46,8 @@ public class BindableString extends BaseObservable implements Parcelable {
         this.mValue = in.readString();
     }
 
-    public static final Parcelable.Creator<BindableString> CREATOR = new Parcelable.Creator<BindableString>() {
+    public static final Parcelable.Creator<BindableString> CREATOR = new Parcelable
+            .Creator<BindableString>() {
         public BindableString createFromParcel(Parcel source) {
             return new BindableString(source);
         }
@@ -55,4 +56,5 @@ public class BindableString extends BaseObservable implements Parcelable {
             return new BindableString[size];
         }
     };
+
 }

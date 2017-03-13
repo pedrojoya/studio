@@ -14,7 +14,8 @@ public class PasswordPreferenceDialogFragmentCompat extends EditTextPreferenceDi
     }
 
     public static PasswordPreferenceDialogFragmentCompat newInstance(String key) {
-        PasswordPreferenceDialogFragmentCompat fragment = new PasswordPreferenceDialogFragmentCompat();
+        PasswordPreferenceDialogFragmentCompat fragment = new
+                PasswordPreferenceDialogFragmentCompat();
         Bundle b = new Bundle(1);
         b.putString("key", key);
         fragment.setArguments(b);

@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ModelContainer;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
@@ -13,7 +12,6 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import java.util.List;
 
-@ModelContainer
 @Table(database = Instituto.class)
 public class Curso extends BaseModel implements Parcelable {
 
@@ -30,7 +28,7 @@ public class Curso extends BaseModel implements Parcelable {
         if (alumnos == null || alumnos.isEmpty()) {
             alumnos = SQLite.select()
                     .from(Alumno.class)
-                    .where(Alumno_Table.cursoForeignKeyContainer_id.eq(id))
+                    .where(Alumno_Table.curso_id.eq(id))
                     .queryList();
         }
         return alumnos;

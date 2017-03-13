@@ -66,8 +66,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación XML para obtener la vista-fila.
-        final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_lista_alumnos_item, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.fragment_lista_alumnos_item, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -112,21 +112,17 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // Se obtiene el alumno correspondiente y se escriben sus datos.
         if (mDatos != null) {
             mDatos.moveToPosition(position);
-            String nombre = mDatos.getString(
-                    mDatos.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE));
+            String nombre = mDatos.getString(mDatos.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE));
             holder.lblNombre.setText(nombre);
-            holder.lblCurso.setText(mDatos.getString(
-                    mDatos.getColumnIndexOrThrow(Instituto.Alumno.CURSO)));
-            holder.lblDireccion.setText(mDatos.getString(
-                    mDatos.getColumnIndexOrThrow(Instituto.Alumno.DIRECCION)));
+            holder.lblCurso.setText(
+                    mDatos.getString(mDatos.getColumnIndexOrThrow(Instituto.Alumno.CURSO)));
+            holder.lblDireccion.setText(
+                    mDatos.getString(mDatos.getColumnIndexOrThrow(Instituto.Alumno.DIRECCION)));
             holder.itemView.setActivated(mSelectedItems.get(position, false));
             holder.imgAvatar.setImageDrawable(mDrawableBuilder.build(
-                    holder.itemView.isActivated() ?
-                            "\u2713" :
-                            nombre.substring(0, 1),
-                    holder.itemView.isActivated() ?
-                            Color.GRAY :
-                            ColorGenerator.MATERIAL.getColor(nombre)));
+                    holder.itemView.isActivated() ? "\u2713" : nombre.substring(0, 1),
+                    holder.itemView.isActivated() ? Color.GRAY : ColorGenerator.MATERIAL.getColor(
+                            nombre)));
 
         }
     }
@@ -204,8 +200,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     // Establece el listener a informar cuando la lista pasa a o deja de
     // estar vacía.
-    public void setOnEmptyStateChangedListener(
-            OnEmptyStateChangedListener listener) {
+    public void setOnEmptyStateChangedListener(OnEmptyStateChangedListener listener) {
         mOnEmptyStateChangedListener = listener;
         checkEmptyStateChanged();
     }
@@ -268,12 +263,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             imgAvatar = (ImageView) itemView.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView
-                    .findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView
-                    .findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) itemView
-                    .findViewById(R.id.lblDireccion);
+            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
+            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
+            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
         }
 
     }

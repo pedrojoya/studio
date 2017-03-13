@@ -33,20 +33,19 @@ public class MainActivity extends AppCompatActivity {
     private void initVistas() {
         Spinner spnAnimacion = (Spinner) findViewById(R.id.spnAnimacion);
         if (spnAnimacion != null) {
-            spnAnimacion.setOnItemSelectedListener(
-                    new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view,
-                                                   int position, long id) {
-                            // Se realiza la animación seleccionada.
-                            animar(position);
-                        }
+            spnAnimacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position,
+                        long id) {
+                    // Se realiza la animación seleccionada.
+                    animar(position);
+                }
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
-                        }
-                    });
+                }
+            });
         }
         imgImagen = (ImageView) findViewById(R.id.imgImagen);
     }
@@ -79,115 +78,99 @@ public class MainActivity extends AppCompatActivity {
                 doSet();
                 break;
         }
-   }
+    }
 
     private void doScale() {
-        imgImagen.animate()
-                .scaleX(1.5f).scaleY(1.5f).setDuration(1000)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgImagen.animate().scaleX(1.0f).scaleY(1.0f)
-                                .setDuration(1000)
-                                .setInterpolator(
-                                        new AccelerateDecelerateInterpolator());
+        imgImagen.animate().scaleX(1.5f).scaleY(1.5f).setDuration(1000).setInterpolator(
+                new AccelerateDecelerateInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imgImagen.animate().scaleX(1.0f).scaleY(1.0f).setDuration(1000).setInterpolator(
+                        new AccelerateDecelerateInterpolator());
 
-                    }
-                });
+            }
+        });
     }
 
     private void doTranslate() {
-        imgImagen.animate()
-                .translationX(200).setDuration(1000)
-                .setInterpolator(new OvershootInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgImagen.animate().translationX(0).setDuration(1000)
-                                .setInterpolator(new OvershootInterpolator());
-                    }
-                });
+        imgImagen.animate().translationX(200).setDuration(1000).setInterpolator(
+                new OvershootInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imgImagen.animate().translationX(0).setDuration(1000).setInterpolator(
+                        new OvershootInterpolator());
+            }
+        });
     }
 
     private void doTranslateY() {
-        imgImagen.animate()
-                .translationY(200).setDuration(1000)
-                .setInterpolator(new OvershootInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgImagen.animate().translationY(0).setDuration(1000)
-                                .setInterpolator(new OvershootInterpolator());
-                    }
-                });
+        imgImagen.animate().translationY(200).setDuration(1000).setInterpolator(
+                new OvershootInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imgImagen.animate().translationY(0).setDuration(1000).setInterpolator(
+                        new OvershootInterpolator());
+            }
+        });
     }
 
     private void doRotate() {
-        imgImagen.animate()
-                .rotation(360).setDuration(1000)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgImagen.animate().rotation(0).setDuration(1000)
-                                .setInterpolator(new AccelerateDecelerateInterpolator());
-                    }
-                });
+        imgImagen.animate().rotation(360).setDuration(1000).setInterpolator(
+                new AccelerateDecelerateInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imgImagen.animate().rotation(0).setDuration(1000).setInterpolator(
+                        new AccelerateDecelerateInterpolator());
+            }
+        });
     }
 
     private void doRotateX() {
-        imgImagen.animate()
-                .rotationX(360).setDuration(1000)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgImagen.animate().rotationX(0).setDuration(1000)
-                                .setInterpolator(new AccelerateDecelerateInterpolator());
-                    }
-                });
+        imgImagen.animate().rotationX(360).setDuration(1000).setInterpolator(
+                new AccelerateDecelerateInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imgImagen.animate().rotationX(0).setDuration(1000).setInterpolator(
+                        new AccelerateDecelerateInterpolator());
+            }
+        });
     }
 
     private void doRotateY() {
-        imgImagen.animate()
-                .rotationY(360).setDuration(1000)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgImagen.animate().rotationY(0).setDuration(1000)
-                                .setInterpolator(new AccelerateDecelerateInterpolator());
-                    }
-                });
+        imgImagen.animate().rotationY(360).setDuration(1000).setInterpolator(
+                new AccelerateDecelerateInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imgImagen.animate().rotationY(0).setDuration(1000).setInterpolator(
+                        new AccelerateDecelerateInterpolator());
+            }
+        });
     }
 
     private void doAlpha() {
-        imgImagen.animate()
-                .alpha(0.0f).setDuration(1000)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgImagen.animate().alpha(1.0f).setDuration(1000)
-                                .setInterpolator(new AccelerateDecelerateInterpolator());
-                    }
-                });
+        imgImagen.animate().alpha(0.0f).setDuration(1000).setInterpolator(
+                new AccelerateDecelerateInterpolator()).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imgImagen.animate().alpha(1.0f).setDuration(1000).setInterpolator(
+                        new AccelerateDecelerateInterpolator());
+            }
+        });
     }
 
     private void doSet() {
-        imgImagen.animate()
-                .scaleX(1.5f).scaleY(1.5f).rotation(360).translationY(-200)
-                .setDuration(1000)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(new Runnable() {
+        imgImagen.animate().scaleX(1.5f).scaleY(1.5f).rotation(360).translationY(-200).setDuration(
+                1000).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(
+                new Runnable() {
                     @Override
                     public void run() {
-                        imgImagen.animate().scaleX(1.0f).scaleY(1.0f)
-                                .rotation(0).translationY(0)
+                        imgImagen.animate()
+                                .scaleX(1.0f)
+                                .scaleY(1.0f)
+                                .rotation(0)
+                                .translationY(0)
                                 .setDuration(1000)
-                                .setInterpolator(
-                                        new AccelerateDecelerateInterpolator());
+                                .setInterpolator(new AccelerateDecelerateInterpolator());
 
                     }
                 });

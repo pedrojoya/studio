@@ -30,20 +30,5 @@
     <string name="no">No</string>
     <string name="web_oficial">Web oficial</string>
     <string name="turnos">Turnos</string>
-    <string name="turnos_detalle">Turnos de actualización</string>
     <string name="rendimiento">Rendimiento</string>
-    <string-array name="turnos_entries">
-        <item>Mañana</item>
-        <item>Tarde</item>
-        <item>Noche</item>
-    </string-array>
-    <string-array name="turnos_values">
-        <item>mañana</item>
-        <item>tarde</item>
-        <item>noche</item>
-    </string-array>
-    <string-array name="turnos_default">
-        <item>mañana</item>
-        <item>tarde</item>
-    </string-array>
 </resources>

@@ -87,7 +87,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:enabled="@{viewModel.valido}"
             android:onClick="@{presenter::btnSaludarOnClick}"
-            android:onLongClick="@{(v)->presenter.btnSaludarOnLongClick(v, viewModel)}"/>
+            app:onLongClick="@{(v)->presenter.btnSaludarOnLongClick(v, viewModel)}"/>
 
     </LinearLayout>
 

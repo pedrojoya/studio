@@ -14,7 +14,8 @@ import es.iessaladillo.pedrojoya.pr153.databinding.ActivityMainBinding;
 import es.iessaladillo.pedrojoya.pr153.dbutils.RecyclerBindingAdapter;
 
 
-public class MainActivity extends AppCompatActivity implements RecyclerBindingAdapter.OnItemClickListener<Alumno>, RecyclerBindingAdapter.OnItemLongClickListener<Alumno> {
+public class MainActivity extends AppCompatActivity implements RecyclerBindingAdapter
+        .OnItemClickListener<Alumno>, RecyclerBindingAdapter.OnItemLongClickListener<Alumno> {
 
     private static final String STATE_LISTA = "estadoLista";
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerBindingAd
         binding.fabAccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                agregarAlumno(DB.getNextAlumno());
+                agregarAlumno(DB.getInstance().getNextAlumno());
             }
         });
     }
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerBindingAd
     private void configRecyclerView() {
         binding.lstAlumnos.setHasFixedSize(true);
         //mAdaptador = new AlumnosAdapter(DB.getAlumnos());
-        mAdaptador = new RecyclerBindingAdapter<>(DB.getAlumnos(), es.iessaladillo.pedrojoya.pr153.BR.alumno);
+        mAdaptador = new RecyclerBindingAdapter<>(DB.getInstance().getAlumnos(), BR.item);
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
         //mAdaptador.setEmptyView(binding.lblNoHayAlumnos);
@@ -82,15 +83,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerBindingAd
         };
         mAdaptador.registerAdapterDataObserver(mObservador);
         binding.lstAlumnos.setAdapter(mAdaptador);
-        mLayoutManager = new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         binding.lstAlumnos.setLayoutManager(mLayoutManager);
         binding.lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         checkAdapterIsEmpty();
     }
 
     private void checkAdapterIsEmpty() {
-        binding.lblNoHayAlumnos.setVisibility(mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+        binding.lblNoHayAlumnos.setVisibility(
+                mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     // Agrega un alumno a la lista.

@@ -69,8 +69,7 @@ public class DAO {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se realiza el delete.
-        long resultado = bd.delete(Instituto.Alumno.TABLA, Instituto.Alumno._ID + " = "
-                + id, null);
+        long resultado = bd.delete(Instituto.Alumno.TABLA, Instituto.Alumno._ID + " = " + id, null);
         // Se cierra la base de datos.
         mHelper.close();
         // Se retorna si se ha eliminado algún alumno.
@@ -90,8 +89,8 @@ public class DAO {
         valores.put(Instituto.Alumno.TELEFONO, alumno.getTelefono());
         valores.put(Instituto.Alumno.DIRECCION, alumno.getDireccion());
         // Se realiza el update.
-        long resultado = bd.update(Instituto.Alumno.TABLA, valores, Instituto.Alumno._ID
-                + " = " + alumno.getId(), null);
+        long resultado = bd.update(Instituto.Alumno.TABLA, valores,
+                Instituto.Alumno._ID + " = " + alumno.getId(), null);
         // Se cierra la base de datos.
         mHelper.close();
         // Se retorna si ha actualizado algún alumno.
@@ -105,15 +104,14 @@ public class DAO {
         // Se abre la base de datos.
         SQLiteDatabase bd = mHelper.getWritableDatabase();
         // Se realiza la query SQL sobre la BD.
-        Cursor cursor = bd.query(true, Instituto.Alumno.TABLA,
-                Instituto.Alumno.TODOS, Instituto.Alumno._ID + " = " + id,
-                null, null, null, null, null);
+        Cursor cursor = bd.query(true, Instituto.Alumno.TABLA, Instituto.Alumno.TODOS,
+                Instituto.Alumno._ID + " = " + id, null, null, null, null, null);
         // Se mueve al primer registro del cursor.
         Alumno alumno = null;
         if (cursor != null) {
             cursor.moveToFirst();
             // Retorno el objeto Alumno correspondiente.
-            alumno = cursorToAlumno (cursor);
+            alumno = cursorToAlumno(cursor);
         }
         // Se cierra la base de datos.
         mHelper.close();
@@ -126,8 +124,8 @@ public class DAO {
     // por nombre.
     public Cursor queryAllAlumnos(SQLiteDatabase bd) {
         // Se realiza la consulta y se retorna el cursor.
-        return  bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null,
-                null, null, null, Instituto.Alumno.NOMBRE);
+        return bd.query(Instituto.Alumno.TABLA, Instituto.Alumno.TODOS, null, null, null, null,
+                Instituto.Alumno.NOMBRE);
     }
 
     // Consulta en la VD todos los alumnos. Retorna una lista de objeto Alumno,
@@ -160,12 +158,12 @@ public class DAO {
         // Crea un objeto Alumno y guarda los valores provenientes
         // del registro actual del cursor.
         Alumno alumno = new Alumno();
-        alumno.setId(cursorAlumno.getLong(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno._ID)));
+        alumno.setId(
+                cursorAlumno.getLong(cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno._ID)));
         alumno.setNombre(cursorAlumno.getString(
                 cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.NOMBRE)));
-        alumno.setCurso(cursorAlumno.getString(
-                cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.CURSO)));
+        alumno.setCurso(
+                cursorAlumno.getString(cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.CURSO)));
         alumno.setTelefono(cursorAlumno.getString(
                 cursorAlumno.getColumnIndexOrThrow(Instituto.Alumno.TELEFONO)));
         alumno.setDireccion(cursorAlumno.getString(

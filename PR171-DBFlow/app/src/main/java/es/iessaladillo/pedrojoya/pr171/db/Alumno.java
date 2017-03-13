@@ -7,10 +7,8 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
-import com.raizlabs.android.dbflow.structure.container.ForeignKeyContainer;
 
 import java.util.List;
 
@@ -28,18 +26,16 @@ public class Alumno extends BaseModel implements Parcelable {
     private String telefono;
     @Column
     private String direccion;
-
-    @ForeignKey(saveForeignKeyModel = false)
-    ForeignKeyContainer<Curso> cursoForeignKeyContainer;
-
+    @ForeignKey(stubbedRelationship = true)
     Curso curso;
 
-    public void setCurso(Curso curso) {
-        cursoForeignKeyContainer = FlowManager.getContainerAdapter(Curso.class).toForeignKeyContainer(curso);
+    public Curso getCurso() {
+        curso.load();
+        return curso;
     }
 
-    public Curso getCurso() {
-        return cursoForeignKeyContainer.load();
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     List<Asignatura_Alumno> asignaturas;

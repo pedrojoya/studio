@@ -82,7 +82,10 @@ public class MainActivity extends AppCompatActivity {
         mChart.setRotationAngle(0);
         mChart.setRotationEnabled(true);
         Legend l = mChart.getLegend();
-        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(false);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
     }
@@ -100,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
             mSpnToolbar.setAdapter(adaptador);
             mSpnToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view,
-                                           int i, long l) {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     obtenerDatos(mPoblaciones.get(i).getCodigo());
                 }
 
@@ -117,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
         Call<Escrutinio_sitio> peticion = mApiClient.getPoblacionData(codigo);
         peticion.enqueue(new Callback<Escrutinio_sitio>() {
             @Override
-            public void onResponse(Call<Escrutinio_sitio> call, Response<Escrutinio_sitio> response) {
+            public void onResponse(Call<Escrutinio_sitio> call,
+                    Response<Escrutinio_sitio> response) {
                 Escrutinio_sitio escrutinio = response.body();
                 if (escrutinio != null && response.isSuccessful()) {
                     // Se establecen los datos del gráfico
@@ -135,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
     // Establece los datos del gráfico en base al escrutinio y se redibuja.
     private void setChartData(Escrutinio_sitio escrutinio) {
         ArrayList<PieEntry> valores = new ArrayList<>();
-        ArrayList<String> nombres = new ArrayList<>();
         ArrayList<Integer> colores = new ArrayList<>();
         // Cada entrada debe tener un identificador único (en este caso i)
         for (int i = 0; i < escrutinio.getResultados().getPartidos().size(); i++) {
@@ -143,12 +145,11 @@ public class MainActivity extends AppCompatActivity {
                     escrutinio.getResultados().getPartidos().get(i).getElectos());
             // Los partidos con 0 concejales no son añadidos.
             if (electos > 0) {
-                int color = getColorPartido(escrutinio.getResultados()
-                        .getPartidos().get(i).getId_partido());
+                int color = getColorPartido(
+                        escrutinio.getResultados().getPartidos().get(i).getId_partido());
                 colores.add(color);
-                valores.add(new PieEntry(electos, i));
-                nombres.add(
-                        escrutinio.getResultados().getPartidos().get(i).getNombre());
+                valores.add(new PieEntry(electos,
+                        escrutinio.getResultados().getPartidos().get(i).getNombre()));
             }
         }
         // Se crea el DataSet a partir del ArrayList de valores y se le asigna
@@ -164,8 +165,7 @@ public class MainActivity extends AppCompatActivity {
            for (int c : ColorTemplate.COLORFUL_COLORS)
                 colors.add(c);
          */
-        // Se crea y asigna el Data del gráfico a partir del DataSet y el
-        // ArrayList de nombres.
+        // Se crea y asigna el Data del gráfico a partir del DataSet
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new LargeValueFormatter()); // Format. valores
         data.setValueTextSize(14f);
@@ -184,8 +184,7 @@ public class MainActivity extends AppCompatActivity {
             return Color.argb(255, 0, 163, 223);
         }
         // PSOE
-        if (idPartido.equals("4327") || idPartido.equals("4333") || idPartido
-                .equals("4330")) {
+        if (idPartido.equals("4327") || idPartido.equals("4333") || idPartido.equals("4330")) {
             return Color.argb(255, 239, 25, 32);
         }
         // Cs
@@ -197,8 +196,8 @@ public class MainActivity extends AppCompatActivity {
             return Color.argb(255, 219, 5, 37);
         }
         // Podemos
-        if (idPartido.equals("131") || idPartido.equals("271") || idPartido
-                .equals("3782") || idPartido.equals("4694")) {
+        if (idPartido.equals("131") || idPartido.equals("271") || idPartido.equals("3782")
+                || idPartido.equals("4694")) {
             return Color.argb(255, 96, 44, 97);
         }
         // PA

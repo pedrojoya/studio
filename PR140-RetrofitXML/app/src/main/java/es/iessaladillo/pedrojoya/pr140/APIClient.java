@@ -18,8 +18,7 @@ import retrofit2.http.Path;
 class APIClient {
 
     private static final String BASE_URL =
-            "https://dl.dropboxusercontent" +
-                    ".com/u/67422/Android/xml/";
+            "https://dl.dropboxusercontent" + ".com/u/67422/Android/xml/";
 
     // Interfaz de trabajo de Retrofit contra la API.
     public interface ApiInterface {
@@ -30,7 +29,7 @@ class APIClient {
     }
 
     // Constructor privado para que NO pueda instanciarse.
-    private APIClient(Context context) {
+    private APIClient() {
     }
 
     private static ApiInterface mApiInterface;
@@ -38,14 +37,16 @@ class APIClient {
 
     // Retorna la interfaz de
     public static ApiInterface getApiInterface(Context context) {
-        if (mApiInterface == null) createInstance(context.getApplicationContext());
+        if (mApiInterface == null) {
+            createInstance(context.getApplicationContext());
+        }
         return mApiInterface;
     }
 
     // Crea la instancia del cliente.
     private static void createInstance(Context context) {
         if (mApiInterface == null) {
-            synchronized(APIClient.class) {
+            synchronized (APIClient.class) {
                 if (mApiInterface == null) {
                     mApiInterface = buildApiClient(context);
                 }
@@ -69,11 +70,8 @@ class APIClient {
         OkHttpClient client = builder.build();
         // Se construye el objeto Retrofit y a partir de él se retorna el
         // servicio de acceso a la API.
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(SimpleXmlConverterFactory.create())
-                .client(client)
-                .build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(
+                SimpleXmlConverterFactory.create()).client(client).build();
         return retrofit.create(ApiInterface.class);
     }
 

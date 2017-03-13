@@ -14,7 +14,8 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
     private String nombre;
     private boolean educado;
 
-    public ActivityMainVM() {}
+    public ActivityMainVM() {
+    }
 
     @Bindable
     public String getNombre() {
@@ -24,7 +25,7 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.nombre);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.formularioValido);
+        //notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.formularioValido);
     }
 
     @Bindable
@@ -37,7 +38,9 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr151.BR.educado);
     }
 
-    @Bindable
+    // Depende de la propiedad nombre (es decir se debe recalcular cada vez que cambie el valor
+    // de la propiedad nombre.
+    @Bindable({"nombre"})
     public boolean isFormularioValido() {
         return !(TextUtils.isEmpty(nombre));
     }
@@ -92,7 +95,8 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         this.educado = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<ActivityMainVM> CREATOR = new Parcelable.Creator<ActivityMainVM>() {
+    public static final Parcelable.Creator<ActivityMainVM> CREATOR = new Parcelable
+            .Creator<ActivityMainVM>() {
         public ActivityMainVM createFromParcel(Parcel source) {
             return new ActivityMainVM(source);
         }

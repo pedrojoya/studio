@@ -11,6 +11,7 @@ import java.util.Random;
 
 import es.iessaladillo.pedrojoya.pr170.databinding.ActivityMainBinding;
 
+@SuppressWarnings("WeakerAccess")
 public class MainActivityPresenter {
 
     private final Random mAleatorio = new Random();
@@ -19,7 +20,7 @@ public class MainActivityPresenter {
         // Se obtiene el binding y el viewModel.
         ActivityMainBinding binding = DataBindingUtil.findBinding(v);
         MainActivityViewModel viewModel = binding.getViewModel();
-        StringBuffer sb = new StringBuffer(v.getContext().getString(R.string.buenos_dias));
+        StringBuilder sb = new StringBuilder(v.getContext().getString(R.string.buenos_dias));
         if (viewModel.isEducado()) {
             sb.append(" ");
             sb.append(v.getContext().getString(R.string.tenga_usted));
@@ -36,8 +37,9 @@ public class MainActivityPresenter {
 
     // Recibe directamente el viewModel para no tener que obtenerlo (sólo con vinculación de
     // listener).
+    @SuppressWarnings("SameReturnValue")
     public boolean btnSaludarOnLongClick(View v, MainActivityViewModel viewModel) {
-        StringBuffer sb = new StringBuffer(v.getContext().getString(R.string.buenos_dias));
+        StringBuilder sb = new StringBuilder(v.getContext().getString(R.string.buenos_dias));
         sb.append(" ");
         sb.append(v.getContext().getString(R.string.tenga_usted));
         if (!viewModel.getTratamiento().isEmpty()) {

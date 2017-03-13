@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class BindableString extends BaseObservable implements Parcelable {
 
     // Valor de la cadena.

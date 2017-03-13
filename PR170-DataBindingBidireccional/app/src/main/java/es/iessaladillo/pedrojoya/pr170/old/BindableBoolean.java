@@ -4,6 +4,7 @@ import android.databinding.BaseObservable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@SuppressWarnings("WeakerAccess")
 public class BindableBoolean extends BaseObservable implements Parcelable {
 
     boolean mValue;

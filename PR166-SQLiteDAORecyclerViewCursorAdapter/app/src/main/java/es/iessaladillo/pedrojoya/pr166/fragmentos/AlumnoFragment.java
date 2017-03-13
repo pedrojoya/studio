@@ -54,13 +54,13 @@ public class AlumnoFragment extends Fragment {
     private Random mAleatorio;
 
     // Retorna una nueva instancia del fragmento (para agregar)
-    static public AlumnoFragment newInstance() {
+    public static AlumnoFragment newInstance() {
         return new AlumnoFragment();
     }
 
     // Retorna una nueva instancia del fragmento. Recibe el id del mAlumno
     // (para actualizar).
-    static public AlumnoFragment newInstance(long idAlumno) {
+    public static AlumnoFragment newInstance(long idAlumno) {
         AlumnoFragment frg = new AlumnoFragment();
         Bundle argumentos = new Bundle();
         argumentos.putLong(EXTRA_ID, idAlumno);
@@ -76,7 +76,7 @@ public class AlumnoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_alumno, container, false);
     }
 
@@ -116,7 +116,8 @@ public class AlumnoFragment extends Fragment {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) {
-                        if (tilNombre.isErrorEnabled() && checkRequiredEditText(txtNombre, tilNombre)) {
+                        if (tilNombre.isErrorEnabled() && checkRequiredEditText(txtNombre,
+                                tilNombre)) {
                             tilNombre.setError("");
                             tilNombre.setErrorEnabled(false);
                         }
@@ -131,7 +132,8 @@ public class AlumnoFragment extends Fragment {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) {
-                        if (tilCurso.isErrorEnabled() && checkRequiredEditText(spnCurso, tilCurso)) {
+                        if (tilCurso.isErrorEnabled() && checkRequiredEditText(spnCurso,
+                                tilCurso)) {
                             tilCurso.setError("");
                             tilCurso.setErrorEnabled(false);
                         }
@@ -147,7 +149,8 @@ public class AlumnoFragment extends Fragment {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) {
-                        if (tilTelefono.isErrorEnabled() && checkRequiredEditText(txtTelefono, tilTelefono)) {
+                        if (tilTelefono.isErrorEnabled() && checkRequiredEditText(txtTelefono,
+                                tilTelefono)) {
                             tilTelefono.setError("");
                             tilTelefono.setErrorEnabled(false);
                         }
@@ -188,7 +191,8 @@ public class AlumnoFragment extends Fragment {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private void tintar(boolean hasFocus, ImageView img, @DrawableRes int resIdIcono, @ColorRes int resIdColor) {
+    private void tintar(boolean hasFocus, ImageView img, @DrawableRes int resIdIcono,
+            @ColorRes int resIdColor) {
         Drawable drawable = ContextCompat.getDrawable(img.getContext(), resIdIcono);
         drawable = DrawableCompat.wrap(drawable);
         if (!hasFocus) {
@@ -205,12 +209,13 @@ public class AlumnoFragment extends Fragment {
         ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
                 R.array.cursos, android.R.layout.simple_list_item_1);
         spnCurso.setAdapter(adaptadorCursos);
-        spnCurso.setOnItemSelectedListener(new ClickToSelectEditText.OnItemSelectedListener<String>() {
-            @Override
-            public void onItemSelectedListener(String item, int selectedIndex) {
-                spnCurso.setText(item);
-            }
-        });
+        spnCurso.setOnItemSelectedListener(
+                new ClickToSelectEditText.OnItemSelectedListener<String>() {
+                    @Override
+                    public void onItemSelectedListener(String item, int selectedIndex) {
+                        spnCurso.setText(item);
+                    }
+                });
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Agregar.
@@ -236,8 +241,7 @@ public class AlumnoFragment extends Fragment {
         // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
         // Agregar.
         if (mAlumno == null) {
-            Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.alumno_no_encontrado, Toast.LENGTH_LONG).show();
             setModoAgregar();
         }
     }
@@ -290,12 +294,10 @@ public class AlumnoFragment extends Fragment {
         // Se informa de si ha ido bien.
         if (id >= 0) {
             mAlumno.setId(id);
-            Toast.makeText(getActivity(),
-                    getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
-                    .show();
+            Toast.makeText(getActivity(), getString(R.string.insercion_correcta),
+                    Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getActivity(),
-                    getString(R.string.insercion_incorrecta),
+            Toast.makeText(getActivity(), getString(R.string.insercion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
         // Se resetean las vistas para poder agregar otro alumno (seguimos en
@@ -307,13 +309,11 @@ public class AlumnoFragment extends Fragment {
     private void actualizarAlumno() {
         // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
         if ((new DAO(getActivity())).updateAlumno(mAlumno)) {
-            Toast.makeText(getActivity(),
-                    getString(R.string.actualizacion_correcta),
+            Toast.makeText(getActivity(), getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
             getActivity().finish();
         } else {
-            Toast.makeText(getActivity(),
-                    getString(R.string.actualizacion_incorrecta),
+            Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -353,11 +353,12 @@ public class AlumnoFragment extends Fragment {
 
     // Retorna una url aleatoria correspondiente a una imagen para el avatar.
     private String getRandomAvatarUrl() {
-        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String baseUrl = "http://lorempixel.com/100/100/";
         final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
-                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
-        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
-                (mAleatorio.nextInt(10) + 1) + "/";
+                                "night", "life", "fashion", "people", "nature", "sports",
+                                "technics", "transport"};
+        return baseUrl + tipos[mAleatorio.nextInt(tipos.length)] + "/" + (mAleatorio.nextInt(10)
+                + 1) + "/";
     }
 
 }

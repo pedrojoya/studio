@@ -12,6 +12,8 @@ import es.iessaladillo.pedrojoya.pr170.R;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Converters {
 
+    private Converters() { }
+
     // Retorna la cadena correspondiente a la conversión desde un
     // bindable a una cadena.
     @BindingConversion

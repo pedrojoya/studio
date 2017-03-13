@@ -36,7 +36,8 @@ public class BindableBoolean extends BaseObservable implements Parcelable {
         this.mValue = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<BindableBoolean> CREATOR = new Parcelable.Creator<BindableBoolean>() {
+    public static final Parcelable.Creator<BindableBoolean> CREATOR = new Parcelable
+            .Creator<BindableBoolean>() {
         public BindableBoolean createFromParcel(Parcel source) {
             return new BindableBoolean(source);
         }

@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="@{viewModel.nombre}"
             android:inputType="text|textPersonName"
-            android:addTextChangedListener="@{viewModel.txtNombreTextWatcher}"
+            app:addTextChangedListener="@{viewModel.txtNombreTextWatcher}"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin">
@@ -55,7 +55,7 @@
             app:checked="@{viewModel.educado}"
             android:text="@string/saludar_educadamente"
             app:font='@{"postcard.ttf"}'
-            android:onCheckedChanged="@{viewModel.chkEducadoCheckedChangedListener}"
+            app:onCheckedChanged="@{viewModel.chkEducadoCheckedChangedListener}"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>

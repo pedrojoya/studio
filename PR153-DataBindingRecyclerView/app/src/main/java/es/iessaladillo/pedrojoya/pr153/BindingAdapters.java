@@ -7,9 +7,14 @@ import com.squareup.picasso.Picasso;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class BindingAdapters {
+
+    private BindingAdapters() {
+    }
+
     // El pseudoatributo app:imageUrl ejecuta este método.
     @BindingAdapter("bind:imageUrl")
     public static void loadImage(ImageView imageView, String url) {
         Picasso.with(imageView.getContext()).load(url).into(imageView);
     }
+
 }

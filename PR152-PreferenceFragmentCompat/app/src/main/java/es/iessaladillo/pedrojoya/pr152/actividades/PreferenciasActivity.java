@@ -12,8 +12,8 @@ import android.view.MenuItem;
 import es.iessaladillo.pedrojoya.pr152.R;
 import es.iessaladillo.pedrojoya.pr152.fragmentos.PreferenciasFragment;
 
-public class PreferenciasActivity extends AppCompatActivity
-        implements PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
+public class PreferenciasActivity extends AppCompatActivity implements PreferenceFragmentCompat
+        .OnPreferenceStartScreenCallback {
 
     private static final String EXTRA_KEY = "extra_key";
     private String mPreferenceScreenKey;
@@ -38,17 +38,19 @@ public class PreferenciasActivity extends AppCompatActivity
             mPreferenceScreenKey = getIntent().getStringExtra(EXTRA_KEY);
         }
         // Se muestra el fragmento en la actividad.
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.flContenido, PreferenciasFragment.newInstance(mPreferenceScreenKey))
-                .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContenido,
+                PreferenciasFragment.newInstance(mPreferenceScreenKey)).commit();
     }
 
-    @Override public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat, PreferenceScreen preferenceScreen) {
+    @Override
+    public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat,
+            PreferenceScreen preferenceScreen) {
         PreferenciasActivity.start(this, preferenceScreen.getKey());
         return true;
     }
 
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;

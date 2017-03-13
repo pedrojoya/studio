@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 // Adaptador para la lista de alumnos.
+@SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     private final ArrayList<Alumno> mDatos;
@@ -19,6 +20,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     private OnItemClickListener onItemClickListener;
 
     // Constructor.
+    @SuppressWarnings("unused")
     public AlumnosAdapter(ArrayList<Alumno> datos) {
         mDatos = datos;
     }
@@ -26,11 +28,18 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Cuando se debe crear una nueva vista para el elemento.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Se obtiene el inflador.
+        LayoutInflater layoutInflater =
+                LayoutInflater.from(parent.getContext());
+        // Se obtiene la variable de mBinding.
+        ViewDataBinding binding = DataBindingUtil.inflate(
+                layoutInflater, viewType, parent, false);
+
         // Se infla la especificación XML para obtener la vista-fila.
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_item, parent, false);
         // Se crea el contenedor de vistas para la fila.
-        final ViewHolder viewHolder = new ViewHolder(itemView);
+        final ViewHolder viewHolder =  new ViewHolder(binding);
 
         // Se establecen los listener de la vista correspondiente al ítem
         // y de las subvistas.
@@ -41,8 +50,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             public void onClick(View v) {
                 if (onItemClickListener != null) {
                     // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
+                    onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }
@@ -70,13 +78,8 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // vista correspondiente al ítem.
     @Override
     public void onBindViewHolder(AlumnosAdapter.ViewHolder holder, int position) {
-        // Se obtiene el alumno correspondiente.
-        Alumno alumno = mDatos.get(position);
-        // Se establece la variable del data binding.
-        holder.getBinding().setVariable(es.iessaladillo.pedrojoya.pr153.BR
-                .alumno, alumno);
-        // Se fuerza a que se actualice la IU.
-        holder.getBinding().executePendingBindings();
+        // Se vincula el alumno correspondiente.
+        holder.bind(mDatos.get(position));
     }
 
     // Retorna el número de ítems gestionados.
@@ -137,31 +140,39 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     }
 
     // Contenedor de vistas para la vista-fila.
+    @SuppressWarnings("unused")
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        // Data binding.
-        private final ViewDataBinding binding;
+        private final ViewDataBinding mBinding;
 
         // El constructor recibe la vista-fila.
-        public ViewHolder(View itemView) {
-            super(itemView);
-            // Se obtienen el data binding para dicha vista-fila.
-            binding = DataBindingUtil.bind(itemView);
+        public ViewHolder(ViewDataBinding binding) {
+            super(binding.getRoot()); // el root es el itemview.
+            mBinding = binding;
         }
 
-        // Retorna el binding correspondiente al ítem.
+        // Retorna el mBinding correspondiente al ítem.
         public ViewDataBinding getBinding() {
-            return binding;
+            return mBinding;
+        }
+
+        public void bind(Object item) {
+            // Se establece la variable del data mBinding.
+            mBinding.setVariable(BR.item, item);
+            // Se fuerza a que se actualice la IU (importante).
+            mBinding.executePendingBindings();
         }
 
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
+    @SuppressWarnings("unused")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
     }
 
     // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
+    @SuppressWarnings("unused")
     public interface OnItemLongClickListener {
         void onItemLongClick(View view, Alumno alumno, int position);
     }

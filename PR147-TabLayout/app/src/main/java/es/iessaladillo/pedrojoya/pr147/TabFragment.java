@@ -15,7 +15,7 @@ public class TabFragment extends Fragment {
     private int mColor;
 
     // Retorna una nueva intancia del fragmento.
-    public static TabFragment newInstance (int color) {
+    public static TabFragment newInstance(int color) {
         TabFragment fragment = new TabFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLOR, color);

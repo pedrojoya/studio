@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr140;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class ToolbarSpinnerAdapter extends ArrayAdapter<String> implements Theme
 
     // Cuando se debe pintar un elemento en la lista desplegable del spinner.
     @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+    public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
             // Se obtiene el inflador proporcionado pro el ayudante (para que
             // se use el tema adecuado).

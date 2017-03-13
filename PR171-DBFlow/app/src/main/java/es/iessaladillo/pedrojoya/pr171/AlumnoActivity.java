@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr171.db.Alumno;
@@ -33,27 +33,27 @@ import es.iessaladillo.pedrojoya.pr171.db.Curso_Table;
 public class AlumnoActivity extends AppCompatActivity {
 
     public static final String EXTRA_ALUMNO = "tarea";
-    @Bind(R.id.txtNombre)
+    @BindView(R.id.txtNombre)
     EditText txtNombre;
-    @Bind(R.id.spnCurso)
+    @BindView(R.id.spnCurso)
     Spinner spnCurso;
-    @Bind(R.id.txtTelefono)
+    @BindView(R.id.txtTelefono)
     EditText txtTelefono;
-    @Bind(R.id.txtDireccion)
+    @BindView(R.id.txtDireccion)
     EditText txtDireccion;
-    @Bind(R.id.btnGuardar)
+    @BindView(R.id.btnGuardar)
     FloatingActionButton btnGuardar;
-    @Bind(R.id.lblNombre)
+    @BindView(R.id.lblNombre)
     TextView lblNombre;
-    @Bind(R.id.lblCurso)
+    @BindView(R.id.lblCurso)
     TextView lblCurso;
-    @Bind(R.id.lblTelefono)
+    @BindView(R.id.lblTelefono)
     TextView lblTelefono;
-    @Bind(R.id.lblDireccion)
+    @BindView(R.id.lblDireccion)
     TextView lblDireccion;
-    @Bind(R.id.lblAsignaturas)
+    @BindView(R.id.lblAsignaturas)
     TextView lblAsignaturas;
-    @Bind(R.id.lstAsignaturas)
+    @BindView(R.id.lstAsignaturas)
     ListView lstAsignaturas;
 
     private Alumno mAlumno;
@@ -131,8 +131,8 @@ public class AlumnoActivity extends AppCompatActivity {
 
     // Agrega el alumno a la base de datos.
     private void agregar() {
-        if (!TextUtils.isEmpty(txtNombre.getText().toString()) &&
-                !TextUtils.isEmpty(txtTelefono.getText().toString())) {
+        if (!TextUtils.isEmpty(txtNombre.getText().toString()) && !TextUtils.isEmpty(
+                txtTelefono.getText().toString())) {
             mAlumno = new Alumno();
             mAlumno.setAvatar(getRandomAvatarUrl());
             vistasToAlumno();
@@ -144,8 +144,8 @@ public class AlumnoActivity extends AppCompatActivity {
     }
 
     private void actualizar() {
-        if (!TextUtils.isEmpty(txtNombre.getText().toString()) &&
-                !TextUtils.isEmpty(txtTelefono.getText().toString())) {
+        if (!TextUtils.isEmpty(txtNombre.getText().toString()) && !TextUtils.isEmpty(
+                txtTelefono.getText().toString())) {
             vistasToAlumno();
             mAlumno.save();
             finish();
@@ -161,8 +161,7 @@ public class AlumnoActivity extends AppCompatActivity {
             lbl.setTextColor(getResources().getColor(R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            lbl.setTextColor(getResources()
-                    .getColor(R.color.accent_light));
+            lbl.setTextColor(getResources().getColor(R.color.accent_light));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }
@@ -180,10 +179,8 @@ public class AlumnoActivity extends AppCompatActivity {
     @OnClick(R.id.lblAsignaturas)
     public void mostrarAsignaturas() {
         // Se obtienen las asignaturas.
-        List<Asignatura> asignaturas = SQLite.select()
-                .from(Asignatura.class)
-                .orderBy(Asignatura_Table.nombre, true)
-                .queryList();
+        List<Asignatura> asignaturas = SQLite.select().from(Asignatura.class).orderBy(
+                Asignatura_Table.nombre, true).queryList();
         // Se obtienen las asignaturas del alumno.
         List<Asignatura_Alumno> asignaturasAlumno;
         if (mAlumno != null) {
@@ -196,8 +193,7 @@ public class AlumnoActivity extends AppCompatActivity {
         txtNombre.setText(mAlumno.getNombre());
         txtTelefono.setText(mAlumno.getTelefono());
         txtDireccion.setText(mAlumno.getDireccion());
-        spnCurso.setSelection(adaptadorCursos.getPosition(mAlumno.getCurso()),
-                true);
+        spnCurso.setSelection(adaptadorCursos.getPosition(mAlumno.getCurso()), true);
         List<Asignatura_Alumno> asignaturasAlumno = mAlumno.getAsignaturas();
         mAsignaturas = new ArrayList<Asignatura>();
         if (asignaturasAlumno != null) {
@@ -205,7 +201,9 @@ public class AlumnoActivity extends AppCompatActivity {
                 mAsignaturas.add(asignaturaAlumno.getAsignatura());
             }
         }
-        lstAsignaturas.setAdapter(new ArrayAdapter<Asignatura>(this, android.R.layout.simple_list_item_1, mAsignaturas));
+        lstAsignaturas.setAdapter(
+                new ArrayAdapter<Asignatura>(this, android.R.layout.simple_list_item_1,
+                        mAsignaturas));
     }
 
     // Carga los cursos en el spinner.
@@ -216,12 +214,14 @@ public class AlumnoActivity extends AppCompatActivity {
         // cadena.
         //adaptadorCursos = ArrayAdapter.createFromResource(this,
         //        R.array.cursos, android.R.layout.simple_spinner_item);
-        List<Curso> cursos = SQLite.select().from(Curso.class).orderBy(Curso_Table.nombre, true).queryList();
-        adaptadorCursos = new ArrayAdapter<Curso>(this,
-                android.R.layout.simple_spinner_item, cursos);
+        List<Curso> cursos = SQLite.select()
+                .from(Curso.class)
+                .orderBy(Curso_Table.nombre, true)
+                .queryList();
+        adaptadorCursos = new ArrayAdapter<Curso>(this, android.R.layout.simple_spinner_item,
+                cursos);
         adaptadorCursos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adaptadorCursos
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adaptadorCursos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnCurso.setAdapter(adaptadorCursos);
     }
 
@@ -235,11 +235,12 @@ public class AlumnoActivity extends AppCompatActivity {
 
     // Retorna una url aleatoria correspondiente a una imagen para el avatar.
     private String getRandomAvatarUrl() {
-        final String BASE_URL = "http://lorempixel.com/100/100/";
+        final String baseUrl = "http://lorempixel.com/100/100/";
         final String[] tipos = {"abstract", "animals", "business", "cats", "city", "food",
-                "night", "life", "fashion", "people", "nature", "sports", "technics", "transport"};
-        return BASE_URL + tipos[mAleatorio.nextInt(tipos.length)] + "/" +
-                (mAleatorio.nextInt(10) + 1) + "/";
+                                "night", "life", "fashion", "people", "nature", "sports",
+                                "technics", "transport"};
+        return baseUrl + tipos[mAleatorio.nextInt(tipos.length)] + "/" + (mAleatorio.nextInt(10)
+                + 1) + "/";
     }
 
 }

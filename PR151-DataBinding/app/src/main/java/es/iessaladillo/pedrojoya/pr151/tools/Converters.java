@@ -12,6 +12,8 @@ import es.iessaladillo.pedrojoya.pr151.R;
 
 public class Converters {
 
+    private Converters() { }
+
     // Retorna la cadena correspondiente a la conversión desde un
     // bindable a una cadena.
     @BindingConversion

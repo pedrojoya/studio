@@ -1,20 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
-apply plugin: 'com.neenbedankt.android-apt'
-
-def support_library_version = "23.4.0"
-def glide_version = "3.7.0"
-def circleimageview_version = "2.0.0"
-def butterknife_version = "8.0.1"
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr158"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -28,12 +22,15 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.android.support:design:${support_library_version}"
-    compile "com.android.support:recyclerview-v7:${support_library_version}"
-    compile "com.github.bumptech.glide:glide:${glide_version}"
-    compile "de.hdodenhof:circleimageview:${circleimageview_version}"
-    compile "com.jakewharton:butterknife:${butterknife_version}"
-    apt "com.jakewharton:butterknife-compiler:${butterknife_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.glide_version"
+    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
 }

@@ -11,9 +11,10 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> extends RecyclerView.Adapter<RecyclerBindingAdapter.ViewHolder> {
+public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> extends
+        RecyclerView.Adapter<RecyclerBindingAdapter.ViewHolder> {
 
-    public interface  ViewModel {
+    public interface ViewModel {
         @SuppressWarnings("SameReturnValue")
         int getLayoutId();
     }
@@ -50,8 +51,7 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
     @Override
     public RecyclerBindingAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación XML para obtener la vista-fila.
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(viewType, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -64,8 +64,7 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
             public void onClick(View v) {
                 if (onItemClickListener != null) {
                     // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            mData.get(viewHolder.getAdapterPosition()),
+                    onItemClickListener.onItemClick(v, mData.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }

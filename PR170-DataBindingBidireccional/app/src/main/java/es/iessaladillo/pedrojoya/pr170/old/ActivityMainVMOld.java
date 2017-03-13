@@ -3,12 +3,14 @@ package es.iessaladillo.pedrojoya.pr170.old;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@SuppressWarnings("WeakerAccess")
 public class ActivityMainVMOld implements Parcelable {
 
     public BindableString nombre = new BindableString();
     public BindableBoolean educado = new BindableBoolean();
     public BindableString tratamiento = new BindableString();
 
+    @SuppressWarnings("unused")
     public ActivityMainVMOld() {
     }
 

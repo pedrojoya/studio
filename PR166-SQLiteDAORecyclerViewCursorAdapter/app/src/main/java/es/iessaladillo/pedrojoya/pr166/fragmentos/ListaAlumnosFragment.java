@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -23,10 +24,10 @@ import es.iessaladillo.pedrojoya.pr166.R;
 import es.iessaladillo.pedrojoya.pr166.adaptadores.AlumnosAdapter;
 import es.iessaladillo.pedrojoya.pr166.bd.DAO;
 import es.iessaladillo.pedrojoya.pr166.modelos.Alumno;
-import es.iessaladillo.pedrojoya.pr166.utils.DividerItemDecoration;
 import es.iessaladillo.pedrojoya.pr166.utils.HidingScrollListener;
 
-public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
+public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
+        .OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
 
     private DAO mDao;
     private TextView lblNuevoAlumno;
@@ -50,6 +51,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     }
 
     private OnListaAlumnosFragmentListener listener;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +60,10 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_lista_alumnos, container,
-                false);
+            Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_lista_alumnos, container, false);
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -99,13 +101,11 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         // Drag & drop y Swipe to dismiss.
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP |
-                        ItemTouchHelper.DOWN,
+                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.RIGHT) {
                     @Override
                     public boolean onMove(RecyclerView recyclerView,
-                                          RecyclerView.ViewHolder viewHolder,
-                                          RecyclerView.ViewHolder target) {
+                            RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                         return false;
                     }
 
@@ -131,6 +131,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         };
         lstAlumnos.addOnScrollListener(mHidingScrollListener);
     }
+
     // Al mostrar el fragmento.
     @Override
     public void onResume() {
@@ -164,8 +165,8 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
             listener = (OnListaAlumnosFragmentListener) activity;
         } catch (ClassCastException e) {
             // La actividad no implementa la interfaz.
-            throw new ClassCastException(activity.toString()
-                    + " debe implementar OnElementoSeleccionadoListener");
+            throw new ClassCastException(
+                    activity.toString() + " debe implementar OnElementoSeleccionadoListener");
         }
     }
 
@@ -232,8 +233,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
         // Se cambia el estado de selección
         mAdaptador.toggleSelection(position);
         // Se actualiza el texto del action mode contextual.
-        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " +
-                mAdaptador.getItemCount());
+        mActionMode.setTitle(mAdaptador.getSelectedItemCount() + " / " + mAdaptador.getItemCount());
         // Si ya no hay ningún elemento seleccionado se finaliza el modo de
         // acción contextual
         if (mAdaptador.getSelectedItemCount() == 0) {
@@ -245,8 +245,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter.OnI
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
         // Se infla la especificación del menú contextual en el
         // menú.
-        actionMode.getMenuInflater().inflate(R.menu.fragment_lista_alumnos,
-                menu);
+        actionMode.getMenuInflater().inflate(R.menu.fragment_lista_alumnos, menu);
         // Se retorna que ya se ha gestionado el evento.
         return true;
     }

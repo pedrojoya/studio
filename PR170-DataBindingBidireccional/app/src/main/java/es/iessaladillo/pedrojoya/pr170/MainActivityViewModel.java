@@ -24,7 +24,8 @@ public class MainActivityViewModel extends BaseObservable implements Parcelable 
     public void setNombre(String nombre) {
         this.nombre = nombre;
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr170.BR.nombre);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr170.BR.valido);
+        // No necesario desde Android 2.3 gracias a las propiedades dependientes.
+        //notifyPropertyChanged(es.iessaladillo.pedrojoya.pr170.BR.valido);
     }
 
     @Bindable
@@ -47,7 +48,8 @@ public class MainActivityViewModel extends BaseObservable implements Parcelable 
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr170.BR.tratamiento);
     }
 
-    @Bindable
+    // Propiedad dependiente de la propiedad nombre.
+    @Bindable({"nombre"})
     public boolean isValido() {
         return !TextUtils.isEmpty(nombre);
     }
@@ -70,7 +72,8 @@ public class MainActivityViewModel extends BaseObservable implements Parcelable 
         this.tratamiento = in.readString();
     }
 
-    public static final Parcelable.Creator<MainActivityViewModel> CREATOR = new Parcelable.Creator<MainActivityViewModel>() {
+    public static final Parcelable.Creator<MainActivityViewModel> CREATOR = new Parcelable
+            .Creator<MainActivityViewModel>() {
         @Override
         public MainActivityViewModel createFromParcel(Parcel source) {
             return new MainActivityViewModel(source);

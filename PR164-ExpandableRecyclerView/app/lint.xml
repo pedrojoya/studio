@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconDipSize">
+        <ignore path="src/main/res/drawable-hdpi/ic_arrow_drop_down.png" />
+        <ignore path="src/main/res/drawable-hdpi/ic_arrow_drop_up.png" />
+        <ignore path="src/main/res/drawable-ldpi/ic_arrow_drop_down.png" />
+        <ignore path="src/main/res/drawable-ldpi/ic_arrow_drop_up.png" />
+        <ignore path="src/main/res/drawable-mdpi/ic_arrow_drop_down.png" />
+        <ignore path="src/main/res/drawable-mdpi/ic_arrow_drop_up.png" />
+        <ignore path="src/main/res/drawable-xhdpi/ic_arrow_drop_down.png" />
+        <ignore path="src/main/res/drawable-xhdpi/ic_arrow_drop_up.png" />
+        <ignore path="src/main/res/drawable-xxhdpi/ic_arrow_drop_down.png" />
+        <ignore path="src/main/res/drawable-xxhdpi/ic_arrow_drop_up.png" />
+        <ignore path="src/main/res/drawable-xxxhdpi/ic_arrow_drop_down.png" />
+        <ignore path="src/main/res/drawable-xxxhdpi/ic_arrow_drop_up.png" />
+    </issue>
+</lint>

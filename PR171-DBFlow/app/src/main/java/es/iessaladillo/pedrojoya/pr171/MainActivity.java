@@ -19,18 +19,18 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.iessaladillo.pedrojoya.pr171.db.Alumno;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.lstAlumnos)
+    @BindView(R.id.lstAlumnos)
     ListView mLstAlumnos;
-    @Bind(R.id.lblNoHayAlumnos)
+    @BindView(R.id.lblNoHayAlumnos)
     TextView mLblNoHayAlumnos;
-    @Bind(R.id.rlListaVacia)
+    @BindView(R.id.rlListaVacia)
     RelativeLayout rlListaVacia;
 
     private AlumnosAdapter mAdaptador;

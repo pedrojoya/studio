@@ -18,7 +18,8 @@ public class PasswordPreference extends EditTextPreference {
         super(context, attrs, defStyleAttr);
     }
 
-    public PasswordPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public PasswordPreference(Context context, AttributeSet attrs, int defStyleAttr,
+            int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 }

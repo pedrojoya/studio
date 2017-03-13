@@ -11,7 +11,10 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         // Se configura Realm. La BD se llamará instituto
-        Realm.setDefaultConfiguration(
-                new RealmConfiguration.Builder(this).name("instituto.realm").build());
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder().name("instituto.realm")
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
+
 }

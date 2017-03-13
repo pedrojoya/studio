@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
     public interface OnItemClickListener {
+        @SuppressWarnings("UnusedParameters")
         void onItemClick(View view, Alumno alumno, int position);
     }
 
@@ -43,20 +44,17 @@ public class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     // Cuando se debe crear una nueva vista para un elemento de tipo Alumno.
     private RecyclerView.ViewHolder onCreateAlumnoViewHolder(ViewGroup parent) {
         // Se infla el layout.
-        final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_hijo, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_hijo, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final RecyclerView.ViewHolder viewHolder = new AlumnoViewHolder(itemView);
         // Cuando se hace click sobre el elemento.
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            (Alumno) mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                }
+        itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                // Se informa al listener.
+                onItemClickListener.onItemClick(v,
+                        (Alumno) mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
             }
         });
         // Se retorna el contenedor.
@@ -66,17 +64,12 @@ public class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     // Cuando se debe crear una nueva vista para un elemento de tipo Grupo.
     private RecyclerView.ViewHolder onCreateGrupoViewHolder(ViewGroup parent) {
         // Se infla el layout.
-        final View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_grupo, parent, false);
+        final View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_grupo, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final RecyclerView.ViewHolder viewHolder = new GrupoViewHolder(itemView);
         // Cuando se hace click sobre el elemento.
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleAlumnosDelGrupo((GrupoViewHolder) viewHolder);
-            }
-        });
+        itemView.setOnClickListener(v -> toggleAlumnosDelGrupo((GrupoViewHolder) viewHolder));
         // Se retorna el contenedor.
         return viewHolder;
     }
@@ -97,9 +90,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             grupo.setHiddenChildren(hijosOcultos);
             notifyItemRangeRemoved(desde, cuantos);
             viewHolder.imgIndicador.setImageResource(R.drawable.ic_arrow_drop_down);
-        }
-        // Si se trata de volver a mostrar.
-        else {
+        } else {
             int indice = posicionGrupo + 1;
             for (Alumno alumno : grupo.getHiddenChildren()) {
                 mDatos.add(indice, alumno);
@@ -178,10 +169,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public void onBind(Grupo grupo) {
             // Se escriben los datos en la vista.
             lblEncCiclo.setText(grupo.getNombre());
-            imgIndicador.setImageResource(
-                    grupo.getHiddenChildren() == null ?
-                            R.drawable.ic_arrow_drop_up :
-                            R.drawable.ic_arrow_drop_down);
+            imgIndicador.setImageResource(grupo.getHiddenChildren()
+                                                  == null ? R.drawable.ic_arrow_drop_up : R
+                                                  .drawable.ic_arrow_drop_down);
         }
 
     }
