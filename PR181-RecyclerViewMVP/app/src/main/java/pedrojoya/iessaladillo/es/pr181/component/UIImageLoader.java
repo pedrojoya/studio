@@ -7,14 +7,14 @@ import com.squareup.picasso.Picasso;
 
 public class UIImageLoader {
 
+    private UIImageLoader() {
+
+    }
+
     public static void loadImageIntoImageView(String url, ImageView v,
-                                              @DrawableRes int placeholderDrawableResId,
-                                              @DrawableRes int errorDrawableResId) {
-        Picasso.with(v.getContext())
-                .load(url)
-                .placeholder(placeholderDrawableResId)
-                .error(errorDrawableResId)
-                .into(v);
+            @DrawableRes int placeholderDrawableResId, @DrawableRes int errorDrawableResId) {
+        Picasso.with(v.getContext()).load(url).placeholder(placeholderDrawableResId).error(
+                errorDrawableResId).into(v);
     }
 
 }

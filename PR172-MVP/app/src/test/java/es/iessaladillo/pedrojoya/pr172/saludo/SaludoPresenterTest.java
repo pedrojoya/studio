@@ -4,15 +4,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 
 // Tests unitarios locales para el Presentador
+@SuppressWarnings({"CanBeFinal", "Convert2Lambda"})
 public class SaludoPresenterTest {
 
     // Como el objeto Presentador requiere de la vista, usamos Mockito para simularla.
     @Mock
     private SaludoContract.View mVista;
+    @Mock
+    private SaludoContract.Repository mRepositorio;
+
     private SaludoPresenter mPresentador;
 
     // Antes de ejecutar cualquier test hay que crear el objeto Presentador
@@ -21,25 +28,51 @@ public class SaludoPresenterTest {
         // Se inicializan los objetos mock anotados con @Mock.
         MockitoAnnotations.initMocks(this);
         // Se crea el objeto Presentador.
-        mPresentador = new SaludoPresenter(mVista);
+        mPresentador = new SaludoPresenter(mRepositorio, mVista);
     }
 
-    // Test para comprobar que se muestra el saludo en modo normal.
+    // Test para comprobar que se muestra el saludo en modo normal solicitando el saludo al
+    // repositorio.
     @Test
     public void saludoMostrado() {
-        // Se llama al método del presentador poara mostrar saludo.
+        // Se hace que cuando se llame al método getSaludo del repositorio se llame al método
+        // onSaludoLoaded del callback con el que ha sido llamado.
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                ((SaludoContract.Repository.GetSaludoCallback) invocation.getArguments()[2])
+                        .onSaludoLoaded(
+                        "Buenos días Baldomero");
+                return null;
+            }
+        }).when(mRepositorio).getSaludo("Baldomero", false, mPresentador);
+        // then
         mPresentador.onSaludar("Baldomero", false);
-        // Se comprueba que el método de la vista para mostrar el saludo es llamado.
-        verify(mVista).mostrarSaludo("Baldomero", false);
+        // verify
+        verify(mRepositorio).getSaludo("Baldomero", false, mPresentador);
+        verify(mVista).mostrarSaludo("Buenos días Baldomero");
     }
 
-    // Test para comprobar que se muestra el saludo en modo educado.
+    // Test para comprobar que se muestra el saludo en modo educado solicitando el saludo
+    // al respositorio.
     @Test
     public void saludoEducadoMostrado() {
-        // Se llama al método del presentador poara mostrar saludo.
+        // Se hace que cuando se llame al método getSaludo del repositorio se llame al método
+        // onSaludoLoaded del callback con el que ha sido llamado.
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                ((SaludoContract.Repository.GetSaludoCallback) invocation.getArguments()[2])
+                        .onSaludoLoaded(
+                                "Buenos días tenga usted Baldomero");
+                return null;
+            }
+        }).when(mRepositorio).getSaludo("Baldomero", true, mPresentador);
+        // then
         mPresentador.onSaludar("Baldomero", true);
-        // Se comprueba que el método de la vista para mostrar el saludo es llamado.
-        verify(mVista).mostrarSaludo("Baldomero", true);
+        // verify
+        verify(mRepositorio).getSaludo("Baldomero", true, mPresentador);
+        verify(mVista).mostrarSaludo("Buenos días tenga usted Baldomero");
     }
 
 }

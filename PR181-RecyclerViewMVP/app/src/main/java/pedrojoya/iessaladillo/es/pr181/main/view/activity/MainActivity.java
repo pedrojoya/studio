@@ -29,8 +29,10 @@ import pedrojoya.iessaladillo.es.pr181.main.view.adapter.MainAdapter;
 import pedrojoya.iessaladillo.es.pr181.main.view.listener.OnMainItemClickListener;
 import pedrojoya.iessaladillo.es.pr181.main.view.listener.OnMainItemLongClickListener;
 
-public class MainActivity extends BasePresenterActivity<MainPresenter, MainView> implements MainView, OnMainItemClickListener,
-        OnMainItemLongClickListener, SwipeRefreshLayout.OnRefreshListener {
+@SuppressWarnings("unused")
+public class MainActivity extends BasePresenterActivity<MainPresenter, MainView> implements
+        MainView, OnMainItemClickListener, OnMainItemLongClickListener, SwipeRefreshLayout
+        .OnRefreshListener {
 
     private static final String STATE_STUDENTS = "state_students";
 
@@ -46,6 +48,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainView>
     SwipeRefreshLayout swlPanel;
 
     private MainAdapter mAdapter;
+    @SuppressWarnings("FieldCanBeLocal")
     private LinearLayoutManager mLayoutManager;
     private MainPresenter mPresenter;
     private List<Student> mStudents;
@@ -103,8 +106,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainView>
             lstAlumnos.setHasFixedSize(true);
             lstAlumnos.setAdapter(mAdapter);
             checkAdapterIsEmpty();
-            mLayoutManager = new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false);
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             lstAlumnos.setLayoutManager(mLayoutManager);
             lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         }
@@ -130,7 +132,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainView>
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(STATE_STUDENTS, (ArrayList<? extends Parcelable>) mStudents);
+        outState.putParcelableArrayList(STATE_STUDENTS,
+                (ArrayList<? extends Parcelable>) mStudents);
         super.onSaveInstanceState(outState);
     }
 
@@ -158,19 +161,17 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainView>
     // ============================
 
 
-    /*** LO HACE AUTOMÁTICAMENTE LA ACTIVIDAD BASE
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mPresenter.onViewAttach(this);
-    }
+    /* LO HACE AUTOMÁTICAMENTE LA ACTIVIDAD BASE
+     @Override protected void onStart() {
+     super.onStart();
+     mPresenter.onViewAttach(this);
+     }
 
-    @Override
-    protected void onStop() {
-        mPresenter.onViewDetach();
-        super.onStop();
-    }
-    ***/
+     @Override protected void onStop() {
+     mPresenter.onViewDetach();
+     super.onStop();
+     }
+     */
 
     @Override
     protected void onResume() {
@@ -179,8 +180,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainView>
             if (mPresenter != null) {
                 mPresenter.getStudents();
             }
-        }
-        else {
+        } else {
             mAdapter.setData(mStudents);
         }
     }

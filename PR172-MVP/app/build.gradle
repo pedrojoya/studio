@@ -1,24 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
-// Variables.
-def support_library_version = "24.2.1"
-def butterknife_version = "8.4.0"
-def junit_version = '4.12'
-def mockito_version = '1.10.19'
-def powerMockito_version = '1.6.4'
-def hamcrest_version = '1.3'
-def espresso_version = "2.2.2"
-def support_test_version = "0.5"
-
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr172"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
         // Necesario para ui testing con Espresso.
@@ -41,17 +31,23 @@ android {
 dependencies {
     // Librerias.
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.jakewharton:butterknife:${butterknife_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
     // Pruebas unitarias locales.
-    testCompile "junit:junit:${junit_version}"
-    testCompile "org.mockito:mockito-all:${mockito_version}"
-    testCompile "org.hamcrest:hamcrest-all:${hamcrest_version}"
-    testCompile "org.powermock:powermock-module-junit4:${powerMockito_version}"
-    testCompile "org.powermock:powermock-api-mockito:${powerMockito_version}"
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockito_version"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrest_version"
+    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powermockito_version"
+    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powermockito_version"
     // UI testing con Espresso
-    androidTestCompile "com.android.support.test.espresso:espresso-core:${espresso_version}"
-    androidTestCompile "com.android.support:support-annotations:${support_library_version}"
-    androidTestCompile "com.android.support.test:runner:${support_test_version}"
-    androidTestCompile "com.android.support.test:rules:${support_test_version}"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("com.android.support.test:runner:$rootProject.ext.support_test_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("com.android.support.test:rules:$rootProject.ext.support_test_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

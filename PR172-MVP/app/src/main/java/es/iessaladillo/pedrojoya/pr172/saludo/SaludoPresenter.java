@@ -2,10 +2,10 @@ package es.iessaladillo.pedrojoya.pr172.saludo;
 
 import android.support.annotation.NonNull;
 
-public class SaludoPresenter implements SaludoContract.UserActionsListener {
+public class SaludoPresenter implements SaludoContract.Presenter, SaludoContract.Repository.GetSaludoCallback {
 
-    private SaludoContract.Repository mRepositorio;
-    private SaludoContract.View mVista;
+    private final SaludoContract.Repository mRepositorio;
+    private final SaludoContract.View mVista;
 
     public SaludoPresenter(@NonNull SaludoContract.Repository repositorio, @NonNull
             SaludoContract.View vista) {
@@ -16,19 +16,18 @@ public class SaludoPresenter implements SaludoContract.UserActionsListener {
     @Override
     public void onSaludar(String nombre, boolean educado) {
         // Se obtiene el saludo desde el repositorio.
-        mRepositorio.getSaludo(nombre, educado, new SaludoContract.Repository.GetSaludoCallback() {
-            @Override
-            public void onSaludoLoaded(String mensaje) {
-                // Se indica a la Vista que debe mostrar el mensaje.
-                mVista.mostrarSaludo(mensaje);
-            }
-        });
+        mRepositorio.getSaludo(nombre, educado, this);
     }
 
     @Override
     public void onCambiarModoSaludo(boolean educado) {
         // Se indica a la Vista que debe cambiar el texto del modo.
         mVista.cambiarTextoModo(educado);
+    }
+
+    @Override
+    public void onSaludoLoaded(String mensaje) {
+        mVista.mostrarSaludo(mensaje);
     }
 
 }

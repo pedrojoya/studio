@@ -8,8 +8,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr181.R;
-import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
 import pedrojoya.iessaladillo.es.pr181.component.UIImageLoader;
+import pedrojoya.iessaladillo.es.pr181.main.model.entity.Student;
 
 public class MainViewHolder extends RecyclerView.ViewHolder {
 

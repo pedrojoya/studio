@@ -25,7 +25,7 @@ public class SharedPrefHelper {
     }
 
     public void removePref(int resId) {
-        mPref.edit().remove(mRes.getString(resId)).commit();
+        mPref.edit().remove(mRes.getString(resId)).apply();
     }
 
     public String getString(int resId, String defValue) {
@@ -41,7 +41,7 @@ public class SharedPrefHelper {
     }
 
     public void commitString(int resId, String value) {
-        mPref.edit().putString(mRes.getString(resId), value).commit();
+        mPref.edit().putString(mRes.getString(resId), value).apply();
     }
 
     public boolean getBoolean(int resId, boolean defValue) {
@@ -58,7 +58,7 @@ public class SharedPrefHelper {
     }
 
     public void commitBoolean(int resId, boolean value) {
-        mPref.edit().putBoolean(mRes.getString(resId), value).commit();
+        mPref.edit().putBoolean(mRes.getString(resId), value).apply();
     }
 
     public void applyBooleanReverseValue(int resId) {
@@ -82,7 +82,7 @@ public class SharedPrefHelper {
     }
 
     public void commitInt(int resId, int value) {
-        mPref.edit().putInt(mRes.getString(resId), value).commit();
+        mPref.edit().putInt(mRes.getString(resId), value).apply();
     }
 
     public long getLong(int resId, long defValue) {
@@ -98,7 +98,7 @@ public class SharedPrefHelper {
     }
 
     public void commitLong(int resId, long value) {
-        mPref.edit().putLong(mRes.getString(resId), value).commit();
+        mPref.edit().putLong(mRes.getString(resId), value).apply();
     }
 
     public float getFloat(int resId, float defValue) {
@@ -114,7 +114,7 @@ public class SharedPrefHelper {
     }
 
     public void commitLong(int resId, float value) {
-        mPref.edit().putFloat(mRes.getString(resId), value).commit();
+        mPref.edit().putFloat(mRes.getString(resId), value).apply();
     }
 
     /***
@@ -133,7 +133,7 @@ public class SharedPrefHelper {
 
         runOverMap(map, edit);
 
-        edit.commit();
+        edit.apply();
     }
 
     /***

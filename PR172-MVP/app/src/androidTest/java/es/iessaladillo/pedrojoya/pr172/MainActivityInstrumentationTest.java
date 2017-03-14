@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr172;
 
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class MainActivityInstrumentationTest {
 
     // Preferred JUnit 4 mechanism of specifying the activity to be launched before each test
     @Rule
-    public ActivityTestRule<SaludoActivity> activityTestRule =
+    public final ActivityTestRule<SaludoActivity> activityTestRule =
             new ActivityTestRule<>(SaludoActivity.class);
 
     // Valida que cambia el texto del checkbox al pulsarlo.

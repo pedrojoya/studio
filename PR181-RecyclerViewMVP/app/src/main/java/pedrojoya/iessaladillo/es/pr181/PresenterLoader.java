@@ -3,7 +3,7 @@ package pedrojoya.iessaladillo.es.pr181;
 import android.content.Context;
 import android.support.v4.content.Loader;
 
-public class PresenterLoader<T extends BasePresenter> extends Loader<T>{
+public class PresenterLoader<T extends BasePresenter> extends Loader<T> {
 
     private final PresenterFactory<T> factory;
     private T presenter;
@@ -21,7 +21,6 @@ public class PresenterLoader<T extends BasePresenter> extends Loader<T>{
             deliverResult(presenter);
             return;
         }
-
         // Otherwise, force a load
         forceLoad();
     }

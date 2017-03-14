@@ -5,7 +5,9 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 
-public abstract class BasePresenterActivity<P extends BasePresenter<V>, V> extends AppCompatActivity {
+@SuppressWarnings({"unchecked", "EmptyMethod"})
+public abstract class BasePresenterActivity<P extends BasePresenter<V>, V> extends
+        AppCompatActivity {
 
     private static final int LOADER_ID = 101;
     private BasePresenter<V> presenter;
@@ -15,24 +17,26 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V> exten
         super.onCreate(savedInstanceState);
 
         // LoaderCallbacks as an object, so no hint regarding Loader will be leak to the subclasses.
-        getSupportLoaderManager().initLoader(LOADER_ID, null, new LoaderManager.LoaderCallbacks<P>() {
-            @Override
-            public final Loader<P> onCreateLoader(int id, Bundle args) {
-                return new PresenterLoader<>(BasePresenterActivity.this, getPresenterFactory());
-            }
+        getSupportLoaderManager().initLoader(LOADER_ID, null,
+                new LoaderManager.LoaderCallbacks<P>() {
+                    @Override
+                    public final Loader<P> onCreateLoader(int id, Bundle args) {
+                        return new PresenterLoader<>(BasePresenterActivity.this,
+                                getPresenterFactory());
+                    }
 
-            @Override
-            public final void onLoadFinished(Loader<P> loader, P presenter) {
-                BasePresenterActivity.this.presenter = presenter;
-                onPresenterPrepared(presenter);
-            }
+                    @Override
+                    public final void onLoadFinished(Loader<P> loader, P presenter) {
+                        BasePresenterActivity.this.presenter = presenter;
+                        onPresenterPrepared(presenter);
+                    }
 
-            @Override
-            public final void onLoaderReset(Loader<P> loader) {
-                BasePresenterActivity.this.presenter = null;
-                onPresenterDestroyed();
-            }
-        });
+                    @Override
+                    public final void onLoaderReset(Loader<P> loader) {
+                        BasePresenterActivity.this.presenter = null;
+                        onPresenterDestroyed();
+                    }
+                });
     }
 
     @Override
@@ -51,7 +55,8 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V> exten
 
     protected abstract void onPresenterPrepared(P presenter);
 
-    protected void onPresenterDestroyed() {}
+    protected void onPresenterDestroyed() {
+    }
 
     // Override in case of Activity not implementing Presenter<View> interface
     protected V getPresenterView() {

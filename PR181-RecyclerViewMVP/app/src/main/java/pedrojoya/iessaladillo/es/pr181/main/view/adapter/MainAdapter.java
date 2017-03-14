@@ -26,15 +26,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_item, parent, false);
         final MainViewHolder viewHolder = new MainViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(v,
-                            mData.get(viewHolder.getAdapterPosition()),
+                    onItemClickListener.onItemClick(v, mData.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }

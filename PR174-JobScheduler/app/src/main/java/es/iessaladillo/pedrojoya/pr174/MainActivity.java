@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.txtMensaje)

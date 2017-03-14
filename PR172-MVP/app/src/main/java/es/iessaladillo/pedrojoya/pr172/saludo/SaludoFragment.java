@@ -12,24 +12,27 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import es.iessaladillo.pedrojoya.pr172.R;
 
 
+@SuppressWarnings("WeakerAccess")
 public class SaludoFragment extends Fragment implements SaludoContract.View {
 
 
-    @Bind(R.id.txtNombre)
+    @BindView(R.id.txtNombre)
     EditText txtNombre;
-    @Bind(R.id.chkEducado)
+    @BindView(R.id.chkEducado)
     CheckBox chkEducado;
-    @Bind(R.id.btnSaludar)
+    @BindView(R.id.btnSaludar)
     Button btnSaludar;
 
-    private SaludoContract.UserActionsListener mPresentador;
+    private SaludoContract.Presenter mPresentador;
+    private Unbinder mUnbinder;
 
     public SaludoFragment() {
     }
@@ -47,10 +50,10 @@ public class SaludoFragment extends Fragment implements SaludoContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_saludo, container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -59,11 +62,6 @@ public class SaludoFragment extends Fragment implements SaludoContract.View {
         super.onActivityCreated(savedInstanceState);
         // Se crea el Presentador.
         mPresentador = new SaludoPresenter(SaludoRepository.getInstance(), this);
-        initVistas();
-    }
-
-    private void initVistas() {
-
     }
 
     @Override
@@ -73,14 +71,14 @@ public class SaludoFragment extends Fragment implements SaludoContract.View {
 
     @Override
     public void cambiarTextoModo(boolean educado) {
-        chkEducado.setText(educado ? getString(R.string.saludar_educadamente) :
-                getString(R.string.saludar_normal));
+        chkEducado.setText(educado ? getString(R.string.saludar_educadamente) : getString(
+                R.string.saludar_normal));
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        mUnbinder.unbind();
     }
 
     @OnClick(R.id.btnSaludar)
@@ -88,6 +86,7 @@ public class SaludoFragment extends Fragment implements SaludoContract.View {
         mPresentador.onSaludar(txtNombre.getText().toString(), chkEducado.isChecked());
     }
 
+    @SuppressWarnings("UnusedParameters")
     @OnCheckedChanged(R.id.chkEducado)
     public void chkEducadoOnCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         mPresentador.onCambiarModoSaludo(isChecked);

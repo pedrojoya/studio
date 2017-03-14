@@ -5,11 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 
+@SuppressWarnings({"unchecked", "EmptyMethod", "unused"})
 public abstract class BasePresenterFragment<P extends BasePresenter<V>, V> extends Fragment {
 
     private static final int LOADER_ID = 101;
 
-    // boolean flag to avoid delivering the result twice. Calling initLoader in onActivityCreated makes
+    // boolean flag to avoid delivering the result twice. Calling initLoader in onActivityCreated
+    // makes
     // onLoadFinished will be called twice during configuration change.
     private boolean delivered = false;
     private BasePresenter<V> presenter;

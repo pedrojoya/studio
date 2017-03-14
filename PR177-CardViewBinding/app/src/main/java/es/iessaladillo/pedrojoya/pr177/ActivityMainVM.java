@@ -49,7 +49,7 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         return String.valueOf(valor);
     }
 
-    @Bindable
+    @Bindable({"porcentaje"})
     public String getCuenta() {
         return cuenta;
     }
@@ -61,12 +61,12 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         this.cuenta = cuenta;
         calcular();
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.cuenta);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.propina);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.total);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.escote);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.propina);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.total);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.escote);
     }
 
-    @Bindable
+    @Bindable({"cuenta"})
     public String getPropina() {
         return propina;
     }
@@ -88,14 +88,14 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         }
         this.porcentaje = porcentaje;
         calcular();
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.cuenta);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.propina);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.total);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.escote);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.cuenta);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.propina);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.total);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.escote);
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.porcentaje);
     }
 
-    @Bindable
+    @Bindable({"cuenta"})
     public String getTotal() {
         return total;
     }
@@ -105,7 +105,7 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.total);
     }
 
-    @Bindable
+    @Bindable({"cuenta", "comensales"})
     public String getEscote() {
         return escote;
     }
@@ -127,7 +127,7 @@ public class ActivityMainVM extends BaseObservable implements Parcelable {
         this.comensales = comensales;
         calcular();
         notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.comensales);
-        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.escote);
+//        notifyPropertyChanged(es.iessaladillo.pedrojoya.pr177.BR.escote);
     }
 
     @Bindable

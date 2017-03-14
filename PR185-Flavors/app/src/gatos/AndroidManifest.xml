@@ -1,6 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application>
+    <application tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name="es.iessaladillo.pedrojoya.pr185.FotoActivity"
             >
         </activity>

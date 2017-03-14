@@ -2,10 +2,11 @@ package es.iessaladillo.pedrojoya.pr172.saludo;
 
 import android.support.annotation.NonNull;
 
+@SuppressWarnings("unused")
 public interface SaludoContract {
 
     // Interfaz de comunicación desde la Vista con el Presentador.
-    interface UserActionsListener {
+    interface Presenter {
         // Se ha solicitado saludar.
         void onSaludar(String nombre, boolean educado);
 

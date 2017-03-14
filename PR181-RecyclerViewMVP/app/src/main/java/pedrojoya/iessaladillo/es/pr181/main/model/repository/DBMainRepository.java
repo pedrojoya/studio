@@ -10,21 +10,21 @@ public class DBMainRepository implements MainRepository {
     public void getList(final MainRepositoryCallback listener) {
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
-                listener.onListReceived(DB.getStudents());
+                listener.onListReceived(DB.getInstance().getStudents());
             }
         }, 5000);
     }
 
     @Override
     public void addElement(MainRepositoryCallback listener) {
-        Student student = DB.getNextStudent();
-        DB.addStudent(student);
+        Student student = DB.getInstance().getNextStudent();
+        DB.getInstance().addStudent(student);
         listener.onElementAdded(student);
     }
 
     @Override
     public void removeElement(int position, Student student, MainRepositoryCallback listener) {
-        DB.removeStudent(position);
+        DB.getInstance().removeStudent(position);
         listener.onElementRemoved(position, student);
     }
 
