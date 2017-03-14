@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawablePadding="@dimen/empty_drawablePadding"
-            android:drawableTop="@drawable/ic_no_hay_alumnos"
+            android:drawableTop="@drawable/ic_person_add"
             android:text="@string/no_hay_alumnos"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
     </FrameLayout>
@@ -77,6 +77,6 @@
         android:padding="@dimen/btnAgregar_padding"
         android:contentDescription="@string/agregar"
         android:scaleType="center"
-        app:srcCompat="@drawable/ic_person_add"/>
+        app:srcCompat="@drawable/ic_person_add_black_24dp"/>
 
 </RelativeLayout>

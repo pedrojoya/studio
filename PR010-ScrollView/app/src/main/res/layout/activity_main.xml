@@ -1,49 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/lblCabecera"
         style="?android:attr/listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:text="@string/panel_de_mensajes"/>
+        android:text="@string/panel_de_mensajes"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/scvTexto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/llPanel"
-        android:layout_below="@+id/lblCabecera"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/lblCabecera"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblCabecera"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/lblCabecera"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/llPanel">
 
         <TextView
             android:id="@+id/lblTexto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/llPanel"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:background="@color/primary_light"
-        android:paddingLeft="@dimen/panel_paddingLeft"
-        android:paddingStart="@dimen/panel_paddingLeft"
-        android:paddingRight="@dimen/panel_paddingRight"
-        android:paddingEnd="@dimen/panel_paddingRight"
-        android:paddingTop="@dimen/panel_paddingTop"
         android:paddingBottom="@dimen/panel_paddingBottom"
-        >
+        android:paddingEnd="@dimen/panel_paddingRight"
+        android:paddingLeft="@dimen/panel_paddingLeft"
+        android:paddingRight="@dimen/panel_paddingRight"
+        android:paddingStart="@dimen/panel_paddingLeft"
+        android:paddingTop="@dimen/panel_paddingTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1">
 
         <EditText
             android:id="@+id/txtMensaje"
@@ -52,8 +69,8 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:hint="@string/mensaje"
-            android:inputType="textImeMultiLine"
-            android:imeOptions="actionDone">
+            android:imeOptions="actionDone"
+            android:inputType="textImeMultiLine">
 
             <requestFocus/>
         </EditText>
@@ -65,10 +82,10 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/panel_paddingRight"
             android:layout_marginStart="@dimen/panel_paddingRight"
-            android:src="@drawable/ic_action_send"
-            android:padding="@dimen/button_padding"
             android:clickable="true"
-            android:contentDescription="@string/enviar"/>
+            android:contentDescription="@string/enviar"
+            android:padding="@dimen/button_padding"
+            android:src="@drawable/ic_action_send"/>
     </LinearLayout>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

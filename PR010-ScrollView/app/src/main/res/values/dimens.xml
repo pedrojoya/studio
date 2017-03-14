@@ -1,6 +1,5 @@
 <resources>
 
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="panel_paddingTop">8dp</dimen>
     <dimen name="panel_paddingBottom">8dp</dimen>
     <dimen name="panel_paddingLeft">16dp</dimen>

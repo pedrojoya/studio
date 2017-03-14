@@ -225,9 +225,9 @@ public class FotoFragment extends Fragment {
     // Retorna el bitmap recibido en escala de grises.
     private Bitmap aEscalaGrises(Bitmap src) {
         // Constantes de factores.
-        final double FACTOR_ROJO = 0.299;
-        final double FACTOR_VERDE = 0.587;
-        final double FACTOR_AZUL = 0.114;
+        final double factorRojo = 0.299;
+        final double factorVerde = 0.587;
+        final double factorAzul = 0.114;
         // Se obtiene la anchura y altura de la imagen de origen.
         int anchura = src.getWidth();
         int altura = src.getHeight();
@@ -245,8 +245,8 @@ public class FotoFragment extends Fragment {
                 azul = Color.blue(pixel);
                 // Se realiza la conversión a un único color proporcional
                 // (gris).
-                rojo = verde = azul = (int) (FACTOR_ROJO * rojo + FACTOR_VERDE
-                        * verde + FACTOR_AZUL * azul);
+                rojo = verde = azul = (int) (factorRojo * rojo + factorVerde
+                        * verde + factorAzul * azul);
                 // Se escribe el nuevo pixel en el bitmap de salida.
                 bmSalida.setPixel(x, y,
                         Color.argb(transparencia, rojo, verde, azul));
@@ -263,9 +263,9 @@ public class FotoFragment extends Fragment {
                                      double factorIntesidadRojo, double factorIntensidadVerde,
                                      double factorIntensidadAzul) {
         // Constantes de factores.
-        final double FACTOR_ROJO = 0.3;
-        final double FACTOR_VERDE = 0.59;
-        final double FACTOR_AZUL = 0.11;
+        final double factorRojo = 0.3;
+        final double factorVerde = 0.59;
+        final double factorAzul = 0.11;
         // Se obtiene la anchura y altura de la imagen de origen.
         int anchura = src.getWidth();
         int altura = src.getHeight();
@@ -283,18 +283,18 @@ public class FotoFragment extends Fragment {
                 azul = Color.blue(pixel);
                 // Se realiza la conversión a un único color proporcional
                 // (gris).
-                rojo = verde = azul = (int) (FACTOR_ROJO * rojo + FACTOR_VERDE
-                        * verde + FACTOR_AZUL * azul);
+                rojo = verde = azul = (int) (factorRojo * rojo + factorVerde
+                        * verde + factorAzul * azul);
                 // Se aplica el factor de intensidad a cada canal.
-                rojo += (intensidad * factorIntesidadRojo);
+                rojo += intensidad * factorIntesidadRojo;
                 if (rojo > 255) {
                     rojo = 255;
                 }
-                verde += (intensidad * factorIntensidadVerde);
+                verde += intensidad * factorIntensidadVerde;
                 if (verde > 255) {
                     verde = 255;
                 }
-                azul += (intensidad * factorIntensidadAzul);
+                azul += intensidad * factorIntensidadAzul;
                 if (azul > 255) {
                     azul = 255;
                 }

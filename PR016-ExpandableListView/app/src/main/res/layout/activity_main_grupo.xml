@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
 
     <LinearLayout
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/expandir_contraer_grupo"
-            android:src="@drawable/ic_action_navigation_expand"/>
+            app:srcCompat="@drawable/ic_action_navigation_expand"/>
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +42,6 @@
         android:paddingRight="@dimen/grupo_padding">
 
         <TextView
-            android:id="@+id/lblEncNombre"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/grupo_padding"
@@ -51,7 +51,6 @@
             android:gravity="center_vertical"
             android:text="@string/alumno"
             android:paddingLeft="@dimen/encabezado_paddingLeft"
-            android:paddingStart="@dimen/encabezado_paddingLeft"
             android:paddingRight="@dimen/encabezado_paddingLeft"
             android:paddingEnd="@dimen/encabezado_paddingLeft"
             android:textAllCaps="true"
@@ -59,7 +58,6 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/lblEncCurso"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

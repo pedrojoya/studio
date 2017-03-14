@@ -1,18 +1,16 @@
 apply plugin: 'com.android.application'
 
-def support_library_version = "24.2.0"
-def leak_canary_version = "1.4-beta2"
-
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr016"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -25,8 +23,12 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    debugCompile "com.squareup.leakcanary:leakcanary-android:${leak_canary_version}"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leak_canary_version}"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leak_canary_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
 }

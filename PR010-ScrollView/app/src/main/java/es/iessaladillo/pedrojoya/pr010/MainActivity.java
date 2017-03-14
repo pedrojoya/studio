@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr010;
 
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
@@ -12,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtMensaje;
     private TextView lblTexto;
     private ImageView btnEnviar;
-    private ScrollView scvTexto;
+    private NestedScrollView scvTexto;
 
     // Variables a nivel de clase.
     private SimpleDateFormat formateadorFechas;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         lblTexto = (TextView) findViewById(R.id.lblTexto);
         txtMensaje = (EditText) findViewById(R.id.txtMensaje);
         btnEnviar = (ImageView) findViewById(R.id.btnEnviar);
-        scvTexto = (ScrollView) findViewById(R.id.scvTexto);
+        scvTexto = (NestedScrollView) findViewById(R.id.scvTexto);
         txtMensaje.setHorizontallyScrolling(false);
         txtMensaje.setMaxLines(getResources().getInteger(R.integer.txtMensaje_maxLines));
         txtMensaje.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Hace scroll en el ScrollView en la dirección indicada.
     @SuppressWarnings("SameParameterValue")
-    private void hacerScroll(final ScrollView scv, final int focus) {
+    private void hacerScroll(final NestedScrollView scv, final int focus) {
         // Es necesario que se haga en el futuro para que se calcule
         // correctamente el final.
         scv.post(new Runnable() {

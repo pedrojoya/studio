@@ -9,8 +9,7 @@ import android.view.ViewConfiguration;
 
 import java.lang.reflect.Field;
 
-public class MainActivity extends AppCompatActivity implements FotoFragment
-        .Listener,
+public class MainActivity extends AppCompatActivity implements FotoFragment.Listener,
         InfoFragment.Listener {
 
     // Constantes.
@@ -26,13 +25,12 @@ public class MainActivity extends AppCompatActivity implements FotoFragment
         // menú.
         overflowEnDispositivoConTeclaMenu();
         // Se carga el fragmento con la foto (sólo si no está ya).
-        FotoFragment frg = (FotoFragment) getSupportFragmentManager()
-                .findFragmentByTag(TAG_FOTO_FRAGMENT);
+        FotoFragment frg = (FotoFragment) getSupportFragmentManager().findFragmentByTag(
+                TAG_FOTO_FRAGMENT);
         if (frg == null) {
             frg = FotoFragment.newInstance(R.drawable.bench);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frmFragmento, frg, TAG_FOTO_FRAGMENT)
-                    .commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frmFragmento, frg,
+                    TAG_FOTO_FRAGMENT).commit();
         }
     }
 
@@ -50,12 +48,12 @@ public class MainActivity extends AppCompatActivity implements FotoFragment
     public boolean onOptionsItemSelected(MenuItem item) {
         // Dependiendo del item pulsado se realiza la acción deseada.
         switch (item.getItemId()) {
-        case R.id.mnuPreferencias:
-            mostrarPreferencias();
-            break;
-        default:
-            // Se propaga el evento porque no ha sido resuelto.
-            return super.onOptionsItemSelected(item);
+            case R.id.mnuPreferencias:
+                mostrarPreferencias();
+                break;
+            default:
+                // Se propaga el evento porque no ha sido resuelto.
+                return super.onOptionsItemSelected(item);
         }
         // Retorna que el evento ya ha sido gestionado.
         return true;
@@ -72,35 +70,33 @@ public class MainActivity extends AppCompatActivity implements FotoFragment
     public void onInfo(int fotoResId) {
         // Se carga el fragmento Info en la actividad, agregándolo a la
         // BackStack.
-        InfoFragment frg = (InfoFragment) getSupportFragmentManager()
-                .findFragmentByTag(TAG_INFO_FRAGMENT);
+        InfoFragment frg = (InfoFragment) getSupportFragmentManager().findFragmentByTag(
+                TAG_INFO_FRAGMENT);
         if (frg == null) {
             frg = new InfoFragment();
         }
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frmFragmento, frg, TAG_INFO_FRAGMENT)
-                .addToBackStack(TAG_INFO_FRAGMENT).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frmFragmento, frg,
+                TAG_INFO_FRAGMENT).addToBackStack(TAG_INFO_FRAGMENT).commit();
     }
 
     // Cuando se solicita la foto.
     @Override
     public void onFoto(int fotoResId) {
         // Se carga el fragmento Foto en la actividad.
-        FotoFragment frg = (FotoFragment) getSupportFragmentManager()
-                .findFragmentByTag(TAG_FOTO_FRAGMENT);
+        FotoFragment frg = (FotoFragment) getSupportFragmentManager().findFragmentByTag(
+                TAG_FOTO_FRAGMENT);
         if (frg == null) {
             frg = FotoFragment.newInstance(fotoResId);
         }
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frmFragmento, frg, TAG_FOTO_FRAGMENT).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frmFragmento, frg,
+                TAG_FOTO_FRAGMENT).commit();
     }
 
     // Activa el ítem de overflow en dispositivos con botón físico de menú.
     private void overflowEnDispositivoConTeclaMenu() {
         try {
             ViewConfiguration config = ViewConfiguration.get(this);
-            Field menuKeyField = ViewConfiguration.class
-                    .getDeclaredField("sHasPermanentMenuKey");
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
             if (menuKeyField != null) {
                 menuKeyField.setAccessible(true);
                 menuKeyField.setBoolean(config, false);

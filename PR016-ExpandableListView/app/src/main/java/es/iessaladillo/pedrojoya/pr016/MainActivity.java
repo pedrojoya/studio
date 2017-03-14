@@ -250,14 +250,14 @@ public class MainActivity extends AppCompatActivity implements
                 // y la cabecera de columnas.
                 if (isExpanded) {
                     contenedor.imgIndicador
-                            .setImageResource(R.drawable.ic_action_navigation_collapse);
+                            .setImageResource(R.drawable.ic_expand_less);
                     contenedor.llEncColumnas.setVisibility(View.VISIBLE);
                 } else {
                     // Si el grupo no está expandido se muestra el icono de
                     // expandir
                     // y se oculta la cabecera de columnas.
                     contenedor.imgIndicador
-                            .setImageResource(R.drawable.ic_action_navigation_expand);
+                            .setImageResource(R.drawable.ic_expand_more);
                     contenedor.llEncColumnas.setVisibility(View.GONE);
                 }
             }

@@ -2,109 +2,22 @@
 <items version="2" >
 
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        is-multidex="false"
+        jar="/Users/pedro/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
         jumboMode="false"
-        revision="23.0.2"
-        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_2b3e717de3eb198c7c513257299123269cae962a.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/1165b27bea65e4b97cfdbbb1a13dffda72390997/output/jars/classes.jar"
         jumboMode="false"
-        revision="23.0.2"
-        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_3a0ab2c34a511744ee070cd1d4265e11629a3569.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_e30d57315a8b9ab66bcdc0824ccd4e8aea33eddd.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_d558c448b7ee79fb2b1faa1192a4a1250874a3cb.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_bb2db3a18232c5ba486bc3712c54d7cf56adfc2c.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_b7c80d38ba05a85d154ce8280c524590404ea6b9.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_7f2400cb0058e1805ac32c0e12d2cbf9d966f141.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_9dc849e4c72fe8312f54f1703d293ade2d8c6e5d.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_ae592f2530df4c9ca40f778a549fa8b3af747e68.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_20d7193643a13d8c700dded32ea52a8fd2629bdd.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_bac5ab3b3bf6954ca56e1f7de31af85b3767b168.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_b11bc17e0b12b1842ae28e559e4a2fcfed3c0372.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_6f831ce2118c06367698f4f2600eee7166ee66c5.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_42b4141848216e1bdae116476bba7f941aa9bf69.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
-        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_342de102f32ff856daf46e1674c32c314ff90db3.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/pedro/studio/PR010-ScrollView/app/build/intermediates/pre-dexed/debug/classes_d0fea2a7b70ff25d50af43f112e65e08d05424c4.jar" />
     </item>
 
 </items>

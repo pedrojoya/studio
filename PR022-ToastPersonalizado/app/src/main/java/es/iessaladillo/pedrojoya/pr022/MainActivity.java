@@ -12,14 +12,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
+import com.tapadoo.alerter.Alerter;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView lblTexto;
-    private RelativeLayout rlRaiz;
 
     // Al crear la actividad.
     @Override
@@ -33,15 +34,12 @@ public class MainActivity extends AppCompatActivity {
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         lblTexto = (TextView) findViewById(R.id.lblTexto);
-        rlRaiz = (RelativeLayout) findViewById(R.id.rlRaiz);
         Button btnToastDinamico = (Button) findViewById(R.id.btnToastDinamico);
         if (btnToastDinamico != null) {
             btnToastDinamico.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     // Se muestra un toast creado dinámicamente.
-                    mostrarToastDinamico(
-                            R.string.toast_creado_dinamicamente,
-                            R.mipmap.ic_launcher);
+                    mostrarToastDinamico(R.string.toast_creado_dinamicamente, R.mipmap.ic_launcher);
                 }
             });
         }
@@ -50,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             btnToastLayout.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     // Se muestra un toast creado dinámicamente.
-                    mostrarToastLayout(R.string.toast_con_layout_propio,
-                            R.layout.toast, R.id.lblMensaje);
+                    mostrarToastLayout(R.string.toast_con_layout_propio, R.layout.toast,
+                            R.id.lblMensaje);
                 }
             });
         }
@@ -61,6 +59,30 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     cambiarVisibilidad(lblTexto);
                     mostrarSnackbar(getString(R.string.visibilidad_cambiada));
+                }
+            });
+        }
+        Button btnStylableToast = (Button) findViewById(R.id.btnStylableToast);
+        if (btnStylableToast != null) {
+            btnStylableToast.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                    new StyleableToast
+                            .Builder(MainActivity.this, getString(R.string.mensaje_toasty))
+                            .withBackgroundColor(Color.RED)
+                            .withTextColor(Color.WHITE)
+                            .withIcon(R.drawable.ic_add_alert, true)
+                            .withDuration(Toast.LENGTH_LONG)
+                            .build()
+                            .show();
+                }
+            });
+        }
+        Button btnAlerter = (Button) findViewById(R.id.btnAlerter);
+        if (btnAlerter != null) {
+            btnAlerter.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                    Alerter.create(MainActivity.this).setTitle(R.string.atencion).setText(
+                            R.string.mensaje_alerter).show();
                 }
             });
         }
@@ -84,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             texto.setTextAppearance(android.R.style.TextAppearance_Small);
         }
-        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT, 0);
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,
+                0);
         texto.setLayoutParams(params);
         texto.setGravity(Gravity.CENTER);
         texto.setShadowLayer(2.75f, 0, 0, Color.parseColor("#BB000000"));
@@ -102,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Muestra un toast con layout específico.
     @SuppressWarnings("SameParameterValue")
-    private void mostrarToastLayout(int stringResId, int layoutId,
-                                    int textViewId) {
+    private void mostrarToastLayout(int stringResId, int layoutId, int textViewId) {
         try {
             // Se infla el layout obteniendo la vista que mostrará.
             View raiz = LayoutInflater.from(this).inflate(layoutId, null);
@@ -133,14 +154,13 @@ public class MainActivity extends AppCompatActivity {
 
     // Muestra una snackbar con el mensaje y la accion deshacer.
     private void mostrarSnackbar(String mensaje) {
-        Snackbar.make(rlRaiz, mensaje, Snackbar.LENGTH_LONG)
-                .setAction(getString(R.string.deshacer), new OnClickListener() {
+        Snackbar.make(lblTexto, mensaje, Snackbar.LENGTH_LONG).setAction(
+                getString(R.string.deshacer), new OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         cambiarVisibilidad(lblTexto);
                     }
-                })
-                .show();
+                }).show();
     }
 
 }

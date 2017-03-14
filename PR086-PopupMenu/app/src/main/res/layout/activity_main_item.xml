@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/card_padding"
@@ -13,48 +14,48 @@
 
         <TextView
             android:id="@+id/lblNombre"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            tools:text="Nombre"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Nombre"/>
 
         <TextView
             android:id="@+id/lblCurso"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblNombre"
-            tools:text="Curso"
-            style="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            tools:text="Curso"/>
 
         <TextView
             android:id="@+id/lblTelefono"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblCurso"
-            tools:text="Telefono"
-            style="@style/Base.TextAppearance.AppCompat.Body1" />
+            tools:text="Telefono"/>
 
         <TextView
             android:id="@+id/lblDireccion"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblTelefono"
-            tools:text="Dirección"
-            style="@style/Base.TextAppearance.AppCompat.Body1" />
+            tools:text="Dirección"/>
 
         <ImageView
             android:id="@+id/imgPopupMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:clickable="true"
             android:contentDescription="@string/popup_menu"
-            android:src="@drawable/ic_action_more_vert" />
+            app:srcCompat="@drawable/ic_more_vert_black_24dp"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

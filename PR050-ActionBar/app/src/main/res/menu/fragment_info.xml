@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/mnuFoto"
-        android:icon="@drawable/ic_action_photo"
+        android:icon="@drawable/ic_photo"
         android:orderInCategory="100"
         app:showAsAction="ifRoom|withText"
         android:title="@string/foto"/>

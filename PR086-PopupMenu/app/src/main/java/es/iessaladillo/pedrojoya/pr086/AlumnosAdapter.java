@@ -1,8 +1,7 @@
 package es.iessaladillo.pedrojoya.pr086;
 
-import java.util.List;
-
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +15,8 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 class AlumnosAdapter extends ArrayAdapter<Alumno> {
 
     private final List<Alumno> mAlumnos;
@@ -27,8 +28,9 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         mInflador = LayoutInflater.from(contexto);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         // Si no se puede reciclar.
         if (convertView == null) {
@@ -38,9 +40,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
             holder = new ViewHolder(convertView);
             // Se almacena el contenedor en la vista.
             convertView.setTag(holder);
-        }
-        // Si se puede reciclar.
-        else {
+        } else {
             // Se obtiene el contenedor de vistas desde la vista reciclada.
             holder = (ViewHolder) convertView.getTag();
         }
@@ -59,8 +59,8 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         holder.lblCurso.setText(alumno.getCurso());
         // Se crea un nuevo objeto listener para cuando se pulse en la
         // imagen, a cuyo construtor se le pasa el mAlumno del que se trata.
-        holder.imgPopupMenu.setOnClickListener(new imgPopupMenuOnClickListener(
-                mAlumnos.get(position)));
+        holder.imgPopupMenu.setOnClickListener(
+                new ImgPopupMenuOnClickListener(mAlumnos.get(position)));
 
     }
 
@@ -77,27 +77,22 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
             // Se obtienen las vistas de la vista-fila.
-            lblNombre = (TextView) itemView
-                    .findViewById(R.id.lblNombre);
-            lblTelefono = (TextView) itemView
-                    .findViewById(R.id.lblTelefono);
-            lblDireccion = (TextView) itemView
-                    .findViewById(R.id.lblDireccion);
-            lblCurso = (TextView) itemView
-                    .findViewById(R.id.lblCurso);
-            imgPopupMenu = (ImageView) itemView
-                    .findViewById(R.id.imgPopupMenu);
+            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
+            lblTelefono = (TextView) itemView.findViewById(R.id.lblTelefono);
+            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
+            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
+            imgPopupMenu = (ImageView) itemView.findViewById(R.id.imgPopupMenu);
         }
 
     }
 
     // Clase listener para pulsación sobre el icono del PopupMenu.
-    private class imgPopupMenuOnClickListener implements OnClickListener {
+    private class ImgPopupMenuOnClickListener implements OnClickListener {
 
         private final Alumno mAlumno;
 
         // Constructor. Recibe el alumno asociado.
-        public imgPopupMenuOnClickListener(Alumno alumno) {
+        public ImgPopupMenuOnClickListener(Alumno alumno) {
             mAlumno = alumno;
         }
 
@@ -111,15 +106,13 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
             inflador.inflate(R.menu.activity_main_item_popup, popup.getMenu());
             // Se crea el listener para cuando se pulse un ítem del menú, a cuyo
             // constructor se le pasa el mAlumno asociado.
-            popup.setOnMenuItemClickListener(new PopupMenuOnMenuItemClickListener(
-                    mAlumno));
+            popup.setOnMenuItemClickListener(new PopupMenuOnMenuItemClickListener(mAlumno));
             // Se muestra el menú.
             popup.show();
         }
     }
 
-    private class PopupMenuOnMenuItemClickListener implements
-            OnMenuItemClickListener {
+    private class PopupMenuOnMenuItemClickListener implements OnMenuItemClickListener {
 
         // Alumno asociado.
         final Alumno alumno;

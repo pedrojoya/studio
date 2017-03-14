@@ -45,10 +45,8 @@ public class InfoFragment extends Fragment {
             mListener = (Listener) activity;
         } catch (ClassCastException e) {
             // La actividad no implementa la interfaz.
-            throw new ClassCastException(
-                    activity.toString()
-                            + activity
-                            .getString(R.string._debe_implementar_infofragment_listener));
+            throw new ClassCastException(activity.toString() + activity.getString(
+                    R.string._debe_implementar_infofragment_listener));
         }
     }
 
@@ -67,13 +65,13 @@ public class InfoFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Dependiendo del item pulsado realizo la acción deseada.
         switch (item.getItemId()) {
-        case R.id.mnuFoto:
-            // Se simula la pulsación de atrás.
-            mListener.onFoto(R.drawable.bench);
-            break;
-        default:
-            // Se propaga el evento porque no ha sido resuelto.
-            return super.onOptionsItemSelected(item);
+            case R.id.mnuFoto:
+                // Se simula la pulsación de atrás.
+                mListener.onFoto(R.drawable.bench);
+                break;
+            default:
+                // Se propaga el evento porque no ha sido resuelto.
+                return super.onOptionsItemSelected(item);
         }
         // Si llegamos aquí es que se ha resuelto el evento.
         return true;

@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.pr010;
 
 import android.support.test.espresso.matcher.BoundedMatcher;
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;

@@ -2,123 +2,22 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/6a3ca209d4f06bf6b6888a9fd7103decb8568916/output/jars/classes.jar"
         jumboMode="false"
-        revision="23.0.3"
-        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_b744afd1a4f61d114d5c4068c83b6592f0455e73.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="103a929767316418f7b47524dbbee1c3d35dec0e">
+        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/classes_f0dabfd9b5d2ea3d8000e04d975b6c036cf5a7bd.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/0301ea6de054e4a1cce177ebf721e01539f95bcf/output/jars/classes.jar"
         jumboMode="false"
-        revision="23.0.3"
-        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_dc60cbde20e67bf16cda907b3b1aad8383768589.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_3d6ff221a09dc6fc53253f8910b9a5a5a9225790.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.0_9b89601e167aa9daf61eec95de882d75545913fa.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_fc320d7f055702bd5d82442525f49dfb40e64d64.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_0fbcc053960c144ab573b42114b20f617067c5dd.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_38e5aa9cb8f9f0fda13acefb59fdbb6b085c1579.jar" />
-    </item>
-    <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_03c02172935f3f5752060273d892e9a131ca86b5.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_1ed033a02db603fd0bfe8185688304518b8a98c1.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_bce7260e86eab0e77b44f3ec6f2bc6cacafb814e.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_b8de8e1e9f0efa9096935f344ccbdbf3959f7d3a.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.0_a549363b7664d686b299a2d948e915ea14bdaf83.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_ac3e1663d75ed909cae82ce3bface7b706838f9e.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_6a9359f8508df2a4e39a6b739c7f1f9f21161a57.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_1d7f9fba7dae0ff2c87f46247b08b9aedfad8bae.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
-        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_8a787ea8dbe6d9d2d4c2cbacd770880e72e0d252.jar" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="40b4c3967e7cd13f24a07426a201bf832bbc1c16">
+        <dex dex="/Users/pedro/studio/PR022-ToastPersonalizado/app/build/intermediates/pre-dexed/debug/classes_2a24bb7f477e69008c10c3f57171fbd2c249bca6.jar" />
     </item>
 
 </items>

@@ -1,15 +1,13 @@
 apply plugin: 'com.android.application'
 
-def support_library_version = "24.2.0"
-
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr022"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -24,6 +22,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.android.support:design:${support_library_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
+    compile "com.muddzdev:styleabletoast:$rootProject.ext.stylabletoast_version"
+    compile "com.tapadoo.android:alerter:$rootProject.ext.alerter_version"
 }
