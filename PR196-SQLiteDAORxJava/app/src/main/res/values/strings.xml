@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Alumnado</string>
     <string name="sin_alumnado_agregue_un_alumno">No hay alumnos</string>
@@ -11,10 +11,10 @@
     <string name="editar_alumno">Actualizar</string>
     <string name="eliminar_alumno">Eliminar</string>
     <string name="insercion_correcta">El alumno se ha agregado correctamente</string>
-    <string name="insercion_incorrecta">Se ha producido un error al agregar el alumno</string>
+    <string name="insercion_incorrecta" tools:ignore="UnusedResources">Se ha producido un error al agregar el alumno</string>
     <string name="actualizacion_correcta">El alumno se ha actualizado correctamente</string>
-    <string name="actualizacion_incorrecta">Se ha producido un error al actualizar el alumno</string>
-    <string name="alumno_no_encontrado">No se ha encontrado el alumno en la base de datos.</string>
+    <string name="actualizacion_incorrecta" tools:ignore="UnusedResources">Se ha producido un error al actualizar el alumno</string>
+    <string name="alumno_no_encontrado" tools:ignore="UnusedResources">No se ha encontrado el alumno en la base de datos.</string>
     <string name="no">No</string>
     <string name="si">Sí</string>
     <string name="title_activity_alumno">AlumnoActivity</string>

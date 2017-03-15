@@ -11,9 +11,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView lstAppsHorizontal;
-    private RecyclerView lstAppsVertical;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        lstAppsHorizontal = (RecyclerView) findViewById(R.id.lstAppsHorizontal);
-        lstAppsVertical = (RecyclerView) findViewById(R.id.lstAppsVertical);
+        RecyclerView lstAppsHorizontal = (RecyclerView) findViewById(R.id.lstAppsHorizontal);
+        RecyclerView lstAppsVertical = (RecyclerView) findViewById(R.id.lstAppsVertical);
 
         SnapHelper snapHelperHorizontal = new LinearSnapHelper();
         // SnapHelper snapHelperHorizontal = new GravitySnapHelper(Gravity.START);

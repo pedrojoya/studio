@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconDipSize">
+        <ignore path="src/main/res/drawable-hdpi/ic_translate.png" />
+        <ignore path="src/main/res/drawable-ldpi/ic_translate.png" />
+        <ignore path="src/main/res/drawable-mdpi/ic_translate.png" />
+        <ignore path="src/main/res/drawable-xhdpi/ic_translate.png" />
+        <ignore path="src/main/res/drawable-xxhdpi/ic_translate.png" />
+        <ignore path="src/main/res/drawable-xxxhdpi/ic_translate.png" />
+    </issue>
+</lint>

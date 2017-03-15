@@ -1,9 +1,9 @@
 package info.devexchanges.snaprecyclerview;
 
-public class App {
+class App {
 
-    private int resIdLogo;
-    private String nombre;
+    private final int resIdLogo;
+    private final String nombre;
 
     public App(String nombre, int resIdLogo) {
         this.resIdLogo = resIdLogo;

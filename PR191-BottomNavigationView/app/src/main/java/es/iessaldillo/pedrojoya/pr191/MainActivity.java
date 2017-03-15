@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_CALENDARIO = "TAG_CALENDARIO";
     private static final String TAG_MUSICA = "TAG_MUSICA";
 
-    private TextView lblOpcion;
     private BottomNavigationView nav;
     private FragmentManager mGestorFragmentos;
 
@@ -27,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        lblOpcion = (TextView) findViewById(R.id.lblOpcion);
         nav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -33,7 +33,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
         .OnItemLongClickListener, ActionMode.Callback, AlumnosAdapter.OnItemClickListener {
 
     private static final String STATE_LISTA = "state_lista";
-    private static final int DATOS_LOADER = 0;
+//    private static final int DATOS_LOADER = 0;
 
     private TextView lblNuevoAlumno;
     private AlumnosAdapter mAdaptador;
@@ -314,6 +314,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
         super.onDestroy();
     }
 
+    @SuppressWarnings("EmptyMethod")
     @Override
     public void onDestroyView() {
 //        mDao.closeDatabase();

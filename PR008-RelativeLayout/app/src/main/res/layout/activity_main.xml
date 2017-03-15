@@ -35,7 +35,7 @@
         android:inputType="text"
         android:maxLength="12"
         android:paddingTop="0dp"
-        android:singleLine="true">
+        android:maxLines="1">
 
         <requestFocus/>
     </EditText>
@@ -61,7 +61,7 @@
         android:inputType="textPassword"
         android:maxLength="12"
         android:paddingTop="0dp"
-        android:singleLine="true"/>
+        android:maxLines="1"/>
 
     <View
         android:layout_width="match_parent"

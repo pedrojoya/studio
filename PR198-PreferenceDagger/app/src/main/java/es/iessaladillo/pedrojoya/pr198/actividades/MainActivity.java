@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import es.iessaladillo.pedrojoya.pr198.App;
 import es.iessaladillo.pedrojoya.pr198.R;
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class MainActivity extends AppCompatActivity {
 
     private TextView lblPreferencias;

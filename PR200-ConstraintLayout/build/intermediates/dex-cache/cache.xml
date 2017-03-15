@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR200-ConstraintLayout\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR200-ConstraintLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_41046849a5fde5b6958dc937135d441300a58e77\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\57dc13009fe19a0e5d6703652fce66ae4774cb73\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR200-ConstraintLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_266424c5293c18c0138b90743aca8be018fae8d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR200-ConstraintLayout\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="415a1ac618b3e9662ef62d93158fa5ee38264a98">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR200-ConstraintLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_890c7d12f64da714cfd37690b39f8e30d57c2530\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR200-ConstraintLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_1b70a5631c19efd547d9678a116ce95d76c84370\classes.dex" />
+    </item>
+
+</items>

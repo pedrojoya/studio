@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import es.iessaladillo.pedrojoya.pr199.MainActivity;
 
+@SuppressWarnings("unused")
 @Singleton
 @Component(modules = {AppModule.class, NetModule.class})
 public interface AppComponent {

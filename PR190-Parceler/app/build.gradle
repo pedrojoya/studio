@@ -1,24 +1,15 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
-
-def sdk_version = 24
-def buildtools_version = "24.0.3"
-def application_id = "es.iessaladillo.pedrojoya.pr190"
-def minsdk_version = 14
-def support_library_version = "24.2.1"
-
-def parceler_version = "1.1.5"
 
 //noinspection GroovyMissingReturnStatement
 android {
-    compileSdkVersion sdk_version
-    buildToolsVersion buildtools_version
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId application_id
-        minSdkVersion minsdk_version
-        targetSdkVersion sdk_version
+        applicationId "es.iessaladillo.pedrojoya.pr190"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -40,8 +31,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "org.parceler:parceler-api:${parceler_version}"
-    apt "org.parceler:parceler:${parceler_version}"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    testCompile "junit:junit:$rootProject.ext.junit_version"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "org.parceler:parceler-api:$rootProject.ext.parceler_version"
+    annotationProcessor "org.parceler:parceler:$rootProject.ext.parceler_version"
 }

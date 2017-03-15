@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ConstraintLayout</string>
+    <string name="conexion">Conexión</string>
+    <string name="nombre_usuario">Usuario</string>
+    <string name="clave">Clave</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="conectando_con_el_usuario">Conectando con el usuario %1$s…</string>
+</resources>

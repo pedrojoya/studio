@@ -54,6 +54,7 @@ public abstract class SimpleCursorLoader extends AsyncTaskLoader<Cursor> {
     }
 
     // Constructor. Recibe el contexto porque lo necesita la clase padre.
+    @SuppressWarnings("unused")
     public SimpleCursorLoader(Context context) {
         super(context);
         // Se crea un observador.

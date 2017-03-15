@@ -6,6 +6,7 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 
+@SuppressWarnings("unused")
 @Module
 public class AppModule {
 

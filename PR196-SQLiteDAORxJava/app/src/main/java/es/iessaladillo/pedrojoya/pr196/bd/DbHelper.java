@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 import es.iessaladillo.pedrojoya.pr196.R;
 
@@ -91,11 +92,12 @@ class DbHelper extends SQLiteOpenHelper {
 
     // Ejecuta contra la base de datos reciibida las sentencias SQL contenidas
     // en un archivo de Assets.
+    @SuppressWarnings("SameParameterValue")
     private void ejecutarFicheroSQLAssets(SQLiteDatabase db, int version) {
         BufferedReader reader = null;
         try {
             // Se abre el archivo de Assets (p.e.
-            String filename = String.format("%d.sql", version);
+            String filename = String.format(Locale.getDefault(), "%d.sql", version);
             final InputStream inputStream =
                     mAssets.open(filename);
             reader =

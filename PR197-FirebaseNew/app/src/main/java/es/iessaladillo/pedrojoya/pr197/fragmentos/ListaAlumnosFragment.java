@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -28,7 +29,6 @@ import es.iessaladillo.pedrojoya.pr197.App;
 import es.iessaladillo.pedrojoya.pr197.R;
 import es.iessaladillo.pedrojoya.pr197.adaptadores.AlumnosAdapter;
 import es.iessaladillo.pedrojoya.pr197.modelos.Alumno;
-import es.iessaladillo.pedrojoya.pr197.utils.DividerItemDecoration;
 import es.iessaladillo.pedrojoya.pr197.utils.HidingScrollListener;
 
 public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter

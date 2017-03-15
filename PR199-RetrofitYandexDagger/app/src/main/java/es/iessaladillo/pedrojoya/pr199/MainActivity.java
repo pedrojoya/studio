@@ -22,6 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class MainActivity extends AppCompatActivity {
 
     private EditText txtTermino;

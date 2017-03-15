@@ -4,10 +4,10 @@ import android.content.Context;
 import android.support.annotation.ColorRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.matcher.BoundedMatcher;
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.widget.TextView;
 

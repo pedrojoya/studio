@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements OnListaAlumnosFra
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // El usuario ha hecho login correctamente.
+                            //noinspection ConstantConditions
                             App.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
                             invalidateOptionsMenu();
                             cargarFragmentoLista();
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements OnListaAlumnosFra
                             // La excepción puede ser:
                             // FirebaseAuthInvalidUserException: No existe o está deshabilitada.
                             // FirebaseAuthInvalidCredentialsException: Password incorrecto.
-                            //noinspection ThrowableResultOfMethodCallIgnored
+                            //noinspection ThrowableResultOfMethodCallIgnored,ConstantConditions
                             Toast.makeText(MainActivity.this,
                                     "No se pudo conectar." + task.getException()
                                             .getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements OnListaAlumnosFra
                             //  FirebaseAuthInvalidCredentialsException: email mal formado
                             //  FirebaseAuthUserCollisionException: Ya existe un usuario con ese
                             // email.
-                            //noinspection ThrowableResultOfMethodCallIgnored
+                            //noinspection ThrowableResultOfMethodCallIgnored,ConstantConditions
                             Toast.makeText(MainActivity.this,
                                     "Fallo en la creación del usuario." + task.getException()
                                             .getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements OnListaAlumnosFra
         // Se mira el resultado de GoogleSignIn
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            //noinspection StatementWithEmptyBody
             if (result.isSuccess()) {
                 // GoogleSignIn correcto. Se obtiene la cuenta de Google y se usa para
                 // autenticarse en Firebase.
@@ -172,11 +174,13 @@ public class MainActivity extends AppCompatActivity implements OnListaAlumnosFra
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // El usuario ha hecho login con GoogleSignIn correctamente.
+                            //noinspection ConstantConditions
                             App.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
                             invalidateOptionsMenu();
                             cargarFragmentoLista();
                         } else {
                             // No se ha podido autenticar. Se informa.
+                            //noinspection ConstantConditions,ThrowableResultOfMethodCallIgnored
                             Toast.makeText(MainActivity.this, task.getException().getLocalizedMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }

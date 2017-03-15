@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ReyclerViewHolder> {
 
     private final int resIdLayout;
-    private LayoutInflater layoutInflater;
-    private ArrayList<App> items;
+    private final LayoutInflater layoutInflater;
+    private final ArrayList<App> items;
 
     public AppsAdapter(Context context, int resIdLayout, ArrayList<App> items) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -38,8 +38,8 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ReyclerViewHol
     }
 
     class ReyclerViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgLogo;
-        private TextView lblNombre;
+        private final ImageView imgLogo;
+        private final TextView lblNombre;
 
         private ReyclerViewHolder(final View v) {
             super(v);

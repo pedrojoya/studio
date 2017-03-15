@@ -185,7 +185,9 @@ public class Dao {
             lista = cursorToAlumnos(cursor);
         }
         // Se cierra el cursor (IMPORTANTE).
-        cursor.close();
+        if (cursor != null) {
+            cursor.close();
+        }
         // Se retorna la lista.
         return lista;
     }

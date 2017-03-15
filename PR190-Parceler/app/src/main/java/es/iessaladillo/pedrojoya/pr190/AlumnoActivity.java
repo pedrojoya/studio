@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -36,13 +34,9 @@ public class AlumnoActivity extends AppCompatActivity {
         txtEdad = (EditText) this.findViewById(R.id.txtEdad);
         Button btnAceptar = (Button) findViewById(R.id.btnAceptar);
         if (btnAceptar != null) {
-            btnAceptar.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    // Se finaliza la actividad.
-                    finish();
-                }
+            btnAceptar.setOnClickListener(v -> {
+                // Se finaliza la actividad.
+                finish();
             });
         }
     }

@@ -68,6 +68,7 @@ public class ClickToSelectEditText<T> extends AppCompatEditText {
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle(mHint);
         builder.setAdapter(mSpinnerAdapter, new DialogInterface.OnClickListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void onClick(DialogInterface dialogInterface, int selectedIndex) {
                 if (onItemSelectedListener != null) {

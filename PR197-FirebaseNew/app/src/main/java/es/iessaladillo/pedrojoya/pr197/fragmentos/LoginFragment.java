@@ -24,7 +24,6 @@ public class LoginFragment extends Fragment {
     private EditText txtPassword;
     private Button btnLogin;
     private Button btnSignUp;
-    private SignInButton btnGoogleSignIn;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -103,7 +102,7 @@ public class LoginFragment extends Fragment {
                 }
             }
         });
-        btnGoogleSignIn = (SignInButton) view.findViewById(R.id.btnGoogleSignIn);
+        SignInButton btnGoogleSignIn = (SignInButton) view.findViewById(R.id.btnGoogleSignIn);
         btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

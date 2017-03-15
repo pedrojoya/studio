@@ -146,6 +146,7 @@ public class AlumnoFragment extends Fragment {
                 }
             });
             imgCurso = (ImageView) getView().findViewById(R.id.imgCurso);
+            //noinspection unchecked
             spnCurso = (ClickToSelectEditText<String>) getView().findViewById(R.id.txtCurso);
             cargarCursos();
             spnCurso.setOnFocusChangeListener(new View.OnFocusChangeListener() {

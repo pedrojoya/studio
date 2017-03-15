@@ -15,7 +15,6 @@ public class MainFragment extends Fragment {
     private static final String ARG_OPCION = "ARG_OPCION";
 
     private String mOpcion;
-    private TextView lblOpcion;
 
     public MainFragment() {
     }
@@ -50,7 +49,7 @@ public class MainFragment extends Fragment {
     }
 
     private void initVistas(View view) {
-        lblOpcion = (TextView) view.findViewById(R.id.lblOpcion);
+        TextView lblOpcion = (TextView) view.findViewById(R.id.lblOpcion);
         lblOpcion.setText(mOpcion);
     }
 

@@ -27,13 +27,14 @@ import android.view.Gravity;
 import android.view.View;
 
 
-public class GravitySnapHelper extends LinearSnapHelper {
+class GravitySnapHelper extends LinearSnapHelper {
 
     private OrientationHelper verticalHelper;
     private OrientationHelper horizontalHelper;
     private int gravity;
     private boolean isSupportRtL;
 
+    @SuppressWarnings("unused")
     @SuppressLint("RtlHardcoded")
     public GravitySnapHelper(int gravity) {
         this.gravity = gravity;

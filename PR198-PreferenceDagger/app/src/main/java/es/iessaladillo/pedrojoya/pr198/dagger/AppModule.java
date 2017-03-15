@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
+@SuppressWarnings({"WeakerAccess", "CanBeFinal", "unused"})
 @Module
 public class AppModule {
 
