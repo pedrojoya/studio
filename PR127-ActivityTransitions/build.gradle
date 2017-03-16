@@ -20,10 +20,10 @@ allprojects {
 
 ext {
     compileSdkVersion = 25
-    minSdkVersion = 14
+    minSdkVersion = 16
     buildToolsVersion = "25.0.2"
     junit_version = "4.12"
     espresso_version = "2.2.2"
-    support_library_version = "25.2.0"
+    support_library_version = "25.3.0"
     picasso_version = "2.5.2"
 }

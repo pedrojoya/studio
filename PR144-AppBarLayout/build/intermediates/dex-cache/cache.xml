@@ -2,74 +2,121 @@
 <items version="2" >
 
     <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/36f896e15069d589a8be5eb5985e4cd77e609e76/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_fbd3c364bd0e20af9b83b1bb6ff38e2a23e0df04.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_75d8463d103fb49f13738c6c52b6e5c6c99b7583/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/8e33f1da1d33a9d3b35eff622ff18008bf5f8417/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_546120b63a9af7b40b62b45d6dce2580d39de720.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_e50dafbdc9c774aeea5d08ceddfdc623c9f840f1/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/f6d19d5682a32f2cccab39cbbec6e3b84abf11d7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_40850214dccc20d8d5d0697c1325f8c61d181a99.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_ee94e178cad4e53e47250afb3f7280c9eedab5a4/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/956982d58dbe1b084db4eca0520bdb2261c7c6ce/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_06586042656150c62512ef7725b91189c42c22d9.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="3489d76b017fb56a5b75d2b1820fcc18a31bbcc2">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a3a37d3bc95de09cc7556e396547b6a00ad0a94a/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/67b4f8d6140cc62e95224d032d06fff09c263747/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_7a29a39470622486d8518f2b1353d53bcc749713.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_46602835b312160a221b77515225f28a66c46a5c/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/9d9bf8051a0f22fe6edb94ec6ae3771a7d42e6ba/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_a04b37873ed127ad6f22fbe043005362e97638ca.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_eaf3b95b4caca7ca13946713efb57a1256907547/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/c636d5a8f8b046b20cf1cf6db03989e2d400041e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_44f9e2dca18022b8654e367d9ad8da5ef61afa49.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="20838ac1ec408d8fbfff7c43e6d36538983899e9">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f653db0155c944c33dc3e3088c735d09dc129d92/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/2830e18cf004ae1e26d9bde5c0792f5cce53403a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_9eb5a449cb5940545aa9668bd1eddbb0fecedc3c.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="debf30ce0a7560396b6235edef77e447006454c2">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_9dee22d8c5d13916bcb52577f6ec718d9163ac56/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/709e31aaf117df0aa1b68835a17398947170188d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_3c872c2269d0586b2c6f0ca4accf6a3bdbbe90a0.jar" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_c93ddd61a5ede75b26637ca3dbc0fa63c6667132/classes.dex" />
+        is-multidex="false"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.0/support-annotations-25.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.0_c597adc3bea814148df2097dd3a4f5964fc3af6a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/e60c7d0edb36c5673779cc7acd2a8ee601eb49de/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_c127ba71e88893485fafb1c38fd8794593ce6bf2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/aa45f73bb1f4bd3312240c7c3e93bcc0e5076ba8/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_83e39fab93d685926a2d3478d7f5ae19bcfc5007.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/pedro/.android/build-cache/28f261215400e64f36ad302799ae1a04d3c45c0d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="/Users/pedro/studio/PR144-AppBarLayout/app/build/intermediates/pre-dexed/debug/classes_83a09d69b0fc4eadfde5bcd916b0fcf1689b08f9.jar" />
     </item>
 
 </items>

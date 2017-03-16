@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr035"
-        minSdkVersion 16
+        minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.compileSdkVersion
     }
 

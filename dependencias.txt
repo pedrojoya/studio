@@ -2,11 +2,11 @@ VERSIONS
 
 ext {
     compileSdkVersion = 25
-    minSdkVersion = 14
+    minSdkVersion = 16
     buildToolsVersion = "25.0.2"
     junit_version = "4.12"
     espresso_version = "2.2.2"
-    support_library_version = "25.2.0"
+    support_library_version = "25.3.0”
     retrolambdaVersion = "3.6.0"
     constraintlayout_version = "1.0.1"
     picasso_version = "2.5.2"
@@ -123,3 +123,5 @@ dependencies {
     apt "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
     compile "com.github.satyan:sugar:$rootProject.ext.sugar_version"
 }
+
+@file:programandoandroid/
