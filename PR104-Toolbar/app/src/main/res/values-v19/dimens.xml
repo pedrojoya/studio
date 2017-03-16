@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- En la API 19 se hace la status bar transparente y se coloca una vista detrás con dicha
-         altura -->
-    <dimen name="statusBarHeight">24dp</dimen>
-</resources>

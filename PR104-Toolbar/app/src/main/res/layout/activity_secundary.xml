@@ -1,19 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SecundaryActivity">
 
-    <!-- StatusBar falsa para Kit Kat-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/statusBarHeight"
-        android:background="@color/colorPrimaryDark"/>
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,10 +16,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/actividad_secundaria"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:text="@string/actividad_secundaria"/>
 
     </RelativeLayout>
-
 
 </LinearLayout>
