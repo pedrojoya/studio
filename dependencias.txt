@@ -6,7 +6,7 @@ ext {
     buildToolsVersion = "25.0.2"
     junit_version = "4.12"
     espresso_version = "2.2.2"
-    support_library_version = "25.3.0”
+    support_library_version = "25.3.0"
     retrolambdaVersion = "3.6.0"
     constraintlayout_version = "1.0.1"
     picasso_version = "2.5.2"

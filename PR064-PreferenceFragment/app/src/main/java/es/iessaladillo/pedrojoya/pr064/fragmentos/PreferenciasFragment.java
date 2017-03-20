@@ -45,10 +45,9 @@ public class PreferenciasFragment extends PreferenceFragment implements
             for (int i = 0; i < pantalla.getPreferenceCount(); i++) {
                 inicializarSummary(pantalla.getPreference(i));
             }
-        }
-        // Si la preferencia corresponde a una categoría de preferencias, se
-        // llama recursivamente.
-        else if (preferencia instanceof PreferenceCategory) {
+        } else if (preferencia instanceof PreferenceCategory) {
+            // Si la preferencia corresponde a una categoría de preferencias, se
+            // llama recursivamente.
             PreferenceCategory categoria = (PreferenceCategory) preferencia;
             for (int i = 0; i < categoria.getPreferenceCount(); i++) {
                 inicializarSummary(categoria.getPreference(i));
@@ -65,8 +64,8 @@ public class PreferenciasFragment extends PreferenceFragment implements
     public void onPause() {
         // Se elimina la actividad como listener de los cambios en las
         // preferencias.
-        getPreferenceScreen().getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(
+                this);
         super.onPause();
     }
 
@@ -74,15 +73,13 @@ public class PreferenciasFragment extends PreferenceFragment implements
     public void onResume() {
         // Se registra la actividad como listener de los cambios en las
         // preferencias.
-        getPreferenceScreen().getSharedPreferences()
-                .registerOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         super.onResume();
     }
 
     // Cuando se cambia el valor de una preferencia.
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-            String key) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         // Se busca esa preferencia en el árbol de preferencias y se actualiza
         // el summary a partir del valor que contenga.
         actualizarSummary(findPreference(key));
@@ -95,23 +92,20 @@ public class PreferenciasFragment extends PreferenceFragment implements
             EditTextPreference pref = (EditTextPreference) preferencia;
             // Se establece como summary el valor (textual) de la preferencia.
             pref.setSummary(pref.getText());
-        }
-        // Si es un ListPreference.
-        else if (preferencia instanceof ListPreference) {
+        } else if (preferencia instanceof ListPreference) {
+            // Si es un ListPreference.
+
             ListPreference pref = (ListPreference) preferencia;
             pref.setSummary(pref.getEntry());
-        }
-        // Si es un MultiSelectListPreference.
-        else if (preferencia instanceof MultiSelectListPreference) {
+        } else if (preferencia instanceof MultiSelectListPreference) {
+            // Si es un MultiSelectListPreference.
             MultiSelectListPreference pref = (MultiSelectListPreference) preferencia;
             Set<String> seleccionados = pref.getValues();
             pref.setSummary(seleccionados.toString());
-        }
-        // Si es un RingtonePreference.
-        else if (preferencia instanceof RingtonePreference) {
+        } else if (preferencia instanceof RingtonePreference) {
+            // Si es un RingtonePreference.
             RingtonePreference pref = (RingtonePreference) preferencia;
-            String pathTono = pref.getSharedPreferences().getString(
-                    pref.getKey(), "");
+            String pathTono = pref.getSharedPreferences().getString(pref.getKey(), "");
 
             Uri uriTono = Uri.parse(pathTono);
             Ringtone tono = RingtoneManager.getRingtone(getActivity(), uriTono);
@@ -123,12 +117,11 @@ public class PreferenciasFragment extends PreferenceFragment implements
             pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
                 @Override
-                public boolean onPreferenceChange(Preference preference,
-                        Object newValue) {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if (newValue != null && newValue instanceof String) {
                         String pathTono = (String) newValue;
-                        Ringtone tono = RingtoneManager.getRingtone(
-                                getActivity(), Uri.parse(pathTono));
+                        Ringtone tono = RingtoneManager.getRingtone(getActivity(),
+                                Uri.parse(pathTono));
                         preference.setSummary(tono.getTitle(getActivity()));
                     }
                     return true;

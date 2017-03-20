@@ -53,6 +53,7 @@
                 android:summary="@string/lema_detalle"
                 android:title="@string/lema" />
 
+            <!--suppress AndroidDomInspection -->
             <RingtonePreference
                 android:defaultValue="content://settings/system/notification_sound"
                 android:key="prefTonoNotificacion"

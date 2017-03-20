@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr152.fragmentos;
 
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v14.preference.MultiSelectListPreference;
 import android.support.v4.app.DialogFragment;
@@ -144,9 +143,8 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements Sh
     // /java/ca/rmen/android/networkmonitor/app/prefs/hack
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH && (
-                (preference instanceof MultiSelectListPreference)
-                        || (preference instanceof PasswordPreference))) {
+        if (preference instanceof MultiSelectListPreference
+                || preference instanceof PasswordPreference) {
             // Diálogo personalizado.
             onDisplayPreferenceDialog(this, preference);
         } else {
@@ -172,8 +170,7 @@ public class PreferenciasFragment extends PreferenceFragmentCompat implements Sh
         }
 
         // Hack to allow a MultiSelectListPreference y PasswordPreference.
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH
-                && preference instanceof MultiSelectListPreference) {
+        if (preference instanceof MultiSelectListPreference) {
             dialogFragment = MultiSelectListPreferenceDialogFragmentCompat.newInstance(
                     preference.getKey());
         } else if (preference instanceof PasswordPreference) {

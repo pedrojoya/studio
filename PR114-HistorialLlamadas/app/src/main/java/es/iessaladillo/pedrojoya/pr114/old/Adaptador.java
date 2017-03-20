@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr114;
+package es.iessaladillo.pedrojoya.pr114.old;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -18,7 +18,9 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.iessaladillo.pedrojoya.pr114.R;
 
+@SuppressWarnings("unused")
 class Adaptador extends SimpleCursorAdapter {
 
     private static final String FORMATO_FECHA_HORA = "dd/MM HH:mm";

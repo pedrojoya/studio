@@ -14,8 +14,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,22 +31,33 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
-
-@SuppressWarnings("CanBeFinal")
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
     private static final int LIMIT = 20;
 
-    @SuppressWarnings({"WeakerAccess", "unused"})
+    @SuppressWarnings({"WeakerAccess", "CanBeFinal"})
     @BindView(R.id.lstLlamadas)
-    ListView mLstLlamadas;
+    RecyclerView lstLlamadas;
+    private LlamadasAdapter mAdaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setupRecyclerView();
+    }
+
+    private void setupRecyclerView() {
+        lstLlamadas.setHasFixedSize(true);
+        lstLlamadas.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        lstLlamadas.addItemDecoration(
+                new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        lstLlamadas.setItemAnimator(new DefaultItemAnimator());
+        mAdaptador = new LlamadasAdapter(new ArrayList<Llamada>());
+        lstLlamadas.setAdapter(mAdaptador);
     }
 
     @Override
@@ -61,19 +77,17 @@ public class MainActivity extends AppCompatActivity {
         CursorLoader cargador = new CursorLoader(this, CallLog.Calls.CONTENT_URI, campos, null,
                 null, orden);
         Cursor cursor = cargador.loadInBackground();
-        String[] from = {CallLog.Calls.NUMBER, CallLog.Calls.CACHED_NAME, CallLog.Calls.TYPE,
-                         CallLog.Calls.DATE, CallLog.Calls.DURATION};
-        int[] to = {R.id.lblNumero, R.id.lblNombre, R.id.imgTipoLlamada, R.id.lblFecha, R.id
-                .lblDuracion};
-        Adaptador mAdaptador = new Adaptador(this, R.layout.activity_main_item, cursor, from, to,
-                0);
-        mLstLlamadas.setAdapter(mAdaptador);
+        try {
+            mAdaptador.setData(Llamada.toList(cursor));
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @OnShowRationale({Manifest.permission.READ_CALL_LOG, Manifest.permission.READ_CONTACTS})
     void showRationale(final PermissionRequest request) {
-        new AlertDialog.Builder(this).setMessage(
-                R.string.permission_rationale).setPositiveButton(
+        new AlertDialog.Builder(this).setMessage(R.string.permission_rationale).setPositiveButton(
                 R.string.solicitar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -120,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
         }).show();
 
 
-        Snackbar.make(mLstLlamadas, R.string.permission_neverask,
-                Snackbar.LENGTH_LONG).setAction(R.string.configurar, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startInstalledAppDetailsActivity(MainActivity.this);
-            }
-        }).show();
+        Snackbar.make(lstLlamadas, R.string.permission_neverask, Snackbar.LENGTH_LONG).setAction(
+                R.string.configurar, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startInstalledAppDetailsActivity(MainActivity.this);
+                    }
+                }).show();
     }
 
     private static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
