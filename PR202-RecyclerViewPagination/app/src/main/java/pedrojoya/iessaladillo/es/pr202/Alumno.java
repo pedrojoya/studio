@@ -1,21 +1,17 @@
 package pedrojoya.iessaladillo.es.pr202;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 // Modelo Alumno.
 @SuppressWarnings("unused")
-class Alumno implements Parcelable {
+class Alumno {
 
     private String nombre;
-
     private String direccion;
     private String urlFoto;
+
     public Alumno(String nombre, String direccion, String urlFoto) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.urlFoto = urlFoto;
-
     }
 
     public Alumno() {
@@ -46,35 +42,5 @@ class Alumno implements Parcelable {
     public void setUrlFoto(String urlFoto) {
         this.urlFoto = urlFoto;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.nombre);
-        dest.writeString(this.direccion);
-        dest.writeString(this.urlFoto);
-    }
-
-    protected Alumno(Parcel in) {
-        this.nombre = in.readString();
-        this.direccion = in.readString();
-        this.urlFoto = in.readString();
-    }
-
-    public static final Parcelable.Creator<Alumno> CREATOR = new Parcelable.Creator<Alumno>() {
-        @Override
-        public Alumno createFromParcel(Parcel source) {
-            return new Alumno(source);
-        }
-
-        @Override
-        public Alumno[] newArray(int size) {
-            return new Alumno[size];
-        }
-    };
 
 }

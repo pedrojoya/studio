@@ -15,13 +15,13 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+@SuppressWarnings("unused")
 class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_LOADING = 1;
 
     private final ArrayList<Alumno> mDatos;
-    private OnItemLongClickListener onItemLongClickListener;
     private OnItemClickListener onItemClickListener;
     private boolean isLoadingAdded = false; // Indica si se están cargando datos.
 
@@ -47,7 +47,7 @@ class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @NonNull
     private RecyclerView.ViewHolder getItemVH(ViewGroup parent, LayoutInflater inflater) {
         final RecyclerView.ViewHolder viewHolder;
-        View itemView = inflater.inflate(R.layout.activity_main_item, parent, false);
+        View itemView = inflater.inflate(R.layout.fragment_main_item, parent, false);
         viewHolder = new ItemVH(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,20 +56,6 @@ class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     // Se informa al listener.
                     onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
-                }
-            }
-        });
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (onItemLongClickListener != null) {
-                    // Se informa al listener.
-                    onItemLongClickListener.onItemLongClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                    return true;
-                } else {
-                    return false;
                 }
             }
         });
@@ -104,13 +90,8 @@ class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return (position == mDatos.size() - 1 && isLoadingAdded) ? TYPE_LOADING : TYPE_ITEM;
     }
 
-    // Elimina un elemento de la lista.
-    public void removeItem(int position) {
-        mDatos.remove(position);
-        notifyItemRemoved(position);
-    }
-
     // Añade un elemento a la lista.
+    @SuppressWarnings("WeakerAccess")
     public void addItem(Alumno alumno) {
         // Se añade el elemento.
         mDatos.add(alumno);
@@ -158,10 +139,6 @@ class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.onItemClickListener = listener;
     }
 
-    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
-        this.onItemLongClickListener = listener;
-    }
-
     static class ItemVH extends RecyclerView.ViewHolder {
 
         private final TextView lblNombre;
@@ -197,15 +174,6 @@ class AlumnosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
-    }
-
-    @SuppressWarnings("UnusedParameters")
-    public interface OnItemLongClickListener {
-        void onItemLongClick(View view, Alumno alumno, int position);
-    }
-
-    public ArrayList<Alumno> getData() {
-        return mDatos;
     }
 
 }

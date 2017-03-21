@@ -3,11 +3,7 @@
     <!-- Empty View -->
     <dimen name="empty_drawablePadding">10dp</dimen>
 
-    <!-- Fake StatusBar -->
-    <dimen name="statusBarHeight">0dp</dimen>
-
     <!-- FAB -->
-    <dimen name="fab_margin">0dp</dimen>
 
     <!-- RecyclerView -->
     <dimen name="lst_padding">8dp</dimen>
@@ -22,6 +18,7 @@
     <dimen name="two_line_secundary_text_paddingBottom">20dp</dimen>
     <dimen name="two_line_text_paddingLeft">72dp</dimen>
     <dimen name="two_line_text_marginRight">16dp</dimen>
-    <dimen name="fab_elevation">6dp</dimen>
+
+    <dimen name="progressBar_marginTop">32dp</dimen>
 
 </resources>

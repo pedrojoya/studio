@@ -1,0 +1,31 @@
+Versión 01
+Aplicación que pide los datos de los alumnos de la FCT (nombre, teléfono, email, repetidor (checkbox). Además botón de Agregar. Todo en un LinearLayout. Se controla que los campos tengan inputType, maxLines y maxLength correctos. Se gestiona el click del botón con android:onClick. Se muestra el mensaje de guardado un TextView
+
+Versión 02
+Se añade un ScrollView +  LinearLayout. Se añaden datos como "a petición propia" (switch) + avatar (por ahora fijo en ImageView). Se cambia para que al pulsar el botón se muestre un Toast, eliminando el TextView de mensaje.
+
+Versión 03
+Se reemplaza el ScrollView por un RelativeLayout. Se gestiona el click del ratón con un anonymous click listener. Se definen y usan recursos para todo, incluyendo dimensiones y cadenas. 
+
+Versión 04
+Se reemplaza el RelativeLayout por un ConstraintLayout. Se incorpora Retrolamba y se cambian los listener.
+
+Versión 05
+Se hace que el botón no pueda ser pulsado mientras no haya datos en los campos obligatorios. Se gestiona el teclado virtual para que cuando se llegue al último campo se simule la pulsación en el botón de Guardar.
+Se hace que al mostrar el teclado no se oculte nada de la actividad android:windowSoftInputMode="adjustPan"
+
+Versión 06
+Se cambia TextView + EditText por TextInputLayout + TextInputEditText. Se hace que el teléfono controle el número de dígitos restantes (hasta 9). Tienen que aprender a añadir dependencias. Debe mostrar los errores característicos de telefono, email, campos obligatorios a través del TextInputLayout.
+Crear una clase modelo Alumno que contenga los datos.
+
+Versión 07:
+Realiza un layout alternativo para cuando la actividad se encuentre en apaisado. Haz que la actividad se muestre con las cadenas en inglés y en español.
+Haz que al pulsar el botón se muestre un SnackBar en vez de un Toast.
+
+Versión 08:
+Cambia el fondo del botón para éste sea distinto del por defecto y que cuando esté deshabilitado también sea distinto.
+Añade un spinner para el campo "curso", que use un array de constantes de cadena para mostrar los datos.
+Haz que al pulsar el botón de Agregar se indica cuantas veces se ha pulsado el botón de agregar, y que siga funcionando correctamente cuando se gire la pantalla. Para mostrar el mensaje correctamente se debe hacer uso de los "plurales" a través de una función que recibe el resId del plural, que debe ser anotado con la anotación correspondiente de supports annotations library.
+
+Versión 09: 
+Crear una clase usando el patrón Singleton que simule una base de datos, que gestione la lista de alumnos mediante un ArrayList. Hacer que al pulsar el botón se agregue a la BD el alumno introducido, acondicinando el mensaje mostrado en el SnackBar.
