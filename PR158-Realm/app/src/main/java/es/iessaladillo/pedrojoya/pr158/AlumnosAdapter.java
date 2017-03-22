@@ -7,7 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -96,7 +97,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Debemos sobrescribirlo para que se realicen las animaciones correctamente,
     // ya que al insertar o eliminar no especificamos posición insertada o eliminada
     // porque Realm lo gestiona automáticamente.
-    // Además el RecyclerView debe tener rv.setStableIds(true).
+    // Además el adaptador debe tener rv.setHasStableIds(true).
     @Override
     public long getItemId(int position) {
         return mDatos.get(position).getTimestamp();
@@ -166,11 +167,21 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             }
             lblAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturas));
             String url = alumno.getUrlFoto();
-            Glide.with(imgAvatar.getContext())
+            Picasso.with(imgAvatar.getContext())
                     .load(url)
                     .placeholder(R.drawable.ic_user)
                     .error(R.drawable.ic_user)
-                    .into(imgAvatar);
+                    .into(imgAvatar, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
         }
 
         private String getCadenaAsignaturas(ArrayList<String> nombresAsignaturas) {

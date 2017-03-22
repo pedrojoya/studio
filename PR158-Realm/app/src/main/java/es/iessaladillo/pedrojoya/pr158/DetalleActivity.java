@@ -24,10 +24,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +44,15 @@ import io.realm.RealmResults;
 
 
 @SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
-public class DetalleActivity extends AppCompatActivity implements ClickToMultipleSelectEditText.OnMultipleItemsSelectedListener {
+public class DetalleActivity extends AppCompatActivity implements ClickToMultipleSelectEditText
+        .OnMultipleItemsSelectedListener {
 
     private static final String EXTRA_ID_ALUMNO = "idAlumno";
     private static final String STATE_URL_FOTO = "urlFoto";
     private static final String TN_FOTO = "transition_foto";
     private static final long ENTER_TRANSITION_DURATION_MILIS = 500;
-    private static final String STATE_INDICES_ASIGNATURAS_SELECCIONADAS = "indicesAsignaturasSeleccionadas";
+    private static final String STATE_INDICES_ASIGNATURAS_SELECCIONADAS =
+            "indicesAsignaturasSeleccionadas";
 
     @BindView(R.id.imgFoto)
     ImageView imgFoto;
@@ -112,27 +112,18 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
         // Se muestra la foto. Cuando esté cargada, se inicia la transición
         // que había sido pospuesta.
         Log.d("Mia", mUrlFoto);
-        Glide.with(this).load(mUrlFoto)
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.placeholder)
-                .listener(new RequestListener<String, GlideDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String model,
-                                               Target<GlideDrawable> target,
-                                               boolean isFirstResource) {
-                        supportStartPostponedEnterTransition();
-                        return false;
-                    }
+        Picasso.with(this).load(mUrlFoto).placeholder(R.drawable.placeholder).error(
+                R.drawable.placeholder).into(imgFoto, new Callback() {
+            @Override
+            public void onSuccess() {
+                supportStartPostponedEnterTransition();
+            }
 
-                    @Override
-                    public boolean onResourceReady(GlideDrawable resource, String model,
-                                                   Target<GlideDrawable> target,
-                                                   boolean isFromMemoryCache,
-                                                   boolean isFirstResource) {
-                        supportStartPostponedEnterTransition();
-                        return false;
-                    }
-                }).into(imgFoto);
+            @Override
+            public void onError() {
+                supportStartPostponedEnterTransition();
+            }
+        });
     }
 
     private void cargarAsignaturas() {
@@ -180,9 +171,9 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
                 nombresAsignaturasAlumno.add(asignaturaAlumno.getId());
             }
             txtAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturasAlumno));
-        }
-        else {
-            int[] indices = IntegerListToArray(saveInstanceState.getIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS));
+        } else {
+            int[] indices = IntegerListToArray(
+                    saveInstanceState.getIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS));
             txtAsignaturas.setSelection(indices);
         }
     }
@@ -205,9 +196,8 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
     @OnClick(R.id.imgFoto)
     public void cambiarFoto(View view) {
         mUrlFoto = getFotoAleatoria();
-        Glide.with(view.getContext()).load(mUrlFoto)
-                .placeholder(R.drawable.placeholder)
-                .into(imgFoto);
+        Picasso.with(view.getContext()).load(mUrlFoto).placeholder(R.drawable.placeholder).into(
+                imgFoto);
     }
 
     // Configura la Toolbar.
@@ -253,10 +243,13 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
                 Alumno realmAlumno = realm.copyToRealmOrUpdate(mAlumno);
                 // Se le añaden las asignaturas
                 realmAlumno.getAsignaturas().clear();
-                @SuppressWarnings("unchecked") List<Integer> indicesAsignaturasAlumno = txtAsignaturas.getSelectedIndices();
+                @SuppressWarnings("unchecked") List<Integer> indicesAsignaturasAlumno =
+                        txtAsignaturas
+                        .getSelectedIndices();
                 if (indicesAsignaturasAlumno != null) {
                     for (int i = 0; i < indicesAsignaturasAlumno.size(); i++) {
-                        realmAlumno.getAsignaturas().add(mAsignaturas.get(indicesAsignaturasAlumno.get(i)));
+                        realmAlumno.getAsignaturas().add(
+                                mAsignaturas.get(indicesAsignaturasAlumno.get(i)));
                     }
                 }
                 //realm.copyToRealmOrUpdate(realmAlumno);
@@ -276,13 +269,12 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
 
     // Método estático para llamar a la actividad (para actualizar).
     @SuppressWarnings("SameParameterValue")
-    public static void startForResult(Activity activity, int requestCode, String idAlumno, View foto) {
+    public static void startForResult(Activity activity, int requestCode, String idAlumno,
+            View foto) {
         Intent intent = new Intent(activity, DetalleActivity.class);
         intent.putExtra(EXTRA_ID_ALUMNO, idAlumno);
-        Bundle opciones = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(
-                        activity,
-                        foto, TN_FOTO).toBundle();
+        Bundle opciones = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, foto,
+                TN_FOTO).toBundle();
         ActivityCompat.startActivityForResult(activity, intent, requestCode, opciones);
     }
 
@@ -298,7 +290,8 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
         // Se almacena la url de la foto.
         outState.putString(STATE_URL_FOTO, mUrlFoto);
         //noinspection unchecked,Convert2Diamond
-        outState.putIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS, new ArrayList<Integer>(txtAsignaturas.getSelectedIndices()));
+        outState.putIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS,
+                new ArrayList<Integer>(txtAsignaturas.getSelectedIndices()));
         super.onSaveInstanceState(outState);
     }
 
@@ -350,11 +343,9 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
     private String getCadenaAsignaturas(List<String> nombresAsignaturas) {
         if (nombresAsignaturas.size() > 0) {
             return TextUtils.join(", ", nombresAsignaturas);
-        }
-        else {
+        } else {
             return getString(R.string.ninguna);
         }
     }
-
 
 }

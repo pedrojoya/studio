@@ -32,7 +32,7 @@ ext {
     support_library_version = "25.3.0"
     circleimageview_version = "2.1.0"
     butterknife_version = "8.5.1"
-    glide_version = "3.7.0"
+    picasso_version = "2.5.2"
     stetho_version = "1.4.2"
     stetho_realm_version = "2.0.0"
 }
