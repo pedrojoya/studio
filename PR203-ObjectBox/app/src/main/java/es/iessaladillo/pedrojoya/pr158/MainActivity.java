@@ -12,12 +12,18 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.objectbox.Box;
 import io.objectbox.BoxStore;
+import io.objectbox.android.AndroidScheduler;
+import io.objectbox.query.Query;
+import io.objectbox.reactive.DataObserver;
+import io.objectbox.reactive.DataSubscription;
 
 
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -37,7 +43,9 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     private AlumnosAdapter mAdaptador;
     private BoxStore mBoxStore;
-    private RecyclerView.AdapterDataObserver mObservador;
+    private Box<Alumno> mAlumnoBox;
+    private Query<Alumno> mAlumnosQuery;
+    private DataSubscription mSubscripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,52 +56,33 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mBoxStore = ((App) getApplication()).getBoxStore();
+        initBD();
         initVistas();
+        getAlumnos();
     }
 
-    // Obtiene e inicializa las vistas.
+    private void initBD() {
+        mBoxStore = ((App) getApplication()).getBoxStore();
+        mAlumnoBox = mBoxStore.boxFor(Alumno.class);
+        mAlumnosQuery = mAlumnoBox.query().order(Alumno_.nombre).build();
+    }
+
     private void initVistas() {
         configToolbar();
         configRecyclerView();
-        //crearAsignaturas();
     }
 
-//    private void crearAsignaturas() {
-//        Asignatura asignatura = new Asignatura();
-//        asignatura.setId("PMDMO");
-//        asignatura.setNombre("Android");
-//        mBoxStore.beginTransaction();
-//        mBoxStore.copyToRealmOrUpdate(asignatura);
-//        mBoxStore.commitTransaction();
-//        Asignatura asignatura2 = new Asignatura();
-//        asignatura2.setId("PSPRO");
-//        asignatura2.setNombre("Multihilo");
-//        mBoxStore.beginTransaction();
-//        mBoxStore.copyToRealmOrUpdate(asignatura2);
-//        mBoxStore.commitTransaction();
-//        Asignatura asignatura3 = new Asignatura();
-//        asignatura3.setId("HLC");
-//        asignatura3.setNombre("Horas de libre configuración");
-//        mBoxStore.beginTransaction();
-//        mBoxStore.copyToRealmOrUpdate(asignatura3);
-//        mBoxStore.commitTransaction();
-//    }
-
-    // Configura la Toolbar.
     private void configToolbar() {
         setSupportActionBar(toolbar);
     }
 
     @OnClick(R.id.fabAccion)
     public void agregar() {
-        // Se inicia la actividad de detalle para añadir.
-        DetalleActivity.startForResult(MainActivity.this, RC_DETALLE);
+        DetalleActivity.start(this);
     }
 
-    // Configura el RecyclerView.
     private void configRecyclerView() {
-        mAdaptador = new AlumnosAdapter(getAlumnos());
+        mAdaptador = new AlumnosAdapter(new ArrayList<Alumno>());
         mAdaptador.setOnItemClickListener(MainActivity.this);
         mAdaptador.setOnItemLongClickListener(MainActivity.this);
         lstAlumnos.setHasFixedSize(true);
@@ -102,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
                 LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         checkAdapterIsEmpty();
+        // FALTA GESTIÓN DE LA LISTA VACÍA.
     }
 
     private void checkAdapterIsEmpty() {
@@ -109,25 +99,36 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
                 mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
-    // Retorna la lista de alumnos ordenados por nombre.
-    private List<Alumno> getAlumnos() {
-        return mBoxStore.boxFor(Alumno.class).getAll();
+    private void getAlumnos() {
+        // Se ejecuta la consulta en un hilo secundario y se crea un observador que actualiza el
+        // adpatador cuando hay cambios.
+        mSubscripcion = mAlumnosQuery.subscribe().on(AndroidScheduler.mainThread()).observer(
+                new DataObserver<List<Alumno>>() {
+                    @Override
+                    public void onData(List<Alumno> alumnos) {
+                        mAdaptador.setData(alumnos);
+                        // QUITAR SETDATA Y USAR DIFFUTIL.
+                    }
+                });
     }
 
+    @Override
+    protected void onDestroy() {
+        // Se cancela la subscripción.
+        mSubscripcion.cancel();
+        super.onDestroy();
+    }
 
-    // Cuando se hace click sobre un elemento de la lista.
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
         // Se inicia la actividad de detalle para actualización.
-        DetalleActivity.startForResult(this, RC_DETALLE, alumno.getId(),
+        DetalleActivity.start(this, alumno.getId(),
                 view.findViewById(R.id.imgFoto));
     }
 
-    // Cuando se hace long click sobre un elemento de la lista.
     @Override
     public void onItemLongClick(View view, Alumno alumno, int position) {
-        // Se elimina el alumno.
-        mAdaptador.removeItem(position);
+        mAlumnoBox.remove(alumno);
     }
 
 }

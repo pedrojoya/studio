@@ -11,5 +11,8 @@
     <string name="asignaturas">Asignaturas</string>
     <string name="ninguna"><![CDATA[<Ninguna>]]></string>
     <string name="seleccionar">Seleccionar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="no_hay_asignaturas">No hay asignaturas</string>
+    <string name="asignaturas_del_alumno">Asignaturas del alumno</string>
 
 </resources>

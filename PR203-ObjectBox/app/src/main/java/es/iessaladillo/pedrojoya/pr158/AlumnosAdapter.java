@@ -20,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 // Adaptador para la lista de alumnos.
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
-    private final List<Alumno> mDatos;
+    private List<Alumno> mDatos;
     private OnItemLongClickListener onItemLongClickListener;
     private OnItemClickListener onItemClickListener;
 
@@ -111,6 +111,11 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         this.onItemLongClickListener = listener;
+    }
+
+    public void setData(List<Alumno> alumnos) {
+        mDatos = alumnos;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

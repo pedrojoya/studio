@@ -1,11 +1,14 @@
 package es.iessaladillo.pedrojoya.pr158;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Generated;
 
 @Entity
-public class Asignatura {
+public class Asignatura implements Parcelable {
 
     @Id
     long id;
@@ -37,5 +40,39 @@ public class Asignatura {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
+        dest.writeString(this.nombre);
+    }
+
+    protected Asignatura(Parcel in) {
+        this.id = in.readLong();
+        this.nombre = in.readString();
+    }
+
+    public static final Parcelable.Creator<Asignatura> CREATOR = new Parcelable
+            .Creator<Asignatura>() {
+        @Override
+        public Asignatura createFromParcel(Parcel source) {
+            return new Asignatura(source);
+        }
+
+        @Override
+        public Asignatura[] newArray(int size) {
+            return new Asignatura[size];
+        }
+    };
 
 }

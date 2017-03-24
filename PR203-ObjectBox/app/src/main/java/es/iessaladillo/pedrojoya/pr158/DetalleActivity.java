@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr158;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +18,14 @@ import android.text.TextUtils;
 import android.transition.Fade;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -35,14 +38,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
-import butterknife.OnFocusChange;
-import es.iessaladillo.pedrojoya.pr158.utils.ClickToMultipleSelectEditText;
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 
-
-public class DetalleActivity extends AppCompatActivity implements ClickToMultipleSelectEditText
-        .OnMultipleItemsSelectedListener {
+public class DetalleActivity extends AppCompatActivity {
 
     private static final String EXTRA_ID_ALUMNO = "idAlumno";
     private static final String STATE_URL_FOTO = "urlFoto";
@@ -50,6 +49,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
     private static final long ENTER_TRANSITION_DURATION_MILIS = 500;
     private static final String STATE_INDICES_ASIGNATURAS_SELECCIONADAS =
             "indicesAsignaturasSeleccionadas";
+    private static final int RC_ASIGNATURAS = 0;
 
     @BindView(R.id.imgFoto)
     ImageView imgFoto;
@@ -62,16 +62,20 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
     @BindView(R.id.txtDireccion)
     TextInputEditText txtDireccion;
     @BindView(R.id.txtAsignaturas)
-    ClickToMultipleSelectEditText txtAsignaturas;
+    TextInputEditText txtAsignaturas;
     @BindView(R.id.fabAccion)
     FloatingActionButton fabAccion;
 
-    private BoxStore mBoxStore;
     private long mIdAlumno;
     private Alumno mAlumno;
+    private ArrayList<Asignatura> mAsigSelec;
     private Random mAleatorio;
     private String mUrlFoto;
-    List<Asignatura> mAsignaturas;
+    private BoxStore mBoxStore;
+    private Box<Alumno> mAlumnoBox;
+    private Box<AsignaturasAlumnos> mAsignaturasAlumnosBox;
+    private List<AsignaturasAlumnos> mAsignaturasAlumno;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,14 +91,17 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
         mAleatorio = new Random();
         // Se obtiene la instancia de BoxStore.
         mBoxStore = ((App) getApplication()).getBoxStore();
+        mAlumnoBox = mBoxStore.boxFor(Alumno.class);
+        mAsignaturasAlumnosBox = mBoxStore.boxFor(AsignaturasAlumnos.class);
         // Se obtienen e inicializan las vistas.
         initVistas();
         // Si nos han llamado con un id de alumno, se obtiene el alumno y se muestra.
         if (getIntent() != null && getIntent().hasExtra(EXTRA_ID_ALUMNO)) {
             mIdAlumno = getIntent().getLongExtra(EXTRA_ID_ALUMNO, 0);
-            Box<Alumno> alumnoBox = mBoxStore.boxFor(Alumno.class);
-            mAlumno = alumnoBox.get(mIdAlumno);
+            mAlumno = mAlumnoBox.get(mIdAlumno);
             mUrlFoto = mAlumno.getUrlFoto();
+            mAsignaturasAlumno = mAsignaturasAlumnosBox.query().equal(AsignaturasAlumnos_.alumnoId,
+                    mAlumno.getId()).build().find();
             alumnoToVistas(savedInstanceState);
             setTitle(R.string.actualizar_alumno);
         } else {
@@ -124,23 +131,6 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
         });
     }
 
-    private void cargarAsignaturas() {
-//        // Se le añaden las asignaturas
-//        mAsignaturas = mBoxStore.boxFor(Asignatura.class).getAll();
-//        ArrayList<String> nombresAsignaturas = new ArrayList<>();
-//        for (Asignatura asignatura : mAsignaturas) {
-//            nombresAsignaturas.add(asignatura.getNombre());
-//        }
-//        txtAsignaturas.setListener(this);
-//        txtAsignaturas.setDialogTitle(getString(R.string.asignaturas));
-//        txtAsignaturas.setItems(nombresAsignaturas);
-    }
-
-    @OnFocusChange(R.id.txtAsignaturas)
-    public void mostrarAsignaturas(View v) {
-        txtAsignaturas.showDialog(v);
-    }
-
     // Obtiene una foto aleatoria.
     private String getFotoAleatoria() {
         return "http://lorempixel.com/200/200/abstract/" + (mAleatorio.nextInt(7) + 1) + "/";
@@ -150,47 +140,17 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
     private void alumnoToVistas(Bundle saveInstanceState) {
         txtNombre.setText(mAlumno.getNombre());
         txtDireccion.setText(mAlumno.getDireccion());
-        //        if (saveInstanceState == null) {
-        //            RealmList<Asignatura> asignaturasAlumno = mAlumno.getAsignaturas();
-        //            ArrayList<Integer> indicesAsignaturasAlumno = new ArrayList<>();
-        //            for (int i = 0; i < mAsignaturas.size(); i++) {
-        //                // Se busca esa asignatura entre las del alumno.
-        //                for (int j = 0; j < asignaturasAlumno.size(); j++) {
-        //                    if (mAsignaturas.get(i).getId().equals(asignaturasAlumno.get(j)
-        // .getId())) {
-        //                        indicesAsignaturasAlumno.add(i);
-        //                        break;
-        //                    }
-        //                }
-        //            }
-        //            int[] indices = integerListToArray(indicesAsignaturasAlumno);
-        //            txtAsignaturas.setSelection(indices);
-        //            ArrayList<String> nombresAsignaturasAlumno = new ArrayList<>();
-        //            for (Asignatura asignaturaAlumno : asignaturasAlumno) {
-        //                nombresAsignaturasAlumno.add(asignaturaAlumno.getId());
-        //            }
-        //            txtAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturasAlumno));
-        //        } else {
-        //            int[] indices = integerListToArray(
-        //                    saveInstanceState.getIntegerArrayList
-        // (STATE_INDICES_ASIGNATURAS_SELECCIONADAS));
-        //            txtAsignaturas.setSelection(indices);
-        //        }
-    }
-
-    private int[] integerListToArray(ArrayList<Integer> indicesAsignaturasAlumno) {
-        int[] indices = new int[indicesAsignaturasAlumno.size()];
-        for (int i = 0; i < indicesAsignaturasAlumno.size(); i++) {
-            indices[i] = indicesAsignaturasAlumno.get(i);
+        StringBuilder sb = new StringBuilder();
+        for (AsignaturasAlumnos as: mAsignaturasAlumno) {
+            sb.append(as.getAsignatura() + "-");
         }
-        return indices;
+        txtAsignaturas.setText(sb.toString());
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         configToolbar();
         ViewCompat.setTransitionName(imgFoto, TN_FOTO);
-        cargarAsignaturas();
     }
 
     @OnClick(R.id.imgFoto)
@@ -223,48 +183,36 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
 
     @OnClick(R.id.fabAccion)
     public void guardar() {
-        Box<Alumno> alumnoBox = mBoxStore.boxFor(Alumno.class);
         mAlumno.setNombre(txtNombre.getText().toString());
         mAlumno.setDireccion(txtDireccion.getText().toString());
         mAlumno.setUrlFoto(mUrlFoto);
-        alumnoBox.put(mAlumno);
+        mAlumnoBox.put(mAlumno);
+        mAsignaturasAlumnosBox.remove(mAsignaturasAlumno);
+        for (Asignatura asig: mAsigSelec) {
+            mAsignaturasAlumnosBox.put(new AsignaturasAlumnos(0, mIdAlumno, asig.getId()));
+        }
         // Se finaliza la actividad.
         setResult(RESULT_OK);
         ActivityCompat.finishAfterTransition(DetalleActivity.this);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Se cierra la base de datos.
-        mBoxStore.close();
-    }
-
-    // Método estático para llamar a la actividad (para actualizar).
-    @SuppressWarnings("SameParameterValue")
-    public static void startForResult(Activity activity, int requestCode, long idAlumno,
-            View foto) {
-        Intent intent = new Intent(activity, DetalleActivity.class);
+    public static void start(Activity context, long idAlumno, View foto) {
+        Intent intent = new Intent(context, DetalleActivity.class);
         intent.putExtra(EXTRA_ID_ALUMNO, idAlumno);
-        Bundle opciones = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, foto,
-                TN_FOTO).toBundle();
-        ActivityCompat.startActivityForResult(activity, intent, requestCode, opciones);
+        Bundle opciones = ActivityOptionsCompat.makeSceneTransitionAnimation(context, foto, TN_FOTO)
+                .toBundle();
+        ActivityCompat.startActivity(context, intent, opciones);
     }
 
-    // Método estático para llamar a la actividad (para añadir).
-    @SuppressWarnings("SameParameterValue")
-    public static void startForResult(Activity activity, int requestCode) {
-        Intent intent = new Intent(activity, DetalleActivity.class);
-        activity.startActivityForResult(intent, requestCode);
+    public static void start(Context context) {
+        Intent intent = new Intent(context, DetalleActivity.class);
+        context.startActivity(intent);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // Se almacena la url de la foto.
         outState.putString(STATE_URL_FOTO, mUrlFoto);
-        //noinspection unchecked,Convert2Diamond
-        outState.putIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS,
-                new ArrayList<Integer>(txtAsignaturas.getSelectedIndices()));
         super.onSaveInstanceState(outState);
     }
 
@@ -287,6 +235,12 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_detalle, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -294,9 +248,26 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
                 // return gestionarUp();
                 onBackPressed();
                 return true;
+            case R.id.mnuAsignaturas:
+                //Toast.makeText(this, getListaAsignaturas(), Toast.LENGTH_SHORT).show();
+                SelecAsigActivity.startForResult(this, RC_ASIGNATURAS, mIdAlumno);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private String getListaAsignaturas() {
+        Box<Asignatura> asignaturaBox = mBoxStore.boxFor(Asignatura.class);
+        List<Asignatura> asignaturas = asignaturaBox.query()
+                .order(Asignatura_.nombre)
+                .build()
+                .find();
+        String resultado = "No hay";
+        if (asignaturas != null) {
+            resultado = TextUtils.join(", ", asignaturas);
+        }
+        return resultado;
     }
 
     @Override
@@ -305,20 +276,16 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
     }
 
     @Override
-    public void selectedIndices(List<Integer> indices) {
-    }
-
-    @Override
-    public void selectedStrings(List<String> strings) {
-        txtAsignaturas.setText(getCadenaAsignaturas(strings));
-    }
-
-    private String getCadenaAsignaturas(List<String> nombresAsignaturas) {
-        if (nombresAsignaturas.size() > 0) {
-            return TextUtils.join(", ", nombresAsignaturas);
-        } else {
-            return getString(R.string.ninguna);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == RC_ASIGNATURAS) {
+            if (data != null && data.hasExtra(SelecAsigActivity.EXTRA_ASIGNATURAS)) {
+                mAsigSelec = data.getParcelableArrayListExtra(
+                        SelecAsigActivity.EXTRA_ASIGNATURAS);
+                Toast.makeText(this, TextUtils.join(", ", mAsigSelec),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }
