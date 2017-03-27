@@ -28,6 +28,6 @@ ext {
     espresso_version = "2.2.2"
     support_library_version = "25.3.0"
     butterknife_version = "8.5.1"
-    permissionsdispatcher_version = "2.3.1"
+    permissionsdispatcher_version = "2.3.2"
 }
 

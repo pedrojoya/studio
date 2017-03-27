@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr196.bd;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -59,6 +60,7 @@ class DbHelper extends SQLiteOpenHelper {
 
     // Se llama una vez creado el archivo de la base de datos y haberla abierto,
     // después del onConfigure, para que ejecutemos las sentencias SQL de creación.
+    @SuppressLint("ObsoleteSdkInt")
     @Override
     public void onCreate(SQLiteDatabase db) {
         // A partir de la API 16 se llama al método onConfigure().

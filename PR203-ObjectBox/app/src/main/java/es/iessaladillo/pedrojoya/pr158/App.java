@@ -6,6 +6,7 @@ import io.objectbox.Box;
 import io.objectbox.BoxStore;
 import io.objectbox.query.Query;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class App extends Application {
 
     private BoxStore mBoxStore;

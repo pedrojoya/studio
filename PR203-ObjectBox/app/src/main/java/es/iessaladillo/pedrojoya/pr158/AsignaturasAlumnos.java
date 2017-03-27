@@ -1,17 +1,18 @@
 package es.iessaladillo.pedrojoya.pr158;
 
+import io.objectbox.BoxStore;
 import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Generated;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Index;
 import io.objectbox.annotation.Relation;
-import io.objectbox.annotation.Generated;
-import io.objectbox.Box;
-import io.objectbox.BoxStore;
 import io.objectbox.annotation.apihint.Internal;
 import io.objectbox.exception.DbDetachedException;
-import io.objectbox.exception.DbException;
 import io.objectbox.relation.ToOne;
+import io.objectbox.Box;
+import io.objectbox.exception.DbException;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 @Entity
 public class AsignaturasAlumnos {
 
@@ -29,7 +30,9 @@ public class AsignaturasAlumnos {
     @Relation
     Asignatura asignatura;
 
-    /** Used to resolve relations */
+    /**
+     * Used to resolve relations
+     */
     @Internal
     @Generated(hash = 1307364262)
     transient BoxStore __boxStore;
@@ -73,24 +76,29 @@ public class AsignaturasAlumnos {
     @Generated(hash = 2091083903)
     private transient ToOne<AsignaturasAlumnos, Alumno> alumno__toOne;
 
-    /** See {@link io.objectbox.relation.ToOne} for details. */
+    /**
+     * See {@link io.objectbox.relation.ToOne} for details.
+     */
     @Generated(hash = 1622299629)
     public synchronized ToOne<AsignaturasAlumnos, Alumno> getAlumno__toOne() {
         if (alumno__toOne == null) {
-            alumno__toOne = new ToOne<>(this, AsignaturasAlumnos_.alumnoId,
-                    Alumno.class);
+            alumno__toOne = new ToOne<>(this, AsignaturasAlumnos_.alumnoId, Alumno.class);
         }
         return alumno__toOne;
     }
 
-    /** To-one relationship, resolved on first access. */
+    /**
+     * To-one relationship, resolved on first access.
+     */
     @Generated(hash = 2078347351)
     public Alumno getAlumno() {
         alumno = getAlumno__toOne().getTarget(this.alumnoId);
         return alumno;
     }
 
-    /** Set the to-one relation including its ID property. */
+    /**
+     * Set the to-one relation including its ID property.
+     */
     @Generated(hash = 1535328554)
     public void setAlumno(Alumno alumno) {
         getAlumno__toOne().setTarget(alumno);
@@ -101,7 +109,9 @@ public class AsignaturasAlumnos {
     @Generated(hash = 1821759822)
     private transient ToOne<AsignaturasAlumnos, Asignatura> asignatura__toOne;
 
-    /** See {@link io.objectbox.relation.ToOne} for details. */
+    /**
+     * See {@link io.objectbox.relation.ToOne} for details.
+     */
     @Generated(hash = 1259345634)
     public synchronized ToOne<AsignaturasAlumnos, Asignatura> getAsignatura__toOne() {
         if (asignatura__toOne == null) {
@@ -111,14 +121,18 @@ public class AsignaturasAlumnos {
         return asignatura__toOne;
     }
 
-    /** To-one relationship, resolved on first access. */
+    /**
+     * To-one relationship, resolved on first access.
+     */
     @Generated(hash = 1436147894)
     public Asignatura getAsignatura() {
         asignatura = getAsignatura__toOne().getTarget(this.asignaturaId);
         return asignatura;
     }
 
-    /** Set the to-one relation including its ID property. */
+    /**
+     * Set the to-one relation including its ID property.
+     */
     @Generated(hash = 1330900196)
     public void setAsignatura(Asignatura asignatura) {
         getAsignatura__toOne().setTarget(asignatura);

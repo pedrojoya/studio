@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.transition.Fade;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +24,6 @@ import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -41,14 +39,13 @@ import butterknife.OnEditorAction;
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 
+@SuppressWarnings({"WeakerAccess", "CanBeFinal", "FieldCanBeLocal"})
 public class DetalleActivity extends AppCompatActivity {
 
     private static final String EXTRA_ID_ALUMNO = "idAlumno";
     private static final String STATE_URL_FOTO = "urlFoto";
     private static final String TN_FOTO = "transition_foto";
     private static final long ENTER_TRANSITION_DURATION_MILIS = 500;
-    private static final String STATE_INDICES_ASIGNATURAS_SELECCIONADAS =
-            "indicesAsignaturasSeleccionadas";
     private static final int RC_ASIGNATURAS = 0;
 
     @BindView(R.id.imgFoto)
@@ -69,7 +66,7 @@ public class DetalleActivity extends AppCompatActivity {
     private long mIdAlumno;
     private Alumno mAlumno;
     private ArrayList<Asignatura> mAsigSelec;
-    private Random mAleatorio;
+    private Random mAleatorio = new Random();
     private String mUrlFoto;
     private BoxStore mBoxStore;
     private Box<Alumno> mAlumnoBox;
@@ -79,44 +76,68 @@ public class DetalleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        habilitarTransiciones();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detalle);
+        ButterKnife.bind(this);
+        configTransiciones();
+        initBD();
+        initVistas();
+        // Si nos han llamado con un id de alumno, se obtiene el alumno y se muestra.
+        if (getIntent() != null && getIntent().hasExtra(EXTRA_ID_ALUMNO)) {
+            mostrarAlumno();
+        } else {
+            nuevoAlumno();
+        }
+        restaurarEstado(savedInstanceState);
+        mostrarFoto();
+    }
+
+    private void habilitarTransiciones() {
         // Se habilita el uso de transiciones entre actividades.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         }
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle);
-        ButterKnife.bind(this);
-        // Se configuran las transiciones.
-        configTransitions();
-        mAleatorio = new Random();
-        // Se obtiene la instancia de BoxStore.
+    }
+
+    private void initBD() {
         mBoxStore = ((App) getApplication()).getBoxStore();
         mAlumnoBox = mBoxStore.boxFor(Alumno.class);
         mAsignaturasAlumnosBox = mBoxStore.boxFor(AsignaturasAlumnos.class);
-        // Se obtienen e inicializan las vistas.
-        initVistas();
-        // Si nos han llamado con un id de alumno, se obtiene el alumno y se muestra.
-        if (getIntent() != null && getIntent().hasExtra(EXTRA_ID_ALUMNO)) {
-            mIdAlumno = getIntent().getLongExtra(EXTRA_ID_ALUMNO, 0);
-            mAlumno = mAlumnoBox.get(mIdAlumno);
-            mUrlFoto = mAlumno.getUrlFoto();
-            mAsignaturasAlumno = mAsignaturasAlumnosBox.query().equal(AsignaturasAlumnos_.alumnoId,
-                    mAlumno.getId()).build().find();
-            alumnoToVistas(savedInstanceState);
-            setTitle(R.string.actualizar_alumno);
-        } else {
-            // Se crea un nuevo alumno con foto aleatoria.
-            mAlumno = new Alumno();
-            mUrlFoto = getFotoAleatoria();
-            setTitle(R.string.agregar_alumno);
-        }
+    }
+
+    private void initVistas() {
+        configToolbar();
+        ViewCompat.setTransitionName(imgFoto, TN_FOTO);
+    }
+
+    private void mostrarAlumno() {
+        mIdAlumno = getIntent().getLongExtra(EXTRA_ID_ALUMNO, 0);
+        mAlumno = mAlumnoBox.get(mIdAlumno);
+        mUrlFoto = mAlumno.getUrlFoto();
+        mAsignaturasAlumno = mAsignaturasAlumnosBox.query().equal(AsignaturasAlumnos_.alumnoId,
+                mAlumno.getId()).build().find();
+        alumnoToVistas();
+        setTitle(R.string.actualizar_alumno);
+    }
+
+    private void nuevoAlumno() {
+        // Se crea un nuevo alumno con foto aleatoria.
+        mAlumno = new Alumno();
+        mUrlFoto = getFotoAleatoria();
+        setTitle(R.string.agregar_alumno);
+    }
+
+    private void restaurarEstado(Bundle savedInstanceState) {
         // Si venimos de un estado anterior dejamos la foto tal y como estaba.
         if (savedInstanceState != null) {
             mUrlFoto = savedInstanceState.getString(STATE_URL_FOTO);
         }
+    }
+
+    private void mostrarFoto() {
         // Se muestra la foto. Cuando esté cargada, se inicia la transición
         // que había sido pospuesta.
-        Log.d("Mia", mUrlFoto);
         Picasso.with(this).load(mUrlFoto).placeholder(R.drawable.placeholder).error(
                 R.drawable.placeholder).into(imgFoto, new Callback() {
             @Override
@@ -131,26 +152,30 @@ public class DetalleActivity extends AppCompatActivity {
         });
     }
 
-    // Obtiene una foto aleatoria.
     private String getFotoAleatoria() {
         return "http://lorempixel.com/200/200/abstract/" + (mAleatorio.nextInt(7) + 1) + "/";
     }
 
-    // Muestra los datos del alumno
-    private void alumnoToVistas(Bundle saveInstanceState) {
+    private void alumnoToVistas() {
         txtNombre.setText(mAlumno.getNombre());
         txtDireccion.setText(mAlumno.getDireccion());
         StringBuilder sb = new StringBuilder();
-        for (AsignaturasAlumnos as: mAsignaturasAlumno) {
-            sb.append(as.getAsignatura() + "-");
+        if (mAsignaturasAlumno == null || mAsignaturasAlumno.size() == 0) {
+            sb.append(getString(R.string.ninguna));
+        } else {
+            boolean primero = true;
+            if (mAsignaturasAlumno != null) {
+                for (AsignaturasAlumnos as : mAsignaturasAlumno) {
+                    if (!primero) {
+                        sb.append(", ");
+                    } else {
+                        primero = false;
+                    }
+                    sb.append(as.getAsignatura());
+                }
+            }
+            txtAsignaturas.setText(sb.toString());
         }
-        txtAsignaturas.setText(sb.toString());
-    }
-
-    // Obtiene e inicializa las vistas.
-    private void initVistas() {
-        configToolbar();
-        ViewCompat.setTransitionName(imgFoto, TN_FOTO);
     }
 
     @OnClick(R.id.imgFoto)
@@ -161,6 +186,7 @@ public class DetalleActivity extends AppCompatActivity {
     }
 
     // Configura la Toolbar.
+
     private void configToolbar() {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -172,6 +198,7 @@ public class DetalleActivity extends AppCompatActivity {
                 ContextCompat.getColor(this, android.R.color.white));
     }
 
+    @SuppressWarnings("UnusedParameters")
     @OnEditorAction(R.id.txtDireccion)
     public boolean onDatosIntroducidos(TextView textView, int actionId, KeyEvent keyEvent) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -187,9 +214,12 @@ public class DetalleActivity extends AppCompatActivity {
         mAlumno.setDireccion(txtDireccion.getText().toString());
         mAlumno.setUrlFoto(mUrlFoto);
         mAlumnoBox.put(mAlumno);
+        mIdAlumno = mAlumno.getId();
         mAsignaturasAlumnosBox.remove(mAsignaturasAlumno);
-        for (Asignatura asig: mAsigSelec) {
-            mAsignaturasAlumnosBox.put(new AsignaturasAlumnos(0, mIdAlumno, asig.getId()));
+        if (mAsigSelec != null) {
+            for (Asignatura asig : mAsigSelec) {
+                mAsignaturasAlumnosBox.put(new AsignaturasAlumnos(0, mIdAlumno, asig.getId()));
+            }
         }
         // Se finaliza la actividad.
         setResult(RESULT_OK);
@@ -217,7 +247,7 @@ public class DetalleActivity extends AppCompatActivity {
     }
 
     // Se configuran las transiciones de la actividad.
-    private void configTransitions() {
+    private void configTransiciones() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Transición de entrada.
             Fade enterTransition = new Fade(Fade.IN);
@@ -250,24 +280,16 @@ public class DetalleActivity extends AppCompatActivity {
                 return true;
             case R.id.mnuAsignaturas:
                 //Toast.makeText(this, getListaAsignaturas(), Toast.LENGTH_SHORT).show();
-                SelecAsigActivity.startForResult(this, RC_ASIGNATURAS, mIdAlumno);
+                seleccionarAsignaturas();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private String getListaAsignaturas() {
-        Box<Asignatura> asignaturaBox = mBoxStore.boxFor(Asignatura.class);
-        List<Asignatura> asignaturas = asignaturaBox.query()
-                .order(Asignatura_.nombre)
-                .build()
-                .find();
-        String resultado = "No hay";
-        if (asignaturas != null) {
-            resultado = TextUtils.join(", ", asignaturas);
-        }
-        return resultado;
+    @OnClick(R.id.txtAsignaturas)
+    void seleccionarAsignaturas() {
+        SelecAsigActivity.startForResult(this, RC_ASIGNATURAS, mIdAlumno);
     }
 
     @Override
@@ -279,10 +301,12 @@ public class DetalleActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == RC_ASIGNATURAS) {
             if (data != null && data.hasExtra(SelecAsigActivity.EXTRA_ASIGNATURAS)) {
-                mAsigSelec = data.getParcelableArrayListExtra(
-                        SelecAsigActivity.EXTRA_ASIGNATURAS);
-                Toast.makeText(this, TextUtils.join(", ", mAsigSelec),
-                        Toast.LENGTH_SHORT).show();
+                mAsigSelec = data.getParcelableArrayListExtra(SelecAsigActivity.EXTRA_ASIGNATURAS);
+                if (mAsigSelec == null || mAsigSelec.size() == 0) {
+                    txtAsignaturas.setText(getString(R.string.ninguna));
+                } else {
+                    txtAsignaturas.setText(TextUtils.join(", ", mAsigSelec));
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

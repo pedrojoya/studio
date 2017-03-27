@@ -11,7 +11,6 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.provider.Settings;
@@ -38,7 +37,7 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal", "EmptyMethod"})
 public class MainActivity extends AppCompatActivity implements OnPreparedListener,
         OnCompletionListener {
 
@@ -173,7 +172,9 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
                     result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } finally {
-                cursor.close();
+                if (cursor != null) {
+                    cursor.close();
+                }
             }
         }
         if (result == null) {
@@ -326,10 +327,13 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         // Se consulta en el content provider de la galería.
         String[] filePath = {MediaStore.Audio.Media.DATA};
         Cursor c = getContentResolver().query(uriGaleria, filePath, null, null, null);
-        c.moveToFirst();
-        int columnIndex = c.getColumnIndex(filePath[0]);
-        String path = c.getString(columnIndex);
-        c.close();
+        String path = "";
+        if (c != null) {
+            c.moveToFirst();
+            int columnIndex = c.getColumnIndex(filePath[0]);
+            path = c.getString(columnIndex);
+            c.close();
+        }
         return path;
     }
 

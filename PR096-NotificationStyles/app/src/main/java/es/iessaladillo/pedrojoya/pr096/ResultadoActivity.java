@@ -10,7 +10,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class ResultadoActivity extends AppCompatActivity {
 
     // Constantes.

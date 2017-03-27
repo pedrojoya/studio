@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr158;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -18,6 +16,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 // Adaptador para la lista de alumnos.
+@SuppressWarnings("unused")
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
     private List<Alumno> mDatos;
@@ -83,7 +82,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         holder.bind(mDatos.get(position));
     }
 
-    // Retorna el número de ítems gestionados.
     @Override
     public int getItemCount() {
         return mDatos.size();
@@ -94,7 +92,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         return mDatos.get(position).getId();
     }
 
-    // Elimina un elemento de la lista.
     public void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
@@ -126,8 +123,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         public TextView lblDireccion;
         @BindView(R.id.imgFoto)
         public CircleImageView imgAvatar;
-        @BindView(R.id.lblAsignaturas)
-        public TextView lblAsignaturas;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -138,7 +133,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             // Se escriben los mDatos en la vista.
             lblNombre.setText(alumno.getNombre());
             lblDireccion.setText(alumno.getDireccion());
-            bindAsignaturas(alumno);
             String url = alumno.getUrlFoto();
             Picasso.with(imgAvatar.getContext())
                     .load(url)
@@ -155,23 +149,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
                         }
                     });
-        }
-
-        private void bindAsignaturas(Alumno alumno) {
-            //List<Asignatura> asignaturas = alumno.getAsignaturas();
-            ArrayList<String> nombresAsignaturas = new ArrayList<>();
-//            for (Asignatura asignatura: asignaturas) {
-//                nombresAsignaturas.add(asignatura.getId());
-//            }
-            lblAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturas));
-        }
-
-        private String getCadenaAsignaturas(ArrayList<String> nombresAsignaturas) {
-            if (nombresAsignaturas.size() > 0) {
-                return TextUtils.join(", ", nombresAsignaturas);
-            } else {
-                return itemView.getContext().getString(R.string.ninguna);
-            }
         }
 
     }

@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.objectbox.BoxStore;
 
+@SuppressWarnings({"WeakerAccess", "CanBeFinal", "FieldCanBeLocal"})
 public class SelecAsigActivity extends AppCompatActivity {
 
     public static final String EXTRA_ASIGNATURAS = "EXTRA_ASIGNATURAS";
@@ -59,8 +60,8 @@ public class SelecAsigActivity extends AppCompatActivity {
     private void initVistas() {
         lstAsignaturas.setEmptyView(lblEmptyView);
         lstAsignaturas.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
-        mAdaptador = new ArrayAdapter<Asignatura>(this,
-                android.R.layout.simple_list_item_multiple_choice, mAsignaturas);
+        mAdaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice,
+                mAsignaturas);
         lstAsignaturas.setAdapter(mAdaptador);
         Asignatura asignatura;
         for (int i = 0; i < lstAsignaturas.getCount(); i++) {
@@ -81,6 +82,7 @@ public class SelecAsigActivity extends AppCompatActivity {
         return false;
     }
 
+    @SuppressWarnings("SameParameterValue")
     public static void startForResult(Activity context, int requestCode, long idAlumno) {
         Intent intent = new Intent(context, SelecAsigActivity.class);
         intent.putExtra(EXTRA_ALUMNO_ID, idAlumno);
@@ -109,7 +111,6 @@ public class SelecAsigActivity extends AppCompatActivity {
         for (int i = 0; i < selec.size(); i++) {
             // Si está seleccionado.
             if (selec.valueAt(i)) {
-                int position = selec.keyAt(i);
                 // Se añade al resultado.
                 datos.add((Asignatura) lst.getItemAtPosition(selec.keyAt(i)));
             }

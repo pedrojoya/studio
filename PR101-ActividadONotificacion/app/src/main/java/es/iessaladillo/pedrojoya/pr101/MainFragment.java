@@ -33,7 +33,7 @@ public class MainFragment extends Fragment {
     private BroadcastReceiver mExportarReceiver;
     private ArrayAdapter<String> mAdaptador;
 
-    public MainFragment() {}
+    public MainFragment() { }
 
     public static MainFragment newInstance() {
         return new MainFragment();

@@ -26,7 +26,7 @@ import io.objectbox.reactive.DataObserver;
 import io.objectbox.reactive.DataSubscription;
 
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class MainActivity extends AppCompatActivity implements AlumnosAdapter.OnItemClickListener,
         AlumnosAdapter.OnItemLongClickListener {
 
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     private Box<Alumno> mAlumnoBox;
     private Query<Alumno> mAlumnosQuery;
     private DataSubscription mSubscripcion;
+    private RecyclerView.AdapterDataObserver mObservador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +87,25 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         mAdaptador.setOnItemClickListener(MainActivity.this);
         mAdaptador.setOnItemLongClickListener(MainActivity.this);
         lstAlumnos.setHasFixedSize(true);
+        mObservador = new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkAdapterIsEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkAdapterIsEmpty();
+            }
+        };
+        mAdaptador.registerAdapterDataObserver(mObservador);
         lstAlumnos.setAdapter(mAdaptador);
         lstAlumnos.setLayoutManager(new LinearLayoutManager(MainActivity.this,
                 LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         checkAdapterIsEmpty();
-        // FALTA GESTIÓN DE LA LISTA VACÍA.
     }
 
     private void checkAdapterIsEmpty() {
@@ -107,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
                     @Override
                     public void onData(List<Alumno> alumnos) {
                         mAdaptador.setData(alumnos);
+                        checkAdapterIsEmpty();
                         // QUITAR SETDATA Y USAR DIFFUTIL.
                     }
                 });
@@ -116,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     protected void onDestroy() {
         // Se cancela la subscripción.
         mSubscripcion.cancel();
+        // Se quita el registro el observador.
+        mAdaptador.unregisterAdapterDataObserver(mObservador);
         super.onDestroy();
     }
 
@@ -128,6 +145,10 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     @Override
     public void onItemLongClick(View view, Alumno alumno, int position) {
+        Box<AsignaturasAlumnos> asignaturasAlumnoBox = mBoxStore.boxFor(AsignaturasAlumnos.class);
+        Query<AsignaturasAlumnos> asignaturasAlumnoQuery = asignaturasAlumnoBox.query().equal(
+                AsignaturasAlumnos_.alumnoId, alumno.getId()).build();
+        asignaturasAlumnoQuery.remove();
         mAlumnoBox.remove(alumno);
     }
 

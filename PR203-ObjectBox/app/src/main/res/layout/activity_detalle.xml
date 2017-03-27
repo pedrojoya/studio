@@ -102,8 +102,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ninguna"
                     android:inputType="none"
-                    android:focusable="false"
-                    android:clickable="false"/>
+                    android:focusable="false"/>
 
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>

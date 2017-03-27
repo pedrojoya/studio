@@ -41,6 +41,6 @@ dependencies {
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
-    compile 'io.objectbox:objectbox-android:0.9.9'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "io.objectbox:objectbox-android:$rootProject.ext.objectbox_version"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
 }

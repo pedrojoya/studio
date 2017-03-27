@@ -4,6 +4,7 @@ import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 import io.objectbox.annotation.Generated;
 
+@SuppressWarnings("WeakerAccess")
 @Entity
 public class Alumno {
 
