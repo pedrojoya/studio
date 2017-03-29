@@ -1,0 +1,32 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    compileSdkVersion = 25
+    minSdkVersion = 16
+    buildToolsVersion = "25.0.2"
+    junit_version = "4.12"
+    espresso_version = "2.2.2"
+    support_library_version = "25.3.0"
+    picasso_version = "2.5.2"
+    circleimageview_version = "2.1.0"
+    rxjava_version = "2.0.7"
+    rxandroid_version = "2.0.1"
+}
