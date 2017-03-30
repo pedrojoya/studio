@@ -6,156 +6,100 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr204.R;
+import pedrojoya.iessaladillo.es.pr204.base.ImageLoader;
+import pedrojoya.iessaladillo.es.pr204.component.PicassoImageLoader;
 import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
 
-// Adaptador para la lista de alumnos.
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private final ArrayList<Alumno> mDatos;
-    private OnItemLongClickListener onItemLongClickListener;
+    private List<Alumno> mDatos;
+    private ImageLoader mImageLoader;
     private OnItemClickListener onItemClickListener;
 
-    // Constructor.
-    public MainAdapter(ArrayList<Alumno> datos) {
-        mDatos = datos;
+    public MainAdapter() {
+        mDatos = new ArrayList<>();
+        mImageLoader = new PicassoImageLoader();
     }
 
-    // Cuando se debe crear una nueva vista para el elemento.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Se infla la especificación XML para obtener la vista-fila.
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false);
-        // Se crea el contenedor de vistas para la fila.
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_item, parent, false);
         final ViewHolder viewHolder = new ViewHolder(itemView);
-
-        // Se establecen los listener de la vista correspondiente al ítem
-        // y de las subvistas.
-
-        // Cuando se hace click sobre el elemento.
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemClickListener != null) {
-                    // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
+                    onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }
         });
-        // Cuando se hace click largo sobre el elemento.
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (onItemLongClickListener != null) {
-                    // Se informa al listener.
-                    onItemLongClickListener.onItemLongClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
-        // Se retorna el contenedor.
         return viewHolder;
     }
 
-    // Cuando se deben escribir los datos en las subvistas de la
-    // vista correspondiente al ítem.
     @Override
     public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
-        // Se obtiene el alumno correspondiente.
-        Alumno alumno = mDatos.get(position);
-        // Se escriben los mDatos en la vista.
-        holder.lblNombre.setText(alumno.getNombre());
-        holder.lblDireccion.setText(alumno.getDireccion());
-        Picasso.with(holder.imgAvatar.getContext())
-                .load(alumno.getUrlFoto())
-                .placeholder(R.drawable.ic_user)
-                .error(R.drawable.ic_user)
-                .into(holder.imgAvatar);
-
+        holder.bind(mDatos.get(position));
     }
 
-    // Retorna el número de ítems gestionados.
     @Override
     public int getItemCount() {
         return mDatos.size();
     }
 
-    // Elimina un elemento de la lista.
     public void removeItem(int position) {
         mDatos.remove(position);
         notifyItemRemoved(position);
     }
 
-    // Añade un elemento a la lista.
     public void addItem(Alumno alumno) {
-        // Se añade el elemento.
         mDatos.add(alumno);
-        // Se notifica que se ha insertado un elemento en la última posición.
         notifyItemInserted(mDatos.size() - 1);
     }
 
-    // Intercambia dos elementos de la lista.
-    @SuppressWarnings("unused")
-    void swapItems(int from, int to) {
-        // Se realiza el intercambio.
-        Collections.swap(mDatos, from, to);
-        // Se notifica el movimiento.
-        notifyItemMoved(from, to);
+    public void changeData(List<Alumno> data) {
+        mDatos = data;
+        notifyDataSetChanged();
     }
 
-    // Establece el listener a informar cuando se hace click sobre un elemento de la lista.
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
 
-    // Establece el listener a informar cuando se hace click largo sobre un elemento de la lista.
-    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
-        this.onItemLongClickListener = listener;
-    }
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-    // Contenedor de vistas para la vista-fila.
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        // El contenedor de vistas para un elemento de la lista debe contener...
-        private final TextView lblNombre;
-        private final TextView lblDireccion;
-        private final CircleImageView imgAvatar;
-
+        @BindView(R.id.lblNombre)
+        TextView lblNombre;
+        @BindView(R.id.lblDireccion)
+        TextView lblDireccion;
+        @BindView(R.id.imgAvatar)
+        CircleImageView imgAvatar;
 
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
             super(itemView);
-            // Se obtienen las vistas de la vista-fila.
-            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
-            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
-            imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
+            ButterKnife.bind(this, itemView);
+        }
+
+        private void bind(Alumno alumno) {
+            lblNombre.setText(alumno.getNombre());
+            lblDireccion.setText(alumno.getDireccion());
+            mImageLoader.loadImageIntoImageView(alumno.getUrlFoto(), imgAvatar, R.drawable.ic_user,
+                    R.drawable.ic_user);
         }
 
     }
 
-    // Interfaz que debe implementar el listener para cuando se haga click sobre un elemento.
-    @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
-    }
-
-    // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
-    @SuppressWarnings("UnusedParameters")
-    public interface OnItemLongClickListener {
-        void onItemLongClick(View view, Alumno alumno, int position);
     }
 
 }

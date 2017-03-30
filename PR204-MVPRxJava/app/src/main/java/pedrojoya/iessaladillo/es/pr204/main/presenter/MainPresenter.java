@@ -1,24 +1,26 @@
 package pedrojoya.iessaladillo.es.pr204.main.presenter;
 
-import android.util.Log;
-
 import java.util.List;
 
+import io.reactivex.Single;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
 import pedrojoya.iessaladillo.es.pr204.base.BasePresenter;
+import pedrojoya.iessaladillo.es.pr204.main.usecases.AlumnosUseCase;
 import pedrojoya.iessaladillo.es.pr204.main.view.MainView;
+import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
 
 public class MainPresenter implements BasePresenter<MainView> {
 
     private MainView mView;
-    private DBMainRepository mRepository;
+    private AlumnosUseCase mUseCase;
+    CompositeDisposable mSubscripciones;
 
-    public MainPresenter() {
-        mRepository = new DBMainRepository();
+    public MainPresenter(MainView mainView, AlumnosUseCase alumnosUseCase) {
+        mView = mainView;
+        mUseCase = alumnosUseCase;
+        mSubscripciones = new CompositeDisposable();
     }
-
-    // =====================
-    // Intefaz BasePresenter
-    // =====================
 
     @Override
     public void onViewAttach(MainView view) {
@@ -35,50 +37,40 @@ public class MainPresenter implements BasePresenter<MainView> {
         //
     }
 
-    // ===================================
-    // Métodos propios de este presentador
-    // ===================================
-
-    public void addStudent() {
-        mRepository.addElement(this);
-    }
-
-    public void removeStudent(int position, Student student) {
-        mRepository.removeElement(position, student, this);
-    }
-
-    public void getStudents() {
-        Log.d("Mia", "Pidiendo datos");
-        if (mView != null) {
-            mView.showLoading();
-        }
-        mRepository.getList(this);
-    }
-
-    // ===============================
-    // Interfaz MainRepositoryCallback
-    // ===============================
-
     @Override
-    public void onListReceived(List<Student> list) {
+    public MainView getView() {
+        return mView;
+    }
+
+    public void agregarAlumno() {
         if (mView != null) {
-            mView.showStudentList(list);
-            mView.hideLoading();
+            mView.navegarNuevoAlumno();
         }
     }
 
-    @Override
-    public void onElementAdded(Student student) {
+    public void actualizarAlumno(Alumno alumno) {
         if (mView != null) {
-            mView.notifyStudentAdded(student);
+            mView.navegarAlumno(alumno);
         }
     }
 
-    @Override
-    public void onElementRemoved(int position, Student student) {
-        if (mView != null) {
-            mView.notifyStudentRemoved(position, student);
-        }
+    public void obtenerAlumnos() {
+        Single<List<Alumno>> observable = mUseCase.getListaAlumnos();
+        mSubscripciones.add(observable.subscribeWith(new DisposableSingleObserver<List<Alumno>>() {
+            @Override
+            public void onSuccess(List<Alumno> alumnos) {
+                if (mView != null) {
+                    mView.mostrarListaAlumnos(alumnos);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (mView != null) {
+                    mView.errorObtiendoAlumnos();
+                }
+            }
+        }));
     }
 
 }

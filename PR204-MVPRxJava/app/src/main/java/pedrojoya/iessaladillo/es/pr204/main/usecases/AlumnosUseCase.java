@@ -1,7 +1,12 @@
 package pedrojoya.iessaladillo.es.pr204.main.usecases;
 
+import java.util.List;
+
+import io.reactivex.Single;
+import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
+
 public interface AlumnosUseCase {
 
-    SingleObservable getListaAlumnos();
+    Single<List<Alumno>> getListaAlumnos();
 
 }

@@ -3,12 +3,9 @@ package pedrojoya.iessaladillo.es.pr204.component;
 import android.view.View;
 import android.widget.Toast;
 
-import pedrojoya.iessaladillo.es.pr204.base.UIMessageManager;
+import pedrojoya.iessaladillo.es.pr204.base.MessageManager;
 
-public class ToastUIMessageManager implements UIMessageManager {
-
-    private ToastUIMessageManager() {
-    }
+public class ToastMessageManager implements MessageManager {
 
     @Override
     public void showMessage(View refView, String message) {

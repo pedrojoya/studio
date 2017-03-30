@@ -1,6 +1,5 @@
 package pedrojoya.iessaladillo.es.pr204.model.entity;
 
-// Modelo Alumno.
 public class Alumno {
 
     private final String nombre;
