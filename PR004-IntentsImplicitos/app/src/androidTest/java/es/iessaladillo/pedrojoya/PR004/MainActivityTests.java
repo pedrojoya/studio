@@ -4,8 +4,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.support.test.espresso.intent.matcher.UriMatchers;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,6 +24,7 @@ import static org.hamcrest.core.AllOf.allOf;
 @LargeTest
 public class MainActivityTests {
 
+    @SuppressWarnings("unchecked")
     @Rule
     public IntentsTestRule<MainActivity> mActivityRule = new IntentsTestRule(MainActivity.class);
 
