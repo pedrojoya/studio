@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/ef2c7ed09d3a79237cf1a68f750cedbe3db5e6a4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fbb7ec3eb11bbe3934bd0268362cc3c4dac7696e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/c6850e427105b5c0f2d4d44b88e92e873eac768c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_15e645a40a0ce843e9eea85552a230e83e1e0d8f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5891280817a81e1899c7e2101235600c0508ba1d">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bfc676b8a1a38af7f588f44eccff4487a95d49a6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_a54c4db4466bcf0585839c077086107f0a3de60c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_5f3ace52cd60103ea8b4e671e0ba7e968bf30c9e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/99e64f392d9f98db3c35bb2f448261a0bda0cd17/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_71f273ef04fdfe7a6b8ec6cc2e8b1fd3d7b812f5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/84aefc018727e9b5f931715c2b195ed288b92b4b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2953fae492b1888c40f17996471796a94dbb5248/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/ec1e251a84d784ac5a1708f8c2d50f5cac206aa3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_13c8e53b2410978cea408aed6122d0271856f030/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/649e0c0236d1c2b5bc3c3003c2a57467f623c862/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b8742e1a3d8d21683a1edec29f9221020fc1aae4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/dfdfe315f0c58a4d7c33ce121a07dfdf56541d62/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7f9702c60a701096ed43b4bf7542ab56914d27ae/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/f57bc11baccc85ada50d2f34128f40924f493e95/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_713efa543b94ac342e2b8459aea5e7434e6af0b7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/20143df1197d0a0d5d16e2c767a1537266c0db24/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_807068b33a8c16203d41e358e6156e5871b3db7e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/268b2b1aa67c7d98455d288b4c9b54668cd43f49/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="29a0e502cda60db667a1f75ed1145a134bb0a7a3">
+        <dex dex="/Users/pedro/studio/PR014-ListActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1817d116583ec723403d0ddd1ed7333f524e00c6/classes.dex" />
+    </item>
+
+</items>

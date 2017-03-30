@@ -1,4 +1,4 @@
-﻿VERSIONS
+VERSIONS
 
 ext {
     compileSdkVersion = 25
@@ -125,6 +125,7 @@ dependencies {
     compile "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher_version"
     apt "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
     compile "com.github.satyan:sugar:$rootProject.ext.sugar_version"
+    listitemview_version = "1.0.0"
 }
 
 @file:programandoandroid/

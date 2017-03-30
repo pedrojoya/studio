@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr012;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,8 +29,9 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
     }
 
     // Retorna la vista que se debe "dibujar" para un determinado elemento.
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         // Si no se puede reciclar.
         if (convertView == null) {
@@ -39,9 +41,7 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
             holder = new ViewHolder(convertView);
             // Se almacena el contenedor en la vista.
             convertView.setTag(holder);
-        }
-        // Si se puede reciclar.
-        else {
+        } else {
             // Se obtiene el contenedor de vistas desde la vista reciclada.
             holder = (ViewHolder) convertView.getTag();
         }
@@ -74,16 +74,11 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
             // Se obtienen las vistas de la vista-fila.
-            imgFoto = (ImageView) itemView
-                    .findViewById(R.id.imgFoto);
-            lblNombre = (TextView) itemView
-                    .findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView
-                    .findViewById(R.id.lblCurso);
-            lblEdad = (TextView) itemView
-                    .findViewById(R.id.lblEdad);
-            lblRepetidor = (TextView) itemView
-                    .findViewById(R.id.lblRepetidor);
+            imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
+            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
+            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
+            lblEdad = (TextView) itemView.findViewById(R.id.lblEdad);
+            lblRepetidor = (TextView) itemView.findViewById(R.id.lblRepetidor);
             btnLlamar = (Button) itemView.findViewById(R.id.btnLlamar);
             btnNotas = (Button) itemView.findViewById(R.id.btnNotas);
         }
@@ -92,9 +87,10 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         public void bind(final Alumno alumno) {
             imgFoto.setImageResource(alumno.getFoto());
             lblNombre.setText(alumno.getNombre());
-            lblCurso.setText(lblCurso.getContext().getString(
-                    R.string.cursociclo, alumno.getCurso(), alumno.getCiclo()));
-            lblEdad.setText(lblEdad.getContext().getResources()
+            lblCurso.setText(lblCurso.getContext()
+                    .getString(R.string.cursociclo, alumno.getCurso(), alumno.getCiclo()));
+            lblEdad.setText(lblEdad.getContext()
+                    .getResources()
                     .getQuantityString(R.plurals.anios, alumno.getEdad(), alumno.getEdad()));
             // El fondo del TextView con la edad es diferente si es menor de
             // edad.
@@ -114,14 +110,16 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(view.getContext(),
-                            view.getContext().getString(R.string.llamar_a, alumno.getNombre()), Toast.LENGTH_SHORT).show();
+                            view.getContext().getString(R.string.llamar_a, alumno.getNombre()),
+                            Toast.LENGTH_SHORT).show();
                 }
             });
             btnNotas.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(view.getContext(),
-                            view.getContext().getString(R.string.ver_notas_de, alumno.getNombre()), Toast.LENGTH_SHORT).show();
+                            view.getContext().getString(R.string.ver_notas_de, alumno.getNombre()),
+                            Toast.LENGTH_SHORT).show();
                 }
             });
         }

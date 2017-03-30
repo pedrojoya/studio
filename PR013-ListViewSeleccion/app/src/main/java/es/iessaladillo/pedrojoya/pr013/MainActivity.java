@@ -81,13 +81,13 @@ public class MainActivity extends AppCompatActivity implements
         // Se anima el fondo del contador.
         animarFondoContador();
         // Se inicia la cuenta atrás.
-        long CONTADOR_INTERVALO = 1000;
-        new CountDownTimer(CONTADOR_INICIAL, CONTADOR_INTERVALO) {
+        long contadorIntervalo = 1000;
+        new CountDownTimer(CONTADOR_INICIAL, contadorIntervalo) {
 
             // Cuando pasa un intervalo.
             public void onTick(long millisUntilFinished) {
                 // Se actualiza el TextView con el valor del contador.
-                lblContador.setText((String.valueOf(millisUntilFinished / 1000)));
+                lblContador.setText(String.valueOf(millisUntilFinished / 1000));
             }
 
             // Cuando la cuenta atrás llega a su fin.
