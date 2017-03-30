@@ -22,7 +22,7 @@ ext {
     compileSdkVersion = 25
     minSdkVersion = 16
     buildToolsVersion = "25.0.2"
-    support_library_version = "25.3.0"
+    support_library_version = "25.3.1"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
     butterknife_version = "8.5.1"

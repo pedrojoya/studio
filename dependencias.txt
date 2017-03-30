@@ -1,4 +1,4 @@
-VERSIONS
+﻿VERSIONS
 
 ext {
     compileSdkVersion = 25
@@ -7,7 +7,7 @@ ext {
     junit_version = "4.12"
     mockito_version = "2.7.19"
     espresso_version = "2.2.2"
-    support_library_version = "25.3.0"
+    support_library_version = "25.3.1"
     retrolambdaVersion = "3.6.0"
     constraintlayout_version = "1.0.2"
     picasso_version = "2.5.2"

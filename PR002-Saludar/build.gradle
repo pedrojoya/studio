@@ -18,7 +18,7 @@ ext {
     compileSdkVersion = 25
     minSdkVersion = 16
     buildToolsVersion = "25.0.2"
-    support_library_version = "25.3.0"
+    support_library_version = "25.3.1"
     junit_version = "4.12"
     espresso_version = "2.2.2"
     support_test_version = "0.5"
