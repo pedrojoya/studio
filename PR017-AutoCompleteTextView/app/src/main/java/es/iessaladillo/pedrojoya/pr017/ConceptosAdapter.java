@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr017;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ class ConceptosAdapter extends ArrayAdapter<Concepto> {
     }
 
     // Retorna el objeto Filter que va a filtrar el adaptador.
+    @NonNull
     @Override
     public Filter getFilter() {
         // Se retorna un nuevo filtro subclase de Filter (inline).
@@ -105,27 +107,20 @@ class ConceptosAdapter extends ArrayAdapter<Concepto> {
         };
     }
 
-    // Retorna la vista que se debe "dibujar" para un determinado elemento.
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        ViewHolder viewHolder;
         // Si no se puede reciclar.
         if (convertView == null) {
-            // Se obtiene la vista-fila inflando el layout.
             convertView = mInflador.inflate(R.layout.activity_main_item, parent, false);
             // Se crea el contenedor de vistas para la vista-fila.
-            holder = new ViewHolder(convertView);
-            // Se almacena el contenedor en la vista.
-            convertView.setTag(holder);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        // Si se puede reciclar.
-        else {
-            // Se obtiene el contenedor de vistas desde la vista reciclada.
-            holder = (ViewHolder) convertView.getTag();
-        }
-        // Se escriben los datos en las vistas del contenedor de vistas.
-        onBindViewHolder(holder, position);
-        // Se retorna la vista que representa el elemento.
+        onBindViewHolder(viewHolder, position);
         return convertView;
     }
 
@@ -136,25 +131,24 @@ class ConceptosAdapter extends ArrayAdapter<Concepto> {
         // correspondiente ya que puede que del array de datos original
         // algunos hayan sido filtrados, por lo que sólo debemos tener en
         // cuenta los incluidos en el adaptador.
-        Concepto concepto = getItem(position);
-        holder.imgFoto.setImageResource(concepto.getFotoResId());
-        holder.lblEnglish.setText(concepto.getEnglish());
+        holder.bind(getItem(position));
     }
 
-    // Contenedor de vistas para la vista-fila.
     public static class ViewHolder {
 
-        // El contenedor de vistas para un elemento de la lista debe contener...
         private final ImageView imgFoto;
         private final TextView lblEnglish;
 
-        // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
-            // Se obtienen las vistas de la vista-fila.
             imgFoto = (ImageView) itemView
                     .findViewById(R.id.imgFoto);
             lblEnglish = (TextView) itemView
                     .findViewById(R.id.lblEnglish);
+        }
+
+        void bind(Concepto concepto) {
+            imgFoto.setImageResource(concepto.getFotoResId());
+            lblEnglish.setText(concepto.getEnglish());
         }
 
     }

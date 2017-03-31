@@ -2,109 +2,22 @@
 <items version="2" >
 
     <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_17978679496178014400426c136cd6d8e7e5a439.jar" />
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR021-Spinner\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR021-Spinner\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_cea1a42a608a0a47a8c215fba32973e843813311\classes.dex" />
     </item>
     <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_06ee81db4e9787cca4e669342eba813769d268df.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_c422fd7519bd30b7b29daf166e09552247cc6d2b.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_1d52aae706d73fd339673bfc8b5402acb912b557.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_5855d88ac0ce6fc3f34deb43ebf5aef324b462b4.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_f645f71f53c190e2b0f3a77a47a79eaceaf47550.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_c64f0d8c64e3a1411ccf614b44fb693f470813e1.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_e9da66cee0e3e0dc1b60e2f1217efe900363740f.jar" />
-    </item>
-    <item
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_d803fd33b9a2ad7de60f5960a23dbe025df58628.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_7b1364e0c8aa3149547e6e93973f86930c780865.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_b4ccd4b2a7fda74adcbc54b20a605c7d18fa6133.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_688f164272f39e9233f72a56c15621860284a72b.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_7bd57f5d5c217e2f66630481b02d853dc98a58ef.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_9c9fc7d2149b22598f8d3f2ca4ca1b365a929ca2.jar" />
-    </item>
-    <item
-        jar="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
-        <dex dex="/Users/pedro/studio/PR021-Spinner/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_b98a95a55ceff2e89514afcd29f0363d356baecc.jar" />
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR021-Spinner\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ead5139c8a81071c0944601c45232fb58efa0e97">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR021-Spinner\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d3aa6c79aafa048113c9e29e2c11ea165025d7bc\classes.dex" />
     </item>
 
 </items>

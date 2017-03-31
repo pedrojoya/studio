@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblPaisLabel"
         android:layout_marginTop="@dimen/spnPais_marginTop"
+        android:spinnerMode="dialog"
         tools:listitem="@layout/activity_main_pais_collapsed"/>
 
     <Button

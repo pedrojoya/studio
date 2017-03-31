@@ -1,2 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\69a5672421061ed484df6be27d82fb2737dce4bb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4dd670d36740368f5fc27ecf83c11692934c56e3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\0c0704c7c40b890e8d3fa9d263e49c218285feac\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f367ec736d5921a25b5489a747d204d028548764\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_f7124759a61f69626d5fc8a705f8a08e43b9f175\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\62eabd376fa7d2185c4f90a324ebc85d7e957373\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_84eac331fd6d174ebbe203d898018772ac8b9378\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\cda1595ce125ae978fb6391919caa8d2346352dc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5259af1ef8edadfd30137e61563b6520473c0619\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\1babbafc94763f3ee5ff316a0ac61ceeff6ffda3\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_944f47e6f561ede519e6f17dcac8497ace42c714\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_02e395ba529f35551212faa85cb7164b52a2f7b7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5e194a56f5b6170b4fb321ceb77f9a7569842a84">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_dd9e66b0ecc9db9a5eb1abd5aa88f5dae531940a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\be1c02a2e24c9c431631bbb326fca17b1b0248fa\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f3d72547ec7506ba1a830b3cdce64dc324559ed8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\49bd9bf2bc4c189f7f26a3137f583b902236d8d0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_518ceb0dbc2735107d29fcb0a47aa8c47f5ad65b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\835025b21debeb7348896684916cbffdb960f658\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a88224f6a590c06164528a6a1ac68aa700ef3f5e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\8bf857d597dff8715d566fa122567ac660c26d12\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR017-AutoCompleteTextView\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e15dbab0305552a47a150e1a75449fc2679ca8fe\classes.dex" />
+    </item>
+
+</items>

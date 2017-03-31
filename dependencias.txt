@@ -1,4 +1,4 @@
-VERSIONS
+﻿VERSIONS
 
 ext {
     compileSdkVersion = 25
@@ -84,7 +84,6 @@ dependencies {
     compile "com.android.support:percent:$rootProject.ext.support_library_version"
     compile "com.android.support:customtabs:$rootProject.ext.support_library_version"
     compile "com.android.support:gridlayout-v7:$rootProject.ext.support_library_version"
-    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
