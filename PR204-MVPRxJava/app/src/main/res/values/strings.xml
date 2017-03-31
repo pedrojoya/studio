@@ -3,10 +3,8 @@
 
     <string name="app_name">RecyclerView</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
-    <string name="ha_pulsado_sobre">Ha pulsado sobre %1$s</string>
     <string name="avatar">Avatar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

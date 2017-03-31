@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -38,18 +39,10 @@ public class MainActivityPresenter {
     // Recibe directamente el viewModel para no tener que obtenerlo (sólo con vinculación de
     // listener).
     @SuppressWarnings("SameReturnValue")
-    public boolean btnSaludarOnLongClick(View v, MainActivityViewModel viewModel) {
-        StringBuilder sb = new StringBuilder(v.getContext().getString(R.string.buenos_dias));
-        sb.append(" ");
-        sb.append(v.getContext().getString(R.string.tenga_usted));
-        if (!viewModel.getTratamiento().isEmpty()) {
-            sb.append(" ");
-            sb.append(viewModel.getTratamiento());
-        }
-        sb.append(" ");
-        sb.append(viewModel.getNombre());
-        // Se muestra el mensaje
-        Snackbar.make(v, sb.toString(), Snackbar.LENGTH_LONG).show();
+    public boolean btnSaludarOnLongClick(View v) {
+        ActivityMainBinding binding = DataBindingUtil.findBinding(v);
+        MainActivityViewModel viewModel = binding.getViewModel();
+        Toast.makeText(v.getContext(), viewModel.getNombre(), Toast.LENGTH_SHORT).show();
         return true;
     }
 

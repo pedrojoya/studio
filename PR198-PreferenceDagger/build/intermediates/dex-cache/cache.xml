@@ -3,39 +3,39 @@
 
     <item
         is-multidex="true"
-        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\com.google.dagger\dagger\2.9\75a739e59d7ede2f7f425f369955bdd1c2ac122b\dagger-2.9.jar"
+        jar="/Users/pedro/studio/PR198-PreferenceDagger/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="75a739e59d7ede2f7f425f369955bdd1c2ac122b">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR198-PreferenceDagger\app\build\intermediates\transforms\dex\debug\folders\1000\10\dagger-2.9_75f36b4736caa5cf57b9591d3a7e6a5d31b3e361\classes.dex" />
+        sha1="1f92b368d25a40d66d0d60fbd43dc1fe3077b28b">
+        <dex dex="/Users/pedro/studio/PR198-PreferenceDagger/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_01bcb29a28a1973e21541bd179f26ceac008d23f/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR198-PreferenceDagger\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR198-PreferenceDagger\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7b73fdbd96810555ecbdc7795bda10b0f0644655\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR198-PreferenceDagger\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8454697b7717a24cbc14314bc868df8dc864ac24">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR198-PreferenceDagger\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cd0ab4bebf6026bee79cb341ddc760c30efb89a7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Users\Pedro\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR198-PreferenceDagger\app\build\intermediates\transforms\dex\debug\folders\1000\10\javax.inject-1_a200a3f93ad5c547608fa892a1d3a382a898c993\classes.dex" />
+        <dex dex="/Users/pedro/studio/PR198-PreferenceDagger/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.inject-1_64bb995531c1168e702709f18b86135cbe401dc9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.10/72b1eae80561b66f0a24b300ab0dfafde959eb58/dagger-2.10.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="72b1eae80561b66f0a24b300ab0dfafde959eb58">
+        <dex dex="/Users/pedro/studio/PR198-PreferenceDagger/app/build/intermediates/transforms/dex/debug/folders/1000/10/dagger-2.10_8f08e8bd9358967ec6a8db0a7bd6e7aebecaa853/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR198-PreferenceDagger/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/pedro/studio/PR198-PreferenceDagger/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_f4445955d2895454de414f66d11066d51e9d0032/classes.dex" />
     </item>
 
 </items>

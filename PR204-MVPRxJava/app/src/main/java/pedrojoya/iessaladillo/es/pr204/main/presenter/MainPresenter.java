@@ -1,25 +1,32 @@
 package pedrojoya.iessaladillo.es.pr204.main.presenter;
 
-import java.util.List;
-
-import io.reactivex.Single;
+import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableSingleObserver;
 import pedrojoya.iessaladillo.es.pr204.base.BasePresenter;
 import pedrojoya.iessaladillo.es.pr204.main.usecases.AlumnosUseCase;
+import pedrojoya.iessaladillo.es.pr204.main.view.DummyMainView;
 import pedrojoya.iessaladillo.es.pr204.main.view.MainView;
 import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
 
+@SuppressWarnings("WeakerAccess")
 public class MainPresenter implements BasePresenter<MainView> {
 
     private MainView mView;
-    private AlumnosUseCase mUseCase;
-    CompositeDisposable mSubscripciones;
+    private final AlumnosUseCase mUseCase;
+    final Scheduler mSubscribeOnScheduler;
+    final Scheduler mObserveOnScheduler;
+    final CompositeDisposable mSubscripciones;
+    private final DummyMainView mDummyMainView;
 
-    public MainPresenter(MainView mainView, AlumnosUseCase alumnosUseCase) {
+    public MainPresenter(MainView mainView, AlumnosUseCase alumnosUseCase,
+            Scheduler subscribeOnScheduler, Scheduler observeOnScheduler,
+            CompositeDisposable subscripciones) {
         mView = mainView;
         mUseCase = alumnosUseCase;
-        mSubscripciones = new CompositeDisposable();
+        mSubscribeOnScheduler = subscribeOnScheduler;
+        mObserveOnScheduler = observeOnScheduler;
+        mSubscripciones = subscripciones;
+        mDummyMainView = new DummyMainView();
     }
 
     @Override
@@ -29,12 +36,12 @@ public class MainPresenter implements BasePresenter<MainView> {
 
     @Override
     public void onViewDetach() {
-        mView = null;
+        mView = mDummyMainView;
     }
 
     @Override
     public void onDestroy() {
-        //
+        mSubscripciones.clear();
     }
 
     @Override
@@ -43,34 +50,19 @@ public class MainPresenter implements BasePresenter<MainView> {
     }
 
     public void agregarAlumno() {
-        if (mView != null) {
-            mView.navegarNuevoAlumno();
-        }
+        mView.navegarNuevoAlumno();
     }
 
     public void actualizarAlumno(Alumno alumno) {
-        if (mView != null) {
-            mView.navegarAlumno(alumno);
-        }
+        mView.navegarAlumno(alumno);
     }
 
     public void obtenerAlumnos() {
-        Single<List<Alumno>> observable = mUseCase.getListaAlumnos();
-        mSubscripciones.add(observable.subscribeWith(new DisposableSingleObserver<List<Alumno>>() {
-            @Override
-            public void onSuccess(List<Alumno> alumnos) {
-                if (mView != null) {
-                    mView.mostrarListaAlumnos(alumnos);
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                if (mView != null) {
-                    mView.errorObtiendoAlumnos();
-                }
-            }
-        }));
+        mSubscripciones.add(mUseCase.getListaAlumnos()
+                .subscribeOn(mSubscribeOnScheduler)
+                .observeOn(mObserveOnScheduler)
+                .subscribe(alumnos -> mView.mostrarListaAlumnos(alumnos),
+                        throwable -> mView.errorObtiendoAlumnos()));
     }
 
 }

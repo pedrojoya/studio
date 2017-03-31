@@ -4,7 +4,6 @@
     <dimen name="empty_drawablePadding">10dp</dimen>
 
     <!-- Fake StatusBar -->
-    <dimen name="statusBarHeight">0dp</dimen>
 
     <!-- FAB -->
     <dimen name="fab_margin">0dp</dimen>

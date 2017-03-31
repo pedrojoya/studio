@@ -4,42 +4,55 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Single;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import pedrojoya.iessaladillo.es.pr204.main.usecases.AlumnosUseCase;
+import pedrojoya.iessaladillo.es.pr204.main.view.DummyMainView;
 import pedrojoya.iessaladillo.es.pr204.main.view.MainView;
 import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
 
 import static junit.framework.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+@SuppressWarnings({"CanBeFinal", "EmptyMethod"})
 @RunWith(MockitoJUnitRunner.class)
 public class MainPresenterTest {
 
-    MainPresenter mMainPresenter;
+    private MainPresenter mMainPresenter;
     @Mock
     MainView mMainView;
     @Mock
     AlumnosUseCase mAlumnosUseCase;
     @Mock
     Alumno mAlumno;
+    private CompositeDisposable mSubscripciones;
 
     @Before
     public void setUp() throws Exception {
-        mMainPresenter = new MainPresenter(mMainView, mAlumnosUseCase);
+        mSubscripciones = new CompositeDisposable();
+        mMainPresenter = new MainPresenter(mMainView, mAlumnosUseCase, Schedulers.trampoline(),
+                Schedulers.trampoline(), mSubscripciones);
     }
 
-    // Comprueba que cuando la vista nos informa de que ya está disponibe, el presentador
+    // Comprueba que cuando la vista nos informa de que ya está disponible, el presentador
     // guarda la referencia.
     @Test
     public void onViewAttach() throws Exception {
         // given.
-        mMainPresenter = new MainPresenter(null, null);
+        mMainPresenter = new MainPresenter(null, null, Schedulers.trampoline(),
+                Schedulers.trampoline(), mSubscripciones);
         // when.
         mMainPresenter.onViewAttach(mMainView);
         // then.
@@ -51,7 +64,7 @@ public class MainPresenterTest {
         // when.
         mMainPresenter.onViewDetach();
         // then.
-        assertEquals(mMainPresenter.getView(), null);
+        assertThat(mMainPresenter.getView(), instanceOf(DummyMainView.class));
     }
 
     @Test
@@ -78,25 +91,27 @@ public class MainPresenterTest {
     @Test
     public void obtenerAlumnosError() throws Exception {
         // given
-        Mockito.when(mAlumnosUseCase.getListaAlumnos()).thenReturn(Single.<List<Alumno>>error(new
-                Throwable("Error al obtener los alummos")));
+        when(mAlumnosUseCase.getListaAlumnos()).thenReturn(
+                Single.error(new Throwable("Error al obtener los alummos")));
         // when.
         mMainPresenter.obtenerAlumnos();
         // then.
-        verify(mAlumnosUseCase).getListaAlumnos();
-        verify(mMainView).errorObtiendoAlumnos();
+        verify(mAlumnosUseCase, times(1)).getListaAlumnos();
+        verify(mMainView, times(1)).errorObtiendoAlumnos();
+        verify(mMainView, never()).mostrarListaAlumnos(any());
     }
 
     @Test
     public void obtenerAlumnosExito() throws Exception {
         // given
-        List<Alumno> alumnos = Arrays.asList(new Alumno("1", "1", "1"));
-        Mockito.when(mAlumnosUseCase.getListaAlumnos()).thenReturn(Single.just(alumnos));
+        List<Alumno> alumnos = Collections.singletonList(new Alumno("1", "1", "1"));
+        when(mAlumnosUseCase.getListaAlumnos()).thenReturn(Single.just(alumnos));
         // when.
         mMainPresenter.obtenerAlumnos();
         // then.
-        verify(mAlumnosUseCase).getListaAlumnos();
-        verify(mMainView).mostrarListaAlumnos(alumnos);
+        verify(mAlumnosUseCase, times(1)).getListaAlumnos();
+        verify(mMainView, times(1)).mostrarListaAlumnos(alumnos);
+        verify(mMainView, never()).errorObtiendoAlumnos();
     }
 
 }

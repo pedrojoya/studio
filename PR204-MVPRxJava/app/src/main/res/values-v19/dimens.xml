@@ -1,6 +1,5 @@
 <resources>
 
     <!-- Fake StatusBar -->
-    <dimen name="statusBarHeight">24dp</dimen>
 
 </resources>

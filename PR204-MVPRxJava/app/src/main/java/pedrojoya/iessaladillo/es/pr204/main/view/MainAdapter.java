@@ -17,10 +17,11 @@ import pedrojoya.iessaladillo.es.pr204.base.ImageLoader;
 import pedrojoya.iessaladillo.es.pr204.component.PicassoImageLoader;
 import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
 
+@SuppressWarnings("unused")
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private List<Alumno> mDatos;
-    private ImageLoader mImageLoader;
+    private final ImageLoader mImageLoader;
     private OnItemClickListener onItemClickListener;
 
     public MainAdapter() {
@@ -33,13 +34,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.activity_main_item, parent, false);
         final ViewHolder viewHolder = new ViewHolder(itemView);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                }
+        itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
+                        viewHolder.getAdapterPosition());
             }
         });
         return viewHolder;
@@ -99,6 +97,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     public interface OnItemClickListener {
+        @SuppressWarnings("UnusedParameters")
         void onItemClick(View view, Alumno alumno, int position);
     }
 

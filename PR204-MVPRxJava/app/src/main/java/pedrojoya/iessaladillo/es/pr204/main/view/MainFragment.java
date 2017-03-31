@@ -22,6 +22,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import pedrojoya.iessaladillo.es.pr204.R;
 import pedrojoya.iessaladillo.es.pr204.base.MessageManager;
 import pedrojoya.iessaladillo.es.pr204.component.ToastMessageManager;
@@ -29,6 +32,7 @@ import pedrojoya.iessaladillo.es.pr204.main.presenter.MainPresenter;
 import pedrojoya.iessaladillo.es.pr204.main.usecases.AlumnosUseCaseImpl;
 import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
 
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment implements MainAdapter.OnItemClickListener, MainView {
 
     @BindView(R.id.lstAlumnos)
@@ -44,7 +48,6 @@ public class MainFragment extends Fragment implements MainAdapter.OnItemClickLis
 
     private MainPresenter mPresenter;
     private MainAdapter mAdaptador;
-    private LinearLayoutManager mLayoutManager;
     private Unbinder mUnbinder;
     private RecyclerView.AdapterDataObserver mObservador;
     private MessageManager mMessageManager;
@@ -60,7 +63,8 @@ public class MainFragment extends Fragment implements MainAdapter.OnItemClickLis
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        mPresenter = new MainPresenter(this, new AlumnosUseCaseImpl());
+        mPresenter = new MainPresenter(this, new AlumnosUseCaseImpl(), Schedulers.io(),
+                AndroidSchedulers.mainThread(), new CompositeDisposable());
     }
 
     @Override
@@ -74,30 +78,27 @@ public class MainFragment extends Fragment implements MainAdapter.OnItemClickLis
         super.onActivityCreated(savedInstanceState);
         if (getView() != null) {
             mUnbinder = ButterKnife.bind(this, getView());
-            initVistas(getView());
+            initVistas();
             mMessageManager = new ToastMessageManager();
         }
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mUnbinder.unbind();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // Se informa al presentador de que la vista está disponible.
         mPresenter.onViewAttach(this);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Se informa al presentador de que la vista ya no está disponible.
         mPresenter.onViewDetach();
+        mUnbinder.unbind();
     }
 
-    private void initVistas(View view) {
+    private void initVistas() {
         configToolbar();
         configRecyclerView();
         configSwipeContainer();
@@ -106,25 +107,22 @@ public class MainFragment extends Fragment implements MainAdapter.OnItemClickLis
     private void configToolbar() {
         AppCompatActivity actividad = (AppCompatActivity) getActivity();
         actividad.setSupportActionBar(toolbar);
-        actividad.getSupportActionBar().setHomeButtonEnabled(true);
-        actividad.getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if (actividad.getSupportActionBar() != null) {
+            actividad.getSupportActionBar().setHomeButtonEnabled(true);
+            actividad.getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     private void configRecyclerView() {
         lstAlumnos.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
-                false);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.VERTICAL, false);
         lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
     }
 
     private void configSwipeContainer() {
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                cargarAlumnos();
-            }
-        });
+        swipeContainer.setOnRefreshListener(this::cargarAlumnos);
     }
 
     @Override
