@@ -12,7 +12,6 @@ import pedrojoya.iessaladillo.es.pr204.model.entity.Alumno;
 public class AlumnosUseCaseImpl implements AlumnosUseCase {
     @Override
     public Single<List<Alumno>> getListaAlumnos() {
-        Log.d("Mia", "Pidiendo datos");
 //        return Single.<List<Alumno>>error(new Throwable("No se pudo acceder"));
         return Single.just(Arrays.asList(
                 new Alumno("Baldomero", "Su casa", "http://lorempixel.com/100/100/sports/1/"),
