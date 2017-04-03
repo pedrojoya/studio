@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr049.adaptadores;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,9 @@ public class ObrasAdapter extends ArrayAdapter<Obra> {
     }
 
     // Cuando se debe pintar un elemento de la lista.
+    @NonNull
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         // Si no se puede reciclar.
         if (convertView == null) {

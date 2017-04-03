@@ -5,14 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
-import com.software.shell.fab.ActionButton;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements
     private Intent intentServicio;
     private ListView lstCanciones;
     private CancionesAdapter mAdaptador;
-    private ActionButton btnPlayStop;
+    private FloatingActionButton btnPlayStop;
     private BroadcastReceiver receptor;
     private IntentFilter filtro;
     private LocalBroadcastManager gestor;
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements
         lstCanciones.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstCanciones.setOnItemClickListener(this);
         lstCanciones.setEmptyView(findViewById(R.id.rlListaVacia));
-        btnPlayStop = (ActionButton) findViewById(R.id.btnPlayStop);
+        btnPlayStop = (FloatingActionButton) findViewById(R.id.btnPlayStop);
         btnPlayStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

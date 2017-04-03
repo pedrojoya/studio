@@ -15,5 +15,6 @@
     <dimen name="list_dividerHeight">1dp</dimen>
     <dimen name="list_paddingBottom">8dp</dimen>
     <dimen name="avatar_marginBottom">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>
