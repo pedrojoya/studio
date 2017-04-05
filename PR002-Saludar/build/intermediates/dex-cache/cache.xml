@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\df34d450d322bd0926b5c2dfa82a2014451eaae6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4c213538fd08e2aa746a8a170106526428401d9d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\21b1f7efb0d9df42199ef7951ffb22c6605a71e4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_08acaa2dc171b2ee49cf91a6cfb0d5e1c1176bca\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\2025b8db6835f23a4c6bb456a2c79b635937e29c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_801dc8166cd79a186799d98f7d6fa014e3bfa170\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\402c1bb579e9b3c4034a759d5c06d5e7bcfe42b4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b1466109613d2199c0e10443919f90275ad98898\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f3de9248cffaae07d0344be0e6a6fb0fdf72951f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b283a909291a7a99478b4a0c9eadcd63c160f1d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\fb48d7aaed11eb5b44ac05882c0ea52fdbe25319\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_957b1e2b452ee3d64473bc112c3d0dc02c069555\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_55ba5f5becdbca7cf723f4c1f09e44a34d344b9c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\d5992b32cf35cc05fcb0a245fa13eee231b50bd8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_61b1e4cc8bf8f25aa98277f0898bf6ea0b1e7e66\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\7a8da942021875b1cb8aeb3c0c3eed9c60d2c147\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6a902042200f62607626dad499b683f82dcee89e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\f4903253b91316c11b20ecc1166d7ffbad0460d5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_09ce2097906a12544af6f488c633c89856e7fbf3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_11bd63c32a92fce01183e7b810be162723443d9f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\Perico\.android\build-cache\4f497d7d619b21cb221dbcc672f5de95f2eea2b0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR002-Saludar\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2146537f51f1994a37e5a894117da03354e93f6d\classes.dex" />
+    </item>
+
+</items>

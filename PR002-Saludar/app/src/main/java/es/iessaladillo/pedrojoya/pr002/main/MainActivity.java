@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr002;
+package es.iessaladillo.pedrojoya.pr002.main;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,12 +13,20 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import es.iessaladillo.pedrojoya.pr002.R;
+import es.iessaladillo.pedrojoya.pr002.components.MessageManager.MessageManager;
+import es.iessaladillo.pedrojoya.pr002.components.MessageManager.ToastMessageManager;
+import es.iessaladillo.pedrojoya.pr002.utils.KeyboardUtils;
+
 public class MainActivity extends AppCompatActivity implements OnClickListener,
-        OnCheckedChangeListener {
+        OnCheckedChangeListener, MainContract.View {
 
     // Vistas.
     private CheckBox chkEducado;
     private EditText txtNombre;
+
+    MainContract.Presenter mPresenter;
+    MessageManager mMessageManager;
 
     // Cuando se crea la actividad.
     @Override
@@ -27,12 +35,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         super.onCreate(savedInstanceState);
         // Se establece el layout que se usará para la actividad.
         this.setContentView(R.layout.activity_main);
-        // Se obtiene la referencia y se inicializan las vistas.
-        getVistas();
+        // Se crea el presentador.
+        mPresenter = new MainPresenter(this);
+        // Se crea el componente para mensajes.
+        mMessageManager = new ToastMessageManager();
+        // Se obtienen e inicializan las vistas.
+        initVistas();
     }
 
-    // Obtiene la referencia e inicializa las vistas.
-    private void getVistas() {
+    // Obtiene e inicializa las vistas.
+    private void initVistas() {
         // Se obtiene la referencia a las vistas.
         chkEducado = (CheckBox) this.findViewById(R.id.chkEducado);
         Button btnSaludar = (Button) this.findViewById(R.id.btnSaludar);
@@ -53,8 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     @Override
     public void onClick(View v) {
         // Dependiendo del botón pulsado.
-        int id = v.getId();
-        if (id == R.id.btnSaludar) {
+        if (v.getId() == R.id.btnSaludar) {
             btnSaludarOnClick();
 
         }
@@ -62,23 +73,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
 
     // Cuando se hace click sobre btnSaludar.
     private void btnSaludarOnClick() {
-        // Se crea el mensaje a mostrar.
-        String mensaje = getString(R.string.buenos_dias);
-        if (chkEducado.isChecked()) {
-            mensaje = mensaje + " " + getString(R.string.tenga_usted);
-        }
-        mensaje += " " + txtNombre.getText();
-        // Se oculta el teclado virtual.
-        hideKeyboard(chkEducado);
-        // Se muestra el mensaje en un Toast.
-        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
-    }
-
-    // Oculta el teclado virtual. Recibe una vista de referencia
-    private void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        // Se llama al presentador
+        mPresenter.doSaludar(txtNombre.getText().toString(), chkEducado.isChecked());
     }
 
     // Cuando se cambia de estado del checkbox.
@@ -87,6 +83,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         // Se crea el mensaje.
         chkEducado.setText(isChecked ? getString(R.string.saludar_educadamente) : getString(
                 R.string.saludar_normal));
+    }
+
+    @Override
+    public void saludar(String nombre) {
+        // Se oculta el teclado virtual.
+        KeyboardUtils.hideKeyboard(txtNombre);
+        // Se muestra el mensaje.
+        mMessageManager.showMessage(txtNombre, getString(R.string.buenos_dias, nombre));
+    }
+
+    @Override
+    public void saludarEducado(String nombre) {
+        // Se oculta el teclado virtual.
+        KeyboardUtils.hideKeyboard(txtNombre);
+        // Se muestra el mensaje.
+        mMessageManager.showMessage(txtNombre, getString(R.string.tenga_usted, nombre));
     }
 
 }
