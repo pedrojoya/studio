@@ -2,15 +2,12 @@ package es.iessaladillo.pedrojoya.PR004.main;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 
 import es.iessaladillo.pedrojoya.PR004.R;
@@ -18,6 +15,7 @@ import es.iessaladillo.pedrojoya.PR004.components.MessageManager.MessageManager;
 import es.iessaladillo.pedrojoya.PR004.components.MessageManager.ToastMessageManager;
 import es.iessaladillo.pedrojoya.PR004.utils.IntentUtils;
 import es.iessaladillo.pedrojoya.PR004.utils.NetworkUtils;
+import es.iessaladillo.pedrojoya.PR004.utils.PermissionUtils;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -53,76 +51,50 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         btnBuscarMapa = (Button) findViewById(R.id.btnBuscarMapa);
         btnMostrarContactos = (Button) findViewById(R.id.btnMostrarContactos);
 
-        btnNavegar.setOnClickListener(this::navegar);
-        btnBuscar.setOnClickListener(this::buscar);
-        btnLlamar.setOnClickListener(this::quiereLlamar);
-        btnMarcar.setOnClickListener(this::marcar);
-        btnMostrarMapa.setOnClickListener(this::mostrarEnMapa);
-        btnBuscarMapa.setOnClickListener(this::buscarEnMapa);
-        btnMostrarContactos.setOnClickListener(this::mostrarContactos);
+        btnNavegar.setOnClickListener(v -> navegar());
+        btnBuscar.setOnClickListener(v -> buscar());
+        btnLlamar.setOnClickListener(v -> quiereLlamar());
+        btnMarcar.setOnClickListener(v -> marcar());
+        btnMostrarMapa.setOnClickListener(v -> mostrarEnMapa());
+        btnBuscarMapa.setOnClickListener(v -> buscarEnMapa());
+        btnMostrarContactos.setOnClickListener(v -> mostrarContactos());
     }
 
-    private void navegar(View v) {
+    private void navegar() {
         mPresenter.doNavegar();
     }
 
-    private void buscar(View v) {
+    private void buscar() {
         mPresenter.doBuscar();
     }
 
-    private void quiereLlamar(View v) {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:(+34)123456789"));
-        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
-            if (!puedeLlamar()) {
-                solicitarPermisoLlamar();
-            } else {
-                llamar();
-            }
-        } else {
-            mMessageManager.showMessage(v, getString(R.string.no_se_puede_llamar));
-        }
-    }
-
-    private void llamar() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-            mMessageManager.showMessage(btnLlamar, getString(R.string.no_sin_permiso));
-        } else {
-            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:(+34)123456789")));
-        }
-    }
-
-    private void marcar(View v) {
+    private void marcar() {
         mPresenter.doMarcar();
     }
 
-    private void mostrarEnMapa(View v) {
+    private void mostrarEnMapa() {
         mPresenter.doMostrarEnMapa();
     }
 
-    private void buscarEnMapa(View v) {
+    private void buscarEnMapa() {
         mPresenter.doBuscarEnMapa();
     }
 
-    @SuppressWarnings("UnusedParameters")
-    private void mostrarContactos(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"));
-        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
-            startActivity(intent);
+    private void mostrarContactos() {
+        mPresenter.doMostrarContactos();
+    }
+
+    private void quiereLlamar() {
+        if (!puedeLlamar()) {
+            solicitarPermisoLlamar();
         } else {
-            mMessageManager.showMessage(btnLlamar, getString(R.string.no_hay_gestor_de_contactos));
+            mPresenter.doLlamar();
         }
     }
 
-
-    @SuppressWarnings("SameParameterValue")
-    private boolean tienePermiso(String permissionName) {
-        return ContextCompat.checkSelfPermission(this, permissionName)
-                == PackageManager.PERMISSION_GRANTED;
-    }
-
     private boolean puedeLlamar() {
-        return tienePermiso(Manifest.permission.CALL_PHONE);
+        return PermissionUtils.hasPermission(getApplicationContext(),
+                Manifest.permission.CALL_PHONE);
     }
 
     private void solicitarPermisoLlamar() {
@@ -134,12 +106,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
             @NonNull int[] grantResults) {
         if (requestCode == RP_LLAMAR && puedeLlamar()) {
-            llamar();
+            mPresenter.doLlamar();
         } else {
             // Comprobamos si el usuario ha marcado No volver a preguntar.
             if (!ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CALL_PHONE)) {
                 informar();
+            } else {
+                mMessageManager.showMessage(btnLlamar, getString(R.string.no_sin_permiso));
             }
         }
     }
@@ -206,6 +180,28 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             startActivity(intent);
         } else {
             mMessageManager.showMessage(btnLlamar, getString(R.string.no_hay_aplicaci_n_de_mapas));
+        }
+    }
+
+    @Override
+    public void showContactos() {
+        Intent intent = IntentUtils.getContactsIntent();
+        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+            startActivity(intent);
+        } else {
+            mMessageManager.showMessage(btnMostrarContactos,
+                    getString(R.string.no_hay_gestor_de_contactos));
+        }
+    }
+
+    @Override
+    public void showLlamar(String tel) {
+        Intent intent = IntentUtils.getCallIntent(tel);
+        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+            startActivity(intent);
+        } else {
+            mMessageManager.showMessage(btnMostrarContactos,
+                    getString(R.string.no_hay_aplicacion_de_telefono));
         }
     }
 

@@ -6,7 +6,8 @@ import es.iessaladillo.pedrojoya.PR004.main.MainContract.Presenter;
 
 public class MainPresenter implements Presenter {
 
-    MainContract.View mView;
+    @SuppressWarnings("CanBeFinal")
+    private MainContract.View mView;
 
     public MainPresenter(MainContract.View mView) {
         this.mView = mView;
@@ -35,6 +36,16 @@ public class MainPresenter implements Presenter {
     @Override
     public void doBuscarEnMapa() {
         mView.showBusquedaEnMapa("duque de rivas, Algeciras");
+    }
+
+    @Override
+    public void doMostrarContactos() {
+        mView.showContactos();
+    }
+
+    @Override
+    public void doLlamar() {
+        mView.showLlamar("(+34)123456789");
     }
 
 }

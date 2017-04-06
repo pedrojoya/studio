@@ -2,157 +2,49 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
-        revision="23.0.3"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_a34a467c4f5fa0dcb23cb4409ad41970fa74406d.jar" />
+        revision="25.0.2"
+        sha1="ef46cd43f340d7940863eef35a116306b2c20742">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_03413f95a4f045be8cfac1b8a77654433f02a8f7\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\cd6f1fd98d472517fed0abbf9909ca6808eda0a8\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
-        revision="23.0.3"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_f6cdfcb5e7e4675c7cfdd671c956956eb5446185.jar" />
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8027189320ea7401edf0c9ffc163694211e40cb8\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\2dfaa12dbce82b56446af8c378990d04a987daac\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
-        revision="23.0.3"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_ebcc4dc0b5a3be5f7c6422cb633584a072255a01.jar" />
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43409c5f1699abe8f6876c74d7f4f6d1c424b0c9\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
         optimize="true"
-        revision="23.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_316e6e6f3e6a338be798531361fe473e095bbc07.jar" />
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_459f95221e79812df87e35b769b8529ccc5c962d\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Users\Pedro\.android\build-cache\317a42d63645869171c05fd0f33cc11a402e49d5\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
-        revision="23.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_af047af01d8561ad359c4284c3ccee766d5756b9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_dd554138c7d2545200296c52a11195cf54d6ef6e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_95c52c8fd5859a384b2d475bce7d3b99fa330e9a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_30bfeb4778cecbd9302b96572917c4016b0591c0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_901d69a785768db94c25af483a8205f1ff4fca6c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_c5f67eb8b6578308a40ad6408fe7ad25dc39cfb9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_2d332110d59766e9b914195c000cd2e91f1aa410.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_12614a1341c6f5023073e15f1897c3932d150d5d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_c8eee12b4ecdce10d86ddd14af9b833174010500.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_8026456bf6ad4dd4a8de397038495796c0b639c0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_7f61efb0149dfd6254d7c4b258f70735857203e7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_d655be5f209a2d2535b3da11a15e4d9af16b5e35.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="/Users/pedro/studio/PR004-IntentsImplicitos/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_b976b093fcdcb45b8d6d82009ed7e55e8f93ae57.jar" />
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR004-IntentsImplicitos\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_de2052c7ac438a0b566482b1b7f179ab3d8a960a\classes.dex" />
     </item>
 
 </items>

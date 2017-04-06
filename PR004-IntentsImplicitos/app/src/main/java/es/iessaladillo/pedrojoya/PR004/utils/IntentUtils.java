@@ -61,4 +61,12 @@ public class IntentUtils {
         return new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + texto));
     }
 
+    public static Intent getContactsIntent() {
+        return new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"));
+    }
+
+    public static Intent getCallIntent(String tel) {
+        return new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tel));
+    }
+
 }
