@@ -11,6 +11,5 @@
     <string name="nombre_completo">(nombre completo)</string>
     <string name="edad_hint">(edad)</string>
     <string name="datos">Nombre: %1$s\nEdad: %2$d</string>
-    <string name="exito_al_solicitar_datos">Datos obtenidos correctamente</string>
-
+    
 </resources>

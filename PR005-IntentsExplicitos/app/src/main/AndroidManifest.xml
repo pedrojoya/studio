@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,14 +19,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".editalumno.EditAlumnoActivity"
+            android:name=".AlumnoActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".main.MainActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".MainActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
     </application>
 

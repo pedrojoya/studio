@@ -3,8 +3,8 @@
     <string name="app_name">Saludar</string>
     <string name="introduzca_nombre">Introduzca su nombre</string>
     <string name="saludar">Saludar</string>
-    <string name="buenos_dias">Buenos días %1$s</string>
+    <string name="buenos_dias">Buenos días</string>
     <string name="saludar_educadamente">Modo educado: Activado</string>
     <string name="saludar_normal">Modo educado: Desactivado</string>
-    <string name="tenga_usted">Buenos días tenga usted %1$s</string>
+    <string name="tenga_usted">tenga usted</string>
 </resources>
