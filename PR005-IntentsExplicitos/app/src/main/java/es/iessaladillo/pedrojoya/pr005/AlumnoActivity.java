@@ -25,7 +25,6 @@ public class AlumnoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_alumno);
-        // Se obtienen e inicializan las vistas.
         initVistas();
         // Se obtienen y escriben los datos iniciales.
         getDatosRecibidos();

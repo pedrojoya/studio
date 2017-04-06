@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr002.components.MessageManager;
+package es.iessaladillo.pedrojoya.PR004.components.MessageManager;
 
 import android.view.View;
 

@@ -4,7 +4,8 @@ import es.iessaladillo.pedrojoya.pr002.utils.StringUtils;
 
 class MainPresenter implements MainContract.Presenter {
 
-    MainContract.View mView;
+    @SuppressWarnings("CanBeFinal")
+    private MainContract.View mView;
 
     public MainPresenter(MainContract.View view) {
         mView = view;
@@ -17,6 +18,15 @@ class MainPresenter implements MainContract.Presenter {
         } else {
 
             mView.saludar(StringUtils.capitalizeFirstLetter(nombre));
+        }
+    }
+
+    @Override
+    public void doCambiarEstadoEducado(boolean isEducado) {
+        if (isEducado) {
+            mView.mostrarTextoModoEducado();
+        } else {
+            mView.mostrarTextoModoNoEducado();
         }
     }
 

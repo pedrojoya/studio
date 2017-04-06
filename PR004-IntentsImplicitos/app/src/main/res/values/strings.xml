@@ -17,5 +17,7 @@
 	<string name="no_hay_gestor_de_contactos">No hay gestor de contactos</string>
 	<string name="accion_no_disponible">Debe conceder el permiso de realizar llamadas</string>
 	<string name="configurar">Configurar</string>
+    <string name="no_sin_permiso">No se puede realizar la acción si no se tiene el permiso</string>
+    <string name="sin_conexion">No hay conexión a Internet</string>
 
 </resources>

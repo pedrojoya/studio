@@ -161,9 +161,11 @@
     <!--module name="FinalParameters"/-->
     <!--module name="TodoComment"/-->
     <module name="UpperEll" />
+    <!--
     <module name="Indentation">
       <property name="caseIndent" value="4" />
     </module>
+    -->
     <!--<module name="TrailingComment" />-->
   </module>
 </module>

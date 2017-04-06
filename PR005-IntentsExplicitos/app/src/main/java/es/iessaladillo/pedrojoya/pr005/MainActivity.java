@@ -13,11 +13,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     // Constantes.
     private static final int RC_ALUMNO = 1;
 
-    // Variables a nivel de clase.
+    private TextView lblDatos;
+
     private String nombre;
     private int edad;
-
-    private TextView lblDatos;
 
     // Al crear la actividad.
     @Override
