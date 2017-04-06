@@ -1,8 +1,10 @@
-package es.iessaladillo.pedrojoya.pr005.main;
+package es.iessaladillo.pedrojoya.pr156.main;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
-import es.iessaladillo.pedrojoya.pr005.editalumno.EditAlumnoActivity;
+import es.iessaladillo.pedrojoya.pr156.editalumno.EditAlumnoActivity;
+import es.iessaladillo.pedrojoya.pr156.model.Alumno;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -16,15 +18,14 @@ public class MainPresenter implements MainContract.Presenter {
 
 
     @Override
-    public void doSolicitarDatos(String nombreActual, int edadActual) {
-        mView.navigateToSolicitar(nombreActual, edadActual);
+    public void doSolicitarDatos(@NonNull Alumno alumnoActual) {
+        mView.navigateToSolicitar(alumnoActual);
     }
 
     @Override
     public void onSolicitarDatosResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            mView.showDatos(EditAlumnoActivity.getNombreFromIntent(data),
-                    EditAlumnoActivity.getEdadFromIntent(data));
+            mView.showDatos(EditAlumnoActivity.getAlumnoFromIntent(data));
             mView.showMensajeExito();
         }
     }

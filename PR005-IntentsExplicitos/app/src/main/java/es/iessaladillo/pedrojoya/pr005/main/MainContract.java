@@ -18,7 +18,7 @@ public interface MainContract {
 
         void showDatos(String nombre, int edad);
 
-        void showErrorAlSolicitarDatos();
+        void showMensajeExito();
     }
 
 }

@@ -1,11 +1,12 @@
-package es.iessaladillo.pedrojoya.pr156;
+package es.iessaladillo.pedrojoya.pr156.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class Alumno implements Parcelable {
+public class Alumno implements Parcelable {
 
     public static final int DEFAULT_EDAD = 18;
+    public static final int MAX_EDAD = 130;
 
     private String nombre;
     private int edad;
@@ -20,6 +21,7 @@ class Alumno implements Parcelable {
         return nombre;
     }
 
+    @SuppressWarnings("unused")
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -28,6 +30,7 @@ class Alumno implements Parcelable {
         return edad;
     }
 
+    @SuppressWarnings("unused")
     public void setEdad(int edad) {
         this.edad = edad;
     }

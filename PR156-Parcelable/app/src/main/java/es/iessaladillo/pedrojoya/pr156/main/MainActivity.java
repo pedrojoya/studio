@@ -1,32 +1,30 @@
-package es.iessaladillo.pedrojoya.pr005.main;
+package es.iessaladillo.pedrojoya.pr156.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
-import es.iessaladillo.pedrojoya.pr005.R;
-import es.iessaladillo.pedrojoya.pr005.components.MessageManager.MessageManager;
-import es.iessaladillo.pedrojoya.pr005.components.MessageManager.ToastMessageManager;
-import es.iessaladillo.pedrojoya.pr005.editalumno.EditAlumnoActivity;
-import es.iessaladillo.pedrojoya.pr005.model.Alumno;
+import es.iessaladillo.pedrojoya.pr156.R;
+import es.iessaladillo.pedrojoya.pr156.components.MessageManager.MessageManager;
+import es.iessaladillo.pedrojoya.pr156.components.MessageManager.ToastMessageManager;
+import es.iessaladillo.pedrojoya.pr156.editalumno.EditAlumnoActivity;
+import es.iessaladillo.pedrojoya.pr156.model.Alumno;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     private static final int RC_ALUMNO = 1;
-    private static final String STATE_NOMBRE = "STATE_NOMBRE";
-    private static final String STATE_EDAD = "STATE_EDAD";
+    private static final String STATE_ALUMNO = "STATE_ALUMNO";
 
     private TextView lblDatos;
-    @SuppressWarnings("FieldCanBeLocal")
     private Button btnSolicitar;
 
     private MainContract.Presenter mPresenter;
     private MessageManager mMessageManager;
-    private String mNombre;
-    private int mEdad = Alumno.DEFAULT_EDAD;
+    private Alumno mAlumno;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,25 +38,26 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void restoreInstance(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            mNombre = savedInstanceState.getString(STATE_NOMBRE);
-            mEdad = savedInstanceState.getInt(STATE_EDAD);
+            mAlumno = savedInstanceState.getParcelable(STATE_ALUMNO);
+        }
+        if (mAlumno == null) {
+            mAlumno = new Alumno("", Alumno.DEFAULT_EDAD);
         }
     }
 
     private void initVistas() {
         btnSolicitar = (Button) this.findViewById(R.id.btnSolicitar);
         lblDatos = (TextView) this.findViewById(R.id.lblDatos);
-        if (TextUtils.isEmpty(mNombre)) {
+        if (TextUtils.isEmpty(mAlumno.getNombre())) {
             lblDatos.setText(R.string.no_disponibles);
         }
-        btnSolicitar.setOnClickListener(v -> mPresenter.doSolicitarDatos(mNombre, mEdad));
+        btnSolicitar.setOnClickListener(v -> mPresenter.doSolicitarDatos(mAlumno));
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(STATE_NOMBRE, mNombre);
-        outState.putInt(STATE_EDAD, mEdad);
+        outState.putParcelable(STATE_ALUMNO, mAlumno);
     }
 
     // Cuando llega una respuesta.
@@ -71,15 +70,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void navigateToSolicitar(String nombreActual, int edadActual) {
-        EditAlumnoActivity.startForResult(this, RC_ALUMNO, nombreActual, edadActual);
+    public void navigateToSolicitar(@NonNull Alumno alumnoActual) {
+        EditAlumnoActivity.startForResult(this, RC_ALUMNO, alumnoActual);
     }
 
     @Override
-    public void showDatos(String nombre, int edad) {
-        mNombre = nombre;
-        mEdad = edad;
-        lblDatos.setText(getString(R.string.datos, mNombre, mEdad));
+    public void showDatos(@NonNull Alumno alumno) {
+        mAlumno = alumno;
+        lblDatos.setText(getString(R.string.datos, alumno.getNombre(), alumno.getEdad()));
     }
 
     @Override

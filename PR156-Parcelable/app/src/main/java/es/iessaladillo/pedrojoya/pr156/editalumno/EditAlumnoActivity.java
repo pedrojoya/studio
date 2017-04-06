@@ -1,8 +1,9 @@
-package es.iessaladillo.pedrojoya.pr005.editalumno;
+package es.iessaladillo.pedrojoya.pr156.editalumno;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,13 +11,12 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 
-import es.iessaladillo.pedrojoya.pr005.R;
-import es.iessaladillo.pedrojoya.pr005.model.Alumno;
+import es.iessaladillo.pedrojoya.pr156.R;
+import es.iessaladillo.pedrojoya.pr156.model.Alumno;
 
 public class EditAlumnoActivity extends AppCompatActivity implements EditAlumnoContract.View {
 
-    private static final String EXTRA_NOMBRE = "EXTRA_NOMBRE";
-    private static final String EXTRA_EDAD = "EXTRA_EDAD";
+    private static final String EXTRA_ALUMNO = "EXTRA_ALUMNO";
 
     private EditText txtNombre;
     private EditText txtEdad;
@@ -28,8 +28,8 @@ public class EditAlumnoActivity extends AppCompatActivity implements EditAlumnoC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumno);
-        mPresenter = new EditAlumnoPresenter(this, getNombreFromIntent(getIntent()),
-                getEdadFromIntent(getIntent()), savedInstanceState == null);
+        mPresenter = new EditAlumnoPresenter(this, getAlumnoFromIntent(getIntent()),
+                savedInstanceState == null);
         initVistas();
     }
 
@@ -44,7 +44,7 @@ public class EditAlumnoActivity extends AppCompatActivity implements EditAlumnoC
             } catch (NumberFormatException e) {
                 edad = Alumno.DEFAULT_EDAD;
             }
-            mPresenter.doRetornarDatos(txtNombre.getText().toString(), edad);
+            mPresenter.doRetornarDatos(new Alumno(txtNombre.getText().toString(), edad));
         });
         txtNombre.addTextChangedListener(new TextWatcher() {
             @Override
@@ -106,39 +106,32 @@ public class EditAlumnoActivity extends AppCompatActivity implements EditAlumnoC
     }
 
     @Override
-    public void showDatos(String nombre, int edad) {
-        txtNombre.setText(nombre);
-        txtEdad.setText(String.valueOf(edad));
+    public void showDatos(@NonNull Alumno alumno) {
+        txtNombre.setText(alumno.getNombre());
+        txtEdad.setText(String.valueOf(alumno.getEdad()));
     }
 
     @SuppressWarnings("SameParameterValue")
-    public static void startForResult(Activity activity, int requestCode, String nombre, int edad) {
+    public static void startForResult(Activity activity, int requestCode, Alumno alumno) {
         // Se crea el intent explícito.
         Intent intent = new Intent(activity, EditAlumnoActivity.class);
         // Se añaden como extras los datos iniciales.
-        intent.putExtra(EXTRA_NOMBRE, nombre);
-        intent.putExtra(EXTRA_EDAD, edad);
+        intent.putExtra(EXTRA_ALUMNO, alumno);
         // Envía el intent a la actividad en espera de respuesta, con un
         // determinado código de petición.
         activity.startActivityForResult(intent, requestCode);
     }
 
-    public static String getNombreFromIntent(Intent intent) {
-        return (intent != null && intent.hasExtra(EXTRA_NOMBRE)) ? intent.getStringExtra(
-                EXTRA_NOMBRE) : "";
+    public static Alumno getAlumnoFromIntent(Intent intent) {
+        return (intent != null && intent.hasExtra(
+                EXTRA_ALUMNO)) ? (Alumno) intent.getParcelableExtra(EXTRA_ALUMNO) : null;
     }
 
-    public static int getEdadFromIntent(Intent intent) {
-        return (intent != null && intent.hasExtra(EXTRA_EDAD)) ? intent.getIntExtra(EXTRA_EDAD,
-                Alumno.DEFAULT_EDAD) : Alumno.DEFAULT_EDAD;
-    }
-
-    public static Intent createResultIntent(String nombre, int edad) {
+    public static Intent createResultIntent(Alumno alumno) {
         // Se crea un nuevo intent sin acción ni destinatario y se le agregan
         // los extras con los datos introducidos.
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_NOMBRE, nombre);
-        intent.putExtra(EXTRA_EDAD, edad);
+        intent.putExtra(EXTRA_ALUMNO, alumno);
         return intent;
     }
 
