@@ -51,37 +51,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         btnBuscarMapa = (Button) findViewById(R.id.btnBuscarMapa);
         btnMostrarContactos = (Button) findViewById(R.id.btnMostrarContactos);
 
-        btnNavegar.setOnClickListener(v -> navegar());
-        btnBuscar.setOnClickListener(v -> buscar());
+        btnNavegar.setOnClickListener(v -> mPresenter.doNavegar());
+        btnBuscar.setOnClickListener(v -> mPresenter.doBuscar());
         btnLlamar.setOnClickListener(v -> quiereLlamar());
-        btnMarcar.setOnClickListener(v -> marcar());
-        btnMostrarMapa.setOnClickListener(v -> mostrarEnMapa());
-        btnBuscarMapa.setOnClickListener(v -> buscarEnMapa());
-        btnMostrarContactos.setOnClickListener(v -> mostrarContactos());
-    }
-
-    private void navegar() {
-        mPresenter.doNavegar();
-    }
-
-    private void buscar() {
-        mPresenter.doBuscar();
-    }
-
-    private void marcar() {
-        mPresenter.doMarcar();
-    }
-
-    private void mostrarEnMapa() {
-        mPresenter.doMostrarEnMapa();
-    }
-
-    private void buscarEnMapa() {
-        mPresenter.doBuscarEnMapa();
-    }
-
-    private void mostrarContactos() {
-        mPresenter.doMostrarContactos();
+        btnMarcar.setOnClickListener(v -> mPresenter.doMarcar());
+        btnMostrarMapa.setOnClickListener(v -> mPresenter.doMostrarEnMapa());
+        btnBuscarMapa.setOnClickListener(v -> mPresenter.doBuscarEnMapa());
+        btnMostrarContactos.setOnClickListener(v -> mPresenter.doMostrarContactos());
     }
 
     private void quiereLlamar() {

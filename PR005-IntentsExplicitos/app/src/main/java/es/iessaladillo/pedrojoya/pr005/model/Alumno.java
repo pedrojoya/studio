@@ -1,6 +1,6 @@
-package es.iessaladillo.pedrojoya.pr005;
+package es.iessaladillo.pedrojoya.pr005.model;
 
-class Alumno {
+public class Alumno {
 
     public static final int DEFAULT_EDAD = 18;
     public static final int MAX_EDAD = 130;
