@@ -40,7 +40,8 @@ ext {
     prelollipopactivitytransition_version = "1.3.3"
     sugar_version = "1.5"
     objectbox_version = "0.9.9"
-    dagger_version = “2.10”
+    dagger_version = "2.10"
+    dart_version = "2.0.2"
 }
 
 buildscript {
@@ -128,6 +129,10 @@ dependencies {
     compile "com.lucasurbas:listitemview:$rootProject.ext.listitemview_version"
     compile "com.google.dagger:dagger:$rootProject.ext.dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger_version"
+    compile "com.f2prateek.dart:dart:$rootProject.ext.dart_version"
+    provided "com.f2prateek.dart:dart-processor:$rootProject.ext.dart_version"
+    compile "com.f2prateek.dart:henson:$rootProject.ext.dart_version"
+    provided "com.f2prateek.dart:henson-processor:$rootProject.ext.dart_version"
 }
 
 @file:programandoandroid/

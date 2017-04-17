@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.f2prateek.dart/henson/2.0.2/51ea527256ddfc7001cbce99a5bb33a7b67250cc/henson-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="51ea527256ddfc7001cbce99a5bb33a7b67250cc">
+        <dex dex="/Users/pedro/studio/PR205-DartHenson/app/build/intermediates/transforms/dex/debug/folders/1000/10/henson-2.0.2_09356841dcc689ecfc77ef274181e865c609ed37/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR205-DartHenson/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/pedro/studio/PR205-DartHenson/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_5de419cfbf21fefc8c74a182c7830fd54a253af6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.f2prateek.dart/dart-annotations/2.0.2/72c549adef8c675cafa30d0effb89c7bb67690ca/dart-annotations-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="72c549adef8c675cafa30d0effb89c7bb67690ca">
+        <dex dex="/Users/pedro/studio/PR205-DartHenson/app/build/intermediates/transforms/dex/debug/folders/1000/10/dart-annotations-2.0.2_0df46c71f4fdf8d2a61e157c329e097a16ce9d8e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.f2prateek.dart/dart/2.0.2/711458c07d2cfc53fda4866c53a0d89035720af9/dart-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="711458c07d2cfc53fda4866c53a0d89035720af9">
+        <dex dex="/Users/pedro/studio/PR205-DartHenson/app/build/intermediates/transforms/dex/debug/folders/1000/10/dart-2.0.2_e40bc986b931aa13a0d10a6711d7b7ab1739468c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR205-DartHenson/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e4baa227308d1f80f0bbdd64435c5733c06a0b3">
+        <dex dex="/Users/pedro/studio/PR205-DartHenson/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_2fd27435cf9c7de29924301017882c4efd2d8b4a/classes.dex" />
+    </item>
+
+</items>

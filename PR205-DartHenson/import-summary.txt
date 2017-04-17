@@ -1,0 +1,101 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* Asteroides/
+* Asteroides/AndroidManifest.xml
+* Asteroides/gen/
+* Asteroides/gen/es/
+* Asteroides/gen/es/iessaladillo/
+* Asteroides/gen/es/iessaladillo/pedrojoya/
+* Asteroides/gen/es/iessaladillo/pedrojoya/BuildConfig.java
+* Asteroides/gen/es/iessaladillo/pedrojoya/R.java
+* Asteroides/libs/
+* Asteroides/libs/android-support-v4.jar
+* Asteroides/proguard-project.txt
+* Asteroides/project.properties
+* Asteroides/res/
+* Asteroides/res/drawable-hdpi/
+* Asteroides/res/drawable-hdpi/ic_launcher.png
+* Asteroides/res/drawable-mdpi/
+* Asteroides/res/drawable-mdpi/ic_launcher.png
+* Asteroides/res/drawable-xhdpi/
+* Asteroides/res/drawable-xhdpi/ic_launcher.png
+* Asteroides/res/drawable-xxhdpi/
+* Asteroides/res/drawable-xxhdpi/ic_launcher.png
+* Asteroides/res/drawable/
+* Asteroides/res/drawable/asteroide1.png
+* Asteroides/res/drawable/asteroide2.png
+* Asteroides/res/drawable/asteroide3.png
+* Asteroides/res/drawable/fondo.xml
+* Asteroides/res/layout-land/
+* Asteroides/res/layout-land/main_activity.xml
+* Asteroides/res/layout/
+* Asteroides/res/layout/acerca_de_activity.xml
+* Asteroides/res/layout/elemento_lista_puntuaciones_activity.xml
+* Asteroides/res/layout/fondo.xml
+* Asteroides/res/layout/main_activity.xml
+* Asteroides/res/layout/puntuaciones_activity.xml
+* Asteroides/res/menu/
+* Asteroides/res/menu/main_activity.xml
+* Asteroides/res/values-en/
+* Asteroides/res/values-en/strings.xml
+* Asteroides/res/values-sw600dp/
+* Asteroides/res/values-sw600dp/dimens.xml
+* Asteroides/res/values-sw720dp-land/
+* Asteroides/res/values-sw720dp-land/dimens.xml
+* Asteroides/res/values-v11/
+* Asteroides/res/values-v11/styles.xml
+* Asteroides/res/values-v14/
+* Asteroides/res/values-v14/styles.xml
+* Asteroides/res/values/
+* Asteroides/res/values/arrays.xml
+* Asteroides/res/values/conexiones.xml
+* Asteroides/res/values/dimens.xml
+* Asteroides/res/values/strings.xml
+* Asteroides/res/values/styles.xml
+* Asteroides/res/xml/
+* Asteroides/res/xml/preferencias.xml
+* Asteroides/src/
+* Asteroides/src/es/
+* Asteroides/src/es/iessaladillo/
+* Asteroides/src/es/iessaladillo/pedrojoya/
+* Asteroides/src/es/iessaladillo/pedrojoya/AcercaDeActivity.java
+* Asteroides/src/es/iessaladillo/pedrojoya/AlmacenPuntuaciones.java
+* Asteroides/src/es/iessaladillo/pedrojoya/AlmacenPuntuacionesArray.java
+* Asteroides/src/es/iessaladillo/pedrojoya/MainActivity.java
+* Asteroides/src/es/iessaladillo/pedrojoya/MiAdaptador.java
+* Asteroides/src/es/iessaladillo/pedrojoya/PreferenciasActivity.java
+* Asteroides/src/es/iessaladillo/pedrojoya/PuntuacionesActivity.java
+* proguard.cfg
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* assets/ => app/src/main/assets/
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
