@@ -28,10 +28,10 @@ ext {
     buildToolsVersion = "25.0.2"
     junit_version = "4.12"
     espresso_version = "2.2.2"
-    support_library_version = "25.3.1"
+    support_library_version = "25.3.0"
     retrofit_version = "2.2.0"
     chuck_version = "1.0.4"
-    okhttp_version = "3.6.0"
-    stetho_version = "1.4.2"
+    okhttp_version = "3.7.0"
+    stetho_version = "1.5.0"
     mpandroidchart_version = "v3.0.1"
 }

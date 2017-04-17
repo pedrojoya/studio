@@ -23,10 +23,10 @@ ext {
     minSdkVersion = 16
     buildToolsVersion = "25.0.2"
     support_library_version = "25.3.1"
-    stetho_version = "1.4.2"
+    stetho_version = "1.5.0"
     junit_version = "4.12"
     chuck_version = "1.0.4"
-    okhttp_version = "3.6.0"
+    okhttp_version = "3.7.0"
     gson_version = "2.8.0"
     retrofit_version = "2.2.0"
     dagger_version = "2.10"

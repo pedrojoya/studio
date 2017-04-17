@@ -18,11 +18,11 @@ ext {
     compileSdkVersion = 25
     minSdkVersion = 16
     buildToolsVersion = "25.0.2"
-    support_library_version = "25.3.1"
+    support_library_version = "25.3.0"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
     butterknife_version = "8.5.1"
-    stetho_version = "1.4.2"
+    stetho_version = "1.5.0"
     textdrawable_version = "1.0.1"
     leakcanary_version = "1.5"
     glide_version = "3.7.0"
@@ -30,7 +30,7 @@ ext {
     espresso_version = "2.2.2"
     firebasejobdispatcher_version = "0.5.2"
     chuck_version = "1.0.0"
-    okhttp_version = "3.6.0"
+    okhttp_version = "3.7.0"
     gson_version = "2.8.0"
     retrofit_version = "2.1.0"
 }
