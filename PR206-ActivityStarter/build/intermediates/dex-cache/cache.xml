@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR206-ActivityStarter/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a72807c59b4f8328cba9a9ccadf8e0ef60e291f3">
+        <dex dex="/Users/pedro/studio/PR206-ActivityStarter/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_86baf0c5eba5d9b515fea59aeb2ca7811298535a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.github.marcinmoskala.activitystarter/activitystarter-annotations/0.50/9ad9f88fdab75215434b688c451a8a2bb24bdafa/activitystarter-annotations-0.50.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ad9f88fdab75215434b688c451a8a2bb24bdafa">
+        <dex dex="/Users/pedro/studio/PR206-ActivityStarter/app/build/intermediates/transforms/dex/debug/folders/1000/10/activitystarter-annotations-0.50_814afc94b1db392a96f03f8e10b7fe6d64b72bff/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.android/build-cache/54676e6a46d63550c8ad9598861bf254fafdf1ba/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd3925cdeeb07e8a3974dd2b0be3390527f563fd">
+        <dex dex="/Users/pedro/studio/PR206-ActivityStarter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_315ea69d3c461bb67562a0bab66b7aa2b943225d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR206-ActivityStarter/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/pedro/studio/PR206-ActivityStarter/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_777c8db793a4b6916133d37d96f12a2fb4abfe84/classes.dex" />
+    </item>
+
+</items>
