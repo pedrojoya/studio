@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -18,10 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 repositories {
-    maven {url "https://clojars.org/repo/"}
+    maven { url "https://clojars.org/repo/" }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -33,4 +40,6 @@ dependencies {
     })
     compile "frankiesardo:icepick:$rootProject.ext.icepick_version"
     provided "frankiesardo:icepick-processor:$rootProject.ext.icepick_version"
+    compile "com.github.marcinmoskala.activitystarter:activitystarter:$rootProject.ext.activitystarter_version"
+    annotationProcessor "com.github.marcinmoskala.activitystarter:activitystarter-compiler:$rootProject.ext.activitystarter_version"
 }

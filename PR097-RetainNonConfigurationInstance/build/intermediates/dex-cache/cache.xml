@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR097-RetainNonConfigurationInstance/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa30292b8f47cd17220820b9698c84875049f33e">
+        <dex dex="/Users/pedro/studio/PR097-RetainNonConfigurationInstance/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_16b737dfa08acb4ee690265f5a373e08d7b9e33f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/frankiesardo/icepick/3.2.0/5ab94f3bba3f9315532eb1ca5547d120c4f71dae/icepick-3.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5ab94f3bba3f9315532eb1ca5547d120c4f71dae">
+        <dex dex="/Users/pedro/studio/PR097-RetainNonConfigurationInstance/app/build/intermediates/transforms/dex/debug/folders/1000/10/icepick-3.2.0_e2cbcd316b596e46e6b9e4710faad05d126f233d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR097-RetainNonConfigurationInstance/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/pedro/studio/PR097-RetainNonConfigurationInstance/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_3ee2ba9e38cbc263353804634a6901501126bb81/classes.dex" />
+    </item>
+
+</items>

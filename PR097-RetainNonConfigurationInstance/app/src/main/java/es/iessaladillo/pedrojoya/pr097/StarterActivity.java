@@ -7,14 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-import icepick.Icepick;
-import icepick.State;
+import activitystarter.ActivityStarter;
+import activitystarter.Arg;
+import activitystarter.MakeActivityStarter;
+import activitystarter.Optional;
 
-public class IcepickActivity extends AppCompatActivity {
+@MakeActivityStarter
+public class StarterActivity extends AppCompatActivity {
 
     @SuppressWarnings("WeakerAccess")
-    @State
-    int mContador = 0;
+    @Arg
+    @Optional
+    int mContador;
 
     private TextView lblMarcador;
 
@@ -22,8 +26,8 @@ public class IcepickActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contador);
-        // Se restaura el estado usando Icepick.
-        Icepick.restoreInstanceState(this, savedInstanceState);
+        // Se restaura el estado usando ActivityStarter.
+        ActivityStarter.fill(this, savedInstanceState);
         initVistas();
         actualizarMarcador();
     }
@@ -42,8 +46,8 @@ public class IcepickActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // Se guarda el estado usando Icepick.
-        Icepick.saveInstanceState(this, outState);
+        // Se guarda el estado usando ActivityStarter.
+        ActivityStarter.save(this, outState);
     }
 
     private void actualizarMarcador() {
@@ -52,7 +56,7 @@ public class IcepickActivity extends AppCompatActivity {
 
     // Inicia la actividad.
     public static void start(Context context) {
-        context.startActivity(new Intent(context, IcepickActivity.class));
+        context.startActivity(new Intent(context, StarterActivity.class));
     }
 
 }

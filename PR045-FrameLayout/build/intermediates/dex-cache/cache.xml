@@ -2,11 +2,22 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\Pedro\Documents\GitHub\studio\PR045-FrameLayout\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR045-FrameLayout/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
-        revision="23.0.2"
-        sha1="35214883abdf99825a8023eca293e77dc30036a3">
-        <dex dex="D:\Users\Pedro\Documents\GitHub\studio\PR045-FrameLayout\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_d866798a26b6b2746658917b817842f2b9e9e32f\classes.dex" />
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/pedro/studio/PR045-FrameLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_f2cb59804fa9b7b640951f31f577f10c58704a4c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/pedro/studio/PR045-FrameLayout/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="411b8563cf20b2bd52357bb8d1a0632787495434">
+        <dex dex="/Users/pedro/studio/PR045-FrameLayout/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_161a4c311f94ce35b052fd1dd08d0fab375c2e60/classes.dex" />
     </item>
 
 </items>

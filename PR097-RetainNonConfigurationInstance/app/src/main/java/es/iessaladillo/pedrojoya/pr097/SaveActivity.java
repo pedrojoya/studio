@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,7 +12,7 @@ public class SaveActivity extends AppCompatActivity {
     private static final String STATE_CONTADOR = "STATE_CONTADOR";
     private static final int DEFAULT_CONTADOR = 0;
 
-    private int mContador = 0;
+    private int mContador;
 
     private TextView lblMarcador;
 
@@ -22,30 +20,26 @@ public class SaveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contador);
+        // Se recupera el estado anterior (si lo hay).
+        restoreInstance(savedInstanceState);
         initVistas();
-        // Si hay un estado guardado, se recupera.
+        actualizarMarcador();
+    }
+
+    private void restoreInstance(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             mContador = savedInstanceState.getInt(STATE_CONTADOR, DEFAULT_CONTADOR);
         }
-        actualizarMarcador();
     }
 
     private void initVistas() {
         lblMarcador = (TextView) findViewById(R.id.lblMarcador);
         Button btnIncrementar = (Button) findViewById(R.id.btnIncrementar);
-        if (btnIncrementar != null) {
-            btnIncrementar.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    incrementarContador();
-                }
-            });
-        }
+        btnIncrementar.setOnClickListener(view -> incrementarContador());
     }
 
     private void incrementarContador() {
         mContador++;
-        // Se actualiza el marcador.
         actualizarMarcador();
     }
 
@@ -55,9 +49,7 @@ public class SaveActivity extends AppCompatActivity {
         outState.putInt(STATE_CONTADOR, mContador);
     }
 
-    // Actualiza la vista marcador.
     private void actualizarMarcador() {
-        // Se muestra el valor del mContador en el marcador.
         lblMarcador.setText(String.valueOf(mContador));
     }
 
