@@ -8,136 +8,49 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements
-        OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    // Vistas.
     private EditText txtUsuario;
     private EditText txtClave;
     private Button btnAceptar;
-    private TextView lblUsuario;
-    private TextView lblClave;
 
-    // Al crear la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se obtienen e inicializan las vistas.
-        getVistas();
+        initVistas();
     }
 
-    // Obtiene e inicializa las vistas.
-    private void getVistas() {
+    private void initVistas() {
         btnAceptar = (Button) findViewById(R.id.btnAceptar);
-        if (btnAceptar != null) {
-            btnAceptar.setOnClickListener(this);
-        }
+        btnAceptar.setOnClickListener(v -> conectar());
         Button btnCancelar = (Button) findViewById(R.id.btnCancelar);
-        if (btnCancelar != null) {
-            btnCancelar.setOnClickListener(this);
-        }
-        lblUsuario = (TextView) findViewById(R.id.lblUsuario);
-        lblClave = (TextView) findViewById(R.id.lblClave);
+        btnCancelar.setOnClickListener(v -> resetVistas());
+        TextView lblUsuario = (TextView) findViewById(R.id.lblUsuario);
+        TextView lblClave = (TextView) findViewById(R.id.lblClave);
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);
         txtClave = (EditText) findViewById(R.id.txtClave);
-        // Se cambia el color del TextView dependiendo de si el EditText
-        // correspondiente tiene el foco o no.
-        txtUsuario.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-            // Al cambiar el foco.
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                setColorSegunFoco(lblUsuario, hasFocus);
-            }
-
-        });
-        txtClave.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-            // Al cambiar el foco.
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                setColorSegunFoco(lblClave, hasFocus);
-            }
-
-        });
-        // btnAceptar sólo accesible si hay datos en txtUsuario y txtClave.
-        txtUsuario.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            // Después de haber cambiado el texto.
-            @Override
-            public void afterTextChanged(Editable s) {
-                // btnAceptar disponible sólo si hay datos.
-                checkDatos();
-                // lblUsuario visible sólo si txtUsuario tiene datos.
-                checkVisibility(txtUsuario, lblUsuario);
-            }
-
-        });
-        txtClave.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            // Después de haber cambiado el texto.
-            @Override
-            public void afterTextChanged(Editable s) {
-                // btnAceptar disponible sólo si hay datos.
-                checkDatos();
-                // lblClave visible sólo si tiene datos.
-                checkVisibility(txtClave, lblClave);
-            }
-
-        });
+        setCambiarColorFocusListener(lblUsuario, txtUsuario);
+        setCambiarColorFocusListener(lblClave, txtClave);
+        setCambiarVisibilidadTextWatcher(lblUsuario, txtUsuario);
+        setCambiarVisibilidadTextWatcher(lblClave, txtClave);
         // Comprobaciones iniciales.
         setColorSegunFoco(lblUsuario, true);
-        checkDatos();
-        checkVisibility(txtClave, lblClave);
-        checkVisibility(txtUsuario, lblUsuario);
+        checkFormularioValido();
+        setTextViewVisibility(txtClave, lblClave);
+        setTextViewVisibility(txtUsuario, lblUsuario);
     }
 
-    // Al hacer click sobre un botón.
-    @Override
-    public void onClick(View v) {
-        // Dependiendo del botón pulsado.
-        switch (v.getId()) {
-            case R.id.btnAceptar:
-                // Se informa de la conexión
-                Toast.makeText(
-                        this,
-                        getString(R.string.conectando_con_el_usuario, txtUsuario.getText().toString()),
-                        Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btnCancelar:
-                // Se resetean las vistas.
-                resetVistas();
-                break;
-            default:
-        }
+    // Realiza la conexión.
+    private void conectar() {
+        Toast.makeText(this,
+                getString(R.string.conectando_con_el_usuario, txtUsuario.getText().toString()),
+                Toast.LENGTH_SHORT).show();
     }
 
     // Resetea las vistas.
@@ -146,32 +59,49 @@ public class MainActivity extends AppCompatActivity implements
         txtClave.setText("");
     }
 
-    // Activa o desactiva el botón de Aceptar dependiendo de si hay datos.
-    private void checkDatos() {
-        btnAceptar.setEnabled(!TextUtils.isEmpty(txtUsuario.getText()
-                .toString())
-                && !TextUtils.isEmpty(txtClave.getText().toString()));
+    private void setCambiarVisibilidadTextWatcher(TextView lbl, EditText txt) {
+        txt.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                setTextViewVisibility(txt, lbl);
+                checkFormularioValido();
+            }
+
+        });
     }
 
-    // TextView visible sólo si EditText tiene datos.
-    private void checkVisibility(EditText txt, TextView lbl) {
-        if (TextUtils.isEmpty(txt.getText().toString())) {
-            lbl.setVisibility(View.INVISIBLE);
-        } else {
-            lbl.setVisibility(View.VISIBLE);
-        }
+    private void setCambiarColorFocusListener(TextView lbl, EditText txt) {
+        txt.setOnFocusChangeListener((v, hasFocus) -> setColorSegunFoco(lbl, hasFocus));
     }
 
-    // Establece el color y estilo del TextView dependiendo de si el
-    // EditText correspondiente tiene el foco o no.
+    private void checkFormularioValido() {
+        btnAceptar.setEnabled(isFormValid());
+    }
+
+    private boolean isFormValid() {
+        return !TextUtils.isEmpty(txtUsuario.getText().toString()) && !TextUtils.isEmpty(
+                txtClave.getText().toString());
+    }
+
+    private void setTextViewVisibility(EditText txt, TextView lbl) {
+        lbl.setVisibility(
+                TextUtils.isEmpty(txt.getText().toString()) ? View.INVISIBLE : View.VISIBLE);
+    }
+
     private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
-        if (hasFocus) {
-            lbl.setTextColor(ContextCompat.getColor(this, R.color.accent));
-            lbl.setTypeface(Typeface.DEFAULT_BOLD);
-        } else {
-            lbl.setTextColor(ContextCompat.getColor(this, R.color.primary));
-            lbl.setTypeface(Typeface.DEFAULT);
-        }
+        lbl.setTextColor(
+                hasFocus ? ContextCompat.getColor(this, R.color.accent) : ContextCompat.getColor(
+                        this, R.color.primary));
+        lbl.setTypeface(hasFocus ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
     }
 
 }
