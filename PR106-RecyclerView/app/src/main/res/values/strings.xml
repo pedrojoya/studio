@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RecyclerView</string>
+    <string name="appl_name">RecyclerView</string>
     <string name="no_hay_alumnos">No hay alumnos</string>
     <string name="ha_pulsado_sobre">Ha pulsado sobre %1$s</string>
     <string name="avatar">Avatar</string>

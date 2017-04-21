@@ -1,5 +1,7 @@
 package pedrojoya.iessaladillo.es.pr106;
 
+import com.mooveit.library.Fakeit;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -48,7 +50,7 @@ class DB {
 
     public Alumno getNextAlumno() {
         int num = next++;
-        return new Alumno("Alumno " + num, "c/ Su casa, nº " + num,
+        return new Alumno(Fakeit.name().name(), Fakeit.address().streetAddress(),
                 "http://lorempixel.com/100/100/abstract/" + (num % 10 + 1) + "/");
     }
 
