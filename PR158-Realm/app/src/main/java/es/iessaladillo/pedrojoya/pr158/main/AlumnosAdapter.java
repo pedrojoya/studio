@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr158;
+package es.iessaladillo.pedrojoya.pr158.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -15,79 +14,52 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.iessaladillo.pedrojoya.pr158.R;
+import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
+import es.iessaladillo.pedrojoya.pr158.db.entities.Asignatura;
+import io.realm.OrderedCollectionChangeSet;
+import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
-// Adaptador para la lista de alumnos.
-public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
+public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> implements
+        OrderedRealmCollectionChangeListener<RealmResults<Alumno>> {
 
     private final RealmResults<Alumno> mDatos;
     private final Realm mRealm;
-    private OnItemLongClickListener onItemLongClickListener;
     private OnItemClickListener onItemClickListener;
 
-    // Constructor.
     public AlumnosAdapter(Realm realm, RealmResults<Alumno> datos) {
         mRealm = realm;
         mDatos = datos;
+        mDatos.addChangeListener(this);
         // Se establece que cada item tiene un id único.
         setHasStableIds(true);
     }
 
-    // Cuando se debe crear una nueva vista para el elemento.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Se infla la especificación XML para obtener la vista-fila.
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false);
-        // Se crea el contenedor de vistas para la fila.
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_item, parent, false);
         final ViewHolder viewHolder = new ViewHolder(itemView);
-
-        // Se establecen los listener de la vista correspondiente al ítem
-        // y de las subvistas.
-
-        // Cuando se hace click sobre el elemento.
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemClickListener != null) {
-                    // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
+                    onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }
         });
-        // Cuando se hace click largo sobre el elemento.
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (onItemLongClickListener != null) {
-                    // Se informa al listener.
-                    onItemLongClickListener.onItemLongClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
-                            viewHolder.getAdapterPosition());
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
-        // Se retorna el contenedor.
         return viewHolder;
     }
 
-    // Cuando se deben escribir los datos en las subvistas de la
-    // vista correspondiente al ítem.
     @Override
     public void onBindViewHolder(AlumnosAdapter.ViewHolder holder, int position) {
-        // Se obtiene el alumno correspondiente y se escriben sus datos
-        // en las vistas.
         holder.bind(mDatos.get(position));
     }
 
-    // Retorna el número de ítems gestionados.
     @Override
     public int getItemCount() {
         return mDatos.size();
@@ -103,26 +75,11 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         return mDatos.get(position).getTimestamp();
     }
 
-    // Elimina un elemento de la lista.
     public void removeItem(int position) {
         // Se elimina el alumno de la base de datos.
         mRealm.beginTransaction();
         mDatos.deleteFromRealm(position);
         mRealm.commitTransaction();
-        // Se notifica al adaptador la eliminación.
-        notifyItemRemoved(position);
-    }
-
-    // Añade un elemento a la lista.
-    @SuppressWarnings("unused")
-    public void addItem(Alumno alumno) {
-        // Se añade el alumno a la base de datos.
-        mRealm.beginTransaction();
-        mRealm.copyToRealmOrUpdate(alumno);
-        mRealm.commitTransaction();
-        // Se indica al adaptador que han cambiado los datos (ojo NO se indoca
-        // cual porque Realm no lo permite.
-        notifyDataSetChanged();
     }
 
     // Establece el listener a informar cuando se hace click sobre un elemento de la lista.
@@ -130,12 +87,35 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         this.onItemClickListener = listener;
     }
 
-    // Establece el listener a informar cuando se hace click largo sobre un elemento de la lista.
-    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
-        this.onItemLongClickListener = listener;
+    @Override
+    public void onChange(RealmResults<Alumno> collection, OrderedCollectionChangeSet changeSet) {
+        // `null`  means the async query returns the first time.
+        if (changeSet == null) {
+            notifyDataSetChanged();
+            return;
+        }
+        // For deletions, the adapter has to be notified in reverse order.
+        OrderedCollectionChangeSet.Range[] deletions = changeSet.getDeletionRanges();
+        for (int i = deletions.length - 1; i >= 0; i--) {
+            OrderedCollectionChangeSet.Range range = deletions[i];
+            notifyItemRangeRemoved(range.startIndex, range.length);
+        }
+
+        OrderedCollectionChangeSet.Range[] insertions = changeSet.getInsertionRanges();
+        for (OrderedCollectionChangeSet.Range range : insertions) {
+            notifyItemRangeInserted(range.startIndex, range.length);
+        }
+
+        OrderedCollectionChangeSet.Range[] modifications = changeSet.getChangeRanges();
+        for (OrderedCollectionChangeSet.Range range : modifications) {
+            notifyItemRangeChanged(range.startIndex, range.length);
+        }
     }
 
-    // Contenedor de vistas para la vista-fila.
+    public void onDestroy() {
+        mDatos.removeChangeListener(this);
+    }
+
     @SuppressWarnings("unused")
     static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -162,33 +142,19 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             lblDireccion.setText(alumno.getDireccion());
             RealmList<Asignatura> asignaturas = alumno.getAsignaturas();
             ArrayList<String> nombresAsignaturas = new ArrayList<>();
-            for (Asignatura asignatura: asignaturas) {
+            for (Asignatura asignatura : asignaturas) {
                 nombresAsignaturas.add(asignatura.getId());
             }
             lblAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturas));
             String url = alumno.getUrlFoto();
-            Picasso.with(imgAvatar.getContext())
-                    .load(url)
-                    .placeholder(R.drawable.ic_user)
-                    .error(R.drawable.ic_user)
-                    .into(imgAvatar, new Callback() {
-                        @Override
-                        public void onSuccess() {
-
-                        }
-
-                        @Override
-                        public void onError() {
-
-                        }
-                    });
+            Picasso.with(imgAvatar.getContext()).load(url).placeholder(R.drawable.ic_user).error(
+                    R.drawable.ic_user).into(imgAvatar);
         }
 
         private String getCadenaAsignaturas(ArrayList<String> nombresAsignaturas) {
             if (nombresAsignaturas.size() > 0) {
                 return TextUtils.join(", ", nombresAsignaturas);
-            }
-            else {
+            } else {
                 return itemView.getContext().getString(R.string.ninguna);
             }
         }
@@ -199,12 +165,6 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     @SuppressWarnings("UnusedParameters")
     public interface OnItemClickListener {
         void onItemClick(View view, Alumno alumno, int position);
-    }
-
-    // Interfaz que debe implementar el listener para cuando se haga click largo sobre un elemento.
-    @SuppressWarnings("UnusedParameters")
-    public interface OnItemLongClickListener {
-        void onItemLongClick(View view, Alumno alumno, int position);
     }
 
 }

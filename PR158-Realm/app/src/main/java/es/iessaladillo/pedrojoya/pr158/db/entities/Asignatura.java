@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr158;
+package es.iessaladillo.pedrojoya.pr158.db.entities;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -27,10 +27,6 @@ public class Asignatura extends RealmObject {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Asignatura() {
-        super();
     }
 
 }

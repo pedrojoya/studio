@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr158;
+package es.iessaladillo.pedrojoya.pr158.detalle;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,6 +37,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import butterknife.OnFocusChange;
+import es.iessaladillo.pedrojoya.pr158.R;
+import es.iessaladillo.pedrojoya.pr158.db.entities.Alumno;
+import es.iessaladillo.pedrojoya.pr158.db.entities.Asignatura;
 import es.iessaladillo.pedrojoya.pr158.utils.ClickToMultipleSelectEditText;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -104,6 +107,9 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
             mAlumno = new Alumno();
             mUrlFoto = getFotoAleatoria();
             setTitle(R.string.agregar_alumno);
+            txtAsignaturas.setSelection(integerListToArray(new ArrayList<Integer>()));
+            txtAsignaturas.setText(getCadenaAsignaturas(new ArrayList<String>()));
+
         }
         // Si venimos de un estado anterior dejamos la foto tal y como estaba.
         if (savedInstanceState != null) {
@@ -164,7 +170,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
                     }
                 }
             }
-            int[] indices = IntegerListToArray(indicesAsignaturasAlumno);
+            int[] indices = integerListToArray(indicesAsignaturasAlumno);
             txtAsignaturas.setSelection(indices);
             ArrayList<String> nombresAsignaturasAlumno = new ArrayList<>();
             for (Asignatura asignaturaAlumno : asignaturasAlumno) {
@@ -172,13 +178,13 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
             }
             txtAsignaturas.setText(getCadenaAsignaturas(nombresAsignaturasAlumno));
         } else {
-            int[] indices = IntegerListToArray(
+            int[] indices = integerListToArray(
                     saveInstanceState.getIntegerArrayList(STATE_INDICES_ASIGNATURAS_SELECCIONADAS));
             txtAsignaturas.setSelection(indices);
         }
     }
 
-    private int[] IntegerListToArray(ArrayList<Integer> indicesAsignaturasAlumno) {
+    private int[] integerListToArray(ArrayList<Integer> indicesAsignaturasAlumno) {
         int[] indices = new int[indicesAsignaturasAlumno.size()];
         for (int i = 0; i < indicesAsignaturasAlumno.size(); i++) {
             indices[i] = indicesAsignaturasAlumno.get(i);
@@ -223,6 +229,10 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
 
     @OnClick(R.id.fabAccion)
     public void guardar() {
+        if (TextUtils.isEmpty(txtNombre.getText().toString()) || TextUtils.isEmpty(
+                txtDireccion.getText().toString())) {
+            return;
+        }
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {

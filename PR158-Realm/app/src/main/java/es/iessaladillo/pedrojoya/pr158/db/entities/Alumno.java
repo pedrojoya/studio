@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr158;
+package es.iessaladillo.pedrojoya.pr158.db.entities;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -19,10 +19,6 @@ public class Alumno extends RealmObject {
     private RealmList<Asignatura> asignaturas;
 
     private long timestamp;
-
-    public Alumno() {
-        super();
-    }
 
     public String getDireccion() {
         return direccion;
