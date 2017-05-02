@@ -1,5 +1,6 @@
 package pedrojoya.iessaladillo.es.pr106;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,21 +17,37 @@ import de.hdodenhof.circleimageview.CircleImageView;
 // Adaptador para la lista de alumnos.
 public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHolder> {
 
-    private final ArrayList<Alumno> mDatos;
+    private ArrayList<Alumno> mDatos;
     private OnItemLongClickListener onItemLongClickListener;
     private OnItemClickListener onItemClickListener;
+    private View mEmptyView;
+    private final RecyclerView.AdapterDataObserver mObserver = new RecyclerView
+            .AdapterDataObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            checkEmptyViewVisibility();
+        }
 
-    // Constructor.
-    public AlumnosAdapter(ArrayList<Alumno> datos) {
-        mDatos = datos;
-    }
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+            super.onItemRangeInserted(positionStart, itemCount);
+            checkEmptyViewVisibility();
+        }
+
+        @Override
+        public void onItemRangeRemoved(int positionStart, int itemCount) {
+            super.onItemRangeRemoved(positionStart, itemCount);
+            checkEmptyViewVisibility();
+        }
+    };
 
     // Cuando se debe crear una nueva vista para el elemento.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Se infla la especificación XML para obtener la vista-fila.
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.activity_main_item, parent, false);
         // Se crea el contenedor de vistas para la fila.
         final ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -43,8 +60,7 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
             public void onClick(View v) {
                 if (onItemClickListener != null) {
                     // Se informa al listener.
-                    onItemClickListener.onItemClick(v,
-                            mDatos.get(viewHolder.getAdapterPosition()),
+                    onItemClickListener.onItemClick(v, mDatos.get(viewHolder.getAdapterPosition()),
                             viewHolder.getAdapterPosition());
                 }
             }
@@ -77,18 +93,21 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         // Se escriben los mDatos en la vista.
         holder.lblNombre.setText(alumno.getNombre());
         holder.lblDireccion.setText(alumno.getDireccion());
-        Picasso.with(holder.imgAvatar.getContext())
-                .load(alumno.getUrlFoto())
-                .placeholder(R.drawable.ic_user)
-                .error(R.drawable.ic_user)
-                .into(holder.imgAvatar);
+        Picasso.with(holder.imgAvatar.getContext()).load(alumno.getUrlFoto()).placeholder(
+                R.drawable.ic_user).error(R.drawable.ic_user).into(holder.imgAvatar);
 
     }
 
     // Retorna el número de ítems gestionados.
     @Override
     public int getItemCount() {
-        return mDatos.size();
+        return mDatos == null ? 0 : mDatos.size();
+    }
+
+    // Establece los datos.
+    public void setData(ArrayList<Alumno> data) {
+        mDatos = data;
+        notifyDataSetChanged();
     }
 
     // Elimina un elemento de la lista.
@@ -122,6 +141,27 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
     // Establece el listener a informar cuando se hace click largo sobre un elemento de la lista.
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         this.onItemLongClickListener = listener;
+    }
+
+    // Establece la emptyview.
+    public void setEmptyView(@NonNull View emptyView) {
+        if (mEmptyView != null) {
+            unregisterAdapterDataObserver(mObserver);
+        }
+        mEmptyView = emptyView;
+        registerAdapterDataObserver(mObserver);
+    }
+
+    private void checkEmptyViewVisibility() {
+        if (mEmptyView != null) {
+            mEmptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+        }
+    }
+
+    public void onDestroy() {
+        if (mEmptyView != null) {
+            unregisterAdapterDataObserver(mObserver);
+        }
     }
 
     // Contenedor de vistas para la vista-fila.

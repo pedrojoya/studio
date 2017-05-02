@@ -64,36 +64,19 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
 
     // Configura el RecyclerView.
     private void configRecyclerView() {
-        mAdaptador = new AlumnosAdapter(DB.getInstance().getAlumnos());
+        mAdaptador = new AlumnosAdapter();
         mAdaptador.setOnItemClickListener(this);
         mAdaptador.setOnItemLongClickListener(this);
-        mAdaptador.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                checkAdapterIsEmpty();
-            }
-
-            @Override
-            public void onItemRangeRemoved(int positionStart, int itemCount) {
-                super.onItemRangeRemoved(positionStart, itemCount);
-                checkAdapterIsEmpty();
-            }
-        });
+        mAdaptador.setEmptyView(mEmptyView);
+        mAdaptador.setData(DB.getInstance().getAlumnos());
         lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
         if (lstAlumnos != null) {
             lstAlumnos.setHasFixedSize(true);
             lstAlumnos.setAdapter(mAdaptador);
-            checkAdapterIsEmpty();
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             lstAlumnos.setLayoutManager(mLayoutManager);
             lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         }
-    }
-
-    // Muestra u oculta la empty view dependiendo de si el adaptador está vacío.
-    private void checkAdapterIsEmpty() {
-        mEmptyView.setVisibility(mAdaptador.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     // Agrega un alumno a la lista.
@@ -139,6 +122,12 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
         if (mEstadoLista != null) {
             mLayoutManager.onRestoreInstanceState(mEstadoLista);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAdaptador.onDestroy();
     }
 
 }
