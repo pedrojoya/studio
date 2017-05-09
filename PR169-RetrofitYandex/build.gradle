@@ -21,7 +21,7 @@ allprojects {
 ext {
     compileSdkVersion = 25
     minSdkVersion = 16
-    buildToolsVersion = "25.0.2"
+    buildToolsVersion = "25.0.3"
     support_library_version = "25.3.0"
     stetho_version = "1.5.0"
     junit_version = "4.12"

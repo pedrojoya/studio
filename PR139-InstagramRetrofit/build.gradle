@@ -21,14 +21,14 @@ allprojects {
 ext {
     compileSdkVersion = 25
     minSdkVersion = 16
-    buildToolsVersion = "25.0.2"
+    buildToolsVersion = "25.0.3"
     support_library_version = "25.3.0"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
     butterknife_version = "8.5.1"
     stetho_version = "1.5.0"
     textdrawable_version = "1.0.1"
-    leakcanary_version = "1.5"
+    leakcanary_version = "1.5.1"
     glide_version = "3.7.0"
     junit_version = "4.12"
     espresso_version = "2.2.2"
