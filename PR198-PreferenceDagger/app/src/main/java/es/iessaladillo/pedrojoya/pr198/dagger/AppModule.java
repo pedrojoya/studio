@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -23,22 +21,22 @@ public class AppModule {
 
     // Proporciona el objeto Application.
     @Provides
-    @Singleton
+    @AppScope
     Application providesApplication() {
         return mApplication;
     }
 
     // Proporciona el contexto. Requiere del objeto Application
     @Provides
-    @Singleton
+    @AppScope
     Context providesContext(Application application) {
         return application.getApplicationContext();
     }
 
-    // Proporciona el defaultsharedpreferences. Requiere del contexto.
+    // Proporciona el default sharedpreferences. Requiere del contexto.
     @Provides
-    @Singleton
-    SharedPreferences providesSharedPreferenes(Context context) {
+    @AppScope
+    SharedPreferences providesSharedPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
