@@ -35,15 +35,15 @@ public class MainActivityInstrumentationTest {
     // Valida que cambia el texto del checkbox al pulsarlo.
     @Test
     public void validateChangeCheckBoxTextOnClick() {
-        onView(withId(R.id.chkEducado)).perform(click()).check(matches(withText(R.string.saludar_normal)));
-        onView(withId(R.id.chkEducado)).perform(click()).check(matches(withText(R.string.saludar_educadamente)));
+        onView(withId(R.id.chkPolite)).perform(click()).check(matches(withText(R.string.main_activity_impolite_mode)));
+        onView(withId(R.id.chkPolite)).perform(click()).check(matches(withText(R.string.main_activity_polite_mode)));
     }
 
     // Valida que saluda educadamente.
     @Test
     public void validateSaludoEducado() {
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.btnSaludar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.btnGreet)).perform(click());
         onView(withText("Buenos días tenga usted Baldomero"))
                 .inRoot(withDecorView(not(activityTestRule.getActivity().getWindow()
                         .getDecorView()))).check(matches(isDisplayed()));
@@ -57,9 +57,9 @@ public class MainActivityInstrumentationTest {
 
     @Test
     public void validateSaludoNoEducado() {
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.chkEducado)).perform(click());
-        onView(withId(R.id.btnSaludar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.chkPolite)).perform(click());
+        onView(withId(R.id.btnGreet)).perform(click());
         onView(withText("Buenos días Baldomero")).inRoot(withDecorView(
                 not(activityTestRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));

@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">ListActivity</string>
-    <string name="title_activity_main">ListActivity</string>
-    <string name="no_hay_alumnos_que_mostrar">No hay alumnos</string>
-    <string name="se_ha_eliminado">"Se ha eliminado %1$s"</string>
-    <string name="se_ha_pulsado">"Se ha pulsado %1$s"</string>
-    <string name="eliminar">Eliminar</string>
+    <string name="app_name">Students list</string>
+
+    <string name="activity_main_lblEmptyView">No students yet</string>
+    <string name="activity_main_item_mnuDelete">Delete</string>
+
+    <string name="main_activity_student_deleted">%1$s deleted</string>
+    <string name="main_activity_student_selected">%1$s</string>
 </resources>

@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Intents Implícitos</string>
-	<string name="mostrar_navegador">Navegar a URL</string>
-	<string name="buscar_internet">Buscar en Internet</string>
-	<string name="llamar_contacto">Llamar a contacto</string>
-	<string name="marcar">Marcar número de teléfono</string>
-	<string name="mostrar_mapa">Mostrar mapa</string>
-	<string name="buscar_mapa">Buscar en el mapa</string>
-	<string name="mostrar_contactos">Mostrar lista de contactos</string>
-	<string name="no_hay_navegador">No hay navegador</string>
-	<string name="no_hay_buscador">No hay buscador</string>
-	<string name="no_se_puede_llamar">No se puede llamar</string>
-	<string name="no_hay_dial">No hay dial</string>
-	<string name="no_hay_aplicaci_n_de_mapas">No hay aplicación de mapas</string>
-	<string name="no_hay_gestor_de_contactos">No hay gestor de contactos</string>
-	<string name="accion_no_disponible">Debe conceder el permiso de realizar llamadas</string>
-	<string name="configurar">Configurar</string>
+    <string name="app_name">Implicit Intents</string>
+	<string name="activity_main_btnShowInBrowser">Show in browser</string>
+	<string name="activity_main_btnSearch">Search</string>
+	<string name="activity_main_btnCall">Call</string>
+	<string name="activity_main_btnDial">Dial</string>
+	<string name="activity_main_btnShowInMap">Show in map</string>
+	<string name="activity_main_btnSearchInMap">Search in map</string>
+	<string name="activity_main_showContacts">Show Contacts</string>
+	<string name="main_activity_no_web_browser">No web browser app</string>
+	<string name="main_activity_no_web_search">No web search app</string>
+	<string name="main_activity_no_dial_app">No dial app</string>
+	<string name="main_activity_no_maps_app">No maps app</string>
+	<string name="main_activity_no_contacts_app">No contacts app</string>
+	<string name="general_configure">Configure</string>
+	<string name="main_activity_no_connection">No Internet connection available</string>
+	<string name="main_activity_no_call_permission_rationale">We need the call permission in order to make a call</string>
+	<string name="main_activity_no_call_app">No phone app to make a call</string>
+	<string name="general_permission_required">Permission required</string>
 
 </resources>

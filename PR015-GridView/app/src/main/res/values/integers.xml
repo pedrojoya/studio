@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="grid_numColumns">2</integer>
+    <integer name="activity_main_grdWords_numColumns">2</integer>
 </resources>

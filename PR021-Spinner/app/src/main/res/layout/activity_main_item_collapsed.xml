@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/activity_main_item_height"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/activity_main_item_padding"
+    android:paddingStart="@dimen/activity_main_item_padding"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/imgFlag"
+        android:layout_width="@dimen/activity_main_item_imgFlag_width"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/activity_main_item_imgFlag_marginRight"
+        android:contentDescription="@string/activity_main_item_imgFlag"
+        tools:src="@sample/countries.json/countries/flag"/>
+
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="@sample/countries.json/countries/name"/>
+
+</LinearLayout>

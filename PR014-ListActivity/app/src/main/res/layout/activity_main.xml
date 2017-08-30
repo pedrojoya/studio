@@ -6,17 +6,17 @@
     tools:ignore="MergeRootFrame">
 
     <ListView
-        android:id="@+id/lstAlumnos"
+        android:id="@+id/lstStudents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <TextView
-        android:id="@+id/emptyView"
+        android:id="@+id/lblEmptyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:drawableTop="@drawable/ic_person_add"
-        android:drawablePadding="@dimen/activity_vertical_margin"
-        android:text="@string/no_hay_alumnos_que_mostrar"/>
+        android:drawablePadding="@dimen/general_activity_vertical_margin"
+        android:text="@string/activity_main_lblEmptyView"/>
 
 </FrameLayout>

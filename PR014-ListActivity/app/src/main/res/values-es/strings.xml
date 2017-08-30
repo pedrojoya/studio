@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Listado de alumnos</string>
+    <string name="activity_main_lblEmptyView">No hay alumnos</string>
+    <string name="main_activity_student_selected">%1$s</string>
+    <string name="activity_main_item_mnuDelete">Eliminar</string>
+    <string name="main_activity_student_deleted">Se ha eliminado %1$s</string>
+</resources>

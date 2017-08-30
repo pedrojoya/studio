@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+	<!-- Capa externa -->
+    <item>
+        <shape android:shape="oval" >
+            <solid android:color="@color/activity_main_btncheck_background_color" />
+
+            <size
+                android:height="@dimen/activity_main_vTimeout_width"
+                android:width="@dimen/activity_main_vTimeout_width" />
+        </shape>
+    </item>
+    <!-- Capa central -->
+    <item
+        android:bottom="@dimen/btnCheck_central_layer_offset"
+        android:left="@dimen/btnCheck_central_layer_offset"
+        android:right="@dimen/btnCheck_central_layer_offset"
+        android:top="@dimen/btnCheck_central_layer_offset">
+        <shape android:shape="oval" >
+            <size
+                android:height="@dimen/lblTimeout_central_layer_height"
+                android:width="@dimen/lblTimeout_central_layer_height" />
+
+            <solid android:color="@color/activity_fondo" />
+        </shape>
+    </item>
+    <!-- Capa interna -->
+    <item
+        android:bottom="@dimen/btnCheck_inner_layer_offset"
+        android:left="@dimen/btnCheck_inner_layer_offset"
+        android:right="@dimen/btnCheck_inner_layer_offset"
+        android:top="@dimen/btnCheck_inner_layer_offset">
+        <shape android:shape="oval" >
+            <size
+                android:height="@dimen/lblTimeout_inner_layer_height"
+                android:width="@dimen/lblTimeout_inner_layer_height" />
+
+            <gradient
+                android:angle="0"
+                android:endColor="@color/respuesta_fondo"
+                android:startColor="@color/activity_main_btncheck_background_color" />
+        </shape>
+    </item>
+
+</layer-list>

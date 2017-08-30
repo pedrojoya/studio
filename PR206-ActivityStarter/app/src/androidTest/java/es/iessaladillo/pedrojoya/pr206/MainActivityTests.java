@@ -44,9 +44,9 @@ public class MainActivityTests {
     public void validateObtencionDatos() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr206"));
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
-        onView(withId(R.id.btnAceptar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtAge)).perform(replaceText("18"));
+        onView(withId(R.id.btnSend)).perform(click());
         onView(withId(R.id.lblDatos)).check(matches(withText("Nombre: Baldomero\nEdad: 18")));
     }
 
@@ -70,9 +70,9 @@ public class MainActivityTests {
     @Test
     public void validateEnvioDatos() {
         onView(withId(R.id.btnSolicitar)).perform(click());
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
-        onView(withId(R.id.btnAceptar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtAge)).perform(replaceText("18"));
+        onView(withId(R.id.btnSend)).perform(click());
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(allOf(
                     toPackage("es.iessaladillo.pedrojoya.pr206"),
@@ -89,42 +89,42 @@ public class MainActivityTests {
     public void validateBtnAceptarDisabledWhenTxtNombreEmpty() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr206"));
-        onView(withId(R.id.txtNombre)).perform(clearText());
-        onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtName)).perform(clearText());
+        onView(withId(R.id.btnSend)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnAceptarDisabledWhenTxtEdadEmpty() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr206"));
-        onView(withId(R.id.txtEdad)).perform(clearText());
-        onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtAge)).perform(clearText());
+        onView(withId(R.id.btnSend)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnAceptarEnabledWhenFormularioCorrecto() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr206"));
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
-        onView(withId(R.id.btnAceptar)).check(matches(isEnabled()));
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtAge)).perform(replaceText("18"));
+        onView(withId(R.id.btnSend)).check(matches(isEnabled()));
     }
 
     @Test
     public void validateBtnAceptarDisabledWhenEdadIncorrecta() {
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(toPackage("es.iessaladillo.pedrojoya.pr206"));
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(replaceText("131"));
-        onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtAge)).perform(replaceText("131"));
+        onView(withId(R.id.btnSend)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateEnvioDatosAfterRotation() {
         onView(withId(R.id.btnSolicitar)).perform(click());
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtEdad)).perform(replaceText("18"));
-        onView(withId(R.id.btnAceptar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtAge)).perform(replaceText("18"));
+        onView(withId(R.id.btnSend)).perform(click());
         rotateScreen();
         onView(withId(R.id.btnSolicitar)).perform(click());
         intended(allOf(

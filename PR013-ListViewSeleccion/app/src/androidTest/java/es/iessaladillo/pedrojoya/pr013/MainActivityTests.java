@@ -42,21 +42,21 @@ public class MainActivityTests {
 
     @Test
     public void validateBtnComprobarInitialState() {
-        onView(withId(R.id.btnComprobar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.btnCheck)).check(matches(not(isDisplayed())));
         try {
             Thread.sleep(6000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.btnComprobar)).check(matches(isDisplayed()));
-        onView(withId(R.id.btnComprobar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.btnCheck)).check(matches(isDisplayed()));
+        onView(withId(R.id.btnCheck)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnComprobarEnabledWhenItemSelected() {
         onData(allOf(is(instanceOf(String.class)), is("Blanco")))
-                .inAdapterView(withId(R.id.lstRespuestas)).perform(click());
-        onView(withId(R.id.btnComprobar)).check(matches(isEnabled()));
+                .inAdapterView(withId(R.id.lstAnswers)).perform(click());
+        onView(withId(R.id.btnCheck)).check(matches(isEnabled()));
     }
 
     @Test
@@ -67,9 +67,9 @@ public class MainActivityTests {
             e.printStackTrace();
         }
         onData(allOf(is(instanceOf(String.class)), is("Blanco")))
-                .inAdapterView(withId(R.id.lstRespuestas)).perform(click());
-        onView(withId(R.id.btnComprobar)).perform(click());
-        onView(withId(R.id.lblPuntuacion)).check(matches(isDisplayed()));
+                .inAdapterView(withId(R.id.lstAnswers)).perform(click());
+        onView(withId(R.id.btnCheck)).perform(click());
+        onView(withId(R.id.lblScore)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -80,9 +80,9 @@ public class MainActivityTests {
             e.printStackTrace();
         }
         onData(allOf(is(instanceOf(String.class)), is("Negro")))
-                .inAdapterView(withId(R.id.lstRespuestas)).perform(click());
-        onView(withId(R.id.btnComprobar)).perform(click());
-        onView(withId(R.id.lstRespuestas)).check(matches(not(withAdaptedData(is("Negro")))));
+                .inAdapterView(withId(R.id.lstAnswers)).perform(click());
+        onView(withId(R.id.btnCheck)).perform(click());
+        onView(withId(R.id.lstAnswers)).check(matches(not(withAdaptedData(is("Negro")))));
     }
 
     /*@Test

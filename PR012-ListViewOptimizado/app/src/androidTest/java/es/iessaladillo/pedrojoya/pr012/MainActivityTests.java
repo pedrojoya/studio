@@ -20,6 +20,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import es.iessaladillo.pedrojoya.pr012.data.model.Student;
+import es.iessaladillo.pedrojoya.pr012.main.MainActivity;
+
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -44,8 +47,8 @@ public class MainActivityTests {
 
     @Test
     public void validateAlumnoAdded() {
-        onData(allOf(is(instanceOf(Alumno.class)), withNombreAlumno("Baldomero LLégate Ligero")))
-                .inAdapterView(withId(R.id.lstAlumnos)).onChildView(withId(R.id.btnLlamar)).perform(click());
+        onData(allOf(is(instanceOf(Student.class)), withNombreAlumno("Baldomero LLégate Ligero")))
+                .inAdapterView(withId(R.id.lstStudents)).onChildView(withId(R.id.btnCall)).perform(click());
         // Se espera que desaparezca el Toast (para enlazar tests).
         try {
             Thread.sleep(3000);
@@ -57,12 +60,12 @@ public class MainActivityTests {
 
     @Test
     public void validateNombreStillOnAdapterAfterRotation() {
-        onData(allOf(is(instanceOf(Alumno.class)), withNombreAlumno("Baldomero LLégate Ligero")))
-                .inAdapterView(withId(R.id.lstAlumnos)).perform(click());
+        onData(allOf(is(instanceOf(Student.class)), withNombreAlumno("Baldomero LLégate Ligero")))
+                .inAdapterView(withId(R.id.lstStudents)).perform(click());
         //onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(withNombreAlumno("Baldomero LLégate Ligero"))));
         rotateScreen();
-        onData(allOf(is(instanceOf(Alumno.class)), withNombreAlumno("Baldomero LLégate Ligero")))
-                .inAdapterView(withId(R.id.lstAlumnos)).perform(click());
+        onData(allOf(is(instanceOf(Student.class)), withNombreAlumno("Baldomero LLégate Ligero")))
+                .inAdapterView(withId(R.id.lstStudents)).perform(click());
         //onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(withNombreAlumno("Baldomero LLégate Ligero"))));
         // Se espera que desaparezca el Toast (para enlazar tests).
         try {
@@ -74,8 +77,8 @@ public class MainActivityTests {
 
     @Test
     public void validateBtnLlamar() {
-        onData(allOf(is(instanceOf(Alumno.class)), withNombreAlumno("Baldomero LLégate Ligero")))
-                .inAdapterView(withId(R.id.lstAlumnos)).onChildView(withId(R.id.btnLlamar)).perform(click());
+        onData(allOf(is(instanceOf(Student.class)), withNombreAlumno("Baldomero LLégate Ligero")))
+                .inAdapterView(withId(R.id.lstStudents)).onChildView(withId(R.id.btnCall)).perform(click());
         //onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(withNombreAlumno("Baldomero LLégate Ligero"))));
         onView(withText("Llamar a Baldomero LLégate Ligero"))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow()
@@ -91,8 +94,8 @@ public class MainActivityTests {
 
     @Test
     public void validateBtnNotas() {
-        onData(allOf(is(instanceOf(Alumno.class)), withNombreAlumno("Baldomero LLégate Ligero")))
-                .inAdapterView(withId(R.id.lstAlumnos)).onChildView(withId(R.id.btnNotas)).perform(click());
+        onData(allOf(is(instanceOf(Student.class)), withNombreAlumno("Baldomero LLégate Ligero")))
+                .inAdapterView(withId(R.id.lstStudents)).onChildView(withId(R.id.btnMarks)).perform(click());
         //onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(withNombreAlumno("Baldomero LLégate Ligero"))));
         onView(withText("Ver notas de Baldomero LLégate Ligero"))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow()
@@ -134,10 +137,10 @@ public class MainActivityTests {
     }
 
     public static Matcher<Object> withNombreAlumno(final String nombreAlumno) {
-        return new BoundedMatcher<Object, Alumno>(Alumno.class) {
+        return new BoundedMatcher<Object, Student>(Student.class) {
             @Override
-            protected boolean matchesSafely(Alumno alumno) {
-                return nombreAlumno.equals(alumno.getNombre());
+            protected boolean matchesSafely(Student student) {
+                return nombreAlumno.equals(student.getName());
             }
 
             @Override

@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="general_activity_padding">16dp</dimen>
+    <dimen name="general_vertical_margin">10dp</dimen>
+
+</resources>

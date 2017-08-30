@@ -40,29 +40,29 @@ public class MainActivityTests {
 
     @Test
     public void validateTxtMensajeHasFocusInitially() {
-        onView(withId(R.id.txtMensaje)).check(matches(hasFocus()));
+        onView(withId(R.id.txtMessage)).check(matches(hasFocus()));
     }
 
     @Test
     public void validateMessageAddedAtTheEnd() {
-        onView(withId(R.id.txtMensaje)).perform(closeSoftKeyboard(), replaceText("Quillo que"));
-        onView(withId(R.id.btnEnviar)).perform(click());
-        onView(withId(R.id.lblTexto)).check(matches(withText(endsWith("Quillo que\n\n"))));
+        onView(withId(R.id.txtMessage)).perform(closeSoftKeyboard(), replaceText("Quillo que"));
+        onView(withId(R.id.btnSend)).perform(click());
+        onView(withId(R.id.lblText)).check(matches(withText(endsWith("Quillo que\n\n"))));
     }
 
     @Test
     public void validateTxtMensajeImeActionDone() {
-        onView(withId(R.id.txtMensaje)).check(matches(hasImeAction(EditorInfo.IME_ACTION_DONE)));
-        onView(withId(R.id.txtMensaje)).perform(replaceText("Quillo que"), pressImeActionButton());
-        onView(withId(R.id.lblTexto)).check(matches(withText(endsWith("Quillo que\n\n"))));
+        onView(withId(R.id.txtMessage)).check(matches(hasImeAction(EditorInfo.IME_ACTION_DONE)));
+        onView(withId(R.id.txtMessage)).perform(replaceText("Quillo que"), pressImeActionButton());
+        onView(withId(R.id.lblText)).check(matches(withText(endsWith("Quillo que\n\n"))));
     }
 
     @Test
     public void validateBtnEnviarDisabledWhenTxtMensajeEmpty() {
-        onView(withId(R.id.txtMensaje)).perform(clearText());
-        onView(withId(R.id.btnEnviar)).check(matches(not(isEnabled())));
-        onView(withId(R.id.txtMensaje)).perform(replaceText("Quillo que"));
-        onView(withId(R.id.btnEnviar)).check(matches(isEnabled()));
+        onView(withId(R.id.txtMessage)).perform(clearText());
+        onView(withId(R.id.btnSend)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtMessage)).perform(replaceText("Quillo que"));
+        onView(withId(R.id.btnSend)).check(matches(isEnabled()));
     }
 
     /**

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ListView optimizado</string>
+    <string name="activity_main_lblEmpty">No hay alumnos</string>
+    <string name="activity_main_item_imgPhoto">Foto</string>
+    <string name="activity_main_item_btnMarks">Notas</string>
+    <string name="activity_main_item_btnCall">Llamar</string>
+    <string name="activity_main_item_lblRepeater">REP</string>
+    <string name="main_activity_grade_and_level">%1$s de %2$s</string>
+    <string name="main_activity_call_sb">Llamar a %1$s</string>
+    <string name="main_activity_show_sb_marks">Ver notas de %1$s</string>
+</resources>

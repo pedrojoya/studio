@@ -20,71 +20,49 @@ import com.tapadoo.alerter.Alerter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView lblTexto;
+    private TextView lblText;
+    private Button btnDynamicToast;
+    private Button btnToastLayout;
+    private Button btnSnackbar;
+    private Button btnStylableToast;
+    private Button btnAlerter;
 
-    // Al crear la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se obtienen e inicializan las vistas.
-        initVistas();
+        initViews();
     }
 
-    // Obtiene e inicializa las vistas.
-    private void initVistas() {
-        lblTexto = (TextView) findViewById(R.id.lblTexto);
-        Button btnToastDinamico = (Button) findViewById(R.id.btnToastDinamico);
-        if (btnToastDinamico != null) {
-            btnToastDinamico.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    // Se muestra un toast creado dinámicamente.
-                    mostrarToastDinamico(R.string.toast_creado_dinamicamente, R.mipmap.ic_launcher);
-                }
-            });
-        }
-        Button btnToastLayout = (Button) findViewById(R.id.btnToastLayout);
-        if (btnToastLayout != null) {
-            btnToastLayout.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    // Se muestra un toast creado dinámicamente.
-                    mostrarToastLayout(R.string.toast_con_layout_propio, R.layout.toast,
-                            R.id.lblMensaje);
-                }
-            });
-        }
-        Button btnSnackbar = (Button) findViewById(R.id.btnSnackbar);
-        if (btnSnackbar != null) {
-            btnSnackbar.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    cambiarVisibilidad(lblTexto);
-                    mostrarSnackbar(getString(R.string.visibilidad_cambiada));
-                }
-            });
-        }
-        Button btnStylableToast = (Button) findViewById(R.id.btnStylableToast);
-        if (btnStylableToast != null) {
-            btnStylableToast.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    new StyleableToast
-                            .Builder(MainActivity.this, getString(R.string.mensaje_toasty))
-                            .withBackgroundColor(Color.RED)
-                            .withTextColor(Color.WHITE)
-                            .withIcon(R.drawable.ic_add_alert, true)
-                            .withDuration(Toast.LENGTH_LONG)
-                            .build()
-                            .show();
-                }
-            });
-        }
-        Button btnAlerter = (Button) findViewById(R.id.btnAlerter);
+    private void initViews() {
+        lblText = findViewById(R.id.lblText);
+        btnDynamicToast = findViewById(R.id.btnDynamicToast);
+        btnToastLayout = findViewById(R.id.btnToastLayout);
+        btnSnackbar = findViewById(R.id.btnSnackbar);
+        btnStylableToast = findViewById(R.id.btnStylableToast);
+        btnAlerter = findViewById(R.id.btnAlerter);
+
+        btnDynamicToast.setOnClickListener(
+                v -> mostrarToastDinamico(R.string.main_activity_dynamic_message,
+                        R.mipmap.ic_launcher));
+        btnToastLayout.setOnClickListener(
+                v -> mostrarToastLayout(R.string.main_activity_layout_message, R.layout.toast,
+                        R.id.lblMessage));
+        btnSnackbar.setOnClickListener(v -> {
+            changeVisibility(lblText);
+            showSnackbar(getString(R.string.main_activity_visibility_changed));
+        });
+        btnStylableToast.setOnClickListener(v -> new StyleableToast.Builder(MainActivity.this,
+                getString(R.string.main_activity_stylable_message)).withBackgroundColor(Color.RED)
+                .withTextColor(Color.WHITE)
+                .withIcon(R.drawable.ic_add_alert, true)
+                .withDuration(Toast.LENGTH_LONG)
+                .build()
+                .show());
         if (btnAlerter != null) {
-            btnAlerter.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    Alerter.create(MainActivity.this).setTitle(R.string.atencion).setText(
-                            R.string.mensaje_alerter).show();
-                }
-            });
+            btnAlerter.setOnClickListener(
+                    v -> Alerter.create(MainActivity.this).setTitle(R.string.main_activity_attention).setText(
+                            R.string.main_activity_alerter_message).show());
         }
     }
 
@@ -147,18 +125,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Cambia la visibilidad de la vista recibida.
-    private void cambiarVisibilidad(View view) {
+    private void changeVisibility(View view) {
         view.setVisibility(view.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
     }
 
-    // Muestra una snackbar con el mensaje y la accion deshacer.
-    private void mostrarSnackbar(String mensaje) {
-        Snackbar.make(lblTexto, mensaje, Snackbar.LENGTH_LONG).setAction(
+    private void showSnackbar(String message) {
+        Snackbar.make(lblText, message, Snackbar.LENGTH_LONG).setAction(
                 getString(R.string.deshacer), new OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        cambiarVisibilidad(lblTexto);
+                        changeVisibility(lblText);
                     }
                 }).show();
     }

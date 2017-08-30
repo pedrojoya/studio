@@ -3,55 +3,68 @@ package es.iessaladillo.pedrojoya.pr206;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import es.iessaladillo.pedrojoya.pr206.data.model.Student;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RC_ALUMNO = 1;
+    private static final int RC_STUDENT = 1;
+    private static final String STATE_STUDENT = "STATE_STUDENT";
 
-    Alumno mAlumno;
+    private TextView lblData;
+    @SuppressWarnings("FieldCanBeLocal")
+    private Button btnRequest;
 
-    private TextView lblDatos;
+    @SuppressWarnings("WeakerAccess")
+    Student mStudent;
 
-    // Al crear la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAlumno = new Alumno("", Alumno.DEFAULT_EDAD);
-        // Se obtienen e inicializan las vistas.
-        initVistas();
+        restoreSavedInstanceState(savedInstanceState);
+        initViews();
+        showStudent();
     }
 
-    // Obtiene e inicializa las vistas.
-    private void initVistas() {
-        // La actividad responderá al pulsar el botón.
-        Button btnSolicitar = (Button) this.findViewById(R.id.btnSolicitar);
-        btnSolicitar.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                solicitarDatos();
-            }
-        });
-        lblDatos = (TextView) this.findViewById(R.id.lblDatos);
+    private void restoreSavedInstanceState(Bundle savedInstanceState) {
+        mStudent = new Student("", Constants.DEFAULT_AGE);
+        if (savedInstanceState != null) {
+            mStudent = savedInstanceState.getParcelable(STATE_STUDENT);
+        }
+
     }
 
-    // Muestra la actividad AlumnoActivity en espera de respuesta.
-    private void solicitarDatos() {
-        AlumnoActivityStarter.startForResult(this, mAlumno, RC_ALUMNO);
+    private void initViews() {
+        lblData = findViewById(R.id.lblData);
+        btnRequest = findViewById(R.id.btnRequest);
+
+        btnRequest.setOnClickListener(v -> requestData());
+    }
+
+    private void requestData() {
+        StudentActivityStarter.startForResult(this, mStudent, RC_STUDENT);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Si el resultado es satisfactorio y el código de petición el adecuado.
-        if (resultCode == RESULT_OK && requestCode == RC_ALUMNO) {
-            // Se obtienen los extros del intent retornado y se inyectan en los campos del alumno.
-            mAlumno = AlumnoActivity.getAlumnoFromExtra(data);
-            lblDatos.setText(getString(R.string.datos, mAlumno.getNombre(), mAlumno.getEdad()));
+        if (resultCode == RESULT_OK && requestCode == RC_STUDENT) {
+            mStudent = StudentActivity.getAlumnoFromExtra(data);
+            showStudent();
         }
+    }
+
+    private void showStudent() {
+        lblData.setText(getString(R.string.main_activity_student_data, mStudent.getName(),
+                mStudent.getAge()));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(STATE_STUDENT, mStudent);
     }
 
 }

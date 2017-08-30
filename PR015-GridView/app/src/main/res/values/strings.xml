@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">PR015-GridView</string>
-    <string name="title_activity_main">GridView</string>
-    <string name="concepto">Concepto</string>
-    <string name="traduccion">%1$s se dice %2$s</string>
+    <string name="app_name">GridView</string>
+
+    <string name="activity_main_item_imgPhoto">Concepto</string>
+
+    <string name="main_activity_translation">%1$s se dice %2$s</string>
 </resources>

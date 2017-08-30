@@ -30,7 +30,7 @@ public class MainActivityTests {
 
     @Test
     public void validateNavegar() {
-        onView(withId(R.id.btnNavegar)).perform(click());
+        onView(withId(R.id.btnShowInBrowser)).perform(click());
         intended(allOf(
                 //toPackage("com.android.browser"),
                 hasAction(Intent.ACTION_VIEW),
@@ -41,7 +41,7 @@ public class MainActivityTests {
 
     @Test
     public void validateBuscar() {
-        onView(withId(R.id.btnBuscar)).perform(click());
+        onView(withId(R.id.btnSearch)).perform(click());
         intended(allOf(
                 //toPackage("com.android.quicksearchbox"),
                 hasAction(Intent.ACTION_WEB_SEARCH),
@@ -52,7 +52,7 @@ public class MainActivityTests {
 
     @Test
     public void validateLlamar() {
-        onView(withId(R.id.btnLlamar)).perform(click());
+        onView(withId(R.id.btnCall)).perform(click());
         intended(allOf(
                 //toPackage("com.android.server.telecom"),
                 hasAction(Intent.ACTION_CALL),
@@ -63,7 +63,7 @@ public class MainActivityTests {
 
     @Test
     public void validateMarcar() {
-        onView(withId(R.id.btnMarcar)).perform(click());
+        onView(withId(R.id.btnDial)).perform(click());
         intended(allOf(
                 //toPackage("com.android.dialer"),
                 hasData(UriMatchers.hasScheme("tel")),
@@ -74,7 +74,7 @@ public class MainActivityTests {
 
     @Test
     public void validateMostrarMapa() {
-        onView(withId(R.id.btnMostrarMapa)).perform(click());
+        onView(withId(R.id.btnShowInMap)).perform(click());
         intended(allOf(
                 //toPackage("com.google.android.apps.maps")
                 hasAction(Intent.ACTION_VIEW),
@@ -85,7 +85,7 @@ public class MainActivityTests {
 
     @Test
     public void validateBuscarMapa() {
-        onView(withId(R.id.btnBuscarMapa)).perform(click());
+        onView(withId(R.id.btnSearchInMap)).perform(click());
         intended(allOf(
                 //toPackage("com.google.android.apps.maps")
                 hasAction(Intent.ACTION_VIEW),
@@ -96,7 +96,7 @@ public class MainActivityTests {
 
     @Test
     public void validateMostrarContactos() {
-        onView(withId(R.id.btnMostrarContactos)).perform(click());
+        onView(withId(R.id.btnShowContacts)).perform(click());
         intended(allOf(
                 //toPackage("com.android.contacts")
                 hasAction(Intent.ACTION_VIEW),

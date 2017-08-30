@@ -1,17 +1,19 @@
 <resources>
 
-    <string name="app_name">ListView optimizado</string>
-    <string name="title_activity_main">ListView optimizado</string>
-    <string name="listado_de_alumnos">Listado de alumnos</string>
-    <string name="foto_del_alumno">Foto del alumno</string>
-    <plurals name="anios">
+    <string name="app_name">Optimized ListView</string>
+
+    <string name="activity_main_lblEmpty">No students yet</string>
+    <string name="activity_main_item_imgPhoto">Photo</string>
+    <string name="activity_main_item_btnMarks">Marks</string>
+    <string name="activity_main_item_btnCall">Call</string>
+    <string name="activity_main_item_lblRepeater">REP</string>
+
+    <plurals name="main_activity_age">
         <item quantity="one">%1$d año</item>
         <item quantity="other">%1$d años</item>
     </plurals>
-    <string name="cursociclo">%1$s del %2$s</string>
-    <string name="Notas">Notas</string>
-    <string name="Llamar">Llamar</string>
-    <string name="llamar_a">Llamar a %1$s</string>
-    <string name="ver_notas_de">Ver notas de %1$s</string>
+    <string name="main_activity_grade_and_level">%1$s of %2$s</string>
+    <string name="main_activity_call_sb">Call %1$s</string>
+    <string name="main_activity_show_sb_marks">Show %1$s\'s marks</string>
 
 </resources>

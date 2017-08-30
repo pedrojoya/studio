@@ -1,51 +1,47 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/activity_margin">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/general_activity_vertical_margin">
 
     <TextView
-        android:id="@+id/lblConcepto"
+        android:id="@+id/lblWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/lblConcepto_paddingLeft"
-        android:paddingStart="@dimen/lblConcepto_paddingLeft"
-        android:paddingRight="@dimen/lblConcepto_paddingLeft"
-        android:paddingEnd="@dimen/lblConcepto_paddingLeft"
-        android:text="@string/concepto"
+        android:labelFor="@+id/txtWord"
+        android:text="@string/activity_main_lblWord"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/primary_text"/>
 
     <AutoCompleteTextView
-        android:id="@+id/txtConcepto"
+        android:id="@+id/txtWord"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnTraducir"
-        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/btnTranslate"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/lblConcepto"
-        android:layout_toLeftOf="@+id/btnTraducir"
-        android:layout_toStartOf="@+id/btnTraducir"
-        android:completionThreshold="1"
-        android:hint="@string/ingles">
+        android:layout_below="@+id/lblWord"
+        android:layout_toStartOf="@+id/btnTranslate"
+        android:completionThreshold="@integer/activity_main_txtWord_threshold"
+        android:hint="@string/activity_main_txtWord"
+        android:maxLines="1">
 
         <requestFocus/>
     </AutoCompleteTextView>
 
     <Button
-        android:id="@+id/btnTraducir"
+        android:id="@+id/btnTranslate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/lblConcepto"
-        android:text="@string/traducir"/>
+        android:layout_below="@+id/lblWord"
+        android:text="@string/activity_main_btnTranslate"/>
 
     <WebView
         android:id="@+id/wvWeb"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/activity_margin"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/txtConcepto"/>
+        android:layout_below="@+id/txtWord"
+        android:layout_marginTop="@dimen/general_activity_vertical_margin"/>
 
 </RelativeLayout>

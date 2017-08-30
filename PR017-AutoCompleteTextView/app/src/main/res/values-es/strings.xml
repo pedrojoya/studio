@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoCompleteTextView</string>
+    <string name="activity_main_lblWord">Palabra</string>
+    <string name="activity_main_btnTranslate">Traducir</string>
+    <string name="activity_main_item_imgPhoto">Foto</string>
+    <string name="activity_main_txtWord">(en inglés)</string>
+</resources>

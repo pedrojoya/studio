@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- Actividad -->
-    <dimen name="activity_margin">10dp</dimen>
-    <dimen name="lblConcepto_paddingLeft">10dp</dimen>
-	<!-- Concepto -->
-    <dimen name="concepto_padding">4dp</dimen>
-    <dimen name="foto_height">40dp</dimen>
-    <dimen name="foto_marginRight">10dp</dimen>
-    
+    <dimen name="general_activity_vertical_margin">16dp</dimen>
+
+    <dimen name="activity_main_lblWord_padding">10dp</dimen>
+
+    <dimen name="activity_main_item_rlWord_padding">4dp</dimen>
+    <dimen name="activity_main_item_imgPhoto_marginRight">10dp</dimen>
+    <dimen name="activity_main_item_imgPhoto_width">40dp</dimen>
 </resources>

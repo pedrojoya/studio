@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AutoCompleteTextView</string>
-    <string name="title_activity_main">AutoCompleteTextView</string>
-    <string name="concepto">Concepto</string>
-    <string name="traducir">Traducir</string>
-    <string name="foto_del_concepto">Foto del concepto</string>
-    <string name="ingles">(inglés)</string>
+
+    <string name="activity_main_lblWord">Word</string>
+    <string name="activity_main_btnTranslate">Translate</string>
+    <string name="activity_main_item_imgPhoto">Photo</string>
+    <string name="activity_main_txtWord">(in english)</string>
 </resources>

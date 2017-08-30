@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alumnos</string>
+    <string name="main_activity_txtName">Nombre</string>
+    <string name="activity_main_btnAdd">Agregar</string>
+    <string name="activity_main_lblEmptyView">No hay alumnos</string>
+</resources>

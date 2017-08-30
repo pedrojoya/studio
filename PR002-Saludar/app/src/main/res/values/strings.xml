@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Saludar</string>
-    <string name="introduzca_nombre">Introduzca su nombre</string>
-    <string name="saludar">Saludar</string>
-    <string name="buenos_dias">Buenos días</string>
-    <string name="saludar_educadamente">Modo educado: Activado</string>
-    <string name="saludar_normal">Modo educado: Desactivado</string>
-    <string name="tenga_usted">tenga usted</string>
+    <string name="app_name">Greeting</string>
+
+    <string name="activity_main_lblName">Name</string>
+    <string name="activity_main_btnGreet">Greet</string>
+    <string name="main_activity_polite_mode">Polite mode: Activated</string>
+
+    <string name="main_activity_good_morning">Good morning</string>
+    <string name="main_activity_impolite_mode">Polite mode: Deactivated</string>
+    <string name="main_activity_nice_to_meet_you">. Nice to meet you</string>
 </resources>

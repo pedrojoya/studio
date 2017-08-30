@@ -1,0 +1,28 @@
+{
+  "students": [
+    {
+      "name": "Dolores Fuertes de Barriga",
+      "age": "22 años",
+      "grade": "2º CFGS DAM",
+      "photo": "@sample/student_photos[photo1.jpg]"
+    },
+    {
+      "name": "Baldomero Llégate Ligero",
+      "age": "17 años",
+      "grade": "2º CFGM SMR",
+      "photo": "@sample/student_photos[photo2.jpg]"
+    },
+    {
+      "name": "Jorge Javier Jiménez Jaén",
+      "age": "36 años",
+      "grade": "1º CFGM SMR",
+      "photo": "@sample/student_photos[photo3.jpg]"
+    },
+    {
+      "name": "Fabián Gonzáles Palomino",
+      "age": "67 años",
+      "grade": "1º CFGS DAM",
+      "photo": "@sample/student_photos[photo4.jpg]"
+    }
+  ]
+}

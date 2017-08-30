@@ -1,0 +1,48 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/general_activity_padding">
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/general_vertical_margin"
+        android:text="@string/activity_main_btnSave"/>
+
+    <Button
+        android:id="@+id/btnRetain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSave"
+        android:layout_marginBottom="@dimen/general_vertical_margin"
+        android:text="@string/activity_main_btnRetain"/>
+
+    <Button
+        android:id="@+id/btnViewModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnStarter"
+        android:layout_marginBottom="@dimen/general_vertical_margin"
+        android:text="@string/activity_main_btnViewModel"/>
+
+    <Button
+        android:id="@+id/btnIcepick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRetain"
+        android:layout_marginBottom="@dimen/general_vertical_margin"
+        android:text="@string/activity_main_btnIcepick"/>
+
+    <Button
+        android:id="@+id/btnStarter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnIcepick"
+        android:layout_marginBottom="@dimen/general_vertical_margin"
+        android:text="@string/activity_main_btnStarter"/>
+
+
+</RelativeLayout>

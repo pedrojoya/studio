@@ -1,10 +1,9 @@
 <resources>
-    <string name="app_name">Menú de opciones</string>
-    <string name="title_activity_main">Menú de opciones</string>
-    <string name="escala_de_grises">Escala de grises</string>
-    <string name="sepia">Sepia</string>
-    <string name="azulado">Azulado</string>
-    <string name="verdoso">Verdoso</string>
-    <string name="fotografia">Fotografía</string>
-    <string name="original">Original</string>
+    <string name="app_name">Options menu</string>
+    <string name="activity_main_mnuGrey">Grey scale</string>
+    <string name="activity_main_mnuSepia">Sepia</string>
+    <string name="activity_main_mnuBlue">Blueish</string>
+    <string name="activity_main_mnuGreen">Greenish</string>
+    <string name="activity_main_imgPhoto">Photo</string>
+    <string name="activity_main_mnuOriginal">Original</string>
 </resources>

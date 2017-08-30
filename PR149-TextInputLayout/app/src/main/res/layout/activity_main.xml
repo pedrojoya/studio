@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_margin"
-    tools:context=".MainActivity">
+    android:padding="@dimen/general_activity_margin"
+    tools:context=".main.MainActivity">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilNombre"
+        android:id="@+id/tilName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_marginBottom="@dimen/general_activity_margin"
         app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nombre"
+            android:hint="@string/activity_main_txtName"
             android:inputType="textPersonName">
 
             <requestFocus/>
@@ -26,20 +27,20 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilTelefono"
+        android:id="@+id/tilPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tilNombre"
+        android:layout_below="@+id/tilName"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/txtTelefono"
+            android:id="@+id/txtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/telefono"
+            android:hint="@string/activity_main_txtPhone"
             android:inputType="phone"
-            android:maxLength="9"/>
+            android:maxLength="@integer/activity_main_txtPhone_maxLength"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -47,7 +48,7 @@
         android:id="@+id/tilEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tilTelefono"
+        android:layout_below="@+id/tilPhone"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
@@ -55,7 +56,7 @@
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email"
+            android:hint="@string/activity_main_txtEmail"
             android:inputType="textEmailAddress"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -67,14 +68,15 @@
         android:layout_below="@+id/tilEmail"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
-        app:passwordToggleContentDescription="@string/cambiar_visualizacion"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleContentDescription="@string/activity_main_tilPassword_passwordToggleContentDescription"
         app:passwordToggleDrawable="@drawable/password_visibility">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
+            android:hint="@string/activity_main_txtPassword"
             android:inputType="textPassword"/>
 
     </android.support.design.widget.TextInputLayout>

@@ -1,0 +1,70 @@
+{
+  "students": [
+    {
+      "name": "Baldomero",
+      "age": 16,
+      "level": "CFGM",
+      "grade": "2º"
+    },
+    {
+      "name": "Sergio",
+      "age": 27,
+      "level": "CFGM",
+      "grade": "1º"
+    },
+    {
+      "name": "Rodolfo",
+      "age": 21,
+      "level": "CFGS",
+      "grade": "1º"
+    },
+    {
+      "name": "Atansio",
+      "age": 17,
+      "level": "CFGS",
+      "grade": "2º"
+    },
+    {
+      "name": "Gervasio",
+      "age": 20,
+      "level": "CFGM",
+      "grade": "1º"
+    },
+    {
+      "name": "Prudencia",
+      "age": 17,
+      "level": "CFGS",
+      "grade": "1º"
+    },
+    {
+      "name": "Oswaldo",
+      "age": 21,
+      "level": "CFGS",
+      "grade": "2º"
+    },
+    {
+      "name": "Gumersindo",
+      "age": 19,
+      "level": "CFGM",
+      "grade": "2º"
+    },
+    {
+      "name": "Gerardo",
+      "age": 21,
+      "level": "CFGM",
+      "grade": "1º"
+    },
+    {
+      "name": "Rodrigo",
+      "age": 18,
+      "level": "CFGS",
+      "grade": "1º"
+    },
+    {
+      "name": "Óscar",
+      "age": 19,
+      "level": "CFGS",
+      "grade": "2º"
+    }
+  ]
+}

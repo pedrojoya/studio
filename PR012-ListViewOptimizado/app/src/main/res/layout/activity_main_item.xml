@@ -9,115 +9,104 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:descendantFocusability="afterDescendants"
-        android:padding="@dimen/card_padding">
+        android:padding="@dimen/activity_main_item_card_padding">
 
         <ImageView
-            android:id="@+id/imgFoto"
-            android:layout_width="@dimen/tarjeta_foto_width"
-            android:layout_height="@dimen/tarjeta_foto_height"
-            android:layout_alignParentLeft="true"
+            android:id="@+id/imgPhoto"
+            android:layout_width="@dimen/activity_main_item_imgPhoto_width"
+            android:layout_height="@dimen/activity_main_item_imgPhoto_height"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
-            android:contentDescription="@string/foto_del_alumno"
-            android:src="@drawable/foto"/>
+            android:contentDescription="@string/activity_main_item_imgPhoto"
+            android:src="@drawable/photo"
+            tools:src="@sample/students.json/students/photo"/>
 
         <TextView
-            android:id="@+id/lblNombre"
+            android:id="@+id/lblName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imgFoto"
-            android:layout_toEndOf="@+id/imgFoto"
-            android:paddingLeft="@dimen/card_content_padding"
-            android:paddingRight="@dimen/card_content_padding"
-            tools:text="Baldomero Llégate Ligero"
+            android:layout_toEndOf="@+id/imgPhoto"
+            android:paddingLeft="@dimen/activity_main_item_card_content_padding"
+            android:paddingRight="@dimen/activity_main_item_card_content_padding"
+            tools:text="@sample/students.json/students/name"
             style="@style/Base.TextAppearance.AppCompat.Subhead"/>
 
         <TextView
-            android:id="@+id/lblCurso"
+            android:id="@+id/lblGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblNombre"
-            android:layout_toRightOf="@+id/imgFoto"
-            android:layout_toEndOf="@+id/imgFoto"
-            android:layout_alignParentRight="true"
+            android:layout_below="@+id/lblName"
+            android:layout_toEndOf="@+id/imgPhoto"
             android:layout_alignParentEnd="true"
-            android:paddingLeft="@dimen/card_content_padding"
-            android:paddingRight="@dimen/card_content_padding"
-            tools:text="2º CFGS DAM"
+            android:paddingLeft="@dimen/activity_main_item_card_content_padding"
+            android:paddingRight="@dimen/activity_main_item_card_content_padding"
+            tools:text="@sample/students.json/students/grade"
             style="@style/Base.TextAppearance.AppCompat.Body2"/>
 
         <TextView
-            android:id="@+id/lblEdad"
+            android:id="@+id/lblAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblCurso"
-            android:layout_toRightOf="@+id/imgFoto"
-            android:layout_toEndOf="@+id/imgFoto"
-            android:layout_alignParentRight="true"
+            android:layout_below="@+id/lblGrade"
+            android:layout_toEndOf="@+id/imgPhoto"
             android:layout_alignParentEnd="true"
-            android:paddingLeft="@dimen/card_content_padding"
-            android:paddingRight="@dimen/card_content_padding"
-            tools:text="22 años"
+            android:paddingLeft="@dimen/activity_main_item_card_content_padding"
+            android:paddingRight="@dimen/activity_main_item_card_content_padding"
+            tools:text="@sample/students.json/students/age"
             style="@style/Base.TextAppearance.AppCompat.Body2"/>
 
         <View
             android:id="@+id/divider"
             android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_toRightOf="@+id/imgFoto"
-            android:layout_toEndOf="@+id/imgFoto"
-            android:layout_below="@+id/lblEdad"
-            android:layout_alignParentRight="true"
+            android:layout_height="@dimen/activity_main_item_divider_height"
+            android:layout_toEndOf="@+id/imgPhoto"
+            android:layout_below="@+id/lblAge"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginTop="@dimen/activity_main_item_divider_marginTop"
+            android:layout_marginBottom="@dimen/activity_main_item_divider_marginBottom"
             android:background="@color/divider"/>
 
         <Button
-            android:id="@+id/btnNotas"
+            android:id="@+id/btnMarks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Notas"
+            android:text="@string/activity_main_item_btnMarks"
             android:layout_below="@+id/divider"
-            android:layout_toLeftOf="@+id/btnLlamar"
-            android:layout_toStartOf="@+id/btnLlamar"
-            android:layout_marginLeft="@dimen/card_content_padding"
-            android:layout_marginStart="@dimen/card_content_padding"
+            android:layout_toStartOf="@+id/btnCall"
+            android:layout_marginStart="@dimen/activity_main_item_card_content_padding"
             style="@style/Widget.AppCompat.Button.Borderless"/>
 
         <Button
-            android:id="@+id/btnLlamar"
+            android:id="@+id/btnCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Llamar"
+            android:text="@string/activity_main_item_btnCall"
             android:layout_below="@+id/divider"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
 
         <TextView
-            android:id="@+id/lblRepetidor"
+            android:id="@+id/lblRepeater"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@color/tarjeta_repetidor_background"
-            android:paddingBottom="@dimen/tarjeta_repetidor_verticalPadding"
-            android:paddingLeft="@dimen/tarjeta_repetidor_horizontalPadding"
-            android:paddingRight="@dimen/tarjeta_repetidor_horizontalPadding"
-            android:paddingTop="@dimen/tarjeta_repetidor_verticalPadding"
-            android:rotation="-45"
-            android:text="REP"
+            android:background="@color/activity_main_item_lblRepeater_background"
+            android:paddingBottom="@dimen/activity_main_item_lblRepeater_verticalPadding"
+            android:paddingLeft="@dimen/activity_main_item_lblRepeater_horizontalPadding"
+            android:paddingRight="@dimen/activity_main_item_lblRepeater_horizontalPadding"
+            android:paddingTop="@dimen/activity_main_item_lblRepeater_verticalPadding"
+            android:rotation="@integer/activity_main_item_lblRepeater_rotation"
+            android:text="@string/activity_main_item_lblRepeater"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/tarjeta_repetidor_textSize"
-            android:translationX="@dimen/tarjeta_repetidor_translationX"
-            android:translationY="@dimen/tarjeta_repetidor_translationY"
-            tools:ignore="HardcodedText"/>
+            android:textSize="@dimen/activity_main_item_lblRepeater_textSize"
+            android:translationX="@dimen/activity_main_item_lblRepeater_translationX"
+            android:translationY="@dimen/activity_main_item_lblRepeater_translationY"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

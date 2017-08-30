@@ -1,9 +1,10 @@
 <resources>
 
-    <dimen name="panel_margin">8dp</dimen>
-    <dimen name="empty_drawablePadding">10dp</dimen>
-    <dimen name="btnAgregar_padding">8dp</dimen>
-    <dimen name="btnAgregar_width">48dp</dimen>
-    <dimen name="divider_height">2dp</dimen>
+    <dimen name="general_activity_horizontal_margin">8dp</dimen>
+    <dimen name="general_divider_height">2dp</dimen>
+
+    <dimen name="activity_main_lblEmptyView_drawablePadding">10dp</dimen>
+    <dimen name="activity_main_btnAdd_padding">8dp</dimen>
+    <dimen name="activity_main_btnAdd_width">48dp</dimen>
 
 </resources>

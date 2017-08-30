@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    	<!-- Cuando el botón está deshabilitado -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/btnCheck_background_cornersRadius" />
+            <solid android:color="@color/general_button_disabled" />
+            <size android:height="@dimen/activity_main_btnCheck_height" android:width="@dimen/activity_main_btnCheck_width" />
+        </shape>
+    </item>
+
+    <!-- En el resto de estados -->
+    <item>
+        <!-- Lista de capas -->
+        <layer-list>
+            <!-- Capa de fondo -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/btnCheck_background_cornersRadius" />
+                    <solid android:color="@color/activity_main_btncheck_background_color" />
+                    <size android:height="@dimen/activity_main_btnCheck_height" 
+                        android:width="@dimen/activity_main_btnCheck_width" />
+                </shape>
+            </item>
+            <!-- Capa de anillo claro -->
+            <item android:bottom="@dimen/btnCheck_central_layer_offset"
+                android:left="@dimen/btnCheck_central_layer_offset"
+                android:right="@dimen/btnCheck_central_layer_offset"
+                android:top="@dimen/btnCheck_central_layer_offset">
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/btnCheck_background_cornersRadius" />
+                    <size android:height="@dimen/btnCheck_central_layer_height"
+                        android:width="@dimen/btnCheck_central_layer_width" />
+                    <solid android:color="@color/activity_fondo" />
+                </shape>
+            </item>
+            <!-- Capa de primer plano -->
+            <item android:bottom="@dimen/btnCheck_inner_layer_offset"
+                android:left="@dimen/btnCheck_inner_layer_offset"
+                android:right="@dimen/btnCheck_inner_layer_offset"
+                android:top="@dimen/btnCheck_inner_layer_offset">
+                <shape android:shape="rectangle">
+                    <corners android:radius="@dimen/btnCheck_background_cornersRadius" />
+                    <size android:height="@dimen/btnCheck_inner_layer_height"
+                        android:width="@dimen/btnCheck_inner_layer_width" />
+                    <gradient android:angle="0" android:endColor="@color/respuesta_fondo" 
+                        android:startColor="@color/activity_main_btncheck_background_color" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

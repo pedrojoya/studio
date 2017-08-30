@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Intents Explícitos</string>
+
+    <string name="activity_main_lblTitle">Datos del alumno</string>
+    <string name="activity_main_lblData">(no disponibles)</string>
+    <string name="activity_main_btnRequest">Solicitar</string>
+
+    <string name="activity_student_lblName">Nombre</string>
+    <string name="activity_student_lblAge">Edad</string>
+    <string name="activity_student_btnSend">Aceptar</string>
+    <string name="activity_student_txtName">(nombre completo)</string>
+    <string name="activity_student_txtAge">(edad)</string>
+
+    <string name="main_activity_student_data">Nombre: %1$s\nEdad: %2$d</string>
+</resources>

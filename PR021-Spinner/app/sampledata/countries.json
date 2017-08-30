@@ -1,0 +1,60 @@
+{
+  "countries": [
+    {
+      "name": "Germany",
+      "flag": "@sample/flags[de.png]"
+    },
+    {
+      "name": "Denmark",
+      "flag": "@sample/flags[dk.png]"
+    },
+    {
+      "name": "Spain",
+      "flag": "@sample/flags[es.png]"
+    },
+    {
+      "name": "Finland",
+      "flag": "@sample/flags[fi.png]"
+    },
+    {
+      "name": "France",
+      "flag": "@sample/flags[fr.png]"
+    },
+    {
+      "name": "Greece",
+      "flag": "@sample/flags[gr.png]"
+    },
+    {
+      "name": "Holand",
+      "flag": "@sample/flags[nl.png]"
+    },
+    {
+      "name": "Ireland",
+      "flag": "@sample/flags[ie.png]"
+    },
+    {
+      "name": "Iceland",
+      "flag": "@sample/flags[is.png]"
+    },
+    {
+      "name": "Italy",
+      "flag": "@sample/flags[it.png]"
+    },
+    {
+      "name": "Lithuania",
+      "flag": "@sample/flags[lt.png]"
+    },
+    {
+      "name": "Norway",
+      "flag": "@sample/flags[no.png]"
+    },
+    {
+      "name": "Poland",
+      "flag": "@sample/flags[pl.png]"
+    },
+    {
+      "name": "Portugal",
+      "flag": "@sample/flags[pt.png]"
+    }
+  ]
+}

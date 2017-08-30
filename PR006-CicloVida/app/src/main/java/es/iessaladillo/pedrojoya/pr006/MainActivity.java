@@ -8,102 +8,74 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Constantes.
-    private static final String LOG_PROYECTO = "CICLO";
-    private static final String STATE_LISTADO = "mListado";
+    private static final String STATE_EVENT_LIST = "STATE_EVENT_LIST";
 
-    // Variables a nivel de clase.
-    private String mListado = "";
+    private TextView lblEventList;
 
-    // Vistas.
-    private TextView lblListado;
+    private String mEventList = "";
 
-    // Al crear la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se obtienen e inicializan las vistas.
-        lblListado = (TextView) this.findViewById(R.id.lblListado);
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.oncreate));
+        lblEventList = findViewById(R.id.lblEventList);
+        showEvent(getString(R.string.main_activity_oncreate));
     }
 
-    // Al destruir la actividad.
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.ondestroy));
+        showEvent(getString(R.string.main_activity_ondestroy));
     }
 
-    // Al pausar la actividad.
     @Override
     protected void onPause() {
         super.onPause();
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.onpause));
+        showEvent(getString(R.string.main_activity_onpause));
     }
 
-    // Al volver a estar en primer plano la actividad.
     @Override
     protected void onResume() {
         super.onResume();
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.onresume));
+        showEvent(getString(R.string.main_activity_onresume));
     }
 
-    // Al salvar la instancia por cambio de configuración.
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // Se almacena el valor de mListado.
-        outState.putString(STATE_LISTADO, mListado);
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.onsaveinstancestate));
+        outState.putString(STATE_EVENT_LIST, mEventList);
+        showEvent(getString(R.string.main_activity_onsaveinstancestate));
     }
 
-    // Al restaurar la instancia después de un cambio de configuración.
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        // Se restaura el valor de mListado.
-        mListado = savedInstanceState.getString(STATE_LISTADO);
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.onrestoreinstancestate));
+        mEventList = savedInstanceState.getString(STATE_EVENT_LIST);
+        showEvent(getString(R.string.main_activity_onrestoreinstancestate));
     }
 
-    // Al iniciar la actividad.
     @Override
     protected void onStart() {
         super.onStart();
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.onstart));
+        showEvent(getString(R.string.main_activity_onstart));
     }
 
-    // Al parar la actividad.
     @Override
     protected void onStop() {
         super.onStop();
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.onstop));
+        showEvent(getString(R.string.main_activity_onstop));
     }
 
-    // Al reiniciar la actividad.
     @Override
     protected void onRestart() {
         super.onRestart();
-        // Se envía el mensaje de depuración.
-        escribirLog(getString(R.string.onrestart));
+        showEvent(getString(R.string.main_activity_onrestart));
     }
 
-    // Se envía el mensaje de depuración.
-    private void escribirLog(String metodo) {
-        // Se muestra el log.
-        Log.d(LOG_PROYECTO, metodo);
-        // Se agrega al listado.
-        mListado = mListado.concat(metodo);
-        lblListado.setText(mListado);
+    private void showEvent(String event) {
+        Log.d(getString(R.string.app_name), event);
+        mEventList = mEventList.concat(event);
+        lblEventList.setText(mEventList);
     }
 
 }

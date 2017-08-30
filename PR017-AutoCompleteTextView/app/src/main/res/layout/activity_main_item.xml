@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/concepto_padding">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlWord"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_main_item_rlWord_padding">
 
     <ImageView
-        android:id="@+id/imgFoto"
-        android:layout_width="@dimen/foto_height"
-        android:layout_height="@dimen/foto_height"
-        android:layout_marginRight="@dimen/foto_marginRight"
-        android:layout_marginEnd="@dimen/foto_marginRight"
-        android:contentDescription="@string/foto_del_concepto"/>
+        android:id="@+id/imgPhoto"
+        android:layout_width="@dimen/activity_main_item_imgPhoto_width"
+        android:layout_height="@dimen/activity_main_item_imgPhoto_width"
+        android:layout_marginEnd="@dimen/activity_main_item_imgPhoto_marginRight"
+        android:contentDescription="@string/activity_main_item_imgPhoto"
+        tools:src="@sample/words.json/words/icon"/>
 
     <TextView
         android:id="@+id/lblEnglish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/imgFoto"
-        android:layout_toEndOf="@+id/imgFoto"
         android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:layout_toEndOf="@+id/imgPhoto"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="@sample/words.json/words/english"/>
 
 </RelativeLayout>

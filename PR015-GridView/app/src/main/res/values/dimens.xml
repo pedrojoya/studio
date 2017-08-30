@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="grid_padding">1dp</dimen>
-    <dimen name="info_height">68dp</dimen>
-    <dimen name="info_padding">16dp</dimen>
+    <dimen name="activity_main_grdWords_padding">1dp</dimen>
+
+    <dimen name="activity_main_item_llInfo_height">68dp</dimen>
+    <dimen name="activity_main_item_llInfo_padding">16dp</dimen>
+    <dimen name="activity_main_item_lblEnglish_textSize">14sp</dimen>
 </resources>

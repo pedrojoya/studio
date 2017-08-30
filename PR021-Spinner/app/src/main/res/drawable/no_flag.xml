@@ -4,7 +4,7 @@
     <solid android:color="@android:color/transparent" />
 
     <stroke
-        android:width="@dimen/noflag_strokeWidth"
+        android:width="@dimen/drawable_noflag_strokeWidth"
         android:color="@color/accent_light" />
 
 </shape>

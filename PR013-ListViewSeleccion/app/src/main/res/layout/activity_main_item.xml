@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lblAnswer"
+    android:layout_width="@dimen/activity_main_item_lblAnswer_width"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:gravity="center"
+    android:background="@drawable/activity_main_item_lblanswer_background"/>

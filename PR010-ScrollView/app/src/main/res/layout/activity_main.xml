@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/lblCabecera"
+        android:id="@+id/lblTitle"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/panel_de_mensajes"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_marginEnd="@dimen/general_activity_horizontal_margin"
+        android:layout_marginStart="@dimen/general_activity_horizontal_margin"
+        android:layout_marginTop="@dimen/general_activity_vertical_margin"
+        android:text="@string/activity_main_lblTitle"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"/>
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/scvTexto"
+        android:id="@+id/scvText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/lblCabecera"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/lblCabecera"
+        android:layout_marginBottom="@dimen/general_activity_horizontal_margin"
+        android:layout_marginTop="@dimen/general_activity_vertical_margin"
+        app:layout_constraintBottom_toTopOf="@+id/llPanel"
+        app:layout_constraintLeft_toLeftOf="@+id/lblTitle"
+        app:layout_constraintRight_toRightOf="@+id/lblTitle"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/lblCabecera"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/llPanel">
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
 
         <TextView
-            android:id="@+id/lblTexto"
+            android:id="@+id/lblText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
@@ -49,12 +47,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/primary_light"
-        android:paddingBottom="@dimen/panel_paddingBottom"
-        android:paddingEnd="@dimen/panel_paddingRight"
-        android:paddingLeft="@dimen/panel_paddingLeft"
-        android:paddingRight="@dimen/panel_paddingRight"
-        android:paddingStart="@dimen/panel_paddingLeft"
-        android:paddingTop="@dimen/panel_paddingTop"
+        android:paddingBottom="@dimen/general_activity_horizontal_margin"
+        android:paddingEnd="@dimen/general_activity_horizontal_margin"
+        android:paddingStart="@dimen/general_activity_vertical_margin"
+        android:paddingTop="@dimen/general_activity_horizontal_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -63,29 +59,29 @@
         tools:layout_constraintRight_creator="1">
 
         <EditText
-            android:id="@+id/txtMensaje"
+            android:id="@+id/txtMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:hint="@string/mensaje"
+            android:hint="@string/activity_main_txtMessage"
             android:imeOptions="actionDone"
             android:inputType="textImeMultiLine">
 
-            <requestFocus/>
+            <requestFocus />
         </EditText>
 
         <ImageView
-            android:id="@+id/btnEnviar"
+            android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/panel_paddingRight"
-            android:layout_marginStart="@dimen/panel_paddingRight"
+            android:layout_marginStart="@dimen/general_activity_horizontal_margin"
             android:clickable="true"
-            android:contentDescription="@string/enviar"
-            android:padding="@dimen/button_padding"
-            android:src="@drawable/ic_action_send"/>
+            android:focusable="true"
+            android:contentDescription="@string/activity_main_btnSend"
+            android:padding="@dimen/general_activity_horizontal_margin"
+            android:src="@drawable/ic_action_send" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

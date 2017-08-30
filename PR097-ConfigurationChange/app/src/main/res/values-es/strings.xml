@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Contador</string>
+
+    <string name="activity_main_btnSave">onSave…</string>
+    <string name="activity_main_btnRetain">onRetain…</string>
+    <string name="activity_main_btnIcepick">Icepick</string>
+    <string name="activity_main_btnStarter">ActivityStarter</string>
+    <string name="activity_main_btnViewModel">ViewModel</string>
+
+    <string name="activity_count_btnIncrement">Incrementar</string>
+
+    <string name="save_activity_label">onSaveInstanceState</string>
+    <string name="retain_activity_label">onRetainNonConfigurationInstance</string>
+    <string name="icepick_activity_label">Icepick</string>
+    <string name="starter_activity_label">ActivityStarter</string>
+    <string name="viewmodel_activity_label">ViewModel</string>
+
+</resources>

@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">ListView simple</string>
-    <string name="title_activity_main">Alumnos</string>
-    <string name="nombre">Nombre</string>
-    <string name="agregar">Agregar</string>
-    <string name="no_hay_alumnos">No hay alumnos</string>
+    <string name="app_name">Students</string>
+
+    <string name="main_activity_txtName">Name</string>
+
+    <string name="activity_main_btnAdd">Add</string>
+    <string name="activity_main_lblEmptyView">No students yet</string>
 </resources>

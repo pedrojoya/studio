@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TextInputLayout</string>
+    <string name="activity_main_txtName">Nombre</string>
+    <string name="activity_main_txtPhone">Teléfono</string>
+    <string name="activity_main_txtEmail">Email</string>
+    <string name="activity_main_txtPassword">Contraseña</string>
+    <string name="main_activity_invalid_email">Email no válido</string>
+    <string name="activity_main_tilPassword_passwordToggleContentDescription">Cambiar visualización</string>
+    <string name="main_activity_invalid_phone">Teléfono no válido</string>
+</resources>

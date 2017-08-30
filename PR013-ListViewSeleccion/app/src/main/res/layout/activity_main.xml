@@ -3,79 +3,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_margin"
-    tools:ignore="HardcodedText">
+    android:padding="@dimen/general_activity_margin">
 
     <TextView
-        android:id="@+id/lblPregunta"
+        android:id="@+id/lblQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_marginBottom="@dimen/general_activity_margin"
         android:background="@drawable/callout"
         android:gravity="center"
-        android:text="@string/caballo"
+        android:text="@string/activity_main_lblQuestion"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <ListView
-        android:id="@+id/lstRespuestas"
-        android:layout_width="@dimen/listview_width"
+        android:id="@+id/lstAnswers"
+        android:layout_width="@dimen/activity_main_lstAnswers_width"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/frlContador"
-        android:layout_below="@+id/lblPregunta"
+        android:layout_above="@+id/frlTimeout"
+        android:layout_below="@+id/lblQuestion"
         android:layout_centerHorizontal="true"
         android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/listview_dividerHeight"
+        android:dividerHeight="@dimen/activity_main_lstAnswers_dividerHeight"
         android:listSelector="@android:color/transparent"
-        tools:listitem="@layout/activity_main_respuesta"/>
+        tools:listitem="@layout/activity_main_item"/>
 
     <FrameLayout
-        android:id="@+id/frlContador"
+        android:id="@+id/frlTimeout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin">
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin">
 
         <View
-            android:id="@+id/vContador"
-            android:layout_width="@dimen/contador_width"
-            android:layout_height="@dimen/contador_width"
-            android:background="@drawable/contador_fondo"/>
+            android:id="@+id/vTimeout"
+            android:layout_width="@dimen/activity_main_vTimeout_width"
+            android:layout_height="@dimen/activity_main_vTimeout_width"
+            android:background="@drawable/activity_main_vtimeout_background"/>
 
         <TextView
-            android:id="@+id/lblContador"
-            android:layout_width="@dimen/contador_width"
-            android:layout_height="@dimen/contador_width"
+            android:id="@+id/lblTimeout"
+            android:layout_width="@dimen/activity_main_vTimeout_width"
+            android:layout_height="@dimen/activity_main_vTimeout_width"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"/>
 
         <Button
-            android:id="@+id/btnComprobar"
-            android:layout_width="@dimen/boton_width"
-            android:layout_height="@dimen/boton_height"
-            android:layout_marginTop="@dimen/activity_margin"
-            android:background="@drawable/boton_fondo"
+            android:id="@+id/btnCheck"
+            android:layout_width="@dimen/activity_main_btnCheck_width"
+            android:layout_height="@dimen/activity_main_btnCheck_height"
+            android:layout_marginTop="@dimen/general_activity_margin"
+            android:background="@drawable/activity_main_btncheck_background"
             android:enabled="false"
-            android:text="Comprobar"
+            android:text="@string/activity_main_btnCheck"
             android:textColor="@android:color/white"
             android:visibility="gone"/>
     </FrameLayout>
 
     <TextView
-        android:id="@+id/lblPuntuacion"
+        android:id="@+id/lblScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/frlContador"
-        android:layout_toRightOf="@+id/frlContador"
-        android:layout_toEndOf="@+id/frlContador"
-        android:background="@drawable/puntuacion_fondo_correcto"
+        android:layout_alignTop="@+id/frlTimeout"
+        android:layout_toEndOf="@+id/frlTimeout"
+        android:background="@drawable/activity_main_lblscore_background"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginStart="@dimen/activity_margin"
+        android:layout_marginStart="@dimen/general_activity_margin"
         android:visibility="invisible"/>
 
 </RelativeLayout>

@@ -1,0 +1,64 @@
+{
+  "words": [
+    {
+      "english": "Animal",
+      "spanish": "Animal",
+      "icon": "@sample/words_icons[animal.jpg]"
+    },
+    {
+      "english": "Bridge",
+      "spanish": "Puente",
+      "icon": "@sample/words_icons[bridge.jpg]"
+    },
+    {
+      "english": "Flag",
+      "spanish": "Bandera",
+      "icon": "@sample/words_icons[flag.jpg]"
+    },
+    {
+      "english": "Food",
+      "spanish": "Comida",
+      "icon": "@sample/words_icons[food.jpg]"
+    },
+    {
+      "english": "Fruit",
+      "spanish": "Fruta",
+      "icon": "@sample/words_icons[fruit.jpg]"
+    },
+    {
+      "english": "Glass",
+      "spanish": "Vaso",
+      "icon": "@sample/words_icons[glass.jpg]"
+    },
+    {
+      "english": "Plant",
+      "spanish": "Planta",
+      "icon": "@sample/words_icons[plant.jpg]"
+    },
+    {
+      "english": "Science",
+      "spanish": "Ciencia",
+      "icon": "@sample/words_icons[science.jpg]"
+    },
+    {
+      "english": "Sea",
+      "spanish": "Mar",
+      "icon": "@sample/words_icons[sea.jpg]"
+    },
+    {
+      "english": "Space",
+      "spanish": "Espacio",
+      "icon": "@sample/words_icons[space.jpg]"
+    },
+    {
+      "english": "Art",
+      "spanish": "Arte",
+      "icon": "@sample/words_icons[art.jpg]"
+    },
+    {
+      "english": "Furniture",
+      "spanish": "Mobiliario",
+      "icon": "@sample/words_icons[furniture.jpg]"
+    }
+  ]
+}

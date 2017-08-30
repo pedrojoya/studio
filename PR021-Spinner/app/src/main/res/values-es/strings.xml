@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Spinner</string>
+
+    <string name="activity_main_btnShow">Mostrar</string>
+    <string name="activity_main_lblCountry">País</string>
+
+    <string name="activity_main_item_imgFlag">Bandera</string>
+
+    <string name="main_activity_choose_one_country">[Elija un país]</string>
+</resources>

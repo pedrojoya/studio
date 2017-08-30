@@ -3,80 +3,56 @@ package es.iessaladillo.pedrojoya.pr005;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    // Constantes.
-    private static final int RC_ALUMNO = 1;
+    private static final int RC_STUDENT = 1;
 
-    // Variables a nivel de clase.
-    private String nombre;
-    private int edad;
+    // NOTE: These two fiels should be saved on configuration change (not explained yet)
+    private String mName;
+    private int mAge = Constants.DEFAULT_AGE;
 
-    private TextView lblDatos;
+    private TextView lblData;
+    @SuppressWarnings("FieldCanBeLocal")
+    private Button btnRequest;
 
-    // Al crear la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se obtienen e inicializan las vistas.
-        initVistas();
+        initViews();
     }
 
-    // Obtiene e inicializa las vistas.
-    private void initVistas() {
-        // La actividad responderá al pulsar el botón.
-        Button btnSolicitar = (Button) this.findViewById(R.id.btnSolicitar);
-        if (btnSolicitar != null) {
-            btnSolicitar.setOnClickListener(this);
-        }
-        lblDatos = (TextView) this.findViewById(R.id.lblDatos);
+    private void initViews() {
+        btnRequest = findViewById(R.id.btnRequest);
+        lblData = findViewById(R.id.lblData);
+        btnRequest.setOnClickListener(v -> requestData());
     }
 
-    // Cuando se hace click.
-    public void onClick(View vista) {
-        // Dependiendo del botón.
-        int id = vista.getId();
-        if (id == R.id.btnSolicitar) {
-            // Solicito los datos del alumno.
-            solicitarDatos();
-        }
+    private void requestData() {
+        StudentActivity.startForResult(this, RC_STUDENT, mName, mAge);
     }
 
-    // Muestra la actividad AlumnoActivity en espera de respuesta.
-    private void solicitarDatos() {
-        AlumnoActivity.startForResult(this, RC_ALUMNO, nombre, edad);
-    }
-
-    // Cuando llega una respuesta.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Si el resultado es satisfactorio y el código de petición el adecuado.
-        if (resultCode == RESULT_OK && requestCode == RC_ALUMNO) {
-            // Se obtienen los datos de retorno.
-            getDatosRetorno(data);
+        if (resultCode == RESULT_OK && requestCode == RC_STUDENT) {
+            getReturnData(data);
         }
     }
 
-    // Obtiene los datos retornados del intent de retorno.
-    private void getDatosRetorno(Intent intent) {
-        // Se actualiza el alumno en base a los datos recibidos.
+    private void getReturnData(Intent intent) {
         if (intent != null) {
-            if (intent.hasExtra(AlumnoActivity.EXTRA_NOMBRE)) {
-                nombre = intent.getStringExtra(AlumnoActivity.EXTRA_NOMBRE);
+            if (intent.hasExtra(StudentActivity.EXTRA_NAME)) {
+                mName = intent.getStringExtra(StudentActivity.EXTRA_NAME);
             }
-            if (intent.hasExtra(AlumnoActivity.EXTRA_EDAD)) {
-                edad = intent.getIntExtra(AlumnoActivity.EXTRA_EDAD,
-                        Alumno.DEFAULT_EDAD);
+            if (intent.hasExtra(StudentActivity.EXTRA_AGE)) {
+                mAge = intent.getIntExtra(StudentActivity.EXTRA_AGE,
+                        Constants.DEFAULT_AGE);
             }
         }
-        // Se muestran los datos del alumno.
-        lblDatos.setText(getString(R.string.datos, nombre, edad));
+        lblData.setText(getString(R.string.main_activity_student_data, mName, mAge));
     }
 
 }

@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">TextInputLayout</string>
-    <string name="nombre">Nombre</string>
-    <string name="telefono">Teléfono</string>
-    <string name="email">Email</string>
-    <string name="password">Contraseña</string>
-    <string name="cambiar_visualizacion">Cambiar visualización</string>
+
+    <string name="activity_main_txtName">Name</string>
+    <string name="activity_main_txtPhone">Phone number</string>
+    <string name="activity_main_txtEmail">Email</string>
+    <string name="activity_main_txtPassword">Password</string>
+    <string name="activity_main_tilPassword_passwordToggleContentDescription">Change visibility</string>
+
+    <string name="main_activity_invalid_phone">Invalid phone number</string>
+    <string name="main_activity_invalid_email">Invalid email</string>
 </resources>

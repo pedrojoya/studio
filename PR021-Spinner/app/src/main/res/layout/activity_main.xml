@@ -1,31 +1,32 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/activity_main_padding">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/general_activity_vertical_margin">
 
     <TextView
-        android:id="@+id/lblPaisLabel"
+        android:id="@+id/lblCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginBottom="@dimen/activity_main_padding"
-        android:text="@string/pais"/>
+        android:layout_marginBottom="@dimen/general_activity_vertical_margin"
+        android:text="@string/activity_main_lblCountry"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <Spinner
-        android:id="@+id/spnPais"
+        android:id="@+id/spnCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblPaisLabel"
-        android:layout_marginTop="@dimen/spnPais_marginTop"
+        android:layout_below="@+id/lblCountry"
+        android:layout_marginTop="@dimen/activity_main_spnCountry_marginTop"
         android:spinnerMode="dialog"
-        tools:listitem="@layout/activity_main_pais_collapsed"/>
+        tools:listitem="@layout/activity_main_item_collapsed"/>
 
     <Button
-        android:id="@+id/btnMostrar"
+        android:id="@+id/btnShow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/mostrar"/>
+        android:text="@string/activity_main_btnShow"/>
 </RelativeLayout>

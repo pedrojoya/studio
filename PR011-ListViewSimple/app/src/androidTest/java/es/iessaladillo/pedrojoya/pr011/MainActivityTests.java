@@ -48,69 +48,69 @@ public class MainActivityTests {
 
     @Test
     public void validateNombreAdded() {
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.btnAgregar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.btnAdd)).perform(click());
         //onData(allOf(is(instanceOf(String.class)), is("Baldomero")))
         //        .inAdapterView(withId(R.id.lstAlumnos)).perform(click());
-        onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
+        onView(withId(R.id.lstStudents)).check(matches(withAdaptedData(is("Baldomero"))));
     }
 
     @Test
     public void validateNombreStillOnAdapterAfterRotation() {
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.btnAgregar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.btnAdd)).perform(click());
         //onData(allOf(is(instanceOf(String.class)), is("Baldomero")))
         //        .inAdapterView(withId(R.id.lstAlumnos)).perform(click());
-        onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
+        onView(withId(R.id.lstStudents)).check(matches(withAdaptedData(is("Baldomero"))));
         rotateScreen();
-        onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
+        onView(withId(R.id.lstStudents)).check(matches(withAdaptedData(is("Baldomero"))));
     }
 
     @Test
     public void validateEmptyViewInvisibleWhenNombreAdded() {
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.btnAgregar)).perform(click());
-        onView(withId(R.id.lblNoHayAlumnos)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.btnAdd)).perform(click());
+        onView(withId(R.id.lblEmptyView)).check(matches(not(isDisplayed())));
     }
 
     @Test
     public void validateEmptyViewVisibleInitially() {
-        onView(withId(R.id.lblNoHayAlumnos)).check(matches(isDisplayed()));
+        onView(withId(R.id.lblEmptyView)).check(matches(isDisplayed()));
     }
 
     @Test
     public void validateNombreRemovedAndEmptyViewVisible() {
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.btnAgregar)).perform(click());
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.btnAdd)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Baldomero")))
-                .inAdapterView(withId(R.id.lstAlumnos)).perform(click());
-        onView(withId(R.id.lstAlumnos)).check(matches(not(withAdaptedData(is("Baldomero")))));
-        onView(withId(R.id.lblNoHayAlumnos)).check(matches(isDisplayed()));
+                .inAdapterView(withId(R.id.lstStudents)).perform(click());
+        onView(withId(R.id.lstStudents)).check(matches(not(withAdaptedData(is("Baldomero")))));
+        onView(withId(R.id.lblEmptyView)).check(matches(isDisplayed()));
     }
 
     @Test
     public void validateBtnAgregarDisabledInitially() {
-        onView(withId(R.id.btnAgregar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.btnAdd)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnAgregarEnabledStateDependingOnTxtNombreHasText() {
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.btnAgregar)).check(matches(isEnabled()));
-        onView(withId(R.id.txtNombre)).perform(clearText());
-        onView(withId(R.id.btnAgregar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.btnAdd)).check(matches(isEnabled()));
+        onView(withId(R.id.txtName)).perform(clearText());
+        onView(withId(R.id.btnAdd)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateTxtNombreHasFocusInitially() {
-        onView(withId(R.id.txtNombre)).check(matches(hasFocus()));
+        onView(withId(R.id.txtName)).check(matches(hasFocus()));
     }
 
     @Test
     public void validateTxtNombreImeActionDone() {
-        onView(withId(R.id.txtNombre)).check(matches(hasImeAction(EditorInfo.IME_ACTION_DONE)));
-        onView(withId(R.id.txtNombre)).perform(replaceText("Baldomero"), pressImeActionButton());
-        onView(withId(R.id.lstAlumnos)).check(matches(withAdaptedData(is("Baldomero"))));
+        onView(withId(R.id.txtName)).check(matches(hasImeAction(EditorInfo.IME_ACTION_DONE)));
+        onView(withId(R.id.txtName)).perform(replaceText("Baldomero"), pressImeActionButton());
+        onView(withId(R.id.lstStudents)).check(matches(withAdaptedData(is("Baldomero"))));
     }
 
 

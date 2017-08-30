@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/activity_main_item_imgPhoto"
+        tools:src="@sample/words.json/words/icon"/>
+
+    <LinearLayout
+        android:id="@+id/llInfo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_main_item_llInfo_height"
+        android:padding="@dimen/activity_main_item_llInfo_padding"
+        android:layout_gravity="bottom"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblEnglish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/activity_main_item_lblEnglish_textSize"
+            tools:text="@sample/words.json/words/english"/>
+
+        <TextView
+            android:id="@+id/lblSpanish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/activity_main_item_lblEnglish_textSize"
+            tools:text="@sample/words.json/words/spanish"/>
+    </LinearLayout>
+
+</FrameLayout>
