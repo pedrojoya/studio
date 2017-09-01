@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Fragmentos</string>
-    <string name="title_activity_detalle">DetalleActivity</string>
-    <string name="cabecera">Cabecera</string>
-    <string name="obra">Obra</string>
-    <string name="pulsa_back">Pulsa Back para volver a \n\"%1$s\"</string>
+    <string name="app_name">Fragments</string>
+    <string name="activity_detail_title">Detail</string>
+    <string name="main_activity_no_item">No item selected</string>
 </resources>

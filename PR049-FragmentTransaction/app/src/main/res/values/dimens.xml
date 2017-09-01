@@ -1,10 +1,3 @@
 <resources>
     
-    <!-- fragment_lista_item -->
-    <dimen name="item_paddingTop">5dp</dimen>
-    <dimen name="item_paddingLeft">10dp</dimen>
-    <dimen name="lblNombre_textSize">14sp</dimen>
-    <dimen name="lblAutor_textSize">12sp</dimen>
-    <dimen name="lblAnio_textSize">10sp</dimen>
-    
 </resources>
