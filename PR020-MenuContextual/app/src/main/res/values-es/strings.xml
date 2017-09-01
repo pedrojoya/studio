@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Menú Contextual</string>
+    <string name="activity_main_menu_edit">Editar %1$s</string>
+    <string name="activity_main_menu_delete">Eliminar %1$s</string>
+    <string name="main_activity_student_click">Has pulsado sobre %1$s</string>
+    <string name="main_activity_menu_header_title">Elija una opción</string>
+</resources>

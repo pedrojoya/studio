@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr018;
 
-import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -8,13 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import es.iessaladillo.pedrojoya.pr018.utils.BitmapUtils;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String STATE_EFFECT = "STATE_EFFECT";
 
     private ImageView imgPhoto;
 
-    private MainActivityViewModel mViewModel;
     private int effectId = R.id.mnuOriginal;
 
     @Override
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         restoreSavedInstanceState(savedInstanceState);
 
     }
@@ -75,19 +75,23 @@ public class MainActivity extends AppCompatActivity {
     private boolean setCorrectBitmap(@IdRes int itemId) {
         switch (itemId) {
             case R.id.mnuOriginal:
-                imgPhoto.setImageBitmap(mViewModel.getOriginalBitmap());
+                imgPhoto.getDrawable().setColorFilter(null);
                 break;
             case R.id.mnuGrey:
-                imgPhoto.setImageBitmap(mViewModel.getGreyBitmap());
+                imgPhoto.getDrawable().setColorFilter(new ColorMatrixColorFilter
+                        (BitmapUtils.getGreyColorMatrix()));
                 break;
             case R.id.mnuSepia:
-                imgPhoto.setImageBitmap(mViewModel.getSepiaBitmap());
+                imgPhoto.getDrawable().setColorFilter(new ColorMatrixColorFilter
+                        (BitmapUtils.getSepiaColorMatrix()));
                 break;
-            case R.id.mnuBlue:
-                imgPhoto.setImageBitmap(mViewModel.getBlueBitmap());
+            case R.id.mnuBinary:
+                imgPhoto.getDrawable().setColorFilter(new ColorMatrixColorFilter
+                        (BitmapUtils.getBinaryColorMatrix()));
                 break;
-            case R.id.mnuGreen:
-                imgPhoto.setImageBitmap(mViewModel.getGreenBitmap());
+            case R.id.mnuInverted:
+                imgPhoto.getDrawable().setColorFilter(new ColorMatrixColorFilter
+                        (BitmapUtils.getInvertedColorMatrix()));
                 break;
             default:
                 return false;

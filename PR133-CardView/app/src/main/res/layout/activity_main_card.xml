@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/activity_main_card_imgPhoto"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/prairie"/>
+
+    <TextView
+        android:id="@+id/lblDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/general_activity_margin"
+        android:layout_marginEnd="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_lblAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
+
+    <TextView
+        android:id="@+id/lblAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/general_activity_margin"
+        android:layout_marginEnd="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_lblDescription"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblDescription"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/activity_main_card_divider_height"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblAddress"/>
+
+    <Button
+        android:id="@+id/btnShare"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:text="@string/activity_main_card_btnShare"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"/>
+
+    <Button
+        android:id="@+id/btnExplore"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:text="@string/activity_main_card_btnExplore"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnShare"
+        app:layout_constraintTop_toBottomOf="@+id/divider"/>
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_main_card_lblTitle_margin"
+        android:layout_marginStart="@dimen/activity_main_card_lblTitle_margin"
+        android:layout_marginEnd="@dimen/activity_main_card_lblTitle_margin"
+        android:fontFamily="@font/chelsea_market"
+        android:text="@string/activity_main_card_lblTitle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPhoto"
+        app:layout_constraintEnd_toEndOf="@+id/imgPhoto"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

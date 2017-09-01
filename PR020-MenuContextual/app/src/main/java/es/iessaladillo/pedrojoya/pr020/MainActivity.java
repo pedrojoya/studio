@@ -6,89 +6,74 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView lstAlumnos;
+    private ListView lstStudents;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initVistas();
+        initViews();
     }
 
-    private void initVistas() {
-        lstAlumnos = (ListView) findViewById(R.id.lstAlumnos);
-        // Se crea el adaptador con los datos obtenidos a partir de un recurso
-        // array de cadena y un layout estándar.
-        ArrayAdapter<String> adaptador = new ArrayAdapter<>(this,
+    private void initViews() {
+        lstStudents = findViewById(R.id.lstStudents);
+
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.alumnos));
-        lstAlumnos.setAdapter(adaptador);
-        lstAlumnos.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> lst, View vistafila,
-                    int posicion, long id) {
-                mostrarMensaje(getString(R.string.ha_pulsado_sobre,
-                        (String) lstAlumnos.getItemAtPosition(posicion)));
-            }
-        });
-        // Se registra el ListView para que tenga menú contextual.
-        registerForContextMenu(lstAlumnos);
+                getResources().getStringArray(R.array.students));
+        lstStudents.setAdapter(mAdapter);
+        lstStudents.setOnItemClickListener((adapterView, view, position, id) ->
+                showMessage(getString(R.string.main_activity_student_click,
+                (String) lstStudents.getItemAtPosition(position))));
+        // Register ListView for context menu.
+        registerForContextMenu(lstStudents);
     }
 
-    // Cuando se debe crear el menú contextual.
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
             ContextMenuInfo menuInfo) {
-        // Si se ha hecho LongClick sobre la lista.
-        if (v.getId() == R.id.lstAlumnos) {
-            // Se obtiene la posición de la lista en la que se ha pulsado.
+        if (v.getId() == R.id.lstStudents) {
+            // Get position form menuInfo.
             int position = ((AdapterContextMenuInfo) menuInfo).position;
-            // Se modifican los ítems del menú para que aparezca el nombre
-            // sobre el que se ha pulsado.
+            // Update menu text to include student.
             getMenuInflater().inflate(R.menu.activity_main_contextual, menu);
-            menu.findItem(R.id.mnuEditar).setTitle(
-                    getString(R.string.editar, lstAlumnos.getItemAtPosition(position)));
-            menu.findItem(R.id.mnuEliminar).setTitle(
-                    getString(R.string.eliminar, lstAlumnos.getItemAtPosition(position)));
-            // Se establece el título del menú.
-            menu.setHeaderTitle(R.string.elija_una_opcion);
+            menu.findItem(R.id.mnuEdit).setTitle(
+                    getString(R.string.activity_main_menu_edit, lstStudents.getItemAtPosition(position)));
+            menu.findItem(R.id.mnuDelete).setTitle(
+                    getString(R.string.activity_main_menu_delete, lstStudents.getItemAtPosition(position)));
+            menu.setHeaderTitle(R.string.main_activity_menu_header_title);
         }
-        // Se llama al padre por si quiere añadir algún elemento.
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
-    // Cuando se ha seleccionado un elemento del menú contextual.
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        // Dependiendo de la opción seleccionada
+        // Get position form menuInfo.
         int position = ((AdapterContextMenuInfo) item.getMenuInfo()).position;
         switch (item.getItemId()) {
-            case R.id.mnuEditar:
-                mostrarMensaje(getString(R.string.editar, lstAlumnos.getItemAtPosition(position)));
+            case R.id.mnuEdit:
+                showMessage(getString(R.string.activity_main_menu_edit, lstStudents.getItemAtPosition(position)));
                 break;
-            case R.id.mnuEliminar:
-                mostrarMensaje(getString(R.string.eliminar,
-                        lstAlumnos.getItemAtPosition(position)));
+            case R.id.mnuDelete:
+                showMessage(getString(R.string.activity_main_menu_delete,
+                        lstStudents.getItemAtPosition(position)));
                 break;
             default:
-                // Retorno lo que retorne el padre.
                 return super.onContextItemSelected(item);
         }
-        // Se indica que ya se ha gestionado el evento.
+        // Event processed.
         return true;
     }
 
-    private void mostrarMensaje(String mensaje) {
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT)
+    private void showMessage(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
                 .show();
     }
 

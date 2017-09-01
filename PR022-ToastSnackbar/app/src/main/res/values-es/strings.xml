@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Toast y Snackbar</string>
+    <string name="activity_main_btnToast">Toast</string>
+    <string name="activity_main_btnToastLayout">Toast con layout propio</string>
+    <string name="activity_main_btnSnackbar">Cambiar visibilidad del texto</string>
+    <string name="activity_main_lblText">En un lugar de la Mancha de cuyo nombre no quiero acordarme</string>
+    <string name="activity_main_btnAlerter">Alerter</string>
+    <string name="activity_main_btnStylableToast">Stylable Toast</string>
+    <string name="main_activity_toast_message">Mensaje con Toast</string>
+    <string name="main_activity_layout_message">Mensaje con Toast con layout propio</string>
+    <string name="main_activity_visibility_changed">Visibilidad del texto modificada</string>
+    <string name="main_activity_undo">Deshacer</string>
+    <string name="main_activity_stylable_message">Mensaje con Stylable Toast</string>
+    <string name="main_activity_attention">Atención</string>
+    <string name="main_activity_alerter_message">Mensaje con Alerter</string>
+</resources>

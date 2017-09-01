@@ -1,0 +1,94 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnToast"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/general_activity_margin"
+        android:layout_marginLeft="@dimen/general_activity_margin"
+        android:layout_marginRight="@dimen/general_activity_margin"
+        android:layout_marginStart="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_btnToast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"/>
+
+    <Button
+        android:id="@+id/btnToastLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/general_activity_margin"
+        android:layout_marginLeft="@dimen/general_activity_margin"
+        android:layout_marginRight="@dimen/general_activity_margin"
+        android:layout_marginStart="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_btnToastLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnToast"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"/>
+
+    <Button
+        android:id="@+id/btnSnackbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_btnSnackbar"
+        app:layout_constraintLeft_toLeftOf="@+id/btnToastLayout"
+        app:layout_constraintRight_toRightOf="@+id/btnToastLayout"
+        app:layout_constraintTop_toBottomOf="@+id/btnToastLayout"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"/>
+
+    <Button
+        android:id="@+id/btnStylableToast"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/general_activity_margin"
+        android:layout_marginRight="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_btnStylableToast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSnackbar"/>
+
+    <Button
+        android:id="@+id/btnAlerter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/general_activity_margin"
+        android:layout_marginRight="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_btnAlerter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStylableToast"/>
+
+    <TextView
+        android:id="@+id/lblText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/general_activity_margin"
+        android:layout_marginRight="@dimen/general_activity_margin"
+        android:layout_marginStart="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/activity_main_lblText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAlerter"/>
+
+</android.support.constraint.ConstraintLayout>

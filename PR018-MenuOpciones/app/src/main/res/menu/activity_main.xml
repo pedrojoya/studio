@@ -9,9 +9,9 @@
         android:id="@+id/mnuSepia"
         android:title="@string/activity_main_mnuSepia"/>
     <item
-        android:id="@+id/mnuBlue"
-        android:title="@string/activity_main_mnuBlue"/>
+        android:id="@+id/mnuBinary"
+        android:title="@string/activity_main_mnuBinary"/>
     <item
-        android:id="@+id/mnuGreen"
-        android:title="@string/activity_main_mnuGreen"/>
+        android:id="@+id/mnuInverted"
+        android:title="@string/activity_main_mnuInverted"/>
 </menu>

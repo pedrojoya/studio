@@ -2,25 +2,25 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta3'
     }
 }
 
 ext {
-    compileSdkVersion = 25
-    minSdkVersion = 16
-    buildToolsVersion = "25.0.1"
-    support_library_version = "25.3.1"
-    picasso_version = "2.5.2"
-    circleimageview_version = "2.1.0"
-    butterknife_version = "8.5.1"
+    compileSdkVersion = 26
+    minSdkVersion = 19
+    buildToolsVersion = "26.0.0"
+    support_library_version = "26.0.1"
+    arch_version = "1.0.0-alpha9"
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 

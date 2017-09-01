@@ -1,0 +1,20 @@
+<resources>
+
+    <string name="app_name">Toast y Snackbar</string>
+
+    <string name="activity_main_btnToast">Toast</string>
+    <string name="activity_main_btnToastLayout">Toast with custom layout</string>
+    <string name="activity_main_btnSnackbar">Change text visibility</string>
+    <string name="activity_main_lblText">Somewhere in la Mancha, in a place whose name I do not care to remember</string>
+    <string name="activity_main_btnAlerter">Alerter</string>
+    <string name="activity_main_btnStylableToast">Stylable Toast</string>
+
+    <string name="main_activity_toast_message">Toast message</string>
+    <string name="main_activity_layout_message">Toast message with custom layout</string>
+    <string name="main_activity_visibility_changed">Text visibility changed</string>
+    <string name="main_activity_undo">Undo</string>
+    <string name="main_activity_stylable_message">Stylable Toast message</string>
+    <string name="main_activity_attention">Attention</string>
+    <string name="main_activity_alerter_message">Alerter message</string>
+
+</resources>

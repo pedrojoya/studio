@@ -2,8 +2,8 @@
     <string name="app_name">Options menu</string>
     <string name="activity_main_mnuGrey">Grey scale</string>
     <string name="activity_main_mnuSepia">Sepia</string>
-    <string name="activity_main_mnuBlue">Blueish</string>
-    <string name="activity_main_mnuGreen">Greenish</string>
+    <string name="activity_main_mnuBinary">Binary</string>
+    <string name="activity_main_mnuInverted">Inverted</string>
     <string name="activity_main_imgPhoto">Photo</string>
     <string name="activity_main_mnuOriginal">Original</string>
 </resources>

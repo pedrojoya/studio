@@ -1,19 +1,9 @@
 <resources>
-    <string name="app_name">Menú Contextual</string>
-    <string name="title_activity_main">Menú contextual</string>
-    <string-array name="alumnos">
-        <item>Baldomero</item>
-        <item>Gervasio</item>
-        <item>Filomeno</item>
-        <item>Prudencio</item>
-        <item>Casimiro</item>
-        <item>Fulgencio</item>
-        <item>Genaro</item>
-        <item>Rigoberto</item>
-        <item>Atanasio</item>
-	</string-array>
-    <string name="ha_pulsado_sobre">"Ha pulsado sobre %1$s"</string>
-    <string name="editar">"Editar %1$s"</string>
-    <string name="eliminar">"Eliminar %1$s"</string>
-    <string name="elija_una_opcion">Elija una opción</string>
+    <string name="app_name">Contextual menu</string>
+
+    <string name="activity_main_menu_edit">Edit %1$s</string>
+    <string name="activity_main_menu_delete">Delete %1$s</string>
+
+    <string name="main_activity_student_click">Click on %1$s</string>
+    <string name="main_activity_menu_header_title">Choose an option</string>
 </resources>

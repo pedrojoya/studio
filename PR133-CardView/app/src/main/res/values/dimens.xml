@@ -1,10 +1,9 @@
 <resources>
-    <dimen name="tarjeta_padding">8dp</dimen>
-    <dimen name="tarjeta_cardCornerRadius">5dp</dimen>
-    <dimen name="tarjeta_cardElevation">5dp</dimen>
-    <dimen name="moneda_marginLeft">2dp</dimen>
-    <dimen name="etiqueta_marginBottom">0dp</dimen>
-    <dimen name="dato_marginBottom">10dp</dimen>
-    <dimen name="propina_marginLeft">10dp</dimen>
-    <dimen name="redondear_marginLeft">10dp</dimen>
+    <dimen name="general_activity_margin">16dp</dimen>
+
+    <dimen name="activity_main_card_cardCornerRadius">2dp</dimen>
+    <dimen name="activity_main_card_cardElevation">5dp</dimen>
+    <dimen name="activity_main_card_margin">4dp</dimen>
+    <dimen name="activity_main_card_divider_height">1dp</dimen>
+    <dimen name="activity_main_card_lblTitle_margin">8dp</dimen>
 </resources>
