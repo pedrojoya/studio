@@ -4,57 +4,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/activity_main_item_cardCornerRadius"
+    app:cardElevation="@dimen/activity_main_item_cardElevation"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/card_padding"
-        >
+        android:padding="@dimen/activity_main_item_padding">
 
         <TextView
-            android:id="@+id/lblNombre"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:layout_width="match_parent"
+            android:id="@+id/lblName"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textStyle="bold"
-            tools:text="Nombre"/>
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/imgPopupMenu"
+            tools:text="@sample/students.json/students/name"/>
 
         <TextView
-            android:id="@+id/lblCurso"
-            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:id="@+id/lblGrade"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblNombre"
+            android:layout_below="@+id/lblName"
             android:textStyle="italic"
-            tools:text="Curso"/>
+            tools:text="@sample/students.json/students/grade"/>
 
         <TextView
-            android:id="@+id/lblTelefono"
+            android:id="@+id/lblPhone"
             style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblCurso"
-            tools:text="Telefono"/>
+            android:layout_below="@+id/lblGrade"
+            tools:text="@tools:sample/us_phones"/>
 
         <TextView
-            android:id="@+id/lblDireccion"
+            android:id="@+id/lblAddress"
             style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblTelefono"
-            tools:text="Dirección"/>
+            android:layout_below="@+id/lblPhone"
+            tools:text="@tools:sample/cities"/>
 
         <ImageView
             android:id="@+id/imgPopupMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:clickable="true"
-            android:contentDescription="@string/popup_menu"
+            android:contentDescription="@string/activity_main_item_imgPopupMenu"
             app:srcCompat="@drawable/ic_more_vert_black_24dp"/>
 
     </RelativeLayout>

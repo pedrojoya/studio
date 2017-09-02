@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PopupMenu</string>
+    <string name="main_activity_send_message_to">Enviar mensaje a %1$s</string>
+    <string name="main_activity_call_sb">Llamar a %1$s</string>
+    <string name="activity_main_item_popup_mnuSendMessage">Enviar mensaje</string>
+    <string name="activity_main_item_imgPopupMenu">Menú emergente</string>
+    <string name="activity_main_item_popup_mnuCall">Llamar</string>
+    <string name="main_activity_click_on">Click en %1$s</string>
+</resources>

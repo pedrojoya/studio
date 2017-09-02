@@ -9,7 +9,11 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 public class MainActivityViewModel extends ViewModel {
 
+    public static final int NO_ITEM_SELECTED = -1;
+
     private List<String> items;
+    private int selectedItem = NO_ITEM_SELECTED;
+
 
     public List<String> getItems() {
         if (items == null) {
@@ -18,6 +22,14 @@ public class MainActivityViewModel extends ViewModel {
                     "Prudencia", "Oswaldo", "Gumersindo", "Gerardo", "Rodrigo", "Óscar"));
         }
         return items;
+    }
+
+    public int getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(int selectedItem) {
+        this.selectedItem = selectedItem;
     }
 
 }

@@ -1,0 +1,20 @@
+{
+  "students": [
+    {
+      "name": "Dolores Fuertes de Barriga",
+      "grade": "2º CFGS DAM"
+    },
+    {
+      "name": "Baldomero Llégate Ligero",
+      "grade": "2º CFGM SMR"
+    },
+    {
+      "name": "Jorge Javier Jiménez Jaén",
+      "grade": "1º CFGM SMR"
+    },
+    {
+      "name": "Fabián Gonzáles Palomino",
+      "grade": "1º CFGS DAM"
+    }
+  ]
+}

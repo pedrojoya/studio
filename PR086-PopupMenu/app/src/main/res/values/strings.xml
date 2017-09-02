@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">PopupMenu</string>
-    <string name="llamar">Llamar</string>
-    <string name="enviar_mensaje">Enviar mensaje</string>
-    <string name="popup_menu">Popup menu</string>
-    <string name="llamar_a">Llamar a %1$s</string>
-    <string name="enviar_mensaje_a">Enviar mensaje a %1$s</string>
 
+    <string name="activity_main_item_imgPopupMenu">Popup menu</string>
+
+    <string name="activity_main_item_popup_mnuCall">Call</string>
+    <string name="activity_main_item_popup_mnuSendMessage">Send message</string>
+
+    <string name="main_activity_click_on">Click on %1$s</string>
+    <string name="main_activity_call_sb">Call %1$s</string>
+    <string name="main_activity_send_message_to">Send message to %1$s</string>
 </resources>

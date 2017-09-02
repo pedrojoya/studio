@@ -20,7 +20,6 @@ public class MainFragment extends Fragment {
 
     // Comunication interface with activity.
     public interface Callback {
-
         void onItemSelected(String item, int position);
     }
 
@@ -28,7 +27,6 @@ public class MainFragment extends Fragment {
 
     private Callback mListener;
     private MainActivityViewModel mViewModel;
-    private int mSelectedItem = NO_ITEM_SELECTED;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,11 +63,11 @@ public class MainFragment extends Fragment {
         restoreInstanceState(savedInstanceState);
         initViews(getView());
         // If item selected.
-        if (mSelectedItem >= 0) {
+        if (mViewModel.getSelectedItem() >= 0) {
             if (ConfigurationUtils.hasLandscapeOrientation(getActivity())) {
-                showItem(mSelectedItem);
+                showItem(mViewModel.getSelectedItem());
             } else {
-                selectItem(mSelectedItem);
+                selectItem(mViewModel.getSelectedItem());
             }
         }
     }
@@ -86,9 +84,8 @@ public class MainFragment extends Fragment {
 
     private void restoreInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            mSelectedItem = savedInstanceState.getInt(STATE_SELECTED_ITEM);
+            mViewModel.setSelectedItem(savedInstanceState.getInt(STATE_SELECTED_ITEM));
         }
-        // Default mSelectedItem = 0;
     }
 
     private void showItem(int position) {
@@ -98,20 +95,21 @@ public class MainFragment extends Fragment {
 
     public void selectItem(int position) {
         if (position >= 0) {
-            mSelectedItem = position;
-            lstItems.setItemChecked(mSelectedItem, true);
-            lstItems.setSelection(mSelectedItem);
+            lstItems.setItemChecked(position, true);
+            lstItems.setSelection(position);
         }
         else {
-            lstItems.setItemChecked(mSelectedItem, false);
+            lstItems.setItemChecked(mViewModel.getSelectedItem(), false);
             lstItems.clearChoices();
         }
+        mViewModel.setSelectedItem(position);
     }
 
+    // Needed in case activity is destroy because of low memory.
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_SELECTED_ITEM, mSelectedItem);
+        outState.putInt(STATE_SELECTED_ITEM, mViewModel.getSelectedItem());
     }
 
     public static MainFragment newInstance() {

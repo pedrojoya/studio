@@ -2,12 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mnuLlamar"
+        android:id="@+id/mnuCall"
         app:showAsAction="never"
-        android:title="@string/llamar"/>
+        android:title="@string/activity_main_item_popup_mnuCall"/>
     <item
-        android:id="@+id/mnuEnviarMensaje"
+        android:id="@+id/mnuSendMessage"
         app:showAsAction="never"
-        android:title="@string/enviar_mensaje" />
+        android:title="@string/activity_main_item_popup_mnuSendMessage" />
 
 </menu>
