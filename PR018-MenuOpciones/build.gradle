@@ -2,9 +2,10 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta3'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta4'
     }
 }
 
@@ -22,6 +23,6 @@ ext {
     junit_version = "4.12"
     mockito_version = "2.7.19"
     espresso_version = "3.0.0"
-    support_library_version = "26.0.1"
+    support_library_version = "26.0.2"
     arch_version = "1.0.0-alpha9"
 }

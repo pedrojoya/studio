@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ActionBar</string>
+    <string name="activity_preferences_title">Preferencias</string>
+    <string name="fragment_photo_mnuInfo">Info</string>
+    <string name="fragment_photo_mnuInverted">Invertido</string>
+    <string name="fragment_photo_mnuBinary">Binario</string>
+    <string name="fragment_photo_mnuSepia">Sepia</string>
+    <string name="fragment_photo_mnuGrey">Escala de grises</string>
+    <string name="activity_main_mnuPreferences">Preferencias</string>
+    <string name="fragment_photo_mnuOriginal">Original</string>
+    <string name="fragment_photo_mnuEffect">Efecto</string>
+    <string name="fragment_photo_imgPhoto">Foto</string>
+    <string name="fragment_info_mnuPhoto">Foto</string>
+    <string name="fragment_info_lblInfo">Info</string>
+    <string name="activity_preferences_lblMessage">Settings</string>
+</resources>

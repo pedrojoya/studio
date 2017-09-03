@@ -1,9 +1,19 @@
 <resources>
     <string name="app_name">Options menu</string>
+
     <string name="activity_main_mnuGrey">Grey scale</string>
     <string name="activity_main_mnuSepia">Sepia</string>
     <string name="activity_main_mnuBinary">Binary</string>
     <string name="activity_main_mnuInverted">Inverted</string>
     <string name="activity_main_imgPhoto">Photo</string>
     <string name="activity_main_mnuOriginal">Original</string>
+    <string name="activity_main_mnuInfo">Info</string>
+    <string name="activity_main_mnuActions">Actions</string>
+    <string name="activity_main_mnuDelete">Delete</string>
+    <string name="activity_main_mnuEdit">Edit</string>
+    <string name="activity_main_mnuVisible">Visible</string>
+
+    <string name="main_activity_info">Info</string>
+    <string name="main_activity_edit">Edit</string>
+    <string name="main_activity_delete">Delete</string>
 </resources>

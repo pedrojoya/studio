@@ -2,20 +2,22 @@
 <resources>
 
     <string name="app_name">ActionBar</string>
-    <string name="actionbar">ActionBar</string>
-    <string name="fotografia">Fotografía</string>
-    <string name="acerca_de">Info</string>
-    <string name="original">Original</string>
-    <string name="escala_de_grises">Escala de grises</string>
-    <string name="sepia">Sepia</string>
-    <string name="azulado">Azulado</string>
-    <string name="verdoso">Verdoso</string>
-    <string name="preferencias">Preferencias</string>
-    <string name="art">Bench, by Simon Funk</string>
-    <string name="esta_ser_la_actividad_de_preferencias">Esta será la actividad de preferencias</string>
-    <string name="title_activity_preferencias">Preferencias</string>
-    <string name="foto">Foto</string>
-    <string name="_debe_implementar_fotofragment_listener">" debe implementar FotoFragment.Listener"</string>
-    <string name="_debe_implementar_infofragment_listener">debe implementar InfoFragment listener</string>
+
+    <string name="activity_main_mnuPreferences">Settings</string>
+
+    <string name="fragment_photo_mnuOriginal">Original</string>
+    <string name="fragment_photo_mnuGrey">Grey</string>
+    <string name="fragment_photo_mnuSepia">Sepia</string>
+    <string name="fragment_photo_mnuBinary">Binary</string>
+    <string name="fragment_photo_mnuInverted">Inverted</string>
+    <string name="fragment_photo_mnuInfo">Info</string>
+    <string name="fragment_photo_mnuEffect">Effect</string>
+    <string name="fragment_photo_imgPhoto">Photo</string>
+
+    <string name="fragment_info_mnuPhoto">Photo</string>
+    <string name="fragment_info_lblInfo">Info</string>
+
+    <string name="activity_preferences_lblMessage">Settings</string>
+    <string name="activity_preferences_title">Settings</string>
 
 </resources>

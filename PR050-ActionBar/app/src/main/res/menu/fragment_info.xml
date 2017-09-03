@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mnuFoto"
-        android:icon="@drawable/ic_photo"
+        android:id="@+id/mnuPhoto"
+        android:icon="@drawable/ic_photo_black_24dp"
         android:orderInCategory="100"
         app:showAsAction="ifRoom|withText"
-        android:title="@string/foto"/>
+        android:title="@string/fragment_info_mnuPhoto"/>
 
 </menu>

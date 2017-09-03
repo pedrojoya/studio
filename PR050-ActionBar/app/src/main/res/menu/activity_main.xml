@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/mnuPreferencias"
+        android:id="@+id/mnuPreferences"
         app:showAsAction="never"
         android:orderInCategory="200"
-        android:title="@string/preferencias"/>
+        android:title="@string/activity_main_mnuPreferences"/>
 </menu>
