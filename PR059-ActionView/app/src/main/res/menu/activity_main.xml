@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/mnuBuscar"
-        android:title="@string/buscar"
+        android:id="@+id/mnuSearch"
+        android:title="@string/activity_main_mnuSearch"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom|collapseActionView"/>
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="always|collapseActionView"/>
 </menu>

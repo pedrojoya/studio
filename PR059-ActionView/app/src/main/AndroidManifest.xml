@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="es.iessaladillo.pedrojoya.pr059" >
     <application
-        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name="es.iessaladillo.pedrojoya.pr059.MainActivity"
-            android:label="@string/activity_title" >
+            android:name="es.iessaladillo.pedrojoya.pr059.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
