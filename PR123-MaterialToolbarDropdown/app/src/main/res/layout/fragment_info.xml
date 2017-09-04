@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/lblTitulo"
+        android:id="@+id/lblTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/info_marginTop"
-        android:text="@string/art"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="@dimen/fragment_info_margin"
+        android:text="@string/fragment_info_lblTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/lblGusta"
+        android:id="@+id/lblLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblTitulo"
+        android:layout_below="@+id/lblTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/info_marginTop"
-        android:textSize="@dimen/lblGusta_textSize" />
+        android:layout_marginTop="@dimen/fragment_info_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        tools:text="0"/>
 
     <ImageButton
-        android:id="@+id/btnGusta"
+        android:id="@+id/imgLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblGusta"
-        android:contentDescription="@string/me_gusta"
+        android:layout_below="@+id/lblLikes"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/info_marginTop"
-        android:background="@drawable/ic_megusta" />
-    
+        android:layout_marginTop="@dimen/fragment_info_margin"
+        android:background="@drawable/ic_thumb_up_black_24dp"
+        android:contentDescription="@string/fragment_info_imgLike"/>
+
 </RelativeLayout>

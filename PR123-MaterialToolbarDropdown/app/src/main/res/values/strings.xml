@@ -2,18 +2,18 @@
 <resources>
 
     <string name="app_name">Toolbar Dropdown</string>
-    <string name="fotografia">Fotografía</string>
-    <string name="original">Original</string>
-    <string name="escala_de_grises">Escala de grises</string>
-    <string name="sepia">Sepia</string>
-    <string name="azulado">Azulado</string>
-    <string name="verdoso">Verdoso</string>
-    <string name="art">Bench, by Simon Funk</string>
-    <string name="me_gusta">Me gusta</string>
-    <string name="gusta">%1$d</string>
-    <string-array name="opciones">
-        <item >Fotografía</item>
-        <item >Información</item>
-    </string-array>
+    <string name="fragment_photo_mnuFilter">Filter</string>
+    <string name="fragment_photo_imgPhoto">Fotografía</string>
+    <string name="fragment_info_lblTitle">Bench, by Simon Funk</string>
+    <string name="fragment_info_imgLike">Me gusta</string>
+    <string name="activity_main_mnuOriginal">Original</string>
+    <string name="activity_main_mnuGrey">Grey</string>
+    <string name="activity_main_mnuSepia">Sepia</string>
+    <string name="activity_main_mnuBinary">Binary</string>
+    <string name="activity_main_mnuInverted">Inverted</string>
+    <plurals name="info_fragment_likes">
+        <item quantity="one">%1$d like</item>
+        <item quantity="other">%1$d likes</item>
+    </plurals>
 
 </resources>

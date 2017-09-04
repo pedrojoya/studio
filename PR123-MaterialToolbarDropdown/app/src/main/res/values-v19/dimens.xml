@@ -1,5 +1,0 @@
-<resources>
-    <!-- En la API la status bar será transparente, y se mostrará
-    un vista como fondo de la status bar -->
-    <dimen name="statusBarHeight">24dp</dimen>
-</resources>

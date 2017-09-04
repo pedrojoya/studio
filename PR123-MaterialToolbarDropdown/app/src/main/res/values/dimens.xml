@@ -1,8 +1,3 @@
 <resources>
-    <!-- fragment_info.xml -->
-    <dimen name="info_marginTop">32dp</dimen>
-    <dimen name="lblGusta_textSize">32sp</dimen>
-    <!-- En las API < 19, la status bar no puede ser transparente, por lo que
-     no se mostrará la vista detrás -->
-    <dimen name="statusBarHeight">0dp</dimen>
+    <dimen name="fragment_info_margin">32dp</dimen>
 </resources>

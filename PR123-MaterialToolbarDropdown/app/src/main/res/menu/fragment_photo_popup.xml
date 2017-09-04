@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/mnuOriginal"
+            android:title="@string/activity_main_mnuOriginal"/>
+        <item
+            android:id="@+id/mnuGrey"
+            android:title="@string/activity_main_mnuGrey"/>
+        <item
+            android:id="@+id/mnuSepia"
+            android:title="@string/activity_main_mnuSepia"/>
+        <item
+            android:id="@+id/mnuBinary"
+            android:title="@string/activity_main_mnuBinary"/>
+        <item
+            android:id="@+id/mnuInverted"
+            android:title="@string/activity_main_mnuInverted"/>
+    </group>
+</menu>

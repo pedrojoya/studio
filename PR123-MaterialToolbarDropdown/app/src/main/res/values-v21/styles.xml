@@ -1,6 +1,0 @@
-<resources>
-    <style name="AppTheme" parent="AppThemeBase">
-        <!-- StatusBar transparente -->
-        <item name="android:windowTranslucentStatus">false</item>
-    </style>
-</resources>
