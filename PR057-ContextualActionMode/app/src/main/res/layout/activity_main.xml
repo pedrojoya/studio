@@ -1,37 +1,46 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_padding" >
+    android:padding="@dimen/general_activity_margin">
+
     <TextView
-        android:id="@+id/lblAlumno"
+        android:id="@+id/lblStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_marginBottom"
-        android:text="@string/alumno"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:labelFor="@+id/txtStudent"
+        android:text="@string/activity_main_lblStudent"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
     <EditText
-        android:id="@+id/txtAlumno"
+        android:id="@+id/txtStudent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblAlumno"
-        android:layout_marginBottom="@dimen/activity_marginBottom"
-        android:ems="10"
-        android:inputType="textPersonName" >
-        <requestFocus />
+        android:layout_below="@+id/lblStudent"
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:ems="@integer/activity_main_txtStudent_ems"
+        android:inputType="textPersonName">
+
+        <requestFocus/>
     </EditText>
+
     <TextView
-        android:id="@+id/lblAsignaturas"
+        android:id="@+id/lblSubjects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtAlumno"
-        android:layout_marginBottom="@dimen/activity_marginBottom"
-        android:text="@string/asignaturas"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_below="@+id/txtStudent"
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:labelFor="@+id/lstSubjects"
+        android:text="@string/activity_main_lblSubjects"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
     <ListView
-        android:id="@+id/lstAsignaturas"
+        android:id="@+id/lstSubjects"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/lblAsignaturas" >
-    </ListView>
+        android:layout_below="@+id/lblSubjects"
+        tools:listitem="@layout/activity_main_item"/>
 </RelativeLayout>

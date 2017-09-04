@@ -1,7 +1,5 @@
 <resources>
-    <!-- activity_main -->
-    <dimen name="activity_padding">10dp</dimen>    
-    <dimen name="activity_marginBottom">10dp</dimen>
-    <!-- activity_main_item -->
-    <dimen name="item_padding">10dp</dimen>
+    <dimen name="general_activity_margin">8dp</dimen>
+
+    <dimen name="activity_main_item_lblSubject_padding">10dp</dimen>
 </resources>

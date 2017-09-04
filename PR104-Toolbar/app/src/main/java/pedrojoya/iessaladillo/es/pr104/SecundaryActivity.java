@@ -1,8 +1,9 @@
 package pedrojoya.iessaladillo.es.pr104;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 
 public class SecundaryActivity extends AppCompatActivity {
@@ -11,12 +12,18 @@ public class SecundaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secundary);
-        // La toolbar actuará como ActionBar.
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        // La ActionBar mostrará el icono de navegación.
+        setupToolbar();
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(findViewById(R.id.toolbar));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public static void start(Context context) {
+        context.startActivity(new Intent(context, SecundaryActivity.class));
     }
 
 }

@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/mnuNext"
         android:icon="@drawable/ic_exit_to_app_white_24dp"
-        android:title="@string/next"
+        android:title="@string/activity_main_mnuNext"
         app:showAsAction="ifRoom|withText" />
-
+    <item
+        android:id="@+id/mnuSettings"
+        android:title="@string/activity_main_mnuSettings"
+        app:showAsAction="never" />
 </menu>

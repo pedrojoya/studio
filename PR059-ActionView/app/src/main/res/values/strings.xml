@@ -6,6 +6,5 @@
     <string name="activity_main_mnuSearch">Buscar %1$s</string>
 
     <string name="main_activity_student_clicked">"Clicked on %1$s"</string>
-    <string name="main_activity_search_query">Search %1$s</string>
 
 </resources>

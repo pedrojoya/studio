@@ -1,4 +1,3 @@
 <resources>
-    <!-- En el resto de APIs la altura de la vista por detras de la StatusBar vuelve es 0 -->
-    <dimen name="activity_padding">10dp</dimen>
+    <dimen name="general_activity_margin">8dp</dimen>
 </resources>

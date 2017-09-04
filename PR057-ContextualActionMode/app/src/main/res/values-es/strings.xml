@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ContextualActionMode</string>
+    <string name="activity_main_lblStudent">Alumno</string>
+    <string name="activity_main_lblSubjects">Asignaturas</string>
+    <string name="activity_main_mnuDelete">Eliminar</string>
+    <string name="main_activity_evaluate_student">Evaluar %1$s</string>
+    <string name="main_activity_evaluate_subjects">Evaluar asignaturas %1$s</string>
+    <string name="activity_main_mnuEvaluate">Evaluar</string>
+    <string name="main_activity_number_of_number">%1$d of %2$d</string>
+</resources>

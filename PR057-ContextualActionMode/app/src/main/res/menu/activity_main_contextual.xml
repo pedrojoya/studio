@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/mnuEvaluate"
+        android:title="@string/activity_main_mnuEvaluate"/>
+    <item
+        android:id="@+id/mnuDelete"
+        android:title="@string/activity_main_mnuDelete"/>
+</menu>

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">ContextualActionMode</string>
-    <string name="alumno">Alumno</string>
-    <string name="asignaturas">Asignaturas</string>
-    <string name="eliminar">Eliminar</string>
-    <string name="de">%1$d de %2$d</string>
-    <string name="aprobar">Aprobar</string>
-    <string name="felicidades">Felicidades %1$s. Estás aprobado</string>
-    <string name="has_aprobado">"Has aprobado: "</string>
-    <plurals name="asignaturas_eliminadas">
-        <item quantity="one">%1$d asignatura eliminada</item>
-        <item quantity="other">%1$d asignaturas eliminadas</item>
+    <string name="activity_main_lblStudent">Student</string>
+    <string name="activity_main_lblSubjects">Subjects</string>
+    <string name="activity_main_mnuDelete">Delete</string>
+    <string name="activity_main_mnuEvaluate">Evaluate</string>
+    <string name="main_activity_number_of_number">%1$d of %2$d</string>
+    <string name="main_activity_evaluate_student">Evaluate %1$s</string>
+    <string name="main_activity_evaluate_subjects">Evaluate subjects %1$s</string>
+    <plurals name="main_activity_subjects_deleted">
+        <item quantity="one">%1$d subject deleted</item>
+        <item quantity="other">%1$d subjects deleted</item>
     </plurals>
-
 </resources>
