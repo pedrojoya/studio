@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:id="@+id/coordinatorLayout"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:fitsSystemWindows="true"
-                                                 tools:context="es.iessaldillo.pedrojoya.pr160.MainActivity">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="es.iessaldillo.pedrojoya.pr160.main.MainActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -18,39 +19,39 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
+            android:layout_height="@dimen/activity_main_collapsingToolbar_height"
             android:fitsSystemWindows="true"
-            app:expandedTitleGravity="top"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="top"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/imgCabecera"
+                android:id="@+id/imgHeader"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/foto0"
+                android:background="@drawable/photo0"
+                android:contentDescription="@string/cabecera"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:contentDescription="@string/cabecera"
                 app:layout_collapseMode="parallax"/>
 
             <!-- height 104dp = 56dp + 48dp (action bar + tablayout)
-            Gravity top y titleMarginTop para que el título se coloque bien -->
+            Gravity top y titleMarginTop to put title in the right place -->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbar_layoutHeight"
-                android:minHeight="?attr/actionBarSize"
+                android:layout_height="@dimen/activity_main_toolbar_height"
                 android:gravity="top"
-                app:titleMarginTop="@dimen/toolbar_titleMarginTop"
+                android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleMarginTop="@dimen/activity_main_toolbar_titleMarginTop">
 
             </android.support.v7.widget.Toolbar>
 
-            <!-- layout_gravity bottom para que se muestre abajo -->
+            <!-- layout_gravity bottom to show it on the bottom -->
             <android.support.design.widget.TabLayout
-                android:id="@+id/tabs"
+                android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"/>
@@ -70,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"/>
+        android:layout_margin="@dimen/activity_main_fab_margin"
+        android:src="@drawable/ic_thumb_up_white_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,16 +1,8 @@
 <resources>
 
-    <!-- Tema base de la aplicación. Debe heredar de Theme.AppCompat -->
-    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Color de la ActionBar -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <!-- Color de la barra de notificaciones -->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- Color de acento (contraste) -->
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="AppTheme" parent="AppThemeBase">
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>

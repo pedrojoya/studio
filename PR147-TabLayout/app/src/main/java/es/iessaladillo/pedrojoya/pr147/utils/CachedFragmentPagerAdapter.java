@@ -15,7 +15,7 @@ public abstract class CachedFragmentPagerAdapter extends FragmentPagerAdapter {
     // por el adaptador.
     private final SparseArray<WeakReference<Fragment>> mFragmentos = new SparseArray<>();
 
-    public CachedFragmentPagerAdapter(FragmentManager fm) {
+    protected CachedFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

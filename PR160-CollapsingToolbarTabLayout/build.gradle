@@ -3,10 +3,10 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta4'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -16,6 +16,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
@@ -24,10 +25,8 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 25
-    minSdkVersion = 16
-    buildToolsVersion = "25.0.3"
-    junit_version = "4.12"
-    espresso_version = "2.2.2"
-    support_library_version = "25.3.1"
+    compileSdkVersion = 26
+    minSdkVersion = 19
+    buildToolsVersion = "26.0.0"
+    support_library_version = "26.0.2"
 }

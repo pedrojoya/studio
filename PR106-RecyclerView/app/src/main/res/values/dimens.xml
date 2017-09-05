@@ -1,18 +1,6 @@
 <resources>
 
-    <!-- Empty View -->
-    <dimen name="empty_drawablePadding">10dp</dimen>
-
-    <!-- Fake StatusBar -->
-    <dimen name="statusBarHeight">0dp</dimen>
-
-    <!-- FAB -->
-    <dimen name="fab_margin">0dp</dimen>
-
-    <!-- RecyclerView -->
-    <dimen name="lst_padding">8dp</dimen>
-
-    <!-- Single line with avatar list item -->
+    <!-- Material Single line with avatar list item -->
     <dimen name="two_line_tile_height">72dp</dimen>
     <dimen name="two_line_avatar_width">40dp</dimen>
     <dimen name="two_line_avatar_height">40dp</dimen>
@@ -22,6 +10,10 @@
     <dimen name="two_line_secundary_text_paddingBottom">20dp</dimen>
     <dimen name="two_line_text_paddingLeft">72dp</dimen>
     <dimen name="two_line_text_marginRight">16dp</dimen>
-    <dimen name="fab_elevation">6dp</dimen>
+
+    <dimen name="activity_main_lblEmpty_drawablePadding">10dp</dimen>
+    <dimen name="activity_main_lstStudents_padding">8dp</dimen>
+    <dimen name="activity_main_fab_margin">16dp</dimen>
+    <dimen name="activity_main_item_lblAddress_textSize">14sp</dimen>
 
 </resources>

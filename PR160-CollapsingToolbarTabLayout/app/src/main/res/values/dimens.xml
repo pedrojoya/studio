@@ -1,7 +1,7 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="toolbar_layoutHeight">104dp</dimen>
-    <dimen name="toolbar_titleMarginTop">13dp</dimen>
-    <dimen name="lblTexto_textSize">90sp</dimen>
+    <dimen name="activity_main_fab_margin">16dp</dimen>
+    <dimen name="activity_main_toolbar_height">104dp</dimen>
+    <dimen name="activity_main_toolbar_titleMarginTop">13dp</dimen>
+    <dimen name="activity_main_collapsingToolbar_height">256dp</dimen>
+    <dimen name="activity_main_lblLikes_padding">8dp</dimen>
 </resources>

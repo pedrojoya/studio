@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".main.MainActivity">
+    <item
+        android:id="@+id/mnuSettings"
+        android:orderInCategory="100"
+        android:title="@string/activity_main_mnuSettings"
+        app:showAsAction="never"/>
+</menu>

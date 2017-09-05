@@ -44,6 +44,7 @@ ext {
     activitystarter_version = "0.70"
     listitemview_version = "1.0.5"
     arch_version = "1.0.0-alpha9"
+    fakeit_version = "v0.5"
 }
 
 buildscript {
@@ -144,7 +145,7 @@ dependencies {
     compile "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
     compile "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
-
+    compile "com.github.moove-it:fakeit:$rootProject.ext.fakeit_version"
 }
 
 @file:programandoandroid/
