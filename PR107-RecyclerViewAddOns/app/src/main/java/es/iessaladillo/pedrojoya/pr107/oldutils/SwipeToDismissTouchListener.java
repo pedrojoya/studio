@@ -176,14 +176,11 @@ public class SwipeToDismissTouchListener implements RecyclerView.OnItemTouchList
                     .setDuration(mAnimationTime);
 
             //this is instead of unreliable onAnimationEnd callback
-            swipeViewCopy.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    performDismiss(swipeViewCopy, pos, swipeDirection);
-                    swipeViewCopy.setTranslationX(0);
-                    //                    swipeViewCopy.setAlpha(1);
+            swipeViewCopy.postDelayed(() -> {
+                performDismiss(swipeViewCopy, pos, swipeDirection);
+                swipeViewCopy.setTranslationX(0);
+                //                    swipeViewCopy.setAlpha(1);
 
-                }
             }, mAnimationTime + 100);
 
         } else if (mSwiping) {

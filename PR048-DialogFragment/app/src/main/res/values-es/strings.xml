@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DialogFragment</string>
+
+    <string name="main_activity_user_deleted">Usuario eliminado</string>
+    <string name="main_activity_no_delete">No eliminar usuario</string>
+    <string name="main_activity_login">Login</string>
+    <string name="main_activity_selected">Ha seleccionado: %1$s</string>
+
+    <string name="simple_selection_dialog_shift">Turno</string>
+    <string name="simple_selection_dialog_positiveButton">Aceptar</string>
+
+    <string name="multiple_selection_dialog_selected">%1$s selected</string>
+    <string name="multiple_selection_dialog_shift">Turno</string>
+    <string name="multiple_selection_dialog_positiveButton">Aceptar</string>
+    <string name="multiple_selection_dialog_no_shift_selected">No ha seleccionado ningún turno</string>
+
+    <string name="activity_main_btnDatePicker">DatePicker</string>
+    <string name="activity_main_btnTimePicker">TimePicker</string>
+    <string name="activity_main_btnYesNoAlert">Alerta Si/No</string>
+    <string name="activity_main_btnSimpleSelectionAlert">Alerta de selección simple</string>
+    <string name="activity_main_btnDirectSelectionAlert">Alerta de selección directa</string>
+    <string name="activity_main_btnMultipleSelectionAlert">Alerta de selección múltiple</string>
+    <string name="activity_main_btnAdapterAlert">Alerta con adaptador</string>
+    <string name="activity_main_btnCustomLayoutAlert">Alerta con layout propio</string>
+    <string name="activity_main_item_imgAvatar">Avatar</string>
+
+    <string name="dialog_login_lblUsername">Usuario</string>
+    <string name="dialog_login_lblPassword">Contraseña</string>
+
+    <string name="adapter_dialog_student">Alumno</string>
+
+    <string name="custom_layout_dialog_title">Login</string>
+    <string name="custom_layout_dialog_positiveButton">Aceptar</string>
+    <string name="custom_layout_dialog_negativeButton">Cancelar</string>
+
+    <string name="direct_selection_dialog_shift">Turno</string>
+
+    <string name="yes_no_dialog_title">Eliminar</string>
+    <string name="yes_no_dialog_message">¿Está seguro de que quiere elminar el usuario?</string>
+</resources>

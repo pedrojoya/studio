@@ -9,20 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 public class MainFragment extends Fragment {
 
-    private static final String ARG_OPCION = "ARG_OPCION";
+    private static final String ARG_OPTION = "ARG_OPTION";
 
-    private String mOpcion;
+    private String mOption;
+    @SuppressWarnings("FieldCanBeLocal")
+    private TextView lblOption;
 
     public MainFragment() {
     }
 
-    public static MainFragment newInstance(String opcion) {
+    public static MainFragment newInstance(String option) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_OPCION, opcion);
+        args.putString(ARG_OPTION, option);
         fragment.setArguments(args);
         return fragment;
     }
@@ -30,27 +31,31 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        obtainArguments();
+    }
+
+    private void obtainArguments() {
         if (getArguments() != null) {
-            mOpcion = getArguments().getString(ARG_OPCION);
+            mOption = getArguments().getString(ARG_OPTION);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initVistas(getView());
+        initViews(getView());
     }
 
-    private void initVistas(View view) {
-        TextView lblOpcion = (TextView) view.findViewById(R.id.lblOpcion);
-        lblOpcion.setText(mOpcion);
+    private void initViews(View view) {
+        lblOption = view.findViewById(R.id.lblOption);
+
+        lblOption.setText(mOption);
     }
 
 }

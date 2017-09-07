@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RecyclerView</string>
+    <string name="activity_main_lblEmpty">No hay alumnos</string>
+    <string name="activity_main_item_lblAvatar">Avatar</string>
+    <string name="activity_main_contextual_mnuDelete">Eliminar</string>
+    <string name="main_activity_click_on">Has pulsado sobre %1$s</string>
+</resources>

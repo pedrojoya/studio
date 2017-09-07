@@ -1,34 +1,41 @@
 <resources>
     <string name="app_name">DialogFragment</string>
-    <string name="title_activity_main">DialogFragment</string>
-    <string name="datepicker">DatePicker</string>
-    <string name="ha_seleccionado">"Ha seleccionado: %1$s"</string>
-    <string name="timepicker">TimePicker</string>
-    <string name="alerta_de_pregunta_si_no">Alerta de pregunta Si/No</string>
-    <string name="eliminar_usuario">Eliminar usuario</string>
-    <string name="esta_seguro_de_que_quiere_eliminar_el_usuario">¿Está seguro de que quiere eliminar el usuario?</string>
-    <string name="si">Sí</string>
-    <string name="usuario_borrado">Usuario borrado</string>
-    <string name="no">No</string>
-    <string name="alerta_de_seleccion_simple">Alerta de selección simple</string>
-    <string-array name="turnos">
-        <item >Mañana</item>
-        <item >Tarde</item>
-        <item >Noche</item>
-    </string-array>
-	<string name="turno">Turno</string>
-	<string name="alerta_de_seleccion_directa">Alerta de selección directa</string>
-	<string name="alerta_de_seleccion_multiple">Alerta de selección múltiple</string>
-	<string name="no_ha_seleccionado_ningun_turno">No ha seleccionado ningún turno</string>
-	<string name="usuario">Usuario</string>
-	<string name="contrasena">Contraseña</string>
-	<string name="cancelar">Cancelar</string>
-	<string name="alerta_con_adaptador">Alerta con adaptador</string>
-	<string name="aceptar">Aceptar</string>
-	<string name="alerta_con_layout_propio">Alerta con layout propio</string>
-	<string name="login">Login</string>
-    <string name="avatar_alumno">Avatar del alumno</string>
-    <string name="alumno">Alumno</string>
-    <string name="no_borrar">No se desea borrar el usuario</string>
-    <string name="conectar">Conectar</string>
+
+    <string name="activity_main_btnDatePicker">DatePicker</string>
+    <string name="activity_main_btnTimePicker">TimePicker</string>
+    <string name="activity_main_btnYesNoAlert">Yes/No alert</string>
+    <string name="activity_main_btnSimpleSelectionAlert">Simple selection alert</string>
+    <string name="activity_main_btnDirectSelectionAlert">Direct selection alert</string>
+    <string name="activity_main_btnMultipleSelectionAlert">Multiple selection alert</string>
+    <string name="activity_main_btnAdapterAlert">Adapter alert</string>
+    <string name="activity_main_btnCustomLayoutAlert">Custom layout alert</string>
+
+    <string name="activity_main_item_imgAvatar">Avatar</string>
+
+    <string name="dialog_login_lblUsername">User</string>
+    <string name="dialog_login_lblPassword">Password</string>
+
+    <string name="adapter_dialog_student">Student</string>
+
+    <string name="custom_layout_dialog_title">Login</string>
+    <string name="custom_layout_dialog_positiveButton">Accept</string>
+    <string name="custom_layout_dialog_negativeButton">Cancel</string>
+
+    <string name="direct_selection_dialog_shift">Shift</string>
+
+    <string name="yes_no_dialog_title">Delete</string>
+    <string name="yes_no_dialog_message">Are you sure you want to delete the user?</string>
+
+    <string name="main_activity_selected">%1$s selected</string>
+    <string name="main_activity_user_deleted">User deleted</string>
+    <string name="main_activity_no_delete">Don\'t delete user</string>
+    <string name="main_activity_login">Login</string>
+
+    <string name="simple_selection_dialog_shift">Shift</string>
+    <string name="simple_selection_dialog_positiveButton">Accept</string>
+
+    <string name="multiple_selection_dialog_selected">%1$s selected</string>
+    <string name="multiple_selection_dialog_shift">Shift</string>
+    <string name="multiple_selection_dialog_positiveButton">Accept</string>
+    <string name="multiple_selection_dialog_no_shift_selected">No shift selected</string>
 </resources>

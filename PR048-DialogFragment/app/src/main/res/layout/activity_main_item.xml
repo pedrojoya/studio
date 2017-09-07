@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="@dimen/two_line_tile_height"
     android:background="?attr/selectableItemBackground"
+    android:minHeight="@dimen/two_line_tile_height"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/two_line_avatar_width"
         android:layout_height="@dimen/two_line_avatar_height"
-        android:contentDescription="@string/avatar_alumno"
+        android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
         android:layout_marginTop="@dimen/two_line_avatar_marginTop"
-        android:layout_marginLeft="@dimen/two_line_avatar_marginLeft"
-        android:layout_marginStart="@dimen/two_line_avatar_marginLeft" />
+        android:contentDescription="@string/activity_main_item_imgAvatar"
+        tools:src="@tools:sample/avatars"/>
 
     <TextView
-        android:id="@+id/lblNombre"
+        android:id="@+id/lblName"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
-        android:paddingTop="@dimen/two_line_text_paddingTop"
         android:paddingRight="@dimen/two_line_text_paddingLeft"
-        tools:text="Baldomero Llegate Ligero"
-        style="@style/Base.TextAppearance.AppCompat.Subhead" />
+        android:paddingTop="@dimen/two_line_text_paddingTop"
+        tools:text="@tools:sample/full_names"/>
 
     <TextView
-        android:id="@+id/lblDireccion"
+        android:id="@+id/lblAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lblName"
         android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
         android:paddingRight="@dimen/two_line_text_paddingLeft"
-        android:layout_below="@+id/lblNombre"
-        tools:text="c/ La casa de Baldomero"
-        android:textSize="14sp" />
+        android:textSize="@dimen/activity_main_item_lblAddress"
+        tools:text="@tools:sample/cities"/>
 
 </RelativeLayout>

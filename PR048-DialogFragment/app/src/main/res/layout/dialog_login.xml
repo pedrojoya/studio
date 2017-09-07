@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/login_padding" >
+    android:padding="@dimen/general_activity_margin">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/usuario"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="@string/dialog_login_lblUsername"
+        android:labelFor="@+id/txtUsername"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <EditText
-        android:id="@+id/txtUsuario"
+        android:id="@+id/txtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_marginTop"
-        android:inputType="text" >
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:inputType="text">
 
-        <requestFocus />
+        <requestFocus/>
     </EditText>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_marginTop"
-        android:text="@string/contrasena"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:text="@string/dialog_login_lblPassword"
+        android:labelFor="@+id/txtPassword"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <EditText
-        android:id="@+id/txtClave"
+        android:id="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_marginTop"
-        android:inputType="textPassword" />
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:inputType="textPassword"/>
 
 </LinearLayout>

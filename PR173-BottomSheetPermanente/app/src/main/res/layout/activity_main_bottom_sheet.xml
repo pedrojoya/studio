@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/translucent_grey"
+    android:padding="@dimen/activity_main_bottom_sheet_rlPanel_padding"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="@dimen/activity_main_bottom_sheet_rlPanel_peekHeight"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    tools:ignore="Overdraw">
+
+    <TextView
+        android:id="@+id/lblTitle"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/imgDetail"
+        android:text="@string/activity_main_bottom_sheet_lblTitle"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/lblSubtitle"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lblTitle"
+        android:layout_toStartOf="@+id/imgDetail"
+        android:text="@string/activity_main_bottom_sheet_lblSubtitle"
+        android:textColor="@android:color/white"/>
+
+    <ImageView
+        android:id="@+id/imgDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblSubtitle"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/activity_main_bottom_sheet_imgDetail"
+        android:src="@drawable/ic_arrow_drop_up_white_24dp"/>
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblSubtitle"
+        android:padding="@dimen/activity_main_bottom_sheet_rlPanel_padding"
+        android:text="@string/activity_main_bottom_sheet_lblDetail"
+        android:textColor="@android:color/white"/>
+</RelativeLayout>

@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/mnuFavoritos"
-        android:icon="@drawable/ic_favorite_24dp"
-        android:title="@string/favoritos"
+        android:id="@+id/mnuFavorites"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/activity_main_nav_mnuFavorites"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/mnuCalendario"
-        android:icon="@drawable/ic_access_time_24dp"
-        android:title="@string/calendario"
+        android:id="@+id/mnuCalendar"
+        android:icon="@drawable/ic_access_time_black_24dp"
+        android:title="@string/activity_main_nav_mnuCalendar"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/mnuMusica"
+        android:id="@+id/mnuMusic"
         android:enabled="false"
-        android:icon="@drawable/ic_audiotrack_24dp"
-        android:title="@string/musica"
+        android:icon="@drawable/ic_audiotrack_black_24dp"
+        android:title="@string/activity_main_nav_mnuMusic"
         app:showAsAction="ifRoom" />
 </menu>

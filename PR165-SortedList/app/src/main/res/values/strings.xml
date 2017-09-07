@@ -1,14 +1,19 @@
 <resources>
     <string name="app_name">SortedList</string>
-    <string name="unidades_data">%1$d %2$s</string>
-    <string name="agregar_producto">Agregar producto</string>
-    <string name="aceptar">Aceptar</string>
-    <string name="cancelar">Cancelar</string>
-    <string name="nombre">Nombre</string>
-    <string name="cantidad">Cantidad</string>
-    <string name="unidad">Unidad</string>
-    <string name="obligatorio">(* Obligatorio)</string>
-    <string name="mayor_que_0"><![CDATA[Debe ser > 0]]></string>
-    <string name="se_ha_eliminado">Se ha eliminado de la lista %1$s</string>
-    <string name="se_ha_agregado">Se ha agregado a la lista %1$s</string>
+
+    <string name="fragment_dialog_new_product_txtName">Name</string>
+    <string name="fragment_dialog_new_product_txtQuantity">Quantity</string>
+    <string name="fragment_dialog_new_product_txtUnit">Unit</string>
+
+    <string name="main_activity_data_units">%1$d %2$s</string>
+    <string name="main_activity_product_deleted">%1$s deleted</string>
+    <string name="main_activity_product_added">%1$s added</string>
+    <string name="main_activity_add_product">Add product</string>
+
+    <string name="newproduct_fragment_add_product">Add product</string>
+    <string name="newproduct_fragment_accept">Accept</string>
+    <string name="newproduct_fragment_cancel">Cancel</string>
+    <string name="newproduct_fragment_required">(* required)</string>
+    <string
+        name="newproduct_fragment_greater_than_0"><![CDATA[Must be > 0]]></string>
 </resources>

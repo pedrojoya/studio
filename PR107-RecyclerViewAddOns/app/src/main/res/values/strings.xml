@@ -2,10 +2,9 @@
 <resources>
 
     <string name="app_name">RecyclerView</string>
-    <string name="no_hay_alumnos">No hay alumnos</string>
-    <string name="eliminar">Eliminar</string>
-    <string name="avatar">Avatar</string>
-    <string name="has_pulsado_sobre">Has pulsado sobre %1$s</string>
-
+    <string name="activity_main_lblEmpty">No students</string>
+    <string name="activity_main_item_lblAvatar">Avatar</string>
+    <string name="main_activity_click_on">Click on %1$s</string>
+    <string name="activity_main_contextual_mnuDelete">Delete</string>
 
 </resources>

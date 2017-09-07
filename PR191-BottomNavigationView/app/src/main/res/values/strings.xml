@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">BottomNavigationView</string>
-    <string name="favoritos">Favoritos</string>
-    <string name="calendario">Calendario</string>
-    <string name="musica">Música</string>
+    <string name="activity_main_nav_mnuFavorites">Favoritos</string>
+    <string name="activity_main_nav_mnuCalendar">Calendario</string>
+    <string name="activity_main_nav_mnuMusic">Música</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="opcion">Opción</string>
+    <string name="fragment_main_lblOption">Opción</string>
+    <string name="main_activity_favorites">Favorites</string>
+    <string name="main_activity_calendar">Calendar</string>
+    <string name="main_activity_music">Music</string>
 </resources>

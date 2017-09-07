@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SortedList</string>
+    <string name="fragment_dialog_new_product_txtName">Nombre</string>
+    <string name="fragment_dialog_new_product_txtQuantity">Cantidad</string>
+    <string name="fragment_dialog_new_product_txtUnit">Unidad</string>
+    <string name="main_activity_data_units">%1$d %2$s</string>
+    <string name="main_activity_product_deleted">%1$s eliminado</string>
+    <string name="main_activity_product_added">%1$s agregado</string>
+    <string name="main_activity_add_product">Agregar producto</string>
+    <string name="newproduct_fragment_add_product">Agregar producto</string>
+    <string name="newproduct_fragment_accept">Aceptar</string>
+    <string name="newproduct_fragment_cancel">Cancelar</string>
+    <string name="newproduct_fragment_required">(* obligatorio)</string>
+    <string name="newproduct_fragment_greater_than_0"><![CDATA[Debe ser > 0]]></string>
+</resources>

@@ -1,24 +1,20 @@
 <resources>
 
-    <!-- Tema base de la aplicación -->
-    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Color de la ActionBar -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!-- Color de la barra de notificaciones -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- Color de acento (contraste) -->
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- Necesario para mostrar modo contextual sobre toolbar -->
+        <!-- For contextual action mode over toolbar -->
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@drawable/cab_background</item>
-        <!-- Fondo para elementos activados -->
+        <!-- Selected item background -->
         <item name="selectableItemBackground">@drawable/activity_main_item_background</item>
         <item name="android:selectableItemBackground">@drawable/activity_main_item_background</item>
     </style>
 
-    <!-- Tema de la aplicación -->
-    <style name="AppTheme" parent="AppThemeBase">
-
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

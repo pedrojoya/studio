@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-import es.iessaladillo.pedrojoya.pr107.AlumnosAdapter;
+import es.iessaladillo.pedrojoya.pr107.ui.main.MainActivityAdapter;
 
 // Basado en http://blog.stylingandroid.com/material-part-6/#more-2907
 @SuppressWarnings("unused")
@@ -151,7 +151,7 @@ public abstract class DragController implements RecyclerView.OnItemTouchListener
         long replacementId = recyclerView.getChildItemId(current);
         // Se obtienen del adaptador las posiciones en la que se encuentran
         // la  vista sobre la que se encuentra y la vista original.
-        AlumnosAdapter adapter = (AlumnosAdapter) recyclerView.getAdapter();
+        MainActivityAdapter adapter = (MainActivityAdapter) recyclerView.getAdapter();
         int start = adapter.getPositionForId(replacementId);
         int end = adapter.getPositionForId(draggingId);
         // Se intercambian los elementos.
