@@ -2,22 +2,30 @@
 <resources>
 
     <string name="app_name">PermissionsDispatcher</string>
-    <string name="interno">Almacenamiento interno</string>
-    <string name="externo_propio">Almacenamiento externo propio</string>
-    <string name="externo_publico">Almacenamiento externo público</string>
-    <string name="cache_interno">Caché en almacenamiento interno</string>
-    <string name="cache_externo">Caché en almacenamiento externo</string>
-    <string name="fichero_origen">Fichero origen</string>
-    <string name="raw">res/raw/lorem.txt</string>
-    <string name="assets">/assets/audio.mp3</string>
-    <string name="carpeta_destino">Carpeta de destino</string>
-    <string name="crear_copia_de_archivo">Crear copia de archivo</string>
-    <string name="generado">Generado %1$s</string>
-    <string name="abrir">Abrir</string>
-    <string name="configurar">Configurar</string>
-    <string name="no_se_pudo">No se pudo realizar la acción al no ser concedido el permiso necesario</string>
-    <string name="accion_no_disponible">Acción no disponible si no se concede permiso</string>
-    <string name="es_necesario">Para poder realizar la acción de almacenar un archivo en almacenamiento externo es necesario que conceda el permiso de escritura en almacenamiento externo</string>
-    <string name="permiso_requerido">Permiso requerido</string>
+
+    <string name="activity_main_rbInternal">Internal storage</string>
+    <string name="activity_main_rbPersonalExternal">Personal
+        external storage</string>
+    <string name="activity_main_rbPublicExternal">Public external storage</string>
+    <string name="activity_main_rbInternalCache">Internal storage cache</string>
+    <string name="activity_main_rbExternalCache">External storage cache</string>
+    <string name="activity_main_lblSource">Source file</string>
+    <string name="activity_main_rbRaw">res/raw/lorem.txt</string>
+    <string name="activity_main_rbAsset">/assets/audio.mp3</string>
+    <string name="activity_main_lblDestination">Destination folder</string>
+    <string name="activity_main_btnDuplicate">Duplicate file</string>
+
+    <string name="main_activity_file_duplicated">%1$s duplicated</string>
+    <string name="main_activity_open">Open</string>
+    <string name="main_activity_configure">Configure</string>
+    <string name="main_activity_error_permission_required">Action can\'t be
+        done without the required permission</string>
+    <string name="main_activity_action_permission_required">Action not
+        available without required permission</string>
+    <string name="main_activity_permission_required_explanation">We the
+        external storage write access permission to duplicate the file to
+        external storage</string>
+    <string name="main_activity_permission_required">Permission required</string>
+    <string name="main_activity_error_opening_file">Error opening the file</string>
 
 </resources>
