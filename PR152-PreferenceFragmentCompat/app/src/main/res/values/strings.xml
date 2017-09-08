@@ -31,4 +31,5 @@
     <string name="web_oficial">Web oficial</string>
     <string name="turnos">Turnos</string>
     <string name="rendimiento">Rendimiento</string>
+    <string name="turnos_detalle">Turnos de trabajo</string>
 </resources>

@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr178;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
@@ -10,26 +11,26 @@ import android.view.View;
 public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
 
     public ScrollAwareFABBehavior(Context context, AttributeSet attrs) {
-        super();
+        super(context, attrs);
     }
 
     @Override
-    public boolean onStartNestedScroll(final CoordinatorLayout coordinatorLayout,
-                                       final FloatingActionButton child,
-                                       final View directTargetChild, final View target,
-                                       final int nestedScrollAxes) {
+    public boolean onStartNestedScroll(@NonNull final CoordinatorLayout coordinatorLayout,
+                                       @NonNull final FloatingActionButton child,
+                                       @NonNull final View directTargetChild, @NonNull final View target,
+            int axes, int type) {
         // Se reacciona ante el scroll vertical.
-        return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL || super.onStartNestedScroll(
-                coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
+        return axes == ViewCompat.SCROLL_AXIS_VERTICAL || super.onStartNestedScroll(
+                coordinatorLayout, child, directTargetChild, target, axes, type);
     }
 
     @Override
-    public void onNestedScroll(final CoordinatorLayout coordinatorLayout,
-                               final FloatingActionButton child, final View target,
+    public void onNestedScroll(@NonNull final CoordinatorLayout coordinatorLayout,
+                               @NonNull final FloatingActionButton child, @NonNull final View target,
                                final int dxConsumed, final int dyConsumed, final int dxUnconsumed,
-                               final int dyUnconsumed) {
+                               final int dyUnconsumed, int type) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed,
-                dyUnconsumed);
+                dyUnconsumed, type);
         if (dyConsumed > 0 && child.getTranslationY() == 0) {
             // Cuando se hace scroll hacia abajo se oculta el FAB.
             //child.hide();

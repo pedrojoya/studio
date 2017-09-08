@@ -7,23 +7,25 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name="es.iessaladillo.pedrojoya.pr064.actividades.MainActivity"
-            android:label="@string/app_name" >
+            android:name="es.iessaladillo.pedrojoya.pr064.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="es.iessaladillo.pedrojoya.pr064.actividades.PreferenciasActivity"
-            android:label="@string/title_activity_preferencias"
-            android:parentActivityName=".actividades.MainActivity"
+            android:name="es.iessaladillo.pedrojoya.pr064.settings.SettingsActivity"
+            android:label="@string/activity_settings_title"
+            android:theme="@style/SettingsTheme"
+            android:parentActivityName=".main.MainActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".actividades.MainActivity" />
+                android:value=".main.MainActivity" />
         </activity>
     </application>
 </manifest>

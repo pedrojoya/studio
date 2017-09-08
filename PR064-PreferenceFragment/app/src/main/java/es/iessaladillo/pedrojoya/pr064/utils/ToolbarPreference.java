@@ -22,16 +22,15 @@ class ToolbarPreference extends Preference {
         super.onCreateView(parent);
         parent.setPadding(0, 0, 0, 0);
 
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.settings_toolbar, parent, false);
+        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout
+                .settings_toolbar, parent, false);
 
-        Toolbar toolbar = (Toolbar) layout.findViewById(R.id.toolbar);
+        Toolbar toolbar = layout.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setTitle(getTitle());
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PreferenceScreen prefScreen = (PreferenceScreen) getPreferenceManager().findPreference(getKey());
+        toolbar.setNavigationOnClickListener(v -> {
+            PreferenceScreen prefScreen = (PreferenceScreen) getPreferenceManager().findPreference(getKey());
+            if (prefScreen != null) {
                 prefScreen.getDialog().dismiss();
             }
         });

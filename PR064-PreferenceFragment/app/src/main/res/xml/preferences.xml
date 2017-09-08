@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_synchronization">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="prefSynchronize"
+            android:summaryOff="@android:string/no"
+            android:summaryOn="@android:string/yes"
+            android:title="@string/pref_synchronize" />
+
+        <ListPreference
+            android:defaultValue="@string/pref_connection_type_default"
+            android:dependency="prefSynchronize"
+            android:dialogTitle="@string/pref_connection_type"
+            android:entries="@array/pref_connection_type_entries"
+            android:entryValues="@array/pref_connection_type_values"
+            android:key="prefConnetionType"
+            android:title="@string/pref_connection_type" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_appearance">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="prefBigLetters"
+            android:summaryOff="@android:string/no"
+            android:summaryOn="@android:string/yes"
+            android:title="@string/pref_big_letters" />
+
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_shifts_default"
+            android:dialogTitle="@string/pref_shifts"
+            android:entries="@array/pref_shifts_entries"
+            android:entryValues="@array/pref_shifts_values"
+            android:key="prefShifts"
+            android:summary="@string/pref_shifts_summary"
+            android:title="@string/pref_shifts" />
+
+        <Preference android:title="@string/pref_official_web">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.iessaladillo.es" />
+        </Preference>
+
+        <PreferenceScreen
+            android:key="PrefOthers"
+            android:title="@string/pref_others">
+            <EditTextPreference
+                android:dialogTitle="@string/pref_catchphrase"
+                android:key="prefCatchphrase"
+                android:summary="@string/pref_catchphrase_summary"
+                android:title="@string/pref_catchphrase" />
+
+            <!--suppress AndroidDomInspection -->
+            <RingtonePreference
+                android:defaultValue="content://settings/system/notification_sound"
+                android:key="prefNotificationTone"
+                android:ringtoneType="notification"
+                android:showDefault="true"
+                android:showSilent="true"
+                android:title="@string/pref_notification_tone" />
+
+            <SwitchPreference
+                android:key="prefNetwork"
+                android:summaryOff="@string/pref_network_off"
+                android:summaryOn="@string/pref_network_on"
+                android:switchTextOff="@android:string/no"
+                android:switchTextOn="@android:string/yes"
+                android:title="@string/pref_network" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>

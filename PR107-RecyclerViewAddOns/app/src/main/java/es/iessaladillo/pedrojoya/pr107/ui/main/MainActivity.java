@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void setupRecyclerView() {
-        mAdapter = new es.iessaladillo.pedrojoya.pr107.ui.main.MainActivityAdapter();
+        mAdapter = new MainActivityAdapter();
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemLongClickListener(this);
         mAdapter.setEmptyView(mEmptyView);
@@ -138,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         return true;
     }
 
-    // Al finalizar el modo de acción contextual.
     @Override
     public void onDestroyActionMode(ActionMode actionMode) {
         mAdapter.clearSelections();
@@ -147,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         showFloatingViews();
     }
 
-    // Cuando se hace click en un elemento de la lista.
     @Override
     public void onItemClick(View view, Student alumno, int position) {
         if (this.mActionMode != null) {
@@ -158,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         }
     }
 
-    // Cuando se hace click largo sobre un elemento de la lista.
     @Override
     public void onItemLongClick(View view, Student alumno, int position) {
         if (this.mActionMode != null) {
@@ -169,14 +166,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         }
     }
 
-    // Cambia el estado de selección del elemento situado en dicha posición.
     private void toggleSelection(int position) {
-        // Se cambia el estado de selección
         mAdapter.toggleSelection(position);
-        // Se actualiza el texto del action mode contextual.
         mActionMode.setTitle(mAdapter.getSelectedItemCount() + " / " + mAdapter.getItemCount());
-        // Si ya no hay ningún elemento seleccionado se finaliza el modo de
-        // acción contextual
         if (mAdapter.getSelectedItemCount() == 0) {
             mActionMode.finish();
         }

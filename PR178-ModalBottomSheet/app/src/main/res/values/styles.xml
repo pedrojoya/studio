@@ -1,12 +1,8 @@
 <resources>
 
-    <!-- Tema base de la aplicación -->
-    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Color de la ActionBar -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!-- Color de la barra de notificaciones -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- Color de acento (contraste) -->
         <item name="colorAccent">@color/colorAccent</item>
         <!-- Necesario para mostrar modo contextual sobre toolbar -->
         <item name="windowActionModeOverlay">true</item>
@@ -20,9 +16,9 @@
         </item>
     </style>
 
-    <!-- Tema de la aplicación -->
-    <style name="AppTheme" parent="AppThemeBase">
-
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

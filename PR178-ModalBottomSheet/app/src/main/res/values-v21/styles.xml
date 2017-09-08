@@ -1,8 +1,0 @@
-<resources>
-
-    <!-- Tema de la aplicación -->
-    <style name="AppTheme" parent="AppThemeBase">
-        <item name="android:windowTranslucentStatus">false</item>
-    </style>
-
-</resources>

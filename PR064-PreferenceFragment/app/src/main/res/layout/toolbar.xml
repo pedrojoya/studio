@@ -9,7 +9,7 @@
     android:background="?attr/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    tools:showIn="@layout/activity_preferencias"
+    tools:showIn="@layout/activity_settings"
     tools:ignore="Overdraw,UnusedAttribute" />
 
     

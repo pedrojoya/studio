@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--suppress AndroidElementNotAllowed -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/sincronizacion">
         <CheckBoxPreference
@@ -27,7 +27,6 @@
             android:summaryOff="@string/no"
             android:summaryOn="@string/si"
             android:title="@string/letras_grandes"/>
-        <!--
         <MultiSelectListPreference
             android:defaultValue="@array/turnos_default"
             android:dialogTitle="@string/turnos"
@@ -36,7 +35,6 @@
             android:key="prefTurnos"
             android:summary="@string/turnos_detalle"
             android:title="@string/turnos"/>
-        -->
         <Preference android:title="@string/web_oficial">
             <intent
                 android:action="android.intent.action.VIEW"
@@ -67,13 +65,13 @@
                 android:title="@string/red"/>
 
             <android.support.v7.preference.SeekBarPreference
-                android:key="prefRendimiento"
-                android:title="@string/rendimiento"
-                app:min="1"
-                android:max="5"
                 android:defaultValue="3"
-                app:seekBarIncrement="1"
+                android:key="prefRendimiento"
+                android:max="5"
+                android:title="@string/rendimiento"
                 app:adjustable="true"
+                app:min="1"
+                app:seekBarIncrement="1"
                 app:showSeekBarValue="false"/>
         </PreferenceScreen>
     </PreferenceCategory>
