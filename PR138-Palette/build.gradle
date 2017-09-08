@@ -25,6 +25,7 @@ ext {
     minSdkVersion = 19
     buildToolsVersion = "26.0.0"
     support_library_version = "26.0.2"
+    constraintlayout_version = "1.0.2"
     picasso_version = "2.5.2"
-    butterknife_version = "8.5.1"
+    butterknife_version = "8.8.1"
 }

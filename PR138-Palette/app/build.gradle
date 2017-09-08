@@ -32,4 +32,5 @@ dependencies {
     compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
 }

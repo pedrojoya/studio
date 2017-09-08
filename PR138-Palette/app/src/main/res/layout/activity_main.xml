@@ -1,99 +1,124 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context=".MainActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <include
-        layout="@layout/toolbar"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <ImageView
-        android:id="@+id/imgFoto"
-        android:layout_width="match_parent"
+        android:id="@+id/imgPhoto"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/imagen"
-        android:scaleType="centerCrop"/>
+        android:contentDescription="@string/activity_main_imgPhoto"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="h,16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:layout_editor_absoluteY="80dp"
+        tools:src="@tools:sample/backgrounds/scenic" />
 
-    <android.support.percent.PercentRelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/lblVibrant"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="0dp"
+        android:gravity="center"
+        android:padding="@dimen/activity_main_padding"
+        android:text="@string/activity_main_lblVibrant"
+        app:layout_constraintBottom_toTopOf="@+id/lblMuted"
+        app:layout_constraintEnd_toStartOf="@+id/lblLightVibrant"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
 
-        <TextView
-            android:id="@+id/lblVibrant"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:padding="@dimen/muestra_padding"
-            android:text="@string/vibrante"
-            app:layout_heightPercent="@fraction/views_height"
-            app:layout_widthPercent="@fraction/views_width"/>
+    <TextView
+        android:id="@+id/lblLightVibrant"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:padding="@dimen/activity_main_padding"
+        android:text="@string/activity_main_lblLightVibrant"
+        app:layout_constraintBottom_toTopOf="@+id/lblLightMuted"
+        app:layout_constraintEnd_toStartOf="@+id/lblDarkVibrant"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblVibrant"
+        app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
 
-        <TextView
-            android:id="@+id/lblLightVibrant"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_toRightOf="@+id/lblVibrant"
-            android:layout_toEndOf="@+id/lblVibrant"
-            android:gravity="center"
-            android:padding="@dimen/muestra_padding"
-            android:text="@string/vibrante_claro"
-            app:layout_heightPercent="@fraction/views_height"
-            app:layout_widthPercent="@fraction/views_width"/>
-
-        <TextView
-            android:id="@+id/lblDarkVibrant"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_toRightOf="@+id/lblLightVibrant"
-            android:layout_toEndOf="@+id/lblLightVibrant"
-            android:gravity="center"
-            android:padding="@dimen/muestra_padding"
-            android:text="@string/vibrante_oscuro"
-            app:layout_heightPercent="@fraction/views_height"
-            app:layout_widthPercent="@fraction/views_width"/>
+    <TextView
+        android:id="@+id/lblDarkVibrant"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="center"
+        android:padding="@dimen/activity_main_padding"
+        android:text="@string/activity_main_lblDarkVibrant"
+        app:layout_constraintBottom_toTopOf="@+id/lblDarkMuted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblLightVibrant"
+        app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
 
 
-        <TextView
-            android:id="@+id/lblMuted"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@+id/lblVibrant"
-            android:gravity="center"
-            android:padding="@dimen/muestra_padding"
-            android:text="@string/apagado"
-            app:layout_heightPercent="@fraction/views_height"
-            app:layout_widthPercent="@fraction/views_width"/>
+    <TextView
+        android:id="@+id/lblMuted"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="0dp"
+        android:gravity="center"
+        android:padding="@dimen/activity_main_padding"
+        android:text="@string/activity_main_lblMuted"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lblLightMuted"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblVibrant"/>
 
-        <TextView
-            android:id="@+id/lblLightMuted"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/lblLightVibrant"
-            android:layout_toRightOf="@+id/lblMuted"
-            android:layout_toEndOf="@+id/lblMuted"
-            android:gravity="center"
-            android:padding="@dimen/muestra_padding"
-            android:text="@string/apagado_claro"
-            app:layout_heightPercent="@fraction/views_height"
-            app:layout_widthPercent="@fraction/views_width"/>
+    <TextView
+        android:id="@+id/lblLightMuted"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:padding="@dimen/activity_main_padding"
+        android:text="@string/activity_main_lblLightMuted"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lblDarkMuted"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblMuted"
+        app:layout_constraintTop_toBottomOf="@+id/lblLightVibrant" />
 
-        <TextView
-            android:id="@+id/lblDarkMuted"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@+id/lblDarkVibrant"
-            android:layout_toRightOf="@+id/lblLightMuted"
-            android:layout_toEndOf="@+id/lblLightMuted"
-            android:gravity="center"
-            android:padding="@dimen/muestra_padding"
-            android:text="@string/apagado_oscuro"
-            app:layout_heightPercent="@fraction/views_height"
-            app:layout_widthPercent="@fraction/views_width"/>
+    <TextView
+        android:id="@+id/lblDarkMuted"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="center"
+        android:padding="@dimen/activity_main_padding"
+        android:text="@string/activity_main_lblDarkMuted"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblLightMuted"
+        app:layout_constraintTop_toBottomOf="@+id/lblDarkVibrant" />
 
-    </android.support.percent.PercentRelativeLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

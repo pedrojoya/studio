@@ -25,15 +25,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
+@SuppressWarnings("WeakerAccess")
 public class MainActivity extends AppCompatActivity {
 
-    private static final String URL_FOTO = "http://lorempixel.com/400/200/abstract/";
+    private static final String PHOTO_BASE_URL = "http://lorempixel.com/400/200/abstract/";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.imgFoto)
-    ImageView imgFoto;
+    @BindView(R.id.imgPhoto)
+    ImageView imgPhoto;
     @BindView(R.id.lblVibrant)
     TextView lblVibrant;
     @BindView(R.id.lblLightVibrant)
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.lblDarkMuted)
     TextView lblDarkMuted;
 
-    private int mContador = 0;
-    private Palette mPaleta;
+    private int mCount = 0;
+    private Palette mPalette;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +56,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        cargarFoto();
+        loadPhoto();
     }
 
-    // Carga una foto desde Internet en el ImageView.
-    @OnClick(R.id.imgFoto)
-    public void cargarFoto() {
-        Picasso.with(this).load(URL_FOTO + (mContador % 10 + 1) + "/")
-                .into(imgFoto, new Callback() {
+    @OnClick(R.id.imgPhoto)
+    public void loadPhoto() {
+        Picasso.with(this).load(PHOTO_BASE_URL + (mCount % 10 + 1) + "/")
+                .into(imgPhoto, new Callback() {
                     @Override
                     public void onSuccess() {
-                        obtenerPaleta();
-                        mContador++;
+                        obtainPalette();
+                        mCount++;
                     }
 
                     @Override
@@ -76,68 +75,57 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    // Obtiene la paleta de colores a partir de la imagen.
-    private void obtenerPaleta() {
-        Bitmap bitmap = ((BitmapDrawable) imgFoto.getDrawable()).getBitmap();
-        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
-                // La paleta de 16 colores ya ha sido generada asíncronamente.
-                mPaleta = palette;
-                pintarMuestras(palette);
-            }
+    private void obtainPalette() {
+        Bitmap bitmap = ((BitmapDrawable) imgPhoto.getDrawable()).getBitmap();
+        Palette.from(bitmap).generate(palette -> {
+            mPalette = palette;
+            showSwatchs(palette);
         });
     }
 
-    // Pinta las muestras de color a partir de la paleta.
-    private void pintarMuestras(Palette palette) {
-        pintarMuestra(lblVibrant, palette.getVibrantSwatch());
-        pintarMuestra(lblLightVibrant, palette.getLightVibrantSwatch());
-        pintarMuestra(lblDarkVibrant, palette.getDarkVibrantSwatch());
-        pintarMuestra(lblMuted, palette.getMutedSwatch());
-        pintarMuestra(lblLightMuted, palette.getLightMutedSwatch());
-        pintarMuestra(lblDarkMuted, palette.getDarkMutedSwatch());
-        // Se actualiza la toolbar con la muestra Muted.
-        actualizarToolbar(lblMuted);
+    private void showSwatchs(Palette palette) {
+        showSwatch(lblVibrant, palette.getVibrantSwatch());
+        showSwatch(lblLightVibrant, palette.getLightVibrantSwatch());
+        showSwatch(lblDarkVibrant, palette.getDarkVibrantSwatch());
+        showSwatch(lblMuted, palette.getMutedSwatch());
+        showSwatch(lblLightMuted, palette.getLightMutedSwatch());
+        showSwatch(lblDarkMuted, palette.getDarkMutedSwatch());
+        updateToolbar(lblMuted);
     }
 
-    // Pinta en el TextView la muestra de color recibida.
-    private void pintarMuestra(TextView lbl, Palette.Swatch swatch) {
-        lbl.setBackgroundColor(Color.WHITE);
-        lbl.setTextColor(Color.BLACK);
+    private void showSwatch(TextView textView, Palette.Swatch swatch) {
+        textView.setBackgroundColor(Color.WHITE);
+        textView.setTextColor(Color.BLACK);
         if (swatch != null) {
-            lbl.setBackgroundColor(swatch.getRgb());
-            lbl.setTextColor(swatch.getBodyTextColor());
+            textView.setBackgroundColor(swatch.getRgb());
+            textView.setTextColor(swatch.getBodyTextColor());
         }
     }
 
-    // Actualiza los colores de la toolbar y la status bar dependiendo de la
-    // muestra.
     @OnClick({R.id.lblVibrant, R.id.lblLightVibrant, R.id.lblDarkVibrant,
             R.id.lblMuted, R.id.lblLightMuted, R.id.lblDarkMuted})
-    public void actualizarToolbar(TextView lblMuestra) {
-        if (mPaleta != null) {
+    public void updateToolbar(TextView textView) {
+        if (mPalette != null) {
             int defaultColor = ContextCompat.getColor(this, R.color.colorPrimary);
-            int backgroundColor = getBackgroundColor(lblMuestra, defaultColor);
+            int backgroundColor = getBackgroundColor(textView, defaultColor);
             toolbar.setBackgroundColor(backgroundColor);
-            toolbar.setTitleTextColor(lblMuestra.getCurrentTextColor());
-            // Por defecto el color de la status bar será el del tema.
+            toolbar.setTitleTextColor(textView.getCurrentTextColor());
+            // Default status bar color is the one from the theme.
             int statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark);
-            switch (lblMuestra.getId()) {
+            switch (textView.getId()) {
                 case R.id.lblVibrant:
                 case R.id.lblLightVibrant:
                 case R.id.lblDarkVibrant:
-                    statusBarColor = mPaleta.getDarkVibrantColor(statusBarColor);
+                    statusBarColor = mPalette.getDarkVibrantColor(statusBarColor);
                     break;
                 default:
-                    statusBarColor = mPaleta.getDarkMutedColor(statusBarColor);
+                    statusBarColor = mPalette.getDarkMutedColor(statusBarColor);
             }
             setStatusBarcolor(getWindow(), statusBarColor);
         }
     }
 
-    // Retorna el color del fondo de la vista recibida. Si el fondo no es un
-    // color retorna el valor por defecto recibido.
+    // Returns background color of the received view or default one.
     private int getBackgroundColor(View view, int defaultColor) {
         int color = defaultColor;
         Drawable background = view.getBackground();
@@ -146,12 +134,10 @@ public class MainActivity extends AppCompatActivity {
         return color;
     }
 
-    // Establece el color de fondo de la status bar (API > 21).
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private static void setStatusBarcolor(Window window, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(color);
         }
     }
-
 }
