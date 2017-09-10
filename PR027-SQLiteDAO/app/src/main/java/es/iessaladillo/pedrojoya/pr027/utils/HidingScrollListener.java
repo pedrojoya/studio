@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr027.utils;
 
 import android.support.v7.widget.RecyclerView;
 
+@SuppressWarnings("unused")
 public abstract class HidingScrollListener extends RecyclerView.OnScrollListener {
 
     private static final int HIDE_THRESHOLD = 20;

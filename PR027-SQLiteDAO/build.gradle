@@ -2,15 +2,17 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta5'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
         maven {
             url 'http://dl.bintray.com/amulyakhare/maven'
         }
@@ -18,15 +20,14 @@ allprojects {
 }
 
 ext {
-    compileSdkVersion = 25
-    minSdkVersion = 16
-    buildToolsVersion = "25.0.1"
-    support_library_version = "25.3.0"
+    compileSdkVersion = 26
+    minSdkVersion = 19
+    buildToolsVersion = "26.0.0"
+    support_library_version = "26.0.2"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
     stetho_version = "1.5.0"
     textdrawable_version = "1.0.1"
-    junit_version = 4.12
 }
 
 task clean(type: Delete) {

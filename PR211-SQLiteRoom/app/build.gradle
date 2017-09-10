@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr211"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    compile "com.android.support:design:$rootProject.ext.support_library_version"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
+    compile "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
+    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
+    compile "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
+    compile "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
+    compile "android.arch.persistence.room:runtime:$rootProject.ext.arch_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.ext.arch_version"
+    testCompile "android.arch.persistence.room:testing:$rootProject.ext.arch_version"
+}

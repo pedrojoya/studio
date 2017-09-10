@@ -1,8 +1,8 @@
--- Tabla Alumnos
-create table alumnos (
+-- Students table
+create table students (
   _id integer primary key autoincrement,
-  nombre text not null,
-  curso text not null,
-  telefono text not null,
-  direccion text
+  name text not null,
+  grade text not null,
+  phone text not null,
+  address text
 );

@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr027.utils;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
@@ -49,32 +48,22 @@ public class ClickToSelectEditText<T> extends AppCompatEditText {
 
 
     private void configureOnClickListener() {
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        setOnClickListener(this::showDialog);
+        setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
                 showDialog(view);
-            }
-        });
-        setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus) {
-                    showDialog(view);
-                }
             }
         });
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void showDialog(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle(mHint);
-        builder.setAdapter(mSpinnerAdapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int selectedIndex) {
-                if (onItemSelectedListener != null) {
-                    onItemSelectedListener.onItemSelectedListener(
-                            (T) mSpinnerAdapter.getItem(selectedIndex), selectedIndex);
-                }
+        builder.setAdapter(mSpinnerAdapter, (dialogInterface, selectedIndex) -> {
+            if (onItemSelectedListener != null) {
+                onItemSelectedListener.onItemSelectedListener(
+                        (T) mSpinnerAdapter.getItem(selectedIndex), selectedIndex);
             }
         });
         builder.setPositiveButton(android.R.string.cancel, null);

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -19,11 +18,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile "junit:junit:$rootProject.ext.junit_version"
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     compile "com.android.support:design:$rootProject.ext.support_library_version"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
@@ -31,4 +34,5 @@ dependencies {
     compile "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
     compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
