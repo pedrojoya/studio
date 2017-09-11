@@ -2,11 +2,11 @@
 <resources>
 
     <string name="app_name">Handler</string>
-    <string name="iniciar">Iniciar</string>
-    <string name="trabajando">Trabajando…(%1$d de %2$d)</string>
-    <plurals name="realizadas">
-        <item quantity="one">Realizada %1$d tarea</item>
-        <item quantity="other">Realizadas %1$d tareas</item>
+    <string name="activity_main_btnStart">Start</string>
+    <string name="main_activity_task">Task %1$d of %2$d</string>
+    <plurals name="main_activity_tasks_done">
+        <item quantity="one">%1$d task done</item>
+        <item quantity="other">%1$d tasks done</item>
     </plurals>
 
 </resources>

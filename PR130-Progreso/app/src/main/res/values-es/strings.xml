@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Handler</string>
+    <string name="activity_main_btnStart">Iniciar</string>
+    <string name="main_activity_task">Tarea %1$d de %2$d</string>
+    <plurals name="main_activity_tasks_done">
+        <item quantity="one">Realizada %1$d tarea</item>
+        <item quantity="other">Realizadas %1$d tareas</item>
+    </plurals>
+
+</resources>

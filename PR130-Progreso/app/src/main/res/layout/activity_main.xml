@@ -1,49 +1,51 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/rlRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_vertical">
 
     <ProgressBar
-        android:id="@+id/prbBarra"
+        android:id="@+id/prbBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/general_activity_margin"
         android:indeterminate="false"
-        android:max="10"
-        android:padding="4dip"
-        android:layout_centerHorizontal="true" 
-        android:layout_marginBottom="10dp"       
-        android:visibility="invisible" />
+        android:max="@integer/activity_main_prbBar_max"
+        android:padding="@dimen/activity_main_prbBar_padding"
+        android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/btnIniciar"
+        android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/prbBar"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/prbBarra"
-        android:layout_marginBottom="10dp"       
-        android:text="@string/iniciar" />
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:text="@string/activity_main_btnStart"/>
 
     <TextView
-        android:id="@+id/lblMensaje"
+        android:id="@+id/lblMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"        
-        tools:text="@string/trabajando"
-        android:layout_marginBottom="10dp"       
-        android:layout_below="@+id/btnIniciar"
-        android:visibility="invisible" >
+        android:layout_below="@+id/btnStart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:text="@tools:sample/lorem">
     </TextView>
 
     <ProgressBar
-        android:id="@+id/prbCirculo"
+        android:id="@+id/prbCircular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lblMessage"
+        android:layout_centerHorizontal="true"
         android:indeterminate="false"
-        android:max="10"
-        android:layout_centerHorizontal="true"        
-        android:layout_below="@+id/lblMensaje"
-        android:visibility="invisible" />
-    
+        android:visibility="invisible"/>
+
 </RelativeLayout>

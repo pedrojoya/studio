@@ -1,24 +1,25 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/activity_padding"
-                tools:context=".MainActivity">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/general_activity_margin"
+    tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/lblNivel"
-        android:text="@string/nivel_bateria"
+        android:id="@+id/lblLevel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/activity_main_lblLevel"/>
 
     <ProgressBar
-        android:id="@+id/pbNivel"
+        android:id="@+id/pbLevel"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_marginTop="@dimen/progressbar_marginTop"
-        android:max="@integer/progressbar_max"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lblLevel"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/lblNivel"/>
+        android:max="@integer/activity_main_pbLevel_max"/>
 
 </RelativeLayout>

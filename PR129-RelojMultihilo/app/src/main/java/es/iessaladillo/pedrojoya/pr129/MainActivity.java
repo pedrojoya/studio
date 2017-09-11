@@ -2,8 +2,6 @@ package es.iessaladillo.pedrojoya.pr129;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -11,97 +9,71 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    private Button btnIniciar;
-    private Thread hiloSecundario;
-    private TextView lblTiempo;
-    private final SimpleDateFormat mFormateador = new SimpleDateFormat("HH:mm:ss",
-            Locale.getDefault());
+    private TextView lblTime;
+    private Button btnStart;
+
+    private Thread secundaryThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initVistas();
+        initViews();
     }
 
-    private void initVistas() {
-        lblTiempo = (TextView) this.findViewById(R.id.lblTiempo);
-        lblTiempo.setText(mFormateador.format(new Date()));
-        btnIniciar = (Button) this.findViewById(R.id.btnIniciar);
-        if (btnIniciar != null) {
-            btnIniciar.setOnClickListener(this);
-        }
-    }
+    private void initViews() {
+        lblTime = this.findViewById(R.id.lblTime);
+        btnStart = this.findViewById(R.id.btnStart);
 
-    @Override
-    public void onClick(View v) {
-        // Dependiendo del botón pulsado.
-        switch (v.getId()) {
-            case R.id.btnIniciar:
-                if (btnIniciar.getText().toString().equals(getString(R.string.iniciar))) {
-                    iniciar();
-                } else {
-                    parar();
-                }
-                break;
-        }
+        lblTime.setText(new SimpleDateFormat("HH:mm:ss",
+                Locale.getDefault()).format(new Date()));
+        btnStart.setOnClickListener(v -> {
+            if (btnStart.getText().toString().equals(getString(R.string.activity_main_btnStart))) {
+                start();
+            } else {
+                stop();
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Al destruirse la actividad debemos interrumpir el hilo secundario.
-        // Si no lo paráramos, se produciría un memory leak.
-        parar();
+        // We need to stop to avoid memory leak.
+        stop();
     }
 
-    private void iniciar() {
-        // Se crea el hilo pasándole el tiempo guardado al objeto Crono.
-        hiloSecundario = new Thread(new Reloj());
-        // Se inicia el hilo.
-        hiloSecundario.start();
-        // Se cambia el texto del botón.
-        btnIniciar.setText(R.string.parar);
+    private void start() {
+        secundaryThread = new Thread(new Clock());
+        secundaryThread.start();
+        btnStart.setText(R.string.main_activity_stop);
     }
 
-    private void actualizarHora(String cadena) {
-        lblTiempo.setText(cadena);
+    private void updateTime(String cadena) {
+        lblTime.setText(cadena);
     }
 
-    private void parar() {
-        // Se interrumple el hilo.
-        hiloSecundario.interrupt();
-        // Se cambia el texto del botón.
-        btnIniciar.setText(R.string.iniciar);
+    private void stop() {
+        secundaryThread.interrupt();
+        btnStart.setText(R.string.activity_main_btnStart);
     }
 
-    private class Reloj implements Runnable {
+    private class Clock implements Runnable {
 
-        final SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
         @Override
         public void run() {
             while (!Thread.currentThread().isInterrupted()) {
-                final String cadena = formateador.format(new Date());
-                // Se crea la tarea de actualización.
-                Runnable tarea = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        actualizarHora(cadena);
-                    }
-
-                };
-                // Se ejecuta en el hilo principal.
-                runOnUiThread(tarea);
-                // Espera un segundo.
+                final String time = simpleDateFormat.format(new Date());
+                Runnable task = () -> updateTime(time);
+                runOnUiThread(task);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    // Se finaliza el hilo si se produce la interrupción
-                    // mientras se duerme.
+                    // Interrupted while sleeping.
                     return;
                 }
             }
