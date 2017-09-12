@@ -78,8 +78,8 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         adapter.setOnItemClickListener((view, student, position) -> editStudent(student));
         adapter.setEmptyView(lblEmptyView);
         lstStudents.setAdapter(adapter);
-        lstStudents.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
-                false));
+        lstStudents.setLayoutManager(
+                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         lstStudents.addItemDecoration(
                 new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
@@ -119,9 +119,8 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     private void showErrorDeletingStudent() {
-        Toast.makeText(getActivity(), R.string.main_fragment_error_deleting_student, Toast
-                .LENGTH_SHORT)
-                .show();
+        Toast.makeText(getActivity(), R.string.main_fragment_error_deleting_student,
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override

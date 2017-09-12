@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AsyncTask</string>
-    <string name="iniciar">Iniciar</string>
-    <string name="trabajando">Trabajando…(%1$d de %2$d)</string>
-    <string name="cancelar">Cancelar</string>
+    <string name="app_name">EventBus</string>
+    <string name="activity_main_btnStart">Iniciar</string>
+    <string name="activity_main_lblMessage">Trabajando…(%1$d de %2$d)</string>
+    <string name="activity_main_btnCancel">Cancelar</string>
 
 </resources>

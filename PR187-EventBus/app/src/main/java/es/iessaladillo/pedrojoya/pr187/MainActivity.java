@@ -1,22 +1,25 @@
 package es.iessaladillo.pedrojoya.pr187;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
+import es.iessaladillo.pedrojoya.pr187.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    @SuppressLint("CommitTransaction")
+    private static final String TAG_MAIN_FRAGMENT = "TAG_MAIN_FRAGMENT";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadFragment();
+    }
+
+    private void loadFragment() {
         if (getSupportFragmentManager().findFragmentById(R.id.flContent) == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.flContent, new MainFragment())
-                    .commitNow();
-            Log.d("Mia", "Fragmento cargado");
+            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
+                    new MainFragment(), TAG_MAIN_FRAGMENT);
         }
     }
 

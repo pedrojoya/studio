@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="numPasos">10</integer>
+    <integer name="activity_main_prbBar">10</integer>
 </resources>

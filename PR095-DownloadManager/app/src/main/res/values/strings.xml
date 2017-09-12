@@ -4,7 +4,7 @@
     <string name="app_name">DownloadManager</string>
     <string name="descargar">Descargar</string>
     <string name="descargando">Descargando %1$s</string>
-    <string name="descargas">Descargas</string>
+    <string name="fragment_main_mnuDownloads">Descargas</string>
     <string name="error">Error en la descarga. Motivo: %1$s</string>
     <string name="no_hay_canciones">No hay canciones</string>
     <string name="descripcion">%1$s (%2$s)</string>

@@ -21,7 +21,7 @@
 
     <!-- En API > 21 se traslada el behavior al fragmento -->
     <FrameLayout
-        android:id="@+id/flContenido"
+        android:id="@+id/flContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
@@ -33,7 +33,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
-        android:src="@drawable/fab_play"
+        android:src="@drawable/ic_play_arrow_white_24dp"
         app:elevation="@dimen/fab_elevation"
         app:pressedTranslationZ="@dimen/fab_pressedTranslationZ"/>
 
