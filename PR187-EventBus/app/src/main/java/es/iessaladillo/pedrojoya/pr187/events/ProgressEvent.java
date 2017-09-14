@@ -2,14 +2,14 @@ package es.iessaladillo.pedrojoya.pr187.events;
 
 public class ProgressEvent {
 
-    private final int numTrabajo;
+    private final int stepNumber;
 
-    public ProgressEvent(int numTrabajo) {
-        this.numTrabajo = numTrabajo;
+    public ProgressEvent(int stepNumber) {
+        this.stepNumber = stepNumber;
     }
 
-    public int getNumTrabajo() {
-        return numTrabajo;
+    public int getStepNumber() {
+        return stepNumber;
     }
 
 }

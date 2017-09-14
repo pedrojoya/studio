@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import es.iessaladillo.pedrojoya.PR004.components.MessageManager.ToastMessageManager;
-import es.iessaladillo.pedrojoya.PR004.utils.IntentUtils;
+import es.iessaladillo.pedrojoya.PR004.utils.IntentsUtils;
 import es.iessaladillo.pedrojoya.PR004.utils.NetworkUtils;
 import es.iessaladillo.pedrojoya.PR004.utils.PermissionUtils;
 
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showInBrowser(String url) {
         if (NetworkUtils.isConnectionAvailable(getApplicationContext())) {
-            Intent intent = IntentUtils.newViewUriIntent(Uri.parse(url));
-            if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+            Intent intent = IntentsUtils.newViewUriIntent(Uri.parse(url));
+            if (IntentsUtils.isActivityAvailable(getApplicationContext(), intent)) {
                 startActivity(intent);
             } else {
                 mMessageManager.showMessage(btnShowInBrowser, getString(R.string.main_activity_no_web_browser));
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void search(String text) {
         if (NetworkUtils.isConnectionAvailable(getApplicationContext())) {
-            Intent intent = IntentUtils.newWebSearchIntent(text);
-            if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+            Intent intent = IntentsUtils.newWebSearchIntent(text);
+            if (IntentsUtils.isActivityAvailable(getApplicationContext(), intent)) {
                 startActivity(intent);
             } else {
                 mMessageManager.showMessage(btnSearch, getString(R.string.main_activity_no_web_search));
@@ -122,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
     private void reportRationale() {
         Snackbar.make(btnCall, R.string.general_permission_required, Snackbar.LENGTH_LONG).setAction(
                 R.string.general_configure,
-                view -> IntentUtils.startInstalledAppDetailsActivity(MainActivity
+                view -> IntentsUtils.startInstalledAppDetailsActivity(MainActivity
                         .this)).show();
     }
 
     private void call(String phoneNumber) {
-        Intent intent = IntentUtils.newCallIntent(phoneNumber);
-        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+        Intent intent = IntentsUtils.newCallIntent(phoneNumber);
+        if (IntentsUtils.isActivityAvailable(getApplicationContext(), intent)) {
             startActivity(intent);
         } else {
             mMessageManager.showMessage(btnCall,
@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dial(String phoneNumber) {
-        Intent intent = IntentUtils.newDialIntent(phoneNumber);
-        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+        Intent intent = IntentsUtils.newDialIntent(phoneNumber);
+        if (IntentsUtils.isActivityAvailable(getApplicationContext(), intent)) {
             startActivity(intent);
         } else {
             mMessageManager.showMessage(btnDial, getString(R.string.main_activity_no_dial_app));
@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showInMap(double longitude, double latitude, int zoom) {
-        Intent intent = IntentUtils.newShowInMapIntent(longitude, latitude, zoom);
-        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+        Intent intent = IntentsUtils.newShowInMapIntent(longitude, latitude, zoom);
+        if (IntentsUtils.isActivityAvailable(getApplicationContext(), intent)) {
             startActivity(intent);
         } else {
             mMessageManager.showMessage(btnShowInMap, getString(R.string.main_activity_no_maps_app));
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void searchInMap(String text) {
-        Intent intent = IntentUtils.newSearchInMapIntent(text);
-        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+        Intent intent = IntentsUtils.newSearchInMapIntent(text);
+        if (IntentsUtils.isActivityAvailable(getApplicationContext(), intent)) {
             startActivity(intent);
         } else {
             mMessageManager.showMessage(btnShowInMap, getString(R.string.main_activity_no_maps_app));
@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showContacts() {
-        Intent intent = IntentUtils.newContactsIntent();
-        if (IntentUtils.isActivityAvailable(getApplicationContext(), intent)) {
+        Intent intent = IntentsUtils.newContactsIntent();
+        if (IntentsUtils.isActivityAvailable(getApplicationContext(), intent)) {
             startActivity(intent);
         } else {
             mMessageManager.showMessage(btnShowContacts,

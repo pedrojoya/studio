@@ -1,2 +1,4 @@
 <resources>
+    <dimen name="general_activity_margin">8dp</dimen>
+    <dimen name="activity_main_prbBar_padding">4dp</dimen>
 </resources>

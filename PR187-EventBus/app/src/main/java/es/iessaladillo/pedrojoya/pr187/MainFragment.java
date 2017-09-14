@@ -22,15 +22,15 @@ import es.iessaladillo.pedrojoya.pr187.events.ProgressEvent;
 
 public class MainFragment extends Fragment {
 
-    private static final String STATE_IS_TAREA_STARTED = "state_isWorking";
+    private static final String STATE_IS_TASK_STARTED = "STATE_IS_TASK_STARTED";
 
-    private ProgressBar prbBarra;
-    private TextView lblMensaje;
-    private ProgressBar prbCirculo;
-    private Button btnIniciar;
-    private Button btnCancelar;
+    private ProgressBar prbBar;
+    private TextView lblMessage;
+    private ProgressBar prbCircular;
+    private Button btnStart;
+    private Button btnCancel;
 
-    private boolean mIsTareaStarted;
+    private boolean isTaskStarted;
 
     public MainFragment() {
     }
@@ -44,90 +44,81 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
-        initVistas(v);
-        return v;
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        initViews(view);
+        return view;
     }
 
-    // Obtiene e inicializa las vistas.
-    private void initVistas(View v) {
-        prbBarra = (ProgressBar) v.findViewById(R.id.prbBarra);
-        lblMensaje = (TextView) v.findViewById(R.id.lblMensaje);
-        prbCirculo = (ProgressBar) v.findViewById(R.id.prbCirculo);
-        btnIniciar = (Button) v.findViewById(R.id.btnIniciar);
-        btnIniciar.setOnClickListener(view -> iniciar());
-        btnCancelar = (Button) v.findViewById(R.id.btnCancelar);
-        btnCancelar.setOnClickListener(view -> cancelar());
-        actualizarVistas(mIsTareaStarted);
+    private void initViews(View v) {
+        prbBar = v.findViewById(R.id.prbBar);
+        lblMessage = v.findViewById(R.id.lblMessage);
+        prbCircular = v.findViewById(R.id.prbCircular);
+        btnStart = v.findViewById(R.id.btnStart);
+        btnCancel = v.findViewById(R.id.btnCancel);
+
+        btnStart.setOnClickListener(view -> start());
+        btnCancel.setOnClickListener(view -> cancel());
+        updateViews(isTaskStarted);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(STATE_IS_TAREA_STARTED, mIsTareaStarted);
+        outState.putBoolean(STATE_IS_TASK_STARTED, isTaskStarted);
         super.onSaveInstanceState(outState);
     }
 
-    private void iniciar() {
-        // Se inicia el servicio pasándole el número de pasos.
-        TareaService.start(getContext(), getResources().getInteger(R.integer.numPasos));
+    private void start() {
+        TaskService.start(getContext(), getResources().getInteger(R.integer.activity_main_prbBar));
     }
 
-    // Cuando se hace click en btnCancelar.
-    private void cancelar() {
-        // Se envía un nuevo intent al servicio para que se cancele.
-        TareaService.cancel(getContext());
+    private void cancel() {
+        TaskService.cancel(getContext());
     }
 
-    // Actualiza el estado de las vistas. Recibe si la tarea está iniciada o no.
-    private void actualizarVistas(boolean iniciada) {
-        if (!iniciada) {
-            prbBarra.setProgress(0);
-            lblMensaje.setText("");
+    private void updateViews(boolean isStarted) {
+        if (!isStarted) {
+            prbBar.setProgress(0);
+            lblMessage.setText("");
         }
-        btnIniciar.setEnabled(!iniciada);
-        btnCancelar.setEnabled(iniciada);
-        prbBarra.setVisibility(iniciada ? View.VISIBLE : View.INVISIBLE);
-        lblMensaje.setVisibility(iniciada ? View.VISIBLE : View.INVISIBLE);
-        prbCirculo.setVisibility(iniciada ? View.VISIBLE : View.INVISIBLE);
+        btnStart.setEnabled(!isStarted);
+        btnCancel.setEnabled(isStarted);
+        prbBar.setVisibility(isStarted ? View.VISIBLE : View.INVISIBLE);
+        lblMessage.setVisibility(isStarted ? View.VISIBLE : View.INVISIBLE);
+        prbCircular.setVisibility(isStarted ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        // Se registra la actividad en el bus.
         EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
-        // Se anula el registro de la actividad en el bus.
         EventBus.getDefault().unregister(this);
         super.onStop();
     }
 
-    @SuppressWarnings({"UnusedParameters", "unused"})
+    @SuppressWarnings("unused")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPreExecuteEvent(PreExecuteEvent event) {
-        mIsTareaStarted = true;
-        // Se hacen visibles las vistas para el progreso.
-        actualizarVistas(true);
+        isTaskStarted = true;
+        updateViews(true);
     }
 
     @SuppressWarnings("unused")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onProgressEvent(ProgressEvent event) {
-        // Se actualiza la barra.
-        lblMensaje.setText(getString(R.string.trabajando, event.getNumTrabajo(),
-                getResources().getInteger(R.integer.numPasos)));
-        prbBarra.setProgress(event.getNumTrabajo());
+        lblMessage.setText(getString(R.string.activity_main_lblMessage, event.getStepNumber(),
+                getResources().getInteger(R.integer.activity_main_prbBar)));
+        prbBar.setProgress(event.getStepNumber());
     }
 
-    @SuppressWarnings({"UnusedParameters", "unused"})
+    @SuppressWarnings("unused")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPostExecuteEvent(PostExecuteEvent event) {
-        mIsTareaStarted = false;
-        // Se resetean las vistas.
-        actualizarVistas(false);
+        isTaskStarted = false;
+        updateViews(false);
     }
 
 }

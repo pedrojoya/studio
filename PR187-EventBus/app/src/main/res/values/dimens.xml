@@ -1,4 +1,4 @@
 <resources>
-    <dimen name="activity_margin">10dp</dimen>
-    <dimen name="progressBar_padding">4dp</dimen>
+    <dimen name="general_activity_margin">16dp</dimen>
+    <dimen name="activity_main_prbBar_padding">4dp</dimen>
 </resources>

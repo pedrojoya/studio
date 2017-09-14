@@ -2,11 +2,18 @@
 <resources>
 
     <string name="app_name">DownloadManager</string>
-    <string name="descargar">Descargar</string>
-    <string name="descargando">Descargando %1$s</string>
-    <string name="descargas">Descargas</string>
-    <string name="error">Error en la descarga. Motivo: %1$s</string>
-    <string name="no_hay_canciones">No hay canciones</string>
-    <string name="descripcion">%1$s (%2$s)</string>
+
+    <string name="fragment_main_item_imgPlaying">Download</string>
+    <string name="fragment_main_mnuDownloads">Downloads</string>
+    <string name="fragment_main_lblEmptyView">No songs available</string>
+
+    <string name="main_fragment_downloading">Downloading %1$s</string>
+    <string name="main_fragment_download_failed">Error downloading. Reason: %1$s</string>
+    <string name="main_fragment_description">%1$s (%2$s)</string>
+
+    <string name="main_activity_configure">Configure</string>
+    <string name="main_activity_error_permission_required">Action can\'t be
+        done without the required permission</string>
+
 
 </resources>

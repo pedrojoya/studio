@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="grades" tools:ignore="MissingTranslation">
+        <item >1º CFGM SMR</item>
+        <item >2º CFGM SMR</item>
+        <item >1º CFGS DAM</item>
+        <item >2º CFGS DAM</item>
+    </string-array>    
+</resources>

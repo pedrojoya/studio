@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="es.iessaladillo.pedrojoya.pr095.actividades.MainActivity">
+    tools:context="es.iessaladillo.pedrojoya.pr095.ui.main.MainActivity">
     
-    <item android:id="@+id/mnuDescargas"
-        android:title="@string/descargas"
-        android:icon="@drawable/ic_action_downloads"
+    <item android:id="@+id/mnuDownloads"
+        android:title="@string/fragment_main_mnuDownloads"
+        android:icon="@drawable/ic_file_download_white_24dp"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 </menu>

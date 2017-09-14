@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta3'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta5'
     }
 }
 
@@ -28,5 +28,5 @@ ext {
     mockito_version = "2.7.19"
     espresso_version = "3.0.0"
     support_test_version = "1.0.0"
-    support_library_version = "26.0.1"
+    support_library_version = "26.0.2"
 }
