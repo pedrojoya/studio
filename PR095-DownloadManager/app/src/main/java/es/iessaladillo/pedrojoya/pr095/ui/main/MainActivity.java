@@ -1,17 +1,25 @@
 package es.iessaladillo.pedrojoya.pr095.ui.main;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import es.iessaladillo.pedrojoya.pr095.R;
+import es.iessaladillo.pedrojoya.pr095.utils.FragmentUtils;
+import es.iessaladillo.pedrojoya.pr095.utils.IntentsUtils;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.RuntimePermissions;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.Listener {
+@RuntimePermissions
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG_MAIN_FRAGMENT = "MainFragment";
+    private static final String TAG_MAIN_FRAGMENT = "TAG_MAIN_FRAGMENT";
 
     private FloatingActionButton btnPlayStop;
 
@@ -19,57 +27,49 @@ public class MainActivity extends AppCompatActivity implements MainFragment.List
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initVistas();
+        initViews();
+        MainActivityPermissionsDispatcher.loadFragmentWithCheck(this);
+    }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    public void loadFragment() {
         if (getSupportFragmentManager().findFragmentByTag(TAG_MAIN_FRAGMENT) == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.flContent, MainFragment.newInstance(), TAG_MAIN_FRAGMENT)
-                    .commit();
+            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
+                    MainFragment.newInstance(), TAG_MAIN_FRAGMENT);
+            btnPlayStop.setImageResource(R.drawable.ic_play_arrow_white_24dp);
         }
     }
 
-    private void initVistas() {
+    private void initViews() {
+        btnPlayStop = findViewById(R.id.btnPlayStop);
         setupToolbar();
-        setupFAB();
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
-    private void setupFAB() {
-        btnPlayStop = (FloatingActionButton) findViewById(R.id.btnPlayStop);
-        if (btnPlayStop != null) {
-            btnPlayStop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    playstop();
-                }
-            });
-        }
-    }
-
-    private void playstop() {
-        Fragment frg = getSupportFragmentManager().findFragmentByTag(TAG_MAIN_FRAGMENT);
-        if (frg instanceof MainFragment) {
-            ((MainFragment) frg).playstop();
-        }
-    }
-
+    @SuppressLint("NeedOnRequestPermissionsResult")
     @Override
-    public void onReproduciendo() {
-        if (btnPlayStop != null) {
-            btnPlayStop.setImageResource(R.drawable.ic_stop_white_24dp);
-        }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
+                grantResults);
     }
 
-    @Override
-    public void onParado() {
-        if (btnPlayStop != null) {
-            btnPlayStop.setImageResource(R.drawable.ic_play_arrow_white_24dp);
-        }
+    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void showError() {
+        Snackbar.make(btnPlayStop, R.string.main_activity_error_permission_required,
+                Snackbar.LENGTH_LONG).setAction(R.string.main_activity_configure,
+                view -> startInstalledAppDetailsActivity()).show();
+        btnPlayStop.setImageResource(R.drawable.ic_settings_white_24dp);
+        btnPlayStop.setOnClickListener(
+                view -> startInstalledAppDetailsActivity());
+    }
+
+    private void startInstalledAppDetailsActivity() {
+        startActivity(IntentsUtils.newInstalledAppDetailsActivityIntent(this));
     }
 
 }

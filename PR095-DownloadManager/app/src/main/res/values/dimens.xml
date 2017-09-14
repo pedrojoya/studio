@@ -11,12 +11,12 @@
     <dimen name="three_lines_avatar_height">40dp</dimen>
     <dimen name="three_lines_avatar_marginLeft">16dp</dimen>
     <dimen name="three_lines_avatar_marginTop">20dp</dimen>
-    <dimen name="list_paddingTop">8dp</dimen>
-    <dimen name="list_dividerHeight">1dp</dimen>
-    <dimen name="list_paddingBottom">8dp</dimen>
-    <dimen name="avatar_marginBottom">20dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="fab_elevation" tools:ignore="UnusedResources">6dp</dimen>
-    <dimen name="fab_pressedTranslationZ">12dp</dimen>
+    <dimen name="fragment_main_lstSongs_paddingTop">8dp</dimen>
+    <dimen name="fragment_main_lstSongs_dividerHeight">1dp</dimen>
+    <dimen name="fragment_main_lstSongs_paddingBottom">8dp</dimen>
+    <dimen name="activity_main_fab_margin">16dp</dimen>
+    <dimen name="activity_main_fab_elevation" tools:ignore="UnusedResources">6dp</dimen>
+    <dimen name="activity_main_fab_pressedTranslationZ">12dp</dimen>
+    <dimen name="fragment_main_lblEmptyView_drawablePadding">16dp</dimen>
 
 </resources>

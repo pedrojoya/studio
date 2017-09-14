@@ -21,4 +21,5 @@ ext {
     minSdkVersion = 19
     buildToolsVersion = "26.0.0"
     support_library_version = "26.0.2"
+    permissionsdispatcher_version = "2.4.0"
 }

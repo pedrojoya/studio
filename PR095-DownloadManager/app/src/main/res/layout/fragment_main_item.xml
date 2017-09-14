@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,40 +13,41 @@
         android:layout_height="@dimen/three_lines_avatar_height"
         android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
         android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
+        android:contentDescription="@string/fragment_main_item_imgPlaying"
         android:scaleType="center"
-        android:contentDescription="@string/descargar"
-        android:src="@drawable/ic_playlist_add_black_24dp" />
+        android:src="@drawable/ic_playlist_add_black_24dp"/>
 
     <TextView
-        android:id="@+id/lblNombre"
+        android:id="@+id/lblName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/three_lines_text_paddingLeft"
         android:paddingEnd="@dimen/three_lines_text_paddingRight"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
         android:paddingTop="@dimen/three_lines_text_paddingTop"
-        tools:text="Nombre"
         android:textSize="@dimen/three_lines_primary_text_textSize"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="@tools:sample/lorem"/>
 
     <TextView
-        android:id="@+id/lblAutor"
+        android:id="@+id/lblAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:layout_below="@+id/lblName"
         android:paddingEnd="@dimen/three_lines_text_paddingRight"
-        tools:text="Autor"
-        android:layout_below="@+id/lblNombre"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
         android:textSize="@dimen/three_lines_secundary_text_textSize"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        tools:text="@tools:sample/last_names"/>
 
     <TextView
-        android:id="@+id/lblDuracion"
+        android:id="@+id/lblDuration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lblAuthor"
         android:paddingBottom="@dimen/three_lines_text_paddingBottom"
-        android:paddingStart="@dimen/three_lines_text_paddingLeft"
         android:paddingEnd="@dimen/three_lines_text_paddingRight"
-        tools:text="Dirección"
-        android:layout_below="@+id/lblAutor"
-        android:textSize="@dimen/three_lines_secundary_text_textSize" />
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:textSize="@dimen/three_lines_secundary_text_textSize"
+        tools:text="@tools:sample/date/hhmm"/>
+
 </RelativeLayout>

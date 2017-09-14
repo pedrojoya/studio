@@ -1,12 +1,10 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -21,7 +19,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!-- paddingTop para compatibilidad con CoordinatorLayout en API < 21 -->
+    <!-- paddingTop for compatibility between CoordinatorLayout
+    and ListView in API < 21 -->
     <FrameLayout
         android:id="@+id/flContent"
         android:layout_width="match_parent"
@@ -33,11 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/activity_main_fab_margin"
+        android:layout_marginEnd="@dimen/activity_main_fab_margin"
         android:src="@drawable/ic_play_arrow_white_24dp"
-        app:elevation="@dimen/fab_elevation"
-        app:pressedTranslationZ="@dimen/fab_pressedTranslationZ"/>
+        app:elevation="@dimen/activity_main_fab_elevation"
+        app:pressedTranslationZ="@dimen/activity_main_fab_pressedTranslationZ"/>
 
 </android.support.design.widget.CoordinatorLayout>

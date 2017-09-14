@@ -19,7 +19,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!-- En API > 21 se traslada el behavior al fragmento -->
+    <!-- In API > 21 we propagate behavior to fragment -->
     <FrameLayout
         android:id="@+id/flContent"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/activity_main_fab_margin"
+        android:layout_marginEnd="@dimen/activity_main_fab_margin"
         android:src="@drawable/ic_play_arrow_white_24dp"
-        app:elevation="@dimen/fab_elevation"
-        app:pressedTranslationZ="@dimen/fab_pressedTranslationZ"/>
+        app:elevation="@dimen/activity_main_fab_elevation"
+        app:pressedTranslationZ="@dimen/activity_main_fab_pressedTranslationZ"/>
 
 </android.support.design.widget.CoordinatorLayout>

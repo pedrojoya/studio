@@ -1,32 +1,35 @@
 package es.iessaladillo.pedrojoya.pr095.data.model;
 
+import android.os.Environment;
+
+import java.io.File;
+
+import static es.iessaladillo.pedrojoya.pr095.Constants.MP3_FILE_EXTENSION;
+
 public class Song {
 
-    // Propieadades.
-    private final String nombre;
-    private final String duracion;
-    private final String autor;
+    private final String name;
+    private final String duration;
+    private final String author;
     private final String url;
 
-    // Constructor.
-    public Song(String nombre, String duracion, String autor, String url) {
-        this.nombre = nombre;
-        this.duracion = duracion;
-        this.autor = autor;
+    public Song(String name, String duration, String author, String url) {
+        this.name = name;
+        this.duration = duration;
+        this.author = author;
         this.url = url;
     }
 
-    // Getters.
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public String getDuracion() {
-        return duracion;
+    public String getDuration() {
+        return duration;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getAuthor() {
+        return author;
     }
 
     public String getUrl() {
@@ -35,7 +38,15 @@ public class Song {
 
     @Override
     public String toString() {
-        return nombre + " (" + duracion + ")";
+        return name + " (" + duration + ")";
     }
+
+    public File getPublicFile() {
+        File directory = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_MUSIC);
+        File file = new File(directory, name + MP3_FILE_EXTENSION);
+        return file.exists() ? file : null;
+    }
+
 
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DownloadManager</string>
+
+    <string name="fragment_main_item_imgPlaying">Descargar</string>
+    <string name="fragment_main_mnuDownloads">Descargas</string>
+    <string name="fragment_main_lblEmptyView">No hay canciones</string>
+
+    <string name="main_fragment_downloading">Descargando %1$s</string>
+    <string name="main_fragment_download_failed">Error en la descarga. Motivo: %1$s</string>
+    <string name="main_fragment_description">%1$s (%2$s)</string>
+
+    <string name="main_activity_configure">Configurar</string>
+    <string name="main_activity_error_permission_required">La acción no
+        puede llevarse a cabo sin el permiso necesario</string>
+</resources>

@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import es.iessaladillo.pedrojoya.pr188.utils.FileUtils;
-import es.iessaladillo.pedrojoya.pr188.utils.IntentUtils;
+import es.iessaladillo.pedrojoya.pr188.utils.IntentsUtils;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     void showNotAvailable() {
         Snackbar.make(btnDuplicate, R.string.main_activity_action_permission_required,
                 Snackbar.LENGTH_LONG).setAction(R.string.main_activity_configure,
-                view -> IntentUtils.startInstalledAppDetailsActivity(MainActivity.this)).show();
+                view -> IntentsUtils.startInstalledAppDetailsActivity(MainActivity.this)).show();
     }
 
     private String getSubfolderType() {
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     private void showFile(File file, String mimeType) {
         // Files stored in personal directories can't be open from external apps.
         try {
-            startActivity(IntentUtils.newViewFileIntent(file, mimeType));
+            startActivity(IntentsUtils.newViewFileIntent(file, mimeType));
         } catch (Exception e) {
             Toast.makeText(this, getString(R.string.main_activity_error_opening_file),
                     Toast.LENGTH_SHORT).show();

@@ -12,71 +12,65 @@ import android.support.v4.content.LocalBroadcastManager;
 public class MusicService extends Service implements
         OnCompletionListener, OnPreparedListener {
 
-    public static final String EXTRA_PATH_CANCION = "path";
-    public static final String ACTION_COMPLETADA = "es.iessaladillo.pedrojoya.pr089.action_completada";
+    public static final String EXTRA_SONG_PATH = "EXTRA_SONG_PATH";
+    public static final String ACTION_SONG_COMPLETED = "es.iessaladillo.pedrojoya.pr089.action_song_completed";
 
-    private MediaPlayer reproductor;
+    private MediaPlayer mediaPlayer;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        // Se crea y configura el reproductor.
-        reproductor = new MediaPlayer();
+        mediaPlayer = new MediaPlayer();
     }
 
     @Override
     public void onDestroy() {
-        // Se para la reproducción y se liberan los recursos.
-        if (reproductor != null) {
-            reproductor.stop();
-            reproductor.release();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
         }
         super.onDestroy();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // Se prepara la reproducción de la canción.
-        if (reproductor != null) {
-            reproductor.reset();
-            reproductor.setLooping(false);
-            reproductor.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            reproductor.setOnPreparedListener(this);
-            reproductor.setOnCompletionListener(this);
-            String pathCancion = intent.getStringExtra(EXTRA_PATH_CANCION);
+        prepareMediaPlayer(intent);
+        return START_NOT_STICKY;
+    }
+
+    private void prepareMediaPlayer(Intent intent) {
+        if (mediaPlayer != null) {
+            mediaPlayer.reset();
+            mediaPlayer.setLooping(false);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.setOnPreparedListener(this);
+            mediaPlayer.setOnCompletionListener(this);
+            String pathCancion = intent.getStringExtra(EXTRA_SONG_PATH);
             try {
-                reproductor.setDataSource(pathCancion);
-                reproductor.prepareAsync();
+                mediaPlayer.setDataSource(pathCancion);
+                mediaPlayer.prepareAsync();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        // El servicio NO se reiniciará automáticamente si es matado por el
-        // sistema.
-        return START_NOT_STICKY;
     }
 
     @Override
     public IBinder onBind(Intent arg0) {
-        // El servicio NO es vinculado.
+        // Not binded service.
         return null;
     }
 
     @Override
     public void onPrepared(MediaPlayer arg0) {
-        // Se inicia la reproducción.
-        reproductor.start();
+        mediaPlayer.start();
     }
 
     @Override
     public void onCompletion(MediaPlayer arg0) {
-        // Se envía un intent de respuesta al receptor.
-        Intent intentRespuesta = new Intent(ACTION_COMPLETADA);
-        // El intent será recibido por un Receiver local registrado en el gestor
-        // para dicha acción.
-        LocalBroadcastManager gestor = LocalBroadcastManager.getInstance(this);
-        gestor.sendBroadcast(intentRespuesta);
-        // Se finaliza el servicio.
+        Intent completionIntent = new Intent(ACTION_SONG_COMPLETED);
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        localBroadcastManager.sendBroadcast(completionIntent);
         stopSelf();
     }
 }
