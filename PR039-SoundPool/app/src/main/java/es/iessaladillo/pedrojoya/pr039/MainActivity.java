@@ -3,130 +3,96 @@ package es.iessaladillo.pedrojoya.pr039;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Constantes.
-    private static final float VELOCIDAD_NORMAL = 1f;
-    private static final int PRIORIDAD_MAXIMA = 1;
-    private static final float VOLUMEN_MAX = 1f;
-    private static final int SIN_BUCLE = 0;
-    private static final int CALIDAD_NORMAL = 0;
-    private static final int PRIORIDAD_NORMAL = 1;
+    private static final float NORMAL_RATE = 1f;
+    private static final int MAX_PRIORITY = 1;
+    private static final float MAX_VOLUME = 1f;
+    private static final int NO_LOOP = 0;
+    private static final int NORMAL_QUALITY = 0;
+    private static final int NORMAL_PRIORITY = 1;
     private static final int MAX_STREAMS = 8;
 
-    // Variables.
-    private SoundPool mReproductor;
-    private int mIdDisparo;
-    private int mIdExplosion;
+    private SoundPool player;
+    private int shotId;
+    private int explosionId;
 
-    // Vistas.
-    private ImageView btnDisparar;
-    private ImageView btnExplosion;
+    private ImageView imgShoot;
+    private ImageView imgExplode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initVistas();
-        configSonidos();
-
+        initViews();
+        setupSoundPool();
     }
 
-    // Obtiene e inicializa las vistas.
-    private void initVistas() {
-        btnDisparar = (ImageView) findViewById(R.id.btnDisparar);
-        btnDisparar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                disparar();
-            }
-        });
-        btnExplosion = (ImageView) findViewById(R.id.btnExplosion);
-        btnExplosion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                explosion();
-            }
-        });
-        // Inicialmente los botones estarán deshabilitados hasta que los sonidos
-        // correspondientes están cargados en el mReproductor.
-        btnDisparar.setEnabled(false);
-        btnExplosion.setEnabled(false);
+    private void initViews() {
+        imgShoot = findViewById(R.id.imgShoot);
+        imgExplode = findViewById(R.id.imgExplode);
+
+        imgShoot.setOnClickListener(view -> shoot());
+        imgExplode.setOnClickListener(view -> explosion());
+        // Initially disabled until sounds loaded.
+        imgShoot.setEnabled(false);
+        imgExplode.setEnabled(false);
     }
 
-    // Crea el reproductor de sonidos.
-    @SuppressWarnings("deprecation")
-    private void crearSoundPool() {
-        // En API 21+ se usa el patrón Builder.
+    private void setupSoundPool() {
+        player = buildSoundPool();
+        shotId = player.load(this, R.raw.shot, NORMAL_PRIORITY);
+        explosionId = player.load(this, R.raw.explosion, NORMAL_PRIORITY);
+        player.setOnLoadCompleteListener((soundPool, sampleId, status) -> enableButton(sampleId));
+    }
+
+    private SoundPool buildSoundPool() {
+        SoundPool soundPool;
+        // Builder pattern in API 21+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build();
-            mReproductor = new SoundPool.Builder()
+            soundPool = new SoundPool.Builder()
                     .setMaxStreams(MAX_STREAMS)
                     .setAudioAttributes(audioAttributes)
                     .build();
         } else {
-            mReproductor = new SoundPool(MAX_STREAMS, AudioManager.STREAM_NOTIFICATION,
-                    CALIDAD_NORMAL);
+            soundPool = new SoundPool(MAX_STREAMS, AudioManager.STREAM_NOTIFICATION,
+                    NORMAL_QUALITY);
+        }
+        return soundPool;
+    }
+
+    private void enableButton(int sampleId) {
+        if (sampleId == shotId) {
+            imgShoot.setEnabled(true);
+        } else if (sampleId == explosionId) {
+            imgExplode.setEnabled(true);
         }
     }
 
-    // Configura el mReproductor de sonidos.
-    private void configSonidos() {
-        // Se crea el objeto SoundPool con un límite de 8 sonidos simultáneos y
-        // calidad estándar.
-        crearSoundPool();
-        // Se cargan los ficheros de sonido (recibe el contexto, el recurso y la
-        // prioridad estándar).
-        mIdDisparo = mReproductor.load(this, R.raw.disparo, PRIORIDAD_NORMAL);
-        mIdExplosion = mReproductor.load(this, R.raw.explosion, PRIORIDAD_NORMAL);
-        // Cuando se termine de cargar el sonido, se activa el botón
-        // correspondiente.
-        mReproductor.setOnLoadCompleteListener(new OnLoadCompleteListener() {
-
-            @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId,
-                                       int status) {
-                // Activo el botón correspondiente al sonido.
-                if (sampleId == mIdDisparo) {
-                    btnDisparar.setEnabled(true);
-                } else if (sampleId == mIdExplosion) {
-                    btnExplosion.setEnabled(true);
-                }
-            }
-        });
+    private void shoot() {
+        player.play(shotId, MAX_VOLUME, MAX_VOLUME, MAX_PRIORITY,
+                NO_LOOP, NORMAL_RATE);
     }
 
-    // Reproduce el sonido de disparo.
-    private void disparar() {
-        // Se reproduce el disparo.
-        mReproductor.play(mIdDisparo, VOLUMEN_MAX, VOLUMEN_MAX, PRIORIDAD_MAXIMA,
-                SIN_BUCLE, VELOCIDAD_NORMAL);
-    }
-
-    // Reproduce el sonido de explosión.
     private void explosion() {
-        // Se reproduce la explosión.
-        mReproductor.play(mIdExplosion, VOLUMEN_MAX, VOLUMEN_MAX,
-                PRIORIDAD_MAXIMA, SIN_BUCLE, VELOCIDAD_NORMAL);
+        player.play(explosionId, MAX_VOLUME, MAX_VOLUME,
+                MAX_PRIORITY, NO_LOOP, NORMAL_RATE);
     }
 
-    // Al destruir la actividad.
     @Override
     protected void onDestroy() {
-        // Se liberan los recursos del mReproductor.
-        if (mReproductor != null) {
-            mReproductor.release();
-            mReproductor = null;
+        if (player != null) {
+            player.release();
+            player = null;
         }
         super.onDestroy();
     }

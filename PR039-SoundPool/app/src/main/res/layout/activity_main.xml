@@ -2,27 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rlRoot"
     android:gravity="center_vertical"
     tools:context=".MainActivity" >
 
     <ImageView
-        android:id="@+id/btnDisparar"
+        android:id="@+id/imgShoot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_arma"
-        android:layout_marginBottom="40dp"
-        android:clickable="true"
-        android:contentDescription="@string/disparar" />
+        android:src="@drawable/ic_weapon"
+        android:layout_marginBottom="@dimen/activity_main_imgShoot"
+        android:contentDescription="@string/activity_main_imgShoot" />
 
     <ImageView
-        android:id="@+id/btnExplosion"
+        android:id="@+id/imgExplode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnDisparar"
+        android:layout_below="@+id/imgShoot"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_explosion"
-        android:clickable="true" 
-        android:contentDescription="@string/explosion" />
+        android:contentDescription="@string/activity_main_imgExplode" />
 
 </RelativeLayout>
