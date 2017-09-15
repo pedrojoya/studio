@@ -25,6 +25,13 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
@@ -34,5 +41,8 @@ dependencies {
     compile "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
     compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
+
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
 }

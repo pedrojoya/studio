@@ -1,20 +1,18 @@
 package es.iessaladillo.pedrojoya.pr210.main;
 
 import android.app.FragmentTransaction;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr210.R;
-import es.iessaladillo.pedrojoya.pr210.base.AppCompatLifecycleActivity;
 import es.iessaladillo.pedrojoya.pr210.detail.DetailActivity;
 import es.iessaladillo.pedrojoya.pr210.detail.DetailFragment;
 import es.iessaladillo.pedrojoya.pr210.utils.ConfigurationUtils;
 import es.iessaladillo.pedrojoya.pr210.utils.FragmentUtils;
 
-public class MainActivity extends AppCompatLifecycleActivity,
+public class MainActivity extends AppCompatActivity,
         DetailFragment.Callback {
 
     private static final String TAG_MAIN_FRAGMENT = "TAG_MAIN_FRAGMENT";

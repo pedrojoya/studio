@@ -3,13 +3,13 @@ package es.iessaladillo.pedrojoya.pr211.ui.student;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr211.Constants;
 import es.iessaladillo.pedrojoya.pr211.R;
-import es.iessaladillo.pedrojoya.pr211.base.AppCompatLifecycleActivity;
 import es.iessaladillo.pedrojoya.pr211.utils.FragmentUtils;
 
-public class StudentActivity extends AppCompatLifecycleActivity {
+public class StudentActivity extends AppCompatActivity {
 
     private static final String TAG_STUDENT_FRAGMENT = "TAG_STUDENT_FRAGMENT";
 

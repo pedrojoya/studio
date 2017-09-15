@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
+
 import es.iessaladillo.pedrojoya.pr213.R;
 import es.iessaladillo.pedrojoya.pr213.data.Repository;
 import es.iessaladillo.pedrojoya.pr213.data.RepositoryImpl;
@@ -112,7 +114,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     private void deleteStudent(int position) {
         Student student = adapter.getItemAtPosition(position);
-        (new DeleteStudentTask()).execute(student);
+        (new DeleteStudentTask(this, repository)).execute(student);
     }
 
     private void showSuccessDeletingStudent() {
@@ -180,7 +182,15 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     }
 
-    private class DeleteStudentTask extends AsyncTask<Student, Void, Boolean> {
+    private static class DeleteStudentTask extends AsyncTask<Student, Void, Boolean> {
+
+        final WeakReference<MainFragment> mainFragment;
+        final Repository repository;
+
+        public DeleteStudentTask(MainFragment mainFragment, Repository repository) {
+            this.mainFragment = new WeakReference<>(mainFragment);
+            this.repository = repository;
+        }
 
         @Override
         protected Boolean doInBackground(Student... students) {
@@ -189,12 +199,14 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
         @Override
         protected void onPostExecute(Boolean success) {
-            if (success) {
-                showSuccessDeletingStudent();
-            } else {
-                showErrorDeletingStudent();
+            if (mainFragment.get() != null) {
+                if (success) {
+                    mainFragment.get().showSuccessDeletingStudent();
+                } else {
+                    mainFragment.get().showErrorDeletingStudent();
+                }
+                mainFragment.get().reloadStudents();
             }
-            reloadStudents();
         }
 
     }

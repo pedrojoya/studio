@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr211.ui.student;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +15,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
 
 import es.iessaladillo.pedrojoya.pr211.Constants;
 import es.iessaladillo.pedrojoya.pr211.R;
@@ -120,7 +121,7 @@ public class StudentFragment extends Fragment {
         StudentActivityViewModel viewModel = ViewModelProviders.of(getActivity(),
                 new StudentActivityViewModelFactory(repository)).get(
                 StudentActivityViewModel.class);
-        viewModel.getStudent(studentId).observe((LifecycleOwner) getActivity(), student -> {
+        viewModel.getStudent(studentId).observe(getActivity(), student -> {
             if (student != null) {
                 showStudent(student);
             } else {
@@ -175,7 +176,7 @@ public class StudentFragment extends Fragment {
     }
 
     private void addStudent(Student student) {
-        (new AddStudentTask()).execute(student);
+        (new AddStudentTask(this, repository)).execute(student);
     }
 
     private void showSuccessAddingStudent() {
@@ -189,7 +190,7 @@ public class StudentFragment extends Fragment {
     }
 
     private void updateStudent(Student student) {
-        (new EditStudentTask()).execute(student);
+        (new EditStudentTask(this, repository)).execute(student);
     }
 
     private void showSucessUpdatingStudent() {
@@ -219,7 +220,15 @@ public class StudentFragment extends Fragment {
         return student;
     }
 
-    private class AddStudentTask extends AsyncTask<Student, Void, Long> {
+    private static class AddStudentTask extends AsyncTask<Student, Void, Long> {
+
+        final WeakReference<StudentFragment> studentFragmentWeakReference;
+        final Repository repository;
+
+        public AddStudentTask(StudentFragment studentFragment, Repository repository) {
+            this.studentFragmentWeakReference = new WeakReference<>(studentFragment);
+            this.repository = repository;
+        }
 
         @Override
         protected Long doInBackground(Student... students) {
@@ -228,17 +237,29 @@ public class StudentFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Long studentId) {
-            if (studentId >= 0) {
-                showSuccessAddingStudent();
-            } else {
-                showErrorAddingStudent();
+            StudentFragment studentFragment = studentFragmentWeakReference.get();
+            if (studentFragment != null) {
+                if (studentId >= 0) {
+                    studentFragment.showSuccessAddingStudent();
+                } else {
+                    studentFragment.showErrorAddingStudent();
+                }
+                studentFragment.getActivity().finish();
             }
-            getActivity().finish();
         }
 
     }
 
-    private class EditStudentTask extends AsyncTask<Student, Void, Integer> {
+    private static class EditStudentTask extends AsyncTask<Student, Void, Integer> {
+
+        final WeakReference<StudentFragment> studentFragmentWeakReference;
+        final Repository repository;
+
+        public EditStudentTask(StudentFragment studentFragment, Repository repository) {
+            this.studentFragmentWeakReference = new WeakReference<>(studentFragment);
+            this.repository = repository;
+        }
+
 
         @Override
         protected Integer doInBackground(Student... students) {
@@ -247,12 +268,15 @@ public class StudentFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Integer updates) {
-            if (updates == 1) {
-                showSucessUpdatingStudent();
-            } else {
-                showErrorUpdatingStudent();
+            StudentFragment studentFragment = studentFragmentWeakReference.get();
+            if (studentFragment != null) {
+                if (updates == 1) {
+                    studentFragment.showSucessUpdatingStudent();
+                } else {
+                    studentFragment.showErrorUpdatingStudent();
+                }
+                studentFragment.getActivity().finish();
             }
-            getActivity().finish();
         }
 
     }

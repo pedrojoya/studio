@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
+
 import es.iessaladillo.pedrojoya.pr213.Constants;
 import es.iessaladillo.pedrojoya.pr213.R;
 import es.iessaladillo.pedrojoya.pr213.data.Repository;
@@ -111,15 +113,18 @@ public class StudentFragment extends Fragment {
     }
 
     private void updateTitle() {
-        getActivity().setTitle(editMode ? R.string.student_fragment_edit_student : R.string.student_fragment_add_student);
+        getActivity().setTitle(
+                editMode ? R.string.student_fragment_edit_student : R.string
+                        .student_fragment_add_student);
     }
 
     private void loadStudent(long studentId) {
-        (new LoadStudentTask()).execute(studentId);
+        (new LoadStudentTask(this, repository)).execute(studentId);
     }
 
     private void showErrorLoadingStudentAndFinish() {
-        Toast.makeText(getActivity(), R.string.student_fragment_error_loading_student, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), R.string.student_fragment_error_loading_student,
+                Toast.LENGTH_LONG).show();
         getActivity().finish();
     }
 
@@ -163,21 +168,21 @@ public class StudentFragment extends Fragment {
     }
 
     private void addStudent(Student student) {
-        (new AddStudentTask()).execute(student);
+        (new AddStudentTask(this, repository)).execute(student);
     }
 
     private void showSuccessAddingStudent() {
-        Toast.makeText(getActivity(), getString(R.string.student_fragment_student_added), Toast.LENGTH_SHORT)
-                .show();
+        Toast.makeText(getActivity(), getString(R.string.student_fragment_student_added),
+                Toast.LENGTH_SHORT).show();
     }
 
     private void showErrorAddingStudent() {
-        Toast.makeText(getActivity(), getString(R.string.student_fragment_error_adding_student), Toast.LENGTH_SHORT)
-                .show();
+        Toast.makeText(getActivity(), getString(R.string.student_fragment_error_adding_student),
+                Toast.LENGTH_SHORT).show();
     }
 
     private void updateStudent(Student student) {
-        (new EditStudentTask()).execute(student);
+        (new EditStudentTask(this, repository)).execute(student);
     }
 
     private void showSucessUpdatingStudent() {
@@ -212,7 +217,15 @@ public class StudentFragment extends Fragment {
         getActivity().finish();
     }
 
-    private class LoadStudentTask extends AsyncTask<Long, Void, Student> {
+    private static class LoadStudentTask extends AsyncTask<Long, Void, Student> {
+
+        final WeakReference<StudentFragment> studentFragment;
+        final Repository repository;
+
+        public LoadStudentTask(StudentFragment studentFragment, Repository repository) {
+            this.studentFragment = new WeakReference<>(studentFragment);
+            this.repository = repository;
+        }
 
         @Override
         protected Student doInBackground(Long... studentIds) {
@@ -221,15 +234,25 @@ public class StudentFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Student student) {
-            if (student != null) {
-                showStudent(student);
-            } else {
-                showErrorLoadingStudentAndFinish();
+            if (studentFragment.get() != null) {
+                if (student != null) {
+                    studentFragment.get().showStudent(student);
+                } else {
+                    studentFragment.get().showErrorLoadingStudentAndFinish();
+                }
             }
         }
     }
 
-    private class AddStudentTask extends AsyncTask<Student, Void, Long> {
+    private static class AddStudentTask extends AsyncTask<Student, Void, Long> {
+
+        final WeakReference<StudentFragment> studentFragment;
+        final Repository repository;
+
+        public AddStudentTask(StudentFragment studentFragment, Repository repository) {
+            this.studentFragment = new WeakReference<>(studentFragment);
+            this.repository = repository;
+        }
 
         @Override
         protected Long doInBackground(Student... students) {
@@ -238,18 +261,28 @@ public class StudentFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Long studentId) {
+            if (studentFragment.get() != null)
             if (studentId >= 0) {
-                showSuccessAddingStudent();
+                studentFragment.get().showSuccessAddingStudent();
 
             } else {
-                showErrorAddingStudent();
+                studentFragment.get().showErrorAddingStudent();
             }
-            sendResultOkAndFinish();
+            studentFragment.get().sendResultOkAndFinish();
         }
 
     }
 
-    private class EditStudentTask extends AsyncTask<Student, Void, Boolean> {
+    private static class EditStudentTask extends AsyncTask<Student, Void, Boolean> {
+
+        final WeakReference<StudentFragment> studentFragment;
+        final Repository repository;
+
+        public EditStudentTask(StudentFragment studentFragment,
+                Repository repository) {
+            this.studentFragment = new WeakReference<>(studentFragment);
+            this.repository = repository;
+        }
 
         @Override
         protected Boolean doInBackground(Student... students) {
@@ -258,12 +291,14 @@ public class StudentFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Boolean success) {
-            if (success) {
-                showSucessUpdatingStudent();
-            } else {
-                showErrorUpdatingStudent();
+            if (studentFragment.get() != null) {
+                if (success) {
+                    studentFragment.get().showSucessUpdatingStudent();
+                } else {
+                    studentFragment.get().showErrorUpdatingStudent();
+                }
+                studentFragment.get().sendResultOkAndFinish();
             }
-            sendResultOkAndFinish();
         }
 
     }

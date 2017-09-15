@@ -1,12 +1,12 @@
 package es.iessaladillo.pedrojoya.pr211.ui.main;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr211.R;
-import es.iessaladillo.pedrojoya.pr211.base.AppCompatLifecycleActivity;
 import es.iessaladillo.pedrojoya.pr211.utils.FragmentUtils;
 
-public class MainActivity extends AppCompatLifecycleActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_MAIN_FRAGMENT = "TAG_MAIN_FRAGMENT";
 

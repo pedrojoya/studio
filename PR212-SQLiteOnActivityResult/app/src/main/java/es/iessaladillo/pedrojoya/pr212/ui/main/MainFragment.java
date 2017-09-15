@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr212.R;
@@ -116,11 +117,11 @@ public class MainFragment extends Fragment {
 
     private void deleteStudent(int position) {
         Student student = adapter.getItemAtPosition(position);
-        (new DeleteStudentTask()).execute(student);
+        (new DeleteStudentTask(this, repository)).execute(student);
     }
 
     private void loadStudents() {
-        (new LoadStudentsTask(viewModel)).execute();
+        (new LoadStudentsTask(this, viewModel)).execute();
     }
 
     private void showSuccessDeletingStudent() {
@@ -150,11 +151,13 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private class LoadStudentsTask extends AsyncTask<Void, Void, List<Student>> {
+    private static class LoadStudentsTask extends AsyncTask<Void, Void, List<Student>> {
 
+        private final WeakReference<MainFragment> mainFragment;
         private final MainActivityViewModel viewModel;
 
-        public LoadStudentsTask(MainActivityViewModel viewModel) {
+        public LoadStudentsTask(MainFragment mainFragment, MainActivityViewModel viewModel) {
+            this.mainFragment = new WeakReference<>(mainFragment);
             this.viewModel = viewModel;
         }
 
@@ -165,12 +168,22 @@ public class MainFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Student> students) {
-            adapter.setData(students);
+            if (mainFragment.get() != null) {
+                mainFragment.get().adapter.setData(students);
+            }
         }
 
     }
 
-    private class DeleteStudentTask extends AsyncTask<Student, Void, Boolean> {
+    private static class DeleteStudentTask extends AsyncTask<Student, Void, Boolean> {
+
+        private final WeakReference<MainFragment> mainFragmentWeakReference;
+        private final Repository repository;
+
+        private DeleteStudentTask(MainFragment mainFragment, Repository repository) {
+            this.mainFragmentWeakReference = new WeakReference<>(mainFragment);
+            this.repository = repository;
+        }
 
         @Override
         protected Boolean doInBackground(Student... students) {
@@ -179,11 +192,14 @@ public class MainFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Boolean success) {
-            if (success) {
-                showSuccessDeletingStudent();
-                loadStudents();
-            } else {
-                showErrorDeletingStudent();
+            MainFragment mainFragment = mainFragmentWeakReference.get();
+            if (mainFragment != null) {
+                if (success) {
+                    mainFragment.showSuccessDeletingStudent();
+                    mainFragment.loadStudents();
+                } else {
+                    mainFragment.showErrorDeletingStudent();
+                }
             }
         }
 

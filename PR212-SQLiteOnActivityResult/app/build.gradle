@@ -25,6 +25,13 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
@@ -38,4 +45,7 @@ dependencies {
     compile "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
     compile "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
+
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
 }

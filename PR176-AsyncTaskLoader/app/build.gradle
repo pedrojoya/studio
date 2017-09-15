@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -32,9 +31,4 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
     compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
-
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 }

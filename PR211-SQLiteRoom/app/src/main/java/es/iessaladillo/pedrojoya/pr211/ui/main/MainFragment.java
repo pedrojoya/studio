@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr211.ui.main;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
 
 import es.iessaladillo.pedrojoya.pr211.R;
 import es.iessaladillo.pedrojoya.pr211.data.Repository;
@@ -60,7 +61,7 @@ public class MainFragment extends Fragment {
 
         setupFab();
         setupRecyclerView();
-        viewModel.getStudents().observe((LifecycleOwner) getActivity(), students -> {
+        viewModel.getStudents().observe(getActivity(), students -> {
             if (students != null) {
                 adapter.setData(students);
             }
@@ -109,7 +110,7 @@ public class MainFragment extends Fragment {
 
     private void deleteStudent(int position) {
         Student student = adapter.getItemAtPosition(position);
-        (new DeleteStudentTask()).execute(student);
+        (new DeleteStudentTask(this, repository)).execute(student);
     }
 
     private void showSuccessDeletingStudent() {
@@ -128,7 +129,15 @@ public class MainFragment extends Fragment {
         super.onDestroy();
     }
 
-    private class DeleteStudentTask extends AsyncTask<Student, Void, Integer> {
+    private static class DeleteStudentTask extends AsyncTask<Student, Void, Integer> {
+
+        final WeakReference<MainFragment> mainFragmentWeakReference;
+        final Repository repository;
+
+        public DeleteStudentTask(MainFragment mainFragment, Repository repository) {
+            this.mainFragmentWeakReference = new WeakReference<>(mainFragment);
+            this.repository = repository;
+        }
 
         @Override
         protected Integer doInBackground(Student... students) {
@@ -137,10 +146,12 @@ public class MainFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Integer deletions) {
-            if (deletions == 1) {
-                showSuccessDeletingStudent();
-            } else {
-                showErrorDeletingStudent();
+            if (mainFragmentWeakReference.get() != null) {
+                if (deletions == 1) {
+                    mainFragmentWeakReference.get().showSuccessDeletingStudent();
+                } else {
+                    mainFragmentWeakReference.get().showErrorDeletingStudent();
+                }
             }
         }
 
