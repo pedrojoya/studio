@@ -2,10 +2,11 @@
 <resources>
 
     <string name="app_name">JSON</string>
-    <string name="no_hay_alumnos">No hay alumnos que mostrar</string>
-    <string name="foto_del_alumno">Foto del alumno</string>
-    <string name="Notas">Notas</string>
-    <string name="Llamar">Llamar</string>
+    <string name="activity_main_lblEmptyView">No hay alumnos que mostrar</string>
+    <string name="activity_main_item_imgPhoto">Foto del alumno</string>
+    <string name="activity_main_item_btnMarks">Notas</string>
+    <string name="activity_main_item_btnCall">Llamar</string>
+    <string name="activity_main_item_lblRepeater">REP</string>
     <plurals name="anios">
         <item quantity="one">%1$d año</item>
         <item quantity="other">%1$d años</item>
