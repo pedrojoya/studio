@@ -2,17 +2,17 @@
 <resources>
 
     <string name="app_name">ObjectBox</string>
-    <string name="no_hay_alumnos">No hay alumnos</string>
-    <string name="avatar">Avatar</string>
-    <string name="nombre">Nombre</string>
-    <string name="direccion">Dirección</string>
-    <string name="actualizar_alumno">Actualizar alumno</string>
-    <string name="agregar_alumno">Agregar alumno</string>
+    <string name="activity_main_lblEmptyView">No hay students</string>
+    <string name="activity_detail_imgPhoto">Avatar</string>
+    <string name="name">Nombre</string>
+    <string name="address">Dirección</string>
+    <string name="student_activity_update">Actualizar student</string>
+    <string name="student_activity_add">Agregar student</string>
     <string name="asignaturas">Asignaturas</string>
     <string name="ninguna"><![CDATA[<Ninguna>]]></string>
     <string name="seleccionar">Seleccionar</string>
     <string name="aceptar">Aceptar</string>
-    <string name="no_hay_asignaturas">No hay asignaturas</string>
-    <string name="asignaturas_del_alumno">Asignaturas del alumno</string>
+    <string name="activity_subject_selection_lblEmptyView">No hay asignaturas</string>
+    <string name="asignaturas_del_alumno">Asignaturas del student</string>
 
 </resources>

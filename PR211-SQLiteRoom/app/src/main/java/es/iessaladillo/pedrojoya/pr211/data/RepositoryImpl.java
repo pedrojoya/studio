@@ -25,7 +25,7 @@ public class RepositoryImpl implements Repository {
                 AppDatabase.class, Constants.DATABASE_NAME).addCallback(
                 new RoomDatabase.Callback() {
                     @Override
-                    public void onOpen(@NonNull SupportSQLiteDatabase db) {
+                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         DatabaseUtils.executeSqlFromAssetsFile(db, db.getVersion(), context.getAssets());
                     }
                 }).build();

@@ -1,80 +1,73 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_main_padding">
+    android:padding="@dimen/general_activity_margin">
 
     <TextView
-        android:id="@+id/lblMensaje"
+        android:id="@+id/lblMessage"
+        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_main_padding"
-        android:text="@string/mensaje"
-        android:paddingLeft="@dimen/edittext_padding"
-        android:paddingRight="@dimen/edittext_padding"
-        style="@style/TextAppearance.AppCompat.Caption" />
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:labelFor="@+id/txtMessage"
+        android:text="@string/activity_main_lblMessage"/>
 
     <EditText
-        android:id="@+id/txtMensaje"
+        android:id="@+id/txtMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblMensaje"
+        android:layout_below="@+id/lblMessage"
         android:imeOptions="actionNext"
         android:inputType="text"
-        android:paddingTop="0dp"
-        android:text="@string/quillo_ponte_ya_a_currar"
-        android:maxLines="1">
+        android:maxLines="1"
+        android:text="@string/activity_main_txtMessage">
 
-        <requestFocus />
+        <requestFocus/>
     </EditText>
 
     <TextView
-        android:id="@+id/lblIntervalo"
+        android:id="@+id/lblInterval"
+        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtMensaje"
-        android:layout_marginTop="@dimen/activity_main_padding"
-        android:paddingLeft="@dimen/edittext_padding"
-        android:paddingRight="@dimen/edittext_padding"
-        android:text="@string/intervalo_entre_avisos"
-        style="@style/TextAppearance.AppCompat.Caption" />
+        android:layout_below="@+id/txtMessage"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:labelFor="@+id/txtInterval"
+        android:layout_alignEnd="@+id/txtInterval"
+        android:text="@string/activity_main_lblInterval"/>
 
     <EditText
-        android:id="@+id/txtIntervalo"
+        android:id="@+id/txtInterval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblIntervalo"
-        android:ems="4"
+        android:layout_below="@+id/lblInterval"
+        android:ems="@integer/activity_main_txtInterval_ems"
+        android:gravity="end"
         android:imeOptions="actionNext"
         android:inputType="number"
-        android:gravity="end"
-        android:maxLength="7"
-        android:paddingTop="0dp"
-        android:text="@string/default_intervalo"
-        android:maxLines="1" />
+        android:maxLength="@integer/activity_main_txtInterval_maxLength"
+        android:maxLines="1"
+        android:text="@string/activity_main_txtInterval"/>
 
     <TextView
-        android:id="@+id/lblActivar"
+        android:id="@+id/lblTurnOn"
+        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtMensaje"
-        android:layout_marginLeft="@dimen/lblActivar_marginLeft"
-        android:layout_marginStart="@dimen/lblActivar_marginLeft"
-        android:layout_marginTop="@dimen/activity_main_padding"
-        android:paddingLeft="@dimen/edittext_padding"
-        android:paddingRight="@dimen/edittext_padding"
-        android:layout_toRightOf="@+id/lblIntervalo"
-        android:layout_toEndOf="@+id/lblIntervalo"
-        android:text="@string/avisar"
-        style="@style/TextAppearance.AppCompat.Caption" />
+        android:layout_below="@+id/txtMessage"
+        android:layout_marginStart="@dimen/general_activity_margin"
+        android:layout_marginTop="@dimen/general_activity_margin"
+        android:layout_toEndOf="@+id/lblInterval"
+        android:labelFor="@+id/swTurnOn"
+        android:text="@string/activity_main_lblTurnOn"/>
 
     <android.support.v7.widget.SwitchCompat
-        android:id="@+id/swActivar"
+        android:id="@+id/swTurnOn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblActivar"
-        android:layout_marginLeft="@dimen/lblActivar_marginLeft"
-        android:layout_marginStart="@dimen/lblActivar_marginLeft"
-        android:layout_toRightOf="@+id/txtIntervalo"
-        android:layout_toEndOf="@+id/txtIntervalo" />
+        android:layout_below="@+id/lblTurnOn"
+        android:layout_marginStart="@dimen/general_activity_margin"
+        android:layout_toEndOf="@+id/txtInterval"/>
 
 </RelativeLayout>

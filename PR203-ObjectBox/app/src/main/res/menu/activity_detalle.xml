@@ -4,6 +4,6 @@
     <item
         android:id="@+id/mnuAsignaturas"
         android:title="@string/asignaturas"
-        android:icon="@drawable/ic_book"
+        android:icon="@drawable/ic_book_white_24dp"
         app:showAsAction="ifRoom" />
 </menu>

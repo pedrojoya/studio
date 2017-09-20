@@ -1,13 +1,11 @@
 <resources>
 
-    <!-- Tema de la aplicación. Debe heredar de Theme.AppCompat -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <!-- Tema para las actividades que van a usar Toolbar -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -16,11 +14,9 @@
     <style name="AppTheme.NoActionBar.NoStatusBar">
     </style>
 
-    <!-- Estilo para que la toolbar se muestre oscura -->
     <style name="AppTheme.AppBarOverlay"
            parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <!-- Estilo para que el menú de overflow en la toolbar se muestre claro -->
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

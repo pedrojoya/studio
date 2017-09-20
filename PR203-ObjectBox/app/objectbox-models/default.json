@@ -4,71 +4,55 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:9167911328004746002",
-      "lastPropertyId": "4:2800915473634880559",
-      "name": "Alumno",
+      "id": "1:830458660355427499",
+      "lastPropertyId": "4:5349173019115326658",
+      "name": "Student",
       "properties": [
         {
-          "id": "1:6546691046342447295",
+          "id": "1:5105629929247543777",
           "name": "id"
         },
         {
-          "id": "2:6222636669035880747",
-          "name": "nombre"
+          "id": "2:7440028486903195603",
+          "name": "name"
         },
         {
-          "id": "3:2377980823596250004",
-          "name": "direccion"
+          "id": "3:3830120809266857974",
+          "name": "address"
         },
         {
-          "id": "4:2800915473634880559",
-          "name": "urlFoto"
+          "id": "4:5349173019115326658",
+          "name": "photoUrl"
         }
-      ]
+      ],
+      "relations": []
     },
     {
-      "id": "2:5944485940445831567",
-      "lastPropertyId": "3:676517797785239879",
-      "name": "AsignaturasAlumnos",
+      "id": "2:2003455675431893141",
+      "lastPropertyId": "2:3719846883898192363",
+      "name": "Subject",
       "properties": [
         {
-          "id": "1:6802362070840624997",
+          "id": "1:3614522867690079524",
           "name": "id"
         },
         {
-          "id": "2:6620821840397643070",
-          "indexId": "1:7258167391802129551",
-          "name": "alumnoId"
-        },
-        {
-          "id": "3:676517797785239879",
-          "indexId": "2:2145455525828310381",
-          "name": "asignaturaId"
+          "id": "2:3719846883898192363",
+          "name": "name"
         }
-      ]
-    },
-    {
-      "id": "3:207066861657999437",
-      "lastPropertyId": "2:8190163205928269970",
-      "name": "Asignatura",
-      "properties": [
-        {
-          "id": "1:7702531948512853643",
-          "name": "id"
-        },
-        {
-          "id": "2:8190163205928269970",
-          "name": "nombre"
-        }
-      ]
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "3:207066861657999437",
-  "lastIndexId": "2:2145455525828310381",
+  "lastEntityId": "2:2003455675431893141",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
-  "modelVersion": 2,
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
   "retiredPropertyUids": [],
+  "retiredRelationUids": [],
   "version": 1
 }

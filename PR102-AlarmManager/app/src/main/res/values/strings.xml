@@ -2,11 +2,13 @@
 <resources>
 
     <string name="app_name">AlarmManager</string>
-    <string name="aviso_importante">Aviso importante</string>
-    <string name="mensaje">Mensaje</string>
-    <string name="intervalo_entre_avisos">Intervalo (ms)</string>
-    <string name="avisar">Avisar</string>
-    <string name="quillo_ponte_ya_a_currar">Quillo, ponte ya a currar!!!</string>
-    <string name="default_intervalo">5000</string>
+    <string name="main_activity_important_warning">Aviso importante</string>
+    <string name="activity_main_lblMessage">Mensaje</string>
+    <string name="activity_main_lblInterval">Intervalo (ms)</string>
+    <string name="activity_main_lblTurnOn">Avisar</string>
+    <string name="activity_main_txtMessage">Quillo, ponte ya a currar!!!</string>
+    <string name="activity_main_txtInterval">5000</string>
+    <string name="main_activity_channel_name">Main channel</string>
+    <string name="main_activity_channel_description">Main notification channel for the app</string>
 
 </resources>

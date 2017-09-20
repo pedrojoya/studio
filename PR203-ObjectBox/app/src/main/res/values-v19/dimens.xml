@@ -1,9 +1,0 @@
-<resources>
-
-    <!-- Fake StatusBar -->
-
-    <!-- FAB -->
-    <dimen name="fab_marginBottom">0dp</dimen>
-
-
-</resources>

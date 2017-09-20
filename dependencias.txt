@@ -38,12 +38,12 @@ ext {
     sharedpreferenceshelper_version = "1.1.0"
     prelollipopactivitytransition_version = "1.3.3"
     sugar_version = "1.5"
-    objectbox_version = "0.9.13"
+    objectbox_version = "1.0.1"
     dagger_version = "2.11"
     dart_version = "2.0.2"
     activitystarter_version = "0.70"
     listitemview_version = "1.0.5"
-    arch_version = "1.0.0-alpha9"
+    arch_version = "1.0.0-alpha9-1"
     fakeit_version = "v0.7"
 }
 
@@ -150,3 +150,6 @@ dependencies {
 }
 
 @file:programandoandroid/
+
+Desde Good times hasta Beautiful girls (2017-01-25)
+Desde We are young (2014-12-24)
