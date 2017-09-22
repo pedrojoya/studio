@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -36,9 +35,4 @@ dependencies {
 
     debugCompile "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
     releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
-
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 }

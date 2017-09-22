@@ -166,7 +166,6 @@ public class MainFragment extends Fragment {
 
     static class EchoAsyncTask extends AsyncTask<String, Void, String> {
 
-        // Constantes.
         private static final String KEY_NAME = "nombre";
         private static final String KEY_DATE = "fecha";
 

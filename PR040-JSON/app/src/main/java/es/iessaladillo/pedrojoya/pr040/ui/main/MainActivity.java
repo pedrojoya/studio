@@ -1,34 +1,29 @@
 package es.iessaladillo.pedrojoya.pr040.ui.main;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import es.iessaladillo.pedrojoya.pr040.R;
-import es.iessaladillo.pedrojoya.pr040.data.model.Student;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager
-        .LoaderCallbacks<ArrayList<Student>> {
-
-    private static final int LOADER_ID = 1;
-    private static final String DATA_URL =
-            "http://www.informaticasaladillo.es/datos.json";
+public class MainActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swlPanel;
     private MainActivityAdapter adapter;
+    private MainActivityViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         initViews();
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        viewModel.getStudents().observe(this, students -> {
+            swlPanel.setRefreshing(false);
+            adapter.setData(students);
+        });
     }
 
     private void initViews() {
@@ -41,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
 
     private void setupListView(ListView lstAlumnos) {
         lstAlumnos.setEmptyView(findViewById(R.id.lblEmptyView));
-        adapter = new MainActivityAdapter(this, new ArrayList<>());
+        adapter = new MainActivityAdapter(this, viewModel.getStudents().getValue());
         lstAlumnos.setAdapter(adapter);
     }
 
@@ -49,29 +44,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light, android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-        swlPanel.setOnRefreshListener(this::loadStudents);
-    }
-
-    private Loader<ArrayList<Student>> loadStudents() {
-        return getSupportLoaderManager().restartLoader(LOADER_ID, null, MainActivity.this);
-    }
-
-    @Override
-    public Loader<ArrayList<Student>> onCreateLoader(int id, Bundle args) {
-        Log.d(getString(R.string.app_name), "onCreateLoader");
-        return new StudentsLoader(this, DATA_URL);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<ArrayList<Student>> loader, ArrayList<Student> data) {
-        swlPanel.setRefreshing(false);
-        adapter.setData(data);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<ArrayList<Student>> loader) {
-        Log.d(getString(R.string.app_name), "onLoaderReset");
-        adapter.setData(null);
+        swlPanel.setOnRefreshListener(() -> viewModel.forceLoadStudents());
     }
 
 }
