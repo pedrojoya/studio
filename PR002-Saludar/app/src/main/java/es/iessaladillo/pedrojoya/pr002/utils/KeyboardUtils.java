@@ -9,7 +9,6 @@ public class KeyboardUtils {
     private KeyboardUtils() {
     }
 
-    // Oculta el teclado virtual. Recibe una vista de referencia.
     public static void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) view.getContext()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);

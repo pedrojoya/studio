@@ -27,7 +27,7 @@ ext {
     retrofit_version = "2.3.0"
     eventbus_version = "3.0.0" 
     volley_version = "1.0.0"
-    rxjava_version = "2.1.2"
+    rxjava_version = "2.1.4"
     rxandroid_version = "2.0.1"
     retrofitrxjava2adapter_version = "1.0.0"
     firebase_version = "10.2.4"
@@ -43,7 +43,7 @@ ext {
     dart_version = "2.0.2"
     activitystarter_version = "0.70"
     listitemview_version = "1.0.5"
-    arch_version = "1.0.0-alpha9-1"
+    arch_version = "1.0.0-beta1"
     fakeit_version = "v0.7"
 }
 

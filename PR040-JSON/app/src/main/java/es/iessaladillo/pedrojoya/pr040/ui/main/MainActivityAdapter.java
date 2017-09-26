@@ -22,6 +22,7 @@ class MainActivityAdapter extends ArrayAdapter<Student> {
     private List<Student> students;
     private final LayoutInflater layoutInflater;
 
+    @SuppressWarnings("SameParameterValue")
     public MainActivityAdapter(Context contexto, List<Student> students) {
         super(contexto, R.layout.activity_main_item, students);
         this.students = students;
@@ -72,7 +73,7 @@ class MainActivityAdapter extends ArrayAdapter<Student> {
             lblGrade.setText(student.getGrade());
             lblAge.setText(lblAge.getContext()
                     .getResources()
-                    .getQuantityString(R.plurals.anios, student.getAge(), student.getAge()));
+                    .getQuantityString(R.plurals.main_activity_adapter_years, student.getAge(), student.getAge()));
             Picasso.with(imgPhoto.getContext()).load(student.getPhoto()).placeholder(
                     R.drawable.placeholder).error(R.drawable.placeholder).into(imgPhoto);
             lblAge.setTextColor(

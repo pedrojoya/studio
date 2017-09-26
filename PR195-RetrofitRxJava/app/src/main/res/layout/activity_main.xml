@@ -5,21 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/lstAlumnos"
+    <FrameLayout
+        android:id="@+id/flStudents"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
-        android:padding="10dp"
-        android:scrollbarStyle="outsideOverlay"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/lblEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/no_hay_alumnos"/>
+        <ListView
+            android:id="@+id/lstStudents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/activity_main_lstStudents_dividerHeight"
+            android:padding="@dimen/activity_main_lstStudents_padding"
+            android:scrollbarStyle="outsideOverlay"/>
+
+        <TextView
+            android:id="@+id/lblEmptyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/activity_main_lblEmptyView_drawablePadding"
+            android:drawableTop="@drawable/ic_person_add_black_24dp"
+            android:gravity="center"
+            android:text="@string/activity_main_lblEmptyView"/>
+
+    </FrameLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -4,7 +4,7 @@
     <color name="primary_dark">#512DA8</color>
     <color name="accent">#8BC34A</color>
     <color name="primary_text">#212121</color>
-    <color name="divider">#B6B6B6</color>
-    <!-- Tarjeta -->
-    <color name="tarjeta_repetidor_background">#220000FF</color>
+
+    <color name="activity_main_item_divider">#B6B6B6</color>
+    <color name="activity_main_item_lblRepeater_background">#220000FF</color>
 </resources>

@@ -1,10 +1,9 @@
 apply plugin: 'com.android.application'
 
-// Carga como propiedades el archivo secret.properties
-def Properties props = new Properties()
+// Load properties from secret.properties
+Properties props = new Properties()
 props.load(new FileInputStream(new File('secrets.properties')))
 
-//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -23,11 +22,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile "junit:junit:$rootProject.ext.junit_version"
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     compile "com.android.support:design:$rootProject.ext.support_library_version"
     compile "com.google.code.gson:gson:$rootProject.ext.gson_version"
@@ -38,4 +41,8 @@ dependencies {
     compile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
     debugCompile "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
     releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
+    compile "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
+    //noinspection GradleDependency
+    compile "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
 }

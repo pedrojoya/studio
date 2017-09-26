@@ -9,4 +9,5 @@ public class App extends Application {
         super.onCreate();
         Stetho.initializeWithDefaults(this);
     }
+
 }

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -19,6 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -33,6 +38,10 @@ dependencies {
     compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
     compile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
     compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    compile "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
+    //noinspection GradleDependency
+    compile "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
     debugCompile "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
     releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
 }

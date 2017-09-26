@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">RetrofitYandex</string>
-    <string name="palabra">Texto a traducir al inglés</string>
-    <string name="termino">(español)</string>
-    <string name="traducir">Traducir</string>
-    <string name="error_peticion">Error en la petición</string>
+    <string name="activity_main_content_lblSource">Word</string>
+    <string name="activity_main_content_txtWord">(spanish)</string>
+    <string name="activity_main_content_txtWord_imeActionLabel">Translate</string>
+    <string name="main_activity_request_error">Error requesting translation
+        service.\nDescription: %1$s</string>
+    <string name="main_activity_translation_error">Error translating word</string>
+    <string name="activity_main_content_lblResult">Translation</string>
 </resources>
