@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="tipos_animaciones">
-        <item>Escalado</item>
-        <item>Traslación X</item>
-        <item>Traslación Y</item>
-        <item>Rotación eje Z</item>
-        <item>Rotación eje X</item>
-        <item>Rotación eje Y</item>
-        <item>Transparencia</item>
-        <item>Combinación</item>
-        <item>Secuencia</item>
-        <item>Rotación repetida</item>
-        <item>Rotación repetida modo reverso</item>
-        <item>Rotación con anticipación (anticipate)</item>
-        <item>Rotación con exceso (overshoot)</item>
-        <item>Rotación con anticipación y exceso (anticipate_overshoot)</item>
-        <item>Rotación con oscilación (cycle)</item>
-        <item>Rotación con rebote (bounce)</item>
-        <item>Color de fondo</item>
+    <string-array name="animation_types">
+        <item>Scale</item>
+        <item>X Traslation</item>
+        <item>Y Traslation</item>
+        <item>Z Rotation</item>
+        <item>X Rotation</item>
+        <item>Y Rotation</item>
+        <item>Alpha</item>
+        <item>Combination</item>
+        <item>Secuence</item>
+        <item>Loop rotation</item>
+        <item>Reverse loop rotation</item>
+        <item>Anticipate rotation</item>
+        <item>Overshoot rotation</item>
+        <item>Anticipate overshoot rotation</item>
+        <item>Cycle rotation</item>
+        <item>Bounce rotation</item>
+        <item>Background color s</item>
     </string-array>
 </resources>

@@ -1,28 +1,29 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_vertical_margin">
 
     <Spinner
-        android:id="@+id/spnAnimacion"
+        android:id="@+id/spnAnimation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/tipos_animaciones"/>
+        android:entries="@array/animation_types"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@+id/spnAnimacion"
+        android:layout_below="@+id/spnAnimation"
         android:layout_alignParentBottom="true">
 
         <ImageView
-            android:id="@+id/imgImagen"
-            android:layout_width="@dimen/imagen_width"
-            android:layout_height="@dimen/imagen_width"
+            android:id="@+id/imgPhoto"
+            android:layout_width="@dimen/activity_main_imgPhoto_width"
+            android:layout_height="@dimen/activity_main_imgPhoto_width"
             android:layout_gravity="center"
-            android:contentDescription="@string/imagen"
-            android:src="@drawable/imagen"/>
+            android:contentDescription="@string/activity_main_imgPhoto"
+            android:src="@drawable/photo"/>
 
     </FrameLayout>
 
