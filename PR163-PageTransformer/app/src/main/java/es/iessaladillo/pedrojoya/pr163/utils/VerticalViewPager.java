@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr163.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.ViewPager;
@@ -25,6 +26,7 @@ public class VerticalViewPager extends ViewPager {
         setSwipeOrientation(context, attrs);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return super.onTouchEvent(mSwipeOrientation == VERTICAL ? swapXY(event) : event);

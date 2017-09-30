@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
+    android:id="@+id/flRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imgFoto"
+        android:id="@+id/imgPhoto"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:contentDescription="@string/concepto"
+        android:contentDescription="@string/activity_main_item_imgPhoto"
         android:scaleType="centerCrop"
-        android:transitionName="@string/nombre_transicion_imagen"
+        android:transitionName="@string/activity_main_item_imgPhoto_transitionName"
+        tools:src="@tools:sample/avatars"
         tools:ignore="UnusedAttribute"/>
 
     <LinearLayout
+        android:id="@+id/llInfo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/info_height"
+        android:layout_height="@dimen/activity_main_item_llInfo_height"
         android:layout_gravity="bottom"
-        android:background="@color/fondoInfo"
+        android:background="@android:color/transparent"
         android:orientation="vertical"
-        android:padding="@dimen/info_padding">
+        android:padding="@dimen/activity_main_item_llInfo_padding">
 
         <TextView
             android:id="@+id/lblEnglish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/info_textSize"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_main_item_lblEnglish_textSize"
+            android:transitionName="@string/activity_main_item_lblEnglish_transitionName"
+            tools:text="@tools:sample/lorem"
+            tools:ignore="UnusedAttribute"/>
 
         <TextView
             android:id="@+id/lblSpanish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/info_textSize"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_main_item_lblEnglish_textSize"
+            tools:text="@tools:sample/lorem"/>
+
     </LinearLayout>
+
 </FrameLayout>

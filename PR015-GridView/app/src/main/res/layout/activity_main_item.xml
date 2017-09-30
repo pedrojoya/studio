@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             xmlns:tools="http://schemas.android.com/tools">
+<FrameLayout
+    android:id="@+id/flRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imgPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
         android:contentDescription="@string/activity_main_item_imgPhoto"
+        android:scaleType="centerCrop"
         tools:src="@sample/words.json/words/icon"/>
 
     <LinearLayout
         android:id="@+id/llInfo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_main_item_llInfo_height"
-        android:padding="@dimen/activity_main_item_llInfo_padding"
         android:layout_gravity="bottom"
         android:background="@android:color/transparent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/activity_main_item_llInfo_padding">
 
         <TextView
             android:id="@+id/lblEnglish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="@dimen/activity_main_item_lblEnglish_textSize"
             tools:text="@sample/words.json/words/english"/>
 
@@ -33,9 +35,10 @@
             android:id="@+id/lblSpanish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="@dimen/activity_main_item_lblEnglish_textSize"
             tools:text="@sample/words.json/words/spanish"/>
+
     </LinearLayout>
 
 </FrameLayout>

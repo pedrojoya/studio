@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animation_types">
+        <item>Escalado</item>
+        <item>Traslación X</item>
+        <item>Traslación Y</item>
+        <item>Rotación eje Z</item>
+        <item>Rotación eje X</item>
+        <item>Rotación eje Y</item>
+        <item>Transparencia</item>
+        <item>Combinación</item>
+    </string-array>
+</resources>

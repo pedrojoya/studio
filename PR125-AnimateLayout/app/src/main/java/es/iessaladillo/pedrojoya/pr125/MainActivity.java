@@ -10,111 +10,79 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout llContentedor;
-    private LayoutTransition mTransicion;
-    private LayoutTransition mPorDefecto;
+    private LinearLayout llContainer;
+    @SuppressWarnings("FieldCanBeLocal")
+    private SwitchCompat swCustom;
+    @SuppressWarnings("FieldCanBeLocal")
+    private Button btnAdd;
+
+    private LayoutTransition layoutTransition;
+    private LayoutTransition defaultLayoutTransition;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        llContentedor = (LinearLayout) findViewById(R.id.llContenedor);
-        Button btnAgregar = (Button) findViewById(R.id.btnAgregar);
-        if (btnAgregar != null) {
-            btnAgregar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    agregarElemento();
-                }
-            });
-        }
-        // Se configuran las transiciones del contenedor.
-        configTransicionesContenedor();
-        // Si se cambia la opción.
-        SwitchCompat swPersonalizado = (SwitchCompat) findViewById(R.id.swPersonalizado);
-        if (swPersonalizado != null) {
-            swPersonalizado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        llContentedor.setLayoutTransition(mTransicion);
-                    } else {
-                        llContentedor.setLayoutTransition(mPorDefecto);
-                    }
-                }
+        initViews();
+    }
 
-            });
+    private void initViews() {
+        llContainer = findViewById(R.id.llContainer);
+        btnAdd = findViewById(R.id.btnAdd);
+        swCustom = findViewById(R.id.swCustom);
+
+        btnAdd.setOnClickListener(v -> add());
+        setupTransitions();
+        if (swCustom != null) {
+            swCustom.setOnCheckedChangeListener(
+                    (buttonView, isChecked) -> llContainer.setLayoutTransition(
+                            isChecked ? layoutTransition : defaultLayoutTransition));
         }
     }
 
-    // Configura las transiciones del contenedor.
-
-    private void configTransicionesContenedor() {
-        // Se almacena la transición por defecto.
-        mPorDefecto = llContentedor.getLayoutTransition();
-        // Se crea la transición.
-        mTransicion = new LayoutTransition();
-        // Se configura.
-        configTransicionAdicion();
-        configTransicionEliminacion();
-        configTransicionResto();
+    private void setupTransitions() {
+        defaultLayoutTransition = llContainer.getLayoutTransition();
+        layoutTransition = new LayoutTransition();
+        setupAddTransition(layoutTransition);
+        setupRemoveTransition(layoutTransition);
+        setupOtherTransition(layoutTransition);
     }
 
-    // Configura la animación cuando se añade un elemento al contenedor..
-    private void configTransicionAdicion() {
-        // Al aparecer un elemento en el contenedor se anima escalándose desde
-        // 0 a su altura normal.
-        Animator adicionAnimator = ObjectAnimator.ofFloat(null, "scaleY", 0, 1)
-                .setDuration(mTransicion.getDuration(LayoutTransition.APPEARING));
-        mTransicion.setAnimator(LayoutTransition.APPEARING, adicionAnimator);
+    private void setupAddTransition(LayoutTransition layoutTransition) {
+        Animator addAnimator = ObjectAnimator.ofFloat(null, "scaleY", 0, 1).setDuration(
+                layoutTransition.getDuration(LayoutTransition.APPEARING));
+        layoutTransition.setAnimator(LayoutTransition.APPEARING, addAnimator);
     }
 
-    // Configura la animación cuando se elimina un elemento del contenedor.
-    private void configTransicionEliminacion() {
-        // Al desaparecer un elemento del contenedor se anima rotando de 0º a 90º respecto al eje X.
-        Animator disappearAnim = ObjectAnimator.ofFloat(null, "rotationX", 0f, 90f)
-                .setDuration(mTransicion.getDuration(LayoutTransition.DISAPPEARING));
-        mTransicion.setAnimator(LayoutTransition.DISAPPEARING, disappearAnim);
+    private void setupRemoveTransition(LayoutTransition layoutTransition) {
+        Animator removeAnimator = ObjectAnimator.ofFloat(null, "rotationX", 0f, 90f).setDuration(
+                layoutTransition.getDuration(LayoutTransition.DISAPPEARING));
+        layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, removeAnimator);
     }
 
-    // Configura la animación del resto de elementos cuando se elimina un
-    // elemento del contenedor.
-    private void configTransicionResto() {
-        // Cuando desparece un elemento, el resto de elementos del contenedor se animan
-        // desplazándose toda su altura hacia arriba y a la vez encogiéndose a la mitad de su
-        // ancho y alto para después volver a su tamaño habitual.
+    private void setupOtherTransition(LayoutTransition layoutTransition) {
         PropertyValuesHolder pvhSlide = PropertyValuesHolder.ofFloat(View.Y, 0, 1);
         PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f, 0.5f, 1f);
         PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 1f, 0.5f, 1f);
-        Animator changingAppearingAnim = ObjectAnimator.ofPropertyValuesHolder(
-                this, pvhSlide, pvhScaleY, pvhScaleX)
-                .setDuration(mTransicion.getDuration(LayoutTransition.CHANGE_DISAPPEARING));
-        mTransicion.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, changingAppearingAnim);
+        Animator changingAppearingAnim = ObjectAnimator.ofPropertyValuesHolder(this, pvhSlide,
+                pvhScaleY, pvhScaleX).setDuration(
+                layoutTransition.getDuration(LayoutTransition.CHANGE_DISAPPEARING));
+        layoutTransition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, changingAppearingAnim);
     }
 
-    // Agrega un botón al contenedor.
-    private void agregarElemento() {
-        // Se infla el elemento a partir de su layout.
-        View v = LayoutInflater.from(this).inflate(R.layout.imagen, llContentedor, false);
-        // Al hacer click sobre el elemento, se eliminará del contenedor.
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llContentedor.removeView(v);
-            }
-        });
-        // Se añade el elemento al contenedor.
+    private void add() {
+        View view = LayoutInflater.from(this).inflate(R.layout.photo, llContainer, false);
+        view.setOnClickListener(v -> llContainer.removeView(v));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                getResources().getDimensionPixelSize(R.dimen.imagen_width),
-                getResources().getDimensionPixelSize(R.dimen.imagen_width));
+                getResources().getDimensionPixelSize(R.dimen.activity_main_imgPhoto_width),
+                getResources().getDimensionPixelSize(R.dimen.activity_main_imgPhoto_width));
         params.setMargins(0, getResources().getDimensionPixelSize(R.dimen.activity_vertical_margin),
                 0, getResources().getDimensionPixelSize(R.dimen.activity_vertical_margin));
-        llContentedor.addView(v, params);
+        llContainer.addView(view, params);
     }
 
 }

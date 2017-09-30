@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GridRecyclerView</string>
+
+    <string name="activity_main_item_imgPhoto">Concepto</string>
+
+    <string name="activity_detail_imgDetailPhoto">Foto</string>
+</resources>

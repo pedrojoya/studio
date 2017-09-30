@@ -1,41 +1,37 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/rlRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnAgregar"
+        android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/agregar_elemento"
         android:layout_marginStart="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        tools:ignore="RtlHardcoded"/>
+        android:text="@string/activity_main_btnAdd"/>
 
     <Spinner
-        android:id="@+id/spnAnimacion"
+        android:id="@+id/spnAnimation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/btnAgregar"
-        android:layout_toEndOf="@+id/btnAgregar"
-        android:layout_marginStart="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@+id/btnAdd"
         android:layout_alignParentEnd="true"
-        android:entries="@array/animaciones"
-        android:layout_alignBaseline="@+id/btnAgregar"
-        tools:ignore="RtlHardcoded"/>
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_toEndOf="@+id/btnAdd"
+        android:entries="@array/animations"/>
 
     <LinearLayout
-        android:id="@+id/llContenedor"
+        android:id="@+id/llContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btnAgregar"
-        android:orientation="vertical"
+        android:layout_below="@+id/btnAdd"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="@dimen/activity_vertical_margin"/>
 
 </RelativeLayout>

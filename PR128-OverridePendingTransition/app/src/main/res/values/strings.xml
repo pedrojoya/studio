@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">OverridePendingTransition</string>
-    <string name="title_activity_otra">OtraActivity</string>
-    <string name="soy_la_actividad_llamada">Soy la actividad llamada</string>
-    <string name="animacion_de_salida">Animación de salida</string>
-    <string name="animacion_de_entrada">Animación de entrada</string>
-    <string name="ir_a_la_otra_actividad">Ir a la otra actividad</string>
+    <string name="secundary_activity_title">Secundary activity</string>
+    <string name="activity_secundary_lblMessage">Secundary activity message</string>
+    <string name="activity_main_lblExit">Exit Animation</string>
+    <string name="activity_main_lblEnter">Enter Animation</string>
+    <string name="main_activity_btnNavigate">Navigate to Secundary Activity</string>
 </resources>

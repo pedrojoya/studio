@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AnimateLayout</string>
-    <string name="agregar_elemento">Agregar elemento</string>
-    <string name="transicion_propia">Transición propia</string>
-    <string name="imagen">Imagen</string>
+    <string name="activity_main_btnAdd">Add element</string>
+    <string name="activity_main_swCustom">Custom transition</string>
+    <string name="activity_main_imgPhoto">Photo</string>
 </resources>

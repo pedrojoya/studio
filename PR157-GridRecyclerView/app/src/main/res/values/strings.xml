@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">GridRecyclerView</string>
-    <string name="concepto">Concepto</string>
-    <string name="nombre_transicion_imagen">transicion_imagen</string>
-    <string name="nombre_transicion_texto">transicion_texto</string>
-    <string name="imagen_cabecera">Foto</string>
+
+    <string name="activity_main_item_imgPhoto">Word</string>
+
+    <string name="activity_detail_imgDetailPhoto">Foto</string>
+
+    <string name="activity_main_item_imgPhoto_transitionName" translatable="false">
+        imgPhoto_transitionName</string>
+    <string name="activity_main_item_lblEnglish_transitionName" translatable="false">
+        lblEnglish_transitionName</string>
 </resources>

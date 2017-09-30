@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">OverridePendingTransition</string>
+    <string name="secundary_activity_title">Actividad secundaria</string>
+    <string name="activity_secundary_lblMessage">Soy la actividad
+        secundaria</string>
+    <string name="activity_main_lblExit">Animación de salida</string>
+    <string name="activity_main_lblEnter">Animación de entrada</string>
+    <string name="main_activity_btnNavigate">Ir a la actividad
+        secundaria</string>
+</resources>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <fraction name="dimen_webview">60%</fraction>
-    <item name="collapseParallaxMultiplier" format="float" type="dimen">0.3</item>
-</resources>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="tipos_animaciones">
-        <item>Escalado</item>
-        <item>Traslación X</item>
-        <item>Traslación Y</item>
-        <item>Rotación eje Z</item>
-        <item>Rotación eje X</item>
-        <item>Rotación eje Y</item>
-        <item>Transparencia</item>
-        <item>Combinación</item>
+    <string-array name="animation_types">
+        <item>Scale</item>
+        <item>X Traslation</item>
+        <item>Y Traslation Y</item>
+        <item>Z Rotation</item>
+        <item>X Rotation</item>
+        <item>Y Rotation</item>
+        <item>Alpha</item>
+        <item>Combination</item>
     </string-array>
 </resources>
