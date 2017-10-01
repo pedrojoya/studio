@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="panel_padding">16dp</dimen>
-    <dimen name="panel_button_width">48dp</dimen>
-    <dimen name="panel_descripcion_marginTop">16dp</dimen>
+    <dimen name="activity_main_llPanel_padding">16dp</dimen>
+    <dimen name="activity_main_button_width">48dp</dimen>
+    <dimen name="activity_main_buttom_marginBottom">8dp</dimen>
 </resources>

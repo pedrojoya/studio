@@ -3,9 +3,9 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mnuAdjuntar"
+        android:id="@+id/mnuAttach"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_attach"
-        android:title="@string/adjuntar"/>
+        android:icon="@drawable/ic_attach_file_white_24dp"
+        android:title="@string/activity_main_mnuAttach"/>
 
 </menu>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="exit_animations">
+        <item>Slide right</item>
+        <item>Slide left</item>
+        <item>Slide top</item>
+        <item>Slide bottom</item>
+        <item>Scale down and disappear</item>
+    </string-array>
+    <string-array name="enter_animations">
+        <item>Slide right</item>
+        <item>Slide left</item>
+        <item>Slide top</item>
+        <item>Slide bottom</item>
+        <item>Scale up and appear</item>
+    </string-array>
+</resources>

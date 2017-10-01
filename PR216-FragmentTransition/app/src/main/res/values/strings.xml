@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Fragment transition</string>
+    <string name="fragment_secundary_lblMessage">Secundary fragment
+        message</string>
+    <string name="fragment_main_lblExit">Exit Animation</string>
+    <string name="fragment_main_lblEnter">Enter Animation</string>
+    <string name="main_fragment_btnNavigate">Navigate to Secundary
+        Fragment</string>
+</resources>

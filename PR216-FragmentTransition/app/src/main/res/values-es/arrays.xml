@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="exit_animations">
+        <item>Se desliza hacia la derecha</item>
+        <item>Se desliza hacia la izquierda</item>
+        <item>Se desliza hacia arriba</item>
+        <item>Se desliza hacia abajo</item>
+        <item>Se achica y desaparece</item>
+    </string-array>
+    <string-array name="enter_animations">
+        <item>Se desliza desde la derecha</item>
+        <item>Se desliza desde la izquierda</item>
+        <item>Se desliza desde arriba</item>
+        <item>Se desliza desde abajo</item>
+        <item>Se agranda y aparece</item>
+    </string-array>
+</resources>

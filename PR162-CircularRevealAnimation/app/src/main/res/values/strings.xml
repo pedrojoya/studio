@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CircularRevealAnimation</string>
-    <string name="adjuntar">Adjuntar</string>
-    <string name="galeria">Galería</string>
-    <string name="foto">Foto</string>
-    <string name="video">Vídeo</string>
+    <string name="activity_main_mnuAttach">Adjuntar</string>
+    <string name="activity_main_imgGallery">Galería</string>
+    <string name="activity_main_imgPhoto">Foto</string>
+    <string name="activity_main_imgVideo">Vídeo</string>
 </resources>
