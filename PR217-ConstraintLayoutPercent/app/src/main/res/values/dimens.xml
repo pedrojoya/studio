@@ -1,0 +1,20 @@
+<resources>
+    <dimen name="activity_main_top_left_width_percent" format="float">
+        0.7
+    </dimen>
+    <dimen name="activity_main_top_height_percent" format="float">
+        0.20
+    </dimen>
+    <dimen name="activity_main_middle_height_percent" format="float">
+        0.30
+    </dimen>
+    <dimen name="activity_main_middle_left_width_percent" format="float">
+        0.40
+    </dimen>
+    <item name="activity_main_bottom_left_width_percent" type="dimen" format="float">
+        0.1
+    </item>
+    <item name="activity_main_bottom_height_percent" type="dimen" format="float">
+        0.50
+    </item>
+</resources>

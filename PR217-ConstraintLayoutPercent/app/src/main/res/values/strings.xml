@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ConstraintLayout Percents</string>
+    <string name="activity_main_top_left">70%, 20%</string>
+    <string name="activity_main_top_right">Resto, 20%</string>
+    <string name="activity_main_middle_left">40%, 30%</string>
+    <string name="activity_main_middle_right">Resto, 30%</string>
+    <string name="activity_main_bottom_left">10%, Resto</string>
+    <string name="activity_main_bottom_right">Resto, Resto</string>
+</resources>
