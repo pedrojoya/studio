@@ -20,16 +20,16 @@ allprojects {
 }
 
 ext {
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     minSdkVersion = 19
-    buildToolsVersion = "26.0.0"
-    support_library_version = "26.1.0"
+    buildToolsVersion = "26.0.2"
+    support_library_version = "27.0.2"
     constraintlayout_version = "1.0.2"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
     stetho_version = "1.5.0"
     textdrawable_version = "1.0.1"
-    arch_version = "1.0.0-alpha9"
+    arch_version = "1.0.0"
     leakcanary_version = "1.6-SNAPSHOT"
 }
 

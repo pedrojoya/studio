@@ -28,14 +28,14 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     minSdkVersion = 19
-    buildToolsVersion = "26.0.0"
-    support_library_version = "26.1.0"
+    buildToolsVersion = "26.0.2"
+    support_library_version = "27.0.2"
     constraintlayout_version = "1.0.2"
     circleimageview_version = "2.1.0"
     butterknife_version = "8.8.1"
     picasso_version = "2.5.2"
-    objectbox_version = "1.0.1"
-    arch_version = "1.0.0-alpha9-1"
+    objectbox_version = "1.4.1"
+    arch_version = "1.0.0"
 }

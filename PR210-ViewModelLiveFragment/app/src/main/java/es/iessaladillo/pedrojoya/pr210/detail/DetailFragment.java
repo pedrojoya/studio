@@ -2,7 +2,6 @@ package es.iessaladillo.pedrojoya.pr210.detail;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,36 +14,16 @@ public class DetailFragment extends Fragment {
 
     // Communication interface.
     public interface Callback {
-        void onDetailShown(int position);
+        void onDetailShown(String item);
     }
-
-    public static final String EXTRA_ITEM = "EXTRA_ITEM";
-    public static final String EXTRA_POSITION = "EXTRA_POSITION";
 
     private TextView lblItem;
 
     private String mItem;
-    private int mPosition;
     private Callback mListener;
 
-    public static DetailFragment newInstance(String item, int position) {
-        DetailFragment fragment = new DetailFragment();
-        Bundle arguments = new Bundle();
-        arguments.putString(EXTRA_ITEM, item);
-        arguments.putInt(EXTRA_POSITION, position);
-        fragment.setArguments(arguments);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        obtainArguments();
-    }
-
-    private void obtainArguments() {
-        mItem = getArguments().getString(EXTRA_ITEM);
-        mPosition = getArguments().getInt(EXTRA_POSITION);
+    public static DetailFragment newInstance() {
+        return new DetailFragment();
     }
 
     @Override
@@ -73,6 +52,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        // TODO ENGANCHARSE AL VIEWMODEL DE LA ACTIVIDAD PARA OBSERVAR EL ITEM.
         initViews(getView());
         showItem();
     }
@@ -85,7 +65,7 @@ public class DetailFragment extends Fragment {
         lblItem.setText(mItem);
         // Notify activity (needed in case of landscape configuration).
         if (mListener != null) {
-            mListener.onDetailShown(mPosition);
+            mListener.onDetailShown(mItem);
         }
     }
 

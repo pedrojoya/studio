@@ -12,8 +12,7 @@ import es.iessaladillo.pedrojoya.pr210.detail.DetailFragment;
 import es.iessaladillo.pedrojoya.pr210.utils.ConfigurationUtils;
 import es.iessaladillo.pedrojoya.pr210.utils.FragmentUtils;
 
-public class MainActivity extends AppCompatActivity,
-        DetailFragment.Callback {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG_MAIN_FRAGMENT = "TAG_MAIN_FRAGMENT";
     private static final String TAG_DETAIL_FRAGMENT = "TAG_DETAIL_FRAGMENT";
@@ -33,32 +32,21 @@ public class MainActivity extends AppCompatActivity,
         if (ConfigurationUtils.hasLandscapeOrientation(this)
                 && getSupportFragmentManager().findFragmentByTag(TAG_DETAIL_FRAGMENT) == null) {
             FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flDetail,
-                    DetailFragment.newInstance(getString(R.string.main_activity_no_item),
-                            MainFragment.NO_ITEM_SELECTED), TAG_MAIN_FRAGMENT);
+                    DetailFragment.newInstance(), TAG_MAIN_FRAGMENT);
         }
         mViewModel.getCurrentItem().observe(this, item -> {
             if (ConfigurationUtils.hasLandscapeOrientation(this)) {
                 showDetailFragment();
             } else {
-                DetailActivity.start(this, item, mViewModel.getSelectedItem().getValue());
+                DetailActivity.start(this, item);
             }
-
         });
-
     }
 
-    private void showDetailFragment(String item, int position) {
+    private void showDetailFragment() {
         FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(), R.id.flDetail,
-                DetailFragment.newInstance(item, position), TAG_DETAIL_FRAGMENT, item,
+                DetailFragment.newInstance(), TAG_DETAIL_FRAGMENT, TAG_DETAIL_FRAGMENT,
                 FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-    }
-
-    // When detail shown (even from backstack).
-    @Override
-    public void onDetailShown(int position) {
-        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(
-                R.id.flMain);
-        mainFragment.selectItem(position);
     }
 
     @Override

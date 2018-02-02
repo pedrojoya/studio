@@ -22,10 +22,10 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
             finish();
         } else {
             String item = getIntent().getStringExtra(DetailFragment.EXTRA_ITEM);
-            int position = getIntent().getIntExtra(DetailFragment.EXTRA_POSITION, 0);
+            // TODO GUARDAR EN EL VIEWMODEL EL ITEM.
             if (getSupportFragmentManager().findFragmentById(R.id.flDetail) == null) {
                 FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flDetail,
-                        DetailFragment.newInstance(item, position), TAG_DETAIL_FRAGMENT);
+                        DetailFragment.newInstance(), TAG_DETAIL_FRAGMENT);
             }
         }
     }
@@ -41,10 +41,9 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         return true;
     }
 
-    public static void start(Context context, String item, int position) {
+    public static void start(Context context, String item) {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(DetailFragment.EXTRA_ITEM, item);
-        intent.putExtra(DetailFragment.EXTRA_POSITION, position);
         context.startActivity(intent);
     }
 

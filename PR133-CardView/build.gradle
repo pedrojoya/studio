@@ -21,9 +21,9 @@ allprojects {
 }
 
 ext {
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     minSdkVersion = 19
-    buildToolsVersion = "26.0.0"
+    buildToolsVersion = "26.0.2"
     junit_version = "4.12"
     espresso_version = "3.0.0"
     support_library_version = "26.0.1"

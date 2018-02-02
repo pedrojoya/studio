@@ -21,9 +21,9 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     minSdkVersion = 19
-    buildToolsVersion = "26.0.0"
+    buildToolsVersion = "26.0.2"
     junit_version = "4.12"
     mockito_version = "2.7.19"
     espresso_version = "3.0.0"

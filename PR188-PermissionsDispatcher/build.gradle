@@ -21,9 +21,9 @@ allprojects {
 }
 
 ext {
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     minSdkVersion = 19
-    buildToolsVersion = "26.0.0"
+    buildToolsVersion = "26.0.2"
     support_library_version = "26.0.2"
-    permissionsdispatcher_version = "2.4.0"
+    permissionsdispatcher_version = "3.1.0"
 }
