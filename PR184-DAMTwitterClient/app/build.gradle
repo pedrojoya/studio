@@ -47,31 +47,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.supportlibraryVersion"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportlibraryVersion"
-    compile "com.android.support:cardview-v7:$rootProject.ext.supportlibraryVersion"
-    compile "com.android.support:design:$rootProject.ext.supportlibraryVersion"
-    compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
-    compile "org.greenrobot:eventbus:$rootProject.ext.eventbusVersion"
-    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportlibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportlibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.supportlibraryVersion"
+    implementation "com.android.support:design:$rootProject.ext.supportlibraryVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    implementation "org.greenrobot:eventbus:$rootProject.ext.eventbusVersion"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
-    compile "com.marlonmafra.android.widget:edittext-password:$rootProject.ext.edittextpasswordVersion"
-    compile 'com.github.silvestrpredko:dot-progress-bar:0.1.4@aar'
+    implementation "com.marlonmafra.android.widget:edittext-password:$rootProject.ext.edittextpasswordVersion"
+    implementation 'com.github.silvestrpredko:dot-progress-bar:0.1.4@aar'
     // Para Fabric.
-    compile('com.twitter.sdk.android:twitter:1.13.3@aar') {
+    implementation('com.twitter.sdk.android:twitter:1.13.3@aar') {
         transitive = true;
     }
     // ***
     // Para Dagger 2
     apt 'com.squareup:javapoet:1.7.0'
     apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
-    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     provided "javax.annotation:jsr250-api:$rootProject.ext.jsr250apiVersion"
     // ***
 
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
 }

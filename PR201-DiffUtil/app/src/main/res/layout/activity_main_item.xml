@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
     android:minHeight="@dimen/two_line_tile_height"
     android:orientation="vertical">
 
@@ -19,7 +18,8 @@
         android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
         android:layout_marginTop="@dimen/two_line_avatar_marginTop"
         android:contentDescription="@string/avatar"
-        android:src="@drawable/ic_user"/>
+        android:src="@drawable/ic_user"
+        tools:ignore="RtlHardcoded"/>
 
     <TextView
         android:id="@+id/lblNombre"
@@ -37,7 +37,8 @@
         android:paddingRight="@dimen/two_line_text_paddingLeft"
         android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:paddingTop="@dimen/two_line_text_paddingTop"
-        tools:text="Baldomero Llegate Ligero"/>
+        tools:text="Baldomero Llegate Ligero"
+        tools:ignore="RtlHardcoded"/>
 
     <TextView
         android:id="@+id/lblDireccion"
@@ -56,6 +57,7 @@
         android:paddingRight="@dimen/two_line_text_paddingLeft"
         android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:textSize="14sp"
-        tools:text="c/ La casa de Baldomero"/>
+        tools:text="c/ La casa de Baldomero"
+        tools:ignore="RtlHardcoded"/>
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -26,10 +27,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
-    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
-    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+    implementation "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
 }

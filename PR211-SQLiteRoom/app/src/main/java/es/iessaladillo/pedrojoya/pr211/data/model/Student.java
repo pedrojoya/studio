@@ -56,4 +56,27 @@ public class Student {
         this.address = address;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (id != student.id) return false;
+        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+        if (phone != null ? !phone.equals(student.phone) : student.phone != null) return false;
+        if (grade != null ? !grade.equals(student.grade) : student.grade != null) return false;
+        return address != null ? address.equals(student.address) : student.address == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        return result;
+    }
 }

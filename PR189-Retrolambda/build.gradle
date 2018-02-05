@@ -4,7 +4,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.1'
+    classpath 'com.android.tools.build:gradle:3.0.1'
     classpath 'me.tatarka:gradle-retrolambda:3.6.1'
   }
 }
@@ -16,12 +16,12 @@ allprojects {
 }
 
 ext {
-    compileSdkVersion = 25
-    minSdkVersion = 16
+    compileSdkVersion = 27
+    minSdkVersion = 19
     buildToolsVersion = "26.0.2"
     retrolambdaVersion = "3.6.0"
-    support_library_version = "25.3.1"
-    espresso_version = "2.2.2"
+    support_library_version = "27.0.2"
+    espresso_version = "3.0.1"
     testrunner_version = "0.5"
 }
 

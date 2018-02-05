@@ -11,6 +11,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -18,24 +19,30 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support:design:$rootProject.ext.support_library_version"
-    compile "com.github.bumptech.glide:glide:$rootProject.ext.glide_version"
-    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support:design:$rootProject.ext.support_library_version"
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glide_version"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
     apt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
-    compile "com.f2prateek.dart:dart:$rootProject.ext.dart_version"
+    implementation "com.f2prateek.dart:dart:$rootProject.ext.dart_version"
     provided "com.f2prateek.dart:dart-processor:$rootProject.ext.dart_version"
-    compile "com.marlonmafra.android.widget:edittext-password:$rootProject.ext.edittextpassword_version"
-    compile 'com.github.silvestrpredko:dot-progress-bar:0.1.4@aar'
-    compile "org.greenrobot:eventbus:$rootProject.ext.eventbus_version"
+    implementation "com.marlonmafra.android.widget:edittext-password:$rootProject.ext.edittextpassword_version"
+    implementation 'com.github.silvestrpredko:dot-progress-bar:0.1.4@aar'
+    implementation "org.greenrobot:eventbus:$rootProject.ext.eventbus_version"
     // Testing
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    testCompile "org.mockito:mockito-all:$rootProject.ext.mockito_version"
-    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrest_version"
-    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powermockito_version"
-    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powermockito_version"
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    testImplementation "org.mockito:mockito-all:$rootProject.ext.mockito_version"
+    testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrest_version"
+    testImplementation "org.powermock:powermock-module-junit4:$rootProject.ext.powermockito_version"
+    testImplementation "org.powermock:powermock-api-mockito:$rootProject.ext.powermockito_version"
 }

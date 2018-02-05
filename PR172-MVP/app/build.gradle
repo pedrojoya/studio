@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -30,24 +29,24 @@ android {
 
 dependencies {
     // Librerias.
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
     // Pruebas unitarias locales.
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    testCompile "org.mockito:mockito-all:$rootProject.ext.mockito_version"
-    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrest_version"
-    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powermockito_version"
-    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powermockito_version"
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    testImplementation "org.mockito:mockito-all:$rootProject.ext.mockito_version"
+    testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrest_version"
+    testImplementation "org.powermock:powermock-module-junit4:$rootProject.ext.powermockito_version"
+    testImplementation "org.powermock:powermock-api-mockito:$rootProject.ext.powermockito_version"
     // UI testing con Espresso
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    androidTestCompile("com.android.support.test:runner:$rootProject.ext.support_test_version", {
+    androidTestImplementation("com.android.support.test:runner:$rootProject.ext.support_test_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    androidTestCompile("com.android.support.test:rules:$rootProject.ext.support_test_version", {
+    androidTestImplementation("com.android.support.test:rules:$rootProject.ext.support_test_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }

@@ -2,24 +2,27 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
+
 ext {
-    compileSdkVersion = 25
-    minSdkVersion = 16
+    compileSdkVersion = 27
+    minSdkVersion = 19
     buildToolsVersion = "26.0.2"
     junit_version = "4.12"
-    espresso_version = "2.2.2"
-    support_library_version = "25.3.1"
+    espresso_version = "3.0.1"
+    support_library_version = "27.0.2"
     picasso_version = "2.5.2"
 }

@@ -43,6 +43,8 @@ public class MainFragment extends Fragment {
     private Button btnSearch;
     @SuppressWarnings("FieldCanBeLocal")
     private Button btnEcho;
+    private SearchAsyncTask searchTask;
+    private EchoAsyncTask echoTask;
 
     public MainFragment() {
     }
@@ -86,7 +88,8 @@ public class MainFragment extends Fragment {
         }
         if (NetworkUtils.isConnectionAvailable(getActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
-            (new SearchAsyncTask(this)).execute(name);
+            searchTask = new SearchAsyncTask(this);
+            searchTask.execute(name);
         } else {
             showNoConnectionAvailable();
         }
@@ -99,7 +102,8 @@ public class MainFragment extends Fragment {
         }
         if (NetworkUtils.isConnectionAvailable(getActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
-            (new EchoAsyncTask(this)).execute(name);
+            echoTask= new EchoAsyncTask(this);
+            echoTask.execute(name);
         } else {
             showNoConnectionAvailable();
         }
@@ -114,6 +118,17 @@ public class MainFragment extends Fragment {
     private void showResult(String result) {
         pbProgress.setVisibility(View.INVISIBLE);
         Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (searchTask != null) {
+            searchTask.cancel(true);
+        }
+        if (echoTask != null) {
+            echoTask.cancel(true);
+        }
     }
 
     static class SearchAsyncTask extends AsyncTask<String, Void, String> {
@@ -134,6 +149,11 @@ public class MainFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... params) {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             String result = "";
             String name = params[0];
             try {
@@ -179,6 +199,13 @@ public class MainFragment extends Fragment {
             }
         }
 
+        @Override
+        protected void onCancelled() {
+            if (mOkHttpCall != null) {
+                mOkHttpCall.cancel();
+            }
+            super.onCancelled();
+        }
     }
 
     static class EchoAsyncTask extends AsyncTask<String, Void, String> {
@@ -205,6 +232,11 @@ public class MainFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... params) {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             String result = "";
             String name = params[0];
             try {

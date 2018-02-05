@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta3'
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 }
 
@@ -16,13 +16,14 @@ allprojects {
     }
 }
 
+
 ext {
     compileSdkVersion = 27
     minSdkVersion = 19
     buildToolsVersion = "26.0.2"
     junit_version = "4.12"
-    espresso_version = "3.0.0"
-    support_library_version = "26.0.1"
+    espresso_version = "3.0.1"
+    support_library_version = "27.0.2"
     constraintlayout_version = "1.0.2"
     stylabletoast_version = "1.0.9"
     alerter_version = "2.0.0"

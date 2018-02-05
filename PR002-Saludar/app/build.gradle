@@ -28,10 +28,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
-    androidTestCompile "com.android.support.test:runner:$rootProject.ext.support_test_version"
-    androidTestCompile "com.android.support.test:rules:$rootProject.ext.support_test_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.support_test_version"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.support_test_version"
 }

@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta6'
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 }
 
@@ -15,6 +15,7 @@ allprojects {
         google()
     }
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
@@ -26,7 +27,7 @@ ext {
     buildToolsVersion = "26.0.2"
     junit_version = "4.12"
     mockito_version = "2.7.19"
-    espresso_version = "3.0.0"
+    espresso_version = "3.0.1"
     support_test_version = "1.0.0"
     support_library_version = "27.0.2"
 }

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -11,6 +10,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -19,19 +19,25 @@ android {
         }
     }
     compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:design:$rootProject.ext.support_library_version"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support:support-annotations:$rootProject.ext.support_library_version"
+    implementation "com.android.support:design:$rootProject.ext.support_library_version"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support:support-annotations:$rootProject.ext.support_library_version"
 }

@@ -10,6 +10,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -27,16 +28,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    compile "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
-    compile "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
+    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
 
-    testCompile "junit:junit:$rootProject.ext.junit_version"
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
 
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
-    androidTestCompile "com.android.support:support-annotations:$rootProject.ext.support_library_version"
-    androidTestCompile "com.android.support.test:runner:$rootProject.ext.support_test_version"
-    androidTestCompile "com.android.support.test:rules:$rootProject.ext.support_test_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
+    androidTestImplementation "com.android.support:support-annotations:$rootProject.ext.support_library_version"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.support_test_version"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.support_test_version"
 }

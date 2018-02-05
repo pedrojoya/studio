@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -11,6 +10,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -28,19 +28,19 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support:design:$rootProject.ext.support_library_version"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
-    compile "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
-    compile "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
-    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
-    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
-    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
-    compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
-    compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
-    compile "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
-    compile "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support:design:$rootProject.ext.support_library_version"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    implementation "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
+    implementation "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
+    implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+    implementation "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
+    implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
+    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
 
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"

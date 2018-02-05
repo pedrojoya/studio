@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'me.tatarka.retrolambda'
 
-def support_library_version = "24.2.1"
+def support_library_version = "27.0.2"
 def butterknife_version = "8.4.0"
 def playservices_version = "9.4.0"
 
@@ -16,6 +15,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -24,6 +24,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -32,10 +38,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.jakewharton:butterknife:${butterknife_version}"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation "com.android.support:appcompat-v7:${support_library_version}"
+    implementation "com.jakewharton:butterknife:${butterknife_version}"
     apt "com.jakewharton:butterknife-compiler:${butterknife_version}"
-    compile "com.google.android.gms:play-services-gcm:${playservices_version}"
+    implementation "com.google.android.gms:play-services-gcm:${playservices_version}"
 }

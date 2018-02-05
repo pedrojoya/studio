@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -11,6 +10,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -23,25 +23,26 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support:design:$rootProject.ext.support_library_version"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
-    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support:design:$rootProject.ext.support_library_version"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
-    compile "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
-    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
-    compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
-    compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
+    implementation "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
 
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    testCompile "org.mockito:mockito-core:$rootProject.ext.mockito_version"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    testImplementation "org.mockito:mockito-core:$rootProject.ext.mockito_version"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:support-v4:$rootProject.ext.support_library_version"
+    implementation "com.android.support:support-v4:$rootProject.ext.support_library_version"
 }

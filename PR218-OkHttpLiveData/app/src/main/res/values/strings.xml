@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Googleame</string>
+    <string name="fragment_main_lblName">Nombre</string>
+    <string name="fragment_main_btnSearch">Buscar</string>
+    <string name="fragment_main_btnEcho">Eco</string>
+    <string name="main_fragment_no_connection">No hay conexión a Internet</string>
+
+</resources>

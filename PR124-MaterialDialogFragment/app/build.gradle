@@ -6,14 +6,15 @@ android {
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr0124"
-        compile fileTree(dir: 'libs', include: ['*.jar'])
-        compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-        testCompile "junit:junit:$rootProject.ext.junit_version"
-        androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+        testImplementation "junit:junit:$rootProject.ext.junit_version"
+        androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
             exclude group: 'com.android.support', module: 'support-annotations'
         })
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -21,18 +22,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    testCompile "junit:junit:$rootProject.ext.junit_version"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.jakewharton:butterknife:6.1.0'
-    compile 'com.avast:android-styled-dialogs:2.2.0'
-    compile 'com.github.citux:datetimepicker:0.1.2'
-    compile 'com.squareup.picasso:picasso:2.5.0'
-    compile 'de.hdodenhof:circleimageview:1.2.2'
+    implementation 'com.jakewharton:butterknife:6.1.0'
+    implementation 'com.avast:android-styled-dialogs:2.2.0'
+    implementation 'com.github.citux:datetimepicker:0.1.2'
+    implementation 'com.squareup.picasso:picasso:2.5.0'
+    implementation 'de.hdodenhof:circleimageview:1.2.2'
 }

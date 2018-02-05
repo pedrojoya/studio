@@ -1,9 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
 
 def multidex_version = "1.0.0"
-def support_library_version = "24.2.1"
+def support_library_version = "27.0.2"
 def play_services_version = "9.6.1"
 def icepick_version = "3.2.0"
 def permissionsdispatcher_version = "3.1.0"
@@ -27,6 +26,12 @@ android {
         }
     }
     compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -37,13 +42,13 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:multidex:${multidex_version}"
-    compile "com.android.support:appcompat-v7:${support_library_version}"
-    compile "com.android.support:design:${support_library_version}"
-    compile "com.google.android.gms:play-services:${play_services_version}"
-    compile "frankiesardo:icepick:${icepick_version}"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:multidex:${multidex_version}"
+    implementation "com.android.support:appcompat-v7:${support_library_version}"
+    implementation "com.android.support:design:${support_library_version}"
+    implementation "com.google.android.gms:play-services:${play_services_version}"
+    implementation "frankiesardo:icepick:${icepick_version}"
     provided "frankiesardo:icepick-processor:${icepick_version}"
-    compile "com.github.hotchemi:permissionsdispatcher:${permissionsdispatcher_version}"
+    implementation "com.github.hotchemi:permissionsdispatcher:${permissionsdispatcher_version}"
     apt "com.github.hotchemi:permissionsdispatcher-processor:${permissionsdispatcher_version}"
 }

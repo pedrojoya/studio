@@ -60,7 +60,7 @@
             android:layout_marginEnd="@dimen/fab_margin"
             android:elevation="@dimen/fab_elevation"
             android:src="@drawable/ic_action_add"
-            tools:ignore="UnusedAttribute"/>
+            tools:ignore="RtlHardcoded,UnusedAttribute"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

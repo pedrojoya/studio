@@ -31,7 +31,7 @@ public class MainFragment extends Fragment {
     private TextView lblEmptyView;
     private RecyclerView lstStudents;
 
-    private MainFragmentAdapter adapter;
+    private MainFragmentListAdapter adapter;
     private Repository repository;
     private MainActivityViewModel viewModel;
 
@@ -63,7 +63,8 @@ public class MainFragment extends Fragment {
         setupRecyclerView();
         viewModel.getStudents().observe(getActivity(), students -> {
             if (students != null) {
-                adapter.setData(students);
+                // New data list for adapter (with automatic diffcallback calculations).
+                adapter.setList(students);
             }
         });
     }
@@ -74,7 +75,7 @@ public class MainFragment extends Fragment {
 
     private void setupRecyclerView() {
         lstStudents.setHasFixedSize(true);
-        adapter = new MainFragmentAdapter();
+        adapter = new MainFragmentListAdapter();
         adapter.setOnItemClickListener((view, student, position) -> editStudent(student));
         adapter.setEmptyView(lblEmptyView);
         lstStudents.setAdapter(adapter);
@@ -121,12 +122,6 @@ public class MainFragment extends Fragment {
     private void showErrorDeletingStudent() {
         Toast.makeText(getActivity(), R.string.main_fragment_error_deleting_student,
                 Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDestroy() {
-        adapter.onDestroy();
-        super.onDestroy();
     }
 
     private static class DeleteStudentTask extends AsyncTask<Student, Void, Integer> {

@@ -21,15 +21,22 @@ class MainActivityViewModel extends AndroidViewModel {
     public MainActivityViewModel(Application application) {
         super(application);
         repository = RepositoryImpl.getInstance(application.getApplicationContext());
+        /* Nuevo */
+        loadStudents();
+        /*  */
     }
 
     public Observable<List<Student>> getStudents(boolean forceLoad) {
         if (studentsObservable == null || forceLoad) {
-            Log.d(getClass().getName(), "Fetching data");
-            studentsObservable = repository.getStudents().subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread()).cache();
+            loadStudents();
         }
         return studentsObservable;
+    }
+
+    private void loadStudents() {
+        Log.d(getClass().getName(), "Fetching data");
+        studentsObservable = repository.getStudents().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread()).cache();
     }
 
 }

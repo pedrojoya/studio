@@ -10,6 +10,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -22,17 +23,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     buildToolsVersion '26.0.2'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support:design:$rootProject.ext.support_library_version"
-    compile "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
-    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support:design:$rootProject.ext.support_library_version"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
 
-    testCompile "junit:junit:$rootProject.ext.junit_version"
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
 
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
 }
