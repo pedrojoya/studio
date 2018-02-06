@@ -4,10 +4,10 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="es.iessaladillo.pedrojoya.pr153.Alumno"/>
+        <import type="es.iessaladillo.pedrojoya.pr153.data.local.model.Student"/>
         <variable
             name="item"
-            type="Alumno"/>
+            type="es.iessaladillo.pedrojoya.pr153.data.local.model.Student"/>
     </data>
 
     <RelativeLayout
@@ -15,20 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selectable_item_background"
-        android:clickable="true"
         android:minHeight="@dimen/two_line_tile_height"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/two_line_avatar_width"
             android:layout_height="@dimen/two_line_avatar_height"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="@dimen/two_line_avatar_marginLeft"
             android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
             android:layout_marginTop="@dimen/two_line_avatar_marginTop"
             android:contentDescription="@string/avatar"
-            app:imageUrl="@{item.foto}"
+            app:imageUrl="@{item.photoUrl}"
             android:src="@drawable/ic_user"/>
 
         <TextView
@@ -47,7 +44,7 @@
             android:paddingEnd="@dimen/two_line_text_paddingLeft"
             android:paddingTop="@dimen/two_line_text_paddingTop"
             style="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:text="@{item.nombre}"
+            android:text="@{item.name}"
             tools:text="Baldomero Llegate Ligero"/>
 
         <TextView
@@ -66,7 +63,7 @@
             android:paddingRight="@dimen/two_line_text_paddingLeft"
             android:paddingEnd="@dimen/two_line_text_paddingLeft"
             android:textSize="14sp"
-            android:text="@{item.direccion}"
+            android:text="@{item.address}"
             tools:text="c/ La casa de Baldomero"/>
 
     </RelativeLayout>

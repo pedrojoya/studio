@@ -1,94 +1,126 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="es.iessaladillo.pedrojoya.pr170.MainActivityViewModel" />
-        <import type="es.iessaladillo.pedrojoya.pr170.MainActivityPresenter" />
+
+        <import type="es.iessaladillo.pedrojoya.pr170.main.ActivityMainModel"/>
+
+        <import type="es.iessaladillo.pedrojoya.pr170.main.MainActivity"/>
+
         <variable
-            name="viewModel"
-            type="MainActivityViewModel" />
+            name="model"
+            type="ActivityMainModel"/>
+
         <variable
             name="presenter"
-            type="MainActivityPresenter" />
+            type="MainActivity"/>
     </data>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgImagen"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/imageHeight"
-            android:contentDescription="@string/foto"
-            app:imageUrl="@{@string/lorempixel}"
-            app:placeholder="@{@drawable/placeholder}"
-            app:error="@{@drawable/placeholder}"
+            android:id="@+id/imgPhoto"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/activity_main_imgPhoto"
+            android:onClick="@{v -> presenter.changePhoto()}"
             android:scaleType="centerCrop"
-            android:onClick="@{presenter::imgImagenOnClick}"/>
+            app:error="@{@drawable/placeholder}"
+            app:imageUrl="@{model.photoUrl}"
+            app:layout_constraintDimensionRatio="h,16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"/>
 
         <TextView
-            android:id="@+id/lblNombre"
-            android:layout_width="match_parent"
+            android:id="@+id/lblName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:font='@{"postcard.ttf"}'
-            android:text="@string/introduzca_nombre"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:layout_marginTop="@dimen/activity_main_margin"
+            android:labelFor="@+id/txtName"
+            app:labelForView="@{txtName}"
+            android:paddingEnd="@dimen/activity_main_margin"
+            android:paddingStart="@dimen/activity_main_margin"
+            android:text="@string/activity_main_lblName_required"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
 
         <EditText
-            android:id="@+id/txtNombre"
-            android:layout_width="match_parent"
+            android:id="@+id/txtName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.nombre}"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:layout_marginStart="@dimen/activity_main_margin"
             android:inputType="text|textPersonName"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
+            android:text="@={model.name}"
+            android:afterTextChanged="@{ediatable -> presenter.txtNameOnChange()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblName">
 
             <requestFocus/>
         </EditText>
 
         <CheckBox
-            android:id="@+id/chkEducado"
+            android:id="@+id/chkPolite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_main_margin"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:layout_marginStart="@dimen/activity_main_margin"
+            android:checked="@={model.polite}"
+            android:text="@string/activity_main_chkPolite"
+            app:boldOnFocus="@{true}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"/>
+
+        <TextView
+            android:id="@+id/lblTreatment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/spnTreatment"
+            android:paddingEnd="@dimen/activity_main_margin"
+            android:paddingStart="@dimen/activity_main_margin"
+            android:layout_marginTop="@dimen/activity_main_margin"
+            android:text="@string/activity_main_lblTreatment"
+            app:labelForView="@{spnTreatment}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chkPolite"/>
+
+        <Spinner
+            android:id="@+id/spnTreatment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:layout_marginStart="@dimen/activity_main_margin"
+            android:entries="@array/activity_main_treatments"
+            android:selectedItemPosition="@={model.treatmentIndex}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTreatment"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/saludar_educadamente"
-            app:font='@{"postcard.ttf"}'
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:checked="@={viewModel.educado}"/>
+            android:layout_marginBottom="@dimen/activity_main_margin"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:enabled="@{model.valid}"
+            android:onClick="@{v -> presenter.greet()}"
+            android:onLongClick="@{v -> presenter.insult()}"
+            app:srcCompat="@drawable/ic_record_voice_over_white_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <es.iessaladillo.pedrojoya.pr170.utils.ClickToSelectEditText
-            android:id="@+id/txtTratamiento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_drop_down"
-            android:drawableRight="@drawable/ic_arrow_drop_down"
-            android:hint="@string/tratamiento"
-            android:inputType="none"
-            app:data="@{@stringArray/tratamientos}"
-            android:imeOptions="actionNext"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@={viewModel.tratamiento}"/>
 
-        <Button
-            android:id="@+id/btnSaludar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/saludar"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:enabled="@{viewModel.valido}"
-            android:onClick="@{presenter::btnSaludarOnClick}"
-            app:onLongClick="@{presenter::btnSaludarOnLongClick}"/>
-
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

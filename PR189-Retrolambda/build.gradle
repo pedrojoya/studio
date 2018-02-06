@@ -19,7 +19,7 @@ ext {
     compileSdkVersion = 27
     minSdkVersion = 19
     buildToolsVersion = "26.0.2"
-    retrolambdaVersion = "3.6.0"
+
     support_library_version = "27.0.2"
     espresso_version = "3.0.1"
     testrunner_version = "0.5"

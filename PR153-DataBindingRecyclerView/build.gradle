@@ -29,4 +29,6 @@ ext {
     support_library_version = "27.0.2"
     picasso_version = "2.5.2"
     circleimageview_version = "2.1.0"
+    fakeit_version = "v0.7"
+    arch_version = "1.0.0"
 }

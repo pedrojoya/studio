@@ -3,17 +3,13 @@ package es.iessaladillo.pedrojoya.pr170.tools;
 import android.databinding.BindingAdapter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
-
-import es.iessaladillo.pedrojoya.pr170.utils.ClickToSelectEditText;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class DataBindingTools {
@@ -21,16 +17,7 @@ public class DataBindingTools {
     private DataBindingTools() {
     }
 
-    // Adaptador para crear atributo app:font en el que establecer el tipo de
-    // letra para un TextView.
-    @BindingAdapter({"bind:font"})
-    public static void setFont(TextView textView, String fontName) {
-        textView.setTypeface(
-                Typeface.createFromAsset(textView.getContext().getAssets(), "fonts/" + fontName));
-    }
-
-    // Adaptador para crear atributo app:imageUrl en el que establecer la URL
-    // de la imagen que debe cargarse en un ImageView a través de Picasso.
+    // BindingAdapter to load image with Picasso
     @BindingAdapter(value = {"bind:imageUrl", "bind:placeholder", "bind:error"}, requireAll = false)
     public static void setImageUrl(ImageView imageView, String url, Drawable drawablePlaceholder,
             Drawable drawableError) {
@@ -46,39 +33,22 @@ public class DataBindingTools {
         }
     }
 
-    @BindingAdapter({"bind:data"})
-    public static void setData(final ClickToSelectEditText textView, CharSequence[] data) {
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter<>(textView.getContext(),
-                android.R.layout.simple_list_item_1, data);
-        textView.setAdapter(adaptador);
-        //noinspection unchecked
-        textView.setOnItemSelectedListener(
-                new ClickToSelectEditText.OnItemSelectedListener<String>() {
-                    @Override
-                    public void onItemSelectedListener(String item, int selectedIndex) {
-                        textView.setText(item);
-                    }
-                });
-        textView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    textView.showDialog(v);
-                }
-            }
+    @BindingAdapter("app:labelForView")
+    public static void setLabelForView(TextView textView, View forView) {
+        forView.setOnFocusChangeListener((v, hasFocus) -> textView.setTypeface(null,
+                hasFocus ? Typeface.BOLD : Typeface.NORMAL));
+        textView.setOnClickListener(v -> {
+            forView.requestFocus();
+            forView.performClick();
         });
     }
 
-    // Para establecer un drawable vectorial como drawableLeft de un textview.
-    @BindingAdapter("bind:vectorDrawableLeft")
-    public static void setDrawableLeft(TextView textView, int resourceId) {
-        Drawable drawable = VectorDrawableCompat.create(textView.getResources(), resourceId,
-                textView.getContext().getTheme());
-        Drawable[] drawables = textView.getCompoundDrawables();
-        textView.setCompoundDrawablesWithIntrinsicBounds(drawable, drawables[1], drawables[2],
-                drawables[3]);
+    @BindingAdapter("app:boldOnFocus")
+    public static void setBoldOnFocus(TextView textView, boolean bold) {
+        if (bold) {
+            textView.setOnFocusChangeListener((v, hasFocus) -> textView.setTypeface(null,
+                    hasFocus ? Typeface.BOLD : Typeface.NORMAL));
+        }
     }
-
-
 
 }
