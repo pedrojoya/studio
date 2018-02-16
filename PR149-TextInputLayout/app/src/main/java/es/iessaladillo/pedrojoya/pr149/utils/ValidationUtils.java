@@ -18,7 +18,7 @@ public class ValidationUtils {
                 && !phone.startsWith("9")) {
             return false;
         }
-        return true;
+        return Patterns.PHONE.matcher(phone).matches();
     }
 
     public static boolean isValidEmail(@NonNull String email) {

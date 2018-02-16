@@ -34,6 +34,6 @@ dependencies {
     implementation "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
     implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
 
-    debugCompile "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
-    releaseCompile "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
+    debugImplementation "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
+    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
 }

@@ -1,84 +1,89 @@
-<RelativeLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/general_activity_margin"
-    tools:context=".main.MainActivity">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilName"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/general_activity_margin"
-        app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        android:layout_height="match_parent"
+        android:padding="@dimen/general_activity_margin"
+        tools:context=".main.MainActivity">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/txtName"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/activity_main_txtName"
-            android:inputType="textPersonName">
+            android:layout_marginBottom="@dimen/general_activity_margin"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-            <requestFocus/>
-        </android.support.design.widget.TextInputEditText>
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_main_txtName"
+                android:inputType="textPersonName">
 
-    </android.support.design.widget.TextInputLayout>
+                <requestFocus/>
+            </android.support.design.widget.TextInputEditText>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tilName"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/txtPhone"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/activity_main_txtPhone"
-            android:inputType="phone"
-            android:maxLength="@integer/activity_main_txtPhone_maxLength"/>
+            android:layout_below="@+id/tilName"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:counterEnabled="true"
+            app:counterMaxLength="@integer/activity_main_txtPhone_maxLength"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_main_txtPhone"
+                android:inputType="phone"
+                android:maxLength="@integer/activity_main_txtPhone_maxLength"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tilPhone"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/txtEmail"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/activity_main_txtEmail"
-            android:inputType="textEmailAddress"/>
+            android:layout_below="@+id/tilPhone"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_main_txtEmail"
+                android:inputType="textEmailAddress"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tilEmail"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleContentDescription="@string/activity_main_tilPassword_passwordToggleContentDescription"
-        app:passwordToggleDrawable="@drawable/password_visibility">
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/txtPassword"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/activity_main_txtPassword"
-            android:inputType="textPassword"/>
+            android:layout_below="@+id/tilEmail"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+            app:passwordToggleContentDescription="@string/activity_main_tilPassword_passwordToggleContentDescription"
+            app:passwordToggleEnabled="true">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_main_txtPassword"
+                android:inputType="textPassword"/>
 
-</RelativeLayout>
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -8,7 +8,7 @@ ext {
     mockito_version = "2.11.0"
     espresso_version = "3.0.1"
     support_library_version = "27.0.2"
-    constraintlayout_version = "1.1.0-beta4"
+    constraintlayout_version = "1.1.0-beta5"
     picasso_version = "2.5.2"
     circleimageview_version = "2.2.0"
     butterknife_version = "8.8.1"
@@ -45,6 +45,8 @@ ext {
     listitemview_version = "1.0.5"
     arch_version = "1.0.0"
     fakeit_version = "v0.7"
+    autodispose_version = "0.6.0"
+    alerter_version = "2.0.4"
 }
 
 buildscript {
@@ -147,9 +149,14 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
     implementation "com.github.moove-it:fakeit:$rootProject.ext.fakeit_version"
+    implementation "com.uber.autodispose:autodispose:$rootProject.ext.autodispose_version"
+    implementation "com.uber.autodispose:autodispose-android-archcomponents:$rootProject.ext.autodispose_version"
+    implementation "com.tapadoo.android:alerter:$rootProject.ext.alerter_version"
 }
 
 @file:programandoandroid/
 
 Desde Good times hasta Beautiful girls (2017-01-25)
 Desde We are young (2014-12-24)
+
+
