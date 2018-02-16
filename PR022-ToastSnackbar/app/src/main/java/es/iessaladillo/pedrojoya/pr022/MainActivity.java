@@ -57,12 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 .duration(Toast.LENGTH_SHORT)
                 .build()
                 .show());
-        if (btnAlerter != null) {
-            btnAlerter.setOnClickListener(v -> Alerter.create(MainActivity.this)
-                    .setTitle(R.string.main_activity_attention)
-                    .setText(R.string.main_activity_alerter_message)
-                    .show());
-        }
+        btnAlerter.setOnClickListener(v -> Alerter.create(MainActivity.this)
+                .setTitle(R.string.main_activity_attention)
+                .setText(R.string.main_activity_alerter_message)
+                .setBackgroundColorRes(R.color.accent)
+                .show());
     }
 
     private void showToast(String message) {

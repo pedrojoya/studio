@@ -88,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private void doScroll(final NestedScrollView scv, final int focus) {
         // Must be posted in order to calculate the end position correctly.
         scv.post(() -> {
-            scv.fullScroll(focus);
-            // scv.scrollTo(0, scv.getBottom());
+            scv.smoothScrollTo(0, scv.getBottom());
             txtMessage.requestFocus();
         });
     }

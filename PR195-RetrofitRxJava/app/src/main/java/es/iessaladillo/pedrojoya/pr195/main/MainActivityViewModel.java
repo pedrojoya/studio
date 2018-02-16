@@ -21,9 +21,7 @@ class MainActivityViewModel extends AndroidViewModel {
     public MainActivityViewModel(Application application) {
         super(application);
         repository = RepositoryImpl.getInstance(application.getApplicationContext());
-        /* Nuevo */
         loadStudents();
-        /*  */
     }
 
     public Observable<List<Student>> getStudents(boolean forceLoad) {

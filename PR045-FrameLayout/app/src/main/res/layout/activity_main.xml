@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:animateLayoutChanges="true">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:animateLayoutChanges="true"
+             tools:ignore="MergeRootFrame">
 
     <ImageView
-        android:id="@+id/imgFoto"
+        android:id="@+id/imgPhoto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/foto_del_dia"
@@ -22,51 +25,50 @@
         android:padding="@dimen/panel_padding">
 
         <TextView
-            android:id="@+id/lblTitulo"
+            android:id="@+id/lblTitle"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/imgDetalle"
-            android:layout_toStartOf="@+id/imgDetalle"
+            android:layout_toStartOf="@+id/imgDetail"
+            app:fontFamily="@font/alegreya"
             android:text="@string/foto_del_dia"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:textStyle="bold|italic"/>
 
         <TextView
-            android:id="@+id/lblSubtitulo"
+            android:id="@+id/lblSubtitle"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/imgDetalle"
-            android:layout_toStartOf="@+id/imgDetalle"
-            android:layout_below="@+id/lblTitulo"
+            android:layout_below="@+id/lblTitle"
+            android:layout_toStartOf="@+id/imgDetail"
+            app:fontFamily="@font/alegreya"
             android:text="@string/londres"
-            style="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
 
         <ImageView
-            android:id="@+id/imgDetalle"
+            android:id="@+id/imgDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:clickable="true"
             android:contentDescription="@string/abrir_detalle"
             android:src="@drawable/ic_action_navigation_collapse"/>
 
         <TextView
-            android:id="@+id/lblDetalle"
+            android:id="@+id/lblDetail"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblSubtitulo"
+            android:layout_below="@+id/lblSubtitle"
+            app:fontFamily="@font/alegreya"
             android:padding="@dimen/panel_padding"
             android:text="@string/detalle"
-            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/white"/>
     </RelativeLayout>
 
-</merge>
+</FrameLayout>

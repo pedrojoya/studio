@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "es.iessaladillo.pedrojoya.pr218"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
+    implementation "com.android.support:design:$rootProject.ext.support_library_version"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp_version"
+    implementation "com.google.code.gson:gson:$rootProject.ext.gson_version"
+    implementation "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
+    implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
+    implementation "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
+    //noinspection GradleDependency
+    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
+    implementation "android.arch.lifecycle:reactivestreams:$rootProject.ext.arch_version"
+    debugImplementation "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
+    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
+}
