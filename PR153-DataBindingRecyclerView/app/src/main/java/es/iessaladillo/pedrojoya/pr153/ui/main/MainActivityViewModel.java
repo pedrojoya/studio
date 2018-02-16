@@ -10,6 +10,7 @@ import java.util.List;
 import es.iessaladillo.pedrojoya.pr153.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr153.data.local.model.Student;
 
+@SuppressWarnings("WeakerAccess")
 public class MainActivityViewModel extends AndroidViewModel {
 
     private final RepositoryImpl repository;
@@ -33,8 +34,8 @@ public class MainActivityViewModel extends AndroidViewModel {
     }
 
 
-    public void deleteStudent(Student student) {
-        repository.deleteStudent(student);
+    public int deleteStudent(Student student) {
+        return repository.deleteStudent(student);
     }
 
 }

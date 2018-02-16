@@ -1,12 +1,23 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <import
+            type="es.iessaladillo.pedrojoya.pr153.ui.main.MainActivity"/>
+        <variable
+            name="presenter"
+            type="MainActivity" />
+    </data>
+
 
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -22,35 +33,39 @@
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/lstAlumnos"
+            android:id="@+id/lstStudents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadeScrollbars="false"
-            android:paddingBottom="@dimen/lst_padding"
-            android:paddingTop="@dimen/lst_padding"
+            app:columns = "@{@integer/activity_main_numColumns}"
+            app:onItemClick="@{(view, item, position) -> presenter.onItemClick(view, item, position)}"
+            app:onItemLongClick="@{(view, item, position) -> presenter.onItemLongClick(view, item, position)}"
+            app:onSwipedRight="@{(viewHolder, direction, item, position) -> presenter.onSwipedRight(viewHolder, direction, item, position)}"
+            app:onSwipedLeft="@{(viewHolder, direction, item, position) -> presenter.onSwipedLeft(viewHolder, direction, item, position)}"
+            app:emptyView="@{lblEmptyView}"
+            android:paddingBottom="@dimen/activity_main_lstStudents_padding"
+            android:paddingTop="@dimen/activity_main_lstStudents_padding"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <TextView
-            android:id="@+id/lblNoHayAlumnos"
+            android:id="@+id/lblEmptyView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawablePadding="@dimen/empty_drawablePadding"
-            android:drawableTop="@drawable/ic_no_hay_alumnos"
-            android:text="@string/no_hay_alumnos"
+            android:drawablePadding="@dimen/activity_main_lblEmptyView_drawablePadding"
+            android:drawableTop="@drawable/no_students"
+            android:text="@string/activity_main_lblEmptyView"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabAccion"
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:elevation="@dimen/fab_elevation"
+            android:layout_marginBottom="@dimen/activity_main_fab_margin"
+            android:layout_marginEnd="@dimen/activity_main_fab_margin"
             android:src="@drawable/ic_action_add"
-            tools:ignore="UnusedAttribute"/>
+            android:onClick="@{v -> presenter.onFabClick(v)}"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

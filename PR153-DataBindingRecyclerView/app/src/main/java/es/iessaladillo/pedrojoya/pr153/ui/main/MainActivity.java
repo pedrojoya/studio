@@ -1,18 +1,15 @@
 package es.iessaladillo.pedrojoya.pr153.ui.main;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.mooveit.library.Fakeit;
 
-import java.util.List;
 import java.util.Random;
 
 import es.iessaladillo.pedrojoya.pr153.BR;
@@ -33,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setPresenter(this);
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         random = new Random();
         initViews();
@@ -40,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         setupToolbar();
-        setupFab();
         setupRecyclerView();
     }
 
@@ -52,31 +49,46 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupFab() {
-        binding.fabAccion.setOnClickListener(
-                view -> viewModel.insertStudent(createFakeStudent()));
+    private void setupRecyclerView() {
+        adapter = new MainActivityAdapter(BR.item);
+        binding.lstStudents.setAdapter(adapter);
+        viewModel.getStudents().observe(this, students -> adapter.setList(students));
     }
 
-    private void setupRecyclerView() {
-        binding.lstAlumnos.setHasFixedSize(true);
-        adapter = new MainActivityAdapter(BR.item);
-        adapter.setEmptyView(binding.lblNoHayAlumnos);
-        adapter.setOnItemClickListener(
-                (view, item, position) -> Snackbar.make(binding.lstAlumnos,
-                        getString(R.string.ha_pulsado_sobre, ((Student) item).getName()),
-                        Snackbar.LENGTH_SHORT).show());
-        adapter.setOnItemLongClickListener((view, item, position) -> viewModel.deleteStudent((
-                (Student) item)));
-        binding.lstAlumnos.setAdapter(adapter);
-        binding.lstAlumnos.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        binding.lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        viewModel.getStudents().observe(this, new Observer<List<Student>>() {
-            @Override
-            public void onChanged(@Nullable List<Student> students) {
-                adapter.setList(students);
-            }
-        });
+    public void onItemClick(View view, Object item, int position) {
+        Snackbar.make(binding.lstStudents,
+                getString(R.string.main_activity_student_clicked, ((Student) item).getName()),
+                Snackbar.LENGTH_SHORT).show();
+    }
+
+    public void onItemLongClick(View view, Object item, int position) {
+        if (viewModel.deleteStudent((Student) item) > 0) {
+            Snackbar.make(binding.lstStudents, getString(R.string.main_activity_student_deleted, ((Student) item).getName
+                            ()),
+                    Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onSwipedRight(RecyclerView.ViewHolder viewHolder, int direction, Object item,
+            int position) {
+        if (viewModel.deleteStudent((Student) item) > 0) {
+            Snackbar.make(binding.lstStudents, getString(R.string.main_activity_student_deleted, ((Student) item).getName
+                            ()),
+                    Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onSwipedLeft(RecyclerView.ViewHolder viewHolder, int direction, Object item,
+            int position) {
+        if (viewModel.deleteStudent((Student) item) > 0) {
+            Snackbar.make(binding.lstStudents, getString(R.string.main_activity_student_archived, ((Student) item)
+                            .getName()),
+                    Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onFabClick(View view) {
+        viewModel.insertStudent(createFakeStudent());
     }
 
     private Student createFakeStudent() {

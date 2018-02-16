@@ -14,7 +14,6 @@ public class DataBindingTools {
     private DataBindingTools() {
     }
 
-    // BindingAdapter to load image with Picasso
     @BindingAdapter(value = {"bind:imageUrl", "bind:placeholder", "bind:error"}, requireAll = false)
     public static void setImageUrl(ImageView imageView, String url, Drawable drawablePlaceholder,
             Drawable drawableError) {

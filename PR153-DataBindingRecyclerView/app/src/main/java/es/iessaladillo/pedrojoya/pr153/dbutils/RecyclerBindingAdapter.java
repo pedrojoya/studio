@@ -1,18 +1,22 @@
 package es.iessaladillo.pedrojoya.pr153.dbutils;
 
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.DiffCallback;
 import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
-
-import es.iessaladillo.pedrojoya.pr153.ui.main.MainActivityAdapter;
 
 @SuppressWarnings("unused")
 public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> extends
@@ -33,8 +37,8 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
 
     private final int modelBRId;
     private View emptyView;
-    private MainActivityAdapter.OnItemLongClickListener onItemLongClickListener;
-    private MainActivityAdapter.OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
+    private OnItemClickListener onItemClickListener;
 
     protected RecyclerBindingAdapter(int modelBRId, @NonNull DiffCallback<T> diffCallback) {
         super(diffCallback);
@@ -81,6 +85,7 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
 
     public void setEmptyView(View emptyView) {
         this.emptyView = emptyView;
+        checkIfEmpty(getItemCount());
     }
 
     @Override
@@ -91,11 +96,11 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
         super.setList(list);
     }
 
-    public void setOnItemClickListener(MainActivityAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
 
-    public void setOnItemLongClickListener(MainActivityAdapter.OnItemLongClickListener listener) {
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         this.onItemLongClickListener = listener;
     }
 
@@ -122,5 +127,101 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
         }
 
     }
+
+    @BindingAdapter("app:columns")
+    public static void setColumns(RecyclerView recyclerView, int numColumns) {
+        if (recyclerView != null && numColumns > 0) {
+            recyclerView.setHasFixedSize(true);
+            if (numColumns == 1) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext(),
+                        LinearLayoutManager.VERTICAL, false));
+            } else {
+                recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(),
+                        numColumns));
+            }
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+        }
+    }
+
+    @BindingAdapter("app:dividerItemDecoration")
+    public static void setDividerItemDecoration(RecyclerView recyclerView,
+            Boolean dividerItemDecoration) {
+        if (recyclerView != null && dividerItemDecoration) {
+            recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
+                    LinearLayoutManager.VERTICAL));
+        }
+    }
+
+    @BindingAdapter("app:onItemClick")
+    public static void onItemClick(RecyclerView recyclerView,
+            final RecyclerBindingAdapter.OnItemClickListener action) {
+        if (recyclerView != null && recyclerView.getAdapter() instanceof RecyclerBindingAdapter) {
+            RecyclerBindingAdapter adapter = (RecyclerBindingAdapter) recyclerView.getAdapter();
+            adapter.setOnItemClickListener(action);
+        }
+    }
+
+    @BindingAdapter("app:onItemLongClick")
+    public static void onItemLongClick(RecyclerView recyclerView,
+            final RecyclerBindingAdapter.OnItemLongClickListener action) {
+        if (recyclerView != null && recyclerView.getAdapter() instanceof RecyclerBindingAdapter) {
+            RecyclerBindingAdapter adapter = (RecyclerBindingAdapter) recyclerView.getAdapter();
+            adapter.setOnItemLongClickListener(action);
+        }
+    }
+
+    @BindingAdapter("app:emptyView")
+    public static void addEmptyView(RecyclerView recyclerView, View emptyView) {
+        if (recyclerView != null && emptyView != null
+                && recyclerView.getAdapter() instanceof RecyclerBindingAdapter) {
+            RecyclerBindingAdapter adapter = (RecyclerBindingAdapter) recyclerView.getAdapter();
+            adapter.setEmptyView(emptyView);
+        }
+    }
+
+    @BindingAdapter(value = {"app:onSwipedRight", "app:onSwipedLeft"}, requireAll = false)
+    public static void setTouchHelper(RecyclerView recyclerView,
+            OnSwipedListener onSwipedRight, OnSwipedListener onSwipedLeft) {
+
+        int swipeDirs = 0;
+        if (onSwipedRight != null) {
+            swipeDirs = swipeDirs | ItemTouchHelper.RIGHT;
+        }
+        if (onSwipedLeft != null) {
+            swipeDirs = swipeDirs | ItemTouchHelper.LEFT;
+        }
+        if (recyclerView != null && recyclerView.getAdapter() instanceof RecyclerBindingAdapter &&
+                (onSwipedRight != null || onSwipedLeft != null)) {
+            RecyclerBindingAdapter adapter = (RecyclerBindingAdapter) recyclerView.getAdapter();
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                    new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                            swipeDirs) {
+
+                        @Override
+                        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                RecyclerView.ViewHolder target) {
+                            return false;
+                        }
+
+                        @Override
+                        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                            if (onSwipedLeft != null && direction == ItemTouchHelper.LEFT) {
+                                onSwipedLeft.onSwiped(viewHolder, direction, adapter.getItem
+                                        (viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
+                            }
+                            if (onSwipedRight != null && direction == ItemTouchHelper.RIGHT) {
+                                onSwipedRight.onSwiped(viewHolder, direction, adapter.getItem
+                                        (viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
+                            }
+                        }
+                    });
+            itemTouchHelper.attachToRecyclerView(recyclerView);
+        }
+    }
+
+    public interface OnSwipedListener {
+        void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, Object item, int position);
+    }
+
 
 }

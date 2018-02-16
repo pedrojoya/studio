@@ -2,8 +2,14 @@
 <resources>
 
     <string name="app_name">DataBindingRecyclerView</string>
-    <string name="no_hay_alumnos">No hay alumnos</string>
-    <string name="ha_pulsado_sobre">"Ha pulsado sobre %1$s"</string>
-    <string name="avatar">Avatar</string>
+
+    <string name="activity_main_lblEmptyView">No students yet</string>
+
+    <string name="activity_main_item_imgPhoto">Avatar</string>
+
+    <string name="main_activity_student_clicked">Student %1$s"</string>
+    <string name="main_activity_student_deleted">%1$s deleted</string>
+    <string name="main_activity_student_archived">%1$s archived</string>
+
 
 </resources>
