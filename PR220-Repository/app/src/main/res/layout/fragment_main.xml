@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="es.iessaladillo.pedrojoya.pr220.ui.main.MainActivityViewModel"/>
+    </data>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:showLoading="@{vm.loading}"
+        app:showStringResId="@{vm.messageResId}"
+        app:onRefresh="@{() -> vm.refresh()}">
+
+        <FrameLayout
+            android:id="@+id/flList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lstStudents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:columns="@{@integer/fragment_main_numColumns}"
+                app:emptyView="@{lblEmptyView}"
+                app:onItemClick="@{(view, item, position) -> vm.onItemClick(view, item, position)}"
+                app:onSwipedRight="@{(viewHolder, direction, item, position) -> vm.onSwipedRight(viewHolder, direction, item, position)}"/>
+
+            <TextView
+                android:id="@+id/lblEmptyView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="@dimen/fragment_main_lblEmptyView_drawablePadding"
+                android:drawableTop="@drawable/ic_person_add_black_24dp"
+                android:text="@string/fragment_main_lblEmptyView"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        </FrameLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</layout>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SQLiteDao</string>
+
+    <string name="fragment_main_lblEmptyView">No hay alumnos</string>
+    <string name="fragment_main_item_imgAvatar">avatar</string>
+
+    <string name="fragment_student_txtName">Nombre</string>
+    <string name="fragment_student_imgGrade">Curso</string>
+    <string name="fragment_student_imgPhone">Teléfono</string>
+    <string name="fragment_student_imgAddress">Dirección</string>
+
+    <string name="student_fragment_student_added">El alumno se ha agregado correctamente</string>
+    <string name="student_fragment_error_adding_student">Se ha producido un error al agregar el alumno</string>
+    <string name="student_fragment_student_updated">El student se ha actualizado correctamente</string>
+    <string name="student_fragment_error_updating_student">Se ha producido un error al actualizar el student</string>
+    <string name="student_fragment_invalid_phonenumber">Número de
+        teléfono no válido</string>
+
+    <string name="student_fragment_edit_student">Actualizar</string>
+    <string name="student_fragment_add_student">Agregar</string>
+    <string name="student_fragment_required_field">Campo obligatorio</string>
+
+    <string name="main_fragment_student_deleted">El alumno se ha eliminado correctamente</string>
+    <string name="main_fragment_error_deleting_student">Se ha producido un error al eliminar el alumno</string>
+    <string name="fragment_main_mnuRefresh">Actualizar</string>
+    <string name="fragment_main_students_list_updated">Lista de alumnos actualizada</string>
+    <string name="fragment_main_error_updating_list">Error actualizando la lista de alumnos</string>
+    <string name="student_fragment_error_no_student">Error: El alumno ya había sido eliminado. Por favor actualice la lista de alumnos</string>
+
+</resources>

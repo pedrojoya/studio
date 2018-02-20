@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr049.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
 import es.iessaladillo.pedrojoya.pr049.R;
 import es.iessaladillo.pedrojoya.pr049.utils.ConfigurationUtils;
 
 public class MainFragment extends Fragment {
 
-    private static final String STATE_SELECTED_ITEM = "STATE_SELECTED_ITEM";
-    public static final int NO_ITEM_SELECTED = -1;
-
     // Comunication interface with activity.
     public interface Callback {
-        void onItemSelected(String item, int position);
+        void onItemSelected(String item);
     }
 
     private ListView lstItems;
@@ -28,14 +28,12 @@ public class MainFragment extends Fragment {
     private Callback mListener;
     private MainActivityViewModel mViewModel;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        setRetainInstance(true);
-        super.onCreate(savedInstanceState);
+    public static MainFragment newInstance() {
+        return new MainFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -56,64 +54,45 @@ public class MainFragment extends Fragment {
         mListener = null;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(getActivity()).get(MainActivityViewModel.class);
-        restoreInstanceState(savedInstanceState);
         initViews(getView());
-        // If item selected.
-        if (mViewModel.getSelectedItem() >= 0) {
-            if (ConfigurationUtils.hasLandscapeOrientation(getActivity())) {
-                showItem(mViewModel.getSelectedItem());
-            } else {
-                selectItem(mViewModel.getSelectedItem());
-            }
-        }
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void initViews(View view) {
         lstItems = view.findViewById(R.id.lstItems);
 
         int itemLayout = ConfigurationUtils.hasLandscapeOrientation(
                 getActivity()) ? android.R.layout.simple_list_item_activated_1 : android.R.layout
                                  .simple_list_item_1;
-        lstItems.setAdapter(new ArrayAdapter<>(getActivity(), itemLayout, mViewModel.getItems()));
-        lstItems.setOnItemClickListener((adapterView, v, position, id) -> showItem(position));
-    }
-
-    private void restoreInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            mViewModel.setSelectedItem(savedInstanceState.getInt(STATE_SELECTED_ITEM));
+        List<String> data = mViewModel.getItems();
+        lstItems.setAdapter(new ArrayAdapter<>(getActivity(), itemLayout, data));
+        if (ConfigurationUtils.hasLandscapeOrientation(getActivity())) {
+            int selectedIndex = data.indexOf(mViewModel.getSelectedItem());
+            if (selectedIndex >= 0) {
+                selectItem(selectedIndex);
+            }
         }
+        lstItems.setOnItemClickListener((adapterView, v, position, id) -> showItem(position));
     }
 
     private void showItem(int position) {
         selectItem(position);
-        mListener.onItemSelected((String) lstItems.getItemAtPosition(position), position);
+        mListener.onItemSelected((String) lstItems.getItemAtPosition(position));
     }
 
-    public void selectItem(int position) {
+    private void selectItem(int position) {
         if (position >= 0) {
             lstItems.setItemChecked(position, true);
             lstItems.setSelection(position);
         }
         else {
-            lstItems.setItemChecked(mViewModel.getSelectedItem(), false);
             lstItems.clearChoices();
         }
-        mViewModel.setSelectedItem(position);
-    }
-
-    // Needed in case activity is destroy because of low memory.
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(STATE_SELECTED_ITEM, mViewModel.getSelectedItem());
-    }
-
-    public static MainFragment newInstance() {
-        return new MainFragment();
     }
 
 }

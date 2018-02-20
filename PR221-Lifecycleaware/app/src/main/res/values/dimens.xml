@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="general_activity_vertical_margin">16dp</dimen>
+
+</resources>

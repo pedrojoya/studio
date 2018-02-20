@@ -16,10 +16,12 @@
         <menu>
             <item
                 android:id="@+id/mnuEdit"
-                android:title="@string/activity_main_mnuEdit"/>
+                android:title="@string/activity_main_mnuEdit"
+                android:icon="@drawable/ic_edit_black_24dp"/>
             <item
                 android:id="@+id/mnuDelete"
-                android:title="@string/activity_main_mnuDelete"/>
+                android:title="@string/activity_main_mnuDelete"
+                android:icon="@drawable/ic_delete_black_24dp"/>
         </menu>
     </item>
     <group

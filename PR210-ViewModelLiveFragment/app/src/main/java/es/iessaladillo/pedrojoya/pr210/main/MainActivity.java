@@ -1,22 +1,21 @@
 package es.iessaladillo.pedrojoya.pr210.main;
 
-import android.app.FragmentTransaction;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr210.R;
 import es.iessaladillo.pedrojoya.pr210.detail.DetailActivity;
 import es.iessaladillo.pedrojoya.pr210.detail.DetailFragment;
+import es.iessaladillo.pedrojoya.pr210.detail.DetailFragmentBaseActivity;
 import es.iessaladillo.pedrojoya.pr210.utils.ConfigurationUtils;
 import es.iessaladillo.pedrojoya.pr210.utils.FragmentUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DetailFragmentBaseActivity<MainActivityViewModel> {
 
     private static final String TAG_MAIN_FRAGMENT = "TAG_MAIN_FRAGMENT";
     private static final String TAG_DETAIL_FRAGMENT = "TAG_DETAIL_FRAGMENT";
 
+    @SuppressWarnings("FieldCanBeLocal")
     private MainActivityViewModel mViewModel;
 
     @Override
@@ -34,29 +33,17 @@ public class MainActivity extends AppCompatActivity {
             FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flDetail,
                     DetailFragment.newInstance(), TAG_MAIN_FRAGMENT);
         }
+        //
         mViewModel.getCurrentItem().observe(this, item -> {
-            if (ConfigurationUtils.hasLandscapeOrientation(this)) {
-                showDetailFragment();
-            } else {
+            if (!ConfigurationUtils.hasLandscapeOrientation(this)) {
                 DetailActivity.start(this, item);
             }
         });
     }
 
-    private void showDetailFragment() {
-        FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(), R.id.flDetail,
-                DetailFragment.newInstance(), TAG_DETAIL_FRAGMENT, TAG_DETAIL_FRAGMENT,
-                FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-    }
-
     @Override
-    public void onBackPressed() {
-        if (!ConfigurationUtils.hasLandscapeOrientation(this)) {
-            // No backstack.
-            getSupportFragmentManager().popBackStack(null,
-                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
-        super.onBackPressed();
+    public Class<MainActivityViewModel> getViewModelClass() {
+        return MainActivityViewModel.class;
     }
 
 }

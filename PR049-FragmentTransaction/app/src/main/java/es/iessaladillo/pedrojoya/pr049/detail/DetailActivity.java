@@ -9,7 +9,7 @@ import es.iessaladillo.pedrojoya.pr049.R;
 import es.iessaladillo.pedrojoya.pr049.utils.ConfigurationUtils;
 import es.iessaladillo.pedrojoya.pr049.utils.FragmentUtils;
 
-public class DetailActivity extends AppCompatActivity implements DetailFragment.Callback {
+public class DetailActivity extends AppCompatActivity {
 
     private static final String TAG_DETAIL_FRAGMENT = "TAG_DETAIL_FRAGMENT";
 
@@ -22,17 +22,11 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
             finish();
         } else {
             String item = getIntent().getStringExtra(DetailFragment.EXTRA_ITEM);
-            int position = getIntent().getIntExtra(DetailFragment.EXTRA_POSITION, 0);
             if (getSupportFragmentManager().findFragmentById(R.id.flDetail) == null) {
                 FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flDetail,
-                        DetailFragment.newInstance(item, position), TAG_DETAIL_FRAGMENT);
+                        DetailFragment.newInstance(item), TAG_DETAIL_FRAGMENT);
             }
         }
-    }
-
-    @Override
-    public void onDetailShown(int position) {
-        // Do nothing.
     }
 
     @Override
@@ -41,10 +35,9 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         return true;
     }
 
-    public static void start(Context context, String item, int position) {
+    public static void start(Context context, String item) {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(DetailFragment.EXTRA_ITEM, item);
-        intent.putExtra(DetailFragment.EXTRA_POSITION, position);
         context.startActivity(intent);
     }
 

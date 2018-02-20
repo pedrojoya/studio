@@ -2,27 +2,24 @@ package es.iessaladillo.pedrojoya.pr210.main;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 
 import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr210.data.Database;
+import es.iessaladillo.pedrojoya.pr210.detail.DetailFragmentBaseViewModel;
 
 @SuppressWarnings("WeakerAccess")
-public class MainActivityViewModel extends ViewModel {
+public class MainActivityViewModel extends DetailFragmentBaseViewModel {
 
     private final Database database;
 
     private List<String> items;
-    private MutableLiveData<String> currentItem = new MutableLiveData<>();
+    private final MutableLiveData<String> currentItem = new MutableLiveData<>();
 
     public MainActivityViewModel() {
         database = Database.getInstance();
     }
 
-    public LiveData<String> getCurrentItem() {
-        return currentItem;
-    }
 
     public List<String> getItems() {
         if (items == null) {
@@ -31,6 +28,12 @@ public class MainActivityViewModel extends ViewModel {
         return items;
     }
 
+    @Override
+    public LiveData<String> getCurrentItem() {
+        return currentItem;
+    }
+
+    @Override
     public void setCurrentItem(String item) {
         currentItem.setValue(item);
     }

@@ -73,7 +73,7 @@ public class PlanificadorService extends JobService {
         JobInfo.Builder builder = new JobInfo.Builder(TRABAJO_ID,
                 new ComponentName(context.getPackageName(), PlanificadorService.class.getName()));
         // Se especifican las condiciones de disparo.
-        builder.setPeriodic(intervalo);
+        builder.setMinimumLatency(intervalo);
         builder.setPersisted(true);
         PersistableBundle extras = new PersistableBundle();
         extras.putString(PlanificadorService.KEY_MENSAJE, mensaje);

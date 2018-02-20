@@ -15,7 +15,7 @@ public class FragmentUtils {
         fragmentManager.beginTransaction().replace(parentResId, fragment, tag).commit();
     }
 
-    @SuppressWarnings("SameParameterValue")
+    @SuppressWarnings({"SameParameterValue", "unused"})
     public static void replaceFragmentAddToBackstack(@NonNull FragmentManager fragmentManager,
             @IdRes int parentResId, @NonNull Fragment fragment, @NonNull String tag,
             @NonNull String backstackTag, int transition) {

@@ -1,7 +1,9 @@
 package es.iessaladillo.pedrojoya.pr210.detail;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,61 +14,54 @@ import es.iessaladillo.pedrojoya.pr210.R;
 
 public class DetailFragment extends Fragment {
 
-    // Communication interface.
-    public interface Callback {
-        void onDetailShown(String item);
-    }
+    public static final String EXTRA_ITEM = "EXTRA_ITEM";
+
+    @SuppressWarnings("FieldCanBeLocal")
+    private DetailFragmentBaseViewModel mViewModel;
 
     private TextView lblItem;
-
-    private String mItem;
-    private Callback mListener;
+    private Class<DetailFragmentBaseViewModel> viewModelClass;
 
     public static DetailFragment newInstance() {
         return new DetailFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_detail, container, false);
     }
 
     @Override
-    public void onAttach(Context activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        DetailFragmentBaseActivity activity;
         try {
-            mListener = (Callback) activity;
+            // Activity must extend DetailFragmentBaseActivity.
+            activity = (DetailFragmentBaseActivity<DetailFragmentBaseViewModel>) context;
+            viewModelClass = activity.getViewModelClass();
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement fragment callback");
+            // La actividad no implementa la interfaz.
+            throw new ClassCastException(context.toString() +
+                    " debe heredar de DetailFragmentBaseActivity");
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // TODO ENGANCHARSE AL VIEWMODEL DE LA ACTIVIDAD PARA OBSERVAR EL ITEM.
+        mViewModel = ViewModelProviders.of(getActivity()).get(viewModelClass);
         initViews(getView());
-        showItem();
+        mViewModel.getCurrentItem().observe(this, this::showItem);
+    }
+
+    private void showItem(String item) {
+        lblItem.setText(item);
     }
 
     private void initViews(View view) {
             lblItem = view.findViewById(R.id.lblItem);
-    }
-
-    private void showItem() {
-        lblItem.setText(mItem);
-        // Notify activity (needed in case of landscape configuration).
-        if (mListener != null) {
-            mListener.onDetailShown(mItem);
-        }
     }
 
 }

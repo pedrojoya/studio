@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr011;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
+import android.support.annotation.NonNull;
 
 import es.iessaladillo.pedrojoya.pr011.data.Repository;
 
@@ -13,9 +14,10 @@ class MainActivityViewModelFactory extends ViewModelProvider.NewInstanceFactory 
         this.repository = repository;
     }
 
+    @NonNull
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends ViewModel> T create(Class<T> modelClass) {
+    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         return (T) new MainActivityViewModel(repository);
     }
 }
