@@ -8,7 +8,6 @@ import android.support.v7.recyclerview.extensions.DiffCallback;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -19,10 +18,10 @@ import android.view.ViewGroup;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> extends
+public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ItemViewType> extends
         ListAdapter<T, RecyclerBindingAdapter.ViewHolder> {
 
-    public interface ViewModel {
+    public interface ItemViewType {
         @SuppressWarnings("SameReturnValue")
         int getLayoutId();
     }
@@ -128,17 +127,9 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
 
     }
 
-    @BindingAdapter("app:columns")
-    public static void setColumns(RecyclerView recyclerView, int numColumns) {
-        if (recyclerView != null && numColumns > 0) {
-            recyclerView.setHasFixedSize(true);
-            if (numColumns == 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext(),
-                        LinearLayoutManager.VERTICAL, false));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(),
-                        numColumns));
-            }
+    @BindingAdapter("app:defaultItemAnimator")
+    public static void setColumns(RecyclerView recyclerView, boolean defaultItemAnimator) {
+        if (recyclerView != null && defaultItemAnimator) {
             recyclerView.setItemAnimator(new DefaultItemAnimator());
         }
     }

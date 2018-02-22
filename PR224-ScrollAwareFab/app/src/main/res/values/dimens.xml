@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="activity_main_txtLorem_padding">20dp</dimen>
+    <dimen name="activity_main_fab_margin">16dp</dimen>
+    <dimen name="activity_main_fab_elevation">6dp</dimen>
+    <dimen name="activity_main_fab_transz">12dp</dimen>
+</resources>

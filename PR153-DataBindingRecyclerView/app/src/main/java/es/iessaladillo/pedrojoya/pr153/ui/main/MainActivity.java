@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -50,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
+        binding.lstStudents.setHasFixedSize(true);
+        // OJO. NO se puede hacer con Data Binding porque entonces no se recupera correctamente
+        // el estado de la lista, ya que el LayoutManager sería asignado por el Data Binding más
+        // tarde que la restauración del estado.
+        binding.lstStudents.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
         adapter = new MainActivityAdapter(BR.item);
         binding.lstStudents.setAdapter(adapter);
         viewModel.getStudents().observe(this, students -> adapter.setList(students));

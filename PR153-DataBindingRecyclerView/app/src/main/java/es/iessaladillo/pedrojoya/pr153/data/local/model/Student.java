@@ -11,7 +11,7 @@ import es.iessaladillo.pedrojoya.pr153.R;
 import es.iessaladillo.pedrojoya.pr153.dbutils.RecyclerBindingAdapter;
 
 @Entity
-public class Student extends BaseObservable implements RecyclerBindingAdapter.ViewModel {
+public class Student extends BaseObservable implements RecyclerBindingAdapter.ItemViewType {
 
     @PrimaryKey(autoGenerate = true)
     private long id;

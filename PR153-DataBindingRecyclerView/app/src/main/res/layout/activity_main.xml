@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadeScrollbars="false"
-            app:columns = "@{@integer/activity_main_numColumns}"
+            app:defaultItemAnimator="@{true}"
             app:onItemClick="@{(view, item, position) -> presenter.onItemClick(view, item, position)}"
             app:onItemLongClick="@{(view, item, position) -> presenter.onItemLongClick(view, item, position)}"
             app:onSwipedRight="@{(viewHolder, direction, item, position) -> presenter.onSwipedRight(viewHolder, direction, item, position)}"
