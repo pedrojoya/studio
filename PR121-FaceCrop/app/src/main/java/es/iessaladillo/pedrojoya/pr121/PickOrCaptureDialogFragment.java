@@ -23,7 +23,7 @@ public class PickOrCaptureDialogFragment extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
+        AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
         b.setTitle(R.string.elige_opcion);
         b.setItems(R.array.pick_or_capture_opciones, new DialogInterface.OnClickListener() {
             // Cuando se selecciona el elemento.

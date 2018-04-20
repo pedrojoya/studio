@@ -140,9 +140,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            lblName = itemView.findViewById(R.id.lblName);
-            lblUnits = itemView.findViewById(R.id.lblUnits);
-            vLine = itemView.findViewById(R.id.vLine);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblUnits = ViewCompat.requireViewById(itemView, R.id.lblUnits);
+            vLine = ViewCompat.requireViewById(itemView, R.id.vLine);
         }
 
         public void bind(Product product) {

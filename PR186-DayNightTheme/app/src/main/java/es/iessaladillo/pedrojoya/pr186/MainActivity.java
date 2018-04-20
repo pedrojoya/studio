@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView imgImagen = (ImageView) findViewById(R.id.imgImagen);
+        ImageView imgImagen = ActivityCompat.requireViewById(this, R.id.imgImagen);
         imgImagen.setOnClickListener(view -> cambiarModo());
     }
 

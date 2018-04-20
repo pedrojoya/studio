@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr095.ui.main;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,14 +62,14 @@ class MainFragmentAdapter extends ArrayAdapter<Song> {
         private final TextView lblAuthor;
         private final ImageView imgPlaying;
 
-        public ViewHolder(View itemView) {
-            lblName = itemView.findViewById(R.id.lblName);
-            lblDuration = itemView.findViewById(R.id.lblDuration);
-            lblAuthor = itemView.findViewById(R.id.lblAuthor);
-            imgPlaying = itemView.findViewById(R.id.imgPlaying);
+        ViewHolder(View itemView) {
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblDuration = ViewCompat.requireViewById(itemView, R.id.lblDuration);
+            lblAuthor = ViewCompat.requireViewById(itemView, R.id.lblAuthor);
+            imgPlaying = ViewCompat.requireViewById(itemView, R.id.imgPlaying);
         }
 
-        public void bind(Song song, int position) {
+        void bind(Song song, int position) {
             lblName.setText(song.getName());
             lblDuration.setText(song.getDuration());
             lblAuthor.setText(song.getAuthor());

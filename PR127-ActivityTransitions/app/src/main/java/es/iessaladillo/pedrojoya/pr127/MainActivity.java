@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
         //configTransitions();
         setContentView(R.layout.activity_main);
-        imgCuadro = (ImageView) findViewById(R.id.imgFoto);
+        imgCuadro = ActivityCompat.requireViewById(this, R.id.imgFoto);
         Picasso.with(this).load(FOTO_URL).into(imgCuadro);
         imgCuadro.setOnClickListener(new View.OnClickListener() {
             @Override

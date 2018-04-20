@@ -105,7 +105,7 @@ public class MainFragment extends Fragment implements MainAdapter.OnItemClickLis
     }
 
     private void configToolbar() {
-        AppCompatActivity actividad = (AppCompatActivity) getActivity();
+        AppCompatActivity actividad = (AppCompatActivity) requireActivity();
         actividad.setSupportActionBar(toolbar);
         if (actividad.getSupportActionBar() != null) {
             actividad.getSupportActionBar().setHomeButtonEnabled(true);
@@ -115,7 +115,7 @@ public class MainFragment extends Fragment implements MainAdapter.OnItemClickLis
 
     private void configRecyclerView() {
         lstAlumnos.setHasFixedSize(true);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireActivity(),
                 LinearLayoutManager.VERTICAL, false);
         lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());

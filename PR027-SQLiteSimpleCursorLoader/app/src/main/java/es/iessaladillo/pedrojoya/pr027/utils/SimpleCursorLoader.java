@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.content.AsyncTaskLoader;
 
 // CursorLoader sin content provider. Autor original: Christophe Beyls.
+@SuppressWarnings("WeakerAccess")
 public abstract class SimpleCursorLoader extends AsyncTaskLoader<Cursor> {
 
     // Observador de los cambios en el cursor.

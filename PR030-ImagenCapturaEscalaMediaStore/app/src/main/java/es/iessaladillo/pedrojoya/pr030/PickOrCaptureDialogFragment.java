@@ -10,7 +10,7 @@ import android.support.v7.app.AlertDialog;
 
 public class PickOrCaptureDialogFragment extends DialogFragment {
 
-    private Listener mListener = null;
+    private Listener listener = null;
 
     @SuppressWarnings("UnusedParameters")
     public interface Listener {
@@ -20,17 +20,16 @@ public class PickOrCaptureDialogFragment extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
-        b.setTitle(R.string.elige_opcion);
-        b.setItems(R.array.pick_or_capture_opciones, new DialogInterface.OnClickListener() {
+        AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
+        b.setTitle(R.string.main_activity_choose_option);
+        b.setItems(R.array.pick_or_capture_options, new DialogInterface.OnClickListener() {
             // Cuando se selecciona el elemento.
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mListener.onItemClick(PickOrCaptureDialogFragment.this,
+                listener.onItemClick(PickOrCaptureDialogFragment.this,
                         which);
             }
         });
-        b.setIcon(R.mipmap.ic_launcher);
         return b.create();
     }
 
@@ -38,10 +37,10 @@ public class PickOrCaptureDialogFragment extends DialogFragment {
     public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
-            mListener = (Listener) activity;
+            listener = (Listener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " debe implementar PickOrCaptureDialogFragment.Listener");
+                    + " must implement PickOrCaptureDialogFragment.Listener");
         }
     }
 

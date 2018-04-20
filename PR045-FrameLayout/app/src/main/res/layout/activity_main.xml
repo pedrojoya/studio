@@ -57,7 +57,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:contentDescription="@string/abrir_detalle"
-            android:src="@drawable/ic_action_navigation_collapse"/>
+            android:tint="@color/white"
+            app:srcCompat="@drawable/collapse_anim"/>
 
         <TextView
             android:id="@+id/lblDetail"

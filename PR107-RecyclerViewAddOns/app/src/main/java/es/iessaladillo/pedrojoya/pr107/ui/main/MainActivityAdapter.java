@@ -253,9 +253,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            lblName = itemView.findViewById(R.id.lblName);
-            lblAddress = itemView.findViewById(R.id.lblAddress);
-            imgAvatar = itemView.findViewById(R.id.imgAvatar);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
+            imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
         public void bind(Student student, int position) {

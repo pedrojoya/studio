@@ -18,8 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:text="@string/activity_student_lblName"
-        android:labelFor="@+id/txtName"/>
+        android:text="@string/activity_student_lblName"/>
 
     <EditText
         android:id="@+id/txtName"

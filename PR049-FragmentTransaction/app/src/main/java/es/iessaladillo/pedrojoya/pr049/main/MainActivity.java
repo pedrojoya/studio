@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Call
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        if (savedInstanceState != null) {
+            mViewModel.onRestoreInstanceState(savedInstanceState);
+        }
         if (getSupportFragmentManager().findFragmentByTag(TAG_MAIN_FRAGMENT) == null) {
             FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flMain,
                     MainFragment.newInstance(), TAG_MAIN_FRAGMENT);
@@ -36,6 +39,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Call
                         frgDetailFragment, TAG_MAIN_FRAGMENT);
             }
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mViewModel.onSaveInstanceState(outState);
     }
 
     @Override

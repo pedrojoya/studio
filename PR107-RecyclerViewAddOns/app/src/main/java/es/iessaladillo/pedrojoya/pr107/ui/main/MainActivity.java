@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
-        mEmptyView = findViewById(R.id.lblEmpty);
-        fab = findViewById(R.id.fab);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        mEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+        fab = ActivityCompat.requireViewById(this, R.id.fab);
 
         setupToolbar();
         setupRecyclerView();
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void setupToolbar() {
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);

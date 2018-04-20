@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Notificaciones</string>
-    <string name="big_text_style">Big Text Style</string>
-    <string name="big_picture_style">Big Picture Style</string>
-    <string name="inbox_style">Inbox Style</string>
-    <string name="progress_bar">Progress Bar</string>
-    <string name="progreso_indeterminado">Indeterminado</string>
-    <string name="operacion_finalizada">Operación finalizada</string>
-    <string name="actualizacion_de_datos">Actualización de datos</string>
-    <string name="actualizando">Actualizando… (%1$d de %2$d)</string>
-    <string name="title_activity_resultado">ResultadoActivity</string>
-    <string name="enviar">Enviar</string>
-    <string name="eliminar">Eliminar</string>
-    <string name="ver">Ver</string>
+    <string name="app_name">Notifications</string>
+    <string name="activity_main_btnBigTextStyle">Big Text Style</string>
+    <string name="activity_main_btnBigPictureStyle">Big Picture Style</string>
+    <string name="activity_main_btnInboxStyle">Inbox Style</string>
+    <string name="activity_main_btnProgressBar">Progress Bar</string>
+    <string name="activity_main_btnIndeterminateProgress">Indeterm. progress</string>
+    <string name="main_activity_update_finished">Update finished</string>
+    <string name="main_activity_progress">Data update</string>
+    <string name="main_activity_updating">Updating… (%1$d de %2$d)</string>
+    <string name="title_activity_resultado">Result</string>
+    <string name="main_activity_send">Send</string>
+    <string name="main_activity_delete">Delete</string>
+    <string name="ver">View</string>
     <string name="content_title">Content Title</string>
     <string name="content_text">Content Text</string>
-    <string name="content_info">Content Info</string>
-    <string name="ticker">Ticker</string>
     <string name="big_text">Big Text: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</string>
     <string name="big_content_title">Big Content Title</string>
     <string name="summary_text">Summary Text</string>
     <string name="line">Line %1$d</string>
-    <string name="heads_up_notification">Heads-up</string>
-    <string name="responder">Responder</string>
-    <string name="actualizando_indeterminado">Actualizando…</string>
+    <string name="activity_main_btnHeadsUp">Heads-up</string>
+    <string name="main_activity_answer">Answer</string>
+    <string name="main_activity_indeterminate_progress">Updating…</string>
+    <string name="default_channel_name">Default notification channel</string>
+    <string name="high_priority_channel_name">High priority notification channel</string>
 
 </resources>

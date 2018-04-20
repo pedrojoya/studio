@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr178.ui.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -45,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
-        lblEmptyView = findViewById(R.id.lblEmptyView);
-        fab = findViewById(R.id.fab);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmptyView);
+        fab = ActivityCompat.requireViewById(this, R.id.fab);
 
         setupToolbar();
         setupRecyclerView();
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void setupToolbar() {
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);

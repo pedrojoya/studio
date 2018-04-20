@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Música online</string>
-    <string name="no_hay_canciones">No hay canciones</string>
-    <string name="playstop">Play / Stop</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">StartedService</string>
+    <string name="activity_main_btnCalculate">Calculate summation</string>
+    <string name="activity_main_lblInteger">Integer</string>
+    <string name="activity_main_txtInteger">(integer)</string>
 
 </resources>

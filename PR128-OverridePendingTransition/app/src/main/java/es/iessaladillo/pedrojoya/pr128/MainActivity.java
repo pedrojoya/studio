@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        spnExit = findViewById(R.id.spnExit);
-        spnEnter = findViewById(R.id.spnEnter);
-        btnNavigate = findViewById(R.id.btnNavigate);
+        spnExit = ActivityCompat.requireViewById(this, R.id.spnExit);
+        spnEnter = ActivityCompat.requireViewById(this, R.id.spnEnter);
+        btnNavigate = ActivityCompat.requireViewById(this, R.id.btnNavigate);
 
         spnEnter.setSelection(ANIM_PULL_RIGHT_INDEX);
         btnNavigate.setOnClickListener(v -> navigate());

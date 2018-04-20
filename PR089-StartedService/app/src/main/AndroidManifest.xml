@@ -10,11 +10,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity
-            android:name=".actividades.MainActivity"
-            android:label="@string/app_name">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,8 +21,11 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".servicios.MusicaOnlineService"/>
-
+        <service
+            android:name=".services.SummationService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

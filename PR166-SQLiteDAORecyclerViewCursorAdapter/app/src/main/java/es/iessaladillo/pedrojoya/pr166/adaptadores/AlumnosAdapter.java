@@ -262,10 +262,10 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imgAvatar = (ImageView) itemView.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
+            imgAvatar = (ImageView) ViewCompat.requireViewById(itemView, R.id.imgAvatar);
+            lblNombre = (TextView) ViewCompat.requireViewById(itemView, R.id.lblNombre);
+            lblCurso = (TextView) ViewCompat.requireViewById(itemView, R.id.lblCurso);
+            lblDireccion = (TextView) ViewCompat.requireViewById(itemView, R.id.lblDireccion);
         }
 
     }

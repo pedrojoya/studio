@@ -59,14 +59,14 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initViews(getView());
-        repository = RepositoryImpl.getInstance(getActivity());
-        getActivity().getSupportLoaderManager().initLoader(STUDENTS_LOADER, null, this);
+        repository = RepositoryImpl.getInstance(requireActivity());
+        requireActivity().getSupportLoaderManager().initLoader(STUDENTS_LOADER, null, this);
     }
 
     private void initViews(View view) {
-        fab = getActivity().findViewById(R.id.fab);
-        lblEmptyView = view.findViewById(R.id.lblEmptyView);
-        lstStudents = view.findViewById(R.id.lstStudents);
+        fab = requireActivity().findViewById(R.id.fab);
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
+        lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
 
         setupFab();
         setupRecyclerView();
@@ -83,9 +83,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         adapter.setEmptyView(lblEmptyView);
         lstStudents.setAdapter(adapter);
         lstStudents.setLayoutManager(
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
         lstStudents.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
@@ -118,12 +118,12 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     private void showSuccessDeletingStudent() {
-        Toast.makeText(getActivity(), R.string.main_fragment_student_deleted, Toast.LENGTH_SHORT)
+        Toast.makeText(requireActivity(), R.string.main_fragment_student_deleted, Toast.LENGTH_SHORT)
                 .show();
     }
 
     private void showErrorDeletingStudent() {
-        Toast.makeText(getActivity(), R.string.main_fragment_error_deleting_student,
+        Toast.makeText(requireActivity(), R.string.main_fragment_error_deleting_student,
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -145,12 +145,12 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     private void reloadStudents() {
-        getActivity().getSupportLoaderManager().restartLoader(STUDENTS_LOADER, null, this);
+        requireActivity().getSupportLoaderManager().restartLoader(STUDENTS_LOADER, null, this);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new MainFragmentLoader(getActivity(), repository);
+        return new MainFragmentLoader(requireActivity(), repository);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr045.main;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        ViewPager vpPages = findViewById(R.id.vpPages);
+        ViewPager vpPages = ActivityCompat.requireViewById(this, R.id.vpPages);
 
         MainActivityAdapter adapter = new MainActivityAdapter(this);
         vpPages.setAdapter(adapter);

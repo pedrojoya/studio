@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.0'
     }
 }
 
@@ -21,11 +21,11 @@ allprojects {
 
 ext {
     compileSdkVersion = 27
-    minSdkVersion = 19
-    buildToolsVersion = "26.0.2"
-    support_library_version = "27.0.2"
+    minSdkVersion = 21
+    buildToolsVersion = "27.0.3"
+    support_library_version = "27.1.1"
     picasso_version = "2.5.2"
-    circleimageview_version = "2.1.0"
+    circleimageview_version = "2.2.0"
     stetho_version = "1.5.0"
     textdrawable_version = "1.0.1"
 }

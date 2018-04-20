@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // Se activa el ítem de overflow en dispositivos con botón físico de menú.
         overflowEnDispositivoConTeclaMenu();
         // La toolbar actuará como action bar.
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_burger);
         setSupportActionBar(mToolbar);
     }

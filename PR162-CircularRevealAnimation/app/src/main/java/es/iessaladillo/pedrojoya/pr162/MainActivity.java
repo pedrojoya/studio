@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        llPanel = findViewById(R.id.llPanel);
-        imgGallery = findViewById(R.id.imgGallery);
-        imgVideo = findViewById(R.id.imgVideo);
-        imgPhoto = findViewById(R.id.imgPhoto);
+        llPanel = ActivityCompat.requireViewById(this, R.id.llPanel);
+        imgGallery = ActivityCompat.requireViewById(this, R.id.imgGallery);
+        imgVideo = ActivityCompat.requireViewById(this, R.id.imgVideo);
+        imgPhoto = ActivityCompat.requireViewById(this, R.id.imgPhoto);
 
         setupToolbar();
         llPanel.setVisibility(isPanelVisible ? View.VISIBLE : View.INVISIBLE);

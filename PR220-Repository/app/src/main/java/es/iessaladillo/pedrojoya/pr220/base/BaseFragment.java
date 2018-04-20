@@ -42,11 +42,10 @@ public abstract class BaseFragment<T extends ViewModel, R extends ViewDataBindin
         return binding.getRoot();
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(getActivity(), new ViewModelProvider.Factory() {
+        viewModel = ViewModelProviders.of(requireActivity(), new ViewModelProvider.Factory() {
             @NonNull
             @Override
             public <V extends ViewModel> V create(@NonNull Class<V> modelClass) {

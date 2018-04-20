@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress XmlUnusedNamespaceDeclaration -->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <files-path name="internal_default" path="."/>
+    <cache-path name="internal_cache" path="." />
+    <external-cache-path name="external_cache" path="." />
+    <files-path name="private_music" path="."/>
+    <!-- Almacenamiento externo propio -->
+    <external-files-path name="external_specific_music" path="Music/" />
+    <external-files-path name="external_specific_download" path="Download/" />
+    <!-- Almacenamiento externo público -->
+    <external-path name="external_public_music" path="Music/" />
+    <external-path name="external_public_download" path="Download/" />
+</paths>

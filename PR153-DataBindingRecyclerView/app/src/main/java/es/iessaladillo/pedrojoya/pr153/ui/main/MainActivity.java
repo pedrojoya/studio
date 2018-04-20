@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private MainActivityAdapter adapter;
+    private MainActivityListAdapterBase adapter;
     private MainActivityViewModel viewModel;
     private Random random;
 
@@ -57,17 +57,19 @@ public class MainActivity extends AppCompatActivity {
         // tarde que la restauración del estado.
         binding.lstStudents.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false));
-        adapter = new MainActivityAdapter(BR.item);
+        adapter = new MainActivityListAdapterBase(BR.item);
         binding.lstStudents.setAdapter(adapter);
-        viewModel.getStudents().observe(this, students -> adapter.setList(students));
+        viewModel.getStudents().observe(this, students -> adapter.submitList(students));
     }
 
+    @SuppressWarnings("unused")
     public void onItemClick(View view, Object item, int position) {
         Snackbar.make(binding.lstStudents,
                 getString(R.string.main_activity_student_clicked, ((Student) item).getName()),
                 Snackbar.LENGTH_SHORT).show();
     }
 
+    @SuppressWarnings("unused")
     public void onItemLongClick(View view, Object item, int position) {
         if (viewModel.deleteStudent((Student) item) > 0) {
             Snackbar.make(binding.lstStudents, getString(R.string.main_activity_student_deleted, ((Student) item).getName
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void onSwipedRight(RecyclerView.ViewHolder viewHolder, int direction, Object item,
             int position) {
         if (viewModel.deleteStudent((Student) item) > 0) {
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void onSwipedLeft(RecyclerView.ViewHolder viewHolder, int direction, Object item,
             int position) {
         if (viewModel.deleteStudent((Student) item) > 0) {
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void onFabClick(View view) {
         viewModel.insertStudent(createFakeStudent());
     }

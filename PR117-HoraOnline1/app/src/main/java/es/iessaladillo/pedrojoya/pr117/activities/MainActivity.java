@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity implements
 
     // Obtiene e inicializa las vista.s
     private void initVistas() {
-        mLblDatetime = (TextView) findViewById(R.id.lblDatetime);
+        mLblDatetime = ActivityCompat.requireViewById(this, R.id.lblDatetime);
     }
 
     // Configura el receptor de mensajes desde el servicio de la API.

@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr007;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -30,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lblUsername = findViewById(R.id.lblUsername);
-        lblPassword = findViewById(R.id.lblPassword);
-        txtUsername = findViewById(R.id.txtUsername);
-        txtPassword = findViewById(R.id.txtPassword);
-        btnAccept = findViewById(R.id.btnAccept);
-        btnCancel = findViewById(R.id.btnCancel);
+        lblUsername = ActivityCompat.requireViewById(this, R.id.lblUsername);
+        lblPassword = ActivityCompat.requireViewById(this, R.id.lblPassword);
+        txtUsername = ActivityCompat.requireViewById(this, R.id.txtUsername);
+        txtPassword = ActivityCompat.requireViewById(this, R.id.txtPassword);
+        btnAccept = ActivityCompat.requireViewById(this, R.id.btnAccept);
+        btnCancel = ActivityCompat.requireViewById(this, R.id.btnCancel);
 
         btnAccept.setOnClickListener(v -> signIn());
         btnCancel.setOnClickListener(v -> resetViews());

@@ -6,7 +6,7 @@
     android:padding="@dimen/general_activity_vertical_margin" >
 
     <TextView
-        android:id="@+id/lblEventList"
+        android:id="@+id/lblEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

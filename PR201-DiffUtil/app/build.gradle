@@ -35,7 +35,6 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
     implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
     implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
-    implementation "android.arch.paging:runtime:1.0.0-alpha5"
     implementation "com.github.moove-it:fakeit:$rootProject.ext.fakeit_version"
 
     testImplementation "junit:junit:$rootProject.ext.junit_version"

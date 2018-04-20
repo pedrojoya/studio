@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JobIntentService</string>
+    <string name="fragment_main_emptyView">No students yet</string>
+    <string name="main_activity_exported">File created</string>
+    <string name="main_activity_open">Open</string>
+
+</resources>

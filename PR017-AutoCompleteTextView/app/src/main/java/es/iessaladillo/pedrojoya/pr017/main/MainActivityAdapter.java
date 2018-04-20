@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr017.main;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ class MainActivityAdapter extends BaseAdapter implements Filterable {
     public MainActivityAdapter(Context context, ArrayList<Word> data) {
         mLayoutInflater = LayoutInflater.from(context);
         mOriginalWords = data;
-        mData = (ArrayList<Word>) data.clone();
+        mData = new ArrayList<>(data);
     }
 
     @Override
@@ -74,9 +75,9 @@ class MainActivityAdapter extends BaseAdapter implements Filterable {
         private final ImageView imgFoto;
         private final TextView lblEnglish;
 
-        public ViewHolder(View itemView) {
-            imgFoto = itemView.findViewById(R.id.imgPhoto);
-            lblEnglish = itemView.findViewById(R.id.lblEnglish);
+        ViewHolder(View itemView) {
+            imgFoto = ViewCompat.requireViewById(itemView, R.id.imgPhoto);
+            lblEnglish = ViewCompat.requireViewById(itemView, R.id.lblEnglish);
         }
 
         void bind(Word Word) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lblText = findViewById(R.id.lblText);
-        btnToast = findViewById(R.id.btnToast);
-        btnToastLayout = findViewById(R.id.btnToastLayout);
-        btnSnackbar = findViewById(R.id.btnSnackbar);
-        btnStylableToast = findViewById(R.id.btnStylableToast);
-        btnAlerter = findViewById(R.id.btnAlerter);
+        lblText = ActivityCompat.requireViewById(this, R.id.lblText);
+        btnToast = ActivityCompat.requireViewById(this, R.id.btnToast);
+        btnToastLayout = ActivityCompat.requireViewById(this, R.id.btnToastLayout);
+        btnSnackbar = ActivityCompat.requireViewById(this, R.id.btnSnackbar);
+        btnStylableToast = ActivityCompat.requireViewById(this, R.id.btnStylableToast);
+        btnAlerter = ActivityCompat.requireViewById(this, R.id.btnAlerter);
 
         btnToast.setOnClickListener(
                 v -> showToast(getString(R.string.main_activity_toast_message)));
@@ -53,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.main_activity_stylable_message))
                 .backgroundColor(Color.RED)
                 .textColor(Color.WHITE)
-                .icon(R.drawable.ic_add_alert)
-                .duration(Toast.LENGTH_SHORT)
-                .build()
+                .iconResLeft(R.drawable.ic_add_alert)
                 .show());
         btnAlerter.setOnClickListener(v -> Alerter.create(MainActivity.this)
                 .setTitle(R.string.main_activity_attention)

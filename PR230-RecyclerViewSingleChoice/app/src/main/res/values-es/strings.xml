@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RecyclerViewSingleChoice</string>
+    <string name="activity_main_lblEmpty">No hay alumnos</string>
+    <string name="activity_main_item_imgAvatar">Avatar</string>
+    <string name="main_activity_student_selected">Ha seleccionado %1$s</string>
+    <string name="main_activity_no_student_selected">No student selected</string>
+</resources>

@@ -6,6 +6,7 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,7 +52,7 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_bottomsheet, container, false);
     }
@@ -64,7 +65,7 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
     }
 
     private void initViews(View view) {
-        navigationView = view.findViewById(R.id.navigationView);
+        navigationView = ViewCompat.requireViewById(view, R.id.navigationView);
         setupBottomSheet(view);
     }
 

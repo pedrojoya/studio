@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TargetFragment</string>
+    <string name="fragment_main_btnDelete">Delete</string>
+    <string name="main_fragment_confirm_deletion">Confirm deletion</string>
+    <string name="main_fragment_yes">Yes</string>
+    <string name="main_fragment_no">No</string>
+    <string name="main_fragment_sure">Are you sure you want to delete it?</string>
+    <string name="main_fragment_delete">Delete it</string>
+    <string name="main_fragment_no_delete">Don\'t delete it, please</string>
+</resources>

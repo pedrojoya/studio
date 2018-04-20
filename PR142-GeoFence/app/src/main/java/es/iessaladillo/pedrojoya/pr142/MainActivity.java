@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        swActivar = (SwitchCompat) findViewById(R.id.swActivar);
+        swActivar = ActivityCompat.requireViewById(this, R.id.swActivar);
         swActivar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isActive) {

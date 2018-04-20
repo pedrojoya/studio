@@ -5,13 +5,14 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.support.annotation.LayoutRes;
 
 import es.iessaladillo.pedrojoya.pr153.BR;
 import es.iessaladillo.pedrojoya.pr153.R;
-import es.iessaladillo.pedrojoya.pr153.dbutils.RecyclerBindingAdapter;
+import es.iessaladillo.pedrojoya.pr153.base.BaseBindingListAdapter;
 
 @Entity
-public class Student extends BaseObservable implements RecyclerBindingAdapter.ItemViewType {
+public class Student extends BaseObservable implements BaseBindingListAdapter.ItemViewType {
 
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -68,12 +69,13 @@ public class Student extends BaseObservable implements RecyclerBindingAdapter.It
         notifyPropertyChanged(BR.address);
     }
 
-    @Ignore
     @Override
+    @LayoutRes
     public int getLayoutId() {
         return R.layout.activity_main_item;
     }
 
+    @SuppressWarnings("SimplifiableIfStatement")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

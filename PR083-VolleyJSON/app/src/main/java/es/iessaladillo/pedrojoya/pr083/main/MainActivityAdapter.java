@@ -60,11 +60,11 @@ class MainActivityAdapter extends ArrayAdapter<Student> {
         private final TextView lblRepeater;
 
         public ViewHolder(View itemView) {
-            imgPhoto = itemView.findViewById(R.id.imgPhoto);
-            lblName = itemView.findViewById(R.id.lblName);
-            lblGrade = itemView.findViewById(R.id.lblGrade);
-            lblAge = itemView.findViewById(R.id.lblAge);
-            lblRepeater = itemView.findViewById(R.id.lblRepeater);
+            imgPhoto = ViewCompat.requireViewById(itemView, R.id.imgPhoto);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
+            lblAge = ViewCompat.requireViewById(itemView, R.id.lblAge);
+            lblRepeater = ViewCompat.requireViewById(itemView, R.id.lblRepeater);
         }
 
         public void bind(Student student) {

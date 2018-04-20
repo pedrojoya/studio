@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
+@SuppressWarnings("WeakerAccess")
 public class App extends Application {
 
     @Override

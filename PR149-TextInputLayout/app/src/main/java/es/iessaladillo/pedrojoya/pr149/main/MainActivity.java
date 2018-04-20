@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr149.main;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -27,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        tilPhone = findViewById(R.id.tilPhone);
-        txtPhone = findViewById(R.id.txtPhone);
-        tilEmail = findViewById(R.id.tilEmail);
-        txtEmail = findViewById(R.id.txtEmail);
+        tilPhone = ActivityCompat.requireViewById(this, R.id.tilPhone);
+        txtPhone = ActivityCompat.requireViewById(this, R.id.txtPhone);
+        tilEmail = ActivityCompat.requireViewById(this, R.id.tilEmail);
+        txtEmail = ActivityCompat.requireViewById(this, R.id.txtEmail);
 
         txtPhone.addTextChangedListener(new TextWatcher() {
             @Override

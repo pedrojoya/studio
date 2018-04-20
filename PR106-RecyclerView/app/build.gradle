@@ -44,4 +44,7 @@ dependencies {
     implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
     implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
 }

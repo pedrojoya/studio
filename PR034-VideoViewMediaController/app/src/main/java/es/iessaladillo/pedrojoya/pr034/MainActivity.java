@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnPre
             vvReproductor.setOnPreparedListener(this);
             vvReproductor.setZOrderOnTop(true);
         }
-        mLblSinVideo = (TextView) findViewById(R.id.lblSinVideo);
+        mLblSinVideo = ActivityCompat.requireViewById(this, R.id.lblSinVideo);
         mLblSinVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

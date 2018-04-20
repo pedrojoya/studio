@@ -14,7 +14,8 @@
 
     <!-- Tema de la actividad de detalle -->
     <style name="DetalleTheme" parent="AppThemeBase">
-
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 

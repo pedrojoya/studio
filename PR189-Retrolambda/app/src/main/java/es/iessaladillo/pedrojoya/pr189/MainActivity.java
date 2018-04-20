@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        btnNavegar = (Button) findViewById(R.id.btnNavegar);
-        btnBuscar = (Button) findViewById(R.id.btnBuscar);
-        btnLlamar = (Button) findViewById(R.id.btnLlamar);
-        btnMarcar = (Button) findViewById(R.id.btnMarcar);
-        btnMostrarMapa = (Button) findViewById(R.id.btnMostrarMapa);
-        btnBuscarMapa = (Button) findViewById(R.id.btnBuscarMapa);
-        btnMostrarContactos = (Button) findViewById(R.id.btnMostrarContactos);
+        btnNavegar = ActivityCompat.requireViewById(this, R.id.btnNavegar);
+        btnBuscar = ActivityCompat.requireViewById(this, R.id.btnBuscar);
+        btnLlamar = ActivityCompat.requireViewById(this, R.id.btnLlamar);
+        btnMarcar = ActivityCompat.requireViewById(this, R.id.btnMarcar);
+        btnMostrarMapa = ActivityCompat.requireViewById(this, R.id.btnMostrarMapa);
+        btnBuscarMapa = ActivityCompat.requireViewById(this, R.id.btnBuscarMapa);
+        btnMostrarContactos = ActivityCompat.requireViewById(this, R.id.btnMostrarContactos);
 
         btnNavegar.setOnClickListener(this::navegar);
         btnBuscar.setOnClickListener(this::buscar);

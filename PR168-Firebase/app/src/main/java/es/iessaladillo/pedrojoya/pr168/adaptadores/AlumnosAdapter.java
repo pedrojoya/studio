@@ -216,11 +216,11 @@ public class AlumnosAdapter extends FirebaseRecyclerAdapter<Alumno, AlumnosAdapt
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imgAvatar = (ImageView) itemView.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
-            btnNotas = (Button) itemView.findViewById(R.id.btnNotas);
+            imgAvatar = (ImageView) ViewCompat.requireViewById(itemView, R.id.imgAvatar);
+            lblNombre = (TextView) ViewCompat.requireViewById(itemView, R.id.lblNombre);
+            lblCurso = (TextView) ViewCompat.requireViewById(itemView, R.id.lblCurso);
+            lblDireccion = (TextView) ViewCompat.requireViewById(itemView, R.id.lblDireccion);
+            btnNotas = (Button) ViewCompat.requireViewById(itemView, R.id.btnNotas);
         }
 
     }

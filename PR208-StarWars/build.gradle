@@ -26,9 +26,9 @@ task clean(type: Delete) {
 
 ext {
     compileSdkVersion = 27
-    minSdkVersion = 19
-    buildToolsVersion = "26.0.2"
-    support_library_version = "27.0.2"
+    minSdkVersion = 21
+    buildToolsVersion = "27.0.3"
+    support_library_version = "27.1.1"
     picasso_version = "2.5.2"
     stetho_version = "1.5.0"
     chuck_version = "1.1.0"
@@ -36,9 +36,9 @@ ext {
     gson_version = "2.8.1"
     retrofit_version = "2.3.0"
     rxjava_version = "2.1.9"
-    rxandroid_version = "2.0.1"
-    arch_version = "1.0.0"
+    rxandroid_version = "2.0.2"
+    arch_version = "1.1.1"
     autodispose_version = "0.6.0"
-    constraintlayout_version = "1.1.0-beta4"
+    constraintlayout_version = "1.1.0"
 }
 

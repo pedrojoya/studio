@@ -12,10 +12,10 @@
 
     <string name="activity_main_item_imgAvatar">Avatar</string>
 
-    <string name="dialog_login_lblUsername">User</string>
-    <string name="dialog_login_lblPassword">Password</string>
+    <string name="dialog_login_txtUsername">Username</string>
+    <string name="dialog_login_txtPassword">Password</string>
 
-    <string name="adapter_dialog_student">Student</string>
+    <string name="adapter_dialog_student">Select student</string>
 
     <string name="custom_layout_dialog_title">Login</string>
     <string name="custom_layout_dialog_positiveButton">Accept</string>
@@ -23,8 +23,8 @@
 
     <string name="direct_selection_dialog_shift">Shift</string>
 
-    <string name="yes_no_dialog_title">Delete</string>
-    <string name="yes_no_dialog_message">Are you sure you want to delete the user?</string>
+    <string name="confirm_dialog_title">Delete</string>
+    <string name="confirm_dialog_message">Are you sure you want to delete the user?</string>
 
     <string name="main_activity_selected">%1$s selected</string>
     <string name="main_activity_user_deleted">User deleted</string>
@@ -38,4 +38,7 @@
     <string name="multiple_selection_dialog_shift">Shift</string>
     <string name="multiple_selection_dialog_positiveButton">Accept</string>
     <string name="multiple_selection_dialog_no_shift_selected">No shift selected</string>
+    <string name="confirm_dialog_yes">Yes</string>
+    <string name="confirm_dialog_no">No</string>
+    <string name="dialog_login_tilPassword_passwordToggleContentDescription">Change password visibility</string>
 </resources>

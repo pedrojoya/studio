@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -26,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView lblTimeout;
     private Button btnCheck;
     private View vTimeout;
-
     private TextView lblScore;
-    private ObjectAnimator mObjectAnimator;
-    private ArrayAdapter<String> mAdapter;
-    private int mScore = 100;
+
+    private ObjectAnimator objectAnimator;
+    private ArrayAdapter<String> adapter;
+    private int score = 100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,16 +41,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        vTimeout = findViewById(R.id.vTimeout);
-        lblScore = findViewById(R.id.lblScore);
-        btnCheck = findViewById(R.id.btnCheck);
-        lblTimeout = findViewById(R.id.lblTimeout);
-        lstAnswers = findViewById(R.id.lstAnswers);
+        vTimeout = ActivityCompat.requireViewById(this, R.id.vTimeout);
+        lblScore = ActivityCompat.requireViewById(this, R.id.lblScore);
+        btnCheck = ActivityCompat.requireViewById(this, R.id.btnCheck);
+        lblTimeout = ActivityCompat.requireViewById(this, R.id.lblTimeout);
+        lstAnswers = ActivityCompat.requireViewById(this, R.id.lstAnswers);
 
         btnCheck.setOnClickListener(v -> checkAnswer());
-        mAdapter = new ArrayAdapter<>(this, R.layout.activity_main_item, R.id.lblAnswer,
+        adapter = new ArrayAdapter<>(this, R.layout.activity_main_item, R.id.lblAnswer,
                 getAnswers());
-        lstAnswers.setAdapter(mAdapter);
+        lstAnswers.setAdapter(adapter);
         lstAnswers.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstAnswers.setOnItemClickListener(
                 (adapterView, view, position, id) -> btnCheck.setEnabled(true));
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                mObjectAnimator.end();
+                objectAnimator.end();
                 showCheck();
             }
 
@@ -94,29 +95,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void animateTimeout() {
-        mObjectAnimator = ObjectAnimator.ofFloat(vTimeout, View.ROTATION, 0.0f,
+        objectAnimator = ObjectAnimator.ofFloat(vTimeout, View.ROTATION, 0.0f,
                 (TIMEOUT_INITIAL / 1000) * 360.0f);
-        mObjectAnimator.setDuration(TIMEOUT_INITIAL);
-        mObjectAnimator.setRepeatMode(ObjectAnimator.RESTART);
-        mObjectAnimator.setRepeatCount(ObjectAnimator.INFINITE);
-        mObjectAnimator.setInterpolator(new LinearInterpolator());
-        mObjectAnimator.start();
+        objectAnimator.setDuration(TIMEOUT_INITIAL);
+        objectAnimator.setRepeatMode(ObjectAnimator.RESTART);
+        objectAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        objectAnimator.setInterpolator(new LinearInterpolator());
+        objectAnimator.start();
     }
 
     private void checkAnswer() {
         int selectedPosition = lstAnswers.getCheckedItemPosition();
         String selectedAnswer = (String) lstAnswers.getItemAtPosition(selectedPosition);
         if (TextUtils.equals(selectedAnswer, "Blanco")) {
-            lblScore.setText(getString(R.string.main_activity_score, "+", mScore));
+            lblScore.setText(getString(R.string.main_activity_score, "+", score));
             animateScore(true);
         } else {
-            int reduction = mScore == 100 ? 50 : 25;
-            mScore -= reduction;
+            int reduction = score == 100 ? 50 : 25;
+            score -= reduction;
             lblScore.setText(getString(R.string.main_activity_score, "-", reduction));
             animateScore(false);
             lstAnswers.setItemChecked(selectedPosition, false);
-            mAdapter.remove(selectedAnswer);
-            mAdapter.notifyDataSetChanged();
+            adapter.remove(selectedAnswer);
+            adapter.notifyDataSetChanged();
             btnCheck.setEnabled(false);
         }
     }

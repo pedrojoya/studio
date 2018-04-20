@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr086.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         lstStudents.setAdapter(new MainActivityAdapter(this, mViewModel.getStudents(), this));
         lstStudents.setOnItemClickListener(

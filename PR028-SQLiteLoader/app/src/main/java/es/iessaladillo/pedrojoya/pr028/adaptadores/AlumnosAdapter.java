@@ -55,10 +55,10 @@ public class AlumnosAdapter extends SimpleCursorAdapter {
         final TextView lblDireccion;
 
         ViewHolder(View view) {
-            imgAvatar = (CircleImageView) view.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) view.findViewById(R.id.lblNombre);
-            lblCurso = (TextView) view.findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) view.findViewById(R.id.lblDireccion);
+            imgAvatar = (CircleImageView) ViewCompat.requireViewById(view, R.id.imgAvatar);
+            lblNombre = (TextView) ViewCompat.requireViewById(view, R.id.lblNombre);
+            lblCurso = (TextView) ViewCompat.requireViewById(view, R.id.lblCurso);
+            lblDireccion = (TextView) ViewCompat.requireViewById(view, R.id.lblDireccion);
         }
     }
 }

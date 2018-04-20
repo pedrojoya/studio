@@ -48,7 +48,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/activity_main_fab_margin"
         android:layout_marginEnd="@dimen/activity_main_fab_margin"
-        android:src="@drawable/ic_add_white_24dp"
+        app:srcCompat="@drawable/ic_add_white_24dp"
         app:layout_behavior="es.iessaladillo.pedrojoya.pr178.ScrollAwareFABBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

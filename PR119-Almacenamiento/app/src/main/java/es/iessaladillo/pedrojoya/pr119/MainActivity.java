@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr119;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import es.iessaladillo.pedrojoya.pr119.utils.FileUtils;
-import es.iessaladillo.pedrojoya.pr119.utils.IntentUtils;
+import es.iessaladillo.pedrojoya.pr119.utils.IntentsUtils;
 
 @SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class MainActivity extends AppCompatActivity {
@@ -46,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        rgSource = findViewById(R.id.rgSource);
-        rgDestination = findViewById(R.id.rgDestination);
-        btnDuplicate = findViewById(R.id.btnDuplicate);
-        rbPersonalExternal = findViewById(R.id.rbPersonalExternal);
-        rbPublicExternal = findViewById(R.id.rbPublicExternal);
-        rbExternalCache = findViewById(R.id.rbExternalCache);
+        rgSource = ActivityCompat.requireViewById(this, R.id.rgSource);
+        rgDestination = ActivityCompat.requireViewById(this, R.id.rgDestination);
+        btnDuplicate = ActivityCompat.requireViewById(this, R.id.btnDuplicate);
+        rbPersonalExternal = ActivityCompat.requireViewById(this, R.id.rbPersonalExternal);
+        rbPublicExternal = ActivityCompat.requireViewById(this, R.id.rbPublicExternal);
+        rbExternalCache = ActivityCompat.requireViewById(this, R.id.rbExternalCache);
 
         btnDuplicate.setOnClickListener(v -> btnDuplicateOnClick());
     }
@@ -128,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
     private void showFile(File file, String mimeType) {
         // Files stored in personal directories can't be open from external apps.
         try {
-            startActivity(IntentUtils.newViewFileIntent(file, mimeType));
-        } catch (Exception e) {
+            startActivity(IntentsUtils.newViewFileIntent(this, file, mimeType));
+        } catch (ActivityNotFoundException e) {
             Toast.makeText(this, getString(R.string.main_activity_error_opening_file),
                     Toast.LENGTH_SHORT).show();
         }
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                     // Checked.
                     Snackbar.make(btnDuplicate, R.string.main_activity_action_permission_required, Snackbar.LENGTH_LONG)
                             .setAction(R.string.main_activity_configure,
-                                    view -> IntentUtils.startInstalledAppDetailsActivity(
+                                    view -> IntentsUtils.startInstalledAppDetailsActivity(
                                             MainActivity.this))
                             .show();
                 }

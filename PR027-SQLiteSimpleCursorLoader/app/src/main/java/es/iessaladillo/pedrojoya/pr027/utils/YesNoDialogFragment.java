@@ -66,7 +66,7 @@ public class YesNoDialogFragment extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
         b.setTitle(title);
         b.setMessage(message);
         b.setIcon(iconResId);

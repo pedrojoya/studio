@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        tabLayout = findViewById(R.id.tabLayout);
-        fab = findViewById(R.id.fab);
-        imgHeader = findViewById(R.id.imgHeader);
+        tabLayout = ActivityCompat.requireViewById(this, R.id.tabLayout);
+        fab = ActivityCompat.requireViewById(this, R.id.fab);
+        imgHeader = ActivityCompat.requireViewById(this, R.id.imgHeader);
 
         setupToolbar();
         setupViewPager();
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
             // tabLayout.
             getSupportActionBar().setTitle(getTitle());
         }
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingToolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = ActivityCompat.requireViewById(this, R.id.collapsingToolbar);
         collapsingToolbarLayout.setTitleEnabled(false);
     }
 
     private void setupViewPager() {
         mAdapter = new MainActivityAdapter(getSupportFragmentManager(), this);
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        ViewPager viewPager = ActivityCompat.requireViewById(this, R.id.viewPager);
         viewPager.setAdapter(mAdapter);
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);

@@ -1,83 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/activity_main_padding"
-        tools:context="es.iessaladillo.pedrojoya.pr174.MainActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_main_margin"
+    tools:context="es.iessaladillo.pedrojoya.pr174.ui.main.MainActivity">
 
     <TextView
-            android:id="@+id/lblMensaje"
-            style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_main_padding"
-            android:paddingLeft="@dimen/edittext_padding"
-            android:paddingRight="@dimen/edittext_padding"
-            android:labelFor="@+id/txtMensaje"
-            android:text="@string/mensaje"/>
+        android:id="@+id/lblMessage"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_main_margin"
+        android:labelFor="@+id/txtMessage"
+        android:text="@string/activity_main_lblMessage"/>
 
     <EditText
-            android:id="@+id/txtMensaje"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblMensaje"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:paddingTop="0dp"
-            android:maxLines="1"
-            android:text="@string/quillo_ponte_ya_a_currar">
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblMessage"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1">
 
         <requestFocus/>
     </EditText>
 
     <TextView
-            android:id="@+id/lblIntervalo"
-            style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtMensaje"
-            android:layout_marginTop="@dimen/activity_main_padding"
-            android:paddingLeft="@dimen/edittext_padding"
-            android:paddingRight="@dimen/edittext_padding"
-            android:labelFor="@+id/txtIntervalo"
-            android:text="@string/intervalo_entre_avisos"/>
+        android:id="@+id/lblInterval"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMessage"
+        android:layout_marginTop="@dimen/activity_main_margin"
+        android:labelFor="@+id/txtInterval"
+        android:text="@string/activity_main_lblInternval"/>
 
     <EditText
-            android:id="@+id/txtIntervalo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblIntervalo"
-            android:ems="4"
-            android:gravity="end"
-            android:imeOptions="actionNext"
-            android:inputType="number"
-            android:maxLength="7"
-            android:paddingTop="0dp"
-            android:maxLines="1"
-            android:text="@string/default_intervalo"/>
+        android:id="@+id/txtInterval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblInterval"
+        android:ems="@integer/activity_main_txtInterval_ems"
+        android:gravity="end"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLength="7"
+        android:maxLines="1"/>
 
     <TextView
-            android:id="@+id/lblActivar"
-            style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtMensaje"
-            android:layout_marginStart="@dimen/lblActivar_marginLeft"
-            android:layout_marginTop="@dimen/activity_main_padding"
-            android:layout_toEndOf="@+id/lblIntervalo"
-            android:paddingLeft="@dimen/edittext_padding"
-            android:paddingRight="@dimen/edittext_padding"
-            android:text="@string/avisar"/>
+        android:id="@+id/lblSchedule"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMessage"
+        android:layout_marginStart="@dimen/activity_main_margin"
+        android:layout_marginTop="@dimen/activity_main_margin"
+        android:layout_toEndOf="@+id/txtInterval"
+        android:text="@string/activity_main_lblSchedule"/>
 
     <android.support.v7.widget.SwitchCompat
-            android:id="@+id/swActivar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblActivar"
-            android:layout_marginStart="@dimen/lblActivar_marginLeft"
-            android:layout_toEndOf="@+id/txtIntervalo"/>
+        android:id="@+id/swSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblSchedule"
+        android:layout_marginStart="@dimen/activity_main_margin"
+        android:layout_marginTop="@dimen/activity_main_margin"
+        android:layout_toEndOf="@+id/txtInterval"/>
 
 </RelativeLayout>
 

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -42,15 +42,15 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        btnAgregar = (ActionButton) findViewById(R.id.btnAgregar);
+        btnAgregar = ActivityCompat.requireViewById(this, R.id.btnAgregar);
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 agregarAlumno(DB.getNextAlumno());
             }
         });
-        lblNoHayAlumnos = (TextView) findViewById(R.id.lblNoHayAlumnos);
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        lblNoHayAlumnos = ActivityCompat.requireViewById(this, R.id.lblNoHayAlumnos);
+        lstAlumnos = ActivityCompat.requireViewById(this, R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(DB.getAlumnos());
         mAdaptador.setOnItemClickListener(this);
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
         lstAlumnos.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
-        imgFoto = (ImageView) findViewById(R.id.imgFoto);
-        lblTitulo = (TextView) findViewById(R.id.lblTitulo);
-        vOverlay = findViewById(R.id.vOverlay);
+        imgFoto = ActivityCompat.requireViewById(this, R.id.imgFoto);
+        lblTitulo = ActivityCompat.requireViewById(this, R.id.lblTitulo);
+        vOverlay = ActivityCompat.requireViewById(this, R.id.vOverlay);
         // Cuando se hace scroll se realiza el efecto parallax.
         parallax(0, imgFoto);
         lstAlumnos.addOnScrollListener(new HidingScrollListener() {

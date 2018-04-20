@@ -25,7 +25,7 @@ public class AlumnoActivity extends AppCompatActivity {
 
     // Configura la Toolbar.
     private void configToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -34,7 +34,7 @@ public class AlumnoActivity extends AppCompatActivity {
 
     // Configura el FAB.
     private void configFab() {
-        FloatingActionButton fabAgregar = (FloatingActionButton) findViewById(R.id.fabAgregar);
+        FloatingActionButton fabAgregar = ActivityCompat.requireViewById(this, R.id.fabAgregar);
         if (fabAgregar != null) {
             fabAgregar.setOnClickListener(v -> {
                 DB.addAlumno(DB.getNextAlumno());

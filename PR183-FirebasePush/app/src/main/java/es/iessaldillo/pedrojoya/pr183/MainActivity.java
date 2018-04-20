@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(BuildConfig.TITULO);
-        TextView lblMensaje = (TextView) findViewById(R.id.lblMensaje);
+        TextView lblMensaje = ActivityCompat.requireViewById(this, R.id.lblMensaje);
         lblMensaje.setText(BuildConfig.NUEVOTEXTO);
         lblMensaje.setText(BuildConfig.SECRETO1);
         lblMensaje.setText(BuildConfig.SECRETO2);

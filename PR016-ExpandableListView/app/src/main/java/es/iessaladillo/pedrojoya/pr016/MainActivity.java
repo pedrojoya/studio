@@ -1,8 +1,9 @@
 package es.iessaladillo.pedrojoya.pr016;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,272 +18,215 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements
-        OnChildClickListener {
+public class MainActivity extends AppCompatActivity implements OnChildClickListener {
 
-    // Variables.
-    private AdaptadorAlumnos mAdaptador;
+    private StudentsAdapter adapter;
 
-    // Al crear la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Se obtienen e inicializan las vistas.
-        initVistas();
+        initViews();
     }
 
-    // Obtiene e inicializa las vistas.
-    private void initVistas() {
-        ExpandableListView lstAlumnos = (ExpandableListView) this.findViewById(R.id.lstAlumnos);
-        // No se usarán los indicadores por defecto para grupos e hijos.
-        if (lstAlumnos != null) {
-            lstAlumnos.setGroupIndicator(null);
-            lstAlumnos.setChildIndicator(null);
-            // Se obtienen los datos.
-            ArrayList<String> grupos = new ArrayList<>();
-            ArrayList<ArrayList<Alumno>> hijos = new ArrayList<>();
-            fillDatos(grupos, hijos);
-            // Se crea el adaptador para la lista y se establece.
-            mAdaptador = new AdaptadorAlumnos(this, grupos, hijos);
-            lstAlumnos.setAdapter(mAdaptador);
-            // Inicialmente aparecerán expandidos.
-            for (int i = 0; i < mAdaptador.getGroupCount(); i++) {
-                lstAlumnos.expandGroup(i);
-            }
-            // La actividad actuará como listener cuando se pulse un hijo de la
-            // lista.
-            lstAlumnos.setOnChildClickListener(this);
+    private void initViews() {
+        ExpandableListView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        // We won't use default indicators for group or child.
+        lstStudents.setGroupIndicator(null);
+        lstStudents.setChildIndicator(null);
+        ArrayList<String> groups = new ArrayList<>();
+        ArrayList<ArrayList<Student>> children = new ArrayList<>();
+        fillData(groups, children);
+        adapter = new StudentsAdapter(groups, children);
+        lstStudents.setAdapter(adapter);
+        // All groups initially expanded.
+        for (int i = 0; i < adapter.getGroupCount(); i++) {
+            lstStudents.expandGroup(i);
         }
+        lstStudents.setOnChildClickListener(this);
     }
 
-    // Obtiene los ArrayList de datos para grupos e hijos. Modifica los
-    // parámetros recibidos.
-    private void fillDatos(ArrayList<String> grupos,
-                           ArrayList<ArrayList<Alumno>> hijos) {
-        ArrayList<Alumno> grupoActual;
-        // Primer grupo.
+    private void fillData(ArrayList<String> grupos, ArrayList<ArrayList<Student>> children) {
+        ArrayList<Student> group;
+
         grupos.add("CFGM Sistemas Microinformáticos y Redes");
-        grupoActual = new ArrayList<>();
-        grupoActual.add(new Alumno("Baldomero", 16, "CFGM", "2º"));
-        grupoActual.add(new Alumno("Sergio", 27, "CFGM", "1º"));
-        grupoActual.add(new Alumno("Atanasio", 17, "CFGM", "1º"));
-        grupoActual.add(new Alumno("Oswaldo", 26, "CFGM", "1º"));
-        grupoActual.add(new Alumno("Rodrigo", 22, "CFGM", "2º"));
-        grupoActual.add(new Alumno("Antonio", 16, "CFGM", "1º"));
-        hijos.add(grupoActual);
-        // Segundo grupo.
+        group = new ArrayList<>();
+        group.add(new Student("Baldomero", 16, "CFGM", "2º"));
+        group.add(new Student("Sergio", 27, "CFGM", "1º"));
+        group.add(new Student("Atanasio", 17, "CFGM", "1º"));
+        group.add(new Student("Oswaldo", 26, "CFGM", "1º"));
+        group.add(new Student("Rodrigo", 22, "CFGM", "2º"));
+        group.add(new Student("Antonio", 16, "CFGM", "1º"));
+        children.add(group);
+
         grupos.add("CFGS Desarrollo de Aplicaciones Multiplataforma");
-        grupoActual = new ArrayList<>();
-        grupoActual.add(new Alumno("Pedro", 22, "CFGS", "2º"));
-        grupoActual.add(new Alumno("Pablo", 22, "CFGS", "2º"));
-        grupoActual.add(new Alumno("Rodolfo", 21, "CFGS", "1º"));
-        grupoActual.add(new Alumno("Gervasio", 24, "CFGS", "2º"));
-        grupoActual.add(new Alumno("Prudencia", 20, "CFGS", "2º"));
-        grupoActual.add(new Alumno("Gumersindo", 17, "CFGS", "2º"));
-        grupoActual.add(new Alumno("Gerardo", 18, "CFGS", "1º"));
-        grupoActual.add(new Alumno("Óscar", 21, "CFGS", "2º"));
-        hijos.add(grupoActual);
+        group = new ArrayList<>();
+        group.add(new Student("Pedro", 22, "CFGS", "2º"));
+        group.add(new Student("Pablo", 22, "CFGS", "2º"));
+        group.add(new Student("Rodolfo", 21, "CFGS", "1º"));
+        group.add(new Student("Gervasio", 24, "CFGS", "2º"));
+        group.add(new Student("Prudencia", 20, "CFGS", "2º"));
+        group.add(new Student("Gumersindo", 17, "CFGS", "2º"));
+        group.add(new Student("Gerardo", 18, "CFGS", "1º"));
+        group.add(new Student("Óscar", 21, "CFGS", "2º"));
+        children.add(group);
     }
 
-    // Cuando se pulsa un hijo de la lista.
     @Override
-    public boolean onChildClick(ExpandableListView parent, View v,
-                                int groupPosition, int childPosition, long id) {
-        // Se obtiene el hijo pulsado.
-        // Si tuvieramos que obtener el adaptador se debe usar el método
-        // getExpandableListAdapter() de la lista y NO getAdapter().
-        Alumno alumno = mAdaptador.getChild(groupPosition, childPosition);
-        Toast.makeText(
-                this,
-                getString(R.string.info_alumno, alumno.getNombre(), alumno.getCurso(), alumno.getCiclo()),
-                Toast.LENGTH_SHORT).show();
-        // Se retorna true para indicar que el evento ya ha sido gestionado.
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
+            int childPosition, long id) {
+        // Use getExpandableListAdapter() instead of getAdapter() in case you need the adapter.
+        Student student = adapter.getChild(groupPosition, childPosition);
+        Toast.makeText(this,
+                getString(R.string.main_activity_student_info, student.getName(), student.getGrade(),
+                        student.getLevel()), Toast.LENGTH_SHORT).show();
         return true;
     }
 
-    // Clase adaptador de la lista de alumnos.
-    private static class AdaptadorAlumnos extends BaseExpandableListAdapter {
+    private static class StudentsAdapter extends BaseExpandableListAdapter {
 
-        // Variables miembro.
-        private final ArrayList<String> mGrupos; // Nombres de los grupos.
-        private final ArrayList<ArrayList<Alumno>> mHijos; // Alumnos por grupo.
-        private final LayoutInflater mInflador;
-        private final int mColorMenorDeEdad;
-        private final int mColorMayorDeEdad;
+        private final ArrayList<String> groups;
+        private final ArrayList<ArrayList<Student>> children;
 
-        // Clase interna privada contenedor de vistas de hijo.
-        private static class ContenedorVistasHijo {
-            TextView lblNombre;
-            TextView lblCurso;
+        private static class ChildViewHolder {
+
+            private static final int ADULT_AGE = 18;
+
+            private final TextView lblName;
+            private final TextView lblGrade;
+
+            ChildViewHolder(View itemView) {
+                lblName = ViewCompat.requireViewById(itemView, R.id.lblNombre);
+                lblGrade = ViewCompat.requireViewById(itemView, R.id.lblCurso);
+                itemView.setTag(this);
+            }
+
+            void bind(Student student) {
+                lblName.setText(student.getName());
+                lblGrade.setText(student.getGrade());
+                lblName.setTextColor(
+                        student.getAge() < ADULT_AGE ? ContextCompat.getColor(lblName.getContext(),
+                                R.color.primary_400) : ContextCompat.getColor(lblName.getContext(),
+                                R.color.primary_text));
+            }
         }
 
-        // Clase interna privada contenedor de vistas de grupo.
-        private static class ContenedorVistasGrupo {
-            TextView lblEncCiclo;
-            ImageView imgIndicador;
-            LinearLayout llEncColumnas;
+        private static class GroupViewHolder {
+
+            private final TextView lblLevelHeader;
+            private final ImageView imgIndicator;
+            private final LinearLayout llColumnsHeader;
+
+            GroupViewHolder(View itemView) {
+                lblLevelHeader = ViewCompat.requireViewById(itemView, R.id.lblLevelHeader);
+                imgIndicator = ViewCompat.requireViewById(itemView, R.id.imgIndicator);
+                llColumnsHeader = ViewCompat.requireViewById(itemView, R.id.llColumnsHeader);
+                itemView.setTag(this);
+            }
+
+            void bind(String group, int childrenCount, boolean isExpanded) {
+                lblLevelHeader.setText(group);
+                // Show or hide columns header and change indicator.
+                if (childrenCount == 0) {
+                    imgIndicator.setVisibility(View.INVISIBLE);
+                    llColumnsHeader.setVisibility(View.GONE);
+                } else {
+                    imgIndicator.setVisibility(View.VISIBLE);
+                    if (isExpanded) {
+                        imgIndicator.setImageResource(R.drawable.ic_expand_less_white_24dp);
+                        llColumnsHeader.setVisibility(View.VISIBLE);
+                    } else {
+                        imgIndicator.setImageResource(R.drawable.ic_expand_more_white_24dp);
+                        llColumnsHeader.setVisibility(View.GONE);
+                    }
+                }
+            }
+
         }
 
-        // Constructor.
-        public AdaptadorAlumnos(Context contexto, ArrayList<String> grupos,
-                                ArrayList<ArrayList<Alumno>> alumnos) {
-            this.mGrupos = grupos;
-            this.mHijos = alumnos;
-            // Se obtiene un inflador de layouts.
-            mInflador = LayoutInflater.from(contexto);
-            // Se obtienen los colores de menor y mayor de edad.
-            mColorMenorDeEdad = ContextCompat.getColor(contexto, R.color.primary_400);
-            mColorMayorDeEdad = ContextCompat.getColor(contexto, R.color.primary_text);
+        StudentsAdapter(ArrayList<String> groups, ArrayList<ArrayList<Student>> children) {
+            this.groups = groups;
+            this.children = children;
         }
 
-        // Retorna el objeto de datos de un hijo de un grupo.
         @Override
-        public Alumno getChild(int posGrupo, int posHijo) {
-            return mHijos.get(posGrupo).get(posHijo);
+        public Student getChild(int groupPosition, int childPosition) {
+            return children.get(groupPosition).get(childPosition);
         }
 
-        // Retorna el id de un hijo de un grupo
         @Override
-        public long getChildId(int posGrupo, int posHijo) {
-            // No gestionamos los ids.
+        public long getChildId(int groupPosition, int childPosition) {
+            // We don't manage ids.
             return 0;
         }
 
-        // Cuando se va a pintar un hijo de un grupo.
         @Override
-        public View getChildView(int posGrupo, int posHijo,
-                                 boolean isLastChild, View convertView, ViewGroup parent) {
-            ContenedorVistasHijo contenedor;
-            // Si no se puede reciclar.
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+                View convertView, ViewGroup parent) {
+            ChildViewHolder childViewHolder;
             if (convertView == null) {
-                // Se infla el layout para el hijo.
-                convertView = mInflador.inflate(R.layout.activity_main_hijo,
-                        parent, false);
-                // Se obtienen las vistas y se almacenan en el contenedor.
-                contenedor = new ContenedorVistasHijo();
-                contenedor.lblNombre = (TextView) convertView
-                        .findViewById(R.id.lblNombre);
-                contenedor.lblCurso = (TextView) convertView
-                        .findViewById(R.id.lblCurso);
-                // El contenedor se almacena en el tag del hijo.
-                convertView.setTag(contenedor);
+                convertView = LayoutInflater.from(parent.getContext()).inflate(
+                        R.layout.activity_main_child, parent, false);
+                childViewHolder = new ChildViewHolder(convertView);
             } else {
-                // Si se recicla, se obtiene el contenedor desde el tag del
-                // hijo.
-                contenedor = (ContenedorVistasHijo) convertView.getTag();
+                childViewHolder = (ChildViewHolder) convertView.getTag();
             }
-            // Se escriben los valores en las vistas.
-            Alumno alumno = mHijos.get(posGrupo).get(posHijo);
-            contenedor.lblNombre.setText(alumno.getNombre());
-            contenedor.lblCurso.setText(alumno.getCurso());
-            if (alumno.getEdad() < 18) {
-                contenedor.lblNombre.setTextColor(mColorMenorDeEdad);
-            } else {
-                contenedor.lblNombre.setTextColor(mColorMayorDeEdad);
-            }
-            // Se retorna la vista correspondiente al hijo.
+            childViewHolder.bind(children.get(groupPosition).get(childPosition));
             return convertView;
         }
 
-        // Retorna cuántos hijos tiene un grupo.
         @Override
-        public int getChildrenCount(int posGrupo) {
-            return mHijos.get(posGrupo).size();
+        public int getChildrenCount(int groupPosition) {
+            return children.get(groupPosition).size();
         }
 
-        // Retorna un ArrayList con todos los hijos de un grupo.
         @Override
-        public ArrayList<Alumno> getGroup(int posGrupo) {
-            return mHijos.get(posGrupo);
+        public ArrayList<Student> getGroup(int groupPosition) {
+            return children.get(groupPosition);
         }
 
-        // Retorna el número de grupos.
         @Override
         public int getGroupCount() {
-            return mHijos.size();
+            return children.size();
         }
 
-        // Retorna el id de un grupo.
         @Override
-        public long getGroupId(int posGrupo) {
-            // No gestionamos los ids.
+        public long getGroupId(int groupPosition) {
+            // We won't manage ids.
             return 0;
         }
 
-        // Cuando se va a pintar el encabezado de un grupo.
         @Override
-        public View getGroupView(int posGrupo, boolean isExpanded,
-                                 View convertView, ViewGroup parent) {
-            ContenedorVistasGrupo contenedor;
-            // Si no se puede reciclar.
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
+                ViewGroup parent) {
+            GroupViewHolder groupViewHolder;
             if (convertView == null) {
-                // Se infla del layout del grupo.
-                convertView = mInflador.inflate(R.layout.activity_main_grupo,
-                        parent, false);
-                // Se obtienen las vistas y se almacenan en el contenedor.
-                contenedor = new ContenedorVistasGrupo();
-                contenedor.lblEncCiclo = (TextView) convertView
-                        .findViewById(R.id.lblEncCiclo);
-                contenedor.imgIndicador = (ImageView) convertView
-                        .findViewById(R.id.imgIndicador);
-                contenedor.llEncColumnas = (LinearLayout) convertView
-                        .findViewById(R.id.llEncColumnas);
-                // El contenedor se almacena en el tag de la vista grupo.
-                convertView.setTag(contenedor);
+                convertView = LayoutInflater.from(parent.getContext()).inflate(
+                        R.layout.activity_main_group, parent, false);
+                groupViewHolder = new GroupViewHolder(convertView);
             } else {
-                // Si se recicla, se obtiene el contenedor desde la prop Tag de
-                // la
-                // vista grupo.
-                contenedor = (ContenedorVistasGrupo) convertView.getTag();
+                groupViewHolder = (GroupViewHolder) convertView.getTag();
             }
-            // Se escriben los valores en las vistas.
-            contenedor.lblEncCiclo.setText(mGrupos.get(posGrupo));
-            // Si el grupo no tiene hijos se oculta el icono de despliegue y la
-            // cabecera de columnas.
-            if (getChildrenCount(posGrupo) == 0) {
-                contenedor.imgIndicador.setVisibility(View.INVISIBLE);
-                contenedor.llEncColumnas.setVisibility(View.GONE);
-            } else {
-                // Se hace visible el indicador de expansión.
-                contenedor.imgIndicador.setVisibility(View.VISIBLE);
-                // Si el grupo está expandido se muestra el icono de colapsar
-                // y la cabecera de columnas.
-                if (isExpanded) {
-                    contenedor.imgIndicador
-                            .setImageResource(R.drawable.ic_expand_less);
-                    contenedor.llEncColumnas.setVisibility(View.VISIBLE);
-                } else {
-                    // Si el grupo no está expandido se muestra el icono de
-                    // expandir
-                    // y se oculta la cabecera de columnas.
-                    contenedor.imgIndicador
-                            .setImageResource(R.drawable.ic_expand_more);
-                    contenedor.llEncColumnas.setVisibility(View.GONE);
-                }
-            }
-            // Se retorna la vista correspondiente al grupo.
+            groupViewHolder.bind(groups.get(groupPosition), getChildrenCount(groupPosition), isExpanded);
             return convertView;
         }
 
         @Override
         public boolean hasStableIds() {
-            // Comportamiento por defecto.
+            // Default behavior
             return false;
         }
 
         @Override
         public boolean isChildSelectable(int posGrupo, int posHijo) {
-            // Comportamiento por defecto.
+            // Default behavior
             return true;
         }
 
-        // Cuando se colapsa un grupo
         @Override
-        public void onGroupCollapsed(int posGrupo) {
-            // Si se desea que siempre aparezca expandida, se expande cuando se
-            // trate de colapsar.
-            // lstAlumnos.expandGroup(posGrupo);
+        public void onGroupCollapsed(int groupPosition) {
+            // Expand group if you want to be always expanded
+            // lstStudents.expandGroup(groupPosition);
         }
 
     }

@@ -11,7 +11,7 @@
         android:allowBackup="false"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="es.iessaladillo.pedrojoya.pr048.main.MainActivity">
+            android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,8 +1,10 @@
 package es.iessaldillo.pedrojoya.pr191;
 
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +22,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setupBottomNavigationView();
+        // We simulate click on first option.
+        bottomNavigationView.setSelectedItemId(R.id.mnuCalendar);
+//        bottomNavigationView.findViewById(R.id.mnuFavorites).performClick();
+    }
+
+    private void setupBottomNavigationView() {
+        bottomNavigationView = ActivityCompat.requireViewById(this, R.id.bottomNavigationView);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -36,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-        // We simulate click on first option.
-        bottomNavigationView.findViewById(R.id.mnuFavorites).performClick();
     }
 
     private void showFavorites() {

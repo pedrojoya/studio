@@ -42,10 +42,10 @@ public class NewProductDialogFragment extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
+        AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
         b.setTitle(R.string.newproduct_fragment_add_product);
         @SuppressLint("InflateParams")
-        final View view = LayoutInflater.from(getActivity()).inflate(
+        final View view = LayoutInflater.from(requireActivity()).inflate(
                 R.layout.fragment_dialog_new_product, null);
         initViews(view);
         b.setView(view);
@@ -65,12 +65,12 @@ public class NewProductDialogFragment extends DialogFragment {
     }
 
     private void initViews(View view) {
-        tilName = view.findViewById(R.id.tilName);
-        txtName = view.findViewById(R.id.txtName);
-        tilQuantity = view.findViewById(R.id.tilQuantity);
-        txtQuantity = view.findViewById(R.id.txtQuantity);
-        tilUnit = view.findViewById(R.id.tilUnit);
-        txtUnit = view.findViewById(R.id.txtUnit);
+        tilName = ViewCompat.requireViewById(view, R.id.tilName);
+        txtName = ViewCompat.requireViewById(view, R.id.txtName);
+        tilQuantity = ViewCompat.requireViewById(view, R.id.tilQuantity);
+        txtQuantity = ViewCompat.requireViewById(view, R.id.txtQuantity);
+        tilUnit = ViewCompat.requireViewById(view, R.id.tilUnit);
+        txtUnit = ViewCompat.requireViewById(view, R.id.txtUnit);
 
         txtName.addTextChangedListener(new TextWatcher() {
             @Override

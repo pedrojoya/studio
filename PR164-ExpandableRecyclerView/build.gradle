@@ -7,7 +7,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'me.tatarka:gradle-retrolambda:3.3.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -28,9 +27,8 @@ task clean(type: Delete) {
 
 ext {
     compileSdkVersion = 27
-    minSdkVersion = 19
-    buildToolsVersion = "26.0.2"
-    junit_version = "4.12"
-    espresso_version = "3.0.1"
-    support_library_version = "27.0.2"
+    minSdkVersion = 21
+    buildToolsVersion = "27.0.3"
+    support_library_version = "27.1.1"
+    arch_version = "1.1.1"
 }

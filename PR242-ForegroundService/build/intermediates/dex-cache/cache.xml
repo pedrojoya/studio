@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Pedro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_c78d6f7655674273eeaabf0e5815b6c67d20eb27\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.1_67bcf0e4e4a078e295812f9e8944ea86b7a5fed9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="80de30e74708e7f49250b4615cb013b949b759aa">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_b7217b165764e5e4c72add0fe85b0770c1720aba\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.1_b15f74a7ec07babfd331b43f9771d905e69c9f4f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\design\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.1_fbdb63846c75d36515221236e0fc1a1097e488e9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.1_6979845fb8b3106ca13569ea9e964d7c12eb4159\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.1_2ce6a9dfad83a011dd5b18af7c35a1e94fecebde\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.1_1e6256c65a5ae0b234129ddf8ea69c7541d1730d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.1_5d6936be26e12f4ea0d901b2daa6e9f3b4f1caf4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.1_64bc1d46e7911f7216da85e024bea46404076543\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.github.hotchemi\permissionsdispatcher\2.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="14b7671602012d7822c2c9328dbeecb91ff2588b">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.hotchemi-permissionsdispatcher-2.3.1_b38552c0cfe821f7ba326cda454c9f907f96d859\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.1_4aca3bc21a6a5c3bf9fce5eb34a0908ed57d7b92\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.1_418486de124c3b6891a75d9804cee01e3d171fa8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d9ce2abe100c77a74cc5d798a61a64e59b578a6f">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_9f7a58d526eab3b29c43990a142dd599b428fb21\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.1_276667c6be303168e3ac9392a6fa850d770185bc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="D:\Documents\GitHub\studio\pr242-IntentService\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.1_c37472829215bd5eb9eaa9662052b330f82a5df9\classes.dex" />
+    </item>
+
+</items>

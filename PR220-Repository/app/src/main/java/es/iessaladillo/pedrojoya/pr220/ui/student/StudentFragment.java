@@ -18,14 +18,13 @@ public class StudentFragment extends BaseFragment<StudentActivityViewModel, Frag
     @Arg(optional = true)
     public String studentId;
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         binding.setVm(viewModel);
         initViews();
-        viewModel.getStudent().observe(getActivity(), student -> binding.setStudent(student));
-        viewModel.getMessage().observe(getActivity(), this::showMessage);
+        viewModel.getStudent().observe(requireActivity(), student -> binding.setStudent(student));
+        viewModel.getMessage().observe(requireActivity(), this::showMessage);
     }
 
     @Override
@@ -35,29 +34,26 @@ public class StudentFragment extends BaseFragment<StudentActivityViewModel, Frag
 
     @Override
     protected StudentActivityViewModel createViewModel() {
-        return new StudentActivityViewModel(RepositoryImpl.getInstance(getActivity()), studentId);
+        return new StudentActivityViewModel(RepositoryImpl.getInstance(requireActivity()), studentId);
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void showMessage(ViewMessage viewMessage) {
         if (!viewMessage.askIsShownAndMarkAsShown()) {
-            Toast.makeText(getActivity(), viewMessage.getMessageResId(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), viewMessage.getMessageResId(), Toast.LENGTH_SHORT).show();
         }
         if (viewMessage.isFinishActivityNeeded()) {
-            getActivity().finish();
+            requireActivity().finish();
         }
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void initViews() {
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
+        FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
         fab.setOnClickListener(v -> viewModel.onFabClick());
         updateTitle();
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void updateTitle() {
-        getActivity().setTitle(
+        requireActivity().setTitle(
                 viewModel.isInEditMode() ? R.string.student_fragment_edit_student : R.string.student_fragment_add_student);
     }
 

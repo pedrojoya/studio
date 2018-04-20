@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        mImgThumbnail = (ImageView) findViewById(R.id.imgThumbnail);
+        mImgThumbnail = ActivityCompat.requireViewById(this, R.id.imgThumbnail);
     }
 
     // Restaura el estado previo al cambio de configuración (posición inicial de reproducción).

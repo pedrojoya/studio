@@ -20,6 +20,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- FileProvider para compartir archivos (necesario para proporcionar
+     la URI del archivo al programa para mostrar el archivo -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="es.iessaladillo.pedrojoya.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
     </application>
 
 </manifest>

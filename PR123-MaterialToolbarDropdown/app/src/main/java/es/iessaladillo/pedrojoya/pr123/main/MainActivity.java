@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr123.main;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -64,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void initViews() {
-        toolbar = findViewById(R.id.toolbar);
-        spnOptions = findViewById(R.id.spnOptions);
+        toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
+        spnOptions = ActivityCompat.requireViewById(this, R.id.spnOptions);
 
         setupToolbar();
         spnOptions.setSelection(mSelectedOption);

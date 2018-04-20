@@ -121,7 +121,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="0dp"
         app:layout_constraintLeft_toRightOf="@+id/btnCancelar"
-        android:layout_marginRight="0dp"
         android:layout_marginEnd="0dp" />
 
 </android.support.constraint.ConstraintLayout>

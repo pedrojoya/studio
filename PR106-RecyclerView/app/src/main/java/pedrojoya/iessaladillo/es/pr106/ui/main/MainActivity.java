@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,10 +15,11 @@ import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr106.R;
 import pedrojoya.iessaladillo.es.pr106.data.model.Student;
+import pedrojoya.iessaladillo.es.pr106.recycleradapter.OnItemClickListener;
+import pedrojoya.iessaladillo.es.pr106.recycleradapter.OnItemLongClickListener;
 
 
-public class MainActivity extends AppCompatActivity implements MainActivityAdapter
-        .OnItemClickListener, MainActivityAdapter.OnItemLongClickListener {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener<Student>,OnItemLongClickListener<Student> {
 
     private RecyclerView lstStudents;
     private TextView mEmptyView;
@@ -35,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
-        mEmptyView = findViewById(R.id.lblEmpty);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        mEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
 
         setupToolbar();
         setupRecyclerView();
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -53,16 +55,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     private void setupFab() {
-        FloatingActionButton fabAccion = findViewById(R.id.fab);
+        FloatingActionButton fabAccion = ActivityCompat.requireViewById(this, R.id.fab);
         fabAccion.setOnClickListener(view -> addStudent());
     }
 
     private void setupRecyclerView() {
-        mAdapter = new MainActivityAdapter();
+        mAdapter = new MainActivityAdapter(mViewModel.getStudents());
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemLongClickListener(this);
         mAdapter.setEmptyView(mEmptyView);
-        mAdapter.setData(mViewModel.getStudents());
         lstStudents.setHasFixedSize(true);
         lstStudents.setAdapter(mAdapter);
         lstStudents.setLayoutManager(
@@ -77,20 +78,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     }
 
     @Override
-    public void onItemClick(View view, Student student, int position) {
-        Snackbar.make(lstStudents, getString(R.string.main_activity_click_on_student, student.getName()),
+    public void onItemClick(View view, Student item, int position, long id) {
+        Snackbar.make(lstStudents,
+                getString(R.string.main_activity_click_on_student, item.getName()),
                 Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onItemLongClick(View view, Student student, int position) {
-        mAdapter.removeItem(position);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mAdapter.onDestroy();
+    public boolean onItemLongClick(View view, Student item, int position, long id) {
+        mViewModel.deleteStudent(position);
+        mAdapter.notifyItemRemoved(position);
+        return true;
     }
 
 }

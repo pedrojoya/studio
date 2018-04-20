@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(
+        CollapsingToolbarLayout collapsingToolbarLayout = ActivityCompat.requireViewById(this,
                 R.id.collapsingToolbar);
         if (collapsingToolbarLayout != null) {
             collapsingToolbarLayout.setTitle(getString(R.string.main_activity_title));

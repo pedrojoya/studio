@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Material Navigation Drawer</string>
+    <string name="app_name">Navigation Drawer</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer magna ligula, euismod id maximus vel, imperdiet et purus. Sed ex mi, lacinia fermentum molestie posuere, varius a erat. Nunc vitae ultrices felis, vitae hendrerit odio. Nunc ipsum lectus, cursus at erat id, iaculis posuere est. Nunc lobortis, massa sit amet posuere imperdiet, diam massa pulvinar orci, vel tincidunt dolor purus a dui. Integer condimentum sapien sed auctor hendrerit. Morbi hendrerit, nunc non ultricies pretium, ipsum nisl volutpat nulla, eu cursus massa eros et metus.
 
 Sed rutrum elit nibh, volutpat tincidunt sapien fermentum gravida. Vivamus mollis finibus turpis, eget egestas lorem. Fusce eu enim aliquam, tristique nisi sit amet, varius quam. Sed aliquet leo non consectetur varius. Fusce consequat porta lorem. Morbi fermentum justo ante, sit amet pellentesque nulla elementum ultrices. Vestibulum ligula nulla, laoreet id magna non, congue sagittis metus. Integer faucibus, libero vitae ultricies commodo, nunc mi maximus lectus, non fringilla tellus diam et purus. Etiam et velit nulla. Cras vel lacus sit amet nisi condimentum fermentum ac quis odio. Suspendisse malesuada risus vitae diam feugiat dictum. Cras nec libero velit. Mauris at tristique arcu, sed porttitor ante.
@@ -11,26 +11,37 @@ Nullam imperdiet tincidunt nulla non tincidunt. Curabitur sit amet purus diam. D
 Integer vitae iaculis dui. Quisque dignissim, sapien a sodales vulputate, neque metus tincidunt neque, a laoreet felis mi ut leo. Nulla molestie lacus mattis scelerisque hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum suscipit magna non varius. Maecenas porttitor dui elit, id molestie ante sodales ut. Donec lacinia arcu at eleifend lobortis. Donec tincidunt arcu non suscipit euismod. Fusce vehicula vel quam vel mollis. Aliquam ultricies nisi sed metus scelerisque, eu viverra nibh dictum. Quisque pretium lobortis mauris at elementum. In at lorem sit amet velit pretium rutrum. Suspendisse vitae mauris lobortis, fringilla sem a, consequat neque. Etiam accumsan mauris nec fringilla pellentesque. Nam fringilla turpis eu molestie faucibus.
 
 Integer et sagittis dui. Donec a accumsan libero. Fusce cursus tincidunt purus, eu pulvinar nibh consectetur non. Maecenas lobortis viverra finibus. Aenean dapibus nisl sed velit gravida accumsan. Etiam eros lorem, auctor sit amet tristique ac, porta maximus ligula. Duis sem nisi, sollicitudin in nunc eget, mattis malesuada dolor. Vivamus egestas volutpat consequat. Morbi rhoncus semper massa, ac congue purus varius vel. Donec a est varius nisi aliquet consequat. Morbi nec dolor et velit blandit sodales.</string>
-    <string name="foto_alumno">Foto del alumno</string>
-    <string name="ha_pulsado_sobre">Has pulsado sobre</string>
-    <string name="title_activity_detalle">DetalleActivity</string>
-    <string name="nestedscrollview">NestedScrollView</string>
-    <string name="collapsingtoolbarlayout">CollapsingToolbarLayout</string>
-    <string name="tablayout">TabLayout</string>
-    <string name="detalleactivity">DetalleActivity</string>
-    <string name="otras_opciones">Otras opciones</string>
-    <string name="autor">Pedro Joya</string>
-    <string name="email">pedro.joya@iessaladillo.es</string>
-    <string name="imagen_cabecera">Imagen de cabecera</string>
-    <string name="fab_pulsado">Se ha pulsado el FAB</string>
-    <string name="deshacer">Deshacer</string>
-    <string name="deshaciendo_accion">Deshaciendo acción</string>
-    <string name="alumnos">Alumnos</string>
-    <string name="textinputlayout">TextInput</string>
-    <string name="nombre">Nombre</string>
-    <string name="telefono">Teléfono</string>
-    <string name="direccion">Dirección</string>
-    <string name="navigation_drawer_open">Panel abierto</string>
-    <string name="navigation_drawer_close">Panel cerrado</string>
+    <string name="activity_main_option1">Option 1</string>
+    <string name="activity_main_option2">Option 2</string>
+    <string name="activity_main_option3">Option 3</string>
+    <string name="activity_main_option4">it does nothing</string>
+    <string name="activity_main_option5">It does nothing</string>
+    <string name="activity_main_mnuDetail">Detail</string>
+    <string name="activity_main_mnuOthers">Other options</string>
+    <string name="activity_main_mnuDownloaded">Downloaded only</string>
+    <string name="activity_main_header_lblUserName">Pedro Joya</string>
+    <string name="activity_main_header_email">pedro.joya@iessaladillo.es</string>
+
+    <string name="main_activity_navigation_drawer_open">Navigation drawer opened</string>
+    <string name="main_activity_navigation_drawer_close">Navigation drawer closed</string>
+    <string name="main_activity_downloaded_only">Show only downloaded</string>
+    <string name="main_activity_also_not_downloaded">Show also not downloaded</string>
+
+    <string name="activity_detail_title">Detail</string>
+    <string name="activity_detail_imgHeader">Header image</string>
+
+    <string name="fragment_tab1_item_imgAvatar">Student photo</string>
+
+    <string name="option2_fragment_students">Students</string>
+    <string name="option2_fragment_data">TextInput</string>
+
+    <string name="detail_activity_fab_clicked">Fab clicked</string>
+
+    <string name="fragment_tab2_txtName">Name</string>
+    <string name="fragment_tab2_txtPhone">Phone</string>
+    <string name="fragment_tab2_txtAdress">Address</string>
+
+    <string name="option1_fragment_fab_clicked">Fab clicked on Option1Fragment</string>
+    <string name="option2_tab1_fragment_fab_clicked">Fab clicked on Option2 Tab1</string>
 
 </resources>

@@ -29,7 +29,7 @@ public class OtraActivity extends ActionBarActivity {
         configTransitions();
         setContentView(R.layout.activity_otra );
         ActivityCompat.postponeEnterTransition(this);
-        imgFoto = (ImageView) findViewById(R.id.imgFoto);
+        imgFoto = ActivityCompat.requireViewById(this, R.id.imgFoto);
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_FOTO_URL)).into(imgFoto, new Callback() {
             @Override public void onSuccess() {
                 ActivityCompat.startPostponedEnterTransition(OtraActivity.this);

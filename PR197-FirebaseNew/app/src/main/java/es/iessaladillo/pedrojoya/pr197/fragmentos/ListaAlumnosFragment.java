@@ -90,7 +90,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
     // Obtiene e inicializa las vistas.
     private void initVistas(View v) {
         // Se muestra el FAB de la actividad.
-        FloatingActionButton btnAgregar = (FloatingActionButton) getActivity().findViewById(R.id
+        FloatingActionButton btnAgregar = (FloatingActionButton) requireActivity().findViewById(R.id
                 .btnAgregar);
         btnAgregar.show();
         lblNuevoAlumno = (TextView) v.findViewById(R.id.lblNuevoAlumno);
@@ -127,11 +127,11 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
         };
         mAdaptador.registerAdapterDataObserver(mObservador);
         lstAlumnos.setAdapter(mAdaptador);
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
+        mLayoutManager = new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,
                 false);
         lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         // Drag & drop y Swipe to dismiss.
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
@@ -263,7 +263,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
         if (mActionMode != null) {
             toggleSelection(position);
         } else {
-            mActionMode = getActivity().startActionMode(this);
+            mActionMode = requireActivity().startActionMode(this);
             toggleSelection(position);
             listener.onHideFAB();
         }

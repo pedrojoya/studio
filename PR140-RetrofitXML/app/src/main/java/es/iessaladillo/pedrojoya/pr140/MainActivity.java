@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Obtiene e inicializa las vistas.
     private void intiVistas() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mChart = (PieChart) findViewById(R.id.chart);
-        mSpnToolbar = (Spinner) findViewById(R.id.spnToolbar);
+        mToolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
+        mChart = ActivityCompat.requireViewById(this, R.id.chart);
+        mSpnToolbar = ActivityCompat.requireViewById(this, R.id.spnToolbar);
         configToolbar();
         configChart();
         configSpinner();

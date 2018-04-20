@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,33 +39,25 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //noinspection ConstantConditions
-        mViewModel = ViewModelProviders.of(getActivity()).get(MainActivityViewModel.class);
+        mViewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
         initViews(getView());
-        //mViewModel.getCurrentItem().observe(getActivity(), item -> markItem(item));
     }
 
     private void initViews(View view) {
-        lstItems = view.findViewById(R.id.lstItems);
+        lstItems = ViewCompat.requireViewById(view, R.id.lstItems);
 
         int itemLayout = ConfigurationUtils.hasLandscapeOrientation(
-                getActivity()) ? android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
-        //noinspection ConstantConditions
-        lstItems.setAdapter(new ArrayAdapter<>(getActivity(), itemLayout, mViewModel.getItems()));
-        lstItems.setOnItemClickListener((adapterView, v, position, id) -> navigateToItem(position));
-    }
-
-    private void navigateToItem(int position) {
-        markItem(position);
-        mViewModel.setCurrentItem((String) lstItems.getItemAtPosition(position));
+                requireActivity()) ? android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
+        lstItems.setAdapter(new ArrayAdapter<>(requireActivity(), itemLayout, mViewModel.getItems()));
+        lstItems.setOnItemClickListener((adapterView, v, position, id) -> markItem(position));
     }
 
     private void markItem(int position) {
         if (position >= 0) {
             lstItems.setItemChecked(position, true);
             lstItems.setSelection(position);
+            mViewModel.setCurrentItem((String) lstItems.getItemAtPosition(position));
         } else {
-            //lstItems.setItemChecked(mViewModel.getSelectedItem().getValue(), false);
             lstItems.clearChoices();
         }
     }

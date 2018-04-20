@@ -3,12 +3,12 @@ VERSIONS
 ext {
     compileSdkVersion = 26
     minSdkVersion = 19
-    buildToolsVersion = "26.0.2"
+    buildToolsVersion = "27.0.3"
     junit_version = "4.12"
     mockito_version = "2.11.0"
     espresso_version = "3.0.1"
-    support_library_version = "27.0.2"
-    constraintlayout_version = "1.1.0-beta5"
+    support_library_version = "27.1.0"
+    constraintlayout_version = "1.1.0"
     picasso_version = "2.5.2"
     circleimageview_version = "2.2.0"
     butterknife_version = "8.8.1"
@@ -28,7 +28,7 @@ ext {
     eventbus_version = "3.1.1" 
     volley_version = "1.1.0"
     rxjava_version = "2.1.9"
-    rxandroid_version = "2.0.1"
+    rxandroid_version = "2.0.2"
     retrofitrxjava2adapter_version = "1.0.0"
     firebase_version = "10.2.4"
     firebaseui_version = "1.2.0"
@@ -43,10 +43,14 @@ ext {
     dart_version = "2.0.3"
     activitystarter_version = "1.11-beta"
     listitemview_version = "1.0.5"
-    arch_version = "1.0.0"
+    arch_version = "1.1.1"
+    room_version = "1.0.0"
     fakeit_version = "v0.7"
     autodispose_version = "0.6.0"
     alerter_version = "2.0.4"
+    stylabletoast_version = "1.0.9"
+    ktx_version = "0.3"
+    anko_version = "0.10.4"
 }
 
 buildscript {
@@ -152,11 +156,17 @@ dependencies {
     implementation "com.uber.autodispose:autodispose:$rootProject.ext.autodispose_version"
     implementation "com.uber.autodispose:autodispose-android-archcomponents:$rootProject.ext.autodispose_version"
     implementation "com.tapadoo.android:alerter:$rootProject.ext.alerter_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.core:core-ktx:$rootProject.ext.ktx_version"
+    implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$rootProject.ext.anko_version"
 }
 
 @file:programandoandroid/
 
 Desde Good times hasta Beautiful girls (2017-01-25)
 Desde We are young (2014-12-24)
+
+sketch
+toujours
 
 

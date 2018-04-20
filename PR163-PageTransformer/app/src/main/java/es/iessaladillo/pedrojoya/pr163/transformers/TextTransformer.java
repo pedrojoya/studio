@@ -12,7 +12,7 @@ public class TextTransformer implements ViewPager.PageTransformer {
     @Override
     public void transformPage(View view, float position) {
         // Buscamos dentro de la vista el TextView correspondiente al texto.
-        TextView lblTexto = view.findViewById(R.id.lblText);
+        TextView lblTexto = ViewCompat.requireViewById(view, R.id.lblText);
         // Si la página no está visible no tendrá traslación X.
         if (position <= -1 || position >= 1) {
             lblTexto.setTranslationX(0.0f);

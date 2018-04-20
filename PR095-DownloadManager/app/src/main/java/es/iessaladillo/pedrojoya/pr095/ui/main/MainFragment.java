@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -63,7 +64,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -72,10 +73,10 @@ public class MainFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         repository = RepositoryImpl.getInstance(Database.getInstance());
-        downloadManager = (DownloadManager) getActivity().getSystemService(
+        downloadManager = (DownloadManager) requireActivity().getSystemService(
                 Context.DOWNLOAD_SERVICE);
-        localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
-        serviceIntent = new Intent(getActivity().getApplicationContext(), MusicService.class);
+        localBroadcastManager = LocalBroadcastManager.getInstance(requireActivity());
+        serviceIntent = new Intent(requireActivity().getApplicationContext(), MusicService.class);
         initViews(getView());
         createCompletedSongBroadcastReceiver();
         createDownloadedSongBroadcastReceiver();
@@ -111,14 +112,14 @@ public class MainFragment extends Fragment {
     }
 
     private void setupListView(View view) {
-        lstSongs = view.findViewById(R.id.lstSongs);
-        adapter = new MainFragmentAdapter(getActivity(), repository.getSongs(), lstSongs);
+        lstSongs = ViewCompat.requireViewById(view, R.id.lstSongs);
+        adapter = new MainFragmentAdapter(requireActivity(), repository.getSongs(), lstSongs);
         if (lstSongs != null) {
             lstSongs.setAdapter(adapter);
             lstSongs.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             lstSongs.setOnItemClickListener(
                     (adapterView, view1, position, id) -> playSong(position));
-            lstSongs.setEmptyView(view.findViewById(R.id.lblEmptyView));
+            lstSongs.setEmptyView(ViewCompat.requireViewById(view, R.id.lblEmptyView));
             // API 21+ it will work with CoordinatorLayout.
             ViewCompat.setNestedScrollingEnabled(lstSongs, true);
         }
@@ -138,7 +139,7 @@ public class MainFragment extends Fragment {
     }
 
     private void resgisterDownloadedSongBroadcastReceiver() {
-        getActivity().registerReceiver(downloadedSongBroadcastReceiver,
+        requireActivity().registerReceiver(downloadedSongBroadcastReceiver,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
     }
 
@@ -154,7 +155,7 @@ public class MainFragment extends Fragment {
     public void onPause() {
         super.onPause();
         localBroadcastManager.unregisterReceiver(completedSongBroadcastReceiver);
-        getActivity().unregisterReceiver(downloadedSongBroadcastReceiver);
+        requireActivity().unregisterReceiver(downloadedSongBroadcastReceiver);
     }
 
     private void showDownloadState(Intent intent) {
@@ -181,7 +182,7 @@ public class MainFragment extends Fragment {
     }
 
     private void showErrorDownloadingSong(String reason) {
-        Toast.makeText(getActivity(), getString(R.string.main_fragment_download_failed, reason),
+        Toast.makeText(requireActivity(), getString(R.string.main_fragment_download_failed, reason),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -202,7 +203,7 @@ public class MainFragment extends Fragment {
     }
 
     private void showDownloading(Song song) {
-        Toast.makeText(getActivity(), getString(R.string.main_fragment_downloading, song.getName()),
+        Toast.makeText(requireActivity(), getString(R.string.main_fragment_downloading, song.getName()),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -231,7 +232,7 @@ public class MainFragment extends Fragment {
 
     private void playSongOnService(File file) {
         serviceIntent.putExtra(MusicService.EXTRA_SONG_PATH, file.getAbsolutePath());
-        getActivity().startService(serviceIntent);
+        requireActivity().startService(serviceIntent);
     }
 
     private void playstop() {
@@ -250,7 +251,7 @@ public class MainFragment extends Fragment {
     }
 
     private void stopSongInService() {
-        getActivity().stopService(serviceIntent);
+        requireActivity().stopService(serviceIntent);
     }
 
     @Override
@@ -269,7 +270,7 @@ public class MainFragment extends Fragment {
     }
 
     private void setupFab() {
-        btnPlayStop = getActivity().findViewById(R.id.btnPlayStop);
+        btnPlayStop = requireActivity().findViewById(R.id.btnPlayStop);
         if (btnPlayStop != null) {
             btnPlayStop.setOnClickListener(view -> playstop());
         }

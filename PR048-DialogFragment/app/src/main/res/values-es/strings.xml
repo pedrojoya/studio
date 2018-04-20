@@ -25,10 +25,10 @@
     <string name="activity_main_btnCustomLayoutAlert">Alerta con layout propio</string>
     <string name="activity_main_item_imgAvatar">Avatar</string>
 
-    <string name="dialog_login_lblUsername">Usuario</string>
-    <string name="dialog_login_lblPassword">Contraseña</string>
+    <string name="dialog_login_txtUsername">Usuario</string>
+    <string name="dialog_login_txtPassword">Contraseña</string>
 
-    <string name="adapter_dialog_student">Alumno</string>
+    <string name="adapter_dialog_student">Seleccione un alumno</string>
 
     <string name="custom_layout_dialog_title">Login</string>
     <string name="custom_layout_dialog_positiveButton">Aceptar</string>
@@ -36,6 +36,9 @@
 
     <string name="direct_selection_dialog_shift">Turno</string>
 
-    <string name="yes_no_dialog_title">Eliminar</string>
-    <string name="yes_no_dialog_message">¿Está seguro de que quiere elminar el usuario?</string>
+    <string name="confirm_dialog_title">Eliminar</string>
+    <string name="confirm_dialog_message">¿Está seguro de que quiere elminar el usuario?</string>
+    <string name="confirm_dialog_yes">Sí</string>
+    <string name="confirm_dialog_no">No</string>
+    <string name="dialog_login_tilPassword_passwordToggleContentDescription">Cambiar visibilidad de la contraseña</string>
 </resources>

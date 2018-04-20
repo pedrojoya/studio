@@ -7,7 +7,8 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr086.data.model.Student;
 
-class MainActivityViewModel extends ViewModel {
+@SuppressWarnings("WeakerAccess")
+public class MainActivityViewModel extends ViewModel {
 
     private List<Student> students;
 

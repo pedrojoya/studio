@@ -31,4 +31,6 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     implementation "com.android.support:preference-v7:$rootProject.ext.support_library_version"
     implementation "com.android.support:preference-v14:$rootProject.ext.support_library_version"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
+    implementation "com.android.support:design:$rootProject.ext.support_library_version"
 }

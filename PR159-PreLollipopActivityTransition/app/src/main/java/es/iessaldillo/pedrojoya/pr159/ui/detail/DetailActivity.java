@@ -54,7 +54,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             if (getSupportActionBar() != null) {
@@ -62,7 +62,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         }
         // AppBarLayout initially hidden until transition finished.
-        appbarLayout = findViewById(R.id.appbarLayout);
+        appbarLayout = ActivityCompat.requireViewById(this, R.id.appbarLayout);
         appbarLayout.setVisibility(View.INVISIBLE);
         appbarLayout.setExpanded(true);
     }
@@ -81,9 +81,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        imgDetailPhoto = findViewById(R.id.imgDetailPhoto);
-        imgAppBarPhoto = findViewById(R.id.imgAppBarPhoto);
-        webView = findViewById(R.id.webView);
+        imgDetailPhoto = ActivityCompat.requireViewById(this, R.id.imgDetailPhoto);
+        imgAppBarPhoto = ActivityCompat.requireViewById(this, R.id.imgAppBarPhoto);
+        webView = ActivityCompat.requireViewById(this, R.id.webView);
 
         setupToolbar();
         showWordDetail();

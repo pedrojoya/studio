@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr014.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
-        lstStudents.setEmptyView(findViewById(R.id.lblEmptyView));
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmptyView));
         mAdapter = new MainActivityAdapter(this, mViewModel.getData(),
                 (item, student, position) -> deleteStudent(position));
         lstStudents.setAdapter(mAdapter);

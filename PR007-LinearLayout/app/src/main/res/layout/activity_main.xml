@@ -21,8 +21,7 @@
         android:paddingLeft="@dimen/general_edittext_padding"
         android:paddingRight="@dimen/general_edittext_padding"
         android:text="@string/activity_main_lblUsername"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:labelFor="@+id/txtUsername"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <EditText
         android:id="@+id/txtUsername"
@@ -46,8 +45,7 @@
         android:paddingLeft="@dimen/general_edittext_padding"
         android:paddingRight="@dimen/general_edittext_padding"
         android:text="@string/activity_main_lblPassword"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:labelFor="@+id/txtPassword"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <EditText
         android:id="@+id/txtPassword"

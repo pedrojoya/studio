@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NewProductDialogF
     }
 
     private void initViews() {
-        lstProducts = findViewById(R.id.lstProducts);
+        lstProducts = ActivityCompat.requireViewById(this, R.id.lstProducts);
 
         setupToolbar();
         setupRecyclerView();
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NewProductDialogF
     }
 
     private void setupFab() {
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = ActivityCompat.requireViewById(this, R.id.fab);
         fab.setOnClickListener(
                 view -> (new NewProductDialogFragment()).show(getSupportFragmentManager(),
                         getString(R.string.main_activity_add_product)));

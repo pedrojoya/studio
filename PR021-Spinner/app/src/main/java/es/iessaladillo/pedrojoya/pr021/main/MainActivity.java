@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr021.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        btnShow = findViewById(R.id.btnShow);
-        spnCountry = findViewById(R.id.spnCountry);
+        btnShow = ActivityCompat.requireViewById(this, R.id.btnShow);
+        spnCountry = ActivityCompat.requireViewById(this, R.id.spnCountry);
 
         btnShow.setOnClickListener(v -> {
             // First option is the default one.
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         countries.add(new Country(R.drawable.no_flag,
                 getString(R.string.main_activity_choose_one_country)));
         countries.addAll(mViewModel.getData());
-        spnCountry.setAdapter(new MainActivityAdapter(this, countries));
+        spnCountry.setAdapter(new MainActivityAdapter(countries));
         spnCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

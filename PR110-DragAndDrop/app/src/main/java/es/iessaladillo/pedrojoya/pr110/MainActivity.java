@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        lblLeyenda = (TextView) findViewById(R.id.lblTitulo);
+        lblLeyenda = ActivityCompat.requireViewById(this, R.id.lblTitulo);
 
         // El proceso de drag and drop se inicará cuando se realice
         // un click largo sobre la vista.
-        ImageView mImgOrigen = (ImageView) findViewById(R.id.imgOrigen);
+        ImageView mImgOrigen = ActivityCompat.requireViewById(this, R.id.imgOrigen);
         if (mImgOrigen != null) {
             mImgOrigen.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Se prepara al receptor para recibir los eventos del drag and drop.
-        FrameLayout mFrlCuadro = (FrameLayout) findViewById(R.id.frlCuadro);
+        FrameLayout mFrlCuadro = ActivityCompat.requireViewById(this, R.id.frlCuadro);
         if (mFrlCuadro != null) {
             mFrlCuadro.setOnDragListener(new View.OnDragListener() {
                 @Override
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        FrameLayout frlLeyenda = (FrameLayout) findViewById(R.id.frlLeyenda);
+        FrameLayout frlLeyenda = ActivityCompat.requireViewById(this, R.id.frlLeyenda);
         if (frlLeyenda != null) {
             frlLeyenda.setOnDragListener(new View.OnDragListener() {
                 @Override
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        RelativeLayout rlRaiz = (RelativeLayout) findViewById(R.id.rlRaiz);
+        RelativeLayout rlRaiz = ActivityCompat.requireViewById(this, R.id.rlRaiz);
         if (rlRaiz != null) {
             rlRaiz.setOnDragListener(new View.OnDragListener() {
                 @Override

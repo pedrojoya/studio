@@ -1,78 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
     android:minHeight="@dimen/two_line_tile_height"
-    android:background="@drawable/selectable_item_background"
-    android:clickable="true"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgFoto"
         android:layout_width="@dimen/two_line_avatar_width"
         android:layout_height="@dimen/two_line_avatar_height"
-        android:contentDescription="@string/avatar"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/two_line_avatar_marginTop"
-        android:layout_marginLeft="@dimen/two_line_avatar_marginLeft"
         android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
-        android:src="@drawable/ic_user" />
+        android:layout_marginTop="@dimen/two_line_avatar_marginTop"
+        android:contentDescription="@string/avatar"
+        android:src="@drawable/ic_user"/>
 
     <TextView
         android:id="@+id/lblNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/two_line_text_paddingLeft"
-        android:paddingStart="@dimen/two_line_text_paddingLeft"
-        android:paddingRight="@dimen/two_line_text_paddingLeft"
-        android:paddingEnd="@dimen/two_line_text_paddingLeft"
-        android:paddingTop="@dimen/two_line_text_paddingTop"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:text="Baldomero Llegate Ligero"
-        android:layout_marginRight="@dimen/two_line_text_marginRight"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+        android:paddingEnd="@dimen/two_line_text_paddingLeft"
+        android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:paddingRight="@dimen/two_line_text_paddingLeft"
+        android:paddingStart="@dimen/two_line_text_paddingLeft"
+        android:paddingTop="@dimen/two_line_text_paddingTop"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="Baldomero Llegate Ligero"/>
 
     <TextView
         android:id="@+id/lblDireccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/two_line_text_paddingLeft"
-        android:paddingStart="@dimen/two_line_text_paddingLeft"
-        android:paddingRight="@dimen/two_line_text_paddingLeft"
-        android:paddingEnd="@dimen/two_line_text_paddingLeft"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/lblNombre"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:text="c/ La casa de Baldomero"
-        android:layout_marginRight="@dimen/two_line_text_marginRight"
+        android:layout_below="@+id/lblNombre"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        android:textSize="14sp" />
+        android:paddingEnd="@dimen/two_line_text_paddingLeft"
+        android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:paddingRight="@dimen/two_line_text_paddingLeft"
+        android:paddingStart="@dimen/two_line_text_paddingLeft"
+        android:textSize="14sp"
+        tools:text="c/ La casa de Baldomero"/>
 
     <TextView
         android:id="@+id/lblAsignaturas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
-        android:paddingLeft="@dimen/two_line_text_paddingLeft"
-        android:paddingStart="@dimen/two_line_text_paddingLeft"
-        android:paddingRight="@dimen/two_line_text_paddingLeft"
-        android:paddingEnd="@dimen/two_line_text_paddingLeft"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/lblDireccion"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:text="@string/ninguna"
-        android:layout_marginRight="@dimen/two_line_text_marginRight"
+        android:layout_below="@+id/lblDireccion"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
-        android:textSize="14sp" />
+        android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
+        android:paddingEnd="@dimen/two_line_text_paddingLeft"
+        android:paddingLeft="@dimen/two_line_text_paddingLeft"
+        android:paddingRight="@dimen/two_line_text_paddingLeft"
+        android:paddingStart="@dimen/two_line_text_paddingLeft"
+        android:textSize="14sp"
+        tools:text="@string/ninguna"/>
 
 </RelativeLayout>

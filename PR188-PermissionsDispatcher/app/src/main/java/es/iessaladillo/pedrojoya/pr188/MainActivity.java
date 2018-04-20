@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        rgSource = findViewById(R.id.rgSource);
-        rgDestination = findViewById(R.id.rgDestination);
-        btnDuplicate = findViewById(R.id.btnDuplicate);
-        rbPersonalExternal = findViewById(R.id.rbPersonalExternal);
-        rbPublicExternal = findViewById(R.id.rbPublicExternal);
-        rbExternalCache = findViewById(R.id.rbExternalCache);
+        rgSource = ActivityCompat.requireViewById(this, R.id.rgSource);
+        rgDestination = ActivityCompat.requireViewById(this, R.id.rgDestination);
+        btnDuplicate = ActivityCompat.requireViewById(this, R.id.btnDuplicate);
+        rbPersonalExternal = ActivityCompat.requireViewById(this, R.id.rbPersonalExternal);
+        rbPublicExternal = ActivityCompat.requireViewById(this, R.id.rbPublicExternal);
+        rbExternalCache = ActivityCompat.requireViewById(this, R.id.rbExternalCache);
 
         btnDuplicate.setOnClickListener(v -> btnDuplicateOnClick());
     }

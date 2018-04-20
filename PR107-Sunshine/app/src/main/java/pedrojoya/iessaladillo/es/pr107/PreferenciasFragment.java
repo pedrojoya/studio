@@ -111,8 +111,8 @@ public class PreferenciasFragment extends PreferenceFragment implements
                     pref.getKey(), "");
 
             Uri uriTono = Uri.parse(pathTono);
-            Ringtone tono = RingtoneManager.getRingtone(getActivity(), uriTono);
-            String nombreTono = tono.getTitle(getActivity());
+            Ringtone tono = RingtoneManager.getRingtone(requireActivity(), uriTono);
+            String nombreTono = tono.getTitle(requireActivity());
             pref.setSummary(nombreTono);
             // Se le añade un listener especial.
             // Nota: Es necesario porque no se notifica bien
@@ -125,8 +125,8 @@ public class PreferenciasFragment extends PreferenceFragment implements
                     if (newValue != null && newValue instanceof String) {
                         String pathTono = (String) newValue;
                         Ringtone tono = RingtoneManager.getRingtone(
-                                getActivity(), Uri.parse(pathTono));
-                        preference.setSummary(tono.getTitle(getActivity()));
+                                requireActivity(), Uri.parse(pathTono));
+                        preference.setSummary(tono.getTitle(requireActivity()));
                     }
                     return true;
                 }

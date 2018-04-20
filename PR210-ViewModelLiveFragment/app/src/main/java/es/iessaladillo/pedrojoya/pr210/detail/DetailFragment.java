@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,9 @@ public class DetailFragment extends Fragment {
         DetailFragmentBaseActivity activity;
         try {
             // Activity must extend DetailFragmentBaseActivity.
+            //noinspection unchecked
             activity = (DetailFragmentBaseActivity<DetailFragmentBaseViewModel>) context;
+            //noinspection unchecked
             viewModelClass = activity.getViewModelClass();
         } catch (ClassCastException e) {
             // La actividad no implementa la interfaz.
@@ -47,11 +50,10 @@ public class DetailFragment extends Fragment {
         }
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(getActivity()).get(viewModelClass);
+        mViewModel = ViewModelProviders.of(requireActivity()).get(viewModelClass);
         initViews(getView());
         mViewModel.getCurrentItem().observe(this, this::showItem);
     }
@@ -61,7 +63,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void initViews(View view) {
-            lblItem = view.findViewById(R.id.lblItem);
+            lblItem = ViewCompat.requireViewById(view, R.id.lblItem);
     }
 
 }

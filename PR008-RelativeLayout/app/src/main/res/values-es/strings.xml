@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RelativeLayout</string>
+    <string name="activity_main_lblTitle">Login</string>
+    <string name="activity_main_lblUsername">Usuario</string>
+    <string name="activity_main_lblPassword">Clave</string>
+    <string name="activity_main_btnLogin">Login</string>
+    <string name="activitiy_main_btnCancel">Cancelar</string>
+    <string name="main_activity_connected">Haciendo login con %1$s…</string>
+    <string name="activity_main_txtUsername">Usuario</string>
+    <string name="activity_main_txtPassword">Clave</string>
+</resources>

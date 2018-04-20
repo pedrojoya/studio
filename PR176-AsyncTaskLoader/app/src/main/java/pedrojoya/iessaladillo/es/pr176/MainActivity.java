@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        mEmptyView = (TextView) findViewById(R.id.lblNoHayAlumnos);
+        mEmptyView = ActivityCompat.requireViewById(this, R.id.lblNoHayAlumnos);
         configToolbar();
         configRecyclerView();
         configFab();
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
 
     // Configura la Toolbar.
     private void configToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
 
     // Configura el FAB.
     private void configFab() {
-        FloatingActionButton fabAccion = (FloatingActionButton) findViewById(R.id.fabAccion);
+        FloatingActionButton fabAccion = ActivityCompat.requireViewById(this, R.id.fabAccion);
         if (fabAccion != null) {
             fabAccion.setOnClickListener(
                     view -> AlumnoActivity.startForResult(MainActivity.this, RC_AGREGAR));
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
         });
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
-        lstAlumnos = (RecyclerView) findViewById(R.id.lstAlumnos);
+        lstAlumnos = ActivityCompat.requireViewById(this, R.id.lstAlumnos);
         if (lstAlumnos != null) {
             lstAlumnos.setHasFixedSize(true);
             lstAlumnos.setAdapter(mAdaptador);
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter
 
     // Configura el SwipeRefreshLayout.
     private void configPanel() {
-        swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
+        swlPanel = ActivityCompat.requireViewById(this, R.id.swlPanel);
         if (swlPanel != null) {
             swlPanel.setOnRefreshListener(this);
             swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,

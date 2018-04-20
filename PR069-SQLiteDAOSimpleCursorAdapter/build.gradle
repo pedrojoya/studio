@@ -19,11 +19,11 @@ allprojects {
 
 ext {
     compileSdkVersion = 27
-    minSdkVersion = 19
-    buildToolsVersion = "26.0.2"
+    minSdkVersion = 21
+    buildToolsVersion = "27.0.3"
     junit_version = "4.12"
     mockito_version = "2.7.19"
     espresso_version = "3.0.1"
-    support_library_version = "27.0.2"
+    support_library_version = "27.1.1"
     textdrawable_version = "1.0.1"
 }

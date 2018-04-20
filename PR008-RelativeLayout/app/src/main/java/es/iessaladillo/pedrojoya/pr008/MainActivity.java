@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr008;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -15,51 +16,49 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText txtUsuario;
-    private EditText txtClave;
-    private Button btnAceptar;
+    private EditText txtUsername;
+    private EditText txtPassword;
+    private Button btnLogin;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initVistas();
+        initViews();
     }
 
-    private void initVistas() {
-        btnAceptar = (Button) findViewById(R.id.btnAceptar);
-        btnAceptar.setOnClickListener(v -> conectar());
-        Button btnCancelar = (Button) findViewById(R.id.btnCancelar);
-        btnCancelar.setOnClickListener(v -> resetVistas());
-        TextView lblUsuario = (TextView) findViewById(R.id.lblUsuario);
-        TextView lblClave = (TextView) findViewById(R.id.lblClave);
-        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
-        txtClave = (EditText) findViewById(R.id.txtClave);
-        setCambiarColorFocusListener(lblUsuario, txtUsuario);
-        setCambiarColorFocusListener(lblClave, txtClave);
-        setCambiarVisibilidadTextWatcher(lblUsuario, txtUsuario);
-        setCambiarVisibilidadTextWatcher(lblClave, txtClave);
-        // Comprobaciones iniciales.
-        setColorSegunFoco(lblUsuario, true);
-        checkFormularioValido();
-        setTextViewVisibility(txtClave, lblClave);
-        setTextViewVisibility(txtUsuario, lblUsuario);
+    private void initViews() {
+        btnLogin = ActivityCompat.requireViewById(this, R.id.btnLogin);
+        btnLogin.setOnClickListener(v -> login());
+        Button btnCancel = ActivityCompat.requireViewById(this, R.id.btnCancel);
+        btnCancel.setOnClickListener(v -> resetViews());
+        TextView lblUsername = ActivityCompat.requireViewById(this, R.id.lblUsername);
+        TextView lblPassword = ActivityCompat.requireViewById(this, R.id.lblPassword);
+        txtUsername = ActivityCompat.requireViewById(this, R.id.txtUsername);
+        txtPassword = ActivityCompat.requireViewById(this, R.id.txtPassword);
+        setChangeColorOnFocusListener(lblUsername, txtUsername);
+        setChangeColorOnFocusListener(lblPassword, txtPassword);
+        setChangeVisibilityTextWatcher(lblUsername, txtUsername);
+        setChangeVisibilityTextWatcher(lblPassword, txtPassword);
+        // Initial check.
+        setColorOnFocus(lblUsername, true);
+        checkIsValidForm();
+        setTextViewVisibilityOnEditText(txtPassword, lblPassword);
+        setTextViewVisibilityOnEditText(txtUsername, lblUsername);
     }
 
-    // Realiza la conexión.
-    private void conectar() {
+    private void login() {
         Toast.makeText(this,
-                getString(R.string.conectando_con_el_usuario, txtUsuario.getText().toString()),
+                getString(R.string.main_activity_connected, txtUsername.getText().toString()),
                 Toast.LENGTH_SHORT).show();
     }
 
-    // Resetea las vistas.
-    private void resetVistas() {
-        txtUsuario.setText("");
-        txtClave.setText("");
+    private void resetViews() {
+        txtUsername.setText("");
+        txtPassword.setText("");
     }
 
-    private void setCambiarVisibilidadTextWatcher(TextView lbl, EditText txt) {
+    private void setChangeVisibilityTextWatcher(TextView lbl, EditText txt) {
         txt.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -72,32 +71,32 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                setTextViewVisibility(txt, lbl);
-                checkFormularioValido();
+                setTextViewVisibilityOnEditText(txt, lbl);
+                checkIsValidForm();
             }
 
         });
     }
 
-    private void setCambiarColorFocusListener(TextView lbl, EditText txt) {
-        txt.setOnFocusChangeListener((v, hasFocus) -> setColorSegunFoco(lbl, hasFocus));
+    private void setChangeColorOnFocusListener(TextView lbl, EditText txt) {
+        txt.setOnFocusChangeListener((v, hasFocus) -> setColorOnFocus(lbl, hasFocus));
     }
 
-    private void checkFormularioValido() {
-        btnAceptar.setEnabled(isFormValid());
+    private void checkIsValidForm() {
+        btnLogin.setEnabled(isFormValid());
     }
 
     private boolean isFormValid() {
-        return !TextUtils.isEmpty(txtUsuario.getText().toString()) && !TextUtils.isEmpty(
-                txtClave.getText().toString());
+        return !TextUtils.isEmpty(txtUsername.getText().toString()) && !TextUtils.isEmpty(
+                txtPassword.getText().toString());
     }
 
-    private void setTextViewVisibility(EditText txt, TextView lbl) {
+    private void setTextViewVisibilityOnEditText(EditText txt, TextView lbl) {
         lbl.setVisibility(
                 TextUtils.isEmpty(txt.getText().toString()) ? View.INVISIBLE : View.VISIBLE);
     }
 
-    private void setColorSegunFoco(TextView lbl, boolean hasFocus) {
+    private void setColorOnFocus(TextView lbl, boolean hasFocus) {
         lbl.setTextColor(
                 hasFocus ? ContextCompat.getColor(this, R.color.accent) : ContextCompat.getColor(
                         this, R.color.primary));

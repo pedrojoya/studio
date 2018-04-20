@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TargetFragment</string>
+    <string name="fragment_main_btnDelete">Eliminar</string>
+    <string name="main_fragment_confirm_deletion">Confirmar eliminación</string>
+    <string name="main_fragment_yes">Sí</string>
+    <string name="main_fragment_no">No</string>
+    <string name="main_fragment_sure">¿Está seguro de que quiere eliminarlo?</string>
+    <string name="main_fragment_delete">Elimínalo</string>
+    <string name="main_fragment_no_delete">No lo elimine, por favor</string>
+
+</resources>

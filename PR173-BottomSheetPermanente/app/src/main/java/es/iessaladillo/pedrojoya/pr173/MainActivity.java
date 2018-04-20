@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        imgDetail = findViewById(R.id.imgDetail);
-        RelativeLayout rlPanel = findViewById(R.id.rlPanel);
+        imgDetail = ActivityCompat.requireViewById(this, R.id.imgDetail);
+        RelativeLayout rlPanel = ActivityCompat.requireViewById(this, R.id.rlPanel);
         bsb = BottomSheetBehavior.from(rlPanel);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = ActivityCompat.requireViewById(this, R.id.fab);
 
         setupBottomSheet();
         imgDetail.setOnClickListener(view -> expandOrCollapseBottomSheet());

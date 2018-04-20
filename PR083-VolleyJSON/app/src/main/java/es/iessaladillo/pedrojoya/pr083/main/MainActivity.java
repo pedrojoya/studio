@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     }
 
     private void initViews() {
-        ListView lstStudents = findViewById(R.id.lstStudents);
-        swlPanel = findViewById(R.id.swlPanel);
+        ListView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        swlPanel = ActivityCompat.requireViewById(this, R.id.swlPanel);
 
         setupListView(lstStudents);
         setupPanel();

@@ -23,7 +23,7 @@ public class DetailActivity extends DetailFragmentBaseActivity<DetailActivityVie
         mViewModel = ViewModelProviders.of(this).get(DetailActivityViewModel.class);
         if (ConfigurationUtils.hasLandscapeOrientation(this)) {
             // Not posible in landscape orientation.
-            finish();
+            onBackPressed();
         } else {
             String item = getIntent().getStringExtra(DetailFragment.EXTRA_ITEM);
             mViewModel.setCurrentItem(item);

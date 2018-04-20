@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ViewModelLiveDataAsyncTask</string>
+    <string name="activity_main_btnStart">Start</string>
+    <string name="activity_main_lblMessage">Working…(%1$d of %2$d)</string>
+    <string name="activity_main_btnCancel">Cancel</string>
+
+</resources>

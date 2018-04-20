@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
     }
 
     private void setupFAB() {
-        btnExportar = (FloatingActionButton) findViewById(R.id.btnExportar);
+        btnExportar = ActivityCompat.requireViewById(this, R.id.btnExportar);
         if (btnExportar != null) {
             btnExportar.setOnClickListener(new View.OnClickListener() {
                 @Override

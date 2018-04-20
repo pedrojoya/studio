@@ -30,6 +30,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />
         </activity>
+        <provider android:name=".data.local.FakeContentProvider"
+                  android:exported="false"
+                  android:authorities="es.iessaladillo.school"/>
     </application>
 
 </manifest>

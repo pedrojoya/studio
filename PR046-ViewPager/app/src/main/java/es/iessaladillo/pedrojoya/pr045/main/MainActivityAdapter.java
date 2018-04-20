@@ -2,7 +2,9 @@ package es.iessaladillo.pedrojoya.pr045.main;
 
 import android.content.Context;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +29,9 @@ class MainActivityAdapter extends PagerAdapter {
         return NUMBER_OF_PAGES;
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup collection, int position) {
+    public Object instantiateItem(@NonNull ViewGroup collection, int position) {
         View view = mLayoutInflater.inflate(R.layout.activity_main_page, collection, false);
         setupPage(view, position);
         collection.addView(view, 0);
@@ -36,8 +39,8 @@ class MainActivityAdapter extends PagerAdapter {
     }
 
     private void setupPage(View view, int position) {
-        TextView lblPage = view.findViewById(R.id.lblPage);
-        Button btnShow = view.findViewById(R.id.btnShow);
+        TextView lblPage = ViewCompat.requireViewById(view, R.id.lblPage);
+        Button btnShow = ViewCompat.requireViewById(view, R.id.btnShow);
 
         lblPage.setText(String.valueOf(position));
         btnShow.setOnClickListener(v -> show(view, position));
@@ -48,21 +51,21 @@ class MainActivityAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup collection, int position, Object view) {
+    public void destroyItem(@NonNull ViewGroup collection, int position, @NonNull Object view) {
         collection.removeView((View) view);
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return (view == object);
     }
 
     @Override
-    public void startUpdate(ViewGroup arg0) {
+    public void startUpdate(@NonNull ViewGroup arg0) {
     }
 
     @Override
-    public void finishUpdate(ViewGroup arg0) {
+    public void finishUpdate(@NonNull ViewGroup arg0) {
     }
 
     @Override

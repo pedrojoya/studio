@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr018;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        imgPhoto = findViewById(R.id.imgPhoto);
+        imgPhoto = ActivityCompat.requireViewById(this, R.id.imgPhoto);
 
         imgPhoto.setVisibility(mIsVisible ? View.VISIBLE : View.INVISIBLE);
         setCorrectBitmap(mEffectId);

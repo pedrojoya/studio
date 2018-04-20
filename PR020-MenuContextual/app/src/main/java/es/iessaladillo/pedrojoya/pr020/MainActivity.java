@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,

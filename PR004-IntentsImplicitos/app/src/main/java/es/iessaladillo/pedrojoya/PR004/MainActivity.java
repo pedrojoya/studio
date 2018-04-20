@@ -43,17 +43,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mMessageManager = new ToastMessageManager();
-        initView();
+        initViews();
     }
 
-    private void initView() {
-        btnShowInBrowser = findViewById(R.id.btnShowInBrowser);
-        btnSearch = findViewById(R.id.btnSearch);
-        btnCall = findViewById(R.id.btnCall);
-        btnDial = findViewById(R.id.btnDial);
-        btnShowInMap = findViewById(R.id.btnShowInMap);
-        btnSearchInMap = findViewById(R.id.btnSearchInMap);
-        btnShowContacts = findViewById(R.id.btnShowContacts);
+    private void initViews() {
+        btnShowInBrowser = ActivityCompat.requireViewById(this, R.id.btnShowInBrowser);
+        btnSearch = ActivityCompat.requireViewById(this, R.id.btnSearch);
+        btnCall = ActivityCompat.requireViewById(this, R.id.btnCall);
+        btnDial = ActivityCompat.requireViewById(this, R.id.btnDial);
+        btnShowInMap = ActivityCompat.requireViewById(this, R.id.btnShowInMap);
+        btnSearchInMap = ActivityCompat.requireViewById(this, R.id.btnSearchInMap);
+        btnShowContacts = ActivityCompat.requireViewById(this, R.id.btnShowContacts);
 
         btnShowInBrowser.setOnClickListener(v -> showInBrowser(WEB_URL));
         btnSearch.setOnClickListener(v -> search(SEARCH_TEXT));

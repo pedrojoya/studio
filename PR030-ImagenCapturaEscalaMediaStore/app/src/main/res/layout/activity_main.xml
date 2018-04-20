@@ -4,11 +4,11 @@
     android:layout_height="match_parent" >
 
     <ImageView
-        android:id="@+id/imgFoto"
-        android:layout_width="@dimen/ancho_visor"
-        android:layout_height="@dimen/alto_visor"
+        android:id="@+id/imgPhoto"
+        android:layout_width="@dimen/activity_main_imgPhoto_width"
+        android:layout_height="@dimen/activity_main_imgPhoto_height"
         android:layout_centerInParent="true"
         android:src="@drawable/placeholder"
-        android:contentDescription="@string/foto" />
+        android:contentDescription="@string/activity_main_imgPhoto" />
 
 </RelativeLayout>

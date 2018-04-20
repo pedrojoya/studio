@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        RecyclerView lstAppsHorizontal = (RecyclerView) findViewById(R.id.lstAppsHorizontal);
-        RecyclerView lstAppsVertical = (RecyclerView) findViewById(R.id.lstAppsVertical);
+        RecyclerView lstAppsHorizontal = ActivityCompat.requireViewById(this, R.id.lstAppsHorizontal);
+        RecyclerView lstAppsVertical = ActivityCompat.requireViewById(this, R.id.lstAppsVertical);
 
         SnapHelper snapHelperHorizontal = new LinearSnapHelper();
         // SnapHelper snapHelperHorizontal = new GravitySnapHelper(Gravity.START);

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FilterableListAdapter</string>
+    <string name="activity_main_emptyView">No students yet</string>
+    <string name="activity_main_item_imgAvatar">Avatar</string>
+    <string name="activity_main_mnuSort">Ordenar</string>
+    <string name="activity_main_mnuSearch">Search</string>
+    <string name="activity_main_mnuSearch_hint">Student</string>
+
+</resources>

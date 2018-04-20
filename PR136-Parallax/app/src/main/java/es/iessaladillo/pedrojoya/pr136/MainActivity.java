@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        imgFoto = (ImageView) findViewById(R.id.imgFoto);
-        svScroll = (ScrollView) findViewById(R.id.svScroll);
-        lblTitulo = (TextView) findViewById(R.id.lblTitulo);
-        vOverlay = findViewById(R.id.vOverlay);
+        imgFoto = ActivityCompat.requireViewById(this, R.id.imgFoto);
+        svScroll = ActivityCompat.requireViewById(this, R.id.svScroll);
+        lblTitulo = ActivityCompat.requireViewById(this, R.id.lblTitulo);
+        vOverlay = ActivityCompat.requireViewById(this, R.id.vOverlay);
         // Cuando se hace scroll se realiza el efecto parallax.
         parallax(svScroll, imgFoto);
         svScroll.getViewTreeObserver()
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
     // Realiza el efecto parallax sobre la imagen a partir del scroll realizado.
     private void parallax(ScrollView scrollView, ImageView image) {
 
-        // Datos básicos.
+        // Datos bï¿½sicos.
         int scrollY = scrollView.getScrollY();
         int imageHeight = getResources().getDimensionPixelSize(R.dimen.image_height);
-        // En el onCreate la action bar aún no tiene altura.
+        // En el onCreate la action bar aï¿½n no tiene altura.
         int actionBarHeight = getResources().getDimensionPixelSize(R.dimen
                 .abc_action_bar_default_height_material);
         if (getSupportActionBar() != null) {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     getResources().getDimensionPixelSize(R.dimen
                             .abc_action_bar_default_height_material));
         }
-        // En el onCreate lblTitulo aún no tiene altura.
+        // En el onCreate lblTitulo aï¿½n no tiene altura.
         int lblTituloHeight = Math.max(lblTitulo.getHeight(), actionBarHeight);
         int baseColor = getResources().getColor(R.color.colorPrimary);
 
@@ -71,18 +71,18 @@ public class MainActivity extends AppCompatActivity {
         // que hayamos realizado. El overlay se traslada con la imagen.
         image.setTranslationY(-scrollY / 2);
         vOverlay.setTranslationY(-scrollY / 2);
-        Log.d(getString(R.string.app_name), "Traslación imagen: " +
+        Log.d(getString(R.string.app_name), "Traslaciï¿½n imagen: " +
                 -scrollY);
 
-        /* Si la imagen no tuviera título, simplemente haríamos que la toolbar
-           se volviera más opaca conforme se hiciera scroll (máximo 1).
+        /* Si la imagen no tuviera tï¿½tulo, simplemente harï¿½amos que la toolbar
+           se volviera mï¿½s opaca conforme se hiciera scroll (mï¿½ximo 1).
         float alpha = Math.min(1, (float) scrollY / imageHeight);
         int alphaColor = getColorWithAlpha(alpha, baseColor);
         toolbar.setBackgroundColor(alphaColor);
         */
 
-        // Escalado del título. Cuanto más scroll más pequeño será la
-        // escala. Como mínimo 1. Como máximo 1,3.
+        // Escalado del tï¿½tulo. Cuanto mï¿½s scroll mï¿½s pequeï¿½o serï¿½ la
+        // escala. Como mï¿½nimo 1. Como mï¿½ximo 1,3.
         float flexibleRange = imageHeight - actionBarHeight;
         float scale = 1 + ((flexibleRange - scrollY) / flexibleRange);
         scale = Math.max(1, scale);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         lblTitulo.setScaleY(scale);
         Log.d(getString(R.string.app_name), "Escala: " + scale);
 
-        // El overlay se vuelve más opaca conforme se hace scroll.
+        // El overlay se vuelve mï¿½s opaca conforme se hace scroll.
         float maxOverlayDistance = imageHeight - actionBarHeight +
                 (lblTituloHeight * scale);
         float overlayAlpha = Math.min(maxOverlayDistance, scrollY)
@@ -101,17 +101,17 @@ public class MainActivity extends AppCompatActivity {
         vOverlay.setAlpha(overlayAlpha);
         Log.d(getString(R.string.app_name), "Alpha overlay: " + overlayAlpha);
 
-        // Translación hacia abajo del título. Caunto más scroll menos
-        // traslación. Como máximo la altura de la imagen menos
+        // Translaciï¿½n hacia abajo del tï¿½tulo. Caunto mï¿½s scroll menos
+        // traslaciï¿½n. Como mï¿½ximo la altura de la imagen menos
         // la altura del TextView (en la escala actual).
-        // Como minimo 0 (situándose debajo de la toolbar).
+        // Como minimo 0 (situï¿½ndose debajo de la toolbar).
         int maxTitleTranslationY = (int) (imageHeight - lblTituloHeight *
                 scale);
         int titleTranslationY = maxTitleTranslationY - scrollY;
         titleTranslationY = Math.max(0, titleTranslationY);
         lblTitulo.setTranslationY(titleTranslationY);
 
-        // El título de la toolbar sólo debe mostrarse si el título se ha
+        // El tï¿½tulo de la toolbar sï¿½lo debe mostrarse si el tï¿½tulo se ha
         // trasladado por completo.
         if (titleTranslationY == 0) {
             getSupportActionBar().setTitle(getString(R.string.app_name));
@@ -121,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
             toolbar.setBackgroundColor(getResources().getColor(android.R
                     .color.transparent));
         }
-        Log.d(getString(R.string.app_name), "Traslación título: " + titleTranslationY);
+        Log.d(getString(R.string.app_name), "Traslaciï¿½n tï¿½tulo: " + titleTranslationY);
     }
 
-    // Retorna el color base aplícandole una determinada transaparencia alpha.
+    // Retorna el color base aplï¿½candole una determinada transaparencia alpha.
     private int getColorWithAlpha(float alpha, int baseColor) {
         int a = Math.min(255, Math.max(0, (int) (alpha * 255))) << 24;
         int rgb = 0x00ffffff & baseColor;

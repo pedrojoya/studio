@@ -151,18 +151,18 @@ public class MainActivity extends AppCompatActivity implements OnListaAlumnosFra
 
     // Configura la toolbar.
     private void setupToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        findViewById(R.id.btnAgregar).setOnClickListener(new View.OnClickListener() {
+        ActivityCompat.requireViewById(this, R.id.btnAgregar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onAgregarAlumno();
             }
         });
-        btnAgregar = (FloatingActionButton) findViewById(R.id.btnAgregar);
+        btnAgregar = ActivityCompat.requireViewById(this, R.id.btnAgregar);
     }
 
     // Carga el fragmento de login.

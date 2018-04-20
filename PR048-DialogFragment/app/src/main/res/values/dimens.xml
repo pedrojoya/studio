@@ -13,4 +13,5 @@
     <dimen name="two_line_text_marginRight" tools:keep="@dimen/two_line_text_marginRight">16dp</dimen>
 
     <dimen name="activity_main_item_lblAddress">14sp</dimen>
+    <dimen name="dialog_login_padding">24dp</dimen>
 </resources>

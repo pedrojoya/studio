@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr147.main;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,7 +25,7 @@ public class LoremFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_lorem, container, false);
     }
@@ -39,14 +40,14 @@ public class LoremFragment extends Fragment {
 
     @SuppressWarnings("unused")
     private void initViews(View view) {
-        fab = getActivity().findViewById(R.id.fab);
+        fab = requireActivity().findViewById(R.id.fab);
 
         // Only first fragment in ViewPager should do this.
         setupFab();
     }
 
     private void share() {
-        Toast.makeText(getActivity(), getString(R.string.lorem_fragment_share), Toast.LENGTH_SHORT)
+        Toast.makeText(requireActivity(), getString(R.string.lorem_fragment_share), Toast.LENGTH_SHORT)
                 .show();
     }
 

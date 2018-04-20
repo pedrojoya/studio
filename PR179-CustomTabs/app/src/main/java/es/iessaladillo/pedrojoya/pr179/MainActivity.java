@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        RecyclerView grdWords = findViewById(R.id.grdWords);
+        RecyclerView grdWords = ActivityCompat.requireViewById(this, R.id.grdWords);
         grdWords.setHasFixedSize(true);
         // 2 or 3 columns depending on orientation.
         grdWords.setLayoutManager(

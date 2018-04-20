@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     // Obtiene e inicializa las vistas.
     private void initVistas() {
         configToolbar();
-        swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
+        swlPanel = ActivityCompat.requireViewById(this, R.id.swlPanel);
         if (swlPanel != null) {
             swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
                     android.R.color.holo_green_light,
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     private void configToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
     }
 
     // Obtiene los datos JSON de la lista de fotos de Instagram.

@@ -72,10 +72,10 @@ class AlumnosAdapter extends ArrayAdapter<Alumno> {
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
             // Se obtienen las vistas de la vista-fila.
-            imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
-            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
-            lblCurso = (TextView) itemView.findViewById(R.id.lblCurso);
-            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
+            imgAvatar = (CircleImageView) ViewCompat.requireViewById(itemView, R.id.imgAvatar);
+            lblNombre = (TextView) ViewCompat.requireViewById(itemView, R.id.lblNombre);
+            lblCurso = (TextView) ViewCompat.requireViewById(itemView, R.id.lblCurso);
+            lblDireccion = (TextView) ViewCompat.requireViewById(itemView, R.id.lblDireccion);
         }
 
     }

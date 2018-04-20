@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        lblLocation = (TextView) findViewById(R.id.lblLocation);
+        lblLocation = ActivityCompat.requireViewById(this, R.id.lblLocation);
     }
 
     // Crea el cliente de acceso a la API.

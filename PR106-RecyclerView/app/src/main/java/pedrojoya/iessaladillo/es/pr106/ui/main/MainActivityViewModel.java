@@ -26,4 +26,8 @@ class MainActivityViewModel extends ViewModel {
     public void addFakeStudent() {
         repository.addFakeStudent();
     }
+
+    public void deleteStudent(int position) {
+        repository.deleteStudent(position);
+    }
 }

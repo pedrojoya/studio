@@ -2,16 +2,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/general_activity_vertical_margin">
+    android:padding="@dimen/activity_main_margin">
 
     <TextView
         android:id="@+id/lblWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:labelFor="@+id/txtWord"
         android:text="@string/activity_main_lblWord"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/primary_text"/>
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <AutoCompleteTextView
         android:id="@+id/txtWord"
@@ -42,6 +40,6 @@
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/txtWord"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"/>
+        android:layout_marginTop="@dimen/activity_main_margin"/>
 
 </RelativeLayout>

@@ -69,8 +69,8 @@ public class MainFragment extends Fragment implements AlumnosAdapter
 
     // Configura la Toolbar.
     private void configToolbar(View view) {
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        AppCompatActivity actividad = (AppCompatActivity) getActivity();
+        Toolbar toolbar = (Toolbar) ViewCompat.requireViewById(view, R.id.toolbar);
+        AppCompatActivity actividad = (AppCompatActivity) requireActivity();
         actividad.setSupportActionBar(toolbar);
         if (actividad.getSupportActionBar() != null) {
             actividad.getSupportActionBar().setHomeButtonEnabled(true);
@@ -97,12 +97,12 @@ public class MainFragment extends Fragment implements AlumnosAdapter
                 checkAdapterIsEmpty();
             }
         });
-        lstAlumnos = (RecyclerView) view.findViewById(R.id.lstAlumnos);
-        mEmptyView = (TextView) view.findViewById(R.id.lblNoHayAlumnos);
+        lstAlumnos = (RecyclerView) ViewCompat.requireViewById(view, R.id.lstAlumnos);
+        mEmptyView = (TextView) ViewCompat.requireViewById(view, R.id.lblNoHayAlumnos);
         if (lstAlumnos != null) {
             lstAlumnos.setHasFixedSize(true);
             lstAlumnos.setAdapter(mAdaptador);
-            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+            LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireActivity(),
                     LinearLayoutManager.VERTICAL, false);
             lstAlumnos.setLayoutManager(mLayoutManager);
             lstAlumnos.setItemAnimator(new DefaultItemAnimator());
@@ -121,7 +121,7 @@ public class MainFragment extends Fragment implements AlumnosAdapter
                 }
             });
             checkAdapterIsEmpty();
-            progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+            progressBar = (ProgressBar) ViewCompat.requireViewById(view, R.id.progressBar);
             if (mIsLoading) {
                 progressBar.setVisibility(View.VISIBLE);
             }

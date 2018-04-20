@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Navigation drawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="activity_main_mnuOption1">Option 1</string>
+    <string name="activity_main_mnuOption2">Option 2</string>
+    <string name="activity_main_mnuOption3">Option 3</string>
+    <string name="activity_main_mnuOption4">Option 4</string>
+    <string name="activity_main_mnuOthers">Others</string>
+    <string name="activity_main_mnuOption5">Option 5</string>
+
+    <string name="nav_header_imgHeader">Header image</string>
+    <string name="nav_header_lblUsername">Baldomero</string>
+    <string name="nav_header_lblUserEmail">baldomero@android.com</string>
+    <string name="main_activity_show_option5">Show Option 5</string>
+</resources>

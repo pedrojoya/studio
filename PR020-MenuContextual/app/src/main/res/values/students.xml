@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="students">
+    <string-array name="students" translatable="false">
         <item>Baldomero</item>
         <item>Gervasio</item>
         <item>Filomeno</item>

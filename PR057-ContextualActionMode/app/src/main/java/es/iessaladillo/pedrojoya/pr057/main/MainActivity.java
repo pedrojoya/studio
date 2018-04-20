@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr057.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.ActionMode;
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        txtStudent = findViewById(R.id.txtStudent);
-        lstSubjects = findViewById(R.id.lstSubjects);
+        txtStudent = ActivityCompat.requireViewById(this, R.id.txtStudent);
+        lstSubjects = ActivityCompat.requireViewById(this, R.id.lstSubjects);
 
         setupStudent();
         setupSubjectList();

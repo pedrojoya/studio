@@ -2,8 +2,9 @@ package es.iessaladillo.pedrojoya.pr211.ui.main;
 
 
 import android.support.annotation.NonNull;
-import android.support.v7.recyclerview.extensions.DiffCallback;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ public class MainFragmentListAdapter extends ListAdapter<Student, MainFragmentLi
     }
 
     // DiffCallback for get differences between old and new data list.
-    public static final DiffCallback<Student> DIFF_CALLBACK = new DiffCallback<Student>() {
+    private static final DiffUtil.ItemCallback<Student> DIFF_CALLBACK = new DiffUtil.ItemCallback<Student>() {
         @Override
         public boolean areItemsTheSame(@NonNull Student oldStudent, @NonNull Student newStudent) {
             // Student properties may have changed if reloaded from the DB, but ID is fixed
@@ -57,8 +58,9 @@ public class MainFragmentListAdapter extends ListAdapter<Student, MainFragmentLi
                 .round();
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.fragment_main_item, parent, false);
         final ViewHolder viewHolder = new ViewHolder(itemView);
@@ -72,25 +74,19 @@ public class MainFragmentListAdapter extends ListAdapter<Student, MainFragmentLi
     }
 
     @Override
-    public void onBindViewHolder(MainFragmentListAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.bind(getItem(position), position);
+    public void onBindViewHolder(@NonNull MainFragmentListAdapter.ViewHolder viewHolder, int position) {
+        viewHolder.bind(getItem(position));
     }
 
     @Override
-    public void setList(List<Student> list) {
+    public void submitList(List<Student> list) {
         checkEmptyViewVisibility(list == null ? 0 : list.size());
-        super.setList(list);
+        super.submitList(list);
     }
 
     public Student getItemAtPosition(int position) {
-        Student student = null;
-        try {
-            student = getItem(position);
-        } finally {
-            return student;
-        }
+        return getItem(position);
     }
-
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
@@ -113,15 +109,15 @@ public class MainFragmentListAdapter extends ListAdapter<Student, MainFragmentLi
 
         private final TextView lblGrade;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-            imgAvatar = itemView.findViewById(R.id.imgAvatar);
-            lblName = itemView.findViewById(R.id.lblName);
-            lblGrade = itemView.findViewById(R.id.lblGrade);
-            lblAddress = itemView.findViewById(R.id.lblAddress);
+            imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
+            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
         }
 
-        public void bind(Student student, int position) {
+        void bind(Student student) {
             lblName.setText(student.getName());
             lblGrade.setText(student.getGrade());
             lblAddress.setText(student.getAddress());

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVistas() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         overflowEnDispositivoConTeclaMenu();
         lblPreferencias = (TextView) this.findViewById(R.id.lblPreferencias);

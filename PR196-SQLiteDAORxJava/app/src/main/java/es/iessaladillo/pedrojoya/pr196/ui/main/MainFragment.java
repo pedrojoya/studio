@@ -54,9 +54,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        repository = RepositoryImpl.getInstance(getActivity());
+        repository = RepositoryImpl.getInstance(requireActivity());
         compositeDisposable = new CompositeDisposable();
-        viewModel = ViewModelProviders.of(getActivity()).get(MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
         initViews(getView());
         if (savedInstanceState == null) {
             loadStudents();
@@ -64,9 +64,9 @@ public class MainFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        fab = getActivity().findViewById(R.id.fab);
-        lblEmptyView = view.findViewById(R.id.lblEmptyView);
-        lstStudents = view.findViewById(R.id.lstStudents);
+        fab = requireActivity().findViewById(R.id.fab);
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
+        lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
 
         setupFab();
         setupRecyclerView();
@@ -83,9 +83,9 @@ public class MainFragment extends Fragment {
         adapter.setEmptyView(lblEmptyView);
         lstStudents.setAdapter(adapter);
         lstStudents.setLayoutManager(
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
         lstStudents.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
@@ -127,12 +127,12 @@ public class MainFragment extends Fragment {
     }
 
     private void showSuccessDeletingStudent() {
-        Toast.makeText(getActivity(), R.string.main_fragment_student_deleted, Toast.LENGTH_SHORT)
+        Toast.makeText(requireActivity(), R.string.main_fragment_student_deleted, Toast.LENGTH_SHORT)
                 .show();
     }
 
     private void showErrorDeletingStudent() {
-        Toast.makeText(getActivity(), R.string.main_fragment_error_deleting_student,
+        Toast.makeText(requireActivity(), R.string.main_fragment_error_deleting_student,
                 Toast.LENGTH_SHORT).show();
     }
 

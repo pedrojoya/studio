@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class MainActivityViewModel extends ViewModel {
+@SuppressWarnings("WeakerAccess")
+public class MainActivityViewModel extends ViewModel {
 
     private List<String> subjects;
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/mnuOption1"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/activity_main_option1"/>
+        <item
+            android:id="@+id/mnuOption2"
+            android:icon="@drawable/ic_event_black_24dp"
+            android:title="@string/activity_main_option2"/>
+    </group>
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/mnuOption3"
+            android:icon="@drawable/ic_forum_black_24dp"
+            android:title="@string/activity_main_option3"/>
+        <item
+            android:icon="@drawable/ic_event_black_24dp"
+            android:title="@string/activity_main_option4"/>
+        <item
+            android:icon="@drawable/ic_event_black_24dp"
+            android:title="@string/activity_main_option5"/>
+    </group>
+    <item
+        android:title="@string/activity_main_mnuOthers">
+        <menu>
+            <item
+                android:id="@+id/mnuDetail"
+                android:icon="@drawable/ic_headset_black_24dp"
+                android:title="@string/activity_main_mnuDetail"/>
+        </menu>
+    </item>
+    <group
+        android:id="@+id/group3">
+        <item
+            android:id="@+id/mnuDownloaded"
+            android:title="@string/activity_main_mnuDownloaded"
+            app:actionLayout="@layout/action_view_switch"/>
+    </group>
+
+</menu>

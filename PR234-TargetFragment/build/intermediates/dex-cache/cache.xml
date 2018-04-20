@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_6fb5f8f74eca0bd3ee5773789fd79e6cd47dd704/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_aeac0f872beecddb37c6d323742e769eaee52510/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="afe7caec06c8a696c92b94c0eb258a718fcf628b">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ac21a500991937957ae309777ecc9280d38a346f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_faccb25c3bc1d4da6d79cbf8c6e9595c721ef28d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_258ef1234fda14f3daf4e26c9556f512773168f0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="031e8b3ab2df4ab43b1017f84417d7e10dfbb8d2">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/de.hdodenhof-circleimageview-2.0.0_304e8bfc6fe7d031e648da56ec7ceddab3d3f35c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7d631acf622b2631b45af09a3ac1835a14d102f7">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.0.0_62e9ee11cd831128058148d8d7eb319ae209261b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_f8672b4ef2d2df3aff91cb2a4c6b42cd0cb07794/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_d983eb3c0e43a055624838a08b7f26bb2313351c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.0/67e564dac5d137ba17cbb464ce66e2bd026ee532/butterknife-annotations-8.0.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="67e564dac5d137ba17cbb464ce66e2bd026ee532">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.0.0_e7984cdfcf8aebd68fe4c4568849acd8a00f8aa8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_1687e178bf0c980b47ebe4589264f3fe1eac2352/classes.dex" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="62c6cd9763b9508e0f04a106ac0a316e3bd08733">
+        <dex dex="/Users/pedro/studio/pr234-DialogFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_54d7115d96e2c0f942e76924182f4f445e7ef78b/classes.dex" />
+    </item>
+
+</items>

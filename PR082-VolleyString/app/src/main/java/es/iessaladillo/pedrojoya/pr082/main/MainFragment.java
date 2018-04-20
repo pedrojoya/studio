@@ -66,16 +66,16 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        requestQueue = VolleyInstance.getInstance(getActivity()).getRequestQueue();
+        requestQueue = VolleyInstance.getInstance(requireActivity()).getRequestQueue();
         simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
         initViews(getView());
     }
 
     private void initViews(View view) {
-        txtName = view.findViewById(R.id.txtName);
-        btnSearch = view.findViewById(R.id.btnSearch);
-        btnEcho = view.findViewById(R.id.btnEcho);
-        pbProgress = view.findViewById(R.id.pbProgress);
+        txtName = ViewCompat.requireViewById(view, R.id.txtName);
+        btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
+        btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
+        pbProgress = ViewCompat.requireViewById(view, R.id.pbProgress);
 
         btnSearch.setOnClickListener(v -> search());
         btnEcho.setOnClickListener(v -> echo());
@@ -86,7 +86,7 @@ public class MainFragment extends Fragment {
         if (TextUtils.isEmpty(name)) {
             return;
         }
-        if (NetworkUtils.isConnectionAvailable(getActivity())) {
+        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
             sendSearchRequest(name);
         } else {
@@ -99,7 +99,7 @@ public class MainFragment extends Fragment {
             requestQueue.add(new GoogleRequest(URLEncoder.encode(name, "UTF-8"),
                     response -> showResult(extractResultFromContent(response)), this::showError));
         } catch (UnsupportedEncodingException e) {
-            Toast.makeText(getActivity(), R.string.main_fragment_coding_error, Toast.LENGTH_LONG)
+            Toast.makeText(requireActivity(), R.string.main_fragment_coding_error, Toast.LENGTH_LONG)
                     .show();
         }
     }
@@ -123,7 +123,7 @@ public class MainFragment extends Fragment {
         if (TextUtils.isEmpty(name)) {
             return;
         }
-        if (NetworkUtils.isConnectionAvailable(getActivity())) {
+        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
             sendEchoRequest(name);
         } else {
@@ -140,18 +140,18 @@ public class MainFragment extends Fragment {
     }
 
     private void showNoConnectionAvailable() {
-        Toast.makeText(getActivity(), getString(R.string.main_fragment_no_connection),
+        Toast.makeText(requireActivity(), getString(R.string.main_fragment_no_connection),
                 Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(String result) {
         pbProgress.setVisibility(View.INVISIBLE);
-        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireActivity(), result, Toast.LENGTH_SHORT).show();
     }
 
     private void showError(VolleyError error) {
         pbProgress.setVisibility(View.INVISIBLE);
-        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+        Toast.makeText(requireActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
     }
 
 }

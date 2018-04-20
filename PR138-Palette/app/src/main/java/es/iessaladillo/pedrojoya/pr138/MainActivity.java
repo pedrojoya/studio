@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr138;
 
-import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     statusBarColor = mPalette.getDarkMutedColor(statusBarColor);
             }
-            setStatusBarcolor(getWindow(), statusBarColor);
+            setStatusBarColor(getWindow(), statusBarColor);
         }
     }
 
@@ -134,8 +133,7 @@ public class MainActivity extends AppCompatActivity {
         return color;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private static void setStatusBarcolor(Window window, int color) {
+    private static void setStatusBarColor(Window window, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(color);
         }

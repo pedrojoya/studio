@@ -1,41 +1,45 @@
-<android.support.design.widget.CoordinatorLayout
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="es.iessaladillo.pedrojoya.pr089.ui.main.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <!-- paddingTop para compatibilidad con CoordinatorLayout en API < 21 -->
-    <FrameLayout
-        android:id="@+id/flContenido"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnPlayStop"
+    <TextView
+        android:id="@+id/lblInteger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:src="@drawable/fab_play"
-        app:elevation="@dimen/fab_elevation"
-        app:pressedTranslationZ="@dimen/fab_pressedTranslationZ"/>
+        android:layout_marginStart="@dimen/activity_main_margin"
+        android:layout_marginTop="@dimen/activity_main_margin"
+        android:text="@string/activity_main_lblInteger"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</android.support.design.widget.CoordinatorLayout>
+    <EditText
+        android:id="@+id/txtInteger"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_main_margin"
+        android:layout_marginStart="@dimen/activity_main_margin"
+        android:hint="@string/activity_main_txtInteger"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblInteger"/>
+
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_main_margin"
+        android:layout_marginStart="@dimen/activity_main_margin"
+        android:layout_marginTop="@dimen/activity_main_margin"
+        android:text="@string/activity_main_btnCalculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInteger"/>
+
+</android.support.constraint.ConstraintLayout>

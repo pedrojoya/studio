@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements PickOrCaptureDial
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imgFoto = (ImageView) findViewById(R.id.imgFoto);
+        imgFoto = ActivityCompat.requireViewById(this, R.id.imgFoto);
         // Se lee de las preferencias el path del archivo con la foto escalada y privada
         // (si fuera una base de datos, leeríamos del registro correspondiente.
         SharedPreferences preferencias = getSharedPreferences(getString(R.string.app_name),
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements PickOrCaptureDial
 
     // Configura el FAB.
     private void setupFAB() {
-        FloatingActionButton btnCapturar = (FloatingActionButton) findViewById(R.id.btnCapturar);
+        FloatingActionButton btnCapturar = ActivityCompat.requireViewById(this, R.id.btnCapturar);
         if (btnCapturar != null) {
             btnCapturar.setOnClickListener(new View.OnClickListener() {
                 @Override

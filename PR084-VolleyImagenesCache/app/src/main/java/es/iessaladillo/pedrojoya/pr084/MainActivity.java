@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        swlPanel = (SwipeRefreshLayout) findViewById(R.id.swlPanel);
+        swlPanel = ActivityCompat.requireViewById(this, R.id.swlPanel);
         swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,

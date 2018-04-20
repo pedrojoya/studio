@@ -87,7 +87,7 @@ public class MainFragment extends Fragment {
     private void verArchivo(Uri uri) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri uriProvider = FileProvider
-                .getUriForFile(getActivity(),
+                .getUriForFile(requireActivity(),
                         "es.iessaladillo.pedrojoya.pr101.fileprovider",
                         new File(uri.getPath()));
 
@@ -110,12 +110,12 @@ public class MainFragment extends Fragment {
             String[] datosArray = getResources().getStringArray(R.array.alumnos);
             ArrayList<String> datosArrayList = new ArrayList<>(
                     Arrays.asList(datosArray));
-            mAdaptador = new ArrayAdapter<>(getActivity(),
+            mAdaptador = new ArrayAdapter<>(requireActivity(),
                     R.layout.fragment_main_item, datosArrayList);
         }
-        lstAlumnos = (ListView) view.findViewById(R.id.lstAlumnos);
+        lstAlumnos = (ListView) ViewCompat.requireViewById(view, R.id.lstAlumnos);
         if (lstAlumnos != null) {
-            lstAlumnos.setEmptyView(view.findViewById(R.id.lblEmpty));
+            lstAlumnos.setEmptyView(ViewCompat.requireViewById(view, R.id.lblEmpty));
             lstAlumnos.setAdapter(mAdaptador);
             // Se configura el modo de acción contextual.
             lstAlumnos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -134,7 +134,7 @@ public class MainFragment extends Fragment {
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     // Se infla el menú contextual.
-                    getActivity().getMenuInflater()
+                    requireActivity().getMenuInflater()
                             .inflate(R.menu.activity_main_contextual, menu);
                     // Se retorna que el evento ha sido gestionado.
                     return true;
@@ -179,9 +179,9 @@ public class MainFragment extends Fragment {
                 alumnos[i] = mAdaptador.getItem(i);
             }
             // Se inicia el servicio enviando como extra el array de datos.
-            Intent i = new Intent(getActivity(), ExportarService.class);
+            Intent i = new Intent(requireActivity(), ExportarService.class);
             i.putExtra(ExportarService.EXTRA_DATOS, alumnos);
-            getActivity().startService(i);
+            requireActivity().startService(i);
         }
     }
 
@@ -190,14 +190,14 @@ public class MainFragment extends Fragment {
         super.onResume();
         // Se registra el receptor para la acción.
         IntentFilter exportarFilter = new IntentFilter(ExportarService.ACTION_COMPLETADA);
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mExportarReceiver, exportarFilter);
+        LocalBroadcastManager.getInstance(requireActivity()).registerReceiver(mExportarReceiver, exportarFilter);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         // Se quita del registro el receptor.
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mExportarReceiver);
+        LocalBroadcastManager.getInstance(requireActivity()).unregisterReceiver(mExportarReceiver);
     }
 
     // Retorna un ArrayList con los elementos seleccionados. Recibe la lista y

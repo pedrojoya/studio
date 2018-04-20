@@ -4,20 +4,20 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="@bool/fitsSystemWindows">
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_main_appbarLayout_height"
-        android:fitsSystemWindows="@bool/fitsSystemWindows"
+        android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="@bool/fitsSystemWindows"
+            android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="@dimen/activity_main_collapsingToolbar_expandedTitleMarginStart"
             app:expandedTitleMarginBottom="@dimen/activity_main_collapsingToolbar_expandedTitleMarginBottom"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/activity_main_imgHeader"
-                android:fitsSystemWindows="@bool/fitsSystemWindows"
+                android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/photo"
                 app:layout_collapseMode="parallax"

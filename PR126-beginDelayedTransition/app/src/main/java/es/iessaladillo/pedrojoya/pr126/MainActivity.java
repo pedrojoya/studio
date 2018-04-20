@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        llContainer = findViewById(R.id.llContainer);
-        btnAdd = findViewById(R.id.btnAdd);
-        spnAnimations = findViewById(R.id.spnAnimation);
+        llContainer = ActivityCompat.requireViewById(this, R.id.llContainer);
+        btnAdd = ActivityCompat.requireViewById(this, R.id.btnAdd);
+        spnAnimations = ActivityCompat.requireViewById(this, R.id.spnAnimation);
 
         btnAdd.setOnClickListener(v -> add());
     }

@@ -76,21 +76,21 @@ public class StudentFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        repository = RepositoryImpl.getInstance(getActivity());
+        repository = RepositoryImpl.getInstance(requireActivity());
         compositeDisposable = new CompositeDisposable();
         initViews(getView());
     }
 
     private void initViews(View view) {
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        tilName = view.findViewById(R.id.tilName);
-        tilGrade = view.findViewById(R.id.tilGrade);
-        tilPhone = view.findViewById(R.id.tilPhone);
-        TextInputLayout tilAddress = view.findViewById(R.id.tilAddress);
-        txtName = view.findViewById(R.id.txtName);
-        spnGrade = view.findViewById(R.id.txtGrade);
-        txtPhone = view.findViewById(R.id.txtPhone);
-        txtAddress = view.findViewById(R.id.txtAddress);
+        FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
+        tilName = ViewCompat.requireViewById(view, R.id.tilName);
+        tilGrade = ViewCompat.requireViewById(view, R.id.tilGrade);
+        tilPhone = ViewCompat.requireViewById(view, R.id.tilPhone);
+        TextInputLayout tilAddress = ViewCompat.requireViewById(view, R.id.tilAddress);
+        txtName = ViewCompat.requireViewById(view, R.id.txtName);
+        spnGrade = ViewCompat.requireViewById(view, R.id.txtGrade);
+        txtPhone = ViewCompat.requireViewById(view, R.id.txtPhone);
+        txtAddress = ViewCompat.requireViewById(view, R.id.txtAddress);
 
         fab.setOnClickListener(v -> saveStudent());
         txtAddress.setOnEditorActionListener((textView, actionId, keyEvent) -> {
@@ -108,14 +108,14 @@ public class StudentFragment extends Fragment {
     }
 
     private void loadGrades() {
-        ArrayAdapter<CharSequence> gradesAdapter = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> gradesAdapter = ArrayAdapter.createFromResource(requireActivity(),
                 R.array.grades, android.R.layout.simple_list_item_1);
         spnGrade.setAdapter(gradesAdapter);
         spnGrade.setOnItemSelectedListener((item, selectedIndex) -> spnGrade.setText(item));
     }
 
     private void updateTitle() {
-        getActivity().setTitle(
+        requireActivity().setTitle(
                 editMode ? R.string.student_fragment_edit_student : R.string
                         .student_fragment_add_student);
     }
@@ -134,9 +134,9 @@ public class StudentFragment extends Fragment {
     }
 
     private void showErrorLoadingStudentAndFinish() {
-        Toast.makeText(getActivity(), R.string.student_fragment_error_loading_student,
+        Toast.makeText(requireActivity(), R.string.student_fragment_error_loading_student,
                 Toast.LENGTH_LONG).show();
-        getActivity().finish();
+        requireActivity().finish();
     }
 
     public void saveStudent() {
@@ -193,12 +193,12 @@ public class StudentFragment extends Fragment {
     }
 
     private void showSuccessAddingStudent() {
-        Toast.makeText(getActivity(), getString(R.string.student_fragment_student_added),
+        Toast.makeText(requireActivity(), getString(R.string.student_fragment_student_added),
                 Toast.LENGTH_SHORT).show();
     }
 
     private void showErrorAddingStudent() {
-        Toast.makeText(getActivity(), getString(R.string.student_fragment_error_adding_student),
+        Toast.makeText(requireActivity(), getString(R.string.student_fragment_error_adding_student),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -217,13 +217,13 @@ public class StudentFragment extends Fragment {
     }
 
     private void showSucessUpdatingStudent() {
-        Toast.makeText(getActivity(), getString(R.string.student_fragment_student_updated),
+        Toast.makeText(requireActivity(), getString(R.string.student_fragment_student_updated),
                 Toast.LENGTH_SHORT).show();
 
     }
 
     private void showErrorUpdatingStudent() {
-        Toast.makeText(getActivity(), getString(R.string.student_fragment_error_updating_student),
+        Toast.makeText(requireActivity(), getString(R.string.student_fragment_error_updating_student),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -244,8 +244,8 @@ public class StudentFragment extends Fragment {
     }
 
     private void sendResultOkAndFinish() {
-        getActivity().setResult(Activity.RESULT_OK, new Intent());
-        getActivity().finish();
+        requireActivity().setResult(Activity.RESULT_OK, new Intent());
+        requireActivity().finish();
     }
 
     @Override

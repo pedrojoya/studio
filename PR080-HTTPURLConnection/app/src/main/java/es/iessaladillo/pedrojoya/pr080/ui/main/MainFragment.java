@@ -3,8 +3,10 @@ package es.iessaladillo.pedrojoya.pr080.ui.main;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +51,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -61,10 +63,10 @@ public class MainFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        txtName = view.findViewById(R.id.txtName);
-        btnSearch = view.findViewById(R.id.btnSearch);
-        btnEcho = view.findViewById(R.id.btnEcho);
-        pbProgress = view.findViewById(R.id.pbProgress);
+        txtName = ViewCompat.requireViewById(view, R.id.txtName);
+        btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
+        btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
+        pbProgress = ViewCompat.requireViewById(view, R.id.pbProgress);
 
         btnSearch.setOnClickListener(v -> search());
         btnEcho.setOnClickListener(v -> echo());
@@ -75,7 +77,7 @@ public class MainFragment extends Fragment {
         if (TextUtils.isEmpty(name)) {
             return;
         }
-        if (NetworkUtils.isConnectionAvailable(getActivity())) {
+        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
             (new SearchAsyncTask(this)).execute(name);
         } else {
@@ -88,7 +90,7 @@ public class MainFragment extends Fragment {
         if (TextUtils.isEmpty(name)) {
             return;
         }
-        if (NetworkUtils.isConnectionAvailable(getActivity())) {
+        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
             (new EchoAsyncTask(this)).execute(name);
         } else {
@@ -98,20 +100,20 @@ public class MainFragment extends Fragment {
     }
 
     private void showNoConnectionAvailable() {
-        Toast.makeText(getActivity(), getString(R.string.main_fragment_no_connection),
+        Toast.makeText(requireActivity(), getString(R.string.main_fragment_no_connection),
                 Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(String result) {
         pbProgress.setVisibility(View.INVISIBLE);
-        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireActivity(), result, Toast.LENGTH_SHORT).show();
     }
 
     static class SearchAsyncTask extends AsyncTask<String, Void, String> {
 
         private final WeakReference<MainFragment> mainFragmentWeakReference;
 
-        public SearchAsyncTask(MainFragment mainFragment) {
+        SearchAsyncTask(MainFragment mainFragment) {
             mainFragmentWeakReference = new WeakReference<>(mainFragment);
         }
 
@@ -172,7 +174,7 @@ public class MainFragment extends Fragment {
         private final WeakReference<MainFragment> mainFragmentWeakReference;
         private final SimpleDateFormat simpleDateFormat;
 
-        public EchoAsyncTask(MainFragment mainFragment) {
+        EchoAsyncTask(MainFragment mainFragment) {
             mainFragmentWeakReference = new WeakReference<>(mainFragment);
             simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
         }

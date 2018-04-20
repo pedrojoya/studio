@@ -158,7 +158,7 @@ public class ListaAlumnosFragment extends Fragment {
     @Override
     public void onResume() {
         // Se obtiene la BD.
-        mDao = new DAO(getActivity());
+        mDao = new DAO(requireActivity());
         // Se carga la lista de alumnos.
         cargarAlumnos();
         super.onResume();
@@ -180,7 +180,7 @@ public class ListaAlumnosFragment extends Fragment {
                 Instituto.Alumno.TELEFONO, Instituto.Alumno.DIRECCION};
         int[] to = {R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono,
                 R.id.lblDireccion};
-        lstAlumnos.setAdapter(new AlumnosAdapter(getActivity(),
+        lstAlumnos.setAdapter(new AlumnosAdapter(requireActivity(),
                 R.layout.fragment_lista_alumnos_item, cursor, from, to, 0));
     }
 

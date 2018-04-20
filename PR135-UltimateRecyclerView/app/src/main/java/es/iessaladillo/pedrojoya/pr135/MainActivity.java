@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         initVistas();
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        lstAlumnos = (UltimateRecyclerView) findViewById(R.id.lstAlumnos);
+        lstAlumnos = ActivityCompat.requireViewById(this, R.id.lstAlumnos);
         lstAlumnos.setHasFixedSize(true);
         mAdaptador = new AlumnosAdapter(this, DB.getAlumnos());
         lstAlumnos.setLayoutManager(

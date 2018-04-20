@@ -63,7 +63,7 @@ public class MainActivityPageFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        TextView lblText = view.findViewById(R.id.lblText);
+        TextView lblText = ViewCompat.requireViewById(view, R.id.lblText);
         lblText.setText(getString(R.string.main_activity_section_format, mValue));
         view.setBackgroundColor(mColor);
     }

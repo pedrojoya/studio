@@ -1,13 +1,13 @@
 package es.iessaladillo.pedrojoya.pr010;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lblText = findViewById(R.id.lblText);
-        txtMessage = findViewById(R.id.txtMessage);
-        btnSend = findViewById(R.id.btnSend);
-        scvText = findViewById(R.id.scvText);
+        lblText = ActivityCompat.requireViewById(this, R.id.lblText);
+        txtMessage = ActivityCompat.requireViewById(this, R.id.txtMessage);
+        btnSend = ActivityCompat.requireViewById(this, R.id.btnSend);
+        scvText = ActivityCompat.requireViewById(this, R.id.scvText);
 
         txtMessage.setHorizontallyScrolling(false);
         txtMessage.setMaxLines(getResources().getInteger(R.integer.main_activity_txtMensaje_maxLines));
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         btnSend.setOnClickListener(v -> sendMessage(txtMessage.getText().toString()));
         // Initial state
         checkIsValidForm();
-        doScroll(scvText, View.FOCUS_DOWN);
+        doScroll(scvText);
     }
 
     private void sendMessage(String text) {
@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
             String time = mDateFormatter.format(new Date());
             lblText.append(getString(R.string.main_activity_log_message, time, text));
             txtMessage.setText("");
-            doScroll(scvText, View.FOCUS_DOWN);
+            doScroll(scvText);
         }
     }
 
     @SuppressWarnings("SameParameterValue")
-    private void doScroll(final NestedScrollView scv, final int focus) {
+    private void doScroll(final NestedScrollView scv) {
         // Must be posted in order to calculate the end position correctly.
         scv.post(() -> {
             scv.smoothScrollTo(0, scv.getBottom());

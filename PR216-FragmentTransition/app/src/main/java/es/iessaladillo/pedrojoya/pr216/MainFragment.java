@@ -45,9 +45,9 @@ public class MainFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        spnExit = view.findViewById(R.id.spnExit);
-        spnEnter = view.findViewById(R.id.spnEnter);
-        btnNavigate = view.findViewById(R.id.btnNavigate);
+        spnExit = ViewCompat.requireViewById(view, R.id.spnExit);
+        spnEnter = ViewCompat.requireViewById(view, R.id.spnEnter);
+        btnNavigate = ViewCompat.requireViewById(view, R.id.btnNavigate);
 
         spnEnter.setSelection(ANIM_PULL_RIGHT_INDEX);
         btnNavigate.setOnClickListener(v -> navigate());
@@ -55,7 +55,7 @@ public class MainFragment extends Fragment {
 
     private void navigate() {
         FragmentUtils.replaceFragmentAddToBackstackWithCustomAnimations(
-                getActivity().getSupportFragmentManager(),
+                requireActivity().getSupportFragmentManager(),
                 R.id.flContent,
                 SecundaryFragment.newInstance(),
                 TAG_SECUNDARY_FRAGMENT,

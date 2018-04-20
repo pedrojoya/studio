@@ -19,13 +19,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!-- paddingTop for compatibility between CoordinatorLayout
-    and ListView in API < 21 -->
     <FrameLayout
         android:id="@+id/flContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnPlayStop"

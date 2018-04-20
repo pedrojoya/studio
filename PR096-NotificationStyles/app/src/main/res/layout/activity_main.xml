@@ -1,51 +1,82 @@
-<android.support.v7.widget.GridLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:orientation="horizontal"
-    app:columnCount="@integer/grid_columnCount">
+    android:layout_height="match_parent">
 
     <Button
-        android:text="@string/big_text_style"
         android:id="@+id/btnBigTextStyle"
-        app:layout_rowWeight="1"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        android:text="@string/activity_main_btnBigTextStyle"
+        app:layout_constraintEnd_toStartOf="@+id/btnBigPictureStyle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:text="@string/big_picture_style"
         android:id="@+id/btnBigPictureStyle"
-        app:layout_rowWeight="1"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/main_activity_margin"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        android:text="@string/activity_main_btnBigPictureStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnBigTextStyle"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:text="@string/inbox_style"
         android:id="@+id/btnInboxStyle"
-        app:layout_rowWeight="1"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        android:text="@string/activity_main_btnInboxStyle"
+        app:layout_constraintEnd_toStartOf="@+id/btnProgressBar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBigTextStyle"/>
 
     <Button
-        android:text="@string/progress_bar"
         android:id="@+id/btnProgressBar"
-        app:layout_rowWeight="1"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/main_activity_margin"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        android:text="@string/activity_main_btnProgressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnInboxStyle"
+        app:layout_constraintTop_toBottomOf="@+id/btnBigPictureStyle"/>
 
     <Button
-        android:text="@string/progreso_indeterminado"
-        android:id="@+id/btnProgresoIndeterminado"
-        app:layout_rowWeight="1"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"/>
+        android:id="@+id/btnIndeterminateProgress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        android:text="@string/activity_main_btnIndeterminateProgress"
+        app:layout_constraintEnd_toStartOf="@+id/btnHeadsUp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInboxStyle"/>
 
     <Button
-        android:text="@string/heads_up_notification"
         android:id="@+id/btnHeadsUp"
-        app:layout_rowWeight="1"
-        app:layout_columnWeight="1"
-        app:layout_gravity="fill"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/main_activity_margin"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        android:text="@string/activity_main_btnHeadsUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnIndeterminateProgress"
+        app:layout_constraintTop_toBottomOf="@+id/btnProgressBar"/>
 
-</android.support.v7.widget.GridLayout>
+</android.support.constraint.ConstraintLayout>

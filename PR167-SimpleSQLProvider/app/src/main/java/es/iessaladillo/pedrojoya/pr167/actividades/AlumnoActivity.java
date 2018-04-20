@@ -26,14 +26,14 @@ public class AlumnoActivity extends AppCompatActivity {
 
     // Configura la toolbar.
     private void setupToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
     private void initVistas() {
-        findViewById(R.id.btnGuardar).setOnClickListener(new View.OnClickListener() {
+        ActivityCompat.requireViewById(this, R.id.btnGuardar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Se llama al método guardarAlumno del fragmento.

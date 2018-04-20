@@ -180,6 +180,7 @@ public class MainActivityTests {
     }
 
     // Rota la pantalla.
+    @SuppressWarnings("unused")
     private void rotateScreen() {
         Context context = InstrumentationRegistry.getTargetContext();
         int orientation

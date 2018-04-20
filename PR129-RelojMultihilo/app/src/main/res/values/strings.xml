@@ -3,6 +3,6 @@
 
     <string name="app_name">RelojMultihilo</string>
     <string name="activity_main_btnStart">Iniciar</string>
-    <string name="main_activity_stop">Parar</string>
+    <string name="activity_main_btnStop">Parar</string>
 
 </resources>

@@ -113,11 +113,11 @@ public class MainActivity extends AppCompatActivity implements OnItemLongClickLi
         cargarDatos();
         // Se configuran las listas. Se les crea un listener para cuando sean destinatarias
         // de una operación de drag & drop.
-        ListView mLst1 = (ListView) findViewById(R.id.lst1);
+        ListView mLst1 = ActivityCompat.requireViewById(this, R.id.lst1);
         Adaptador mAdaptador1 = new Adaptador(this, mDatos1);
         mLst1.setAdapter(mAdaptador1);
         mLst1.setOnDragListener(new OnListDragListener());
-        ListView mLst2 = (ListView) findViewById(R.id.lst2);
+        ListView mLst2 = ActivityCompat.requireViewById(this, R.id.lst2);
         Adaptador mAdaptador2 = new Adaptador(this, mDatos2);
         mLst2.setAdapter(mAdaptador2);
         mLst2.setOnDragListener(new OnListDragListener());

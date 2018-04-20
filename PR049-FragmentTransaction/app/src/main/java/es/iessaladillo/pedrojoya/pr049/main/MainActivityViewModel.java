@@ -2,24 +2,23 @@ package es.iessaladillo.pedrojoya.pr049.main;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr049.R;
-
 @SuppressWarnings("WeakerAccess")
 public class MainActivityViewModel extends AndroidViewModel {
+
+    private static final String STATE_SELECTED_ITEM = "STATE_SELECTED_ITEM";
 
     private List<String> items;
     private String selectedItem;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
-        selectedItem = application.getApplicationContext().getString(R.string
-                .main_activity_no_item);
         loadItems();
     }
 
@@ -41,4 +40,13 @@ public class MainActivityViewModel extends AndroidViewModel {
         this.selectedItem = selectedItem;
     }
 
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(STATE_SELECTED_ITEM, selectedItem);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null && selectedItem == null) {
+            selectedItem = savedInstanceState.getString(STATE_SELECTED_ITEM);
+        }
+    }
 }

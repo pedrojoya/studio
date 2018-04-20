@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
-def support_library_version = "27.0.2"
-def butterknife_version = "8.4.0"
+def support_library_version = "27.1.1"
+def butterknife_version = "8.8.1"
 def playservices_version = "9.4.0"
 
 android {

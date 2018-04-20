@@ -83,7 +83,7 @@ public class AlumnoFragment extends Fragment {
         // tanto para cuando no está desplegado como para cuando sí lo está. La
         // fuente de datos para el adaptador es un array de constantes de
         // cadena.
-        adaptadorCursos = ArrayAdapter.createFromResource(this.getActivity(), R.array.cursos,
+        adaptadorCursos = ArrayAdapter.createFromResource(requireActivity(), R.array.cursos,
                 android.R.layout.simple_spinner_item);
         adaptadorCursos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnCurso.setAdapter(adaptadorCursos);
@@ -94,11 +94,11 @@ public class AlumnoFragment extends Fragment {
         // Se establece el modo Editar.
         modo = MODO_EDITAR;
         // Se cargan los datos del alumno a partir del id recibido.
-        cargarAlumno(this.getArguments().getLong(EXTRA_ID));
+        cargarAlumno(getArguments().getLong(EXTRA_ID));
         // Se escriben los datos del alumno en las vistas correspondientes.
         alumnoToVistas();
         // Se actuliza el título de la actividad en relación al modo.
-        getActivity().setTitle(R.string.editar_alumno);
+        requireActivity().setTitle(R.string.editar_alumno);
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Agregar.
@@ -108,7 +108,7 @@ public class AlumnoFragment extends Fragment {
         // Se crea un nuevo objeto Alumno vacío.
         alumno = new Alumno();
         // Se actualiza el título de la actividad en relación al modo.
-        getActivity().setTitle(R.string.agregar_alumno);
+        requireActivity().setTitle(R.string.agregar_alumno);
     }
 
     // Carga los datos del alumno provenientes de la BD en el objeto Alumno.
@@ -116,7 +116,7 @@ public class AlumnoFragment extends Fragment {
         // Se consulta en la BD los datos del alumno a través del content
         // provider en un hilo diferente al hilo principal.
         Uri uri = Uri.parse(InstitutoProvider.CONTENT_URI_ALUMNOS + "/" + id);
-        CursorLoader cLoader = new CursorLoader(this.getActivity(), uri,
+        CursorLoader cLoader = new CursorLoader(requireActivity(), uri,
                 InstitutoContract.Alumno.TODOS, null, null, null);
         Cursor cursor = cLoader.loadInBackground();
         // Si no se ha encontrado el alumno, se informa y se pasa al modo
@@ -127,7 +127,7 @@ public class AlumnoFragment extends Fragment {
             // Se carga en el objeto Alumno.
             alumno = Alumno.fromCursor(cursor);
         } else {
-            Toast.makeText(this.getActivity(), R.string.alumno_no_encontrado, Toast.LENGTH_LONG)
+            Toast.makeText(requireActivity(), R.string.alumno_no_encontrado, Toast.LENGTH_LONG)
                     .show();
             setModoAgregar();
         }
@@ -148,7 +148,7 @@ public class AlumnoFragment extends Fragment {
                 actualizarAlumno();
             }
         } else {
-            Toast.makeText(this.getActivity(), this.getString(R.string.datos_obligatorios),
+            Toast.makeText(requireActivity(), getString(R.string.datos_obligatorios),
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -157,7 +157,7 @@ public class AlumnoFragment extends Fragment {
     private void agregarAlumno() {
         // Realizo el insert a través del content provider. Como resultado se
         // obtiene la uri del alumno insertado, de la que se extrae su id.
-        Uri resultado = this.getActivity().getContentResolver().insert(
+        Uri resultado = requireActivity().getContentResolver().insert(
                 InstitutoProvider.CONTENT_URI_ALUMNOS, Alumno.toContentValues(alumno));
         long id = 0;
         if (resultado != null) {
@@ -166,10 +166,10 @@ public class AlumnoFragment extends Fragment {
         // Se informa de si todo ha ido bien.
         if (id >= 0) {
             alumno.setId(id);
-            Toast.makeText(this.getActivity(), getString(R.string.insercion_correcta),
+            Toast.makeText(requireActivity(), getString(R.string.insercion_correcta),
                     Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this.getActivity(), getString(R.string.insercion_incorrecta),
+            Toast.makeText(requireActivity(), getString(R.string.insercion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
         // Se resetean las vistas para poder agregar otro alumno (seguimos en
@@ -182,13 +182,13 @@ public class AlumnoFragment extends Fragment {
         // Se realiza el update en la BD a través del content provider. Como
         // resultado obtenemos el número de registros actualizados.
         Uri uri = Uri.parse(InstitutoProvider.CONTENT_URI_ALUMNOS + "/" + alumno.getId());
-        if (this.getActivity().getContentResolver().update(uri, Alumno.toContentValues(alumno),
+        if (requireActivity().getContentResolver().update(uri, Alumno.toContentValues(alumno),
                 null, null) > 0) {
-            Toast.makeText(this.getActivity(), getString(R.string.actualizacion_correcta),
+            Toast.makeText(requireActivity(), getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
-            getActivity().finish();
+            requireActivity().finish();
         } else {
-            Toast.makeText(this.getActivity(), getString(R.string.actualizacion_incorrecta),
+            Toast.makeText(requireActivity(), getString(R.string.actualizacion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
     }

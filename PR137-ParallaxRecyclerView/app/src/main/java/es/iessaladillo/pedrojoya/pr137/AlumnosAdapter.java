@@ -271,9 +271,9 @@ public class AlumnosAdapter extends RecyclerView.Adapter<AlumnosAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             // Se obtienen las vistas de la vista-fila.
-            lblNombre = (TextView) itemView.findViewById(R.id.lblNombre);
-            lblDireccion = (TextView) itemView.findViewById(R.id.lblDireccion);
-            imgAvatar = (CircleImageView) itemView.findViewById(R.id.imgAvatar);
+            lblNombre = (TextView) ViewCompat.requireViewById(itemView, R.id.lblNombre);
+            lblDireccion = (TextView) ViewCompat.requireViewById(itemView, R.id.lblDireccion);
+            imgAvatar = (CircleImageView) ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
     }

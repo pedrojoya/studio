@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr017.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -15,45 +16,43 @@ import android.widget.Button;
 import es.iessaladillo.pedrojoya.pr017.Constants;
 import es.iessaladillo.pedrojoya.pr017.R;
 import es.iessaladillo.pedrojoya.pr017.data.Database;
-import es.iessaladillo.pedrojoya.pr017.data.Repository;
 import es.iessaladillo.pedrojoya.pr017.data.RepositoryImpl;
 
 public class MainActivity extends AppCompatActivity {
 
     private AutoCompleteTextView txtWord;
-    private WebView wvWeb;
+    private WebView webView;
     private Button btnTranslate;
 
-    private Repository mRepository;
-    private MainActivityViewModel mViewModel;
+    private MainActivityViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRepository = RepositoryImpl.getInstance(Database.getInstance());
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(mRepository)).get(
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(
+                RepositoryImpl.getInstance(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
     }
 
     private void initViews() {
-        txtWord = findViewById(R.id.txtWord);
-        wvWeb = findViewById(R.id.wvWeb);
-        btnTranslate = findViewById(R.id.btnTranslate);
+        txtWord = ActivityCompat.requireViewById(this, R.id.txtWord);
+        webView = ActivityCompat.requireViewById(this, R.id.wvWeb);
+        btnTranslate = ActivityCompat.requireViewById(this, R.id.btnTranslate);
 
-        txtWord.setAdapter(new MainActivityAdapter(this, mViewModel.getWords()));
-        wvWeb.setWebViewClient(new WebViewClient() {
+        txtWord.setAdapter(new MainActivityAdapter(this, viewModel.getWords()));
+        webView.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                wvWeb.setVisibility(View.VISIBLE);
+                webView.setVisibility(View.VISIBLE);
             }
 
         });
         btnTranslate.setOnClickListener(v -> {
-            mViewModel.setLoadedWord(txtWord.getText().toString());
-            searchWord(mViewModel.getLoadedWord());
+            viewModel.setLoadedWord(txtWord.getText().toString());
+            searchWord(viewModel.getLoadedWord());
         });
         txtWord.addTextChangedListener(new TextWatcher() {
 
@@ -73,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
         });
         // Initial state.
         checkIsValidForm();
-        if (!mViewModel.getLoadedWord().isEmpty()) {
-            searchWord(mViewModel.getLoadedWord());
+        if (!viewModel.getLoadedWord().isEmpty()) {
+            searchWord(viewModel.getLoadedWord());
         }
     }
 
     private void searchWord(String word) {
-        wvWeb.loadUrl(Constants.BASE_URL + word);
+        webView.loadUrl(Constants.BASE_URL + word);
     }
 
     private void checkIsValidForm() {

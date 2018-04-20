@@ -2,8 +2,10 @@ package es.iessaladillo.pedrojoya.pr222.detail;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,12 +45,14 @@ public class DetailFragment extends Fragment {
     }
 
     private void obtainArguments() {
-        mItem = getArguments().getString(EXTRA_ITEM);
-        mPosition = getArguments().getInt(EXTRA_POSITION);
+        if (getArguments() !=  null) {
+            mItem = getArguments().getString(EXTRA_ITEM);
+            mPosition = getArguments().getInt(EXTRA_POSITION);
+        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_detail, container, false);
     }
@@ -78,7 +82,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void initViews(View view) {
-            lblItem = view.findViewById(R.id.lblItem);
+            lblItem = ViewCompat.requireViewById(view, R.id.lblItem);
     }
 
     private void showItem() {

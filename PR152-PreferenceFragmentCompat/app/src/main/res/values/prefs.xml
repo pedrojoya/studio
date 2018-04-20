@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="prefSynchronization_title">Synchronization</string>
+
+    <string name="prefSync_key" translatable="false">prefSync</string>
+    <string name="prefSync_title">Synchronize</string>
+    <string name="prefSync_summaryOn">Yes</string>
+    <string name="prefSync_summaryOff">No</string>
+    <bool name="prefSync_defaultValue">true</bool>
+
+    <string name="prefConnectionType_key" translatable="false">prefConnectionType</string>
+    <string name="prefConnectionType_title">Connection type</string>
+    <string name="prefConnectionType_dialogTitle">Connection type</string>
+    <string-array name="prefConnectionType_entries">
+        <item>Wifi</item>
+        <item>Data plan</item>
+    </string-array>
+    <string-array name="prefConnectionType_entryValues" translatable="false">
+        <item>wifi</item>
+        <item>data</item>
+    </string-array>
+    <string name="prefConnectionType_defaultValue" translatable="false">wifi</string>
+
+    <string name="prefLanguage_key" translatable="false">prefLanguage</string>
+    <string name="prefLanguage_title">Language</string>
+    <string name="prefLanguage_dialogTitle">Language</string>
+    <string-array name="prefLanguage_entries">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
+    <string-array name="prefLanguage_entryValues" translatable="false">
+        <item>english</item>
+        <item>spanish</item>
+    </string-array>
+    <string name="prefLanguage_defaultValue" translatable="false">english</string>
+
+    <string name="prefAppearance_title">Appearance</string>
+
+    <string name="prefBigFontSize_key" translatable="false">prefBigFontSize</string>
+    <string name="prefBigFontSize_title">Big font size</string>
+    <string name="prefBigFontSize_summaryOn">Yes</string>
+    <string name="prefBigFontSize_summaryOff">No</string>
+    <bool name="prefBigFontSize_defaultValue">false</bool>
+
+    <string name="prefShifts_key" translatable="false">prefShifts</string>
+    <string name="prefShifts_title">Shifts</string>
+    <string name="prefShifts_dialogTitle">Working shifts</string>
+    <string name="prefShifts_summary">Working shifts</string>
+    <string-array name="prefShifts_defaultValue" translatable="false">
+        <item>morning</item>
+        <item>night</item>
+    </string-array>
+    <string-array name="prefShifts_entries">
+        <item>Morning</item>
+        <item>Afternoon</item>
+        <item>Night</item>
+    </string-array>
+    <string-array name="prefShifts_entryValues" translatable="false">
+        <item>morning</item>
+        <item>afternoon</item>
+        <item>night</item>
+    </string-array>
+
+    <string name="prefWeb_title">Visit our web</string>
+
+    <string name="prefOthers_key" translatable="false">prefOthers</string>
+    <string name="prefOthers_title">Other settings</string>
+
+    <string name="prefCatchPhrase_key" translatable="false">prefCatchPhrase</string>
+    <string name="prefCatchPhrase_title">Catch phrase</string>
+    <string name="prefCatchPhrase_summary">Company catch phrase</string>
+    <string name="prefCatchPhrase_dialogTitle">Company catch phrase</string>
+
+    <string name="prefNetworkMode_key" translatable="false">prefNetworkMode</string>
+    <string name="prefNetworkMode_title">Network mode</string>
+    <string name="prefNetworkMode_summaryOn">Yes</string>
+    <string name="prefNetworkMode_summaryOff">No</string>
+    <string name="prefNetworkMode_switchTextOff">Yes</string>
+    <string name="prefNetworkMode_switchTextOn">No</string>
+    <bool name="prefNetworkMode_defaultValue">true</bool>
+
+    <string name="prefDifficulty_key" translatable="false">prefDifficulty</string>
+    <string name="prefDifficulty_title">Difficulty</string>
+    <integer name="prefDifficulty_min">1</integer>
+    <integer name="prefDifficulty_max">5</integer>
+    <integer name="prefDifficulty_seekBarIncrement">1</integer>
+    <integer name="prefDifficulty_defaultValue">3</integer>
+
+</resources>

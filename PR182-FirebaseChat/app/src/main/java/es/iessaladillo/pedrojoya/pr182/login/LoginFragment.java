@@ -79,7 +79,7 @@ public class LoginFragment extends Fragment implements LoginView {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        lblAppName.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/Pacifico.ttf"));
+        lblAppName.setTypeface(Typeface.createFromAsset(requireActivity().getAssets(), "fonts/Pacifico.ttf"));
         mPresenter = new LoginPresenterImpl();
         mUIMessageManager = new SnackbarManager();
         mUIProgressManager = new DotProgressBarManager(pbLoading);
@@ -131,7 +131,7 @@ public class LoginFragment extends Fragment implements LoginView {
 
     private void hideKeyboard(View v) {
         InputMethodManager imm =
-                (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                (InputMethodManager) requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
@@ -180,7 +180,7 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void navigateToContactsActivity() {
-        startActivity(new Intent(getActivity(), ContactsActivity.class));
+        startActivity(new Intent(requireActivity(), ContactsActivity.class));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr097;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
@@ -21,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        btnSave = findViewById(R.id.btnSave);
-        btnRetain = findViewById(R.id.btnRetain);
-        btnIcepick = findViewById(R.id.btnIcepick);
-        btnStarter = findViewById(R.id.btnStarter);
-        btnViewModel = findViewById(R.id.btnViewModel);
+        btnSave = ActivityCompat.requireViewById(this, R.id.btnSave);
+        btnRetain = ActivityCompat.requireViewById(this, R.id.btnRetain);
+        btnIcepick = ActivityCompat.requireViewById(this, R.id.btnIcepick);
+        btnStarter = ActivityCompat.requireViewById(this, R.id.btnStarter);
+        btnViewModel = ActivityCompat.requireViewById(this, R.id.btnViewModel);
 
         btnSave.setOnClickListener(v -> SaveActivity.start(MainActivity.this));
         btnRetain.setOnClickListener(v -> RetainActivity.start(MainActivity.this));

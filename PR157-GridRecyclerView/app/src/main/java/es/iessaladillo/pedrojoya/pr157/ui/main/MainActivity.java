@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        grdWords = findViewById(R.id.grdWords);
+        grdWords = ActivityCompat.requireViewById(this, R.id.grdWords);
 
         setupToolbar();
         grdWords.setHasFixedSize(true);
@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
     private void showWordDetail(View view, Word word) {
-        DetailActivity.start(this, word, view.findViewById(R.id.imgPhoto));
+        DetailActivity.start(this, word, ViewCompat.requireViewById(view, R.id.imgPhoto));
     }
 
 }

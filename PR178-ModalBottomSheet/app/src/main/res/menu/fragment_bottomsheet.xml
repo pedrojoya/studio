@@ -4,20 +4,18 @@
         android:id="@+id/mnuTitle"
         android:title="@string/fragment_bottomsheet_options">
         <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/mnuCall"
-                    android:icon="@drawable/ic_contact_phone_black_24dp"
-                    android:title="@string/fragment_bottomsheet_mnuCall"/>
-                <item
-                    android:id="@+id/mnuSendMessage"
-                    android:icon="@drawable/ic_message_black_24dp"
-                    android:title="@string/fragment_bottomsheet_mnuSendMessage"/>
-                <item
-                    android:id="@+id/mnuNotes"
-                    android:icon="@drawable/ic_dashboard_black_24dp"
-                    android:title="@string/fragment_bottomsheet_mnuNotes"/>
-            </group>
+            <item
+                android:id="@+id/mnuCall"
+                android:icon="@drawable/ic_contact_phone_black_24dp"
+                android:title="@string/fragment_bottomsheet_mnuCall"/>
+            <item
+                android:id="@+id/mnuSendMessage"
+                android:icon="@drawable/ic_message_black_24dp"
+                android:title="@string/fragment_bottomsheet_mnuSendMessage"/>
+            <item
+                android:id="@+id/mnuNotes"
+                android:icon="@drawable/ic_dashboard_black_24dp"
+                android:title="@string/fragment_bottomsheet_mnuNotes"/>
         </menu>
     </item>
 

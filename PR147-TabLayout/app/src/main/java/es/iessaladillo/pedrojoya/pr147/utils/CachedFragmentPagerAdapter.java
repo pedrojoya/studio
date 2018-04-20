@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr147.utils;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,7 @@ public abstract class CachedFragmentPagerAdapter extends FragmentPagerAdapter {
 
     // Al instanciar el fragmento, se añade al SparseArray la referencia débil
     // al mismo.
+    @NonNull
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
         final Fragment fragment = (Fragment) super.instantiateItem(container, position);

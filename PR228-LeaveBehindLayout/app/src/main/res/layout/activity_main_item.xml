@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Left Leave-behind -->
+    <RelativeLayout
+        android:id="@+id/leftLeaveBehind"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/edit">
+
+        <ImageView
+            android:id="@+id/imgArchive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/activity_main_margin"
+            app:srcCompat="@drawable/ic_archive_white_24dp"
+            android:contentDescription="@string/activity_main_archive"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/activity_main_margin"
+            android:layout_toEndOf="@+id/imgArchive"
+            android:text="@string/activity_main_archive"
+            android:textAllCaps="true"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+    <!-- Right Leave-behind -->
+    <RelativeLayout
+        android:id="@+id/rightLeaveBehind"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/delete">
+
+        <ImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            app:srcCompat="@drawable/ic_delete_white_24dp"
+            android:contentDescription="@string/activity_main_delete"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:layout_toStartOf="@+id/imgDelete"
+            android:text="@string/activity_main_delete"
+            android:textAllCaps="true"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+    <!-- Foreground -->
+    <!-- El fondo no puede ser transparente o se verán el Leave-behind.
+         Usamos selectableItemBackground como foreground para que se haga
+         el ripple effect cuando se pulse el elemento. -->
+    <RelativeLayout
+        android:id="@+id/view_foreground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/item_background"
+        android:foreground="?attr/selectableItemBackground"
+        android:minHeight="@dimen/two_line_tile_height"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="@dimen/two_line_avatar_width"
+            android:layout_height="@dimen/two_line_avatar_height"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
+            android:layout_marginTop="@dimen/two_line_avatar_marginTop"
+            android:contentDescription="@string/activity_main_item_imgAvatar"
+            app:srcCompat="@drawable/ic_person_black_24dp"/>
+
+        <TextView
+            android:id="@+id/lblName"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="@dimen/two_line_text_marginRight"
+            android:paddingEnd="@dimen/two_line_text_paddingLeft"
+            android:paddingLeft="@dimen/two_line_text_paddingLeft"
+            android:paddingRight="@dimen/two_line_text_paddingLeft"
+            android:paddingStart="@dimen/two_line_text_paddingLeft"
+            android:paddingTop="@dimen/two_line_text_paddingTop"
+            tools:text="@tools:sample/full_names"/>
+
+        <TextView
+            android:id="@+id/lblAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lblName"
+            android:layout_marginEnd="@dimen/two_line_text_marginRight"
+            android:paddingBottom="@dimen/two_line_secundary_text_paddingBottom"
+            android:paddingEnd="@dimen/two_line_text_paddingLeft"
+            android:paddingLeft="@dimen/two_line_text_paddingLeft"
+            android:paddingRight="@dimen/two_line_text_paddingLeft"
+            android:paddingStart="@dimen/two_line_text_paddingLeft"
+            android:textSize="@dimen/activity_main_item_lblAddress_textSize"
+            tools:text="@tools:sample/cities"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

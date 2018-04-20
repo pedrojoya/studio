@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mnuFoto"
+        android:id="@+id/mnuPhoto"
         android:icon="@android:drawable/ic_menu_camera"
         app:showAsAction="ifRoom"
-        android:title="@string/capturar_foto" />
+        android:title="@string/activity_main_mnuPhoto" />
 
 </menu>

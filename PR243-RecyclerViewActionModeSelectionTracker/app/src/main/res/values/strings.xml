@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RecyclerViewMultiChoiceActionMode</string>
+    <string name="activity_main_lblEmpty">No students</string>
+    <string name="activity_main_item_imgAvatar">Avatar</string>
+    <string name="main_activity_click_on_student">Clicked on %1$s</string>
+    <string name="activity_main_mnuDelete">Delete</string>
+
+    <plurals name="selected">
+        <item quantity="one">%d item selected</item>
+        <item quantity="other">%d items selected</item>
+    </plurals>
+</resources>

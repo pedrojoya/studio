@@ -38,9 +38,9 @@ public class StudentActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        txtName = findViewById(R.id.txtName);
-        btnSend = findViewById(R.id.btnSend);
-        txtAge = findViewById(R.id.txtAge);
+        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
+        btnSend = ActivityCompat.requireViewById(this, R.id.btnSend);
+        txtAge = ActivityCompat.requireViewById(this, R.id.txtAge);
 
         txtName.addTextChangedListener(new TextWatcher() {
             @Override

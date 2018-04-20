@@ -71,7 +71,7 @@ public class AlumnoFragment extends Fragment {
         // tanto para cuando no está desplegado como para cuando sí lo esté. La
         // fuente de datos para el adaptador es un array de constantes de
         // cadena.
-        adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
+        adaptadorCursos = ArrayAdapter.createFromResource(requireActivity(),
                 R.array.cursos, android.R.layout.simple_spinner_item);
         adaptadorCursos
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,7 +87,7 @@ public class AlumnoFragment extends Fragment {
         // Se escriben los datos del alumno en las vistas correspondientes.
         alumnoToVistas();
         // Se actuliza el título de la actividad en relación al modo.
-        getActivity().setTitle(R.string.editar_alumno);
+        requireActivity().setTitle(R.string.editar_alumno);
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Agregar.
@@ -97,17 +97,17 @@ public class AlumnoFragment extends Fragment {
         // Se crea un nuevo objeto Alumno vacío.
         alumno = new Alumno();
         // Se actualiza el título de la actividad en relación al modo.
-        getActivity().setTitle(R.string.agregar_alumno);
+        requireActivity().setTitle(R.string.agregar_alumno);
     }
 
     // Carga los datos del alumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(long id) {
         // Se consulta en la BD los datos del alumno a través del objeto DAO.
-        alumno = (new DAO(getActivity())).queryAlumno(id);
+        alumno = (new DAO(requireActivity())).queryAlumno(id);
         // Si no se ha encontrado el alumno, se informa y se pasa al modo
         // Agregar.
         if (alumno == null) {
-            Toast.makeText(getActivity(), R.string.alumno_no_encontrado,
+            Toast.makeText(requireActivity(), R.string.alumno_no_encontrado,
                     Toast.LENGTH_LONG).show();
             setModoAgregar();
         }
@@ -127,7 +127,7 @@ public class AlumnoFragment extends Fragment {
                 actualizarAlumno();
             }
         } else {
-            Toast.makeText(getActivity(),
+            Toast.makeText(requireActivity(),
                     getString(R.string.datos_obligatorios),
                     Toast.LENGTH_SHORT).show();
         }
@@ -136,15 +136,15 @@ public class AlumnoFragment extends Fragment {
     // Agrega un alumno a la base de datos.
     private void agregarAlumno() {
         // Se realiza el insert a través del objeto DAO.
-        long id = (new DAO(getActivity())).createAlumno(alumno);
+        long id = (new DAO(requireActivity())).createAlumno(alumno);
         // Se informa de si ha ido bien.
         if (id >= 0) {
             alumno.setId(id);
-            Toast.makeText(getActivity(),
+            Toast.makeText(requireActivity(),
                     getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
                     .show();
         } else {
-            Toast.makeText(getActivity(),
+            Toast.makeText(requireActivity(),
                     getString(R.string.insercion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
@@ -156,13 +156,13 @@ public class AlumnoFragment extends Fragment {
     // Actualiza un alumno en la base de datos.
     private void actualizarAlumno() {
         // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
-        if ((new DAO(getActivity())).updateAlumno(alumno)) {
-            Toast.makeText(getActivity(),
+        if ((new DAO(requireActivity())).updateAlumno(alumno)) {
+            Toast.makeText(requireActivity(),
                     getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
-            getActivity().finish();
+            requireActivity().finish();
         } else {
-            Toast.makeText(getActivity(),
+            Toast.makeText(requireActivity(),
                     getString(R.string.actualizacion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }

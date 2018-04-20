@@ -43,10 +43,10 @@ public class MainFragment extends Fragment {
         if (getView() != null) {
             llCabecera = (LinearLayout) getView().findViewById(R.id.llCabecera);
             toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
-            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+            ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
             // Se configura el ViewPager.
             ViewPager vpPaginador = (ViewPager) getView().findViewById(R.id.vpPaginador);
-            mAdaptador = new PaginasAdapter(getActivity(),
+            mAdaptador = new PaginasAdapter(requireActivity(),
                     getChildFragmentManager());
             vpPaginador.setAdapter(mAdaptador);
             vpPaginador.setOffscreenPageLimit(0);
@@ -92,8 +92,8 @@ public class MainFragment extends Fragment {
                         .findViewById(R.id
                                 .svScrollView);
                 if (svScrollView != null) {
-                    // Si la toolbar está presente y el scroll corresponde al
-                    // necesario cuando la toolbar no está presente.
+                    // Si la toolbar estï¿½ presente y el scroll corresponde al
+                    // necesario cuando la toolbar no estï¿½ presente.
                     if (mIsToolbarShown) {
                         if (svScrollView.getScrollY() == toolbarHeight) {
                             // El scroll debe ser 0.
@@ -104,7 +104,7 @@ public class MainFragment extends Fragment {
                                 }
                             });
                         }
-                    // Si la toolbar no está presente y hay un scroll menor
+                    // Si la toolbar no estï¿½ presente y hay un scroll menor
                     // que la altura de la toolbar.
                     } else {
                         if (svScrollView.getScrollY() < toolbarHeight) {
@@ -131,7 +131,7 @@ public class MainFragment extends Fragment {
         mIsToolbarShown = false;
     }
 
-    // Traslada la cabecera a su posición original de manera que la toolbar
+    // Traslada la cabecera a su posiciï¿½n original de manera que la toolbar
     // sea visible.
     public void onShow() {
         llCabecera.animate().cancel();

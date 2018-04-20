@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr148;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupToolbar() {
         setSupportActionBar(findViewById(R.id.toolbar));
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingToolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = ActivityCompat.requireViewById(this, R.id.collapsingToolbar);
         if (collapsingToolbarLayout != null) {
             collapsingToolbarLayout.setTitle(getTitle());
         }

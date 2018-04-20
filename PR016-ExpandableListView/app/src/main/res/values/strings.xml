@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">ExpandableListView</string>
-    <string name="alumno">Alumno</string>
-    <string name="curso">Curso</string>
-    <string name="title_activity_main">ExpandableListView</string>
-    <string name="expandir_contraer_grupo">Expandir / Contraer grupo</string>
-    <string name="info_alumno">%1$s (%2$s del %3$s)"</string>
+    <string name="student">Student</string>
+    <string name="grade">Grade</string>
+    <string name="activity_main_expand">Expandir / Contraer grupo</string>
+    <string name="main_activity_student_info">%1$s (%2$s del %3$s)"</string>
 </resources>

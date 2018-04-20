@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        txtWord = findViewById(R.id.txtWord);
-        txtTranslation = findViewById(R.id.txtTranslation);
-        pbTranslating = findViewById(R.id.pbTranslating);
+        txtWord = ActivityCompat.requireViewById(this, R.id.txtWord);
+        txtTranslation = ActivityCompat.requireViewById(this, R.id.txtTranslation);
+        pbTranslating = ActivityCompat.requireViewById(this, R.id.pbTranslating);
 
         setupToolbar();
         setupFab();
@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFab() {
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = ActivityCompat.requireViewById(this, R.id.fab);
         fab.setOnClickListener(view -> translate());
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 

@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements AlumnosAdapter.On
     @Override
     public void onItemClick(View view, Alumno alumno, int position) {
         DetalleActivity.startForResult(this, RC_DETALLE, alumno.getId(),
-                view.findViewById(R.id.imgFoto));
+                ViewCompat.requireViewById(view, R.id.imgFoto));
     }
 
     @Override

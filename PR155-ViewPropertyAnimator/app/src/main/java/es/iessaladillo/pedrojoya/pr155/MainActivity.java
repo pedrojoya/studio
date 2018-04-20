@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        spnAnimacion = findViewById(R.id.spnAnimation);
-        imgPhoto = findViewById(R.id.imgPhoto);
+        spnAnimacion = ActivityCompat.requireViewById(this, R.id.spnAnimation);
+        imgPhoto = ActivityCompat.requireViewById(this, R.id.imgPhoto);
 
         spnAnimacion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override

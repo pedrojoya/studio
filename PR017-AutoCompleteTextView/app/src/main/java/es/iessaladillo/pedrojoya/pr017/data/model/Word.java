@@ -20,6 +20,7 @@ public class Word {
         return english;
     }
 
+    @SuppressWarnings("unused")
     public String getSpanish() {
         return spanish;
     }

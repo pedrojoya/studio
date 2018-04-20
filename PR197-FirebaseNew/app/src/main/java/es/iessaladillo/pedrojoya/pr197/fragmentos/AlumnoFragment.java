@@ -127,7 +127,7 @@ public class AlumnoFragment extends Fragment {
             txtNombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                    Drawable drawable = ContextCompat.getDrawable(requireActivity(),
                             R.drawable.ic_face);
                     drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
@@ -140,7 +140,7 @@ public class AlumnoFragment extends Fragment {
                     } else {
                         DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
                         DrawableCompat.setTint(drawable,
-                                ContextCompat.getColor(getActivity(), R.color.accent));
+                                ContextCompat.getColor(requireActivity(), R.color.accent));
                     }
                     imgNombre.setImageDrawable(drawable);
                 }
@@ -152,7 +152,7 @@ public class AlumnoFragment extends Fragment {
             spnCurso.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                    Drawable drawable = ContextCompat.getDrawable(requireActivity(),
                             R.drawable.ic_create);
                     drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
@@ -165,7 +165,7 @@ public class AlumnoFragment extends Fragment {
                     } else {
                         DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
                         DrawableCompat.setTint(drawable,
-                                ContextCompat.getColor(getActivity(), R.color.accent));
+                                ContextCompat.getColor(requireActivity(), R.color.accent));
                         spnCurso.showDialog(v);
                     }
                     imgCurso.setImageDrawable(drawable);
@@ -176,7 +176,7 @@ public class AlumnoFragment extends Fragment {
             txtTelefono.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
-                    Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                    Drawable drawable = ContextCompat.getDrawable(requireActivity(),
                             R.drawable.ic_phone);
                     drawable = DrawableCompat.wrap(drawable);
                     if (!hasFocus) {
@@ -189,7 +189,7 @@ public class AlumnoFragment extends Fragment {
                     } else {
                         DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
                         DrawableCompat.setTint(drawable,
-                                ContextCompat.getColor(getActivity(), R.color.accent));
+                                ContextCompat.getColor(requireActivity(), R.color.accent));
                     }
                     imgTelefono.setImageDrawable(drawable);
                 }
@@ -200,7 +200,7 @@ public class AlumnoFragment extends Fragment {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!tilDireccion.isErrorEnabled()) {
-                        Drawable drawable = ContextCompat.getDrawable(getActivity(),
+                        Drawable drawable = ContextCompat.getDrawable(requireActivity(),
                                 R.drawable.ic_home);
                         drawable = DrawableCompat.wrap(drawable);
                         if (!hasFocus) {
@@ -208,7 +208,7 @@ public class AlumnoFragment extends Fragment {
                         } else {
                             DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
                             DrawableCompat.setTint(drawable,
-                                    ContextCompat.getColor(getActivity(), R.color.accent));
+                                    ContextCompat.getColor(requireActivity(), R.color.accent));
                         }
                         imgDireccion.setImageDrawable(drawable);
                     }
@@ -238,15 +238,15 @@ public class AlumnoFragment extends Fragment {
 
     // Carga los cursos en el "spinner".
     private void cargarCursos() {
-        ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(requireActivity(),
                 R.array.cursos, android.R.layout.simple_list_item_1);
         //        DatabaseReference refCursos = FirebaseDatabase.getInstance().getReference(
         //                App.getUidCursosUrl());
-        //        mCursosAdapter = new FirebaseListAdapter<Curso>(getActivity(), Curso.class,
+        //        mCursosAdapter = new FirebaseListAdapter<Curso>(requireActivity(), Curso.class,
         //                android.R.layout.simple_list_item_1, refCursos) {
         //            @Override
         //            protected void populateView(View view, Curso curso, int i) {
-        //                ((TextView) view.findViewById(android.R.id.text1)).setText(curso
+        //                ((TextView) ViewCompat.requireViewById(view, android.R.id.text1)).setText(curso
         // .getNombre());
         //            }
         //        };
@@ -264,14 +264,14 @@ public class AlumnoFragment extends Fragment {
     private void setModoAgregar() {
         // Se crea un nuevo objeto Alumno vacío.
         mAlumno = new Alumno();
-        getActivity().setTitle(R.string.agregar_alumno);
+        requireActivity().setTitle(R.string.agregar_alumno);
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Editar.
     private void setModoEditar() {
         // Se cargan los datos del alumno a partir del id recibido.
         cargarAlumno(getArguments().getString(EXTRA_KEY));
-        getActivity().setTitle(R.string.editar_alumno);
+        requireActivity().setTitle(R.string.editar_alumno);
     }
 
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
@@ -288,7 +288,7 @@ public class AlumnoFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError firebaseError) {
-                Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
+                Toast.makeText(requireActivity(), getString(R.string.actualizacion_incorrecta),
                         Toast.LENGTH_SHORT).show();
             }
         };
@@ -347,7 +347,7 @@ public class AlumnoFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 /*
-                Toast.makeText(getActivity(),
+                Toast.makeText(requireActivity(),
                         getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
                         .show();
 */
@@ -357,7 +357,7 @@ public class AlumnoFragment extends Fragment {
             @Override
             public void onCancelled(DatabaseError firebaseError) {
 /*
-                Toast.makeText(getActivity(),
+                Toast.makeText(requireActivity(),
                         getString(R.string.insercion_incorrecta),
                         Toast.LENGTH_SHORT).show();
 */
@@ -376,8 +376,8 @@ public class AlumnoFragment extends Fragment {
 
     // Finaliza la actividad retornando que se ha finalizado correctamente.
     private void retornar() {
-        getActivity().setResult(Activity.RESULT_OK, new Intent());
-        getActivity().finish();
+        requireActivity().setResult(Activity.RESULT_OK, new Intent());
+        requireActivity().finish();
     }
 
     // Muestra los datos del objeto Alumno en las vistas.

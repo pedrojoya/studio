@@ -29,10 +29,10 @@ task clean(type: Delete) {
 ext {
     compileSdkVersion = 27
     minSdkVersion = 15
-    buildToolsVersion = "26.0.2"
-    support_library_version = "27.0.2"
+    buildToolsVersion = "27.0.3"
+    support_library_version = "27.1.1"
     glide_version = "4.6.0"
-    butterknife_version = "8.5.1"
+    butterknife_version = "8.8.1"
     dart_version = "2.0.2"
     edittextpassword_version = "1.0.0"
     junit_version = "4.12"

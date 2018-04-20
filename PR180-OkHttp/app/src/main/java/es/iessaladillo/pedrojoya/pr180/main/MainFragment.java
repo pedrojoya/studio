@@ -72,10 +72,10 @@ public class MainFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        txtName = view.findViewById(R.id.txtName);
-        btnSearch = view.findViewById(R.id.btnSearch);
-        btnEcho = view.findViewById(R.id.btnEcho);
-        pbProgress = view.findViewById(R.id.pbProgress);
+        txtName = ViewCompat.requireViewById(view, R.id.txtName);
+        btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
+        btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
+        pbProgress = ViewCompat.requireViewById(view, R.id.pbProgress);
 
         btnSearch.setOnClickListener(v -> search());
         btnEcho.setOnClickListener(v -> echo());
@@ -86,7 +86,7 @@ public class MainFragment extends Fragment {
         if (TextUtils.isEmpty(name)) {
             return;
         }
-        if (NetworkUtils.isConnectionAvailable(getActivity())) {
+        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
             searchTask = new SearchAsyncTask(this);
             searchTask.execute(name);
@@ -100,7 +100,7 @@ public class MainFragment extends Fragment {
         if (TextUtils.isEmpty(name)) {
             return;
         }
-        if (NetworkUtils.isConnectionAvailable(getActivity())) {
+        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
             pbProgress.setVisibility(View.VISIBLE);
             echoTask= new EchoAsyncTask(this);
             echoTask.execute(name);
@@ -111,13 +111,13 @@ public class MainFragment extends Fragment {
     }
 
     private void showNoConnectionAvailable() {
-        Toast.makeText(getActivity(), getString(R.string.main_fragment_no_connection),
+        Toast.makeText(requireActivity(), getString(R.string.main_fragment_no_connection),
                 Toast.LENGTH_SHORT).show();
     }
 
     private void showResult(String result) {
         pbProgress.setVisibility(View.INVISIBLE);
-        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireActivity(), result, Toast.LENGTH_SHORT).show();
     }
 
     @Override

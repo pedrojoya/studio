@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lblData = findViewById(R.id.lblData);
-        btnRequest = findViewById(R.id.btnRequest);
+        lblData = ActivityCompat.requireViewById(this, R.id.lblData);
+        btnRequest = ActivityCompat.requireViewById(this, R.id.btnRequest);
 
         btnRequest.setOnClickListener(v -> requestData());
     }

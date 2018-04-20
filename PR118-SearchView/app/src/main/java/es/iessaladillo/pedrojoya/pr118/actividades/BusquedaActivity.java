@@ -36,7 +36,7 @@ public class BusquedaActivity extends AppCompatActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -56,7 +56,7 @@ public class BusquedaActivity extends AppCompatActivity implements LoaderManager
     }
 
     private void initVistas() {
-        mLstResultados = (ListView) findViewById(R.id.lstResultados);
+        mLstResultados = ActivityCompat.requireViewById(this, R.id.lstResultados);
         String[] from = {InstitutoContract.Alumno.NOMBRE};
         int[] to = {android.R.id.text1};
         mAdaptador = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, null, from,

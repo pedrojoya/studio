@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr012.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -15,26 +16,26 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView lstStudents;
 
-    private MainActivityViewModel mViewModel;
-    private Repository mRepository;
-    private MainActivityAdapter mAdapter;
+    private MainActivityViewModel viewModel;
+    private Repository repository;
+    private MainActivityAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRepository = RepositoryImpl.getInstance(Database.getInstance());
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(mRepository)).get(
+        repository = RepositoryImpl.getInstance(Database.getInstance());
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(repository)).get(
                 MainActivityViewModel.class);
         initViews();
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
-        lstStudents.setEmptyView(findViewById(R.id.lblEmpty));
-        mAdapter = new MainActivityAdapter(this, mViewModel.getData());
-        lstStudents.setAdapter(mAdapter);
+        lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmpty));
+        adapter = new MainActivityAdapter(viewModel.getData());
+        lstStudents.setAdapter(adapter);
     }
 
 }

@@ -24,21 +24,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    testImplementation "junit:junit:$rootProject.ext.junit_version"
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
 }

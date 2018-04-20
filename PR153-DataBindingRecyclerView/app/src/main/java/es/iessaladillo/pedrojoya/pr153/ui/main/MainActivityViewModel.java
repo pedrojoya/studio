@@ -7,13 +7,14 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import es.iessaladillo.pedrojoya.pr153.data.Repository;
 import es.iessaladillo.pedrojoya.pr153.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr153.data.local.model.Student;
 
 @SuppressWarnings("WeakerAccess")
 public class MainActivityViewModel extends AndroidViewModel {
 
-    private final RepositoryImpl repository;
+    private final Repository repository;
     private LiveData<List<Student>> students;
 
     public MainActivityViewModel(@NonNull Application application) {

@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr092.main;
 
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,48 +9,35 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+import es.iessaladillo.pedrojoya.pr092.recycleradapter.BaseListAdapter;
+import es.iessaladillo.pedrojoya.pr092.recycleradapter.BaseViewHolder;
 
-    private final List<String> mData;
+public class MainAdapter extends BaseListAdapter<String, MainAdapter.ViewHolder> {
 
     public MainAdapter(List<String> data) {
-        mData = data;
+        super(data);
     }
 
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(android.R.layout.simple_list_item_1, parent, false);
-        return new ViewHolder(itemView);
+        return new ViewHolder(itemView, this);
     }
 
-    @Override
-    public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
-        holder.onBind(mData.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mData.size();
-    }
-
-    public void addItem(String item) {
-        mData.add(item);
-        notifyItemInserted(mData.size() - 1);
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends BaseViewHolder<String> {
 
         private final TextView text1;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            text1 = itemView.findViewById(android.R.id.text1);
+        ViewHolder(View itemView, MainAdapter adapter) {
+            super(itemView, adapter);
+            text1 = ViewCompat.requireViewById(itemView, android.R.id.text1);
         }
 
-        public void onBind(String elemento) {
-            text1.setText(elemento);
+        @Override
+        public void bind(String item) {
+            text1.setText(item);
         }
-
     }
 
 }

@@ -87,8 +87,8 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter
             // No olvidar llamar al constructor del padre.
             super(itemView);
             // Se obtienen las subvistas de la vista correspondiente al elemento.
-            lblDescripcion = (TextView) itemView.findViewById(R.id.lblDescripcion);
-            imgFoto = (NetworkImageView) itemView.findViewById(R.id.imgFoto);
+            lblDescripcion = (TextView) ViewCompat.requireViewById(itemView, R.id.lblDescripcion);
+            imgFoto = (NetworkImageView) ViewCompat.requireViewById(itemView, R.id.imgFoto);
         }
 
     }

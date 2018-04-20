@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr086.main;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -82,15 +83,15 @@ class MainActivityAdapter extends BaseAdapter {
         private final TextView lblGrade;
         private final ImageView imgPopupMenu;
 
-        public ViewHolder(View itemView) {
-            lblName = itemView.findViewById(R.id.lblName);
-            lblPhone = itemView.findViewById(R.id.lblPhone);
-            lblAddress = itemView.findViewById(R.id.lblAddress);
-            lblGrade = itemView.findViewById(R.id.lblGrade);
-            imgPopupMenu = itemView.findViewById(R.id.imgPopupMenu);
+        ViewHolder(View itemView) {
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblPhone = ViewCompat.requireViewById(itemView, R.id.lblPhone);
+            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
+            lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
+            imgPopupMenu = ViewCompat.requireViewById(itemView, R.id.imgPopupMenu);
         }
 
-        public void bind(Student student) {
+        void bind(Student student) {
             lblName.setText(student.getName());
             lblPhone.setText(student.getPhone());
             lblAddress.setText(student.getAddress());

@@ -1,16 +1,39 @@
-<FrameLayout
-    android:id="@+id/flRoot"
+<android.support.v4.widget.NestedScrollView
+    android:id="@+id/svLorem"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.iessaldillo.pedrojoya.pr191.MainFragment">
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:id="@+id/lblOption"
+    <RelativeLayout
+        android:id="@+id/rlRoot"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        tools:text="@string/fragment_main_lblOption"/>
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/lblOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/activity_main_txtLorem_padding"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:text="@string/fragment_main_lblOption"/>
+
+        <TextView
+            android:id="@+id/txtLorem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblOption"
+            android:layout_alignParentBottom="true"
+            android:textSize="20sp"
+            android:padding="@dimen/activity_main_txtLorem_padding"
+            android:text="@string/activity_main_txtLorem"/>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>
+

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="prefSynchronization_title">Synchronization</string>
+
+    <string name="prefSync_key" translatable="false">prefSync</string>
+    <string name="prefSync_title">Synchronize</string>
+    <string name="prefSync_summaryOn">Yes</string>
+    <string name="prefSync_summaryOff">No</string>
+    <bool name="prefSync_defaultValue">true</bool>
+
+    <string name="prefConnectionType_key" translatable="false">prefConnectionType</string>
+    <string name="prefConnectionType_title">Connection type</string>
+    <string name="prefConnectionType_dialogTitle">Connection type</string>
+    <string-array name="prefConnectionType_entries">
+        <item>Wifi</item>
+        <item>Data plan</item>
+    </string-array>
+    <string-array name="prefConnectionType_entryValues" translatable="false">
+        <item>wifi</item>
+        <item>data</item>
+    </string-array>
+    <string name="prefConnectionType_defaultValue" translatable="false">wifi</string>
+
+    <string name="prefLanguage_key" translatable="false">prefLanguage</string>
+    <string name="prefLanguage_title">Language</string>
+    <string name="prefLanguage_dialogTitle">Language</string>
+    <string-array name="prefLanguage_entries">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
+    <string-array name="prefLanguage_entryValues" translatable="false">
+        <item>english</item>
+        <item>spanish</item>
+    </string-array>
+    <string name="prefLanguage_defaultValue" translatable="false">english</string>
+
+    <string name="prefAppearance_title">Appearance</string>
+
+    <string name="prefBigFontSize_key" translatable="false">prefBigFontSize</string>
+    <string name="prefBigFontSize_title">Big font size</string>
+    <string name="prefBigFontSize_summaryOn">Yes</string>
+    <string name="prefBigFontSize_summaryOff">No</string>
+    <bool name="prefBigFontSize_defaultValue">false</bool>
+
+    <string name="prefShifts_key" translatable="false">prefShifts</string>
+    <string name="prefShifts_title">Shifts</string>
+    <string name="prefShifts_dialogTitle">Working shifts</string>
+    <string name="prefShifts_summary">Working shifts</string>
+    <string-array name="prefShifts_defaultValue" translatable="false">
+        <item>morning</item>
+        <item>night</item>
+    </string-array>
+    <string-array name="prefShifts_entries">
+        <item>Morning</item>
+        <item>Afternoon</item>
+        <item>Night</item>
+    </string-array>
+    <string-array name="prefShifts_entryValues" translatable="false">
+        <item>morning</item>
+        <item>afternoon</item>
+        <item>night</item>
+    </string-array>
+
+    <string name="prefWeb_title">Visit our web</string>
+
+    <string name="prefOthers_key" translatable="false">prefOthers</string>
+    <string name="prefOthers_title">Other settings</string>
+
+    <string name="prefCatchPhrase_key" translatable="false">prefCatchPhrase</string>
+    <string name="prefCatchPhrase_title">Catch phrase</string>
+    <string name="prefCatchPhrase_summary">Company catch phrase</string>
+    <string name="prefCatchPhrase_dialogTitle">Company catch phrase</string>
+
+    <string name="prefNetworkMode_key" translatable="false">prefNetworkMode</string>
+    <string name="prefNetworkMode_title">Network mode</string>
+    <string name="prefNetworkMode_summaryOn">Yes</string>
+    <string name="prefNetworkMode_summaryOff">No</string>
+    <string name="prefNetworkMode_switchTextOff">Yes</string>
+    <string name="prefNetworkMode_switchTextOn">No</string>
+    <bool name="prefNetworkMode_defaultValue">true</bool>
+
+    <string name="prefDifficulty_key" translatable="false">prefDifficulty</string>
+    <string name="prefDifficulty_title">Difficulty</string>
+    <integer name="prefDifficulty_min">1</integer>
+    <integer name="prefDifficulty_max">5</integer>
+    <integer name="prefDifficulty_seekBarIncrement">1</integer>
+    <integer name="prefDifficulty_defaultValue">3</integer>
+
+    <string name="prefPremium_title">Premium</string>
+
+    <string name="prefMinAge_key" translatable="false">prefMinAge</string>
+    <string name="prefMinAge_title">Min age</string>
+    <string name="prefMinAge_dialogTitle">Min age</string>
+    <string name="prefMinAge_defaultValue">18</string>
+
+    <string name="prefPhone_key" translatable="false">prefPhone</string>
+    <string name="prefPhone_title">Emergency phone number</string>
+    <string name="prefPhone_summary">Emergency phone number</string>
+    <string name="prefPhone_dialogTitle">Emergency phone number</string>
+    <string name="prefPhone_defaultValue">061</string>
+
+    <string name="prefPin_key" translatable="false">prefPin</string>
+    <string name="prefPin_title">PIN number</string>
+    <string name="prefPin_summary">PIN number</string>
+    <string name="prefPin_dialogTitle">PIN number</string>
+
+    <string name="prefPassword_key" translatable="false">prefPassword</string>
+    <string name="prefPassword_title">Password</string>
+    <string name="prefPassword_summary">Service password</string>
+    <string name="prefPassword_dialogTitle">Service password</string>
+
+    <string name="prefRingtone_key" translatable="false">prefRingtone</string>
+    <string name="prefRingtone_title">Default ringtone</string>
+    <string name="prefRingtone_summary">Select a ringtone</string>
+    <string name="prefRingtone_dialogTitle">Default ringtone</string>
+
+    <string name="prefTime_key" translatable="false">prefTime</string>
+    <string name="prefTime_title">Preferred time</string>
+    <string name="prefTime_summary">Select time</string>
+
+    <string name="prefDate_key" translatable="false">prefDate</string>
+    <string name="prefDate_title">Preferred date</string>
+    <string name="prefDate_summary">Select date</string>
+
+    <string name="prefMainColor_key" translatable="false">prefMainColor</string>
+    <string name="prefMainColor_title">Main color</string>
+    <string name="prefMainColor_dialogTitle">Main color</string>
+    <string name="prefMainColor_summary">Select a color</string>
+    <color name="prefMainColor_defaultValue">#6489A5</color>
+
+    <string name="prefSecondLanguage_key" translatable="false">prefSecondLanguage
+    </string>
+    <string name="prefSecondLanguage_title">Second language</string>
+    <string-array name="prefSecondLanguage_entries">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
+    <string-array name="prefSecondLanguage_entryValues" translatable="false">
+        <item>english</item>
+        <item>spanish</item>
+    </string-array>
+    <string name="prefSecondLanguage_defaultValue" translatable="false">english</string>
+
+</resources>

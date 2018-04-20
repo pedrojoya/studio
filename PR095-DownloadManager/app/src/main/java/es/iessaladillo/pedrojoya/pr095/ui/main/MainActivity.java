@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        MainActivityPermissionsDispatcher.loadFragmentWithCheck(this);
+        MainActivityPermissionsDispatcher.loadFragmentWithPermissionCheck(this);
     }
 
     @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -41,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        btnPlayStop = findViewById(R.id.btnPlayStop);
+        btnPlayStop = ActivityCompat.requireViewById(this, R.id.btnPlayStop);
         setupToolbar();
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 

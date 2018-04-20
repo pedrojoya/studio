@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         // Spinner instead of title.
         if (getSupportActionBar() != null) {
@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager() {
-        mViewPager = findViewById(R.id.viewPager);
+        mViewPager = ActivityCompat.requireViewById(this, R.id.viewPager);
         mViewPager.setAdapter(new MainActivityFragmentPagerAdapter(this, getSupportFragmentManager
                 ()));
     }
 
     private void setupSpinner() {
-        final Spinner spinner = findViewById(R.id.spinner);
+        final Spinner spinner = ActivityCompat.requireViewById(this, R.id.spinner);
         if (spinner != null && getSupportActionBar() != null) {
             // Use theme context for ToolbarSpinnerAdapter.
             ToolbarSpinnerAdapter adapter = new ToolbarSpinnerAdapter(

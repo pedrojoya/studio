@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_400"
+        android:orientation="horizontal"
+        android:padding="@dimen/grupo_padding">
+
+        <TextView
+            android:id="@+id/lblLevelHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/grupo_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imgIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/activity_main_expand"
+            app:srcCompat="@drawable/ic_expand_more_white_24dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llColumnsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/grupo_padding">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/grupo_padding"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:text="@string/student"
+            android:paddingLeft="@dimen/encabezado_paddingLeft"
+            android:paddingRight="@dimen/encabezado_paddingLeft"
+            android:paddingEnd="@dimen/encabezado_paddingLeft"
+            android:textAllCaps="true"
+            android:textColor="@color/primary_400"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/grade"
+            android:textAllCaps="true"
+            android:textColor="@color/primary_400"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+</LinearLayout>

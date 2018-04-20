@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HandlerThread</string>
+    <string name="activity_main_btnStop">Stop observing changes</string>
+    <string name="activity_main_btnStart">Start</string>
+</resources>

@@ -11,10 +11,13 @@ public class NetworkUtils {
 
     // Is Internet connection available?.
     public static boolean isConnectionAvailable(Context context) {
-        ConnectivityManager gestorConectividad = (ConnectivityManager) context
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
                 .getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo infoRed = gestorConectividad.getActiveNetworkInfo();
+        NetworkInfo infoRed = null;
+        if (connectivityManager != null) {
+            infoRed = connectivityManager.getActiveNetworkInfo();
+        }
         return infoRed != null && infoRed.isConnected();
     }
 

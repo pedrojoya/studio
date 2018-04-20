@@ -46,14 +46,14 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
         }
-        AppBarLayout appbar = findViewById(R.id.appbarLayout);
+        AppBarLayout appbar = ActivityCompat.requireViewById(this, R.id.appbarLayout);
         appbar.setExpanded(true);
     }
 
@@ -71,8 +71,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        imgDetailPhoto = findViewById(R.id.imgDetailPhoto);
-        webView = findViewById(R.id.webView);
+        imgDetailPhoto = ActivityCompat.requireViewById(this, R.id.imgDetailPhoto);
+        webView = ActivityCompat.requireViewById(this, R.id.webView);
 
         setupToolbar();
         showWordDetail();

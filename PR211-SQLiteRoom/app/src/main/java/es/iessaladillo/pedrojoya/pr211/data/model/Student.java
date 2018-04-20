@@ -66,6 +66,7 @@ public class Student {
         if (id != student.id) return false;
         if (name != null ? !name.equals(student.name) : student.name != null) return false;
         if (phone != null ? !phone.equals(student.phone) : student.phone != null) return false;
+        //noinspection SimplifiableIfStatement
         if (grade != null ? !grade.equals(student.grade) : student.grade != null) return false;
         return address != null ? address.equals(student.address) : student.address == null;
     }

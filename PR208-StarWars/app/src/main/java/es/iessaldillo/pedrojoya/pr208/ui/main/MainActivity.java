@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         mCompositeDisposable = new CompositeDisposable();
-        btnSearch = findViewById(R.id.btnConsultar);
+        btnSearch = ActivityCompat.requireViewById(this, R.id.btnConsultar);
         btnSearch.setOnClickListener(view -> consultar());
-        txtSearch = findViewById(R.id.txtConsulta);
-        lblResult = findViewById(R.id.lblResultado);
+        txtSearch = ActivityCompat.requireViewById(this, R.id.txtConsulta);
+        lblResult = ActivityCompat.requireViewById(this, R.id.lblResultado);
     }
 
     private void consultar() {

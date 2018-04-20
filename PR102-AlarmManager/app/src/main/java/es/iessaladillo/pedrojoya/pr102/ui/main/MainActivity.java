@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        txtMessage = findViewById(R.id.txtMessage);
-        txtInterval = findViewById(R.id.txtInterval);
-        SwitchCompat swActivar = findViewById(R.id.swTurnOn);
+        txtMessage = ActivityCompat.requireViewById(this, R.id.txtMessage);
+        txtInterval = ActivityCompat.requireViewById(this, R.id.txtInterval);
+        SwitchCompat swActivar = ActivityCompat.requireViewById(this, R.id.swTurnOn);
 
         alarm = Alarm.getInstance(this);
         txtMessage.setText(alarm.getMessage());

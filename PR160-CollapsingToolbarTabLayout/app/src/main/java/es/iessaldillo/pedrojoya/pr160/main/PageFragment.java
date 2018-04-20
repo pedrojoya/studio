@@ -1,7 +1,9 @@
 package es.iessaldillo.pedrojoya.pr160.main;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,7 @@ public class PageFragment extends Fragment implements OnFabClickListener{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_page, container, false);
     }
@@ -53,13 +55,13 @@ public class PageFragment extends Fragment implements OnFabClickListener{
     }
 
     private void initViews(View view) {
-        lblLikes = view.findViewById(R.id.lblLikes);
+        lblLikes = ViewCompat.requireViewById(view, R.id.lblLikes);
 
         lblLikes.setText(String.valueOf(mLikes));
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(STATE_LIKES, mLikes);
     }

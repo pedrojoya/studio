@@ -60,9 +60,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imgFoto = itemView.findViewById(R.id.imgPhoto);
-            lblEnglish = itemView.findViewById(R.id.lblEnglish);
-            lblSpanish = itemView.findViewById(R.id.lblSpanish);
+            imgFoto = ViewCompat.requireViewById(itemView, R.id.imgPhoto);
+            lblEnglish = ViewCompat.requireViewById(itemView, R.id.lblEnglish);
+            lblSpanish = ViewCompat.requireViewById(itemView, R.id.lblSpanish);
         }
 
         public void bind(Word word) {

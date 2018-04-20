@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.livinglifetechway.quickpermissions_plugin'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -19,12 +20,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     implementation "com.android.support:design:$rootProject.ext.support_library_version"
-    implementation "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher_version"
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
+    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
 }

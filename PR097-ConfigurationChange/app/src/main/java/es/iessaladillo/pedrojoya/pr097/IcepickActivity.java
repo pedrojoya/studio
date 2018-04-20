@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr097;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,8 +31,8 @@ public class IcepickActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lblCount = findViewById(R.id.lblCount);
-        btnIncrement = findViewById(R.id.btnIncrement);
+        lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
+        btnIncrement = ActivityCompat.requireViewById(this, R.id.btnIncrement);
 
         btnIncrement.setOnClickListener(v -> increment());
     }

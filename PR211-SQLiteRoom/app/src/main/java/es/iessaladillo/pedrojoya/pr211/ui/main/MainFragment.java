@@ -3,9 +3,11 @@ package es.iessaladillo.pedrojoya.pr211.ui.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,7 +42,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -48,23 +50,23 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        repository = RepositoryImpl.getInstance(getActivity());
-        viewModel = ViewModelProviders.of(getActivity(),
+        repository = RepositoryImpl.getInstance(requireActivity());
+        viewModel = ViewModelProviders.of(requireActivity(),
                 new MainActivityViewModelFactory(repository)).get(MainActivityViewModel.class);
         initViews(getView());
     }
 
     private void initViews(View view) {
-        fab = getActivity().findViewById(R.id.fab);
-        lblEmptyView = view.findViewById(R.id.lblEmptyView);
-        lstStudents = view.findViewById(R.id.lstStudents);
+        fab = requireActivity().findViewById(R.id.fab);
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
+        lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
 
         setupFab();
         setupRecyclerView();
-        viewModel.getStudents().observe(getActivity(), students -> {
+        viewModel.getStudents().observe(requireActivity(), students -> {
             if (students != null) {
                 // New data list for adapter (with automatic diffcallback calculations).
-                adapter.setList(students);
+                adapter.submitList(students);
             }
         });
     }
@@ -80,9 +82,9 @@ public class MainFragment extends Fragment {
         adapter.setEmptyView(lblEmptyView);
         lstStudents.setAdapter(adapter);
         lstStudents.setLayoutManager(
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
         lstStudents.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
@@ -102,11 +104,11 @@ public class MainFragment extends Fragment {
     }
 
     private void addStudent() {
-        StudentActivity.start(getActivity());
+        StudentActivity.start(requireActivity());
     }
 
     private void editStudent(Student student) {
-        StudentActivity.start(getActivity(), student.getId());
+        StudentActivity.start(requireActivity(), student.getId());
     }
 
     private void deleteStudent(int position) {
@@ -115,12 +117,12 @@ public class MainFragment extends Fragment {
     }
 
     private void showSuccessDeletingStudent() {
-        Toast.makeText(getActivity(), R.string.main_fragment_student_deleted, Toast.LENGTH_SHORT)
+        Toast.makeText(requireActivity(), R.string.main_fragment_student_deleted, Toast.LENGTH_SHORT)
                 .show();
     }
 
     private void showErrorDeletingStudent() {
-        Toast.makeText(getActivity(), R.string.main_fragment_error_deleting_student,
+        Toast.makeText(requireActivity(), R.string.main_fragment_error_deleting_student,
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -129,7 +131,7 @@ public class MainFragment extends Fragment {
         final WeakReference<MainFragment> mainFragmentWeakReference;
         final Repository repository;
 
-        public DeleteStudentTask(MainFragment mainFragment, Repository repository) {
+        DeleteStudentTask(MainFragment mainFragment, Repository repository) {
             this.mainFragmentWeakReference = new WeakReference<>(mainFragment);
             this.repository = repository;
         }

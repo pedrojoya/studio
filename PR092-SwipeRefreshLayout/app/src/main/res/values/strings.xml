@@ -2,5 +2,7 @@
 <resources>
 
     <string name="app_name">SwipeRefreshLayout</string>
+    <string name="activity_main_mnuRefresh">Refresh</string>
+    <string name="fragment_main_no_data_yet">No data yet</string>
 
 </resources>

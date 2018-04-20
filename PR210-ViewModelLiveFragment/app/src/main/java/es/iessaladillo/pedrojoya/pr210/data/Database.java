@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Database {
 
-    private ArrayList<String> items = null;
+    private final ArrayList<String> items;
 
     private static Database ourInstance;
 

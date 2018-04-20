@@ -69,7 +69,7 @@ public class AlumnosAdapter extends SimpleCursorAdapter {
         // El constructor recibe la vista-fila.
         public ViewHolder(View itemView) {
             // Se obtienen las vistas de la vista-fila.
-            imgAvatar = (ImageView) itemView.findViewById(R.id.imgAvatar);
+            imgAvatar = (ImageView) ViewCompat.requireViewById(itemView, R.id.imgAvatar);
             lblNombre = (TextView) itemView
                     .findViewById(R.id.lblNombre);
             lblCurso = (TextView) itemView

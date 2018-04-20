@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/prefSynchronization_title">
+
+        <android.support.v7.preference.CheckBoxPreference
+            android:defaultValue="@bool/prefSync_defaultValue"
+            android:icon="@drawable/ic_sync_black_24dp"
+            android:key="@string/prefSync_key"
+            android:summaryOff="@string/prefSync_summaryOff"
+            android:summaryOn="@string/prefSync_summaryOn"
+            android:title="@string/prefSync_title"/>
+
+        <android.support.v7.preference.ListPreference
+            android:defaultValue="@string/prefConnectionType_defaultValue"
+            android:dependency="@string/prefSync_key"
+            android:dialogTitle="@string/prefConnectionType_dialogTitle"
+            android:entries="@array/prefConnectionType_entries"
+            android:entryValues="@array/prefConnectionType_entryValues"
+            android:icon="@drawable/ic_network_wifi_black_24dp"
+            android:key="@string/prefConnectionType_key"
+            android:title="@string/prefConnectionType_title"/>
+
+        <android.support.v7.preference.DropDownPreference
+            android:defaultValue="@string/prefLanguage_defaultValue"
+            android:dialogTitle="@string/prefLanguage_dialogTitle"
+            android:entries="@array/prefLanguage_entries"
+            android:entryValues="@array/prefLanguage_entryValues"
+            android:icon="@drawable/ic_language_black_24dp"
+            android:key="@string/prefLanguage_key"
+            android:title="@string/prefLanguage_title"/>
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/prefAppearance_title">
+
+        <android.support.v7.preference.CheckBoxPreference
+            android:defaultValue="@bool/prefBigFontSize_defaultValue"
+            android:icon="@drawable/ic_font_download_black_24dp"
+            android:key="@string/prefBigFontSize_key"
+            android:summaryOff="@string/prefBigFontSize_summaryOff"
+            android:summaryOn="@string/prefBigFontSize_summaryOn"
+            android:title="@string/prefBigFontSize_title"/>
+
+        <android.support.v14.preference.MultiSelectListPreference
+            android:defaultValue="@array/prefShifts_defaultValue"
+            android:dialogTitle="@string/prefShifts_dialogTitle"
+            android:entries="@array/prefShifts_entries"
+            android:entryValues="@array/prefShifts_entryValues"
+            android:icon="@drawable/ic_rotate_right_black_24dp"
+            android:key="@string/prefShifts_key"
+            android:summary="@string/prefShifts_summary"
+            android:title="@string/prefShifts_title"/>
+
+        <android.support.v7.preference.Preference
+            android:persistent="false"
+            android:icon="@drawable/ic_web_black_24dp"
+            android:title="@string/prefWeb_title">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.iessaladillo.es"/>
+        </android.support.v7.preference.Preference>
+
+        <android.support.v7.preference.PreferenceScreen
+            android:key="@string/prefOthers_key"
+            android:title="@string/prefOthers_title">
+
+            <android.support.v7.preference.EditTextPreference
+                android:dialogTitle="@string/prefCatchPhrase_dialogTitle"
+                android:icon="@drawable/ic_text_fields_black_24dp"
+                android:key="@string/prefCatchPhrase_key"
+                android:summary="@string/prefCatchPhrase_summary"
+                android:title="@string/prefCatchPhrase_title"/>
+
+            <android.support.v7.preference.SwitchPreferenceCompat
+                android:defaultValue="@bool/prefNetworkMode_defaultValue"
+                android:icon="@drawable/ic_network_wifi_black_24dp"
+                android:key="@string/prefNetworkMode_key"
+                android:summaryOff="@string/prefNetworkMode_summaryOff"
+                android:summaryOn="@string/prefNetworkMode_summaryOn"
+                android:switchTextOff="@string/prefNetworkMode_switchTextOff"
+                android:switchTextOn="@string/prefNetworkMode_switchTextOn"
+                android:title="@string/prefNetworkMode_title"/>
+
+            <!-- Icon displayed incorrectly -->
+            <android.support.v7.preference.SeekBarPreference
+                android:defaultValue="@integer/prefDifficulty_defaultValue"
+                android:key="@string/prefDifficulty_key"
+                android:max="@integer/prefDifficulty_max"
+                android:title="@string/prefDifficulty_title"
+                app:min="@integer/prefDifficulty_min"
+                app:seekBarIncrement="@integer/prefDifficulty_seekBarIncrement"
+                app:showSeekBarValue="false"/>
+
+        </android.support.v7.preference.PreferenceScreen>
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

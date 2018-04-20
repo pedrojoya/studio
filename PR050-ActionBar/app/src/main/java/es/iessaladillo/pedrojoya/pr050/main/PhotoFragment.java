@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,7 +44,7 @@ public class PhotoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_photo, container, false);
     }
@@ -72,7 +74,7 @@ public class PhotoFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(STATE_EFFECT, mEffectId);
     }
@@ -105,7 +107,7 @@ public class PhotoFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        imgPhoto = view.findViewById(R.id.imgPhoto);
+        imgPhoto = ViewCompat.requireViewById(view, R.id.imgPhoto);
 
         setCorrectBitmap(mEffectId);
     }

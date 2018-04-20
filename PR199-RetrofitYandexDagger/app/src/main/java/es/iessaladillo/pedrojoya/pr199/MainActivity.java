@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
     private void initViews() {
-        txtTermino = (EditText) findViewById(R.id.txtTermino);
+        txtTermino = ActivityCompat.requireViewById(this, R.id.txtTermino);
         txtTermino.setOnEditorActionListener(
                 new TextView.OnEditorActionListener() {
                     @Override
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = ActivityCompat.requireViewById(this, R.id.fab);
         fab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
         );
-        lblTraduccion = (TextView) findViewById(R.id.lblTraduccion);
+        lblTraduccion = ActivityCompat.requireViewById(this, R.id.lblTraduccion);
     }
 
     private void toggleSoftKeyboard() {

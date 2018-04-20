@@ -2,8 +2,10 @@ package es.iessaladillo.pedrojoya.pr147.main;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ public class LikesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_likes, container, false);
     }
@@ -49,14 +51,14 @@ public class LikesFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(STATE_LIKES, mLikes);
     }
 
     private void initViews(View view) {
-        lblLikes = view.findViewById(R.id.lblLikes);
-        fab = getActivity().findViewById(R.id.fab);
+        lblLikes = ViewCompat.requireViewById(view, R.id.lblLikes);
+        fab = requireActivity().findViewById(R.id.fab);
 
         lblLikes.setText(String.valueOf(mLikes));
     }

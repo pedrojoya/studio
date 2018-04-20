@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr147.main;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager() {
-        ViewPager viewPager = findViewById(R.id.viewPager);
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        ViewPager viewPager = ActivityCompat.requireViewById(this, R.id.viewPager);
+        TabLayout tabLayout = ActivityCompat.requireViewById(this, R.id.tabLayout);
 
         MainActivityAdapter adapter = new MainActivityAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(adapter);

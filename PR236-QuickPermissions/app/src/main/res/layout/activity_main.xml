@@ -1,0 +1,101 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/general_activity_margin">
+
+        <TextView
+            android:id="@+id/lblSource"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="@string/activity_main_lblSource"/>
+
+        <RadioGroup
+            android:id="@+id/rgSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblSource"
+            android:layout_marginTop="@dimen/general_activity_margin">
+
+            <RadioButton
+                android:id="@+id/rbRaw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/activity_main_rbRaw"/>
+
+            <RadioButton
+                android:id="@+id/rbAsset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_rbAsset"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/lblDestination"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rgSource"
+            android:layout_marginTop="@dimen/general_activity_margin"
+            android:text="@string/activity_main_lblDestination"/>
+
+        <RadioGroup
+            android:id="@+id/rgDestination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblDestination"
+            android:layout_marginTop="@dimen/general_activity_margin">
+
+            <RadioButton
+                android:id="@+id/rbInternal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_rbInternal"/>
+
+            <RadioButton
+                android:id="@+id/rbPersonalExternal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_rbPersonalExternal"/>
+
+            <RadioButton
+                android:id="@+id/rbPublicExternal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/activity_main_rbPublicExternal"/>
+
+            <RadioButton
+                android:id="@+id/rbInternalCache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_rbInternalCache"/>
+
+            <RadioButton
+                android:id="@+id/rbExternalCache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_rbExternalCache"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnDuplicate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rgDestination"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/general_activity_margin"
+            android:text="@string/activity_main_btnDuplicate"/>
+
+    </RelativeLayout>
+</ScrollView>

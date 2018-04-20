@@ -1,8 +1,10 @@
 package es.iessaladillo.pedrojoya.pr123.main;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,7 @@ public class InfoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_info, container, false);
     }
@@ -42,8 +44,8 @@ public class InfoFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        lblLikes = view.findViewById(R.id.lblLikes);
-        imgLike = view.findViewById(R.id.imgLike);
+        lblLikes = ViewCompat.requireViewById(view, R.id.lblLikes);
+        imgLike = ViewCompat.requireViewById(view, R.id.imgLike);
 
         lblLikes.setText(
                 getResources().getQuantityString(R.plurals.info_fragment_likes, mLikes, mLikes));

@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr005;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -28,9 +29,9 @@ public class StudentActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        btnSend = findViewById(R.id.btnSend);
-        txtName = findViewById(R.id.txtName);
-        txtAge = findViewById(R.id.txtAge);
+        btnSend = ActivityCompat.requireViewById(this, R.id.btnSend);
+        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
+        txtAge = ActivityCompat.requireViewById(this, R.id.txtAge);
 
         txtAge.setText(String.valueOf(Constants.DEFAULT_AGE));
         txtName.addTextChangedListener(new TextWatcher() {

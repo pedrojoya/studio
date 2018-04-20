@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="pick_or_capture_opciones">
-        <item>Seleccionar de la galería de fotos</item>
-        <item>Capturar foto</item>
+    <string-array name="pick_or_capture_options">
+        <item>Pick photo from gallery</item>
+        <item>Capture photo</item>
     </string-array>
 </resources>

@@ -23,7 +23,7 @@ public class LoginDialogFragment extends SimpleDialogFragment {
     @Override
     protected Builder build(Builder builder) {
         builder.setTitle(R.string.login);
-        builder.setView(LayoutInflater.from(getActivity()).inflate(
+        builder.setView(LayoutInflater.from(requireActivity()).inflate(
                 R.layout.dialog_login, null));
         builder.setPositiveButton(R.string.conectar, new View.OnClickListener() {
             // Al pulsar el bot�n positivo.

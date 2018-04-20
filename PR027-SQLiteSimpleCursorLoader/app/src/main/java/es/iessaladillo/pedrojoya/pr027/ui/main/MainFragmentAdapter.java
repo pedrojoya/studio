@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr027.ui.main;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -66,8 +67,9 @@ public class MainFragmentAdapter extends RecyclerView.Adapter<MainFragmentAdapte
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.fragment_main_item, parent, false);
         final ViewHolder viewHolder = new ViewHolder(itemView);
@@ -81,7 +83,7 @@ public class MainFragmentAdapter extends RecyclerView.Adapter<MainFragmentAdapte
     }
 
     @Override
-    public void onBindViewHolder(MainFragmentAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull MainFragmentAdapter.ViewHolder viewHolder, int position) {
         viewHolder.bind(data.get(position), position);
     }
 
@@ -129,14 +131,14 @@ public class MainFragmentAdapter extends RecyclerView.Adapter<MainFragmentAdapte
 
         private final TextView lblGrade;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-            imgAvatar = itemView.findViewById(R.id.imgAvatar);
-            lblName = itemView.findViewById(R.id.lblName);
-            lblGrade = itemView.findViewById(R.id.lblGrade);
-            lblAddress = itemView.findViewById(R.id.lblAddress);
+            imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
+            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
         }
-        public void bind(Student student, int position) {
+        void bind(Student student, int position) {
             lblName.setText(student.getName());
             lblGrade.setText(student.getGrade());
             lblAddress.setText(student.getAddress());

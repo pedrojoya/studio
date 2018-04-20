@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        ((Spinner) findViewById(R.id.spnAnimacion)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        (ActivityCompat.requireViewById(this, R.id.spnAnimacion)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 // Se realiza la animación seleccionada.
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        imgImagen = (ImageView) findViewById(R.id.imgImagen);
+        imgImagen = ActivityCompat.requireViewById(this, R.id.imgImagen);
     }
 
     // Carga y realizar la animación con dicho resId.

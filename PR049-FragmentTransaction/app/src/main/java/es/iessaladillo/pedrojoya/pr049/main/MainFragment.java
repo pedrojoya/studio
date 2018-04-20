@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,24 +55,22 @@ public class MainFragment extends Fragment {
         mListener = null;
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(getActivity()).get(MainActivityViewModel.class);
+        mViewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
         initViews(getView());
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void initViews(View view) {
-        lstItems = view.findViewById(R.id.lstItems);
+        lstItems = ViewCompat.requireViewById(view, R.id.lstItems);
 
         int itemLayout = ConfigurationUtils.hasLandscapeOrientation(
-                getActivity()) ? android.R.layout.simple_list_item_activated_1 : android.R.layout
+                requireActivity()) ? android.R.layout.simple_list_item_activated_1 : android.R.layout
                                  .simple_list_item_1;
         List<String> data = mViewModel.getItems();
-        lstItems.setAdapter(new ArrayAdapter<>(getActivity(), itemLayout, data));
-        if (ConfigurationUtils.hasLandscapeOrientation(getActivity())) {
+        lstItems.setAdapter(new ArrayAdapter<>(requireActivity(), itemLayout, data));
+        if (ConfigurationUtils.hasLandscapeOrientation(requireActivity())) {
             int selectedIndex = data.indexOf(mViewModel.getSelectedItem());
             if (selectedIndex >= 0) {
                 selectItem(selectedIndex);

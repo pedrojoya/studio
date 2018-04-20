@@ -35,20 +35,14 @@ public class Student {
     }
 
     // If we want to use DiffCallback in List<Student> we need to override default Object equals.
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Student student = (Student) o;
 
-        if (id != student.id) return false;
-        if (name != null ? !name.equals(student.name) : student.name != null) return false;
-        //noinspection SimplifiableIfStatement
-        if (address != null ? !address.equals(student.address) : student.address != null)
-            return false;
-        return photoUrl != null ? photoUrl.equals(student.photoUrl) : student.photoUrl == null;
+        return id == student.id && (name != null ? name.equals(student.name) : student.name == null)
+                && (address != null ? address.equals(student.address) : student.address == null);
     }
 
     @Override

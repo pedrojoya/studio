@@ -22,13 +22,14 @@ allprojects {
 
 ext {
     compileSdkVersion = 27
-    minSdkVersion = 19
-    buildToolsVersion = "26.0.2"
+    minSdkVersion = 21
+    buildToolsVersion = "27.0.3"
     junit_version = "4.12"
     espresso_version = "3.0.1"
-    support_library_version = "27.0.2"
+    support_library_version = "27.1.1"
     picasso_version = "2.5.2"
-    circleimageview_version = "2.1.0"
+    circleimageview_version = "2.2.0"
     fakeit_version = "v0.7"
-    arch_version = "1.0.0"
+    arch_version = "1.1.1"
+    room_version = "1.0.0"
 }

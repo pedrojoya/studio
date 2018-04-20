@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr015.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        grdWords = findViewById(R.id.grdWords);
+        grdWords = ActivityCompat.requireViewById(this, R.id.grdWords);
         grdWords.setAdapter(
-                new MainActivityAdapter(this, mViewModel.getData()));
+                new MainActivityAdapter(mViewModel.getData()));
         grdWords.setOnItemClickListener((adapterView, view, position, id) -> showWord(position));
     }
 

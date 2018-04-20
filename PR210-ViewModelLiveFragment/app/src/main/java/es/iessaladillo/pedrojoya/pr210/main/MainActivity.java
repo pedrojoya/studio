@@ -41,6 +41,21 @@ public class MainActivity extends DetailFragmentBaseActivity<MainActivityViewMod
         });
     }
 
+    // We need to take care of onSaveInstanceState because the activity is finished if we change
+    // orientation while activity is in the backstack, so the have to save the selected
+    // item.
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mViewModel.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mViewModel.onRestoreInstanceState(savedInstanceState);
+    }
+
     @Override
     public Class<MainActivityViewModel> getViewModelClass() {
         return MainActivityViewModel.class;

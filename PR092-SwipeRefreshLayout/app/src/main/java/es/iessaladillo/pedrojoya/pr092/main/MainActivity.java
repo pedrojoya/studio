@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr092.main;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,14 +18,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         setupToolbar();
-        // Load fragment.
         if (savedInstanceState == null) {
             FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.container, new MainFragment());
         }
     }
 
     private void initViews() {
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setupToolbar();
     }
 

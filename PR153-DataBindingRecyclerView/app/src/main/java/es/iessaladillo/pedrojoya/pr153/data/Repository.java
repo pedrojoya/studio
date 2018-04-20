@@ -6,7 +6,7 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr153.data.local.model.Student;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused", "UnusedReturnValue"})
 public interface Repository {
 
     LiveData<List<Student>> getStudents();

@@ -11,14 +11,9 @@ public class ValidationUtils {
 
     @SuppressWarnings("RedundantIfStatement")
     public static boolean isValidSpanishPhoneNumber(@NonNull String phone) {
-        if (phone.length() > 0 && phone.length() < 9) {
-            return false;
-        }
-        if (!phone.startsWith("6") && !phone.startsWith("7") && !phone.startsWith("8")
-                && !phone.startsWith("9")) {
-            return false;
-        }
-        return Patterns.PHONE.matcher(phone).matches();
+        return (phone.length() <= 0 || phone.length() >= 9) && (phone.startsWith("6")
+                || phone.startsWith("7") || phone.startsWith("8") || phone.startsWith("9"))
+                && Patterns.PHONE.matcher(phone).matches();
     }
 
     public static boolean isValidEmail(@NonNull String email) {

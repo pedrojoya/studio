@@ -31,4 +31,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
+    implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
+    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
 }

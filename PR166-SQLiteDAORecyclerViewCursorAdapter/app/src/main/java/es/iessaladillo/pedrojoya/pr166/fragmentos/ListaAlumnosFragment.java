@@ -93,11 +93,11 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
             }
         });
         lstAlumnos.setAdapter(mAdaptador);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireActivity(),
                 LinearLayoutManager.VERTICAL, false);
         lstAlumnos.setLayoutManager(mLayoutManager);
         lstAlumnos.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         lstAlumnos.setItemAnimator(new DefaultItemAnimator());
         // Drag & drop y Swipe to dismiss.
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
@@ -136,7 +136,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
     @Override
     public void onResume() {
         // Se obtiene la BD.
-        mDao = new DAO(getActivity());
+        mDao = new DAO(requireActivity());
         // Se carga la lista de alumnos.
         cargarAlumnos();
         super.onResume();
@@ -222,7 +222,7 @@ public class ListaAlumnosFragment extends Fragment implements AlumnosAdapter
         if (mActionMode != null) {
             toggleSelection(position);
         } else {
-            mActionMode = getActivity().startActionMode(this);
+            mActionMode = requireActivity().startActionMode(this);
             toggleSelection(position);
             listener.onHideFAB();
         }

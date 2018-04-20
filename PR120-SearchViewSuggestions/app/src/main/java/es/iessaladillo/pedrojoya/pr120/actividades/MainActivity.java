@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // La toolbar actuará como action bar.
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_burger);
         setSupportActionBar(mToolbar);
         // Se inicializa la base de datos (para que se carguen los datos iniciales).

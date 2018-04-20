@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr002;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     }
 
     private void initViews() {
-        txtName = findViewById(R.id.txtName);
-        chkPolite = findViewById(R.id.chkPolite);
-        btnGreet = findViewById(R.id.btnGreet);
+        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
+        chkPolite = ActivityCompat.requireViewById(this, R.id.chkPolite);
+        btnGreet = ActivityCompat.requireViewById(this, R.id.btnGreet);
 
         chkPolite.setOnCheckedChangeListener(this);
         btnGreet.setOnClickListener(this);

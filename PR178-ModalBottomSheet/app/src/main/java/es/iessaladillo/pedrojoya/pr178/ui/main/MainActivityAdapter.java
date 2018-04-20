@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr178.ui.main;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -68,8 +69,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.activity_main_item, parent, false);
         final ViewHolder viewHolder = new ViewHolder(itemView);
@@ -93,7 +95,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     }
 
     @Override
-    public void onBindViewHolder(MainActivityAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull MainActivityAdapter.ViewHolder viewHolder, int position) {
         viewHolder.bind(mData.get(position), position);
     }
 
@@ -253,9 +255,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            lblName = itemView.findViewById(R.id.lblName);
-            lblAddress = itemView.findViewById(R.id.lblAddress);
-            imgAvatar = itemView.findViewById(R.id.imgAvatar);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
+            imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
         public void bind(Student student, int position) {

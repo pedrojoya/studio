@@ -26,18 +26,17 @@ public class MainFragment extends BaseFragment<MainActivityViewModel, FragmentMa
         setHasOptionsMenu(true);
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         binding.setVm(viewModel);
         setupFab();
         setupRecyclerView();
-//        viewModel.getRefreshing().observe(getActivity(), refreshing -> binding.swipeRefreshLayout
+//        viewModel.getRefreshing().observe(requireActivity(), refreshing -> binding.swipeRefreshLayout
 //                .setRefreshing(refreshing));
-        viewModel.getStudents().observe(getActivity(), students -> adapter.setList(students));
-//        viewModel.getMessage().observe(getActivity(), this::showMessage);
-        viewModel.getRevertSwipe().observe(getActivity(), position -> adapter.notifyItemChanged(position));
+        viewModel.getStudents().observe(requireActivity(), students -> adapter.setList(students));
+//        viewModel.getMessage().observe(requireActivity(), this::showMessage);
+        viewModel.getRevertSwipe().observe(requireActivity(), position -> adapter.notifyItemChanged(position));
     }
 
     @Override
@@ -47,7 +46,7 @@ public class MainFragment extends BaseFragment<MainActivityViewModel, FragmentMa
 
     @Override
     protected MainActivityViewModel createViewModel() {
-        return new MainActivityViewModel(RepositoryImpl.getInstance(getActivity()));
+        return new MainActivityViewModel(RepositoryImpl.getInstance(requireActivity()));
     }
 
     @Override
@@ -55,9 +54,8 @@ public class MainFragment extends BaseFragment<MainActivityViewModel, FragmentMa
         return R.layout.fragment_main;
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void setupFab() {
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
+        FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
         fab.setOnClickListener(v -> viewModel.onFabClick(v));
     }
 
@@ -80,13 +78,12 @@ public class MainFragment extends BaseFragment<MainActivityViewModel, FragmentMa
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void showMessage(ViewMessage viewMessage) {
         if (!viewMessage.askIsShownAndMarkAsShown()) {
-            Toast.makeText(getActivity(), viewMessage.getMessageResId(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), viewMessage.getMessageResId(), Toast.LENGTH_SHORT).show();
         }
         if (viewMessage.isFinishActivityNeeded()) {
-            getActivity().finish();
+            requireActivity().finish();
         }
     }
 

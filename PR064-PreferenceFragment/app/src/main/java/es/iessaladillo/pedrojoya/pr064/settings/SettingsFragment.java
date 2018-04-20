@@ -87,16 +87,16 @@ public class SettingsFragment extends PreferenceFragment implements
             RingtonePreference ringtonePreference = (RingtonePreference) preference;
             String tonePath = ringtonePreference.getSharedPreferences().getString(ringtonePreference.getKey(), "");
             Uri toneUri = Uri.parse(tonePath);
-            Ringtone ringtone = RingtoneManager.getRingtone(getActivity(), toneUri);
-            String ringtoneTitle = ringtone.getTitle(getActivity());
+            Ringtone ringtone = RingtoneManager.getRingtone(requireActivity(), toneUri);
+            String ringtoneTitle = ringtone.getTitle(requireActivity());
             ringtonePreference.setSummary(ringtoneTitle);
             // Special hack for RingtonePreference.
             ringtonePreference.setOnPreferenceChangeListener((pref, newValue) -> {
                 if (newValue != null && newValue instanceof String) {
                     String path = (String) newValue;
-                    Ringtone tone = RingtoneManager.getRingtone(getActivity(),
+                    Ringtone tone = RingtoneManager.getRingtone(requireActivity(),
                             Uri.parse(path));
-                    pref.setSummary(tone.getTitle(getActivity()));
+                    pref.setSummary(tone.getTitle(requireActivity()));
                 }
                 return true;
             });

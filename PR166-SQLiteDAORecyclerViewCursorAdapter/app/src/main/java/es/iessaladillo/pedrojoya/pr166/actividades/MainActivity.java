@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity implements
 
     // Configura la toolbar.
     private void setupToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
     }
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        btnAgregar = (FloatingActionButton) findViewById(R.id.btnAgregar);
+        btnAgregar = ActivityCompat.requireViewById(this, R.id.btnAgregar);
         if (btnAgregar != null) {
             btnAgregar.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,4 +1,3 @@
 <resources>
-    <!-- Grupo (layout) -->
     <dimen name="grupo_padding">10dp</dimen>
 </resources>

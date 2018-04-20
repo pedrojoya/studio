@@ -25,7 +25,7 @@ public class SiNoDialogFragment extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
         b.setTitle(R.string.eliminar_alumno);
         b.setMessage(R.string.esta_seguro_de_eliminar_los_alumnos);
         b.setIcon(R.mipmap.ic_launcher);

@@ -2,8 +2,13 @@ package es.iessaldillo.pedrojoya.pr191;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +21,7 @@ public class MainFragment extends Fragment {
     private String mOption;
     @SuppressWarnings("FieldCanBeLocal")
     private TextView lblOption;
+    private FloatingActionButton fab;
 
     public MainFragment() {
     }
@@ -41,7 +47,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -53,9 +59,28 @@ public class MainFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        lblOption = view.findViewById(R.id.lblOption);
-
+        lblOption = ViewCompat.requireViewById(view, R.id.lblOption);
         lblOption.setText(mOption);
+        setupFab();
+    }
+
+    private void setupFab() {
+        fab = requireActivity().findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(v -> Snackbar.make(fab, "Me han pulsado", Snackbar
+                    .LENGTH_SHORT).show());
+            setFabIcon();
+        }
+    }
+
+    private void setFabIcon() {
+        if (TextUtils.equals(mOption, getString(R.string.main_activity_calendar))) {
+            fab.setImageResource(R.drawable.ic_access_time_black_24dp);
+        } else if (TextUtils.equals(mOption, getString(R.string.main_activity_favorites))) {
+            fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+        } else {
+            fab.setImageResource(R.drawable.ic_audiotrack_black_24dp);
+        }
     }
 
 }

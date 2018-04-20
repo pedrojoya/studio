@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        llContainer = findViewById(R.id.llContainer);
-        btnAdd = findViewById(R.id.btnAdd);
-        swCustom = findViewById(R.id.swCustom);
+        llContainer = ActivityCompat.requireViewById(this, R.id.llContainer);
+        btnAdd = ActivityCompat.requireViewById(this, R.id.btnAdd);
+        swCustom = ActivityCompat.requireViewById(this, R.id.swCustom);
 
         btnAdd.setOnClickListener(v -> add());
         setupTransitions();

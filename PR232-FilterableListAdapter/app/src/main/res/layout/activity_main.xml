@@ -1,0 +1,56 @@
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/coordinatorLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lstStudents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:paddingBottom="@dimen/activity_main_lstStudents_padding"
+        android:paddingTop="@dimen/activity_main_lstStudents_padding"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="@dimen/activity_main_emptyView_drawablePadding"
+        android:drawableTop="@drawable/ic_person_add_black_48dp"
+        android:text="@string/activity_main_emptyView"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/activity_main_fab_margin"
+        android:layout_marginEnd="@dimen/activity_main_fab_margin"
+        android:layout_marginRight="@dimen/activity_main_fab_margin"
+        android:elevation="@dimen/activity_main_fab_elevation"
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        tools:ignore="RtlHardcoded,UnusedAttribute"/>
+
+</android.support.design.widget.CoordinatorLayout>

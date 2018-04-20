@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr200;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -15,8 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements
-        OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     // Vistas.
     private EditText txtUsuario;
@@ -36,18 +36,13 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        btnAceptar = (Button) findViewById(R.id.btnAceptar);
-        if (btnAceptar != null) {
-            btnAceptar.setOnClickListener(this);
-        }
-        Button btnCancelar = (Button) findViewById(R.id.btnCancelar);
-        if (btnCancelar != null) {
-            btnCancelar.setOnClickListener(this);
-        }
-        lblUsuario = (TextView) findViewById(R.id.lblUsuario);
-        lblClave = (TextView) findViewById(R.id.lblClave);
-        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
-        txtClave = (EditText) findViewById(R.id.txtClave);
+        btnAceptar = ActivityCompat.requireViewById(this, R.id.btnAceptar);
+        btnAceptar.setOnClickListener(this);
+        ActivityCompat.requireViewById(this, R.id.btnCancelar).setOnClickListener(this);
+        lblUsuario = ActivityCompat.requireViewById(this, R.id.lblUsuario);
+        lblClave = ActivityCompat.requireViewById(this, R.id.lblClave);
+        txtUsuario = ActivityCompat.requireViewById(this, R.id.txtUsuario);
+        txtClave = ActivityCompat.requireViewById(this, R.id.txtClave);
         // Se cambia el color del TextView dependiendo de si el EditText
         // correspondiente tiene el foco o no.
         txtUsuario.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -72,13 +67,11 @@ public class MainActivity extends AppCompatActivity implements
         txtUsuario.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             // Después de haber cambiado el texto.
@@ -94,13 +87,11 @@ public class MainActivity extends AppCompatActivity implements
         txtClave.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             // Después de haber cambiado el texto.
@@ -127,10 +118,8 @@ public class MainActivity extends AppCompatActivity implements
         switch (v.getId()) {
             case R.id.btnAceptar:
                 // Se informa de la conexión
-                Toast.makeText(
-                        this,
-                        getString(R.string.conectando_con_el_usuario, txtUsuario.getText().toString()),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.conectando_con_el_usuario,
+                        txtUsuario.getText().toString()), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnCancelar:
                 // Se resetean las vistas.
@@ -148,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements
 
     // Activa o desactiva el botón de Aceptar dependiendo de si hay datos.
     private void checkDatos() {
-        btnAceptar.setEnabled(!TextUtils.isEmpty(txtUsuario.getText()
-                .toString())
-                && !TextUtils.isEmpty(txtClave.getText().toString()));
+        btnAceptar.setEnabled(
+                !TextUtils.isEmpty(txtUsuario.getText().toString()) && !TextUtils.isEmpty(
+                        txtClave.getText().toString()));
     }
 
     // TextView visible sólo si EditText tiene datos.

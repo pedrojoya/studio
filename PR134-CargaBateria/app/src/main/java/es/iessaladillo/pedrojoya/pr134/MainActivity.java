@@ -6,9 +6,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import static android.os.BatteryManager.BATTERY_HEALTH_COLD;
+import static android.os.BatteryManager.BATTERY_HEALTH_DEAD;
+import static android.os.BatteryManager.BATTERY_HEALTH_GOOD;
+import static android.os.BatteryManager.BATTERY_HEALTH_OVERHEAT;
+import static android.os.BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE;
+import static android.os.BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lblLevel = findViewById(R.id.lblLevel);
-        pbLevel = findViewById(R.id.pbLevel);
+        lblLevel = ActivityCompat.requireViewById(this, R.id.lblLevel);
+        pbLevel = ActivityCompat.requireViewById(this, R.id.pbLevel);
     }
 
     @Override
@@ -57,6 +65,30 @@ public class MainActivity extends AppCompatActivity {
             boolean pluggedAc = plugged == BatteryManager.BATTERY_PLUGGED_AC;
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
             int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+            int health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
+            String healthMessage;
+            switch (health) {
+                case BATTERY_HEALTH_COLD:
+                    healthMessage = getString(R.string.main_activity_health_cold);
+                    break;
+                case BATTERY_HEALTH_DEAD:
+                    healthMessage = getString(R.string.main_activity_health_dead);
+                    break;
+                case BATTERY_HEALTH_GOOD:
+                    healthMessage = getString(R.string.main_activity_health_good);
+                    break;
+                case BATTERY_HEALTH_OVERHEAT:
+                    healthMessage = getString(R.string.main_activity_health_overheat);
+                    break;
+                case BATTERY_HEALTH_OVER_VOLTAGE:
+                    healthMessage = getString(R.string.main_activity_health_over_voltage);
+                    break;
+                case BATTERY_HEALTH_UNSPECIFIED_FAILURE:
+                    healthMessage = getString(R.string.main_activity_health_unspecified_failure);
+                    break;
+                default:
+                    healthMessage = getString(R.string.main_activity_health_unknown);
+            }
             @SuppressWarnings("unused")
             float porcentage = level / (float)scale;
             StringBuilder sb = new StringBuilder();
@@ -72,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 sb.append(getString(R.string.activity_main_lblLevel)).append(" ");
             }
-            sb.append("(").append(level).append("%)");
+            sb.append("(").append(level).append("%)").append(" ").append(healthMessage);
             lblLevel.setText(sb.toString());
             pbLevel.setProgress(level);
         }

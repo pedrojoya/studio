@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ForegroundService</string>
+    <string name="fragment_main_emptyView">No students yet</string>
+    <string name="main_activity_exported">File created</string>
+    <string name="main_activity_open">Open</string>
+    <string name="export_service_exporting">Exporting student list</string>
+    <string name="export_service_progress">%1$d of %2$d</string>
+
+</resources>

@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void findViews() {
-        lstStudents = findViewById(R.id.lstStudents);
-        swlPanel = findViewById(R.id.swlPanel);
-        lblEmptyView = findViewById(R.id.lblEmptyView);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        swlPanel = ActivityCompat.requireViewById(this, R.id.swlPanel);
+        lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmptyView);
     }
 
     private void initViews() {

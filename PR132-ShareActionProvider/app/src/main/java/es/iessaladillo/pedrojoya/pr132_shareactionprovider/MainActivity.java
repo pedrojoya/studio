@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr132_shareactionprovider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lstStudents = findViewById(R.id.lstStudents);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.students))));

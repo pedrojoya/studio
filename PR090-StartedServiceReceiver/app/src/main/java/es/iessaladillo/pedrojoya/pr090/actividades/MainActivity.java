@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity implements
 
     // Obtiene e inicializa las vistas.
     private void initVistas() {
-        lstCanciones = (ListView) findViewById(R.id.lstCanciones);
+        lstCanciones = ActivityCompat.requireViewById(this, R.id.lstCanciones);
         mAdaptador = new CancionesAdapter(this, getListaCanciones(), lstCanciones);
         lstCanciones.setAdapter(mAdaptador);
         lstCanciones.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         lstCanciones.setOnItemClickListener(this);
         lstCanciones.setEmptyView(findViewById(R.id.rlListaVacia));
-        btnPlayStop = (FloatingActionButton) findViewById(R.id.btnPlayStop);
+        btnPlayStop = ActivityCompat.requireViewById(this, R.id.btnPlayStop);
         btnPlayStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

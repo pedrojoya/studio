@@ -89,9 +89,9 @@ public class MeteoFragment extends Fragment {
     // Refresca los datos de la lista.
     private void actualizarMeteo() {
         // Se obtienen las preferencias.
-        SharedPreferences preferencias = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mLocalidad = preferencias.getString(getActivity().getString(R.string.prefLocalidadKey), "Madrid");
-        mUnidad = preferencias.getString(getActivity().getString(R.string.prefUnidadKey), "metric");
+        SharedPreferences preferencias = PreferenceManager.getDefaultSharedPreferences(requireActivity());
+        mLocalidad = preferencias.getString(requireActivity().getString(R.string.prefLocalidadKey), "Madrid");
+        mUnidad = preferencias.getString(requireActivity().getString(R.string.prefUnidadKey), "metric");
         ObtenerDatosMeteo tarea = new ObtenerDatosMeteo();
         tarea.execute(mLocalidad);
     }
@@ -135,7 +135,7 @@ public class MeteoFragment extends Fragment {
         // Se carga de datos el adaptador para la lista.
         lstMeteo = (ListView) getView().findViewById(R.id.lstMeteo);
         mAdaptador = new ArrayAdapter<String>(
-                getActivity(),
+                requireActivity(),
                 R.layout.fragment_meteo_item,
                 R.id.lblMeteo,
                 new ArrayList<String>());

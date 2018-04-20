@@ -28,13 +28,13 @@ public class AdaptadorDialogFragment extends DialogFragment {
     // Al crear el diálogo. Retorna el diálogo configurado.
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder b = new AlertDialog.Builder(this.getActivity());
+        AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
         b.setTitle(R.string.alumno);
         b.setIcon(R.mipmap.ic_launcher);
         // Se crea el array de datos.
         mAlumnos = getDatos();
         // Se crea y asigna el adaptador.
-        AlumnosAdapter adaptador = new AlumnosAdapter(this.getActivity(),
+        AlumnosAdapter adaptador = new AlumnosAdapter(requireActivity(),
                 getDatos());
         b.setAdapter(adaptador, new OnClickListener() {
             // Cuando se hace click sobre un elemento de la lista.

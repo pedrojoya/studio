@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,8 +28,8 @@ public class ViewModelActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lblCount = findViewById(R.id.lblCount);
-        btnIncrement = findViewById(R.id.btnIncrement);
+        lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
+        btnIncrement = ActivityCompat.requireViewById(this, R.id.btnIncrement);
 
         btnIncrement.setOnClickListener(v -> increment());
     }
@@ -46,14 +47,15 @@ public class ViewModelActivity extends AppCompatActivity {
         context.startActivity(new Intent(context, ViewModelActivity.class));
     }
 
-    static class State extends ViewModel {
+    @SuppressWarnings("WeakerAccess")
+    public static class State extends ViewModel {
         private int count = 0;
 
-        public int getCount() {
+        int getCount() {
             return count;
         }
 
-        public void increment() {
+        void increment() {
             count++;
         }
     }

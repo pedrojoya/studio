@@ -1,2 +1,3 @@
 <resources>
+    <dimen name="fragment_main_emptyView_drawablePadding">16dp</dimen>
 </resources>

@@ -2,13 +2,13 @@
 <resources>
 
     <string name="app_name">JobScheduler</string>
-    <string name="mensaje">Mensaje</string>
-    <string name="intervalo_entre_avisos">Intervalo (ms)</string>
-    <string name="avisar">Avisar</string>
-    <string name="quillo_ponte_ya_a_currar">Quillo, ponte ya a currar!!!</string>
-    <string name="default_intervalo">5000</string>
-    <string name="aviso_importante">Aviso importante</string>
-    <string name="trabajo_planificado_id">Trabajo planificado: %d</string>
-    <string name="error_planificacion">Error en la planificación del trabajo</string>
+    <string name="activity_main_lblMessage">Message</string>
+    <string name="activity_main_lblInternval">Interval (ms)</string>
+    <string name="activity_main_lblSchedule">Schedule</string>
+    <string name="activity_main_txtMessage">It\'s working time!!!</string>
+    <string name="aviso_importante">Important message</string>
+    <string name="main_activity_reminder_scheduled">Job scheduled: %d</string>
+    <string name="main_activity_error_scheduling">Error scheduling the job</string>
+    <string name="app_main_channel_name">Main channel</string>
 
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Música online</string>
+    <string name="no_hay_canciones">No hay canciones</string>
+    <string name="playstop">Play / Stop</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+</resources>

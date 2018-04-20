@@ -32,7 +32,7 @@ public class AlumnoActivity extends AppCompatActivity {
     private void initVistas() {
         txtNombre = (EditText) this.findViewById(R.id.txtNombre);
         txtEdad = (EditText) this.findViewById(R.id.txtEdad);
-        Button btnAceptar = (Button) findViewById(R.id.btnAceptar);
+        Button btnAceptar = ActivityCompat.requireViewById(this, R.id.btnAceptar);
         if (btnAceptar != null) {
             btnAceptar.setOnClickListener(v -> {
                 // Se finaliza la actividad.

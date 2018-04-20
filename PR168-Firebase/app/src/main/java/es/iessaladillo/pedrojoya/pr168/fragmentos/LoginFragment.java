@@ -46,7 +46,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void initVistas(View view) {
-        txtEmail = (EditText) view.findViewById(R.id.txtEmail);
+        txtEmail = (EditText) ViewCompat.requireViewById(view, R.id.txtEmail);
         txtEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -63,7 +63,7 @@ public class LoginFragment extends Fragment {
                 checkForm();
             }
         });
-        txtPassword = (EditText) view.findViewById(R.id.txtPassword);
+        txtPassword = (EditText) ViewCompat.requireViewById(view, R.id.txtPassword);
         txtPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,7 +80,7 @@ public class LoginFragment extends Fragment {
                 checkForm();
             }
         });
-        btnLogin = (Button) view.findViewById(R.id.btnLogin);
+        btnLogin = (Button) ViewCompat.requireViewById(view, R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment {
                 }
             }
         });
-        btnSignUp = (Button) view.findViewById(R.id.btnSignUp);
+        btnSignUp = (Button) ViewCompat.requireViewById(view, R.id.btnSignUp);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

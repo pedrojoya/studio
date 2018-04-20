@@ -312,7 +312,7 @@ public class DetalleActivity extends AppCompatActivity implements ClickToMultipl
             Fade enterTransition = new Fade(Fade.IN);
             enterTransition.excludeTarget(android.R.id.statusBarBackground, true);
             enterTransition.excludeTarget(android.R.id.navigationBarBackground, true);
-            enterTransition.excludeTarget(R.id.appbar, true);
+            enterTransition.excludeTarget(R.id.appBarLayout, true);
             enterTransition.setDuration(ENTER_TRANSITION_DURATION_MILIS);
             getWindow().setEnterTransition(enterTransition);
             // Se pospone la animación de entrada hasta que la imagen

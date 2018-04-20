@@ -133,10 +133,10 @@ public class MainFragmentAdapter extends RecyclerView.Adapter<MainFragmentAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imgAvatar = itemView.findViewById(R.id.imgAvatar);
-            lblName = itemView.findViewById(R.id.lblName);
-            lblGrade = itemView.findViewById(R.id.lblGrade);
-            lblAddress = itemView.findViewById(R.id.lblAddress);
+            imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
+            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
         }
         public void bind(Student student, int position) {
             lblName.setText(student.getName());

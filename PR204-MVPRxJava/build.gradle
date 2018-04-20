@@ -20,15 +20,15 @@ allprojects {
 
 ext {
     compileSdkVersion = 27
-    minSdkVersion = 19
-    buildToolsVersion = "26.0.2"
+    minSdkVersion = 21
+    buildToolsVersion = "27.0.3"
     junit_version = "4.12"
     mockito_version = "2.7.19"
     espresso_version = "3.0.1"
-    support_library_version = "27.0.2"
-    butterknife_version = "8.5.1"
+    support_library_version = "27.1.1"
+    butterknife_version = "8.8.1"
     picasso_version = "2.5.2"
-    circleimageview_version = "2.1.0"
+    circleimageview_version = "2.2.0"
     rxjava_version = "2.1.9"
-    rxandroid_version = "2.0.1"
+    rxandroid_version = "2.0.2"
 }

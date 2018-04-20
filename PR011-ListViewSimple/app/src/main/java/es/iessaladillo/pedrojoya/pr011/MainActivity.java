@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr011;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -41,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        btnAdd = findViewById(R.id.btnAdd);
-        txtName = findViewById(R.id.txtName);
-        lstStudents = findViewById(R.id.lstStudents);
+        btnAdd = ActivityCompat.requireViewById(this, R.id.btnAdd);
+        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         btnAdd.setOnClickListener(v -> addStudent());
         txtName.addTextChangedListener(new TextWatcher() {
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-        lstStudents.setEmptyView(findViewById(R.id.lblEmptyView));
+        lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmptyView));
         lstStudents.setOnItemClickListener(
                 (adapterView, view, position, id) -> showStudent(mAdapter.getItem(position)));
         lstStudents.setOnItemLongClickListener((adapterView, view, position, id) -> {

@@ -66,7 +66,7 @@ public class ListaAlumnosFragment extends Fragment implements
     private void initVistas(View v) {
         // Se crea el objeto para realizar las operaciones sobre el content provider en segundo
         // plano.
-        mAlumnoAsyncQueryHandler = new DbAsyncQueryHandler(getActivity()
+        mAlumnoAsyncQueryHandler = new DbAsyncQueryHandler(requireActivity()
                 .getContentResolver(), this);
 
         lstAlumnos = (ListView) v.findViewById(R.id.lstAlumnos);
@@ -174,7 +174,7 @@ public class ListaAlumnosFragment extends Fragment implements
         String[] from = {DbContract.Alumno.NOMBRE, DbContract.Alumno.CURSO,
                          DbContract.Alumno.TELEFONO, DbContract.Alumno.DIRECCION};
         int[] to = {R.id.lblNombre, R.id.lblCurso, R.id.lblTelefono, R.id.lblDireccion};
-        adaptador = new AlumnosAdapter(this.getActivity(),
+        adaptador = new AlumnosAdapter(requireActivity(),
                 R.layout.fragment_lista_alumnos_item, null, from, to, 0);
         lstAlumnos.setAdapter(adaptador);
     }
@@ -192,7 +192,7 @@ public class ListaAlumnosFragment extends Fragment implements
                     + " debe implementar OnElementoSeleccionadoListener");
         }
         // Obtenemos el gestor de cargadores.
-        gestor = getActivity().getSupportLoaderManager();
+        gestor = requireActivity().getSupportLoaderManager();
     }
 
     // Elimina de la base de datos los alumnos seleccionados, actualiza el
@@ -224,7 +224,7 @@ public class ListaAlumnosFragment extends Fragment implements
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         // Se retorna el cargador del cursor. Se le pasa el contexto, la uri en
         // la que consultar los datos y las columnas a obtener.
-        return new CursorLoader(getActivity(),
+        return new CursorLoader(requireActivity(),
                 DbContentProvider.CONTENT_URI_ALUMNOS, DbContract.Alumno.TODOS,
                 null, null, null);
     }

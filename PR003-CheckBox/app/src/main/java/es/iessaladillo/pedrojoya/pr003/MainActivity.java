@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr003;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     // Obtiene la referencia e inicializa las vistas.
     private void initVistas() {
         // Se obtiene la referencia a las vistas.
-        chkEducado = (CheckBox) findViewById(R.id.chkEducado);
-        Button btnSaludar = (Button) findViewById(R.id.btnSaludar);
-        txtNombre = (EditText) findViewById(R.id.txtNombre);
+        chkEducado = ActivityCompat.requireViewById(this, R.id.chkEducado);
+        Button btnSaludar = ActivityCompat.requireViewById(this, R.id.btnSaludar);
+        txtNombre = ActivityCompat.requireViewById(this, R.id.txtNombre);
         // Se inicializan las vistas.
         chkEducado.setChecked(true);
         if (btnSaludar != null) {

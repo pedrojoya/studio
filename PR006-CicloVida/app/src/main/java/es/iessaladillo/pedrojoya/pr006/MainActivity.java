@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr006;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -10,15 +11,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String STATE_EVENT_LIST = "STATE_EVENT_LIST";
 
-    private TextView lblEventList;
+    private TextView lblEvents;
 
-    private String mEventList = "";
+    private String events = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lblEventList = findViewById(R.id.lblEventList);
+        lblEvents = ActivityCompat.requireViewById(this, R.id.lblEvents);
         showEvent(getString(R.string.main_activity_oncreate));
     }
 
@@ -43,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(STATE_EVENT_LIST, mEventList);
+        outState.putString(STATE_EVENT_LIST, events);
         showEvent(getString(R.string.main_activity_onsaveinstancestate));
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mEventList = savedInstanceState.getString(STATE_EVENT_LIST);
+        events = savedInstanceState.getString(STATE_EVENT_LIST);
         showEvent(getString(R.string.main_activity_onrestoreinstancestate));
     }
 
@@ -74,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showEvent(String event) {
         Log.d(getString(R.string.app_name), event);
-        mEventList = mEventList.concat(event);
-        lblEventList.setText(mEventList);
+        events = events.concat(event);
+        lblEvents.setText(events);
     }
 
 }

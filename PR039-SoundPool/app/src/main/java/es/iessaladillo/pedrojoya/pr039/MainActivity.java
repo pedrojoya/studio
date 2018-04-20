@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        imgShoot = findViewById(R.id.imgShoot);
-        imgExplode = findViewById(R.id.imgExplode);
+        imgShoot = ActivityCompat.requireViewById(this, R.id.imgShoot);
+        imgExplode = ActivityCompat.requireViewById(this, R.id.imgExplode);
 
         imgShoot.setOnClickListener(view -> shoot());
         imgExplode.setOnClickListener(view -> explosion());

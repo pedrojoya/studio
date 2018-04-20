@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Leave-behind</string>
+    <string name="activity_main_lblEmpty">No hay alumnos</string>
+    <string name="activity_main_item_imgAvatar">Avatar</string>
+    <string name="main_activity_click_on_student">Ha hecho click sobre %1$s</string>
+    <string name="main_activity_archive_student">%s archivado</string>
+</resources>

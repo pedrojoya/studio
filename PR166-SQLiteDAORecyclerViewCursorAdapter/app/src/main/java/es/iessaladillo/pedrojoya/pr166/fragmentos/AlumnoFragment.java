@@ -206,7 +206,7 @@ public class AlumnoFragment extends Fragment {
 
     // Carga los cursos en el "spinner".
     private void cargarCursos() {
-        ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(getActivity(),
+        ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource(requireActivity(),
                 R.array.cursos, android.R.layout.simple_list_item_1);
         spnCurso.setAdapter(adaptadorCursos);
         spnCurso.setOnItemSelectedListener(
@@ -222,7 +222,7 @@ public class AlumnoFragment extends Fragment {
     private void setModoAgregar() {
         // Se crea un nuevo objeto Alumno vacío.
         mAlumno = new Alumno();
-        getActivity().setTitle(R.string.agregar_alumno);
+        requireActivity().setTitle(R.string.agregar_alumno);
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Editar.
@@ -231,17 +231,17 @@ public class AlumnoFragment extends Fragment {
         cargarAlumno(getArguments().getLong(EXTRA_ID));
         // Se escriben los datos del mAlumno en las vistas correspondientes.
         alumnoToVistas();
-        getActivity().setTitle(R.string.editar_alumno);
+        requireActivity().setTitle(R.string.editar_alumno);
     }
 
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
     private void cargarAlumno(long id) {
         // Se consulta en la BD los datos del mAlumno a través del objeto DAO.
-        mAlumno = (new DAO(getActivity())).queryAlumno(id);
+        mAlumno = (new DAO(requireActivity())).queryAlumno(id);
         // Si no se ha encontrado el mAlumno, se informa y se pasa al modo
         // Agregar.
         if (mAlumno == null) {
-            Toast.makeText(getActivity(), R.string.alumno_no_encontrado, Toast.LENGTH_LONG).show();
+            Toast.makeText(requireActivity(), R.string.alumno_no_encontrado, Toast.LENGTH_LONG).show();
             setModoAgregar();
         }
     }
@@ -290,14 +290,14 @@ public class AlumnoFragment extends Fragment {
     // Agrega el alumno a la base de datos.
     private void agregarAlumno() {
         // Se realiza el insert a través del objeto DAO.
-        long id = (new DAO(getActivity())).createAlumno(mAlumno);
+        long id = (new DAO(requireActivity())).createAlumno(mAlumno);
         // Se informa de si ha ido bien.
         if (id >= 0) {
             mAlumno.setId(id);
-            Toast.makeText(getActivity(), getString(R.string.insercion_correcta),
+            Toast.makeText(requireActivity(), getString(R.string.insercion_correcta),
                     Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getActivity(), getString(R.string.insercion_incorrecta),
+            Toast.makeText(requireActivity(), getString(R.string.insercion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
         // Se resetean las vistas para poder agregar otro alumno (seguimos en
@@ -308,12 +308,12 @@ public class AlumnoFragment extends Fragment {
     // Actualiza el alumno en la base de datos.
     private void actualizarAlumno() {
         // Realiza el update en la BD a través del objeto DAO y se informa de si ha ido bien.
-        if ((new DAO(getActivity())).updateAlumno(mAlumno)) {
-            Toast.makeText(getActivity(), getString(R.string.actualizacion_correcta),
+        if ((new DAO(requireActivity())).updateAlumno(mAlumno)) {
+            Toast.makeText(requireActivity(), getString(R.string.actualizacion_correcta),
                     Toast.LENGTH_SHORT).show();
-            getActivity().finish();
+            requireActivity().finish();
         } else {
-            Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
+            Toast.makeText(requireActivity(), getString(R.string.actualizacion_incorrecta),
                     Toast.LENGTH_SHORT).show();
         }
     }

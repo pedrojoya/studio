@@ -67,7 +67,7 @@ public class ContactsFragment extends Fragment implements ContactsView {
     }
 
     private void setupToolbar() {
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
     }
 
     private void setupRecyclerView() {
@@ -168,7 +168,7 @@ public class ContactsFragment extends Fragment implements ContactsView {
 
     @Override
     public void navigateToLoginActivity() {
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+        startActivity(new Intent(requireActivity(), LoginActivity.class));
     }
 
 }

@@ -55,8 +55,9 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
         return getItem(position).getLayoutId();
     }
 
+    @NonNull
     @Override
-    public RecyclerBindingAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerBindingAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ViewDataBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()), viewType, parent, false);
         View itemView = binding.getRoot();
@@ -76,7 +77,7 @@ public class RecyclerBindingAdapter<T extends RecyclerBindingAdapter.ViewModel> 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerBindingAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerBindingAdapter.ViewHolder holder, int position) {
         final T model = getItem(position);
         holder.bind(model);
     }

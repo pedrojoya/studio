@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 def multidex_version = "1.0.0"
-def support_library_version = "27.0.2"
+def support_library_version = "27.1.1"
 def play_services_version = "9.6.1"
 def icepick_version = "3.2.0"
 def permissionsdispatcher_version = "3.1.0"

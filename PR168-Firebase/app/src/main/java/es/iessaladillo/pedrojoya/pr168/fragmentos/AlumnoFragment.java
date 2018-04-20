@@ -228,15 +228,15 @@ public class AlumnoFragment extends Fragment {
     // Carga los cursos en el "spinner".
     private void cargarCursos() {
         // ArrayAdapter<CharSequence> adaptadorCursos = ArrayAdapter.createFromResource
-        // (getActivity(),
+        // (requireActivity(),
         //        R.array.cursos, android.R.layout.simple_list_item_1);
         DatabaseReference refCursos = FirebaseDatabase.getInstance().getReference(
                 App.getUidCursosUrl());
-        mCursosAdapter = new FirebaseListAdapter<Curso>(getActivity(), Curso.class,
+        mCursosAdapter = new FirebaseListAdapter<Curso>(requireActivity(), Curso.class,
                 android.R.layout.simple_list_item_1, refCursos) {
             @Override
             protected void populateView(View view, Curso curso, int i) {
-                ((TextView) view.findViewById(android.R.id.text1)).setText(curso.getNombre());
+                ((TextView) ViewCompat.requireViewById(view, android.R.id.text1)).setText(curso.getNombre());
             }
         };
         spnCurso.setAdapter(mCursosAdapter);
@@ -253,14 +253,14 @@ public class AlumnoFragment extends Fragment {
     private void setModoAgregar() {
         // Se crea un nuevo objeto Alumno vacío.
         mAlumno = new Alumno();
-        getActivity().setTitle(R.string.agregar_alumno);
+        requireActivity().setTitle(R.string.agregar_alumno);
     }
 
     // Realiza las operaciones iniciales necesarias en el modo Editar.
     private void setModoEditar() {
         // Se cargan los datos del alumno a partir del id recibido.
         cargarAlumno(getArguments().getString(EXTRA_KEY));
-        getActivity().setTitle(R.string.editar_alumno);
+        requireActivity().setTitle(R.string.editar_alumno);
     }
 
     // Carga los datos del mAlumno provenientes de la BD en el objeto Alumno.
@@ -277,7 +277,7 @@ public class AlumnoFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError firebaseError) {
-                Toast.makeText(getActivity(), getString(R.string.actualizacion_incorrecta),
+                Toast.makeText(requireActivity(), getString(R.string.actualizacion_incorrecta),
                         Toast.LENGTH_SHORT).show();
             }
         };
@@ -335,7 +335,7 @@ public class AlumnoFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 /*
-                Toast.makeText(getActivity(),
+                Toast.makeText(requireActivity(),
                         getString(R.string.insercion_correcta), Toast.LENGTH_SHORT)
                         .show();
 */
@@ -345,7 +345,7 @@ public class AlumnoFragment extends Fragment {
             @Override
             public void onCancelled(DatabaseError firebaseError) {
 /*
-                Toast.makeText(getActivity(),
+                Toast.makeText(requireActivity(),
                         getString(R.string.insercion_incorrecta),
                         Toast.LENGTH_SHORT).show();
 */
@@ -364,8 +364,8 @@ public class AlumnoFragment extends Fragment {
 
     // Finaliza la actividad retornando que se ha finalizado correctamente.
     private void retornar() {
-        getActivity().setResult(Activity.RESULT_OK, new Intent());
-        getActivity().finish();
+        requireActivity().setResult(Activity.RESULT_OK, new Intent());
+        requireActivity().finish();
     }
 
     // Hace reset sobre el contenido de las vistas.
