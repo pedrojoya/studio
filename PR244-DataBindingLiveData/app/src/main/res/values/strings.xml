@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">PR244-DataBindingLiveData</string>
+    <string name="app_name">DataBinding</string>
     <string name="activity_main_lblName">Name</string>
-    <string name="activity_main_btnReverse">Reverse</string>
+    <string name="activity_main_lblName_required">Name (*)</string>
+    <string name="main_activity_good_morning">Good morning</string>
+    <string name="activity_main_chkPolite">Politely</string>
+    <string name="activity_main_imgPhoto">Photo</string>
+    <string name="activity_main_lblTreatment">Treatment</string>
+    <string name="main_activity_nice_to_meet_you">. Nice to meet you</string>
+    <string name="main_activity_insult">Who do you think you are, %1$s?</string>
 </resources>

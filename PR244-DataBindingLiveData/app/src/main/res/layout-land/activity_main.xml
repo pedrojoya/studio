@@ -1,17 +1,12 @@
-<!--suppress AndroidUnknownAttribute -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="es.iessaladillo.pedrojoya.pr170.main.MainActivityViewModel"/>
-
-        <import type="es.iessaladillo.pedrojoya.pr170.main.MainActivity"/>
-
         <variable
             name="vm"
-            type="MainActivityViewModel"/>
+            type="es.iessaladillo.pedrojoya.pr244.main.MainActivityViewModel"/>
 
     </data>
 
@@ -29,8 +24,8 @@
             android:scaleType="centerCrop"
             app:error="@{@drawable/placeholder}"
             app:imageUrl="@{vm.photoUrl}"
-            app:layout_constraintDimensionRatio="h,16:9"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="w,9:16"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars"/>
@@ -40,14 +35,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_main_margin"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:layout_marginStart="@dimen/activity_main_margin"
             android:labelFor="@+id/txtName"
             app:labelForView="@{txtName}"
-            android:paddingEnd="@dimen/activity_main_margin"
-            android:paddingStart="@dimen/activity_main_margin"
             android:text="@{vm.lblNameText}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
+            app:layout_constraintStart_toEndOf="@+id/imgPhoto"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
             android:id="@+id/txtName"
@@ -60,7 +55,7 @@
             android:imeOptions="actionDone"
             android:onEditorAction="@{(textView, actionId, keyEvent) -> vm.done(textView, actionId, keyEvent)}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPhoto"
             app:layout_constraintTop_toBottomOf="@+id/lblName">
 
             <requestFocus/>
@@ -77,7 +72,7 @@
             android:text="@string/activity_main_chkPolite"
             app:boldOnFocus="@{true}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPhoto"
             app:layout_constraintTop_toBottomOf="@+id/txtName"/>
 
         <TextView
@@ -91,7 +86,7 @@
             android:text="@string/activity_main_lblTreatment"
             app:labelForView="@{spnTreatment}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPhoto"
             app:layout_constraintTop_toBottomOf="@+id/chkPolite"/>
 
         <Spinner
@@ -103,7 +98,7 @@
             android:entries="@array/activity_main_treatments"
             android:selectedItemPosition="@={vm.treatmentIndex}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPhoto"
             app:layout_constraintTop_toBottomOf="@+id/lblTreatment"/>
 
         <android.support.design.widget.FloatingActionButton

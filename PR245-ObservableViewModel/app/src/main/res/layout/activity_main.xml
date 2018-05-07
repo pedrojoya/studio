@@ -12,9 +12,6 @@
             name="vm"
             type="MainActivityViewModel"/>
 
-        <variable
-            name="presenter"
-            type="MainActivity"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -27,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/activity_main_imgPhoto"
-            android:onClick="@{v -> presenter.changePhoto()}"
+            android:onClick="@{v -> vm.changePhoto()}"
             android:scaleType="centerCrop"
             app:error="@{@drawable/placeholder}"
             app:imageUrl="@{vm.photoUrl}"
@@ -46,7 +43,7 @@
             app:labelForView="@{txtName}"
             android:paddingEnd="@dimen/activity_main_margin"
             android:paddingStart="@dimen/activity_main_margin"
-            android:text="@string/activity_main_lblName_required"
+            android:text="@{vm.lblNameText}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
@@ -59,7 +56,8 @@
             android:layout_marginStart="@dimen/activity_main_margin"
             android:inputType="text|textPersonName"
             android:text="@={vm.name}"
-            android:afterTextChanged="@{ediatable -> presenter.txtNameOnChange()}"
+            android:imeOptions="actionDone"
+            android:onEditorAction="@{(textView, actionId, keyEvent) -> vm.done(textView, actionId, keyEvent)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblName">
@@ -115,8 +113,8 @@
             android:layout_marginEnd="@dimen/activity_main_margin"
             android:backgroundTint="@color/fab_background"
             android:enabled="@{vm.valid}"
-            android:onClick="@{v -> presenter.greet()}"
-            android:onLongClick="@{v -> presenter.insult()}"
+            android:onClick="@{v -> vm.greet()}"
+            android:onLongClick="@{v -> vm.insult()}"
             app:srcCompat="@drawable/ic_record_voice_over_white_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

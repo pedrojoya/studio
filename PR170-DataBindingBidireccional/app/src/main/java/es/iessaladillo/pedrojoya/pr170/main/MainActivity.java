@@ -6,11 +6,7 @@ import android.databinding.Observable;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.Toast;
-
-import java.util.Random;
 
 import es.iessaladillo.pedrojoya.pr170.R;
 import es.iessaladillo.pedrojoya.pr170.databinding.ActivityMainBinding;
@@ -26,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         b = DataBindingUtil.setContentView(this, R.layout.activity_main);
         vm = ViewModelProviders.of(this,
-                new MainActivityViewModelFactory(getApplication(),
-                        getResources().getStringArray(R.array.activity_main_treatments)))
+                new MainActivityViewModelFactory(getApplicationContext().getResources()))
                 .get(MainActivityViewModel.class);
         b.setVm(vm);
         vm.viewMessage.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {

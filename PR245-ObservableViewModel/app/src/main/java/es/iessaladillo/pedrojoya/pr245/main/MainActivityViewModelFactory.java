@@ -2,21 +2,22 @@ package es.iessaladillo.pedrojoya.pr245.main;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 
 class MainActivityViewModelFactory implements ViewModelProvider.Factory {
 
-    private final String[] treatments;
+    private final Resources resources;
 
-    public MainActivityViewModelFactory(String[] treatments) {
-        this.treatments = treatments;
+    public MainActivityViewModelFactory(@NonNull Resources resources) {
+        this.resources = resources;
     }
 
     @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new MainActivityViewModel(treatments);
+        return (T) new MainActivityViewModel(resources);
     }
 
 }

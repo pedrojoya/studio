@@ -1,3 +1,4 @@
+<!--suppress AndroidUnknownAttribute -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
@@ -56,6 +57,8 @@
             android:layout_marginStart="@dimen/activity_main_margin"
             android:inputType="text|textPersonName"
             android:text="@={vm.name}"
+            android:imeOptions="actionDone"
+            android:onEditorAction="@{(textView, actionId, keyEvent) -> vm.done(textView, actionId, keyEvent)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPhoto"
             app:layout_constraintTop_toBottomOf="@+id/lblName">
@@ -110,6 +113,7 @@
             android:layout_marginBottom="@dimen/activity_main_margin"
             android:layout_marginEnd="@dimen/activity_main_margin"
             android:enabled="@{vm.valid}"
+            android:backgroundTint="@color/fab_background"
             android:onClick="@{v -> vm.greet()}"
             android:onLongClick="@{v -> vm.insult()}"
             app:srcCompat="@drawable/ic_record_voice_over_white_24dp"

@@ -1,34 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-
 
     <data>
 
         <variable
             name="vm"
-            type="es.iessaladillo.pedrojoya.pr244.MainActivityViewModel"/>
+            type="es.iessaladillo.pedrojoya.pr244.main.MainActivityViewModel"/>
 
     </data>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/activity_main_imgPhoto"
+            android:onClick="@{v -> vm.changePhoto()}"
+            android:scaleType="centerCrop"
+            app:error="@{@drawable/placeholder}"
+            app:imageUrl="@{vm.photoUrl}"
+            app:layout_constraintDimensionRatio="h,16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"/>
 
         <TextView
             android:id="@+id/lblName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_main_margin"
-            android:layout_marginEnd="@dimen/activity_main_margin"
             android:layout_marginTop="@dimen/activity_main_margin"
-            android:text="@string/activity_main_lblName"
             android:labelFor="@+id/txtName"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:labelForView="@{txtName}"
+            android:paddingEnd="@dimen/activity_main_margin"
+            android:paddingStart="@dimen/activity_main_margin"
+            android:text="@{vm.lblNameText}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
 
         <EditText
             android:id="@+id/txtName"
@@ -36,25 +50,72 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_main_margin"
             android:layout_marginStart="@dimen/activity_main_margin"
-            android:inputType="textPersonName"
+            android:inputType="text|textPersonName"
             android:text="@={vm.name}"
+            android:imeOptions="actionDone"
+            android:onEditorAction="@{(textView, actionId, keyEvent) -> vm.done(textView, actionId, keyEvent)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblName"/>
+            app:layout_constraintTop_toBottomOf="@+id/lblName">
 
-        <Button
-            android:id="@+id/btnReverse"
-            android:layout_width="wrap_content"
+            <requestFocus/>
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/chkPolite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_main_margin"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:layout_marginStart="@dimen/activity_main_margin"
+            android:checked="@={vm.polite}"
+            android:text="@string/activity_main_chkPolite"
+            app:boldOnFocus="@{true}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"/>
+
+        <TextView
+            android:id="@+id/lblTreatment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/spnTreatment"
+            android:paddingEnd="@dimen/activity_main_margin"
+            android:paddingStart="@dimen/activity_main_margin"
+            android:layout_marginTop="@dimen/activity_main_margin"
+            android:text="@string/activity_main_lblTreatment"
+            app:labelForView="@{spnTreatment}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chkPolite"/>
+
+        <Spinner
+            android:id="@+id/spnTreatment"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_main_margin"
             android:layout_marginStart="@dimen/activity_main_margin"
-            android:layout_marginTop="@dimen/activity_main_margin"
-            android:text="@string/activity_main_btnReverse"
+            android:entries="@array/activity_main_treatments"
+            android:selectedItemPosition="@={vm.treatmentIndex}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
-            android:enabled="@{vm.isValidForm}"
-            android:onClick="@{() -> vm.reverse()}"/>
+            app:layout_constraintTop_toBottomOf="@+id/lblTreatment"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_main_margin"
+            android:layout_marginEnd="@dimen/activity_main_margin"
+            android:enabled="@{vm.valid}"
+            android:backgroundTint="@color/fab_background"
+            android:onClick="@{v -> vm.greet()}"
+            android:onLongClick="@{v -> vm.insult()}"
+            app:srcCompat="@drawable/ic_record_voice_over_white_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
 
     </android.support.constraint.ConstraintLayout>
+
 </layout>
