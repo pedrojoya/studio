@@ -2,13 +2,13 @@
 <resources>
 
     <string name="app_name">GrabarSonidoIntent</string>
-    <string name="reproducir">Reproducir</string>
-    <string name="pausar">Pausar</string>
-    <string name="parar">Parar</string>
-    <string name="grabar">Grabar</string>
-    <string name="no_hay">No hay aplicación de grabación</string>
+    <string name="main_activity_btnPlay">Reproducir</string>
+    <string name="main_activity_btnPause">Pausar</string>
+    <string name="activity_main_btnStop">Parar</string>
+    <string name="activity_main_btnRecord">Grabar</string>
+    <string name="main_activity_no_activity">No hay aplicación de grabación</string>
     <string name="seleccionar">Seleccionar</string>
-    <string name="no_hay_audio">No se pudo seleccionar audio</string>
+    <string name="main_activity_no_audio_selection_activity">No se pudo seleccionar audio</string>
     <string name="permission_denied">No se puede realizar la operación sin el permiso correspondiente</string>
     <string name="permission_neverask">Para realizar la operación es necesario que conceda el permiso necesario</string>
     <string name="configurar">Configurar</string>

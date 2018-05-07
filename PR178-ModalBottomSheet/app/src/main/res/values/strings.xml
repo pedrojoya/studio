@@ -3,7 +3,6 @@
     <string name="app_name">RecyclerView</string>
 
     <string name="activity_main_lblEmptyView">No students</string>
-    <string name="activity_main_contextual_mnuDelete">Delete</string>
     <string name="activity_main_item_imgAvatar">Avatar</string>
 
     <string name="fragment_bottomsheet_mnuCall">Call</string>
@@ -16,5 +15,4 @@
         %1$s</string>
     <string name="menubottomsheetfragment_see_notes">See notes for %1$s</string>
 
-    <string name="main_activity_one_of_total">%1$d of %2$d</string>
 </resources>

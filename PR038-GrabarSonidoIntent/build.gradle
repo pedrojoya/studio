@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.1'
     }
 }
 
@@ -22,7 +22,5 @@ ext {
     minSdkVersion = 21
     buildToolsVersion = "27.0.3"
     support_library_version = "27.1.1"
-    butterknife_version = "8.8.1"
-    icepick_version = "3.2.0"
     permissionsdispatcher_version = "3.1.0"
 }

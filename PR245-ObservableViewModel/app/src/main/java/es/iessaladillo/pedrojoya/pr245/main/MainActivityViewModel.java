@@ -1,15 +1,13 @@
-package es.iessaladillo.pedrojoya.pr170.main;
+package es.iessaladillo.pedrojoya.pr245.main;
 
-import android.content.Context;
-import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.text.TextUtils;
 
-import es.iessaladillo.pedrojoya.pr170.BR;
-import es.iessaladillo.pedrojoya.pr170.R;
+import es.iessaladillo.pedrojoya.pr245.BR;
+import es.iessaladillo.pedrojoya.pr245.base.ObservableViewModel;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class ActivityMainModel extends BaseObservable {
+@SuppressWarnings("WeakerAccess")
+public class MainActivityViewModel extends ObservableViewModel {
 
     private String name;
     private boolean polite;
@@ -17,8 +15,8 @@ public class ActivityMainModel extends BaseObservable {
     private int treatmentIndex;
     private String photoUrl;
 
-    public ActivityMainModel(Context context) {
-        treatments = context.getResources().getStringArray(R.array.activity_main_treatments);
+    public MainActivityViewModel(String[] treats) {
+        this.treatments = treats;
     }
 
     @Bindable

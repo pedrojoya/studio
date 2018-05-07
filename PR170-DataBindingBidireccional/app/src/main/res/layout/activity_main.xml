@@ -4,17 +4,14 @@
 
     <data>
 
-        <import type="es.iessaladillo.pedrojoya.pr170.main.ActivityMainModel"/>
+        <import type="es.iessaladillo.pedrojoya.pr170.main.MainActivityViewModel"/>
 
         <import type="es.iessaladillo.pedrojoya.pr170.main.MainActivity"/>
 
         <variable
-            name="model"
-            type="ActivityMainModel"/>
+            name="vm"
+            type="MainActivityViewModel"/>
 
-        <variable
-            name="presenter"
-            type="MainActivity"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -27,10 +24,10 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/activity_main_imgPhoto"
-            android:onClick="@{v -> presenter.changePhoto()}"
+            android:onClick="@{v -> vm.changePhoto()}"
             android:scaleType="centerCrop"
             app:error="@{@drawable/placeholder}"
-            app:imageUrl="@{model.photoUrl}"
+            app:imageUrl="@{vm.photoUrl}"
             app:layout_constraintDimensionRatio="h,16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +43,7 @@
             app:labelForView="@{txtName}"
             android:paddingEnd="@dimen/activity_main_margin"
             android:paddingStart="@dimen/activity_main_margin"
-            android:text="@string/activity_main_lblName_required"
+            android:text="@{vm.lblNameText}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgPhoto"/>
@@ -58,8 +55,7 @@
             android:layout_marginEnd="@dimen/activity_main_margin"
             android:layout_marginStart="@dimen/activity_main_margin"
             android:inputType="text|textPersonName"
-            android:text="@={model.name}"
-            android:afterTextChanged="@{ediatable -> presenter.txtNameOnChange()}"
+            android:text="@={vm.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblName">
@@ -74,7 +70,7 @@
             android:layout_marginTop="@dimen/activity_main_margin"
             android:layout_marginEnd="@dimen/activity_main_margin"
             android:layout_marginStart="@dimen/activity_main_margin"
-            android:checked="@={model.polite}"
+            android:checked="@={vm.polite}"
             android:text="@string/activity_main_chkPolite"
             app:boldOnFocus="@{true}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +98,7 @@
             android:layout_marginEnd="@dimen/activity_main_margin"
             android:layout_marginStart="@dimen/activity_main_margin"
             android:entries="@array/activity_main_treatments"
-            android:selectedItemPosition="@={model.treatmentIndex}"
+            android:selectedItemPosition="@={vm.treatmentIndex}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblTreatment"/>
@@ -113,9 +109,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_main_margin"
             android:layout_marginEnd="@dimen/activity_main_margin"
-            android:enabled="@{model.valid}"
-            android:onClick="@{v -> presenter.greet()}"
-            android:onLongClick="@{v -> presenter.insult()}"
+            android:enabled="@{vm.valid}"
+            android:onClick="@{v -> vm.greet()}"
+            android:onLongClick="@{v -> vm.insult()}"
             app:srcCompat="@drawable/ic_record_voice_over_white_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

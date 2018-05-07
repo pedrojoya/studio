@@ -1,6 +1,7 @@
 package pedrojoya.iessaladillo.es.pr229.ui.main;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
                 .inflate(R.layout.activity_main_item, parent, false), this);
     }
 
-    class ViewHolder extends BaseViewHolder<Student> {
+    static class ViewHolder extends BaseViewHolder<Student> {
 
         private final TextView lblName;
         private final TextView lblAddress;

@@ -51,6 +51,8 @@ ext {
     stylabletoast_version = "1.0.9"
     ktx_version = "0.3"
     anko_version = "0.10.4"
+    ktx_version = "0.3"
+    androidstate_version = "1.2.1"
 }
 
 buildscript {
@@ -159,6 +161,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.core:core-ktx:$rootProject.ext.ktx_version"
     implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$rootProject.ext.anko_version"
+    implementation "com.evernote:android-state:$rootProject.ext.androidstate_version"
+
 }
 
 @file:programandoandroid/

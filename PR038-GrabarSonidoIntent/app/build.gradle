@@ -16,21 +16,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-}
-
-repositories {
-    // Para Icepick.
-    maven {url "https://clojars.org/repo/"}
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
     implementation "com.android.support:design:$rootProject.ext.support_library_version"
-    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknife_version"
-    implementation "frankiesardo:icepick:$rootProject.ext.icepick_version"
-    provided "frankiesardo:icepick-processor:$rootProject.ext.icepick_version"
     implementation "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher_version"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher_version"
 }

@@ -8,10 +8,10 @@ import android.view.View;
 import java.util.Collections;
 import java.util.List;
 
-// V is ViewModel type, M is Model type.
+// M is Model type, VH is ViewHolder type,
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class BaseListAdapter<M, V extends BaseViewHolder<M>> extends RecyclerView
-        .Adapter<V> {
+public abstract class BaseListAdapter<M, VH extends BaseViewHolder<M>> extends RecyclerView
+        .Adapter<VH> {
 
     private List<M> data;
     private OnItemClickListener<M> onItemClickListener;
@@ -104,7 +104,7 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder<M>> extends Re
 
     @CallSuper
     @Override
-    public void onBindViewHolder(@NonNull V holder, int position) {
+    public void onBindViewHolder(@NonNull VH holder, int position) {
         holder.bind(getItem(position));
     }
 
@@ -114,5 +114,9 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder<M>> extends Re
 
     public OnItemLongClickListener<M> getOnItemLongClickListener() {
         return onItemLongClickListener;
+    }
+
+    public View getEmptyView() {
+        return emptyView;
     }
 }

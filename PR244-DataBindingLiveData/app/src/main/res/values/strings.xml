@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PR244-DataBindingLiveData</string>
+    <string name="activity_main_lblName">Name</string>
+    <string name="activity_main_btnReverse">Reverse</string>
+</resources>

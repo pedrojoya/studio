@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements PickOrCaptureDial
         }
     }
 
+    // Don't use ViewModel, because it will be destroyed if we change device orientation
+    // being in the capture photo app activity.
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -171,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements PickOrCaptureDial
             if (photoFile != null) {
                 // Save photo file path for later.
                 photoPath = photoFile.getAbsolutePath();
-                Log.d("Mia", photoPath);
                 // Get uri for file from fileprovider (needed for API >= 25). Auhority must match
                 // with the one declared in manifest.
                 Uri fotoURI = FileProvider.getUriForFile(this.getApplicationContext(),

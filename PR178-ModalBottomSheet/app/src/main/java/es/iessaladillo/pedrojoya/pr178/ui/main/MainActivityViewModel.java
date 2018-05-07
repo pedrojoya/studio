@@ -23,7 +23,4 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    public void addFakeStudent() {
-        repository.addFakeStudent();
-    }
 }

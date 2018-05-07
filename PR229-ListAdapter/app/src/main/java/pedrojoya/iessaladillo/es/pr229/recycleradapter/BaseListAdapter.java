@@ -60,6 +60,10 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder<M>> extends Li
         return onItemLongClickListener;
     }
 
+    public View getEmptyView() {
+        return emptyView;
+    }
+
     @Override
     public M getItem(int position) {
         return super.getItem(position);

@@ -3,6 +3,7 @@ package pedrojoya.iessaladillo.es.pr106.recycleradapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+// M is Model.
 public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder {
 
     protected BaseViewHolder(View itemView, BaseListAdapter<M, ? extends BaseViewHolder<M>> adapter) {

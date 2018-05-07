@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="activity_main_treatments" tools:ignore="UnusedResources">
+        <item>Sr.</item>
+        <item>Sra.</item>
+        <item>Dr.</item>
+        <item>Dra.</item>
+    </string-array>
+</resources>

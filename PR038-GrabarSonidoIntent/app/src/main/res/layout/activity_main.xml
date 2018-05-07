@@ -2,21 +2,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_padding">
+    android:id="@+id/rlRoot"
+    android:padding="@dimen/main_activity_margin">
 
     <ImageButton
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/reproducir"
+        android:contentDescription="@string/main_activity_btnPlay"
         android:src="@drawable/ic_play_circle_outline"/>
 
     <ImageButton
         android:id="@+id/btnPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/pausar"
-        android:layout_toRightOf="@+id/btnPlay"
+        android:contentDescription="@string/main_activity_btnPause"
         android:layout_toEndOf="@+id/btnPlay"
         android:src="@drawable/ic_pause"/>
 
@@ -24,42 +24,39 @@
         android:id="@+id/btnStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/btnPause"
         android:layout_toEndOf="@+id/btnPause"
-        android:contentDescription="@string/parar"
+        android:contentDescription="@string/activity_main_btnStop"
         android:src="@drawable/ic_stop"/>
 
     <ImageButton
-        android:id="@+id/btnGrabar"
+        android:id="@+id/btnRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/grabar"
-        android:layout_toRightOf="@+id/btnStop"
+        android:contentDescription="@string/activity_main_btnRecord"
         android:layout_toEndOf="@+id/btnStop"
         android:src="@drawable/ic_fiber_manual_record"/>
 
     <ImageButton
-        android:id="@+id/btnSeleccionar"
+        android:id="@+id/btnSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/seleccionar"
-        android:layout_toRightOf="@+id/btnGrabar"
-        android:layout_toEndOf="@+id/btnGrabar"
+        android:layout_toEndOf="@+id/btnRecord"
         android:src="@drawable/ic_album"/>
 
     <SeekBar
-        android:id="@+id/skbBarra"
+        android:id="@+id/skbTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnPlay"
-        android:layout_marginTop="@dimen/activity_padding"/>
+        android:layout_marginTop="@dimen/main_activity_margin"/>
 
     <TextView
-        android:id="@+id/lblNombre"
+        android:id="@+id/lblName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/skbBarra"
+        android:layout_below="@+id/skbTime"
         android:freezesText="true"
-        android:layout_marginTop="@dimen/activity_padding"/>
+        android:layout_marginTop="@dimen/main_activity_margin"/>
 
 </RelativeLayout>

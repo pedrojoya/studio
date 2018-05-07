@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Call
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        mViewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(getString(R.string.main_activity_no_item))).get(
+                MainActivityViewModel.class);
         if (savedInstanceState != null) {
             mViewModel.onRestoreInstanceState(savedInstanceState);
         }
@@ -31,13 +33,17 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Call
                     MainFragment.newInstance(), TAG_MAIN_FRAGMENT);
         }
         if (ConfigurationUtils.hasLandscapeOrientation(this)) {
-            frgDetailFragment = (DetailFragment) getSupportFragmentManager().findFragmentByTag(
-                    TAG_DETAIL_FRAGMENT);
-            if (frgDetailFragment == null) {
+//            frgDetailFragment = (DetailFragment) getSupportFragmentManager().findFragmentByTag(
+//                    TAG_DETAIL_FRAGMENT);
+//            if (frgDetailFragment == null) {
                 frgDetailFragment = DetailFragment.newInstance(mViewModel.getSelectedItem());
                 FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flDetail,
-                        frgDetailFragment, TAG_MAIN_FRAGMENT);
-            }
+                        frgDetailFragment, TAG_DETAIL_FRAGMENT);
+//            }
+        }
+        if (ConfigurationUtils.hasLandscapeOrientation(this) && !mViewModel.getSelectedItem()
+                .equals(getString(R.string.main_activity_no_item))) {
+            DetailActivity.start(this, mViewModel.getSelectedItem());
         }
     }
 

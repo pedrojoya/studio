@@ -16,6 +16,7 @@ import android.provider.OpenableColumns;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -24,11 +25,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import icepick.Icepick;
-import icepick.State;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -41,54 +37,60 @@ import permissions.dispatcher.RuntimePermissions;
 public class MainActivity extends AppCompatActivity implements OnPreparedListener,
         OnCompletionListener {
 
-    private static final int RC_GRABAR = 0;
-    private static final int RC_SELECCIONAR_AUDIO = 1;
+    private static final int RC_RECORD = 0;
+    private static final int RC_SELECT = 1;
 
-    @BindView(R.id.btnPlay)
-    ImageButton btnPlay;
-    @BindView(R.id.btnPause)
-    ImageButton btnPause;
-    @BindView(R.id.btnStop)
-    ImageButton btnStop;
-    @BindView(R.id.btnGrabar)
-    ImageButton btnGrabar;
-    @BindView(R.id.btnSeleccionar)
-    ImageButton btnSeleccionar;
-    @BindView(R.id.skbBarra)
-    SeekBar skbBarra;
-    @BindView(R.id.lblNombre)
-    TextView lblNombre;
+    private static final String STATE_IS_PLAYING = "STATE_IS_PLAYING";
+    private static final String STATE_RECORDING_URI = "STATE_RECORDING_URI";
+    private static final String STATE_BUTTON_ENABLED = "STATE_BUTTON_ENABLED";
 
-    @State
-    boolean mIsPlaying;
-    @State
-    Uri mUriGrabacion;
-    @State
-    boolean mBtnPlayEnabled;
+    private ImageButton btnPlay;
+    private ImageButton btnPause;
+    private ImageButton btnStop;
+    private ImageButton btnRecord;
+    private ImageButton btnSelect;
+    private SeekBar skbTime;
+    private TextView lblName;
 
-    private MediaPlayer mReproductor;
-    private boolean enPausa;
-    private final Handler mManejador = new Handler();
-    private Runnable mActualizacion;
+    private boolean isPlaying;
+    private Uri recordUri;
+    private boolean isPlayEnabled;
+
+    private MediaPlayer mediaPlayer;
+    private boolean isPaused;
+    private final Handler handler = new Handler();
+    private Runnable updateTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        Icepick.restoreInstanceState(this, savedInstanceState);
-        initVistas();
+        restoreInstanceState(savedInstanceState);
+        initViews();
     }
 
-    private void initVistas() {
-        skbBarra.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+    private void initViews() {
+        btnPlay = ActivityCompat.requireViewById(this, R.id.btnPlay);
+        btnPause = ActivityCompat.requireViewById(this, R.id.btnPause);
+        btnStop = ActivityCompat.requireViewById(this, R.id.btnStop);
+        btnRecord = ActivityCompat.requireViewById(this, R.id.btnRecord);
+        btnSelect = ActivityCompat.requireViewById(this, R.id.btnSelect);
+        skbTime = ActivityCompat.requireViewById(this, R.id.skbTime);
+        lblName = ActivityCompat.requireViewById(this, R.id.lblName);
+
+        btnRecord.setOnClickListener(v -> record());
+        btnSelect.setOnClickListener(v -> select());
+        btnPlay.setOnClickListener(v -> play());
+        btnPause.setOnClickListener(v -> pause());
+        btnStop.setOnClickListener(v -> stop());
+
+        skbTime.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Si ha sido el usuario el que ha cambiado la barra.
-                if (fromUser && mReproductor != null && mReproductor.isPlaying()) {
-                    // Coloco el mReproductor en esa posición.
-                    mReproductor.seekTo(seekBar.getProgress());
+                // If user changed position
+                if (fromUser && mediaPlayer != null && mediaPlayer.isPlaying()) {
+                    mediaPlayer.seekTo(seekBar.getProgress());
                 }
             }
 
@@ -103,62 +105,67 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         });
         btnStop.setEnabled(false);
         btnPause.setEnabled(false);
-        btnPlay.setEnabled(mBtnPlayEnabled);
+        btnPlay.setEnabled(isPlayEnabled);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
+        outState.putBoolean(STATE_IS_PLAYING, isPlaying);
+        outState.putParcelable(STATE_RECORDING_URI, recordUri);
+        outState.putBoolean(STATE_BUTTON_ENABLED, isPlayEnabled);
     }
 
-    @OnClick(R.id.btnGrabar)
-    public void btnGrabarOnClick() {
-        // Se deshabilitan los botones de reproducción.
-        btnPlay.setEnabled(mBtnPlayEnabled = false);
-        btnStop.setEnabled(false);
-        btnPause.setEnabled(false);
-        // Se envía un intent para grabar sonido.
-        Intent i = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-        try {
-            startActivityForResult(i, RC_GRABAR);
-        } catch (Exception e) {
-            Snackbar.make(skbBarra, R.string.no_hay, Snackbar.LENGTH_SHORT).show();
+    private void restoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            isPlaying = savedInstanceState.getBoolean(STATE_IS_PLAYING, false);
+            recordUri = savedInstanceState.getParcelable(STATE_RECORDING_URI);
+            isPlayEnabled = savedInstanceState.getBoolean(STATE_BUTTON_ENABLED, true);
         }
     }
 
-    @OnClick(R.id.btnSeleccionar)
-    public void btnSeleccionarOnClick() {
-        // Se deshabilitan los botones de reproducción.
-        btnPlay.setEnabled(mBtnPlayEnabled = false);
+    public void record() {
+        btnPlay.setEnabled(isPlayEnabled = false);
+        btnStop.setEnabled(false);
+        btnPause.setEnabled(false);
+        Intent i = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+        try {
+            startActivityForResult(i, RC_RECORD);
+        } catch (Exception e) {
+            Snackbar.make(skbTime, R.string.main_activity_no_activity, Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    public void select() {
+        btnPlay.setEnabled(isPlayEnabled = false);
         btnStop.setEnabled(false);
         btnPause.setEnabled(false);
         // Se envía un intent para seleccionar sonido.
-//        Intent i = new Intent(Intent.ACTION_PICK,
-//                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-//        i.setType("audio/*");
-//        try {
-//            startActivityForResult(i, RC_SELECCIONAR_AUDIO);
-//        } catch (Exception e) {
-//            Snackbar.make(skbBarra, R.string.no_hay, Snackbar.LENGTH_SHORT).show();
-//        }
-        MainActivityPermissionsDispatcher.solicitarAudioWithCheck(this);
+        //        Intent i = new Intent(Intent.ACTION_PICK,
+        //                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+        //        i.setType("audio/*");
+        //        try {
+        //            startActivityForResult(i, RC_SELECT);
+        //        } catch (Exception e) {
+        //            Snackbar.make(skbTime, R.string.no_hay, Snackbar.LENGTH_SHORT).show();
+        //        }
+        MainActivityPermissionsDispatcher.selectAudioWithPermissionCheck(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            if (requestCode == RC_GRABAR) {
-                // Se obtiene la uri de la grabación.
-                mUriGrabacion = data.getData();
-                btnPlay.setEnabled(mBtnPlayEnabled = true);
-                lblNombre.setText(mUriGrabacion.getLastPathSegment());
-            } else if (requestCode == RC_SELECCIONAR_AUDIO) {
-                // Se obtiene la Uri real del archivo.
-//                mUriGrabacion = Uri.parse(getRealPath(data.getData()));
-                mUriGrabacion = data.getData();
-                btnPlay.setEnabled(mBtnPlayEnabled = true);
-                lblNombre.setText(getFileName(mUriGrabacion));
+            if (requestCode == RC_RECORD) {
+                // Obtain record uri.
+                recordUri = data.getData();
+                btnPlay.setEnabled(isPlayEnabled = true);
+                lblName.setText(recordUri.getLastPathSegment());
+            } else if (requestCode == RC_SELECT) {
+                // Obtain file uri.
+                // recordUri = Uri.parse(getRealPath(data.getData()));
+                recordUri = data.getData();
+                btnPlay.setEnabled(isPlayEnabled = true);
+                lblName.setText(getFileName(recordUri));
             }
         }
     }
@@ -187,144 +194,113 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         return result;
     }
 
-    @OnClick(R.id.btnPlay)
-    public void btnPlayOnClick() {
-        // Si es una nueva reproducción, se inicia.
-        prepararReproductor();
+    public void play() {
+        preparePlayer();
     }
 
-    @OnClick(R.id.btnPause)
-    public void btnPauseOnClick() {
-        if (mReproductor != null) {
-            if (!enPausa) {
-                // Si no se estaba en modo pausa, se pausa el reproductor.
-                mReproductor.pause();
+    public void pause() {
+        if (mediaPlayer != null) {
+            if (!isPaused) {
+                mediaPlayer.pause();
                 btnPause.setImageResource(R.drawable.ic_play_arrow);
             } else {
-                // Si ya estaba en modo pausa, se continua la reproducción.
-                mReproductor.start();
+                mediaPlayer.start();
                 btnPause.setImageResource(R.drawable.ic_pause);
-                actualizarProgreso();
+                updateTimeBar();
             }
-            enPausa = !enPausa;
+            isPaused = !isPaused;
         }
     }
 
-    @OnClick(R.id.btnStop)
-    public void btnStopOnClick() {
-        if (mReproductor != null) {
-            // Se para la reproducción.
-            mReproductor.stop();
-            enPausa = false;
-            // Se coloca la barra al principio y se eliminan los callbacks.
-            skbBarra.setProgress(0);
-            mManejador.removeCallbacks(mActualizacion);
-            // Se deshabilitan los botones de Pause y de Parar.
+    public void stop() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            isPaused = false;
+            skbTime.setProgress(0);
+            handler.removeCallbacks(updateTime);
             btnPause.setEnabled(false);
             btnPause.setImageResource(R.drawable.ic_pause);
             btnStop.setEnabled(false);
-            // Se habilita el botón de grabar.
-            btnGrabar.setEnabled(true);
-            btnSeleccionar.setEnabled(true);
+            btnRecord.setEnabled(true);
+            btnSelect.setEnabled(true);
         }
     }
 
-    // Prepara al reproductor para poder reproducir.
-    private void prepararReproductor() {
-        // Si hay canción para reproducir.
-        if (mUriGrabacion != null) {
-            // Si ya se tenía reproductor, se elimina.
-            if (mReproductor != null) {
-                mReproductor.reset();
-                mReproductor.release();
-                mReproductor = null;
+    private void preparePlayer() {
+        if (recordUri != null) {
+            if (mediaPlayer != null) {
+                mediaPlayer.reset();
+                mediaPlayer.release();
+                mediaPlayer = null;
             }
-            mReproductor = new MediaPlayer();
+            mediaPlayer = new MediaPlayer();
             try {
-                mReproductor.setDataSource(this, mUriGrabacion);
-                mReproductor.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mReproductor.setOnPreparedListener(this);
-                mReproductor.setOnCompletionListener(this);
-                mReproductor.prepareAsync(); // asíncrona.
+                mediaPlayer.setDataSource(this, recordUri);
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.setOnPreparedListener(this);
+                mediaPlayer.setOnCompletionListener(this);
+                mediaPlayer.prepareAsync(); // asíncrona.
             } catch (Exception e) {
-                Log.d("Reproductor", "ERROR: " + e.getMessage());
+                Log.d("MediaPlayer", "ERROR: " + e.getMessage());
             }
         }
     }
 
     @Override
     public void onPrepared(MediaPlayer repr) {
-        // Se establece el máximo de la seekbar a la duración de la canción y se coloca la barra
-        // al principio.
-        skbBarra.setMax(mReproductor.getDuration());
-        skbBarra.setProgress(0);
-        // No se está en modo pausa.
-        enPausa = false;
-        // Se comienza la reproducción.
+        skbTime.setMax(mediaPlayer.getDuration());
+        skbTime.setProgress(0);
+        isPaused = false;
         repr.start();
-        // Se actualiza el hilo de notificación para actualizar la barra.
-        actualizarProgreso();
-        // Se actualiza el estado de los botones.
+        updateTimeBar();
         btnPause.setEnabled(true);
         btnPause.setImageResource(R.drawable.ic_pause);
         btnStop.setEnabled(true);
-        btnGrabar.setEnabled(false);
-        btnSeleccionar.setEnabled(false);
+        btnRecord.setEnabled(false);
+        btnSelect.setEnabled(false);
     }
 
-    // Actualiza la barra en base al progreso del contenido del reproductor.
-    private void actualizarProgreso() {
-        skbBarra.setProgress(mReproductor.getCurrentPosition());
-        if (mReproductor.isPlaying()) {
-            // Se actualiza la barra transcurrido medio segundo.
-            mActualizacion = new Runnable() {
-                public void run() {
-                    actualizarProgreso();
-                }
-            };
-            mManejador.postDelayed(mActualizacion, 500);
+    private void updateTimeBar() {
+        skbTime.setProgress(mediaPlayer.getCurrentPosition());
+        updateTime = this::updateTimeBar;
+        if (mediaPlayer.isPlaying()) {
+            handler.postDelayed(updateTime, 500);
         } else {
-            if (!enPausa) {
-                skbBarra.setProgress(0);
+            if (!isPaused) {
+                skbTime.setProgress(0);
             }
         }
     }
 
     @Override
     public void onCompletion(MediaPlayer arg0) {
-        skbBarra.setProgress(0);
-        mManejador.removeCallbacks(mActualizacion);
-        // Se actualiza el estado de los botones.
+        skbTime.setProgress(0);
+        handler.removeCallbacks(updateTime);
         btnPause.setEnabled(false);
         btnPause.setImageResource(R.drawable.ic_pause);
         btnStop.setEnabled(false);
-        btnGrabar.setEnabled(true);
-        btnSeleccionar.setEnabled(true);
+        btnRecord.setEnabled(true);
+        btnSelect.setEnabled(true);
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Se liberan los recursos del mReproductor y el propio objeto.
-        if (mReproductor != null) {
-            mReproductor.release();
-            mReproductor = null;
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
-        // Se eliminan los callbacks del manejador.
-        mManejador.removeCallbacks(mActualizacion);
+        handler.removeCallbacks(updateTime);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        skbBarra.setProgress(0);
+        skbTime.setProgress(0);
     }
 
-    // Obtiene el path real de un audio a partir de la URI de Galería obtenido
-    // con ACTION_PICK.
     private String getRealPath(Uri uriGaleria) {
-        // Se consulta en el content provider de la galería.
         String[] filePath = {MediaStore.Audio.Media.DATA};
         Cursor c = getContentResolver().query(uriGaleria, filePath, null, null, null);
         String path = "";
@@ -338,13 +314,13 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void solicitarAudio() {
+    void selectAudio() {
         Intent i = new Intent(Intent.ACTION_GET_CONTENT);
         i.setType("audio/*");
         try {
-            startActivityForResult(i, RC_SELECCIONAR_AUDIO);
+            startActivityForResult(i, RC_SELECT);
         } catch (Exception e) {
-            Snackbar.make(skbBarra, R.string.no_hay_audio, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(skbTime, R.string.main_activity_no_audio_selection_activity, Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -362,19 +338,18 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
 
     @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
     void onPermissionDenied() {
-        Snackbar.make(btnSeleccionar, R.string.permission_denied,
-                Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(btnSelect, R.string.permission_denied, Snackbar.LENGTH_SHORT).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
     void onNeverAskAgain() {
-        Snackbar.make(btnSeleccionar, R.string.permission_neverask,
-                Snackbar.LENGTH_LONG).setAction(R.string.configurar, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startInstalledAppDetailsActivity(MainActivity.this);
-            }
-        }).show();
+        Snackbar.make(btnSelect, R.string.permission_neverask, Snackbar.LENGTH_LONG).setAction(
+                R.string.configurar, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startInstalledAppDetailsActivity(MainActivity.this);
+                    }
+                }).show();
     }
 
     public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
@@ -382,7 +357,6 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         intent.setData(Uri.parse("package:" + context.getPackageName()));
-        // Para que deje rastro en la pila de actividades se añaden flags.
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
