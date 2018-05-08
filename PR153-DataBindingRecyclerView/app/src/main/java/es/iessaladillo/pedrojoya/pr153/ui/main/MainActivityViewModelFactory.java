@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import es.iessaladillo.pedrojoya.pr153.data.Repository;
 
+@SuppressWarnings("WeakerAccess")
 public class MainActivityViewModelFactory implements ViewModelProvider.Factory {
 
     private final Repository repository;
@@ -17,6 +18,7 @@ public class MainActivityViewModelFactory implements ViewModelProvider.Factory {
         this.resources = resources;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {

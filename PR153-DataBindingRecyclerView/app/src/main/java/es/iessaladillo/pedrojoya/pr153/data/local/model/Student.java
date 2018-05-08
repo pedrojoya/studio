@@ -9,10 +9,10 @@ import android.support.annotation.LayoutRes;
 
 import es.iessaladillo.pedrojoya.pr153.BR;
 import es.iessaladillo.pedrojoya.pr153.R;
-import es.iessaladillo.pedrojoya.pr153.base.bindinglistadapter.BindingListAdapter;
+import es.iessaladillo.pedrojoya.pr153.base.bindinglistadapter.ItemViewType;
 
 @Entity
-public class Student extends BaseObservable implements BindingListAdapter.ItemViewType {
+public class Student extends BaseObservable implements ItemViewType {
 
     @PrimaryKey(autoGenerate = true)
     private long id;

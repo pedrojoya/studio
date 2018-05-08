@@ -12,7 +12,8 @@
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:errorMessage="@{vm.viewMessage}">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbarLayout"
@@ -25,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
+                app:asActionBarOf="@{context}"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
@@ -41,6 +43,8 @@
             app:onSwipedRight="@{(bindingViewHolder, direction, item, position) -> vm.deleteStudent(item)}"
             app:onSwipedLeft="@{(bindingViewHolder, direction, item, position) -> vm.deleteStudent(item)}"
             app:emptyView="@{lblEmptyView}"
+            app:dividerItemDecoration="@{true}"
+            app:items="@{vm.students}"
             android:paddingBottom="@dimen/activity_main_lstStudents_padding"
             android:paddingTop="@dimen/activity_main_lstStudents_padding"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
@@ -51,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawablePadding="@dimen/activity_main_lblEmptyView_drawablePadding"
-            android:drawableTop="@drawable/no_students"
+            android:drawableTop="@drawable/ic_person_add_black_24dp"
             android:text="@string/activity_main_lblEmptyView"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
@@ -62,7 +66,8 @@
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="@dimen/activity_main_fab_margin"
             android:layout_marginEnd="@dimen/activity_main_fab_margin"
-            android:src="@drawable/ic_action_add"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:tint="@color/white"
             android:onClick="@{v -> vm.addFakeStudent()}"/>
 
     </android.support.design.widget.CoordinatorLayout>

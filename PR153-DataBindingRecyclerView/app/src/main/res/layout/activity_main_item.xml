@@ -14,7 +14,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:minHeight="@dimen/two_line_tile_height"
         android:orientation="vertical">
 
@@ -26,7 +26,7 @@
             android:layout_marginTop="@dimen/two_line_avatar_marginTop"
             android:contentDescription="@string/activity_main_item_imgPhoto"
             app:imageUrl="@{item.photoUrl}"
-            android:src="@drawable/ic_user"/>
+            app:srcCompat="@drawable/ic_person_black_24dp"/>
 
         <TextView
             android:id="@+id/lblNombre"

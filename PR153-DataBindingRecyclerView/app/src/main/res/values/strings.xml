@@ -9,7 +9,6 @@
 
     <string name="main_activity_student_clicked">Student %1$s"</string>
     <string name="main_activity_student_deleted">%1$s deleted</string>
-    <string name="main_activity_student_archived">%1$s archived</string>
 
 
 </resources>

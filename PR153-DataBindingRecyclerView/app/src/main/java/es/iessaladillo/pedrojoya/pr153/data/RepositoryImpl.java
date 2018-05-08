@@ -11,7 +11,6 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr153.data.local.AppDatabase;
 import es.iessaladillo.pedrojoya.pr153.data.local.model.Student;
-import es.iessaladillo.pedrojoya.pr153.dbutils.DatabaseUtils;
 
 public class RepositoryImpl implements Repository {
 
@@ -25,8 +24,8 @@ public class RepositoryImpl implements Repository {
                 new RoomDatabase.Callback() {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                        DatabaseUtils.executeSqlFromAssetsFile(db, db.getVersion(), context
-                                .getAssets());
+//                        DatabaseUtils.executeSqlFromAssetsFile(db, db.getVersion(), context
+//                                .getAssets());
                     }
                 }).allowMainThreadQueries().build();
     }

@@ -8,12 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
+import java.util.List;
+
+@SuppressWarnings("WeakerAccess")
 public class DataBindingAdapters {
 
     private DataBindingAdapters() {
     }
 
-    @BindingAdapter("app:defaultItemAnimator")
+    @BindingAdapter("defaultItemAnimator")
     public static void setDefaultItemAnimator(RecyclerView recyclerView, boolean
             defaultItemAnimator) {
         if (recyclerView != null && defaultItemAnimator) {
@@ -21,7 +24,7 @@ public class DataBindingAdapters {
         }
     }
 
-    @BindingAdapter("app:dividerItemDecoration")
+    @BindingAdapter("dividerItemDecoration")
     public static void setDividerItemDecoration(RecyclerView recyclerView,
                                                 Boolean dividerItemDecoration) {
         if (recyclerView != null && dividerItemDecoration) {
@@ -30,7 +33,7 @@ public class DataBindingAdapters {
         }
     }
 
-    @BindingAdapter("app:onItemClick")
+    @BindingAdapter("onItemClick")
     public static void onItemClick(RecyclerView recyclerView,
                                    final OnItemClickListener action) {
         if (recyclerView != null && recyclerView.getAdapter() instanceof BindingListAdapter) {
@@ -39,7 +42,7 @@ public class DataBindingAdapters {
         }
     }
 
-    @BindingAdapter("app:onItemLongClick")
+    @BindingAdapter("onItemLongClick")
     public static void onItemLongClick(RecyclerView recyclerView,
                                        final OnItemLongClickListener action) {
         if (recyclerView != null && recyclerView.getAdapter() instanceof BindingListAdapter) {
@@ -48,7 +51,7 @@ public class DataBindingAdapters {
         }
     }
 
-    @BindingAdapter("app:emptyView")
+    @BindingAdapter("emptyView")
     public static void addEmptyView(RecyclerView recyclerView, View emptyView) {
         if (recyclerView != null && emptyView != null
                 && recyclerView.getAdapter() instanceof BindingListAdapter) {
@@ -57,7 +60,7 @@ public class DataBindingAdapters {
         }
     }
 
-    @BindingAdapter(value = {"app:onSwipedRight", "app:onSwipedLeft"}, requireAll = false)
+    @BindingAdapter(value = {"onSwipedRight", "onSwipedLeft"}, requireAll = false)
     public static void setTouchHelper(RecyclerView recyclerView,
                                       OnSwipedListener onSwipedRight, OnSwipedListener onSwipedLeft) {
 
@@ -94,6 +97,16 @@ public class DataBindingAdapters {
                         }
                     });
             itemTouchHelper.attachToRecyclerView(recyclerView);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @BindingAdapter("items")
+    public static <M extends ItemViewType> void setItems(RecyclerView recyclerView, List<M> data) {
+        if (recyclerView != null && data != null
+                && recyclerView.getAdapter() instanceof BindingListAdapter) {
+            BindingListAdapter<M> adapter = (BindingListAdapter<M>) recyclerView.getAdapter();
+            adapter.submitList(data);
         }
     }
 

@@ -16,6 +16,7 @@ public class BindingViewHolder extends RecyclerView.ViewHolder {
         this.modelBRId = modelBRId;
     }
 
+    @SuppressWarnings("unused")
     public ViewDataBinding getBinding() {
         return binding;
     }
