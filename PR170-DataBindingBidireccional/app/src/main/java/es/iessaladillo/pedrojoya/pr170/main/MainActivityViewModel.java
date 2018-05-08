@@ -29,9 +29,8 @@ public class MainActivityViewModel extends ViewModel {
 
     public final ObservableField<String> name = new ObservableField<>();
     public final ObservableBoolean polite = new ObservableBoolean();
-    public final ObservableInt treatmentIndex;
+    public final ObservableInt treatmentIndex = new ObservableInt();
     public final ObservableField<String> photoUrl = new ObservableField<>(PHOTO_BASE_URL + random.nextInt(100));
-    public final ObservableField<String> treatment = new ObservableField<>();
     public final ObservableBoolean valid = new ObservableBoolean();
     public final ObservableField<String> lblNameText = new ObservableField<>();
     public final ObservableField<String> viewMessage = new ObservableField<>();
@@ -42,14 +41,6 @@ public class MainActivityViewModel extends ViewModel {
         this.treatments = resources.getStringArray(R.array.activity_main_treatments);
         lblNameText.set(resources.getString(
                 R.string.activity_main_lblName_required));
-        treatmentIndex = new ObservableInt();
-        treatmentIndex.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable sender, int propertyId) {
-                treatment.set(treatments[treatmentIndex.get()]);
-            }
-        });
-        treatment.set(treatments[0]);
         name.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
@@ -65,8 +56,8 @@ public class MainActivityViewModel extends ViewModel {
         String message = resources.getString(R.string.main_activity_good_morning);
         if (polite.get()) {
             message = message + resources.getString(R.string.main_activity_nice_to_meet_you);
-            if (!TextUtils.isEmpty(treatment.get())) {
-                message += " " + treatment.get();
+            if (!TextUtils.isEmpty(treatments[treatmentIndex.get()])) {
+                message += " " + treatments[treatmentIndex.get()];
             }
         }
         message += " " + name.get();

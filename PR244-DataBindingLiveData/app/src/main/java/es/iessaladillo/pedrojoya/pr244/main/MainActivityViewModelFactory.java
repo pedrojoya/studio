@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr244.main;
 
-import android.app.Application;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.content.res.Resources;
