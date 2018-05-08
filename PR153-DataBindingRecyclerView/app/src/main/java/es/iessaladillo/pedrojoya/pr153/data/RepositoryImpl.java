@@ -63,4 +63,7 @@ public class RepositoryImpl implements Repository {
         return db.studentDao().deleteStudent(student);
     }
 
+    @Override
+    public Student newFakeStudent() { return db.newFakeStudent(); }
+
 }

@@ -14,5 +14,6 @@ public interface Repository {
     long insertStudent(Student student);
     int updateStudent(Student student);
     int deleteStudent(Student student);
+    Student newFakeStudent();
 
 }

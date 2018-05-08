@@ -3,11 +3,9 @@
 
 
     <data>
-        <import
-            type="es.iessaladillo.pedrojoya.pr153.ui.main.MainActivity"/>
         <variable
-            name="presenter"
-            type="MainActivity" />
+            name="vm"
+            type="es.iessaladillo.pedrojoya.pr153.ui.main.MainActivityViewModel" />
     </data>
 
 
@@ -38,10 +36,10 @@
             android:layout_height="match_parent"
             android:fadeScrollbars="false"
             app:defaultItemAnimator="@{true}"
-            app:onItemClick="@{(view, item, position) -> presenter.onItemClick(view, item, position)}"
-            app:onItemLongClick="@{(view, item, position) -> presenter.onItemLongClick(view, item, position)}"
-            app:onSwipedRight="@{(viewHolder, direction, item, position) -> presenter.onSwipedRight(viewHolder, direction, item, position)}"
-            app:onSwipedLeft="@{(viewHolder, direction, item, position) -> presenter.onSwipedLeft(viewHolder, direction, item, position)}"
+            app:onItemClick="@{(view, item, position) -> vm.showStudent(item)}"
+            app:onItemLongClick="@{(view, item, position) -> vm.deleteStudent(item)}"
+            app:onSwipedRight="@{(bindingViewHolder, direction, item, position) -> vm.deleteStudent(item)}"
+            app:onSwipedLeft="@{(bindingViewHolder, direction, item, position) -> vm.deleteStudent(item)}"
             app:emptyView="@{lblEmptyView}"
             android:paddingBottom="@dimen/activity_main_lstStudents_padding"
             android:paddingTop="@dimen/activity_main_lstStudents_padding"
@@ -65,7 +63,7 @@
             android:layout_marginBottom="@dimen/activity_main_fab_margin"
             android:layout_marginEnd="@dimen/activity_main_fab_margin"
             android:src="@drawable/ic_action_add"
-            android:onClick="@{v -> presenter.onFabClick(v)}"/>
+            android:onClick="@{v -> vm.addFakeStudent()}"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
