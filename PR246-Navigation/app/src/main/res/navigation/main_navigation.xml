@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_secundaryFragment"
+            app:destination="@id/secundaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secundaryFragment"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.secondary.SecondaryFragment"
+        android:label="secundary_fragment"
+        tools:layout="@layout/secundary_fragment" />
+
+</navigation>
