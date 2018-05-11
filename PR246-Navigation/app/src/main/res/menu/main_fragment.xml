@@ -2,10 +2,17 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- El id del menú debe corresponder con el id del destinatario en la navegación -->
+    <!-- El id del ítem de menú debe corresponder con el id del destinatario en
+     la navegación -->
     <item
-        android:id="@id/secundaryFragment"
+        android:id="@id/secondaryFragment"
         android:icon="@drawable/ic_arrow_forward_white_24dp"
+        android:title="@string/main_navigate"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@id/anotherActivity"
+        android:icon="@drawable/ic_devices_other_white_24dp"
         android:title="@string/main_navigate"
         app:showAsAction="ifRoom" />
 </menu>

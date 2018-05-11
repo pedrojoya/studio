@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/mainFragment"
+        android:title="Main"
+        android:icon="@drawable/ic_home_black_24dp"/>
+
+    <item
+        android:id="@id/secondaryFragment"
+        android:title="Secondary"
+        android:icon="@drawable/ic_arrow_forward_white_24dp"/>
+
+</menu>

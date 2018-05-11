@@ -7,16 +7,33 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.MainFragment"
-        android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        android:label="Main fragment"
+        tools:layout="@layout/main_fragment">
         <action
-            android:id="@+id/action_mainFragment_to_secundaryFragment"
-            app:destination="@id/secundaryFragment" />
+            android:id="@+id/actionMainToSecondary"
+            app:destination="@id/secondaryFragment"/>
+        <action
+            android:id="@+id/actionMainToAnother"
+            app:destination="@id/anotherActivity"
+            app:popUpToInclusive="false"/>
     </fragment>
     <fragment
-        android:id="@+id/secundaryFragment"
+        android:id="@+id/secondaryFragment"
         android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.secondary.SecondaryFragment"
-        android:label="secundary_fragment"
-        tools:layout="@layout/secundary_fragment" />
+        android:label="Secondary fragment"
+        tools:layout="@layout/secondary_fragment">
+        <argument
+            android:name="counter"
+            android:defaultValue="0"/>
+    </fragment>
+    <activity
+        android:id="@+id/anotherActivity"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.AnotherActivity"
+        android:label="Another activity"
+        tools:layout="@layout/another_activity">
+        <argument
+            android:name="counter"
+            android:defaultValue="0"/>
+    </activity>
 
 </navigation>
