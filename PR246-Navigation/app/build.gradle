@@ -22,12 +22,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:' + rootProject.support_library_version
+    implementation 'com.android.support:design:' + rootProject.support_library_version
     implementation 'com.android.support.constraint:constraint-layout:' + rootProject.constraintlayout_version
     implementation 'android.arch.lifecycle:extensions:' + rootProject.lifecycle_version
     implementation 'android.arch.navigation:navigation-fragment:' + rootProject.navigation_version
     implementation 'android.arch.navigation:navigation-ui:' + rootProject.navigation_version
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
 }
