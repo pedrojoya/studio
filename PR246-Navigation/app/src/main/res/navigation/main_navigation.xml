@@ -16,6 +16,13 @@
             android:id="@+id/actionMainToAnother"
             app:destination="@id/anotherActivity"
             app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/actionMainToDetail"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_enter_anim"/>
     </fragment>
     <fragment
         android:id="@+id/secondaryFragment"
@@ -35,5 +42,10 @@
             android:name="counter"
             android:defaultValue="0"/>
     </activity>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.detail.DetailFragment"
+        android:label="Detail fragment"
+        tools:layout="@layout/detail_fragment"/>
 
 </navigation>
