@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewParent;
 
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -47,20 +48,22 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            // NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
-            navController.addOnNavigatedListener(
-                    new FirstLevelActionBarOnNavigatedListener(this, drawerLayout,
-                            firstLevelDestinationIds));
+            NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+//            navController.addOnNavigatedListener(
+//                    new FirstLevelActionBarOnNavigatedListener(this, drawerLayout,
+//                            firstLevelDestinationIds));
         }
     }
 
     private void setupNavigationDrawer() {
         drawerLayout = findViewById(R.id.drawerLayout);
         if (drawerLayout != null) {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             navigationView = findViewById(R.id.navigationView);
             if (navigationView != null) {
                 // Connect NavigationView with navigation controller.
                 NavigationUI.setupWithNavController(navigationView, navController);
+                //setupWithNavController(navigationView, navController);
             }
         }
     }
@@ -72,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
             // IMPORTANTE: La bottomNavigationView siempre crea una nueva instancia del fragmento de
             // destino. Sin embargo la tecla de Atrás o la de Up hacen pop en la backstrack, navegando
             // al fragmento anterior (la instancia existente).
-            // NavigationUI.setupWithNavController(bottomNavigationView, navController);
-            setupWithNavController(bottomNavigationView, navController);
+            NavigationUI.setupWithNavController(bottomNavigationView, navController);
+            // setupWithNavController(bottomNavigationView, navController);
         }
     }
 
@@ -81,6 +84,37 @@ public class MainActivity extends AppCompatActivity {
     unas animaciones por defecto cuyo afecto es horrible. El código es copiado de
     NavigationUI evitando las animaciones.
      */
+
+    public void setupWithNavController(@NonNull final NavigationView navigationView,
+                                       @NonNull final NavController navController) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        boolean handled = onNavDestinationSelected(item, navController, true);
+                        if (handled) {
+                            ViewParent parent = navigationView.getParent();
+                            if (parent instanceof DrawerLayout) {
+                                ((DrawerLayout) parent).closeDrawer(navigationView);
+                            }
+                        }
+                        return handled;
+                    }
+                });
+        navController.addOnNavigatedListener(new NavController.OnNavigatedListener() {
+            @Override
+            public void onNavigated(@NonNull NavController controller,
+                                    @NonNull NavDestination destination) {
+                int destinationId = destination.getId();
+                Menu menu = navigationView.getMenu();
+                for (int h = 0, size = menu.size(); h < size; h++) {
+                    MenuItem item = menu.getItem(h);
+                    item.setChecked(item.getItemId() == destinationId);
+                }
+            }
+        });
+    }
+
     public void setupWithNavController(
             @NonNull final BottomNavigationView bottomNavigationView,
             @NonNull final NavController navController) {
@@ -133,11 +167,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        return firstLevelNavigateUp(drawerLayout, navController, firstLevelDestinationIds);
+        // return firstLevelNavigateUp(drawerLayout, navController, firstLevelDestinationIds);
 
         // Se le pasa la navegación hacia arriba al navegador (si el drawerLayout es null
         // no hará nada con el navigation drawer.
-        // return NavigationUI.navigateUp(drawerLayout, navController);
+        return NavigationUI.navigateUp(drawerLayout, navController);
     }
 
     private boolean firstLevelNavigateUp(DrawerLayout drawerLayout, NavController navController,

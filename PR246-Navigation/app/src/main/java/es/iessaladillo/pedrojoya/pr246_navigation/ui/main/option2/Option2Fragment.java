@@ -24,11 +24,5 @@ public class Option2Fragment extends Fragment {
         return inflater.inflate(R.layout.option2_fragment, container, false);
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        lblMessage = ViewCompat.requireViewById(view, R.id.lblMessage);
-        int counter = Option2FragmentArgs.fromBundle(getArguments()).getCounter();
-        lblMessage.setText(String.valueOf(counter));
-    }
 
 }

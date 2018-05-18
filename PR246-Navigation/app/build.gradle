@@ -27,4 +27,5 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:' + rootProject.lifecycle_version
     implementation 'android.arch.navigation:navigation-fragment:' + rootProject.navigation_version
     implementation 'android.arch.navigation:navigation-ui:' + rootProject.navigation_version
+    implementation 'com.android.support:support-v4:27.1.1'
 }

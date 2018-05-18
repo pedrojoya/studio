@@ -4,17 +4,17 @@
 
     <item
         android:id="@id/option1Fragment"
-        android:title="Main"
+        android:title="@string/option1"
         android:icon="@drawable/ic_home_black_24dp"/>
 
     <item
         android:id="@id/option2Fragment"
-        android:title="Secondary"
-        android:icon="@drawable/ic_arrow_forward_white_24dp"/>
+        android:title="@string/option2"
+        android:icon="@drawable/ic_assessment_white_24dp"/>
 
     <item
         android:id="@id/option3Fragment"
-        android:title="Detail"
-        android:icon="@drawable/ic_arrow_forward_white_24dp"/>
+        android:title="@string/option3"
+        android:icon="@drawable/ic_restaurant_white_24dp"/>
 
 </menu>

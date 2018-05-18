@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import es.iessaladillo.pedrojoya.pr246_navigation.R;
 import es.iessaladillo.pedrojoya.pr246_navigation.base.FirstLevelActionBarOnNavigatedListener;
 
@@ -50,10 +51,11 @@ public class Option3Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         drawerLayout = requireActivity().findViewById(R.id.drawerLayout);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-        navController.addOnNavigatedListener(
+        NavigationUI.setupActionBarWithNavController((AppCompatActivity) requireActivity(), navController, drawerLayout);
+        /*navController.addOnNavigatedListener(
                 new FirstLevelActionBarOnNavigatedListener((AppCompatActivity) requireActivity(), drawerLayout,
                         new int[] {R.id.option1Fragment, R.id.option2Fragment, R.id.option3Fragment}));
-
+*/
         //        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         //        toolbar.inflateMenu(R.menu.option1_fragment);
         //        toolbar.invalidate();

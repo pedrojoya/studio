@@ -5,14 +5,14 @@
     <!-- El id del ítem de menú debe corresponder con el id del destinatario en
      la navegación -->
     <item
-        android:id="@+id/mnuToOption3"
+        android:id="@id/option1aFragment"
         android:icon="@drawable/ic_arrow_forward_white_24dp"
-        android:title="@string/main_detail"
+        android:title="@string/option1a"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@id/anotherActivity"
         android:icon="@drawable/ic_devices_other_white_24dp"
-        android:title="@string/main_navigate"
+        android:title="@string/another_activity"
         app:showAsAction="ifRoom" />
 </menu>

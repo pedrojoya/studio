@@ -58,7 +58,7 @@ public class Option1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewModel.counter++;
-                Option1FragmentDirections.ActionMainToSecondary action = Option1FragmentDirections.actionMainToSecondary();
+                Option1FragmentDirections.ActionOption1ToOption1a action = Option1FragmentDirections.actionOption1ToOption1a();
                 action.setCounter(viewModel.counter);
                 navController.navigate(action);
             }
@@ -70,11 +70,11 @@ public class Option1Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         drawerLayout = requireActivity().findViewById(R.id.drawerLayout);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-        NavigationUI.setupActionBarWithNavController((AppCompatActivity) requireActivity(), navController);
-        navController.addOnNavigatedListener(
+        NavigationUI.setupActionBarWithNavController((AppCompatActivity) requireActivity(), navController, drawerLayout);
+        /*navController.addOnNavigatedListener(
                 new FirstLevelActionBarOnNavigatedListener((AppCompatActivity) requireActivity(),
                         drawerLayout,
-                        new int[]{R.id.option1Fragment, R.id.option2Fragment, R.id.option3Fragment}));
+                        new int[]{R.id.option1Fragment, R.id.option2Fragment, R.id.option3Fragment}));*/
         //        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         //        toolbar.inflateMenu(R.menu.option1_fragment);
         //        toolbar.invalidate();
@@ -93,19 +93,18 @@ public class Option1Fragment extends Fragment {
                 navController.navigate(Option1FragmentDirections.actionMainToAnother()
                         .setCounter(viewModel.counter));
                 return true;
-            case R.id.mnuToOption3:
-                NavOptions.Builder builder = new NavOptions.Builder()
-                        .setLaunchSingleTop(true);
 /*
+            case R.id.mnuToOption1a:
+
+                NavOptions.Builder builder = new NavOptions.Builder()
+                        .setLaunchSingleTop(true)
                         .setEnterAnim(androidx.navigation.ui.R.anim.nav_default_enter_anim)
                         .setExitAnim(androidx.navigation.ui.R.anim.nav_default_exit_anim)
                         .setPopEnterAnim(androidx.navigation.ui.R.anim.nav_default_pop_enter_anim)
                         .setPopExitAnim(androidx.navigation.ui.R.anim.nav_default_pop_exit_anim);
-*/
-                navController.navigate(R.id.actionMainToDetail, null, builder.build());
-
-                //navController.navigate(R.id.actionMainToDetail);
+                navController.navigate(R.id.option1aFragment, null, builder.build());
                 return true;
+*/
             default:
                 // La selección de un item del menú se la pasamos al controlador de navegación
                 return NavigationUI.onNavDestinationSelected(item, navController)
