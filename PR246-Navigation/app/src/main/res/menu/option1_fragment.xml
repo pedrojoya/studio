@@ -5,7 +5,7 @@
     <!-- El id del ítem de menú debe corresponder con el id del destinatario en
      la navegación -->
     <item
-        android:id="@id/detailFragment"
+        android:id="@+id/mnuToOption3"
         android:icon="@drawable/ic_arrow_forward_white_24dp"
         android:title="@string/main_detail"
         app:showAsAction="ifRoom" />

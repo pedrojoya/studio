@@ -3,17 +3,17 @@
       xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@id/mainFragment"
+        android:id="@id/option1Fragment"
         android:title="Main"
         android:icon="@drawable/ic_home_black_24dp"/>
 
     <item
-        android:id="@id/secondaryFragment"
+        android:id="@id/option2Fragment"
         android:title="Secondary"
         android:icon="@drawable/ic_arrow_forward_white_24dp"/>
 
     <item
-        android:id="@id/detailFragment"
+        android:id="@id/option3Fragment"
         android:title="Detail"
         android:icon="@drawable/ic_arrow_forward_white_24dp"/>
 

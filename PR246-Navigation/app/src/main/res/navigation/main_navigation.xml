@@ -2,50 +2,47 @@
 <navigation xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/option1Fragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.MainFragment"
-        android:label="Main fragment"
-        tools:layout="@layout/main_fragment">
+        android:id="@+id/option1Fragment"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option1.Option1Fragment"
+        android:label="Option 1"
+        tools:layout="@layout/option1_fragment">
         <action
             android:id="@+id/actionMainToSecondary"
-            app:destination="@id/secondaryFragment"/>
+            app:destination="@id/option2Fragment"/>
         <action
             android:id="@+id/actionMainToAnother"
             app:destination="@id/anotherActivity"
             app:popUpToInclusive="false"/>
         <action
             android:id="@+id/actionMainToDetail"
-            app:destination="@id/detailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_exit_anim"
-            app:popExitAnim="@anim/nav_default_enter_anim"/>
+            app:destination="@id/option3Fragment"
+            />
     </fragment>
     <fragment
-        android:id="@+id/secondaryFragment"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.secondary.SecondaryFragment"
-        android:label="Secondary fragment"
-        tools:layout="@layout/secondary_fragment">
+        android:id="@+id/option2Fragment"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option2.Option2Fragment"
+        android:label="Option 2"
+        tools:layout="@layout/option2_fragment">
         <argument
             android:name="counter"
             android:defaultValue="0"/>
     </fragment>
+    <fragment
+        android:id="@+id/option3Fragment"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option3.Option3Fragment"
+        android:label="Option 3"
+        tools:layout="@layout/option3_fragment"/>
     <activity
         android:id="@+id/anotherActivity"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.AnotherActivity"
+        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.another.AnotherActivity"
         android:label="Another activity"
         tools:layout="@layout/another_activity">
         <argument
             android:name="counter"
             android:defaultValue="0"/>
     </activity>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.detail.DetailFragment"
-        android:label="Detail fragment"
-        tools:layout="@layout/detail_fragment"/>
 
 </navigation>

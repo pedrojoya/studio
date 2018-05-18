@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr246_navigation;
+package es.iessaladillo.pedrojoya.pr246_navigation.base;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
