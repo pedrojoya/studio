@@ -1,7 +1,10 @@
 package pedrojoya.iessaladillo.es.pr247.ui.main;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.paging.PagedList;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -10,6 +13,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,13 +23,13 @@ import pedrojoya.iessaladillo.es.pr247.recycleradapter.OnItemClickListener;
 import pedrojoya.iessaladillo.es.pr247.recycleradapter.OnItemLongClickListener;
 
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener<Student>,OnItemLongClickListener<Student> {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private TextView mEmptyView;
 
     private MainActivityViewModel mViewModel;
     private MainActivityAdapter mAdapter;
+    private TextView lblEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +38,19 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
                 MainActivityViewModel.class);
         initViews();
+        mViewModel.queryPagedStudents().observe(this, new Observer<PagedList<Student>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<Student> students) {
+                Log.d("Mia", "Dando datos");
+                mAdapter.submitList(students);
+                lblEmpty.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     private void initViews() {
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        mEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+        lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
 
         setupToolbar();
         setupRecyclerView();
@@ -60,10 +72,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void setupRecyclerView() {
-        mAdapter = new MainActivityAdapter(mViewModel.getStudents());
-        mAdapter.setOnItemClickListener(this);
-        mAdapter.setOnItemLongClickListener(this);
-        mAdapter.setEmptyView(mEmptyView);
+        mAdapter = new MainActivityAdapter();
         lstStudents.setHasFixedSize(true);
         lstStudents.setAdapter(mAdapter);
         lstStudents.setLayoutManager(
@@ -73,22 +82,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     private void addStudent() {
         mViewModel.addFakeStudent();
-        mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
-        lstStudents.scrollToPosition(mAdapter.getItemCount() - 1);
-    }
-
-    @Override
-    public void onItemClick(View view, Student item, int position, long id) {
-        Snackbar.make(lstStudents,
-                getString(R.string.main_activity_click_on_student, item.getName()),
-                Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onItemLongClick(View view, Student item, int position, long id) {
-        mViewModel.deleteStudent(position);
-        mAdapter.notifyItemRemoved(position);
-        return true;
+        lstStudents.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
 }

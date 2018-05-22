@@ -2,6 +2,8 @@ package pedrojoya.iessaladillo.es.pr247.data.model;
 
 import android.support.annotation.NonNull;
 
+import java.util.Objects;
+
 public class Student {
 
     private final int id;
@@ -34,17 +36,17 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Student student = (Student) o;
-
-        return name.equals(student.name);
+        return id == student.id &&
+                Objects.equals(name, student.name) &&
+                Objects.equals(address, student.address) &&
+                Objects.equals(photoUrl, student.photoUrl);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
-    }
 
+        return Objects.hash(id, name, address, photoUrl);
+    }
 }

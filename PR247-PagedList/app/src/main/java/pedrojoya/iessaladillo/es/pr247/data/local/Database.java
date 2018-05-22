@@ -6,6 +6,7 @@ import android.arch.paging.PagedList;
 import android.arch.paging.PositionalDataSource;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.mooveit.library.Fakeit;
 
@@ -18,8 +19,9 @@ public class Database {
 
     private static Database instance;
 
-    private PagedList<Student> students;
+    private List<Student> students = new ArrayList<>();
     private int mCount;
+    private DataSource<Integer, Student> studentsDataSource;
 
     private Database() {
         insertInitialData();
@@ -33,8 +35,11 @@ public class Database {
     }
 
     private void insertInitialData() {
-        for (int i = 0; i < 155; i++) {
-            addFakeStudent();
+        for (int i = 0; i < 76; i++) {
+            mCount++;
+            Student student = new Student(mCount, Fakeit.name().name(), Fakeit.address().streetAddress(),
+                    "http://lorempixel.com/100/100/abstract/" + (mCount % 10 + 1) + "/");
+            students.add(student);
         }
     }
 
@@ -43,7 +48,11 @@ public class Database {
     }
 
     public List<Student> getStudents(int position, int count) {
-        return students.subList(position, position + count);
+        int max = position + count;
+        if (max >= students.size()) max = students.size();
+        Log.d("Mia", "Cargando datos [" + position + ", " + max + "]");
+        // We can't return the subList directly due to concurrency problems.
+        return new ArrayList<>(students.subList(position, max));
     }
 
 
@@ -58,7 +67,8 @@ public class Database {
         return new DataSource.Factory<Integer, Student>() {
             @Override
             public DataSource<Integer, Student> create() {
-                return new StudentDataSource(Database.this);
+                studentsDataSource = new StudentDataSource(Database.this);
+                return studentsDataSource;
             }
         };
     }
@@ -68,6 +78,7 @@ public class Database {
         Student student = new Student(mCount, Fakeit.name().name(), Fakeit.address().streetAddress(),
                 "http://lorempixel.com/100/100/abstract/" + (mCount % 10 + 1) + "/");
         students.add(student);
+        studentsDataSource.invalidate();
     }
 
     public void deleteStudent(int position) {

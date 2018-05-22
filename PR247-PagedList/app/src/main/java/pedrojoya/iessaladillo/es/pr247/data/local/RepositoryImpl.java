@@ -1,5 +1,7 @@
 package pedrojoya.iessaladillo.es.pr247.data.local;
 
+import android.arch.paging.DataSource;
+
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr247.data.model.Student;
@@ -22,8 +24,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public List<Student> getStudents() {
-        return database.getStudents();
+    public DataSource.Factory<Integer, Student> queryPagedStudents() {
+        return database.queryPagedStudents();
     }
 
     @Override
