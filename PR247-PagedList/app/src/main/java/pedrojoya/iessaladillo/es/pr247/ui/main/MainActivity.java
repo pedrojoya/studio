@@ -6,7 +6,6 @@ import android.arch.paging.PagedList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,11 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import pedrojoya.iessaladillo.es.pr247.R;
 import pedrojoya.iessaladillo.es.pr247.data.model.Student;
-import pedrojoya.iessaladillo.es.pr247.recycleradapter.OnItemClickListener;
-import pedrojoya.iessaladillo.es.pr247.recycleradapter.OnItemLongClickListener;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -73,11 +71,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupRecyclerView() {
         mAdapter = new MainActivityAdapter();
+        mAdapter.setOnItemClickListener((view, item, position, id) -> showStudent(item));
+        mAdapter.setOnItemLongClickListener((view, item, position, id) -> {
+            mViewModel.deleteStudent(position);
+            return true;
+        });
         lstStudents.setHasFixedSize(true);
         lstStudents.setAdapter(mAdapter);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    private void showStudent(Student student) {
+        Toast.makeText(this, student.getName(), Toast.LENGTH_SHORT).show();
     }
 
     private void addStudent() {

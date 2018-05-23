@@ -1,11 +1,6 @@
 package pedrojoya.iessaladillo.es.pr247.data.local;
 
-import android.arch.core.util.Function;
 import android.arch.paging.DataSource;
-import android.arch.paging.PagedList;
-import android.arch.paging.PositionalDataSource;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.mooveit.library.Fakeit;
@@ -61,8 +56,8 @@ public class Database {
     // El viewmodel debería construir el LiveData<PagedList<Student>> a partir de la factoría
     // proporcionada por éste método, mediante LivePagedListBuilder(factory, tamaño_página).build()
     // El adaptador que visulice la PagedList debe ser un PagedListAdapter
-
     // Si queremos personalizar aún más el LivePagedListBuilder, podemos crear un objeto de configuración
+
     public DataSource.Factory<Integer, Student> queryPagedStudents() {
         return new DataSource.Factory<Integer, Student>() {
             @Override
@@ -83,6 +78,7 @@ public class Database {
 
     public void deleteStudent(int position) {
         students.remove(position);
+        studentsDataSource.invalidate();
     }
 
     public int getStudentsCount() {

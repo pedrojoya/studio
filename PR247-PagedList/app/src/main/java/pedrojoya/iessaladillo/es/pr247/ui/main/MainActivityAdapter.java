@@ -1,10 +1,8 @@
 package pedrojoya.iessaladillo.es.pr247.ui.main;
 
-import android.arch.paging.PagedListAdapter;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +10,15 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr247.R;
 import pedrojoya.iessaladillo.es.pr247.data.model.Student;
-import pedrojoya.iessaladillo.es.pr247.recycleradapter.BaseListAdapter;
+import pedrojoya.iessaladillo.es.pr247.recycleradapter.BasePagedListAdapter;
 import pedrojoya.iessaladillo.es.pr247.recycleradapter.BaseViewHolder;
 
 // El adaptador que visulice la PagedList debe ser un PagedListAdapter
-public class MainActivityAdapter extends PagedListAdapter<Student, MainActivityAdapter.ViewHolder> {
+public class MainActivityAdapter extends BasePagedListAdapter<Student, MainActivityAdapter
+        .ViewHolder> {
 
 
     public MainActivityAdapter() {
@@ -42,27 +39,24 @@ public class MainActivityAdapter extends PagedListAdapter<Student, MainActivityA
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false));
+                .inflate(R.layout.activity_main_item, parent, false), this);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(getItem(position));
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends BaseViewHolder<Student> {
 
         private final TextView lblName;
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-        ViewHolder(View itemView) {
-            super(itemView);
+        ViewHolder(View itemView, BasePagedListAdapter<Student, MainActivityAdapter.ViewHolder>
+                adapter) {
+            super(itemView, adapter);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
+        @Override
         public void bind(Student student) {
             if (student != null) {
                 lblName.setText(student.getName());
