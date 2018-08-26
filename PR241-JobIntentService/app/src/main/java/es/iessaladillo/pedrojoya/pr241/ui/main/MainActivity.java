@@ -24,6 +24,7 @@ import com.livinglifetechway.quickpermissions.annotations.WithPermissions;
 
 import java.io.File;
 
+import es.iessaladillo.pedrojoya.pr241.BuildConfig;
 import es.iessaladillo.pedrojoya.pr241.R;
 import es.iessaladillo.pedrojoya.pr241.services.ExportToTextFileService;
 
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
-        lstStudents.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        lstStudents.addItemDecoration(
+                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
@@ -122,17 +124,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFile(Uri uri) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri uriProvider = FileProvider
-                .getUriForFile(this,
-                        "es.iessaladillo.pedrojoya.pr241.fileprovider",
-                        new File(uri.getPath()));
-        intent.setDataAndType(uriProvider, "text/plain");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        try {
-            startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (uri != null && uri.getPath() != null) {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW).setDataAndType(
+                        FileProvider.getUriForFile(this,
+                                BuildConfig.APPLICATION_ID + ".fileprovider",
+                                new File(uri.getPath())), "text/plain")
+                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

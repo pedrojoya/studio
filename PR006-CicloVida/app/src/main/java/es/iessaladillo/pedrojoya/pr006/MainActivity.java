@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(STATE_EVENT_LIST, events);
         showEvent(getString(R.string.main_activity_onsaveinstancestate));
+        outState.putString(STATE_EVENT_LIST, events);
     }
 
     @Override

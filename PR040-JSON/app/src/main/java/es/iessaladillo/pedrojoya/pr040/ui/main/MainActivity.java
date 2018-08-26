@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr040.ui.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AbsListView;
@@ -13,6 +14,8 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr040.R;
 import es.iessaladillo.pedrojoya.pr040.data.model.Student;
+import es.iessaladillo.pedrojoya.pr040.base.Event;
+import es.iessaladillo.pedrojoya.pr040.base.RequestState;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,17 +33,15 @@ public class MainActivity extends AppCompatActivity {
         findViews();
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         initViews();
-        viewModel.getStudents().observe(this, studentsRequest -> {
-            if (studentsRequest != null) {
-                swlPanel.setRefreshing(studentsRequest.isLoading());
-                if (!studentsRequest.isLoading()) {
-                    if (studentsRequest.getError() != null) {
-                        showErrorLoadingStudents();
-                        // In order not to be displayed again on orientation change.
-                        studentsRequest.removeError();
-                    } else {
-                        showStudents(studentsRequest.getStudents());
-                    }
+        viewModel.getStudents().observe(this, request -> {
+            if (request != null) {
+                if (request instanceof RequestState.Loading) {
+                    swlPanel.setRefreshing(((RequestState.Loading) request).isLoading());
+                } else if (request instanceof RequestState.Error) {
+                    showErrorLoadingStudents(((RequestState.Error) request).getException());
+                } else if (request instanceof RequestState.Result) {
+                    //noinspection unchecked
+                    showStudents(((RequestState.Result<List<Student>>) request).getData());
                 }
             }
         });
@@ -91,9 +92,11 @@ public class MainActivity extends AppCompatActivity {
         swlPanel.post(() -> swlPanel.setRefreshing(false));
     }
 
-    private void showErrorLoadingStudents() {
-        Toast.makeText(this, getString(R.string.main_activity_error_loading_students),
-                Toast.LENGTH_LONG).show();
+    private void showErrorLoadingStudents(Event<Exception> event) {
+        Exception exception = event.getContentIfNotHandled();
+        if (exception != null) {
+            Toast.makeText(this, exception.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
 }

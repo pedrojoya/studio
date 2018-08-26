@@ -26,16 +26,18 @@ public class NetworkUtils {
     }
 
     @SuppressWarnings("SameParameterValue")
-    public static String loadUrl(String urlString, int timeout) throws IOException {
-        HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(urlString).openConnection();
-        httpURLConnection.setRequestMethod("GET");
-        httpURLConnection.setConnectTimeout(timeout);
-        httpURLConnection.setReadTimeout(timeout);
-        httpURLConnection.setDoInput(true);
-        httpURLConnection.connect();
-        String content = null;
-        if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            content = readContent(httpURLConnection.getInputStream());
+    public static String loadUrl(String urlString, int timeout) throws Exception {
+        HttpURLConnection connection = (HttpURLConnection) new URL(urlString).openConnection();
+        connection.setRequestMethod("GET");
+        connection.setConnectTimeout(timeout);
+        connection.setReadTimeout(timeout);
+        connection.setDoInput(true);
+        connection.connect();
+        String content;
+        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            content = readContent(connection.getInputStream());
+        } else {
+            throw new Exception(connection.getResponseMessage());
         }
         return content;
     }

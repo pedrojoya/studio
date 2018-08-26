@@ -14,9 +14,12 @@ import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String STATE_BSB_STATE = "STATE_BSB_STATE";
+
     private ImageView imgDetail;
 
     private BottomSheetBehavior<RelativeLayout> bsb;
+    private int bsbState = BottomSheetBehavior.STATE_COLLAPSED;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,15 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        restoreInstanceState(savedInstanceState);
         initViews();
+    }
+
+    private void restoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            bsbState = savedInstanceState.getInt(STATE_BSB_STATE, BottomSheetBehavior
+                    .STATE_COLLAPSED);
+        }
     }
 
     private void initViews() {
@@ -32,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout rlPanel = ActivityCompat.requireViewById(this, R.id.rlPanel);
         bsb = BottomSheetBehavior.from(rlPanel);
         FloatingActionButton fab = ActivityCompat.requireViewById(this, R.id.fab);
-
         setupBottomSheet();
         imgDetail.setOnClickListener(view -> expandOrCollapseBottomSheet());
         fab.setOnClickListener(v -> searchDailyPhoto());
@@ -44,22 +54,28 @@ public class MainActivity extends AppCompatActivity {
         bsb.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                switch (newState) {
-                    case BottomSheetBehavior.STATE_EXPANDED:
-                        imgDetail.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
-                        break;
-                    case BottomSheetBehavior.STATE_COLLAPSED:
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        imgDetail.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
-                        break;
-                    default:
-                }
+                setupIcon(newState);
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
             }
         });
+        bsb.setState(bsbState);
+        setupIcon(bsb.getState());
+    }
+
+    private void setupIcon(int newState) {
+        switch (newState) {
+            case BottomSheetBehavior.STATE_EXPANDED:
+                imgDetail.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
+                break;
+            case BottomSheetBehavior.STATE_COLLAPSED:
+            case BottomSheetBehavior.STATE_HIDDEN:
+                imgDetail.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
+                break;
+            default:
+        }
     }
 
     private void searchDailyPhoto() {
@@ -74,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
         } else if (bsb.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
             bsb.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(STATE_BSB_STATE, bsb.getState());
     }
 
 }

@@ -62,6 +62,8 @@ public class ExportToTextFileService extends IntentService {
                 .setSmallIcon(R.drawable.ic_file_download_black_24dp)
                 .setTicker(getString(R.string.export_service_exporting))
                 .setContentTitle(getString(R.string.export_service_exporting))
+                .setOngoing(true)
+                .setOnlyAlertOnce(true)
                 .setContentText(getString(R.string.export_service_progress, 0, 10))
                 .setProgress(10, 0, false);
         return builder.build();

@@ -5,6 +5,8 @@
     <string name="fragment_main_lblName">Nombre</string>
     <string name="fragment_main_btnSearch">Buscar</string>
     <string name="fragment_main_btnEcho">Eco</string>
-    <string name="main_fragment_no_connection">No hay conexión a Internet</string>
+    <string name="main_fragment_error_requesting_echo">Error solicitando
+        eco</string>
+    <string name="main_fragment_error_searching">Error en la búsqueda</string>
 
 </resources>

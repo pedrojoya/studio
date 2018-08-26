@@ -14,9 +14,13 @@ public class VolleyInstance {
         requestQueue = Volley.newRequestQueue(context.getApplicationContext());
     }
 
-    public static synchronized VolleyInstance getInstance(Context context) {
+    public static VolleyInstance getInstance(Context context) {
         if (instance == null) {
-            instance = new VolleyInstance(context);
+            synchronized (VolleyInstance.class) {
+                if (instance == null) {
+                    instance = new VolleyInstance(context.getApplicationContext());
+                }
+            }
         }
         return instance;
     }

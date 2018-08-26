@@ -122,17 +122,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFile(Uri uri) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri uriProvider = FileProvider
-                .getUriForFile(this,
-                        "es.iessaladillo.pedrojoya.pr242.fileprovider",
-                        new File(uri.getPath()));
-        intent.setDataAndType(uriProvider, "text/plain");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        try {
-            startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (uri != null && uri.getPath() != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri uriProvider = FileProvider.getUriForFile(this,
+                    "es.iessaladillo.pedrojoya.pr242.fileprovider", new File(uri.getPath()));
+            intent.setDataAndType(uriProvider, "text/plain");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            try {
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

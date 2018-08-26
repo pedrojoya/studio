@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr080.ui.main;
 
 
-import android.os.AsyncTask;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,17 +16,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.io.PrintWriter;
-import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import es.iessaladillo.pedrojoya.pr080.R;
-import es.iessaladillo.pedrojoya.pr080.utils.NetworkUtils;
+import es.iessaladillo.pedrojoya.pr080.base.RequestState;
+import es.iessaladillo.pedrojoya.pr080.base.Event;
+import es.iessaladillo.pedrojoya.pr080.utils.KeyboardUtils;
 
 public class MainFragment extends Fragment {
 
@@ -36,18 +29,13 @@ public class MainFragment extends Fragment {
     private Button btnSearch;
     @SuppressWarnings("FieldCanBeLocal")
     private Button btnEcho;
+    private MainActivityViewModel viewModel;
 
     public MainFragment() {
     }
 
     public static MainFragment newInstance() {
         return new MainFragment();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
     }
 
     @Override
@@ -59,7 +47,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
         initViews(getView());
+        observeSearch();
+        observeEcho();
     }
 
     private void initViews(View view) {
@@ -73,145 +64,76 @@ public class MainFragment extends Fragment {
     }
 
     private void search() {
-        String name = txtName.getText().toString();
-        if (TextUtils.isEmpty(name)) {
-            return;
-        }
-        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
-            pbProgress.setVisibility(View.VISIBLE);
-            (new SearchAsyncTask(this)).execute(name);
-        } else {
-            showNoConnectionAvailable();
-        }
+        String text = txtName.getText().toString();
+        if (TextUtils.isEmpty(text.trim())) return;
+        KeyboardUtils.hideSoftKeyboard(requireActivity());
+        viewModel.search(text);
     }
 
     private void echo() {
-        String name = txtName.getText().toString();
-        if (TextUtils.isEmpty(name)) {
-            return;
-        }
-        if (NetworkUtils.isConnectionAvailable(requireActivity())) {
-            pbProgress.setVisibility(View.VISIBLE);
-            (new EchoAsyncTask(this)).execute(name);
-        } else {
-            showNoConnectionAvailable();
-        }
-
+        String text = txtName.getText().toString();
+        if (TextUtils.isEmpty(text.trim())) return;
+        KeyboardUtils.hideSoftKeyboard(requireActivity());
+        viewModel.requestEcho(text);
     }
 
-    private void showNoConnectionAvailable() {
-        Toast.makeText(requireActivity(), getString(R.string.main_fragment_no_connection),
-                Toast.LENGTH_SHORT).show();
+    private void observeSearch() {
+        viewModel.getSearchLiveData().observe(this, searchRequest -> {
+            if (searchRequest instanceof RequestState.Error) {
+                showErrorSearching((RequestState.Error) searchRequest);
+            } else if (searchRequest instanceof RequestState.Result) {
+                RequestState.Result<Event<String>> searchResult = (RequestState.Result<Event<String>>) searchRequest;
+                String result = searchResult.getData().getContentIfNotHandled();
+                if (result != null) {
+                    showResult(result);
+                }
+            } else if (searchRequest instanceof RequestState.Loading) {
+                RequestState.Loading searchLoading = (RequestState.Loading) searchRequest;
+                pbProgress.setVisibility(searchLoading.isLoading() ? View.VISIBLE : View.INVISIBLE);
+            }
+        });
+    }
+
+    private void observeEcho() {
+        viewModel.getEchoLiveData().observe(this, echoRequest -> {
+            if (echoRequest instanceof RequestState.Error) {
+                showErrorRequestingEcho((RequestState.Error) echoRequest);
+            } else if (echoRequest instanceof RequestState.Result) {
+                RequestState.Result<Event<String>> echoResult = (RequestState.Result<Event<String>>) echoRequest;
+                String result = echoResult.getData().getContentIfNotHandled();
+                if (result != null) {
+                    showResult(result);
+                }
+            } else if (echoRequest instanceof RequestState.Loading) {
+                RequestState.Loading echoLoading = (RequestState.Loading) echoRequest;
+                pbProgress.setVisibility(echoLoading.isLoading() ? View.VISIBLE : View.INVISIBLE);
+            }
+        });
+    }
+
+    private void showErrorSearching(RequestState.Error searchError) {
+        Exception exception = searchError.getException().getContentIfNotHandled();
+        if (exception != null) {
+            pbProgress.setVisibility(View.INVISIBLE);
+            String message = exception.getMessage();
+            if (message == null) message = getString(R.string.main_fragment_error_searching);
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showErrorRequestingEcho(RequestState.Error echoError) {
+        Exception exception = echoError.getException().getContentIfNotHandled();
+        if (exception != null) {
+            pbProgress.setVisibility(View.INVISIBLE);
+            String message = exception.getMessage();
+            if (message == null) message = getString(R.string.main_fragment_error_requesting_echo);
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showResult(String result) {
         pbProgress.setVisibility(View.INVISIBLE);
         Toast.makeText(requireActivity(), result, Toast.LENGTH_SHORT).show();
-    }
-
-    static class SearchAsyncTask extends AsyncTask<String, Void, String> {
-
-        private final WeakReference<MainFragment> mainFragmentWeakReference;
-
-        SearchAsyncTask(MainFragment mainFragment) {
-            mainFragmentWeakReference = new WeakReference<>(mainFragment);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            String result = "";
-            String name = params[0];
-            try {
-                URL url = new URL(
-                        "https://www.google.es/search?hl=es&q=\"" + URLEncoder.encode(name, "UTF-8")
-                                + "\"");
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("GET");
-                // Needed for Google search.
-                httpURLConnection.setRequestProperty("User-Agent",
-                        "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.connect();
-                if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    result = extractResultFromContent(
-                            NetworkUtils.readContent(httpURLConnection.getInputStream()));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        private String extractResultFromContent(String contenido) {
-            String resultado = "";
-            int ini = contenido.indexOf("Aproximadamente");
-            if (ini != -1) {
-                // Se busca el siguiente espacio en blanco después de
-                // Aproximadamente.
-                int fin = contenido.indexOf(" ", ini + 16);
-                // El resultado corresponde a lo que sigue a
-                // Aproximadamente, hasta el siguiente espacio en blanco.
-                resultado = contenido.substring(ini + 16, fin);
-            }
-            return resultado;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            MainFragment mainFragment = mainFragmentWeakReference.get();
-            if (mainFragment != null) {
-                mainFragment.showResult(result);
-            }
-        }
-
-    }
-
-    static class EchoAsyncTask extends AsyncTask<String, Void, String> {
-
-        private static final String KEY_NAME = "nombre";
-        private static final String KEY_DATE = "fecha";
-
-        private final WeakReference<MainFragment> mainFragmentWeakReference;
-        private final SimpleDateFormat simpleDateFormat;
-
-        EchoAsyncTask(MainFragment mainFragment) {
-            mainFragmentWeakReference = new WeakReference<>(mainFragment);
-            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            String result = "";
-            String name = params[0];
-            try {
-                URL url = new URL("http://www.informaticasaladillo.es/echo.php");
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                PrintWriter writer = new PrintWriter(httpURLConnection.getOutputStream());
-                writer.write(KEY_NAME + "=" + URLEncoder.encode(name, "UTF-8"));
-                writer.write("&" + KEY_DATE + "=" + URLEncoder.encode(
-                        simpleDateFormat.format(new Date()), "UTF-8"));
-                writer.flush();
-                writer.close();
-                if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    result = NetworkUtils.readContent(httpURLConnection.getInputStream());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            MainFragment mainFragment = mainFragmentWeakReference.get();
-            if (mainFragment != null) {
-                mainFragment.showResult(result);
-            }
-        }
-
     }
 
 }

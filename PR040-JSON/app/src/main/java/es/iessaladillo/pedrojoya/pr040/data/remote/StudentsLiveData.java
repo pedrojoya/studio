@@ -11,65 +11,55 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr040.data.model.Student;
+import es.iessaladillo.pedrojoya.pr040.base.Event;
 import es.iessaladillo.pedrojoya.pr040.utils.NetworkUtils;
+import es.iessaladillo.pedrojoya.pr040.base.RequestState;
 
-public class StudentsLiveData extends LiveData<StudentsRequest> {
+public class StudentsLiveData extends LiveData<RequestState> {
+
+    private LoadStudentsAsyncTask task;
 
     public StudentsLiveData() {
         loadData();
     }
 
     public void loadData() {
-        StudentsRequest currentStudentsRequest = getValue();
-        setValue(StudentsRequest.newLoadingInstance(
-                currentStudentsRequest == null ? null : currentStudentsRequest.getStudents()));
-        (new LoadStudentsAsyncTask()).execute();
+        task = new LoadStudentsAsyncTask();
+        task.execute();
+    }
+
+    public void cancel() {
+        if (task != null) task.cancel(true);
     }
 
     @SuppressLint("StaticFieldLeak")
-    class LoadStudentsAsyncTask extends AsyncTask<Void, Void, StudentsRequest> {
+    class LoadStudentsAsyncTask extends AsyncTask<Void, Void, Void> {
 
         private static final String DATA_URL = "http://www.informaticasaladillo.es/datos.json";
         private static final int TIMEOUT = 5000;
 
         @Override
-        protected StudentsRequest doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids) {
+            postValue(new RequestState.Loading(true));
             String content;
+            ArrayList<Student> data;
             try {
+                // Simulate latency
+                Thread.sleep(2000);
                 content = NetworkUtils.loadUrl(DATA_URL, TIMEOUT);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return StudentsRequest.newErrorInstance(e);
-            }
-            ArrayList<Student> data = null;
-            if (content != null) {
-                /*
-                try {
-                    data = parseJson(content);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return StudentsRequest.newErrorInstance(e);
-                }
-                */
-                try {
+                if (content != null) {
                     data = parseWithGson(content);
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                    return StudentsRequest.newErrorInstance(e);
+                    postValue(new RequestState.Result<List<Student>>(data));
                 }
+            } catch (Exception e) {
+                postValue(new RequestState.Error(new Event<>(e)));
             }
-            return StudentsRequest.newListInstance(data);
-        }
-
-        @Override
-        protected void onPostExecute(StudentsRequest data) {
-            setValue(data);
+            return null;
         }
 
         @SuppressWarnings("unused")

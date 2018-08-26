@@ -6,8 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha06'
     }
 }
 
@@ -18,16 +17,9 @@ allprojects {
     }
 }
 
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
 ext {
-    compileSdkVersion = 27
+    compileSdkVersion = 28
     minSdkVersion = 21
-    buildToolsVersion = "27.0.3"
     support_library_version = "27.1.1"
-    butterknife_version = "8.8.1"
-    volley_version = "1.1.0"
+    volley_version = "1.1.1"
 }
