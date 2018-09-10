@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pedrojoya.iessaladillo.es.pr243.data.local.Repository;
-import pedrojoya.iessaladillo.es.pr243.data.model.Student;
+import pedrojoya.iessaladillo.es.pr243.data.Repository;
+import pedrojoya.iessaladillo.es.pr243.data.local.model.Student;
 
 class MainActivityViewModel extends ViewModel {
 
+    private boolean inActionMode = false;
     private final Repository repository;
     private List<Student> students;
 
@@ -30,6 +31,14 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
+    public boolean isInActionMode() {
+        return inActionMode;
+    }
+
+    public void setInActionMode(boolean inActionMode) {
+        this.inActionMode = inActionMode;
+    }
+
     public void addStudent() {
         repository.addStudent();
     }
@@ -37,5 +46,6 @@ class MainActivityViewModel extends ViewModel {
     public void removeStudent(Student student) {
         repository.deleteStudent(student);
     }
+
 
 }

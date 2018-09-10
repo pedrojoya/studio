@@ -10,13 +10,16 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import androidx.recyclerview.selection.ItemDetailsLookup;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr243.R;
-import pedrojoya.iessaladillo.es.pr243.data.model.Student;
-import pedrojoya.iessaladillo.es.pr243.tracker.ActionModeTrackerListAdapter;
-import pedrojoya.iessaladillo.es.pr243.tracker.ActionModeTrackerViewHolder;
+import pedrojoya.iessaladillo.es.pr243.base.BaseAdapter;
+import pedrojoya.iessaladillo.es.pr243.base.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr243.base.PositionalDetailsLookup;
+import pedrojoya.iessaladillo.es.pr243.base.PositionalItemDetails;
+import pedrojoya.iessaladillo.es.pr243.data.local.model.Student;
 
-public class MainActivityAdapter extends ActionModeTrackerListAdapter<Student, MainActivityAdapter.ViewHolder> {
+public class MainActivityAdapter extends BaseAdapter<Student, MainActivityAdapter.ViewHolder> {
 
     private static final DiffUtil.ItemCallback<Student> diffUtilItemCallback = new DiffUtil.ItemCallback<Student>() {
         @Override
@@ -41,31 +44,36 @@ public class MainActivityAdapter extends ActionModeTrackerListAdapter<Student, M
                 .inflate(R.layout.activity_main_item, parent, false), this);
     }
 
-    static class ViewHolder extends ActionModeTrackerViewHolder<Student> {
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        viewHolder.bind(getItem(position), selectionTracker.isSelected((long) position));
+    }
+
+    static class ViewHolder extends BaseViewHolder implements PositionalDetailsLookup.DetailsProvider {
 
         private final TextView lblName;
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-        public ViewHolder(View itemView, MainActivityAdapter adapter) {
+        ViewHolder(View itemView, MainActivityAdapter adapter) {
             super(itemView, adapter);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
-        @Override
-        protected void setChecked(boolean isChecked) {
-            itemView.setActivated(isChecked);
-        }
-
-        @Override
-        public void bind(Student student) {
+        void bind(Student student, boolean selected) {
+            itemView.setActivated(selected);
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
             Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
                     R.drawable.ic_person_black_24dp).error(R.drawable.ic_person_black_24dp).into(
                     imgAvatar);
+        }
+
+        @Override
+        public ItemDetailsLookup.ItemDetails<Long> getItemDetails() {
+            return new PositionalItemDetails(getAdapterPosition());
         }
 
     }

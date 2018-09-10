@@ -1,6 +1,5 @@
 package pedrojoya.iessaladillo.es.pr106.recycleradapter;
 
-import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,35 +8,36 @@ import java.util.Collections;
 import java.util.List;
 
 // M is Model type, VH is ViewHolder type,
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("unused")
 public abstract class BaseListAdapter<M, VH extends BaseViewHolder<M>> extends RecyclerView
         .Adapter<VH> {
 
     private List<M> data;
-    private OnItemClickListener<M> onItemClickListener;
-    private OnItemLongClickListener<M> onItemLongClickListener;
+    private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
     private View emptyView;
-    private final RecyclerView.AdapterDataObserver adapterDataObserver = new RecyclerView.AdapterDataObserver() {
-        @Override
-        public void onChanged() {
-            super.onChanged();
-            checkEmptyViewVisibility();
-        }
+    private final RecyclerView.AdapterDataObserver adapterDataObserver =
+            new RecyclerView.AdapterDataObserver() {
+                @Override
+                public void onChanged() {
+                    super.onChanged();
+                    checkEmptyViewVisibility();
+                }
 
-        @Override
-        public void onItemRangeInserted(int positionStart, int itemCount) {
-            super.onItemRangeInserted(positionStart, itemCount);
-            checkEmptyViewVisibility();
-        }
+                @Override
+                public void onItemRangeInserted(int positionStart, int itemCount) {
+                    super.onItemRangeInserted(positionStart, itemCount);
+                    checkEmptyViewVisibility();
+                }
 
-        @Override
-        public void onItemRangeRemoved(int positionStart, int itemCount) {
-            super.onItemRangeRemoved(positionStart, itemCount);
-            checkEmptyViewVisibility();
-        }
-    };
+                @Override
+                public void onItemRangeRemoved(int positionStart, int itemCount) {
+                    super.onItemRangeRemoved(positionStart, itemCount);
+                    checkEmptyViewVisibility();
+                }
+            };
 
-    public BaseListAdapter(List<M> data) {
+    protected BaseListAdapter(List<M> data) {
         this.data = data;
     }
 
@@ -50,11 +50,11 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder<M>> extends R
         return data;
     }
 
-    public void setOnItemClickListener(OnItemClickListener<M> listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
 
-    public void setOnItemLongClickListener(OnItemLongClickListener<M> listener) {
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         this.onItemLongClickListener = listener;
     }
 
@@ -102,21 +102,16 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder<M>> extends R
         notifyItemMoved(from, to);
     }
 
-    @CallSuper
-    @Override
-    public void onBindViewHolder(@NonNull VH holder, int position) {
-        holder.bind(getItem(position));
-    }
-
-    public OnItemClickListener<M> getOnItemClickListener() {
+    public OnItemClickListener getOnItemClickListener() {
         return onItemClickListener;
     }
 
-    public OnItemLongClickListener<M> getOnItemLongClickListener() {
+    public OnItemLongClickListener getOnItemLongClickListener() {
         return onItemLongClickListener;
     }
 
     public View getEmptyView() {
         return emptyView;
     }
+
 }

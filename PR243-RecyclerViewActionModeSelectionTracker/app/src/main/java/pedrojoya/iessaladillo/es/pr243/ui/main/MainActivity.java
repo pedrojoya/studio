@@ -16,48 +16,42 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Iterator;
-
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.selection.StorageStrategy;
 import pedrojoya.iessaladillo.es.pr243.R;
-import pedrojoya.iessaladillo.es.pr243.actionmode.OnItemClickListener;
-import pedrojoya.iessaladillo.es.pr243.data.model.Student;
-import pedrojoya.iessaladillo.es.pr243.tracker.ActionModeTrackerListAdapter;
+import pedrojoya.iessaladillo.es.pr243.base.MultiChoiceModeListener;
+import pedrojoya.iessaladillo.es.pr243.base.BaseAdapter;
+import pedrojoya.iessaladillo.es.pr243.base.PositionalDetailsLookup;
+import pedrojoya.iessaladillo.es.pr243.base.PositionalItemKeyProvider;
+import pedrojoya.iessaladillo.es.pr243.data.local.model.Student;
 
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener<Student> {
-
-    private static final String SELECTION_ID = "SELECTION_ID";
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private TextView mEmptyView;
+    private TextView lblEmpty;
 
-    private MainActivityViewModel mViewModel;
-    private MainActivityAdapter mAdapter;
-
-    private final ActionModeTrackerListAdapter.MultiChoiceModeListener multiChoiceModeListener = new
-            ActionModeTrackerListAdapter.MultiChoiceModeListener() {
-
-
+    private MainActivityViewModel viewModel;
+    private MainActivityAdapter listAdapter;
+    private SelectionTracker selectionTracker;
+    private ActionMode actionMode;
+    private final MultiChoiceModeListener multiChoiceModeListener = new MultiChoiceModeListener() {
         @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            mode.getMenuInflater().inflate(R.menu.activity_main_contextual, menu);
-            return true;
-        }
-
-        private void updateSelectedCountDisplay(ActionMode mode) {
-            int count = mAdapter.getSelection().size();
-            mode.setTitle(getResources().getQuantityString(R.plurals.selected, count, count));
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            updateSelectedCountDisplay(mode);
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            viewModel.setInActionMode(true);
+            actionMode.getMenuInflater().inflate(R.menu.activity_main_contextual, menu);
             return true;
         }
 
         @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            switch (item.getItemId()) {
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            updateSelectedCountDisplay(actionMode);
+            return true;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
                 case R.id.mnuDelete:
                     deleteStudents();
                     return true;
@@ -66,29 +60,41 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         }
 
         @Override
-        public void onSelectionChanged(ActionMode mode, int selected) {
-            updateSelectedCountDisplay(mode);
+        public void onDestroyActionMode(ActionMode actionMode) {
+            selectionTracker.clearSelection();
+            viewModel.setInActionMode(false);
         }
 
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
+        private void updateSelectedCountDisplay(ActionMode actionMode) {
+            int count = selectionTracker.getSelection().size();
+            actionMode.setTitle(getResources().getQuantityString(R.plurals.selected, count, count));
         }
 
+        public void onSelectionChanged(ActionMode actionMode, int selected) {
+            updateSelectedCountDisplay(actionMode);
+        }
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
                 MainActivityViewModel.class);
         initViews();
-    }
+        // Debe recuperarse el estado del selectionTracker una vez haya sido creado,
+        // por lo que no se puede hacer en onRestoreInstanceState().
+        if (savedInstanceState != null) {
+            selectionTracker.onRestoreInstanceState(savedInstanceState);
+        }
+        if (viewModel.isInActionMode()) {
+            actionMode = startSupportActionMode(multiChoiceModeListener);
+        }
+     }
 
     private void initViews() {
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        mEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+        lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
 
         setupToolbar();
         setupRecyclerView();
@@ -110,24 +116,62 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void setupRecyclerView() {
-        mAdapter = new MainActivityAdapter();
-        mAdapter.setEmptyView(mEmptyView);
-        mAdapter.setOnItemClickListener(this);
+        listAdapter = new MainActivityAdapter();
+        listAdapter.setEmptyView(lblEmpty);
+        listAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                showStudent(listAdapter.getItem(position));
+            }
+        });
         lstStudents.setHasFixedSize(true);
-        lstStudents.setAdapter(mAdapter);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
-        mAdapter.submitList(mViewModel.getStudents(false));
-        // Debe hacerse después de asignar el adaptador al recyclerview.
-        // mAdapter.buildSelectionTracker(this, multiChoiceModeListener, SELECTION_ID, lstStudents,
-        //        Student.class);
+        lstStudents.setAdapter(listAdapter);
+        listAdapter.submitList(viewModel.getStudents(false));
+        // Creamos el selectionTracker y se lo asignamos al adaptador.
+        // DEBE HACERSE SIEMPRE DESPUÉS DE HABER ASIGNADO EL ADAPTADOR AL RECYCLERVIEW.
+        setupSelectionTracker();
+        listAdapter.setSelectionTracker(selectionTracker);
+    }
+
+    private void setupSelectionTracker() {
+        selectionTracker = new SelectionTracker.Builder<>(
+                "my-position-selection",
+                lstStudents,
+                new PositionalItemKeyProvider(),
+                new PositionalDetailsLookup(lstStudents),
+                StorageStrategy.createLongStorage())
+                .build();
+        selectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
+            @Override
+            public void onSelectionChanged() {
+                super.onSelectionChanged();
+                if (actionMode != null) {
+                    if (selectionTracker.hasSelection()) {
+                        // Se informa de que ha cambiado la selección.
+                        multiChoiceModeListener.onSelectionChanged(actionMode, selectionTracker
+                                .getSelection().size());
+                    } else {
+                        // Si no hay selección se finaliza el actionMode.
+                        actionMode.finish();
+                        actionMode = null;
+                    }
+                } else {
+                    // Si hay selección, se inicia el actionMode.
+                    if (selectionTracker.hasSelection()) {
+                        actionMode = startSupportActionMode(multiChoiceModeListener);
+                    }
+                }
+            }
+        });
     }
 
     private void addStudent() {
-        mViewModel.addStudent();
-        mAdapter.submitList(mViewModel.getStudents(true));
-        lstStudents.scrollToPosition(mAdapter.getItemCount() - 1);
+        viewModel.addStudent();
+        listAdapter.submitList(viewModel.getStudents(true));
+        lstStudents.scrollToPosition(listAdapter.getItemCount() - 1);
     }
 
     private void showStudent(Student student) {
@@ -138,30 +182,17 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
 
     private void deleteStudents() {
-        Iterator iterator = mAdapter.getSelection().iterator();
-        while (iterator.hasNext()) {
-            Object key = iterator.next();
-            mViewModel.removeStudent((Student) key);
-            mAdapter.deselect(key);
+        for (Object key : selectionTracker.getSelection()) {
+            viewModel.removeStudent(listAdapter.getItem((int) (long) key));
         }
-        mAdapter.submitList(mViewModel.getStudents(true));
+        selectionTracker.clearSelection();
+        listAdapter.submitList(viewModel.getStudents(true));
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mAdapter.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mAdapter.onRestoreInstanceState(savedInstanceState);
-    }
-
-    @Override
-    public void onItemClick(View view, Student item, int position, long id) {
-        showStudent(item);
+        selectionTracker.onSaveInstanceState(outState);
     }
 
 }

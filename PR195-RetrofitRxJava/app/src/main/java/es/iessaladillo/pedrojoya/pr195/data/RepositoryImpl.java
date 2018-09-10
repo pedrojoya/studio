@@ -1,32 +1,30 @@
 package es.iessaladillo.pedrojoya.pr195.data;
 
-import android.content.Context;
-
 import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr195.data.model.Student;
-import es.iessaladillo.pedrojoya.pr195.data.remote.StudentsApi;
-import es.iessaladillo.pedrojoya.pr195.data.remote.StudentsService;
+import es.iessaladillo.pedrojoya.pr195.data.remote.Api;
+import io.reactivex.Observable;
 
 public class RepositoryImpl implements Repository {
 
     private static RepositoryImpl instance;
 
-    private final StudentsApi api;
+    private final Api api;
 
-    private RepositoryImpl(Context context) {
-        api = StudentsService.getInstance(context).getApi();
+    private RepositoryImpl(Api api) {
+        this.api = api;
     }
 
-    public static synchronized RepositoryImpl getInstance(Context context) {
+    public static synchronized RepositoryImpl getInstance(Api api) {
         if (instance == null) {
-            instance = new RepositoryImpl(context);
+            instance = new RepositoryImpl(api);
         }
         return instance;
     }
 
     @Override
-    public io.reactivex.Observable<List<Student>> getStudents() {
+    public Observable<List<Student>> getStudents() {
         return api.getStudents();
     }
 

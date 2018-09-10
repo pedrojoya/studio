@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.2.0-rc02'
     }
 }
 
@@ -16,7 +16,6 @@ allprojects {
     }
 }
 
-
 ext {
     compileSdkVersion = 27
     minSdkVersion = 21
@@ -25,8 +24,8 @@ ext {
     picasso_version = "2.5.2"
     stetho_version = "1.5.0"
     chuck_version = "1.1.0"
-    okhttp_version = "3.9.1"
+    okhttp_version = "3.11.0"
     gson_version = "2.8.1"
-    retrofit_version = "2.3.0"
+    retrofit_version = "2.4.0"
     arch_version = "1.1.1"
 }

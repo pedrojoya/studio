@@ -14,9 +14,9 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr201.R;
-import pedrojoya.iessaladillo.es.pr201.data.model.Student;
-import pedrojoya.iessaladillo.es.pr201.recycleradapter.BaseListAdapter;
-import pedrojoya.iessaladillo.es.pr201.recycleradapter.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr201.base.BaseListAdapter;
+import pedrojoya.iessaladillo.es.pr201.base.BaseViewHolder;
 
 public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder> {
 
@@ -42,8 +42,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldStudents.get(oldItemPosition).getId() == newStudents.get(newItemPosition)
-                    .getId();
+            return oldStudents.get(oldItemPosition).getId() == newStudents.get(newItemPosition).getId();
         }
 
         @Override
@@ -73,6 +72,11 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
                 .inflate(R.layout.activity_main_item, parent, false), this);
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(getItem(position));
+    }
+
     class ViewHolder extends BaseViewHolder<Student> {
 
         private final TextView lblName;
@@ -87,8 +91,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
-        @Override
-        public void bind(Student student) {
+        void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
             Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(

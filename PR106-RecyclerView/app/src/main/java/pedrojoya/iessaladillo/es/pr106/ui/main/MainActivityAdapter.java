@@ -26,8 +26,13 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false), this);
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main_item,
+                parent, false), this);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(getItem(position));
     }
 
     static class ViewHolder extends BaseViewHolder<Student> {
@@ -43,8 +48,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
-        @Override
-        public void bind(Student student) {
+        void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
             Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(

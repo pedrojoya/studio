@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pedrojoya.iessaladillo.es.pr230.data.local.Repository;
-import pedrojoya.iessaladillo.es.pr230.data.model.Student;
+import pedrojoya.iessaladillo.es.pr230.data.Repository;
+import pedrojoya.iessaladillo.es.pr230.data.local.model.Student;
 
 class MainActivityViewModel extends ViewModel {
 

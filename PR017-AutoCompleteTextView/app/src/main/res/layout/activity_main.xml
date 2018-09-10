@@ -21,6 +21,9 @@
         android:layout_toStartOf="@+id/btnTranslate"
         android:completionThreshold="@integer/activity_main_txtWord_threshold"
         android:hint="@string/activity_main_txtWord"
+        android:imeActionLabel="@string/activity_main_btnTranslate"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:maxLines="1">
 
         <requestFocus/>

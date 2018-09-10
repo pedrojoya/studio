@@ -2,7 +2,8 @@ package es.iessaladillo.pedrojoya.pr012.data;
 
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr012.data.model.Student;
+import es.iessaladillo.pedrojoya.pr012.data.local.Database;
+import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
 
 public class RepositoryImpl implements Repository {
 

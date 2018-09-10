@@ -4,8 +4,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider.Factory;
 import android.support.annotation.NonNull;
 
+import pedrojoya.iessaladillo.es.pr226.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr226.data.local.Database;
-import pedrojoya.iessaladillo.es.pr226.data.local.RepositoryImpl;
 
 class MainActivityViewModelFactory implements Factory {
     @NonNull

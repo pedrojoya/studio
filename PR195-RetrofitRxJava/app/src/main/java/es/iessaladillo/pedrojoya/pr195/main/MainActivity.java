@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr195.main;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AbsListView;
@@ -12,7 +13,9 @@ import android.widget.Toast;
 import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr195.R;
+import es.iessaladillo.pedrojoya.pr195.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr195.data.model.Student;
+import es.iessaladillo.pedrojoya.pr195.data.remote.ApiService;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -32,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         compositeDisposable = new CompositeDisposable();
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(
+                RepositoryImpl.getInstance(
+                        ApiService.getInstance(getApplicationContext()).getApi())))
+                .get(MainActivityViewModel.class);
         findViews();
         initViews();
         loadStudents(false);

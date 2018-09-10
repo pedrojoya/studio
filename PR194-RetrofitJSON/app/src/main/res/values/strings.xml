@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">JSON</string>
+    <string name="app_name">RetrofitJSON</string>
     <string name="activity_main_lblEmptyView">No students</string>
     <string name="activity_main_item_imgPhoto">Photo</string>
     <string name="activity_main_item_btnMarks">Marks</string>
     <string name="activity_main_item_btnCall">Call</string>
     <string name="activity_main_item_lblRepeater">REP</string>
-    <string name="main_activity_error_loading_students">Error loading
-        students.\nSwipe to refresh to try again</string>
     <plurals name="main_activity_adapter_years">
         <item quantity="one">%1$d year old</item>
         <item quantity="other">%1$d years old</item>

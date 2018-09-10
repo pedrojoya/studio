@@ -4,8 +4,8 @@ import android.arch.lifecycle.ViewModel;
 
 import java.util.List;
 
-import pedrojoya.iessaladillo.es.pr228.data.local.Repository;
-import pedrojoya.iessaladillo.es.pr228.data.model.Student;
+import pedrojoya.iessaladillo.es.pr228.data.Repository;
+import pedrojoya.iessaladillo.es.pr228.data.local.model.Student;
 
 class MainActivityViewModel extends ViewModel {
 

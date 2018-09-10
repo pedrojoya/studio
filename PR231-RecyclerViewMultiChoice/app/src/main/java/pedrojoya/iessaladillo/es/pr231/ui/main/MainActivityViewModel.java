@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pedrojoya.iessaladillo.es.pr231.data.local.Repository;
-import pedrojoya.iessaladillo.es.pr231.data.model.Student;
+import pedrojoya.iessaladillo.es.pr231.data.Repository;
+import pedrojoya.iessaladillo.es.pr231.data.local.model.Student;
 
-class MainActivityViewModel extends ViewModel {
+public class MainActivityViewModel extends ViewModel {
 
     private final Repository repository;
     private List<Student> students;

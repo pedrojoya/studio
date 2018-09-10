@@ -1,23 +1,32 @@
 package es.iessaladillo.pedrojoya.pr169.ui;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModel;
 
-import es.iessaladillo.pedrojoya.pr169.data.remote.YandexApi;
+import es.iessaladillo.pedrojoya.pr169.base.RequestState;
+import es.iessaladillo.pedrojoya.pr169.data.remote.Api;
 import es.iessaladillo.pedrojoya.pr169.data.remote.YandexLiveData;
-import es.iessaladillo.pedrojoya.pr169.data.remote.YandexService;
 
-class MainActivityViewModel extends AndroidViewModel {
+class MainActivityViewModel extends ViewModel {
 
-    private final YandexApi yandexApi;
+    private final YandexLiveData yandexLiveData;
 
-    public MainActivityViewModel(Application application) {
-        super(application);
-        yandexApi = YandexService.getInstance(application.getApplicationContext()).getApi();
+    public MainActivityViewModel(Api api) {
+        yandexLiveData = new YandexLiveData(api);
     }
 
-    public YandexLiveData getTranslationFromApi(String word) {
-        return new YandexLiveData(yandexApi, word);
+    public LiveData<RequestState> getTranslation() {
+        return yandexLiveData;
+    }
+
+    public void translateFromApi(String word) {
+        yandexLiveData.translate(word);
+    }
+
+    @Override
+    protected void onCleared() {
+        yandexLiveData.cancel();
+        super.onCleared();
     }
 
 }

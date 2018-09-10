@@ -12,9 +12,9 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr229.R;
-import pedrojoya.iessaladillo.es.pr229.data.model.Student;
-import pedrojoya.iessaladillo.es.pr229.recycleradapter.BaseListAdapter;
-import pedrojoya.iessaladillo.es.pr229.recycleradapter.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr229.base.BaseListAdapter;
+import pedrojoya.iessaladillo.es.pr229.base.BaseViewHolder;
 
 public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder> {
 
@@ -30,7 +30,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         }
     };
 
-    public MainActivityAdapter() {
+    MainActivityAdapter() {
         super(diffUtilItemCallback);
     }
 
@@ -41,22 +41,26 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
                 .inflate(R.layout.activity_main_item, parent, false), this);
     }
 
-    static class ViewHolder extends BaseViewHolder<Student> {
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(getItem(position));
+    }
+
+    static class ViewHolder extends BaseViewHolder {
 
         private final TextView lblName;
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
 
-        public ViewHolder(View itemView, MainActivityAdapter adapter) {
+        ViewHolder(View itemView, MainActivityAdapter adapter) {
             super(itemView, adapter);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
-        @Override
-        public void bind(Student student) {
+        void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
             Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(

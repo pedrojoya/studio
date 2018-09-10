@@ -4,15 +4,18 @@ import com.mooveit.library.Fakeit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import pedrojoya.iessaladillo.es.pr226.data.model.Student;
+import pedrojoya.iessaladillo.es.pr226.data.local.model.Student;
 
 public class Database {
+
+    private static final String BASE_URL = "https://picsum.photos/100/100?image=";
 
     private static Database instance;
 
     private final ArrayList<Student> students;
-    private int mCount;
+    private final Random random = new Random();
 
     private Database() {
         students = new ArrayList<>();
@@ -38,7 +41,7 @@ public class Database {
 
     public void addFakeStudent() {
         Student student = new Student(Fakeit.name().name(), Fakeit.address().streetAddress(),
-                "http://lorempixel.com/100/100/abstract/" + (++mCount % 10 + 1) + "/");
+                BASE_URL + random.nextInt(1084));
         students.add(student);
     }
 

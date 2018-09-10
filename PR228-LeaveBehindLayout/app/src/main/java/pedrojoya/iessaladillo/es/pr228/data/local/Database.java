@@ -5,7 +5,7 @@ import com.mooveit.library.Fakeit;
 import java.util.ArrayList;
 import java.util.List;
 
-import pedrojoya.iessaladillo.es.pr228.data.model.Student;
+import pedrojoya.iessaladillo.es.pr228.data.local.model.Student;
 
 public class Database {
 

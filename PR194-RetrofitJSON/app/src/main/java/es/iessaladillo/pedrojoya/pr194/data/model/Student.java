@@ -1,18 +1,7 @@
 package es.iessaladillo.pedrojoya.pr194.data.model;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class Student {
-
-    public static final String KEY_NAME = "name";
-    public static final String KEY_ADDRESS = "address";
-    public static final String KEY_PHONE = "phone";
-    public static final String KEY_GRADE = "grade";
-    public static final String KEY_REPEATER = "repeater";
-    public static final String KEY_AGE = "age";
-    public static final String KEY_PHOTO = "photo";
 
     private String photo;
     private String name;
@@ -21,16 +10,6 @@ public class Student {
     private String address;
     private String phone;
     private boolean repeater;
-
-    public Student(JSONObject jsonObject) throws JSONException {
-        name = jsonObject.getString(Student.KEY_NAME);
-        address = jsonObject.getString(Student.KEY_ADDRESS);
-        phone = jsonObject.getString(Student.KEY_PHONE);
-        grade = jsonObject.getString(Student.KEY_GRADE);
-        repeater = jsonObject.getBoolean(Student.KEY_REPEATER);
-        age = jsonObject.getInt(Student.KEY_AGE);
-        photo = jsonObject.getString(Student.KEY_PHOTO);
-    }
 
     public Student() { }
 

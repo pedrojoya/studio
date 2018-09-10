@@ -6,14 +6,13 @@ import android.view.View;
 // M is Model.
 public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder {
 
-    protected BaseViewHolder(View itemView, BaseListAdapter<M, ? extends BaseViewHolder<M>> adapter) {
+    protected BaseViewHolder(View itemView,
+            BaseListAdapter<M, ? extends BaseViewHolder<M>> adapter) {
         super(itemView);
         if (adapter.getOnItemClickListener() != null) {
             itemView.setOnClickListener(v -> {
                 if (getAdapterPosition() != RecyclerView.NO_POSITION) {
-                    adapter.getOnItemClickListener().onItemClick(v,
-                            adapter.getItem(getAdapterPosition()), getAdapterPosition(),
-                            getItemId());
+                    adapter.getOnItemClickListener().onItemClick(v, getAdapterPosition());
                 }
             });
         }
@@ -21,15 +20,11 @@ public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder {
             itemView.setOnLongClickListener(v -> {
                 //noinspection SimplifiableIfStatement
                 if (getAdapterPosition() != RecyclerView.NO_POSITION) {
-                    return adapter.getOnItemLongClickListener().onItemLongClick(v,
-                            adapter.getItem(getAdapterPosition()), getAdapterPosition(),
-                            getItemId());
+                    return adapter.getOnItemLongClickListener().onItemLongClick(v, getAdapterPosition());
                 }
                 return false;
             });
         }
     }
-
-    public abstract void bind(M item);
 
 }

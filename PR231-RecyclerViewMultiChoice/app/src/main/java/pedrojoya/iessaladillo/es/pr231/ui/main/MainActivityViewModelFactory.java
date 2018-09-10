@@ -4,10 +4,10 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider.Factory;
 import android.support.annotation.NonNull;
 
-import pedrojoya.iessaladillo.es.pr231.data.local.RepositoryImpl;
+import pedrojoya.iessaladillo.es.pr231.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr231.data.local.Database;
 
-class MainActivityViewModelFactory implements Factory {
+public class MainActivityViewModelFactory implements Factory {
     @NonNull
     @SuppressWarnings("unchecked")
     @Override

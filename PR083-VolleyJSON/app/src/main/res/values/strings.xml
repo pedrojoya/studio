@@ -7,9 +7,9 @@
     <string name="activity_main_item_btnMarks">Notas</string>
     <string name="activity_main_item_btnCall">Llamar</string>
     <string name="activity_main_item_lblRepeater">REP</string>
-    <plurals name="anios">
-        <item quantity="one">%1$d año</item>
-        <item quantity="other">%1$d años</item>
+    <plurals name="main_activity_adapter_years">
+        <item quantity="one">%1$d year old</item>
+        <item quantity="other">%1$d years old</item>
     </plurals>
 
 </resources>

@@ -1,11 +1,10 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
         jcenter()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.1'
+        classpath 'com.android.tools.build:gradle:3.2.0-rc02'
     }
 }
 
@@ -20,9 +19,4 @@ allprojects {
 ext {
     compileSdkVersion = 27
     minSdkVersion = 21
-    buildToolsVersion = "27.0.3"
-    junit_version = "4.12"
-    mockito_version = "2.7.19"
-    espresso_version = "3.0.1"
-    support_library_version = "27.1.1"
 }

@@ -13,9 +13,9 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr226.R;
-import pedrojoya.iessaladillo.es.pr226.data.model.Student;
-import pedrojoya.iessaladillo.es.pr226.recycleradapter.BaseListAdapter;
-import pedrojoya.iessaladillo.es.pr226.recycleradapter.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr226.base.BaseListAdapter;
+import pedrojoya.iessaladillo.es.pr226.base.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr226.data.local.model.Student;
 
 public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter
         .ViewHolder> {
@@ -31,7 +31,12 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
                 .inflate(R.layout.activity_main_item, parent, false), this);
     }
 
-    static class ViewHolder extends BaseViewHolder<Student> {
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(getItem(position));
+    }
+
+    static class ViewHolder extends BaseViewHolder {
 
         private final TextView lblName;
         private final TextView lblAddress;
@@ -44,8 +49,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 
-        @Override
-        public void bind(Student student) {
+        void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
             Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(

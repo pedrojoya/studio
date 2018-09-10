@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 
-public class GsonArrayRequest<T> extends Request<T> {
+class GsonArrayRequest<T> extends Request<T> {
 
     private final Listener<T> listener;
     private final Gson gson;

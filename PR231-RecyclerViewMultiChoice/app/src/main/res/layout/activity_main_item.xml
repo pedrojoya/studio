@@ -6,8 +6,7 @@
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/activatedBackgroundIndicator"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@drawable/activated_item_background"
     android:minHeight="@dimen/two_line_tile_height"
     android:orientation="vertical">
 

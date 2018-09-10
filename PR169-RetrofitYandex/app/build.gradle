@@ -6,7 +6,7 @@ props.load(new FileInputStream(new File('secrets.properties')))
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr169"

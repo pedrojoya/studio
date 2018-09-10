@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">RetrofitXML</string>
     <string name="grafico_sin_datos">El gráfico no dispone de datos</string>
+    <string name="main_activity_concejales">Concejales</string>
+    <string name="main_activity_elecciones">Elecciones Municipales 2015</string>
 </resources>

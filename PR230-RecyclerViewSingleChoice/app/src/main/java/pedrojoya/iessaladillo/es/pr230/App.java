@@ -5,6 +5,7 @@ import android.app.Application;
 import com.mooveit.library.Fakeit;
 import com.squareup.leakcanary.LeakCanary;
 
+@SuppressWarnings("WeakerAccess")
 public class App extends Application {
 
     @Override

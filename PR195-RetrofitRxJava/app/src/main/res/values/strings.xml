@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">JSON</string>
+    <string name="app_name">RetrofitRxJava</string>
     <string name="activity_main_lblEmptyView">No students</string>
     <string name="activity_main_item_imgPhoto">Photo</string>
     <string name="activity_main_item_btnMarks">Marks</string>

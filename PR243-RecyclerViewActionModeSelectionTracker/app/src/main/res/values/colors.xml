@@ -4,4 +4,5 @@
     <color name="primary_dark">#512DA8</color>
     <color name="accent">#8BC34A</color>
     <color name="actionModeBackground">#757575</color>
+    <color name="accent_translucent">#888BC34A</color>
 </resources>

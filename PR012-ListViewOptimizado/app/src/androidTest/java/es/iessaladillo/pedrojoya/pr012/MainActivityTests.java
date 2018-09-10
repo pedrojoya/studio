@@ -20,8 +20,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import es.iessaladillo.pedrojoya.pr012.data.model.Student;
-import es.iessaladillo.pedrojoya.pr012.main.MainActivity;
+import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
+import es.iessaladillo.pedrojoya.pr012.ui.main.MainActivity;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;

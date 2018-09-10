@@ -14,7 +14,6 @@
         android:id="@+id/lblWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:labelFor="@+id/txtWord"
         android:text="@string/activity_main_content_lblSource"/>
 
     <EditText
@@ -23,9 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblWord"
         android:hint="@string/activity_main_content_txtWord"
-        android:imeActionId="@integer/activity_main_content_txtWord_imeActionId"
         android:imeActionLabel="@string/activity_main_content_txtWord_imeActionLabel"
-        android:imeOptions=""
+        android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"/>
 
@@ -36,7 +34,6 @@
         android:layout_below="@+id/txtWord"
         android:labelFor="@+id/txtTranslation"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:freezesText="true"
         android:text="@string/activity_main_content_lblResult"/>
 
     <EditText
@@ -44,7 +41,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblTranslation"
-        android:inputType="text"
+        android:inputType="none"
+        android:focusable="false"
+        android:textIsSelectable="true"
         android:maxLines="1"/>
 
     <ProgressBar

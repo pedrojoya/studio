@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AutoCompleteTextView;
@@ -17,6 +18,7 @@ import es.iessaladillo.pedrojoya.pr017.Constants;
 import es.iessaladillo.pedrojoya.pr017.R;
 import es.iessaladillo.pedrojoya.pr017.data.Database;
 import es.iessaladillo.pedrojoya.pr017.data.RepositoryImpl;
+import es.iessaladillo.pedrojoya.pr017.utils.KeyboardUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,10 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        btnTranslate.setOnClickListener(v -> {
-            viewModel.setLoadedWord(txtWord.getText().toString());
-            searchWord(viewModel.getLoadedWord());
-        });
+        btnTranslate.setOnClickListener(v -> searchWord(txtWord.getText().toString()));
         txtWord.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -70,19 +69,30 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        txtWord.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if (!TextUtils.isEmpty(txtWord.getText().toString().trim())) {
+                    searchWord(txtWord.getText().toString().trim());
+                    return true;
+                }
+            }
+            return false;
+        });
         // Initial state.
         checkIsValidForm();
-        if (!viewModel.getLoadedWord().isEmpty()) {
+        if (!TextUtils.isEmpty(viewModel.getLoadedWord())) {
             searchWord(viewModel.getLoadedWord());
         }
     }
 
     private void searchWord(String word) {
+        viewModel.setLoadedWord(word);
+        KeyboardUtils.hideKeyboard(this);
         webView.loadUrl(Constants.BASE_URL + word);
     }
 
     private void checkIsValidForm() {
-        btnTranslate.setEnabled(!TextUtils.isEmpty(txtWord.getText().toString()));
+        btnTranslate.setEnabled(!TextUtils.isEmpty(txtWord.getText().toString().trim()));
     }
 
 }

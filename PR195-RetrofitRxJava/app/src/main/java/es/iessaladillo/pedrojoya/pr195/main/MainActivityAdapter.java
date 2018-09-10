@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr195.main;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ class MainActivityAdapter extends ArrayAdapter<Student> {
     private final LayoutInflater layoutInflater;
 
     @SuppressWarnings("SameParameterValue")
-    public MainActivityAdapter(Context contexto, List<Student> students) {
+    MainActivityAdapter(Context contexto, List<Student> students) {
         super(contexto, R.layout.activity_main_item, students);
         this.students = students;
         layoutInflater = LayoutInflater.from(contexto);
@@ -60,7 +61,7 @@ class MainActivityAdapter extends ArrayAdapter<Student> {
         private final TextView lblAge;
         private final TextView lblRepeater;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             imgPhoto = ViewCompat.requireViewById(itemView, R.id.imgPhoto);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
@@ -68,7 +69,7 @@ class MainActivityAdapter extends ArrayAdapter<Student> {
             lblRepeater = ViewCompat.requireViewById(itemView, R.id.lblRepeater);
         }
 
-        public void bind(Student student) {
+        void bind(Student student) {
             lblName.setText(student.getName());
             lblGrade.setText(student.getGrade());
             lblAge.setText(lblAge.getContext()

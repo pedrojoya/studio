@@ -11,34 +11,32 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.View;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr226.R;
-import pedrojoya.iessaladillo.es.pr226.data.model.Student;
-import pedrojoya.iessaladillo.es.pr226.recycleradapter.OnItemClickListener;
+import pedrojoya.iessaladillo.es.pr226.data.local.model.Student;
 
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener<Student> {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private TextView mEmptyView;
+    private TextView lblEmptyView;
 
-    private MainActivityViewModel mViewModel;
-    private MainActivityAdapter mAdapter;
+    private MainActivityViewModel viewModel;
+    private MainActivityAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
                 MainActivityViewModel.class);
         initViews();
     }
 
     private void initViews() {
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        mEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+        lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
 
         setupToolbar();
         setupRecyclerView();
@@ -60,14 +58,15 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void setupRecyclerView() {
-        mAdapter = new MainActivityAdapter(mViewModel.getStudents());
-        mAdapter.setOnItemClickListener(this);
-        mAdapter.setEmptyView(mEmptyView);
+        listAdapter = new MainActivityAdapter(viewModel.getStudents());
+        listAdapter.setEmptyView(lblEmptyView);
+        listAdapter.setOnItemClickListener((view, position) ->
+                showStudent(listAdapter.getItem(position)));
         lstStudents.setHasFixedSize(true);
-        lstStudents.setAdapter(mAdapter);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
+        lstStudents.setAdapter(listAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                         ItemTouchHelper.RIGHT) {
@@ -77,30 +76,29 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                             RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                         final int fromPos = viewHolder.getAdapterPosition();
                         final int toPos = target.getAdapterPosition();
-                        mAdapter.swapItems(fromPos, toPos);
+                        listAdapter.swapItems(fromPos, toPos);
                         return true;
                     }
 
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                         int position = viewHolder.getAdapterPosition();
-                        mViewModel.deleteStudent(position);
-                        mAdapter.notifyItemRemoved(position);
+                        viewModel.deleteStudent(position);
+                        listAdapter.notifyItemRemoved(position);
                     }
                 });
         itemTouchHelper.attachToRecyclerView(lstStudents);
     }
 
     private void addStudent() {
-        mViewModel.addFakeStudent();
-        mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
-        lstStudents.scrollToPosition(mAdapter.getItemCount() - 1);
+        viewModel.addFakeStudent();
+        listAdapter.notifyItemInserted(listAdapter.getItemCount() - 1);
+        lstStudents.scrollToPosition(listAdapter.getItemCount() - 1);
     }
 
-    @Override
-    public void onItemClick(View view, Student item, int position, long id) {
+    private void showStudent(Student student) {
         Snackbar.make(lstStudents,
-                getString(R.string.main_activity_click_on_student, item.getName()),
+                getString(R.string.main_activity_click_on_student, student.getName()),
                 Snackbar.LENGTH_SHORT).show();
     }
 

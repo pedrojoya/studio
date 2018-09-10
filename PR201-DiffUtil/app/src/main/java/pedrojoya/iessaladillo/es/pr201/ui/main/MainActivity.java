@@ -13,37 +13,52 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr201.R;
-import pedrojoya.iessaladillo.es.pr201.data.model.Student;
-import pedrojoya.iessaladillo.es.pr201.recycleradapter.OnItemClickListener;
-import pedrojoya.iessaladillo.es.pr201.recycleradapter.OnItemLongClickListener;
+import pedrojoya.iessaladillo.es.pr201.data.RepositoryImpl;
+import pedrojoya.iessaladillo.es.pr201.data.local.Database;
+import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
 
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener<Student>, OnItemLongClickListener<Student> {
+public class MainActivity extends AppCompatActivity {
 
     @SuppressWarnings("FieldCanBeLocal")
     private RecyclerView lstStudents;
-    private MainActivityAdapter adapter;
     private View emptyView;
+
+    private MainActivityAdapter adapter;
     private MainActivityViewModel viewModel;
+    private List<Student> currentStudents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
+                MainActivityViewModel.class);
         initViews();
+        viewModel.queryStudents().observe(this, students -> {
+            currentStudents = students;
+            if (currentStudents != null) {
+                List<Student> orderedList = new ArrayList<>(currentStudents);
+                Collections.sort(orderedList,
+                        (student1, student2) -> viewModel.getOrder() * student1.getName().compareTo(student2.getName()));
+                adapter.submitList(orderedList);
+            }
+        });
     }
 
     private void initViews() {
         emptyView = ActivityCompat.requireViewById(this, R.id.emptyView);
-        configToolbar();
-        configRecyclerView();
-        configFab();
+        setupToolbar();
+        setupRecyclerView();
+        setupFab();
     }
 
-    private void configToolbar() {
+    private void setupToolbar() {
         Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -52,38 +67,39 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         }
     }
 
-    private void configFab() {
-        ActivityCompat.requireViewById(this, R.id.fabAccion).setOnClickListener(view -> addStudent());
+    private void setupFab() {
+        ActivityCompat.requireViewById(this, R.id.fabAccion).setOnClickListener(
+                view -> addStudent());
     }
 
-    private void configRecyclerView() {
+    private void setupRecyclerView() {
         adapter = new MainActivityAdapter(new ArrayList<>());
         adapter.setEmptyView(emptyView);
-        adapter.setOnItemClickListener(this);
-        adapter.setOnItemLongClickListener(this);
+        adapter.setOnItemClickListener(
+                (view, position) -> updateStudent(adapter.getItem(position)));
+        adapter.setOnItemLongClickListener((view, position) -> {
+            deleteStudent(adapter.getItem(position));
+            return true;
+        });
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
         lstStudents.setHasFixedSize(true);
-        lstStudents.setAdapter(adapter);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
-        adapter.submitList(viewModel.getStudents(false));
+        lstStudents.setAdapter(adapter);
     }
 
     private void addStudent() {
-        viewModel.insertStudent();
-        adapter.submitList(viewModel.getStudents(true));
+        viewModel.addStudent(Database.getInstance().newFakeStudent());
     }
 
     private void updateStudent(Student student) {
         Student newStudent = (new Student(student)).reverseName();
         viewModel.updateStudent(student, newStudent);
-        adapter.submitList(viewModel.getStudents(true));
     }
 
     private void deleteStudent(Student student) {
-        viewModel.removeStudent(student);
-        adapter.submitList(viewModel.getStudents(true));
+        viewModel.deleteStudent(student);
     }
 
     @Override
@@ -94,21 +110,16 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.mnuOrdenar) {
-            adapter.submitList(viewModel.toggleOrder());
+        if (item.getItemId() == R.id.mnuSort) {
+            viewModel.toggleOrder();
+            if (currentStudents != null) {
+                List<Student> orderedList = new ArrayList<>(currentStudents);
+                Collections.sort(orderedList,
+                        (student1, student2) -> viewModel.getOrder() * student1.getName().compareTo(student2.getName()));
+                adapter.submitList(orderedList);
+            }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onItemClick(View view, Student item, int position, long id) {
-        updateStudent(item);
-    }
-
-    @Override
-    public boolean onItemLongClick(View view, Student item, int position, long id) {
-        deleteStudent(item);
-        return true;
     }
 
 }

@@ -12,36 +12,34 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.View;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr227.R;
 import pedrojoya.iessaladillo.es.pr227.base.IconicDrawable;
 import pedrojoya.iessaladillo.es.pr227.base.LeaveBehindCallback;
-import pedrojoya.iessaladillo.es.pr227.data.model.Student;
-import pedrojoya.iessaladillo.es.pr227.recycleradapter.OnItemClickListener;
+import pedrojoya.iessaladillo.es.pr227.data.local.model.Student;
 
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener<Student> {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private TextView mEmptyView;
+    private TextView lblEmpty;
 
-    private MainActivityViewModel mViewModel;
-    private MainActivityAdapter mAdapter;
+    private MainActivityViewModel viewModel;
+    private MainActivityAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
                 MainActivityViewModel.class);
         initViews();
     }
 
     private void initViews() {
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        mEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+        lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
 
         setupToolbar();
         setupRecyclerView();
@@ -63,11 +61,11 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void setupRecyclerView() {
-        mAdapter = new MainActivityAdapter(mViewModel.getStudents());
-        mAdapter.setOnItemClickListener(this);
-        mAdapter.setEmptyView(mEmptyView);
+        listAdapter = new MainActivityAdapter(viewModel.getStudents());
+        listAdapter.setOnItemClickListener((view, position) -> showStudent(listAdapter.getItem(position)));
+        listAdapter.setEmptyView(lblEmpty);
         lstStudents.setHasFixedSize(true);
-        lstStudents.setAdapter(mAdapter);
+        lstStudents.setAdapter(listAdapter);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void archiveStudent(int position) {
-        Student item = mAdapter.getItem(position);
+        Student item = listAdapter.getItem(position);
         Snackbar.make(lstStudents,
                 getString(R.string.main_activity_archive_student, item.getName()),
                 Snackbar.LENGTH_SHORT).show();
@@ -109,26 +107,20 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     private void deleteStudent(int position) {
-        mViewModel.deleteStudent(position);
-        mAdapter.notifyItemRemoved(position);
+        viewModel.deleteStudent(position);
+        listAdapter.notifyItemRemoved(position);
     }
 
     private void addStudent() {
-        mViewModel.addFakeStudent();
-        mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
-        lstStudents.scrollToPosition(mAdapter.getItemCount() - 1);
+        viewModel.addFakeStudent();
+        listAdapter.notifyItemInserted(listAdapter.getItemCount() - 1);
+        lstStudents.scrollToPosition(listAdapter.getItemCount() - 1);
     }
 
-    private void editStudent(int position) {
-        Student item = mAdapter.getItem(position);
+    private void showStudent(Student student) {
         Snackbar.make(lstStudents,
-                getString(R.string.main_activity_click_on_student, item.getName()),
+                getString(R.string.main_activity_click_on_student, student.getName()),
                 Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onItemClick(View view, Student item, int position, long id) {
-        editStudent(position);
     }
 
 }

@@ -14,12 +14,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr106.R;
-import pedrojoya.iessaladillo.es.pr106.data.model.Student;
 import pedrojoya.iessaladillo.es.pr106.recycleradapter.OnItemClickListener;
 import pedrojoya.iessaladillo.es.pr106.recycleradapter.OnItemLongClickListener;
 
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener<Student>,OnItemLongClickListener<Student> {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener,OnItemLongClickListener {
 
     private RecyclerView lstStudents;
     private TextView mEmptyView;
@@ -78,14 +77,14 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     @Override
-    public void onItemClick(View view, Student item, int position, long id) {
+    public void onItemClick(View view, int position) {
         Snackbar.make(lstStudents,
-                getString(R.string.main_activity_click_on_student, item.getName()),
+                getString(R.string.main_activity_click_on_student, mAdapter.getItem(position).getName()),
                 Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
-    public boolean onItemLongClick(View view, Student item, int position, long id) {
+    public boolean onItemLongClick(View view, int position) {
         mViewModel.deleteStudent(position);
         mAdapter.notifyItemRemoved(position);
         return true;

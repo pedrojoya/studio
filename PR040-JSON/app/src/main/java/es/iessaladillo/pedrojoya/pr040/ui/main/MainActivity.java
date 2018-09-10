@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getStudents().observe(this, request -> {
             if (request != null) {
                 if (request instanceof RequestState.Loading) {
-                    swlPanel.setRefreshing(((RequestState.Loading) request).isLoading());
+                    swlPanel.post(() -> swlPanel.setRefreshing(((RequestState.Loading) request).isLoading()));
                 } else if (request instanceof RequestState.Error) {
                     showErrorLoadingStudents(((RequestState.Error) request).getException());
                 } else if (request instanceof RequestState.Result) {

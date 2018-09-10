@@ -4,17 +4,22 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import es.iessaladillo.pedrojoya.pr169.R;
+import es.iessaladillo.pedrojoya.pr169.base.Event;
+import es.iessaladillo.pedrojoya.pr169.base.RequestState;
 import es.iessaladillo.pedrojoya.pr169.data.models.TranslateResponse;
+import es.iessaladillo.pedrojoya.pr169.data.remote.ApiService;
 import es.iessaladillo.pedrojoya.pr169.util.KeyboardUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(
+                ApiService.getInstance(getApplicationContext()).getApi()))
+                .get(MainActivityViewModel.class);
+        observeTranslation();
         initViews();
     }
 
@@ -41,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setupToolbar();
         setupFab();
         txtWord.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == getResources().getInteger(
-                    R.integer.activity_main_content_txtWord_imeActionId)) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 translate();
                 return true;
             } else {
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         KeyboardUtils.hideKeyboard(txtWord);
         resetViews();
         if (!TextUtils.isEmpty(txtWord.getText().toString())) {
-            getTranslationFromApi(txtWord.getText().toString());
+            viewModel.translateFromApi(txtWord.getText().toString());
         }
     }
 
@@ -94,14 +101,17 @@ public class MainActivity extends AppCompatActivity {
         txtTranslation.setFocusable(false);
     }
 
-    private void getTranslationFromApi(String word) {
-        pbTranslating.setVisibility(View.VISIBLE);
-        viewModel.getTranslationFromApi(word).observe(this, yandexRequest -> {
-            if (yandexRequest != null) {
-                if (yandexRequest.getThrowable() != null) {
-                    showRequestError(yandexRequest.getThrowable());
-                } else {
-                    showTranslation(yandexRequest.getTranslateResponse());
+    private void observeTranslation() {
+        viewModel.getTranslation().observe(this, request -> {
+            if (request != null) {
+                if (request instanceof RequestState.Loading) {
+                    pbTranslating.setVisibility(
+                            ((RequestState.Loading) request).isLoading() ? View.VISIBLE : View.INVISIBLE);
+                } else if (request instanceof RequestState.Error) {
+                    showRequestError(((RequestState.Error) request).getException());
+                } else if (request instanceof RequestState.Result) {
+                    //noinspection unchecked
+                    showTranslation(((RequestState.Result<TranslateResponse>) request).getData());
                 }
             }
         });
@@ -116,12 +126,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showRequestError(Throwable throwable) {
+    private void showRequestError(Event<Exception> event) {
         pbTranslating.setVisibility(View.INVISIBLE);
-        Snackbar.make(txtTranslation, getString(R.string.main_activity_request_error, throwable.getMessage())
-                , Snackbar
-                .LENGTH_SHORT)
-                .show();
+        Exception exception = event.getContentIfNotHandled();
+        if (exception != null) {
+            Snackbar.make(txtTranslation,
+                    getString(R.string.main_activity_request_error, exception.getMessage()),
+                    Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     private void showTranslationError() {
