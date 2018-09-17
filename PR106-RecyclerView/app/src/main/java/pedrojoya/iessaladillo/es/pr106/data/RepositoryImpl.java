@@ -1,8 +1,9 @@
-package pedrojoya.iessaladillo.es.pr106.data.local;
+package pedrojoya.iessaladillo.es.pr106.data;
 
 import java.util.List;
 
-import pedrojoya.iessaladillo.es.pr106.data.model.Student;
+import pedrojoya.iessaladillo.es.pr106.data.local.Database;
+import pedrojoya.iessaladillo.es.pr106.data.local.model.Student;
 
 public class RepositoryImpl implements Repository {
 
@@ -27,8 +28,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void addFakeStudent() {
-        database.addFakeStudent();
+    public void addStudent(Student student) {
+        database.addStudent(student);
     }
 
     @Override
