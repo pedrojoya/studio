@@ -1,63 +1,48 @@
-package es.iessaladillo.pedrojoya.pr097;
+package es.iessaladillo.pedrojoya.pr097.ui.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.TextView;
 
-@SuppressWarnings("FieldCanBeLocal")
+import es.iessaladillo.pedrojoya.pr097.R;
+
 public class ViewModelActivity extends AppCompatActivity {
 
     private TextView lblCount;
-    private Button btnIncrement;
 
-    private State mState;
+    private ViewModelActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count);
-        mState = ViewModelProviders.of(this).get(State.class);
+        viewModel = ViewModelProviders.of(this).get(ViewModelActivityViewModel.class);
         initViews();
         showCount();
     }
 
     private void initViews() {
         lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
-        btnIncrement = ActivityCompat.requireViewById(this, R.id.btnIncrement);
 
-        btnIncrement.setOnClickListener(v -> increment());
+        ActivityCompat.requireViewById(this, R.id.btnIncrement)
+                .setOnClickListener(v -> increment());
     }
 
     private void increment() {
-        mState.increment();
+        viewModel.increment();
         showCount();
     }
 
     private void showCount() {
-        lblCount.setText(String.valueOf(mState.getCount()));
+        lblCount.setText(String.valueOf(viewModel.getCount()));
     }
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, ViewModelActivity.class));
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    public static class State extends ViewModel {
-        private int count = 0;
-
-        int getCount() {
-            return count;
-        }
-
-        void increment() {
-            count++;
-        }
     }
 
 }

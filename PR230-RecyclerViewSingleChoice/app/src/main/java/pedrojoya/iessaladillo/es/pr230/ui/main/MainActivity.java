@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.selection.SelectionPredicates;
 import androidx.recyclerview.selection.SelectionTracker;
@@ -99,11 +100,21 @@ public class MainActivity extends AppCompatActivity {
                 // Selección simple
                 .withSelectionPredicate(SelectionPredicates.createSelectSingleAnything())
                 .build();
+        selectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
+            @Override
+            public void onSelectionChanged() {
+                for (Long key : selectionTracker.getSelection()) {
+                    Toast.makeText(MainActivity.this,
+                            listAdapter.getItem((int) (long) key).getName(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void showSelectedStudent() {
         if (selectionTracker.hasSelection()) {
-            for (Object key : selectionTracker.getSelection()) {
+            for (Long key : selectionTracker.getSelection()) {
                 showStudent(listAdapter.getItem((int) (long) key));
             }
 

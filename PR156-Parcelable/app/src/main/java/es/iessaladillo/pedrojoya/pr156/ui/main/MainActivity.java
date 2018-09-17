@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RC_STUDENT = 1;
 
-    private Student student;
+    private Student student = new Student("", Student.DEFAULT_AGE);
 
     private TextView lblData;
 
@@ -22,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        student = new Student("", Student.DEFAULT_AGE);
         initViews();
     }
 
     private void initViews() {
         ActivityCompat.requireViewById(this, R.id.btnRequest).setOnClickListener(
                 v -> requestData());
+
         lblData = ActivityCompat.requireViewById(this, R.id.lblData);
     }
 
@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showStudent() {
-        lblData.setText(student.toString());
+        lblData.setText(getString(R.string.main_activity_student_data, student.getName(),
+                student.getAge()));
     }
 
 }

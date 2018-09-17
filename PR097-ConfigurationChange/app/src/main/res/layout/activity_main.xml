@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnRetain"
         android:layout_marginBottom="@dimen/general_vertical_margin"
-        android:text="@string/activity_main_btnIcepick"/>
+        android:text="@string/activity_main_btnAndroidState"/>
 
     <Button
         android:id="@+id/btnStarter"

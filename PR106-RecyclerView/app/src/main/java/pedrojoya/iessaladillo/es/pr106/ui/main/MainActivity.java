@@ -14,11 +14,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr106.R;
-import pedrojoya.iessaladillo.es.pr106.recycleradapter.OnItemClickListener;
-import pedrojoya.iessaladillo.es.pr106.recycleradapter.OnItemLongClickListener;
+import pedrojoya.iessaladillo.es.pr106.recycleradapter.BaseListAdapter;
 
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener,OnItemLongClickListener {
+public class MainActivity extends AppCompatActivity implements BaseListAdapter.OnItemClickListener,BaseListAdapter.OnItemLongClickListener {
 
     private RecyclerView lstStudents;
     private TextView mEmptyView;

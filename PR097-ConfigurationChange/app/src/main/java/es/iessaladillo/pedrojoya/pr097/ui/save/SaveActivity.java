@@ -1,12 +1,13 @@
-package es.iessaladillo.pedrojoya.pr097;
+package es.iessaladillo.pedrojoya.pr097.ui.save;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.TextView;
+
+import es.iessaladillo.pedrojoya.pr097.R;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class SaveActivity extends AppCompatActivity {
@@ -15,9 +16,8 @@ public class SaveActivity extends AppCompatActivity {
     private static final int COUNT_DEFAULT = 0;
 
     private TextView lblCount;
-    private Button btnIncrement;
 
-    private int mCount;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,30 +30,29 @@ public class SaveActivity extends AppCompatActivity {
 
     private void restoreSavedInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            mCount = savedInstanceState.getInt(STATE_COUNT, COUNT_DEFAULT);
+            count = savedInstanceState.getInt(STATE_COUNT, COUNT_DEFAULT);
         }
     }
 
     private void initViews() {
         lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
-        btnIncrement = ActivityCompat.requireViewById(this, R.id.btnIncrement);
 
-        btnIncrement.setOnClickListener(v -> incrementarContador());
+        ActivityCompat.requireViewById(this, R.id.btnIncrement).setOnClickListener(v -> increment());
     }
 
-    private void incrementarContador() {
-        mCount++;
+    private void increment() {
+        count++;
         showCount();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_COUNT, mCount);
+        outState.putInt(STATE_COUNT, count);
     }
 
     private void showCount() {
-        lblCount.setText(String.valueOf(mCount));
+        lblCount.setText(String.valueOf(count));
     }
 
     public static void start(Context context) {

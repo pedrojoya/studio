@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:padding="@dimen/general_activity_padding"
-    tools:context=".RetainActivity">
+    tools:context=".ui.retain.RetainActivity">
 
     <TextView
         android:id="@+id/lblCount"

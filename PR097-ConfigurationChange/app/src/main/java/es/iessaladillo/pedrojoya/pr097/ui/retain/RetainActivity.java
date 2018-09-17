@@ -1,20 +1,20 @@
-package es.iessaladillo.pedrojoya.pr097;
+package es.iessaladillo.pedrojoya.pr097.ui.retain;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.TextView;
+
+import es.iessaladillo.pedrojoya.pr097.R;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class RetainActivity extends AppCompatActivity {
 
     private TextView lblCount;
-    private Button btnIncrement;
 
-    private State mState;
+    private State state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +26,30 @@ public class RetainActivity extends AppCompatActivity {
     }
 
     private void restoreLastCustomNonConfigurationIntance() {
-        mState = (State) getLastCustomNonConfigurationInstance();
-        if (mState == null) {
-            mState = new State();
+        state = (State) getLastCustomNonConfigurationInstance();
+        if (state == null) {
+            state = new State();
         }
     }
 
     private void initViews() {
         lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
-        btnIncrement = ActivityCompat.requireViewById(this, R.id.btnIncrement);
 
-        btnIncrement.setOnClickListener(v -> increment());
+        ActivityCompat.requireViewById(this, R.id.btnIncrement).setOnClickListener(v -> increment());
     }
 
     private void increment() {
-        mState.increment();
+        state.increment();
         showCount();
     }
 
     @Override
     public State onRetainCustomNonConfigurationInstance() {
-        return mState;
+        return state;
     }
 
     private void showCount() {
-        lblCount.setText(String.valueOf(mState.getCount()));
+        lblCount.setText(String.valueOf(state.getCount()));
     }
 
     public static void start(Context context) {

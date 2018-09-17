@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
@@ -87,21 +88,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupSelectionTracker() {
-        selectionTracker = new SelectionTracker.Builder<>(
-                "my-position-selection",
-                lstStudents,
+        selectionTracker = new SelectionTracker.Builder<>("my-position-selection", lstStudents,
                 new PositionalItemKeyProvider(),
                 // StableIdKeyProvider usa el id del item como key.
                 //new StableIdKeyProvider(lstStudents),
                 new PositionalDetailsLookup(lstStudents),
                 // Las claves son long.
-                StorageStrategy.createLongStorage())
-                .build();
+                StorageStrategy.createLongStorage()).build();
+        selectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
+            @Override
+            public void onSelectionChanged() {
+                int selected = selectionTracker.getSelection().size();
+                if (selected > 0) {
+                    Toast.makeText(MainActivity.this,
+                            getResources().getQuantityString(R.plurals.main_activity_selected,
+                                    selected, selected), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void showSelectedStudents() {
         StringBuilder selectedNames = new StringBuilder();
-        for (Object key : selectionTracker.getSelection()) {
+        for (Long key : selectionTracker.getSelection()) {
             selectedNames.append(listAdapter.getItem((int) (long) key).getName());
             selectedNames.append(", ");
         }

@@ -1,14 +1,11 @@
 package es.iessaladillo.pedrojoya.PR004.utils;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -23,19 +20,6 @@ public class IntentsUtils {
         List<ResolveInfo> appList = packageManager.queryIntentActivities(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
         return appList.size() > 0;
-    }
-
-    // Shows apps settings activity.
-    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
-        final Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        intent.setData(Uri.parse("package:" + context.getPackageName()));
-        // No track in the stack of activities.
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        context.startActivity(intent);
     }
 
     public static Intent newViewUriIntent(Uri uri) {
@@ -63,10 +47,6 @@ public class IntentsUtils {
 
     public static Intent newContactsIntent() {
         return new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"));
-    }
-
-    public static Intent newCallIntent(String phoneNumber) {
-        return new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
     }
 
 }

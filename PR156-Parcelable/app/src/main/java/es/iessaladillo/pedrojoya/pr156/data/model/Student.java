@@ -60,8 +60,4 @@ public class Student implements Parcelable {
         }
     };
 
-    @Override
-    public String toString() {
-        return "Student{" + "name='" + name + '\'' + ", age=" + age + '}';
-    }
 }

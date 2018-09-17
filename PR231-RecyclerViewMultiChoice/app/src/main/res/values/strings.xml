@@ -6,5 +6,10 @@
     <string name="activity_main_item_imgAvatar">Avatar</string>
     <string name="main_activity_students_selected">%1$s selected</string>
     <string name="main_activity_no_students_selected">No students selected</string>
+    <plurals name="main_activity_selected">
+        <item quantity="one">%d student selected</item>
+        <item quantity="other">%d students selected</item>
+    </plurals>
+
 
 </resources>
