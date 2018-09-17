@@ -28,9 +28,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation "junit:junit:$rootProject.ext.junit_version"
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.support_test_version"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.support_test_version"
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    androidTestImplementation "com.android.support.test:runner:1.0.2"
+    androidTestImplementation "com.android.support.test:rules:1.0.2"
 }

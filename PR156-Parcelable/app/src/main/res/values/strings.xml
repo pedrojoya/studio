@@ -2,13 +2,17 @@
 <resources>
 
     <string name="app_name">Parcelable</string>
+
     <string name="activity_main_lblDataLabel">Student data</string>
     <string name="activity_main_lblData">(not available)</string>
     <string name="activity_main_btnRequest">Request</string>
+
     <string name="activity_student_lblName">Name</string>
     <string name="activity_student_lblAge">Age</string>
     <string name="activity_student_btnSend">Send</string>
     <string name="activity_student_txtName">(full name)</string>
     <string name="activity_student_txtAge">(age)</string>
+
+    <string name="main_activity_student_data">Name: %1$s\nAge: %2$d</string>
 
 </resources>

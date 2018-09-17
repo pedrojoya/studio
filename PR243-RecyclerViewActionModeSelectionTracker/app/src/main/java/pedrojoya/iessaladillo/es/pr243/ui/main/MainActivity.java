@@ -13,14 +13,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
 import pedrojoya.iessaladillo.es.pr243.R;
 import pedrojoya.iessaladillo.es.pr243.base.MultiChoiceModeListener;
-import pedrojoya.iessaladillo.es.pr243.base.BaseAdapter;
 import pedrojoya.iessaladillo.es.pr243.base.PositionalDetailsLookup;
 import pedrojoya.iessaladillo.es.pr243.base.PositionalItemKeyProvider;
 import pedrojoya.iessaladillo.es.pr243.data.local.model.Student;
@@ -70,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             actionMode.setTitle(getResources().getQuantityString(R.plurals.selected, count, count));
         }
 
+        @Override
         public void onSelectionChanged(ActionMode actionMode, int selected) {
             updateSelectedCountDisplay(actionMode);
         }
@@ -118,12 +117,8 @@ public class MainActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         listAdapter = new MainActivityAdapter();
         listAdapter.setEmptyView(lblEmpty);
-        listAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                showStudent(listAdapter.getItem(position));
-            }
-        });
+        listAdapter.setOnItemClickListener(
+                (v, position) -> showStudent(listAdapter.getItem(position)));
         lstStudents.setHasFixedSize(true);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

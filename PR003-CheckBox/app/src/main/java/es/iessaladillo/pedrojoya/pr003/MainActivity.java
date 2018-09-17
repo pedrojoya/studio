@@ -14,11 +14,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Vistas.
     private CheckBox chkEducado;
     private EditText txtNombre;
 
-    // Cuando se crea la actividad.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

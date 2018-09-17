@@ -1,27 +1,25 @@
-package es.iessaladillo.pedrojoya.pr097;
+package es.iessaladillo.pedrojoya.pr097.ui.starter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.TextView;
 
 import activitystarter.ActivityStarter;
 import activitystarter.Arg;
 import activitystarter.MakeActivityStarter;
+import es.iessaladillo.pedrojoya.pr097.R;
 
-@SuppressWarnings("FieldCanBeLocal")
 @MakeActivityStarter
 public class StarterActivity extends AppCompatActivity {
 
     private TextView lblCount;
-    private Button btnIncrement;
 
     @SuppressWarnings("WeakerAccess")
     @Arg(optional = true)
-    int mCount;
+    public int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +32,13 @@ public class StarterActivity extends AppCompatActivity {
 
     private void initViews() {
         lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
-        btnIncrement = ActivityCompat.requireViewById(this, R.id.btnIncrement);
 
-        btnIncrement.setOnClickListener(v -> increment());
+        ActivityCompat.requireViewById(this, R.id.btnIncrement)
+                .setOnClickListener(v -> increment());
     }
 
     private void increment() {
-        mCount++;
+        count++;
         showCount();
     }
 
@@ -51,7 +49,7 @@ public class StarterActivity extends AppCompatActivity {
     }
 
     private void showCount() {
-        lblCount.setText(String.valueOf(mCount));
+        lblCount.setText(String.valueOf(count));
     }
 
     public static void start(Context context) {

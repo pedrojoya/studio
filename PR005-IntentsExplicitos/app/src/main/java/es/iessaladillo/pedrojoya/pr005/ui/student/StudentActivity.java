@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr005;
+package es.iessaladillo.pedrojoya.pr005.ui.student;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 
+import es.iessaladillo.pedrojoya.pr005.Constants;
+import es.iessaladillo.pedrojoya.pr005.R;
+
 public class StudentActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "EXTRA_NAME";
@@ -20,12 +23,27 @@ public class StudentActivity extends AppCompatActivity {
     private EditText txtAge;
     private Button btnSend;
 
+    private String name = "";
+    private int age = Constants.DEFAULT_AGE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-        initViews();
         getIntentData();
+        initViews();
+    }
+
+    private void getIntentData() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.hasExtra(EXTRA_NAME)) {
+                name = intent.getStringExtra(EXTRA_NAME);
+            }
+            if (intent.hasExtra(EXTRA_AGE)) {
+                age = intent.getIntExtra(EXTRA_AGE, Constants.DEFAULT_AGE);
+            }
+        }
     }
 
     private void initViews() {
@@ -70,6 +88,7 @@ public class StudentActivity extends AppCompatActivity {
             createResult();
             finish();
         });
+        showStudent();
     }
 
     private boolean isValidForm() {
@@ -78,17 +97,9 @@ public class StudentActivity extends AppCompatActivity {
                 <= Constants.MAX_AGE;
     }
 
-    private void getIntentData() {
-        Intent intent = getIntent();
-        if (intent != null) {
-            if (intent.hasExtra(EXTRA_NAME)) {
-                txtName.setText(intent.getStringExtra(EXTRA_NAME));
-            }
-            if (intent.hasExtra(EXTRA_AGE)) {
-                txtAge.setText(
-                        String.valueOf(intent.getIntExtra(EXTRA_AGE, Constants.DEFAULT_AGE)));
-            }
-        }
+    private void showStudent() {
+        txtName.setText(name);
+        txtAge.setText(String.valueOf(age));
     }
 
     private void createResult() {

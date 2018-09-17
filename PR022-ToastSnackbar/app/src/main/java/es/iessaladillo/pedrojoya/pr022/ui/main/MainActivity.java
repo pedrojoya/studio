@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr022;
+package es.iessaladillo.pedrojoya.pr022.ui.main;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.tapadoo.alerter.Alerter;
+
+import es.iessaladillo.pedrojoya.pr022.R;
+import es.iessaladillo.pedrojoya.pr022.utils.SnackbarUtils;
+import es.iessaladillo.pedrojoya.pr022.utils.ToastUtils;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.main_activity_stylable_message))
                 .backgroundColor(Color.RED)
                 .textColor(Color.WHITE)
-                .iconResLeft(R.drawable.ic_add_alert)
+                .iconStart(R.drawable.ic_add_alert)
                 .show());
         btnAlerter.setOnClickListener(v -> Alerter.create(MainActivity.this)
                 .setTitle(R.string.main_activity_attention)
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, message);
     }
 
     // Shows a toast that uses an specific layout. Receives the layout resId and the textView
@@ -82,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             } else {
                 // If textView not available, we use an standard toast.
-                Toast.makeText(this, stringResId, Toast.LENGTH_LONG).show();
+                ToastUtils.toast(this, stringResId);
             }
         } catch (Exception e) {
             // If error, we use an standard toast.
-            Toast.makeText(this, stringResId, Toast.LENGTH_LONG).show();
+            ToastUtils.toast(this, stringResId);
         }
     }
 
@@ -95,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSnackbar(String message) {
-        Snackbar.make(lblText, message, Snackbar.LENGTH_LONG).setAction(
-                getString(R.string.main_activity_undo), view -> changeVisibility(lblText)).show();
+        SnackbarUtils.snackbar(lblText, message, Snackbar.LENGTH_LONG,
+                getString(R.string.main_activity_undo), view -> changeVisibility(lblText));
     }
 
 }

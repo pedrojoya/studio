@@ -9,7 +9,7 @@ import java.util.List;
 
 // M is Model type, VH is ViewHolder type,
 @SuppressWarnings("unused")
-public abstract class BaseListAdapter<M, VH extends BaseViewHolder<M>> extends RecyclerView
+public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends RecyclerView
         .Adapter<VH> {
 
     private List<M> data;
@@ -44,10 +44,6 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder<M>> extends R
     public void submitList(List<M> data) {
         this.data = data;
         notifyDataSetChanged();
-    }
-
-    public List<M> getList() {
-        return data;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -114,4 +110,12 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder<M>> extends R
         return emptyView;
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        @SuppressWarnings("SameReturnValue")
+        boolean onItemLongClick(View view, int position);
+    }
 }

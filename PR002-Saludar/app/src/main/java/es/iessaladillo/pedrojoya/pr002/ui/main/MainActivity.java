@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr002;
+package es.iessaladillo.pedrojoya.pr002.ui.main;
 
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -10,9 +10,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import es.iessaladillo.pedrojoya.pr002.R;
 import es.iessaladillo.pedrojoya.pr002.utils.KeyboardUtils;
+import es.iessaladillo.pedrojoya.pr002.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener,
         OnCheckedChangeListener {
@@ -48,13 +49,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     }
 
     private void greet() {
-        String message = getString(R.string.main_activity_good_morning);
+        StringBuilder sb = new StringBuilder(getString(R.string.main_activity_good_morning));
         if (chkPolite.isChecked()) {
-            message = message + getString(R.string.main_activity_nice_to_meet_you);
+            sb.append(getString(R.string.main_activity_nice_to_meet_you));
         }
-        message += " " + txtName.getText();
-        KeyboardUtils.hideKeyboard(chkPolite);
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        sb.append(" ").append(txtName.getText());
+        KeyboardUtils.hideKeyboard(this);
+        ToastUtils.toast(this, sb.toString());
     }
 
     @Override

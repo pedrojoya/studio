@@ -1,9 +1,16 @@
-package es.iessaladillo.pedrojoya.pr097;
+package es.iessaladillo.pedrojoya.pr097.ui.main;
 
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+
+import es.iessaladillo.pedrojoya.pr097.R;
+import es.iessaladillo.pedrojoya.pr097.ui.retain.RetainActivity;
+import es.iessaladillo.pedrojoya.pr097.ui.save.SaveActivity;
+import es.iessaladillo.pedrojoya.pr097.ui.starter.StarterActivity;
+import es.iessaladillo.pedrojoya.pr097.ui.state.AndroidStateActivity;
+import es.iessaladillo.pedrojoya.pr097.ui.viewmodel.ViewModelActivity;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnSave.setOnClickListener(v -> SaveActivity.start(MainActivity.this));
         btnRetain.setOnClickListener(v -> RetainActivity.start(MainActivity.this));
-        btnIcepick.setOnClickListener(v -> IcepickActivity.start(MainActivity.this));
+        btnIcepick.setOnClickListener(v -> AndroidStateActivity.start(MainActivity.this));
         btnStarter.setOnClickListener(v -> StarterActivity.start(MainActivity.this));
         btnViewModel.setOnClickListener(v -> ViewModelActivity.start(MainActivity.this));
     }

@@ -21,12 +21,6 @@
         android:text="@string/activity_main_btnSearch" />
 
     <Button
-        android:id="@+id/btnCall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_main_btnCall" />
-
-    <Button
         android:id="@+id/btnDial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

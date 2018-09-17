@@ -23,20 +23,20 @@ public class StudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_student);
-        initViews();
         obtainData(getIntent());
-    }
-
-    private void initViews() {
-        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
-        txtAge = ActivityCompat.requireViewById(this, R.id.txtAge);
-        ActivityCompat.requireViewById(this, R.id.btnSend).setOnClickListener(v -> finish());
+        initViews();
     }
 
     private void obtainData(Intent intent) {
         if (intent != null && intent.hasExtra(EXTRA_STUDENT)) {
             student = intent.getParcelableExtra(EXTRA_STUDENT);
         }
+    }
+
+    private void initViews() {
+        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
+        txtAge = ActivityCompat.requireViewById(this, R.id.txtAge);
+        ActivityCompat.requireViewById(this, R.id.btnSend).setOnClickListener(v -> finish());
         showStudent();
     }
 

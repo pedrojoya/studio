@@ -5,7 +5,7 @@
 
     <string name="activity_main_btnSave">onSave…</string>
     <string name="activity_main_btnRetain">onRetain…</string>
-    <string name="activity_main_btnIcepick">Icepick</string>
+    <string name="activity_main_btnAndroidState">Android-State</string>
     <string name="activity_main_btnStarter">ActivityStarter</string>
     <string name="activity_main_btnViewModel">ViewModel</string>
 
