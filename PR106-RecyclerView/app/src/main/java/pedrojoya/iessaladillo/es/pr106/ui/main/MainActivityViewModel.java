@@ -4,8 +4,8 @@ import android.arch.lifecycle.ViewModel;
 
 import java.util.List;
 
-import pedrojoya.iessaladillo.es.pr106.data.local.Repository;
-import pedrojoya.iessaladillo.es.pr106.data.model.Student;
+import pedrojoya.iessaladillo.es.pr106.data.Repository;
+import pedrojoya.iessaladillo.es.pr106.data.local.model.Student;
 
 class MainActivityViewModel extends ViewModel {
 
@@ -23,8 +23,8 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    public void addFakeStudent() {
-        repository.addFakeStudent();
+    public void addStudent(Student student) {
+        repository.addStudent(student);
     }
 
     public void deleteStudent(int position) {

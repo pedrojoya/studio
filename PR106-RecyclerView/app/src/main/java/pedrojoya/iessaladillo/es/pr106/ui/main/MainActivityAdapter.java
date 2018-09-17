@@ -13,7 +13,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr106.R;
-import pedrojoya.iessaladillo.es.pr106.data.model.Student;
+import pedrojoya.iessaladillo.es.pr106.data.local.model.Student;
 import pedrojoya.iessaladillo.es.pr106.recycleradapter.BaseListAdapter;
 import pedrojoya.iessaladillo.es.pr106.recycleradapter.BaseViewHolder;
 

@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr106.data.model;
+package pedrojoya.iessaladillo.es.pr106.data.local.model;
 
 import android.support.annotation.NonNull;
 

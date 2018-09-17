@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr106.R;
+import pedrojoya.iessaladillo.es.pr106.data.local.Database;
 import pedrojoya.iessaladillo.es.pr106.recycleradapter.BaseListAdapter;
 
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements BaseListAdapter.O
     }
 
     private void addStudent() {
-        mViewModel.addFakeStudent();
+        mViewModel.addStudent(Database.newFakeStudent());
         mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
         lstStudents.scrollToPosition(mAdapter.getItemCount() - 1);
     }

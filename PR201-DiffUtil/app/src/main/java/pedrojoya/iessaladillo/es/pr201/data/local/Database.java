@@ -14,7 +14,7 @@ import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
 @SuppressWarnings("unused")
 public class Database {
 
-    public static final String BASE_URL = "https://picsum.photos/100/100?image=";
+    private static final String BASE_URL = "https://picsum.photos/100/100?image=";
 
     private static Database instance;
 

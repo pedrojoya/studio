@@ -5,20 +5,20 @@ import android.view.View;
 
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    protected BaseViewHolder(View itemView, BaseListAdapter adapter) {
+    protected BaseViewHolder(View itemView, BaseListAdapter.OnItemClickListener onItemClickListener,
+            BaseListAdapter.OnItemLongClickListener onItemLongClickListener) {
         super(itemView);
-        if (adapter.getOnItemClickListener() != null) {
+        if (onItemClickListener != null) {
             itemView.setOnClickListener(v -> {
                 if (getAdapterPosition() != RecyclerView.NO_POSITION) {
-                    adapter.getOnItemClickListener().onItemClick(v, getAdapterPosition());
+                    onItemClickListener.onItemClick(v, getAdapterPosition());
                 }
             });
         }
-        if (adapter.getOnItemLongClickListener() != null) {
+        if (onItemLongClickListener != null) {
             itemView.setOnLongClickListener(v -> {
-                //noinspection SimplifiableIfStatement
                 if (getAdapterPosition() != RecyclerView.NO_POSITION) {
-                    return adapter.getOnItemLongClickListener().onItemLongClick(v, getAdapterPosition());
+                    return onItemLongClickListener.onItemLongClick(v, getAdapterPosition());
                 }
                 return false;
             });
