@@ -10,7 +10,7 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr015.R;
 import es.iessaladillo.pedrojoya.pr015.base.AdapterViewBaseAdapter;
-import es.iessaladillo.pedrojoya.pr015.data.model.Word;
+import es.iessaladillo.pedrojoya.pr015.data.local.model.Word;
 
 class MainActivityAdapter extends AdapterViewBaseAdapter<Word, MainActivityAdapter.ViewHolder> {
 

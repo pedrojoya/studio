@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
+// T for Model, CVH for Collapsed ViewHolder, EVH for Expanded ViewHolder
 public abstract class DropDownBaseAdapter<T, CVH, EVH> extends BaseAdapter {
 
     protected final List<T> data;

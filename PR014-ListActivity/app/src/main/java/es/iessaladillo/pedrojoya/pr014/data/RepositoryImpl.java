@@ -2,28 +2,20 @@ package es.iessaladillo.pedrojoya.pr014.data;
 
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr014.data.model.Student;
+import es.iessaladillo.pedrojoya.pr014.data.local.Database;
+import es.iessaladillo.pedrojoya.pr014.data.local.model.Student;
 
 public class RepositoryImpl implements Repository {
 
-    private static RepositoryImpl instance;
-
     private final Database database;
 
-    private RepositoryImpl() {
-        this.database = Database.getInstance();
-    }
-
-    public synchronized static RepositoryImpl getInstance() {
-        if (instance == null) {
-            instance = new RepositoryImpl();
-        }
-        return instance;
+    public RepositoryImpl(Database database) {
+        this.database = database;
     }
 
     @Override
-    public List<Student> getStudents() {
-        return database.getStudents();
+    public List<Student> queryStudents() {
+        return database.queryStudents();
     }
 
     @Override
@@ -32,8 +24,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void deleteStudent(int position) {
-        database.deleteStudent(position);
+    public void deleteStudent(Student student) {
+        database.deleteStudent(student);
     }
 
 }

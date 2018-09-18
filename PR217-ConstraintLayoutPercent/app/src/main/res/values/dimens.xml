@@ -14,7 +14,4 @@
     <item name="activity_main_bottom_left_width_percent" type="dimen" format="float">
         0.1
     </item>
-    <item name="activity_main_bottom_height_percent" type="dimen" format="float">
-        0.50
-    </item>
 </resources>

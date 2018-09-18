@@ -27,7 +27,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false), this);
+                .inflate(R.layout.activity_main_item, parent, false));
     }
 
     @Override
@@ -44,8 +44,8 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         public final View rightLeaveBehind;
         public final View leftLeaveBehind;
 
-        ViewHolder(View itemView, MainActivityAdapter adapter) {
-            super(itemView, adapter);
+        ViewHolder(View itemView) {
+            super(itemView, getOnItemClickListener(), getOnItemLongClickListener());
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);

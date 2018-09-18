@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr016"
@@ -23,12 +22,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    testImplementation "junit:junit:$rootProject.ext.junit_version"
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
-    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.1"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.1"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.1"
 }

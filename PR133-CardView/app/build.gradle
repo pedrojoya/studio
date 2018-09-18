@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr133"
@@ -27,12 +26,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    implementation "com.android.support:design:$rootProject.ext.support_library_version"
-    implementation "com.android.support:cardview-v7:$rootProject.ext.support_library_version"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout_version"
-
-    testImplementation "junit:junit:$rootProject.ext.junit_version"
-
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "com.android.support:design:27.1.1"
+    implementation "com.android.support:cardview-v7:27.1.1"
+    implementation "com.android.support.constraint:constraint-layout:1.1.3"
 }

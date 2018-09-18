@@ -7,44 +7,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 
 import es.iessaladillo.pedrojoya.pr015.R;
-import es.iessaladillo.pedrojoya.pr015.components.MessageManager.MessageManager;
-import es.iessaladillo.pedrojoya.pr015.components.MessageManager.ToastMessageManager;
-import es.iessaladillo.pedrojoya.pr015.data.Database;
-import es.iessaladillo.pedrojoya.pr015.data.Repository;
 import es.iessaladillo.pedrojoya.pr015.data.RepositoryImpl;
-import es.iessaladillo.pedrojoya.pr015.data.model.Word;
+import es.iessaladillo.pedrojoya.pr015.data.local.Database;
+import es.iessaladillo.pedrojoya.pr015.data.local.model.Word;
+import es.iessaladillo.pedrojoya.pr015.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private GridView grdWords;
-
-    private MainActivityViewModel mViewModel;
-    private MessageManager mMessageManager;
-    @SuppressWarnings("FieldCanBeLocal")
-    private Repository mRepository;
+    private MainActivityViewModel viewModel;
+    private MainActivityAdapter listAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mMessageManager = new ToastMessageManager();
-        mRepository = RepositoryImpl.getInstance(Database.getInstance());
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(mRepository)).get(
+        viewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
     }
 
     private void initViews() {
-        grdWords = ActivityCompat.requireViewById(this, R.id.grdWords);
-        grdWords.setAdapter(
-                new MainActivityAdapter(mViewModel.getData()));
-        grdWords.setOnItemClickListener((adapterView, view, position, id) -> showWord(position));
+        GridView grdWords = ActivityCompat.requireViewById(this, R.id.grdWords);
+        listAdapter = new MainActivityAdapter(viewModel.getWords());
+        grdWords.setAdapter(listAdapter);
+        grdWords.setOnItemClickListener(
+                (adapterView, view, position, id) -> showWord(listAdapter.getItem(position)));
     }
 
-    private void showWord(int position) {
-        Word word = (Word) grdWords.getItemAtPosition(position);
-        mMessageManager.showMessage(grdWords,
-                getString(R.string.main_activity_translation, word.getSpanish(), word.getEnglish()));
+    private void showWord(Word word) {
+        ToastUtils.toast(this, getString(R.string.main_activity_translation, word.getSpanish(),
+                word.getEnglish()));
     }
 
 }

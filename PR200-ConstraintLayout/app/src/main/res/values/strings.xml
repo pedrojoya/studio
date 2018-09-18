@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ConstraintLayout</string>
-    <string name="conexion">Conexión</string>
-    <string name="nombre_usuario">Usuario</string>
-    <string name="clave">Clave</string>
-    <string name="aceptar">Aceptar</string>
-    <string name="cancelar">Cancelar</string>
-    <string name="conectando_con_el_usuario">Conectando con el usuario %1$s…</string>
+    <string name="activity_main_lblTitle">Login</string>
+    <string name="activity_main_lblUsername">Username</string>
+    <string name="activity_main_lblPassword">Password</string>
+    <string name="activity_main_btnLogin">Login</string>
+    <string name="activitiy_main_btnCancel">Cancel</string>
+    <string name="main_activity_connected">%1$s login…</string>
+    <string name="activity_main_txtUsername">Username</string>
+    <string name="activity_main_txtPassword">Password</string>
 </resources>

@@ -8,7 +8,8 @@ import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
 
 public class Database {
 
-    private static Database instance;
+    private static volatile Database instance;
+
     private final ArrayList<Student> students;
 
     private Database() {
@@ -32,12 +33,16 @@ public class Database {
 
     public static Database getInstance() {
         if (instance == null) {
-            instance = new Database();
+            synchronized (Database.class) {
+                if (instance == null) {
+                    instance = new Database();
+                }
+            }
         }
         return instance;
     }
 
-    public List<Student> getStudents() {
+    public List<Student> queryStudents() {
         return students;
     }
 

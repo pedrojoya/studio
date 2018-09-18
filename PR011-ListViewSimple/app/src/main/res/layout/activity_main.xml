@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawablePadding="@dimen/activity_main_lblEmptyView_drawablePadding"
-            android:drawableTop="@drawable/ic_person_add"
+            android:drawableTop="@drawable/ic_person_add_black_48dp"
             android:text="@string/activity_main_lblEmptyView"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -57,7 +57,8 @@
         android:layout_toStartOf="@+id/btnAdd"
         android:hint="@string/main_activity_txtName"
         android:imeOptions="actionDone"
-        android:inputType="textPersonName">
+        android:inputType="textPersonName"
+        tools:ignore="Autofill">
 
         <requestFocus />
     </EditText>
@@ -74,6 +75,6 @@
         android:contentDescription="@string/activity_main_btnAdd"
         android:padding="@dimen/activity_main_btnAdd_padding"
         android:scaleType="center"
-        app:srcCompat="@drawable/ic_person_add_black_24dp" />
+        app:srcCompat="@drawable/ic_person_add_24dp"/>
 
 </RelativeLayout>

@@ -1,126 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/conexion"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/textView"
+        android:text="@string/activity_main_lblTitle"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginEnd="@dimen/main_activity_margin"
+        android:id="@+id/lblTitle"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="@dimen/main_activity_margin"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
-        android:id="@+id/lblUsuario"
+        android:id="@+id/lblUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/edittext_padding"
-        android:paddingRight="@dimen/edittext_padding"
-        android:text="@string/nombre_usuario"
+        android:text="@string/activity_main_lblUsername"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginEnd="@dimen/main_activity_margin"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_marginTop="@dimen/main_activity_margin"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle" />
 
     <EditText
-        android:id="@+id/txtUsuario"
+        android:id="@+id/txtUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/nombre_usuario"
+        android:hint="@string/activity_main_txtUsername"
         android:imeOptions="actionNext"
         android:inputType="text"
-        android:maxLength="12"
+        android:maxLength="@integer/activity_main_txtUsername_maxLength"
         android:paddingTop="0dp"
         android:maxLines="1"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/lblUsuario"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        app:layout_constraintTop_toBottomOf="@+id/lblUsername"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginEnd="@dimen/main_activity_margin"
+        tools:ignore="Autofill">
 
         <requestFocus />
     </EditText>
 
     <TextView
-        android:id="@+id/lblClave"
+        android:id="@+id/lblPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/edittext_padding"
-        android:paddingRight="@dimen/edittext_padding"
-        android:text="@string/clave"
+        android:text="@string/activity_main_lblPassword"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsuario"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginTop="@dimen/main_activity_margin"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername"
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginEnd="@dimen/main_activity_margin" />
 
     <EditText
-        android:id="@+id/txtClave"
+        android:id="@+id/txtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/clave"
+        android:hint="@string/activity_main_txtPassword"
         android:imeOptions="actionDone"
         android:paddingTop="0dp"
-        android:maxLength="12"
+        android:maxLength="@integer/activity_main_txtUsername_maxLength"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/lblClave"
+        android:layout_marginTop="@dimen/main_activity_margin"
+        app:layout_constraintTop_toBottomOf="@+id/lblPassword"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/main_activity_margin"
+        android:layout_marginEnd="@dimen/main_activity_margin"
+        tools:ignore="Autofill"/>
 
 
     <Button
-        android:id="@+id/btnCancelar"
+        android:id="@+id/btnCancel"
         style="?android:buttonBarButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/cancelar"
+        android:text="@string/activitiy_main_btnCancel"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/btnAceptar"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        app:layout_constraintRight_toLeftOf="@+id/btnLogin"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp" />
 
     <Button
-        android:id="@+id/btnAceptar"
+        android:id="@+id/btnLogin"
         style="?android:buttonBarButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/aceptar"
+        android:text="@string/activity_main_btnLogin"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/btnCancelar"
+        app:layout_constraintLeft_toRightOf="@+id/btnCancel"
         android:layout_marginEnd="0dp" />
 
 </android.support.constraint.ConstraintLayout>

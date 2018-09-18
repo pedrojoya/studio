@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr015"
@@ -29,12 +28,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
-    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
-    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
-
-    testImplementation "junit:junit:$rootProject.ext.junit_version"
-
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version"
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
 }

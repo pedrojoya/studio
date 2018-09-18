@@ -8,15 +8,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr021.R;
-import es.iessaladillo.pedrojoya.pr021.data.Database;
-import es.iessaladillo.pedrojoya.pr021.data.Repository;
 import es.iessaladillo.pedrojoya.pr021.data.RepositoryImpl;
-import es.iessaladillo.pedrojoya.pr021.data.model.Country;
+import es.iessaladillo.pedrojoya.pr021.data.local.Database;
+import es.iessaladillo.pedrojoya.pr021.data.local.model.Country;
+import es.iessaladillo.pedrojoya.pr021.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,15 +23,13 @@ public class MainActivity extends AppCompatActivity {
     private Button btnShow;
 
     @SuppressWarnings("FieldCanBeLocal")
-    private Repository mRepository;
-    private MainActivityViewModel mViewModel;
+    private MainActivityViewModel viewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRepository = RepositoryImpl.getInstance(Database.getInstance());
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(mRepository)).get(
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
     }
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Country> countries = new ArrayList<>();
         countries.add(new Country(R.drawable.no_flag,
                 getString(R.string.main_activity_choose_one_country)));
-        countries.addAll(mViewModel.getData());
+        countries.addAll(viewModel.getCountries());
         spnCountry.setAdapter(new MainActivityAdapter(countries));
         spnCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -70,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showCountry(Country country) {
-        Toast.makeText(this, country.getName(), Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, country.getName());
     }
 
 }

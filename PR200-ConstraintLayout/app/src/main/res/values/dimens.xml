@@ -1,5 +1,5 @@
 <resources>
 
-    <dimen name="edittext_padding">12dp</dimen>
+    <dimen name="main_activity_margin">16dp</dimen>
 
 </resources>

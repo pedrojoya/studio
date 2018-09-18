@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/general_activity_margin"
-        tools:context=".main.MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilName"

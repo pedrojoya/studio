@@ -7,24 +7,15 @@ import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
 
 public class RepositoryImpl implements Repository {
 
-    private static RepositoryImpl instance;
-
     private final Database database;
 
-    private RepositoryImpl(Database database) {
+    public RepositoryImpl(Database database) {
         this.database = database;
     }
 
-    public static RepositoryImpl getInstance(Database database) {
-        if (instance == null) {
-            instance = new RepositoryImpl(database);
-        }
-        return instance;
-    }
-
     @Override
-    public List<Student> getStudents() {
-        return database.getStudents();
+    public List<Student> queryStudents() {
+        return database.queryStudents();
     }
 
 }

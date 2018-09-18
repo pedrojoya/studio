@@ -2,13 +2,13 @@ package es.iessaladillo.pedrojoya.pr015.data;
 
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr015.data.model.Word;
+import es.iessaladillo.pedrojoya.pr015.data.local.model.Word;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public interface Repository {
 
-    List<Word> getWords();
+    List<Word> queryWords();
     void addWord(Word word);
-    void deleteWord(int position);
+    void deleteWord(Word word);
 
 }

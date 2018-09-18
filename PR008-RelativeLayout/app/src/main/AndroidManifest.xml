@@ -11,7 +11,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name="es.iessaladillo.pedrojoya.pr008.MainActivity"
+            android:name="es.iessaladillo.pedrojoya.pr008.ui.main.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

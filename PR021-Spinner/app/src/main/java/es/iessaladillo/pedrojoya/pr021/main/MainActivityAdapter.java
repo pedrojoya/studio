@@ -10,11 +10,11 @@ import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr021.R;
 import es.iessaladillo.pedrojoya.pr021.base.DropDownBaseAdapter;
-import es.iessaladillo.pedrojoya.pr021.data.model.Country;
+import es.iessaladillo.pedrojoya.pr021.data.local.model.Country;
 
 class MainActivityAdapter extends DropDownBaseAdapter<Country, MainActivityAdapter.ViewHolder, MainActivityAdapter.ViewHolder> {
 
-    public MainActivityAdapter(@NonNull List<Country> data) {
+    MainActivityAdapter(@NonNull List<Country> data) {
         super(data, R.layout.activity_main_item_collapsed, R.layout.activity_main_item_expanded);
     }
 

@@ -26,19 +26,18 @@ public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         VH viewHolder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent,
+        View itemView = convertView;
+        if (itemView == null) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent,
                     false);
-            viewHolder = onCreateViewHolder(convertView);
-            convertView.setTag(viewHolder);
+            viewHolder = onCreateViewHolder(itemView);
+            itemView.setTag(viewHolder);
         } else {
-            viewHolder = (VH) convertView.getTag();
+            viewHolder = (VH) itemView.getTag();
         }
         onBindViewHolder(viewHolder, position);
-        return convertView;
+        return itemView;
     }
-
-    protected abstract VH onCreateViewHolder(View itemView);
 
     @Override
     public int getCount() {
@@ -54,6 +53,8 @@ public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
+    protected abstract VH onCreateViewHolder(View itemView);
 
     protected abstract void onBindViewHolder(VH holder, int position);
 

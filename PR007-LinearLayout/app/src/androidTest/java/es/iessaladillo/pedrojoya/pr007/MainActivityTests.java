@@ -18,6 +18,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import es.iessaladillo.pedrojoya.pr007.ui.main.MainActivity;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -31,6 +33,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.internal.util.Checks.checkNotNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNot.not;
 
@@ -147,7 +150,7 @@ public class MainActivityTests {
      *
      * @param integerMatcher {@link Matcher} of {@link String} with text to match
      */
-    public static Matcher<View> withCurrentTextColor(final Matcher<Integer> integerMatcher) {
+    private static Matcher<View> withCurrentTextColor(final Matcher<Integer> integerMatcher) {
         checkNotNull(integerMatcher);
         return new BoundedMatcher<View, TextView>(TextView.class) {
             @Override
@@ -167,7 +170,7 @@ public class MainActivityTests {
      * Returns a matcher that matches {@link TextView} based on it's text property value. Note:
      * View's Sugar for withTextColor(is("string")).
      */
-    public static Matcher<View> withCurrentTextColor(@ColorRes int color) {
+    private static Matcher<View> withCurrentTextColor(@ColorRes int color) {
         Context context = InstrumentationRegistry.getTargetContext();
         return withCurrentTextColor(is(ContextCompat.getColor(context, color)));
     }

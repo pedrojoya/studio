@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr106.R;
 import pedrojoya.iessaladillo.es.pr106.data.local.Database;
-import pedrojoya.iessaladillo.es.pr106.recycleradapter.BaseListAdapter;
+import pedrojoya.iessaladillo.es.pr106.base.BaseListAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements BaseListAdapter.OnItemClickListener,BaseListAdapter.OnItemLongClickListener {

@@ -2,13 +2,13 @@ package es.iessaladillo.pedrojoya.pr014.data;
 
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr014.data.model.Student;
+import es.iessaladillo.pedrojoya.pr014.data.local.model.Student;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public interface Repository {
 
-    List<Student> getStudents();
+    List<Student> queryStudents();
     void addStudent(Student student);
-    void deleteStudent(int position);
+    void deleteStudent(Student student);
 
 }

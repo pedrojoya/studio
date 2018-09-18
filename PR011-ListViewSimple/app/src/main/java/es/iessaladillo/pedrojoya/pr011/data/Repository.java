@@ -5,8 +5,8 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public interface Repository {
 
-    List<String> getStudents();
+    List<String> queryStudents();
     void addStudent(String student);
-    void deleteStudent(int position);
+    void deleteStudent(String student);
 
 }

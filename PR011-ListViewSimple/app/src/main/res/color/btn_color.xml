@@ -9,5 +9,6 @@
         android:color="@color/accent" />
 
     <item
-        android:color="@android:color/black" />
+        android:color="#FF000000" />
+
 </selector>

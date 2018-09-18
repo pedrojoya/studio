@@ -18,6 +18,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import es.iessaladillo.pedrojoya.pr200.ui.main.MainActivity;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -45,78 +47,78 @@ public class MainActivityTests {
 
     @Test
     public void validateBtnAceptarDisabledWhenTxtUsuarioEmpty() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtUsername)).perform(clearText());
+        onView(withId(R.id.btnLogin)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnAceptarDisabledWhenTxtEdadEmpty() {
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.btnAceptar)).check(matches(not(isEnabled())));
+        onView(withId(R.id.txtPassword)).perform(clearText());
+        onView(withId(R.id.btnLogin)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnAceptarEnabledWhenFormularioCorrecto() {
-        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"));
-        onView(withId(R.id.btnAceptar)).check(matches(isEnabled()));
+        onView(withId(R.id.txtUsername)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtPassword)).perform(replaceText("llegateligero"));
+        onView(withId(R.id.btnLogin)).check(matches(isEnabled()));
     }
 
     @Test
     public void validateLblUsuarioVisibleWhenTxtUsuarioHasData() {
-        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.lblUsuario)).check(matches(isDisplayed()));
+        onView(withId(R.id.txtUsername)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.lblUsername)).check(matches(isDisplayed()));
     }
 
     @Test
     public void validateLblUsuarioInvisibleWhenTxtUsuarioisEmpty() {
-        onView(withId(R.id.txtUsuario)).perform(clearText());
-        onView(withId(R.id.lblUsuario)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.txtUsername)).perform(clearText());
+        onView(withId(R.id.lblUsername)).check(matches(not(isDisplayed())));
     }
 
     @Test
     public void validateLblUsuarioColorWhenTxtUsuarioHasFocus() {
-        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.lblUsuario)).check(matches(withCurrentTextColor(R.color.accent)));
+        onView(withId(R.id.txtUsername)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.lblUsername)).check(matches(withCurrentTextColor(R.color.accent)));
     }
 
     @Test
     public void validateLblUsuarioColorWhenTxtUsuarioNoFocus() {
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
-        onView(withId(R.id.lblUsuario)).check(matches(withCurrentTextColor(R.color.primary)));
+        onView(withId(R.id.txtUsername)).perform(typeText("Baldomero"));
+        onView(withId(R.id.txtPassword)).perform(typeText("llegateligero"));
+        onView(withId(R.id.lblUsername)).check(matches(withCurrentTextColor(R.color.primary)));
     }
 
     @Test
     public void validateLblClaveVisibleWhenTxtClaveHasData() {
-        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"));
-        onView(withId(R.id.lblClave)).check(matches(isDisplayed()));
+        onView(withId(R.id.txtPassword)).perform(replaceText("llegateligero"));
+        onView(withId(R.id.lblPassword)).check(matches(isDisplayed()));
     }
 
     @Test
     public void validateLblClaveInvisibleWhenTxtClaveisEmpty() {
-        onView(withId(R.id.txtClave)).perform(clearText());
-        onView(withId(R.id.lblClave)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.txtPassword)).perform(clearText());
+        onView(withId(R.id.lblPassword)).check(matches(not(isDisplayed())));
     }
 
     @Test
     public void validateLblClaveColorWhenTxtClaveHasFocus() {
-        onView(withId(R.id.txtClave)).perform(typeText("Baldomero"));
-        onView(withId(R.id.lblClave)).check(matches(withCurrentTextColor(R.color.accent)));
+        onView(withId(R.id.txtPassword)).perform(typeText("Baldomero"));
+        onView(withId(R.id.lblPassword)).check(matches(withCurrentTextColor(R.color.accent)));
     }
 
     @Test
     public void validateLblClaveColorWhenTxtClaveNoFocus() {
-        onView(withId(R.id.txtClave)).perform(typeText("llegateligero"));
-        onView(withId(R.id.txtUsuario)).perform(typeText("Baldomero"));
-        onView(withId(R.id.lblClave)).check(matches(withCurrentTextColor(R.color.primary)));
+        onView(withId(R.id.txtPassword)).perform(typeText("llegateligero"));
+        onView(withId(R.id.txtUsername)).perform(typeText("Baldomero"));
+        onView(withId(R.id.lblPassword)).check(matches(withCurrentTextColor(R.color.primary)));
     }
 
     @Test
     public void validateToastShownWhenBtnAceptarPressed() {
-        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"), closeSoftKeyboard());
-        onView(withId(R.id.btnAceptar)).perform(click());
+        onView(withId(R.id.txtUsername)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtPassword)).perform(replaceText("llegateligero"), closeSoftKeyboard());
+        onView(withId(R.id.btnLogin)).perform(click());
         onView(withText("Conectando con el usuario Baldomero…"))
                 .inRoot(withDecorView(Matchers.not(mActivityRule.getActivity()
                         .getWindow().getDecorView()))).check(matches(isDisplayed()));
@@ -129,16 +131,16 @@ public class MainActivityTests {
 
     @Test
     public void validateResetFieldsWhenBtnCancelarPressed() {
-        onView(withId(R.id.txtUsuario)).perform(replaceText("Baldomero"));
-        onView(withId(R.id.txtClave)).perform(replaceText("llegateligero"), closeSoftKeyboard());
-        onView(withId(R.id.btnCancelar)).perform(click());
-        onView(withId(R.id.txtUsuario)).check(matches(withText("")));
-        onView(withId(R.id.txtClave)).check(matches(withText("")));
+        onView(withId(R.id.txtUsername)).perform(replaceText("Baldomero"));
+        onView(withId(R.id.txtPassword)).perform(replaceText("llegateligero"), closeSoftKeyboard());
+        onView(withId(R.id.btnCancel)).perform(click());
+        onView(withId(R.id.txtUsername)).check(matches(withText("")));
+        onView(withId(R.id.txtPassword)).check(matches(withText("")));
     }
 
     @Test
     public void validateTxtUsuarioHasFocusInitially() {
-        onView(withId(R.id.txtUsuario)).check(matches(hasFocus()));
+        onView(withId(R.id.txtUsername)).check(matches(hasFocus()));
     }
 
     /**
@@ -148,7 +150,7 @@ public class MainActivityTests {
      *
      * @param integerMatcher {@link Matcher} of {@link String} with text to match
      */
-    public static Matcher<View> withCurrentTextColor(final Matcher<Integer> integerMatcher) {
+    private static Matcher<View> withCurrentTextColor(final Matcher<Integer> integerMatcher) {
         checkNotNull(integerMatcher);
         return new BoundedMatcher<View, TextView>(TextView.class) {
             @Override
@@ -168,7 +170,7 @@ public class MainActivityTests {
      * Returns a matcher that matches {@link TextView} based on it's text property value. Note:
      * View's Sugar for withTextColor(is("string")).
      */
-    public static Matcher<View> withCurrentTextColor(@ColorRes int color) {
+    private static Matcher<View> withCurrentTextColor(@ColorRes int color) {
         Context context = InstrumentationRegistry.getTargetContext();
         return withCurrentTextColor(is(ContextCompat.getColor(context, color)));
     }

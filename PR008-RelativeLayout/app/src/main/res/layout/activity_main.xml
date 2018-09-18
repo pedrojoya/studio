@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/main_activity_margin"
@@ -33,7 +34,8 @@
         android:inputType="text"
         android:maxLength="@integer/activity_main_txtUsername_maxLength"
         android:paddingTop="0dp"
-        android:maxLines="1">
+        android:maxLines="1"
+        tools:ignore="Autofill">
 
         <requestFocus/>
     </EditText>
@@ -57,7 +59,8 @@
         android:inputType="textPassword"
         android:maxLength="@integer/activity_main_txtPassword_maxLength"
         android:paddingTop="0dp"
-        android:maxLines="1"/>
+        android:maxLines="1"
+        tools:ignore="Autofill"/>
 
     <View
         android:id="@+id/divider"

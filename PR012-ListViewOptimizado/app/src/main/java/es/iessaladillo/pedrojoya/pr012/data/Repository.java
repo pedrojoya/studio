@@ -7,6 +7,6 @@ import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public interface Repository {
 
-    List<Student> getStudents();
+    List<Student> queryStudents();
 
 }
