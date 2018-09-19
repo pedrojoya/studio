@@ -2,25 +2,25 @@ package es.iessaladillo.pedrojoya.pr017.main;
 
 import android.arch.lifecycle.ViewModel;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr017.data.Repository;
-import es.iessaladillo.pedrojoya.pr017.data.model.Word;
+import es.iessaladillo.pedrojoya.pr017.data.local.model.Word;
 
 @SuppressWarnings("WeakerAccess")
 public class MainActivityViewModel extends ViewModel {
 
     private String loadedWord = "";
-    private ArrayList<Word> words;
+    private List<Word> words;
     private final Repository repository;
 
     public MainActivityViewModel(Repository repository) {
         this.repository = repository;
     }
 
-    public ArrayList<Word> getWords() {
+    public List<Word> getWords() {
         if (words == null) {
-            words = (ArrayList<Word>) repository.getWords();
+            words = repository.queryWords();
         }
         return words;
     }
