@@ -20,7 +20,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public void addWord(Word word) {
-        database.addWord(word);
+        database.insertWord(word);
     }
 
     @Override

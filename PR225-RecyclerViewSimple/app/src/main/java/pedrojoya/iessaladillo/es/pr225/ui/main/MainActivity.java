@@ -3,7 +3,6 @@ package pedrojoya.iessaladillo.es.pr225.ui.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,6 +13,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr225.R;
+import pedrojoya.iessaladillo.es.pr225.data.RepositoryImpl;
+import pedrojoya.iessaladillo.es.pr225.data.local.Database;
+import pedrojoya.iessaladillo.es.pr225.utils.SnackbarUtils;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        mViewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
     }
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupFab() {
         FloatingActionButton fabAccion = ActivityCompat.requireViewById(this, R.id.fab);
-        fabAccion.setOnClickListener(view -> fabClicked());
+        fabAccion.setOnClickListener(view -> addStudent());
     }
 
     private void setupRecyclerView() {
@@ -64,9 +67,8 @@ public class MainActivity extends AppCompatActivity {
         lstStudents.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void fabClicked() {
-        Snackbar.make(lstStudents, getString(R.string.activity_main_fabClicked), Snackbar
-                .LENGTH_SHORT).show();
+    private void addStudent() {
+        SnackbarUtils.snackbar(lstStudents, getString(R.string.activity_main_fabClicked));
     }
 
 }

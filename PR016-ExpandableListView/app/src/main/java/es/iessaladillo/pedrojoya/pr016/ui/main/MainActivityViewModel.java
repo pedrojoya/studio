@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr016.data.local.Repository;
+import es.iessaladillo.pedrojoya.pr016.data.Repository;
 import es.iessaladillo.pedrojoya.pr016.data.local.model.Level;
 import es.iessaladillo.pedrojoya.pr016.data.local.model.Student;
 

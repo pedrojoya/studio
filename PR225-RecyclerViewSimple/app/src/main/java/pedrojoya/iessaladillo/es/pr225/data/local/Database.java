@@ -4,18 +4,20 @@ import com.mooveit.library.Fakeit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import pedrojoya.iessaladillo.es.pr225.data.model.Student;
+import pedrojoya.iessaladillo.es.pr225.data.local.model.Student;
 
 public class Database {
 
+    private static final String BASE_URL = "https://picsum.photos/100/100?image=";
     private static Database instance;
 
-    private final ArrayList<Student> students;
-    private int mCount;
+    private final ArrayList<Student> students = new ArrayList<>();
+    private long studentsAutoId;
+    private final Random random = new Random();
 
     private Database() {
-        students = new ArrayList<>();
         insertInitialData();
     }
 
@@ -28,19 +30,24 @@ public class Database {
 
     private void insertInitialData() {
         for (int i = 0; i < 5; i++) {
-            addFakeStudent();
+            insertStudent(newFakeStudent());
         }
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<Student> queryStudents() {
+        return new ArrayList<>(students);
     }
 
     @SuppressWarnings("WeakerAccess")
-    public void addFakeStudent() {
-        Student student = new Student(Fakeit.name().name(), Fakeit.address().streetAddress(),
-                "http://lorempixel.com/100/100/abstract/" + (++mCount % 10 + 1) + "/");
+    public synchronized void insertStudent(Student student) {
+        student.setId(++studentsAutoId);
         students.add(student);
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public Student newFakeStudent() {
+        return new Student(Fakeit.name().name(), Fakeit.address().streetAddress(),
+                BASE_URL + random.nextInt(180));
     }
 
 }

@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.lucasurbas.listitemview.ListItemView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr014.R;
 import es.iessaladillo.pedrojoya.pr014.base.AdapterViewBaseAdapter;
@@ -23,7 +23,7 @@ public class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainAct
     @SuppressWarnings("CanBeFinal")
     private final Callback listener;
 
-    public MainActivityAdapter(@NonNull ArrayList<Student> data, Callback listener) {
+    public MainActivityAdapter(@NonNull List<Student> data, Callback listener) {
         super(data, R.layout.activity_main_item);
         this.listener = listener;
     }
@@ -36,6 +36,11 @@ public class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainAct
     @Override
     protected void onBindViewHolder(ViewHolder holder, int position) {
         holder.bind(getItem(position), position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
     }
 
     class ViewHolder {

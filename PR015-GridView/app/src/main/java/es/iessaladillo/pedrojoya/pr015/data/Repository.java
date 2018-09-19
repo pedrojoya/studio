@@ -8,7 +8,7 @@ import es.iessaladillo.pedrojoya.pr015.data.local.model.Word;
 public interface Repository {
 
     List<Word> queryWords();
-    void addWord(Word word);
+    void insertWord(Word word);
     void deleteWord(Word word);
 
 }

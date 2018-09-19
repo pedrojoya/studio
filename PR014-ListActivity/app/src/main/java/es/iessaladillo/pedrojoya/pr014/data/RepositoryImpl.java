@@ -19,8 +19,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void addStudent(Student student) {
-        database.addStudent(student);
+    public void insertStudent(Student student) {
+        database.insertStudent(student);
     }
 
     @Override

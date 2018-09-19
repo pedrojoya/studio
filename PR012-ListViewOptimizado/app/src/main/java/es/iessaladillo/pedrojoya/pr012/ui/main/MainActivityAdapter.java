@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr012.R;
 import es.iessaladillo.pedrojoya.pr012.base.AdapterViewBaseAdapter;
@@ -19,7 +19,7 @@ class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainActivityAd
     private CallListener callListener;
     private ShowMarksListener showMarksListener;
 
-    MainActivityAdapter(@NonNull ArrayList<Student> data) {
+    MainActivityAdapter(@NonNull List<Student> data) {
         super(data, R.layout.activity_main_item);
     }
 
@@ -31,6 +31,11 @@ class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainActivityAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bind(data.get(position), position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
     }
 
     void setCallListener(CallListener callListener) {

@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.pr017.data.local.model;
 
+@SuppressWarnings("unused")
 public class Word {
 
     private long id;
@@ -39,4 +40,8 @@ public class Word {
         return spanish;
     }
 
+    @Override
+    public String toString() {
+        return english;
+    }
 }
