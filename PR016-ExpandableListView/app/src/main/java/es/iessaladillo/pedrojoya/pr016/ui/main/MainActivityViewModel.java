@@ -16,18 +16,18 @@ class MainActivityViewModel extends ViewModel {
     private List<Level> levels;
     private List<List<Student>> students;
 
-    public MainActivityViewModel(Repository repository) {
+    MainActivityViewModel(Repository repository) {
         this.repository = repository;
     }
 
-    public List<Level> getLevels() {
+    List<Level> getLevels() {
         if (levels == null) {
             levels = repository.queryLevels();
         }
         return levels;
     }
 
-    public List<List<Student>> getStudents() {
+    List<List<Student>> getStudents() {
         if (students == null) {
             students = new ArrayList<>();
             for (Level level: repository.queryLevels()) {

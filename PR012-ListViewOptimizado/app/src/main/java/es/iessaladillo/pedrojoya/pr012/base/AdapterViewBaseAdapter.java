@@ -45,7 +45,7 @@ public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public T getItem(int position) {
         return data.get(position);
     }
 
