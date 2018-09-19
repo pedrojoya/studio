@@ -18,7 +18,7 @@ import com.annimon.stream.Stream;
 import java.util.ArrayList;
 
 import es.iessaladillo.pedrojoya.pr017.R;
-import es.iessaladillo.pedrojoya.pr017.data.model.Word;
+import es.iessaladillo.pedrojoya.pr017.data.local.model.Word;
 
 class MainActivityAdapter extends BaseAdapter implements Filterable {
 

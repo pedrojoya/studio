@@ -16,7 +16,7 @@ import android.widget.Button;
 
 import es.iessaladillo.pedrojoya.pr017.Constants;
 import es.iessaladillo.pedrojoya.pr017.R;
-import es.iessaladillo.pedrojoya.pr017.data.Database;
+import es.iessaladillo.pedrojoya.pr017.data.local.Database;
 import es.iessaladillo.pedrojoya.pr017.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr017.utils.KeyboardUtils;
 
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(
-                RepositoryImpl.getInstance(Database.getInstance()))).get(
+        viewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
     }
