@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         ListView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmptyView));
-        listAdapter = new MainActivityAdapter(viewModel.getStudents(),
+        listAdapter = new MainActivityAdapter(viewModel.getStudents(false),
                 (item, student, position) -> deleteStudent(listAdapter.getItem(position)));
         lstStudents.setAdapter(listAdapter);
         lstStudents.setOnItemClickListener(
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void deleteStudent(Student student) {
         viewModel.deleteStudent(student);
-        listAdapter.notifyDataSetChanged();
+        listAdapter.submitList(viewModel.getStudents(true));
     }
 
 }

@@ -6,18 +6,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
+// M for Model, VH for ViewHolder
+public abstract class AdapterViewBaseAdapter<M, VH> extends BaseAdapter implements Filterable {
 
-    protected final List<T> data;
+    private List<M> data;
+    private final List<M> original;
     @LayoutRes
     private final int layoutResId;
+    private FilterPredicate<M> filterPredicate;
 
     @SuppressWarnings("SameParameterValue")
-    protected AdapterViewBaseAdapter(@NonNull List<T> data, @LayoutRes int layoutResId) {
+    protected AdapterViewBaseAdapter(@NonNull List<M> data, @LayoutRes int layoutResId) {
         this.data = data;
+        this.original = data;
         this.layoutResId = layoutResId;
     }
 
@@ -44,7 +51,7 @@ public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
     }
 
     @Override
-    public T getItem(int position) {
+    public M getItem(int position) {
         return data.get(position);
     }
 
@@ -56,5 +63,49 @@ public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
     protected abstract VH onCreateViewHolder(View itemView);
 
     protected abstract void onBindViewHolder(VH holder, int position);
+
+    protected void setFilterPredicate(FilterPredicate<M> filterPredicate) {
+        this.filterPredicate = filterPredicate;
+    }
+
+    private void submitFilteredList(List<M> filteredList) {
+        data = filteredList;
+        notifyDataSetChanged();
+    }
+
+    protected interface FilterPredicate<T> {
+        boolean test(T item, CharSequence constraint);
+    }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults filterResults = new FilterResults();
+                if (constraint != null && filterPredicate != null) {
+                    List<M> filtered = new ArrayList<>();
+                    for (M element: original) {
+                        if (filterPredicate.test(element, constraint)) {
+                            filtered.add(element);
+                        }
+                    }
+                    filterResults.values = filtered;
+                    filterResults.count = filtered.size();
+                }
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                if (results != null && results.count > 0) {
+                    //noinspection unchecked
+                    submitFilteredList((List<M>) results.values);
+                }
+            }
+        };
+    }
+
 
 }

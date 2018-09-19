@@ -11,10 +11,10 @@ public class Database {
 
     private static volatile Database instance;
 
-    private final ArrayList<Word> words;
+    private final ArrayList<Word> words = new ArrayList<>();
+    private long wordsAutoId = 0;
 
     private Database() {
-        words = new ArrayList<>();
         insertInitialData();
     }
 
@@ -46,10 +46,11 @@ public class Database {
     }
 
     public List<Word> queryWords() {
-        return words;
+        return new ArrayList<>(words);
     }
 
-    public void addWord(Word word) {
+    public synchronized void insertWord(Word word) {
+        word.setId(++wordsAutoId);
         words.add(word);
     }
 

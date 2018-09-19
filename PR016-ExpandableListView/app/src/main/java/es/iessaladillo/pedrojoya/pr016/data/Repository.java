@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr016.data.local;
+package es.iessaladillo.pedrojoya.pr016.data;
 
 import java.util.List;
 

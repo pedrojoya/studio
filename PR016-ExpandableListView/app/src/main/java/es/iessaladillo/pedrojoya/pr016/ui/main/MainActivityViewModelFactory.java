@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import es.iessaladillo.pedrojoya.pr016.data.local.Repository;
+import es.iessaladillo.pedrojoya.pr016.data.Repository;
 
 
 @SuppressWarnings("WeakerAccess")

@@ -19,8 +19,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void addWord(Word word) {
-        database.addWord(word);
+    public void insertWord(Word word) {
+        database.insertWord(word);
     }
 
     @Override

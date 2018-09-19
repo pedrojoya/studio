@@ -1,7 +1,9 @@
 package es.iessaladillo.pedrojoya.pr012.data.local.model;
 
+@SuppressWarnings("unused")
 public class Student {
 
+    private long id;
     private final int photo;
     private final String name;
     private final int age;
@@ -9,14 +11,29 @@ public class Student {
     private final String grade;
     private final boolean repeater;
 
-    public Student(int photo, String name, int age, String level,
+    @SuppressWarnings("WeakerAccess")
+    public Student(long id, int photo, String name, int age, String level,
                    String grade, boolean repeater) {
+        this.id = id;
         this.photo = photo;
         this.name = name;
         this.age = age;
         this.level = level;
         this.grade = grade;
         this.repeater = repeater;
+    }
+
+    public Student(int photo, String name, int age, String level,
+            String grade, boolean repeater) {
+        this(0, photo, name, age, level, grade, repeater);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getPhoto() {
@@ -41,45 +58,6 @@ public class Student {
 
     public boolean isRepeater() {
         return repeater;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Student student = (Student) o;
-
-        if (photo != student.photo) return false;
-        if (age != student.age) return false;
-        if (repeater != student.repeater) return false;
-        if (!name.equals(student.name)) return false;
-        //noinspection SimplifiableIfStatement
-        if (!level.equals(student.level)) return false;
-        return grade.equals(student.grade);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = photo;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + age;
-        result = 31 * result + level.hashCode();
-        result = 31 * result + grade.hashCode();
-        result = 31 * result + (repeater ? 1 : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "photo=" + photo +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", level='" + level + '\'' +
-                ", grade='" + grade + '\'' +
-                ", repeater=" + repeater +
-                '}';
     }
 
 }

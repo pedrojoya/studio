@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr016.data.local;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import es.iessaladillo.pedrojoya.pr016.data.local.model.Level;
@@ -12,32 +11,32 @@ public class Database {
 
     private static volatile Database instance;
 
-    private final ArrayList<Level> levels;
-    private final ArrayList<Student> students;
+    private final ArrayList<Level> levels = new ArrayList<>();
+    private final ArrayList<Student> students = new ArrayList<>();
+    private long levelsAutoId = 0;
+    private long studentsAutoId = 0;
 
     private Database() {
-        long levelAutonumeric = 0;
-        long studentAutonumeric = 0;
-        levels = new ArrayList<>(Arrays.asList(
-                new Level(++levelAutonumeric, "CFGM Sistemas Microinformáticos y Redes"),
-                new Level(++levelAutonumeric, "CFGS Desarrollo de Aplicaciones Multiplataforma")
-                ));
-        students = new ArrayList<>(Arrays.asList(
-                new Student(++studentAutonumeric, "Baldomero", 16, 1, "2º"),
-                new Student(++studentAutonumeric, "Sergio", 27, 1, "1º"),
-                new Student(++studentAutonumeric, "Atanasio", 17, 1, "1º"),
-                new Student(++studentAutonumeric, "Oswaldo", 26, 1, "1º"),
-                new Student(++studentAutonumeric, "Rodrigo", 22, 1, "2º"),
-                new Student(++studentAutonumeric, "Antonio", 16, 1, "1º"),
-                new Student(++studentAutonumeric, "Pedro", 22, 2, "2º"),
-                new Student(++studentAutonumeric,"Pablo", 22, 2, "2º"),
-                new Student(++studentAutonumeric,"Rodolfo", 21, 2, "1º"),
-                new Student(++studentAutonumeric, "Gervasio", 24, 2, "2º"),
-                new Student(++studentAutonumeric,"Prudencia", 20, 2, "2º"),
-                new Student(++studentAutonumeric,"Gumersindo", 17, 2, "2º"),
-                new Student(++studentAutonumeric,"Gerardo", 18, 2, "1º"),
-                new Student(++studentAutonumeric,"Óscar", 21, 2, "2º")
-        ));
+        insertInitialData();
+    }
+
+    private void insertInitialData() {
+        insertLevel(new Level("CFGM Sistemas Microinformáticos y Redes"));
+        insertLevel(new Level("CFGS Desarrollo de Aplicaciones Multiplataforma"));
+        insertStudent(new Student("Baldomero", 16, 1, "2º"));
+        insertStudent(new Student("Sergio", 27, 1, "1º"));
+        insertStudent(new Student("Atanasio", 17, 1, "1º"));
+        insertStudent(new Student("Oswaldo", 26, 1, "1º"));
+        insertStudent(new Student("Rodrigo", 22, 1, "2º"));
+        insertStudent(new Student("Antonio", 16, 1, "1º"));
+        insertStudent(new Student("Pedro", 22, 2, "2º"));
+        insertStudent(new Student("Pablo", 22, 2, "2º"));
+        insertStudent(new Student("Rodolfo", 21, 2, "1º"));
+        insertStudent(new Student("Gervasio", 24, 2, "2º"));
+        insertStudent(new Student("Prudencia", 20, 2, "2º"));
+        insertStudent(new Student("Gumersindo", 17, 2, "2º"));
+        insertStudent(new Student("Gerardo", 18, 2, "1º"));
+        insertStudent(new Student("Óscar", 21, 2, "2º"));
     }
 
     public static Database getInstance() {
@@ -56,7 +55,20 @@ public class Database {
     }
 
     public List<Student> queryStudentsByLevel(long levelId) {
-        return (List<Student>) CollectionUtils.filter(students, student -> student.getLevel() == levelId);
+        return (List<Student>) CollectionUtils.filter(students,
+                student -> student.getLevel() == levelId);
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public void insertLevel(Level level) {
+        level.setId(++levelsAutoId);
+        levels.add(level);
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public void insertStudent(Student student) {
+        student.setId(++studentsAutoId);
+        students.add(student);
     }
 
 }

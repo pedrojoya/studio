@@ -88,8 +88,7 @@ class MainActivityAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        // We don't manage ids.
-        return 0;
+        return getChild(groupPosition, childPosition).getId();
     }
 
     @Override
@@ -124,8 +123,7 @@ class MainActivityAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        // We won't manage ids.
-        return 0;
+        return groupPosition;
     }
 
     @Override

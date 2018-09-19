@@ -8,7 +8,7 @@ import es.iessaladillo.pedrojoya.pr014.data.local.model.Student;
 public interface Repository {
 
     List<Student> queryStudents();
-    void addStudent(Student student);
+    void insertStudent(Student student);
     void deleteStudent(Student student);
 
 }

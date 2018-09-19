@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         webView = ActivityCompat.requireViewById(this, R.id.wvWeb);
         btnTranslate = ActivityCompat.requireViewById(this, R.id.btnTranslate);
 
-        txtWord.setAdapter(new MainActivityAdapter(this, viewModel.getWords()));
+        txtWord.setAdapter(new MainActivityAdapter(viewModel.getWords()));
         webView.setWebViewClient(new WebViewClient() {
 
             @Override

@@ -9,14 +9,15 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
-public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
+// M for Model, VH for ViewHolder
+public abstract class AdapterViewBaseAdapter<M, VH> extends BaseAdapter {
 
-    private final List<T> data;
+    private List<M> data;
     @LayoutRes
     private final int layoutResId;
 
     @SuppressWarnings("SameParameterValue")
-    protected AdapterViewBaseAdapter(@NonNull List<T> data, @LayoutRes int layoutResId) {
+    protected AdapterViewBaseAdapter(@NonNull List<M> data, @LayoutRes int layoutResId) {
         this.data = data;
         this.layoutResId = layoutResId;
     }
@@ -45,13 +46,18 @@ public abstract class AdapterViewBaseAdapter<T, VH> extends BaseAdapter {
     }
 
     @Override
-    public T getItem(int position) {
+    public M getItem(int position) {
         return data.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public void submitList(List<M> newList) {
+        data = newList;
+        notifyDataSetChanged();
     }
 
     protected abstract VH onCreateViewHolder(View itemView);

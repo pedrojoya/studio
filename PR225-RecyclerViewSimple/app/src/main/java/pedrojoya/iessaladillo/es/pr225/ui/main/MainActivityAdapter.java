@@ -14,15 +14,16 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr225.R;
-import pedrojoya.iessaladillo.es.pr225.data.model.Student;
+import pedrojoya.iessaladillo.es.pr225.data.local.model.Student;
 
 public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapter
         .ViewHolder> {
 
     private final List<Student> data;
 
-    public MainActivityAdapter(List<Student> data) {
+    MainActivityAdapter(@NonNull List<Student> data) {
         this.data = data;
+        setHasStableIds(true);
     }
 
     @NonNull
@@ -39,10 +40,20 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
     @Override
     public int getItemCount() {
-        return data == null ? 0 : data.size();
+        return data.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    @SuppressWarnings("WeakerAccess")
+    public Student getItem(int position) {
+        return data.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView lblName;
         private final TextView lblAddress;
