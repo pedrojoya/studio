@@ -1,26 +1,11 @@
 package pedrojoya.iessaladillo.es.pr231.old;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.widget.TextView;
-
-import pedrojoya.iessaladillo.es.pr231.ui.main.MainActivityViewModel;
-import pedrojoya.iessaladillo.es.pr231.ui.main.MainActivityViewModelFactory;
-import pedrojoya.iessaladillo.es.pr331.R;
 
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private RecyclerView lstStudents;
+/*    private RecyclerView lstStudents;
     private TextView mEmptyView;
 
     private MainActivityViewModel mViewModel;
@@ -30,7 +15,7 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        mViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(repository)).get(
                 MainActivityViewModel.class);
         initViews();
     }
@@ -96,6 +81,6 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mAdapter.onRestoreInstanceState(savedInstanceState);
-    }
+    }*/
 
 }

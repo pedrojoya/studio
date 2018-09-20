@@ -1,5 +1,6 @@
 package pedrojoya.iessaladillo.es.pr228.ui.main;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import java.util.List;
@@ -10,24 +11,24 @@ import pedrojoya.iessaladillo.es.pr228.data.local.model.Student;
 class MainActivityViewModel extends ViewModel {
 
     private final Repository repository;
-    private List<Student> students;
+    private LiveData<List<Student>> students;
 
-    public MainActivityViewModel(Repository repository) {
+    MainActivityViewModel(Repository repository) {
         this.repository = repository;
     }
 
-    public List<Student> getStudents() {
+    LiveData<List<Student>> getStudents() {
         if (students == null) {
-            students = repository.getStudents();
+            students = repository.queryStudents();
         }
         return students;
     }
 
-    public void addFakeStudent() {
-        repository.addFakeStudent();
+    void insertStudent(Student student) {
+        repository.insertStudent(student);
     }
 
-    public void deleteStudent(int position) {
-        repository.deleteStudent(position);
+    void deleteStudent(Student student) {
+        repository.deleteStudent(student);
     }
 }

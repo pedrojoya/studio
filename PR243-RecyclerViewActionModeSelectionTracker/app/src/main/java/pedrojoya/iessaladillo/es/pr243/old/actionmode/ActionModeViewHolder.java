@@ -3,6 +3,7 @@ package pedrojoya.iessaladillo.es.pr243.old.actionmode;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+@SuppressWarnings("ALL")
 public abstract class ActionModeViewHolder<M> extends RecyclerView.ViewHolder {
 
     public ActionModeViewHolder(View itemView,

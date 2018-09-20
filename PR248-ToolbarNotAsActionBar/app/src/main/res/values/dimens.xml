@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="general_activity_margin">8dp</dimen>
+</resources>

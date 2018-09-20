@@ -1,49 +1,67 @@
 package pedrojoya.iessaladillo.es.pr228.data.local;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+
 import com.mooveit.library.Fakeit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import pedrojoya.iessaladillo.es.pr228.data.local.model.Student;
 
 public class Database {
 
-    private static Database instance;
+    private static final String BASE_URL = "https://picsum.photos/100/100?image=";
 
-    private final ArrayList<Student> students;
-    private int mCount;
+    private static Database instance;
+    private final static Random random = new Random();
+
+    private final ArrayList<Student> students = new ArrayList<>();
+    private final MutableLiveData<List<Student>> studentsLiveData = new MutableLiveData<>();
+    private long studentsAutoId;
 
     private Database() {
-        students = new ArrayList<>();
         insertInitialData();
-    }
-
-    public synchronized static Database getInstance() {
-        if (instance == null) {
-            instance = new Database();
-        }
-        return instance;
     }
 
     private void insertInitialData() {
         for (int i = 0; i < 5; i++) {
-            addFakeStudent();
+            insertStudent(newFakeStudent());
         }
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public static Database getInstance() {
+        if (instance == null) {
+            synchronized (Database.class) {
+                if (instance == null) {
+                    instance = new Database();
+                }
+            }
+        }
+        return instance;
     }
 
-    public void addFakeStudent() {
-        Student student = new Student(Fakeit.name().name(), Fakeit.address().streetAddress(),
-                "http://lorempixel.com/100/100/abstract/" + (++mCount % 10 + 1) + "/");
+    public LiveData<List<Student>> queryStudents() {
+        studentsLiveData.setValue(new ArrayList<>(students));
+        return studentsLiveData;
+    }
+
+    public synchronized void insertStudent(Student student) {
+        student.setId(++studentsAutoId);
         students.add(student);
+        studentsLiveData.setValue(new ArrayList<>(students));
     }
 
-    public void deleteStudent(int position) {
-        students.remove(position);
+    public void deleteStudent(Student student) {
+        students.remove(student);
+        studentsLiveData.setValue(new ArrayList<>(students));
+    }
+
+    public static Student newFakeStudent() {
+        return new Student(0, Fakeit.name().name(), Fakeit.address().streetAddress(),
+                BASE_URL + random.nextInt(1084));
     }
 
 }

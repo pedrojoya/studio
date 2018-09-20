@@ -3,21 +3,21 @@ package pedrojoya.iessaladillo.es.pr243.base;
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.List;
 
 import androidx.recyclerview.selection.SelectionTracker;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
-abstract public class BaseAdapter<M, V extends RecyclerView.ViewHolder> extends ListAdapter<M, V> {
+// M for Model, VH for ViewHolder, K for selection tracker key.
+abstract public class BaseListAdapter<M, VH extends BaseViewHolder, K> extends ListAdapter<M, VH> {
 
     private View emptyView;
-    private OnItemClickListener onItemClickListener;
-    protected SelectionTracker selectionTracker;
+    protected OnItemClickListener onItemClickListener;
+    protected SelectionTracker<K> selectionTracker;
 
-    public BaseAdapter(DiffUtil.ItemCallback<M> diffUtilItemCallback) {
+    @SuppressWarnings("WeakerAccess")
+    public BaseListAdapter(DiffUtil.ItemCallback<M> diffUtilItemCallback) {
         super(diffUtilItemCallback);
     }
 
@@ -29,7 +29,7 @@ abstract public class BaseAdapter<M, V extends RecyclerView.ViewHolder> extends 
 
     // El adaptador debe recibir el selectionTracker para que el ViewHolder pueda
     // saber el estado de selección del elemento.
-    public void setSelectionTracker(SelectionTracker selectionTracker) {
+    public void setSelectionTracker(SelectionTracker<K> selectionTracker) {
         this.selectionTracker = selectionTracker;
     }
 
@@ -49,6 +49,7 @@ abstract public class BaseAdapter<M, V extends RecyclerView.ViewHolder> extends 
         return super.getItem(position);
     }
 
+    @SuppressWarnings("unused")
     public OnItemClickListener getOnItemClickListener() {
         return onItemClickListener;
     }

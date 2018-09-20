@@ -11,22 +11,24 @@ import java.util.Random;
 
 import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
 
-@SuppressWarnings("unused")
 public class Database {
 
     private static final String BASE_URL = "https://picsum.photos/100/100?image=";
 
     private static Database instance;
+    private static final Random random = new Random();
 
     private final ArrayList<Student> students = new ArrayList<>();
-    private final Random random = new Random();
     private final MutableLiveData<List<Student>> studentsLiveData = new MutableLiveData<>();
-    private int autonumeric = 1;
+    private int studentsAutoId = 1;
 
     private Database() {
-        // Create initial students.
+        insertInitialData();
+    }
+
+    private void insertInitialData() {
         for (int i = 0; i < 5; i++) {
-            students.add(newFakeStudent());
+            insertStudent(newFakeStudent());
         }
     }
 
@@ -46,7 +48,8 @@ public class Database {
         return studentsLiveData;
     }
 
-    public void addStudent(Student student) {
+    public void insertStudent(Student student) {
+        student.setId(++studentsAutoId);
         students.add(student);
         studentsLiveData.setValue(new ArrayList<>(students));
     }
@@ -64,9 +67,8 @@ public class Database {
         studentsLiveData.setValue(new ArrayList<>(students));
     }
 
-    public Student newFakeStudent() {
-        int num = autonumeric++;
-        return new Student(num, Fakeit.name().name(), Fakeit.address().streetAddress(),
+    public static Student newFakeStudent() {
+        return new Student(0, Fakeit.name().name(), Fakeit.address().streetAddress(),
                 BASE_URL + random.nextInt(1084));
     }
 

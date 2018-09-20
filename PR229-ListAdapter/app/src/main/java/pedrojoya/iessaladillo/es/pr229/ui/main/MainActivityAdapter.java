@@ -8,13 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr229.R;
-import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
 import pedrojoya.iessaladillo.es.pr229.base.BaseListAdapter;
 import pedrojoya.iessaladillo.es.pr229.base.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr229.utils.PicassoUtils;
 
 public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder> {
 
@@ -26,7 +25,8 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
 
         @Override
         public boolean areContentsTheSame(Student oldItem, Student newItem) {
-            return oldItem.equals(newItem);
+            return oldItem.getName().equals(newItem.getName()) &&
+                    oldItem.getAddress().equals(newItem.getAddress());
         }
     };
 
@@ -46,6 +46,11 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         holder.bind(getItem(position));
     }
 
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
+    }
+
     class ViewHolder extends BaseViewHolder {
 
         private final TextView lblName;
@@ -54,7 +59,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
 
 
         ViewHolder(View itemView) {
-            super(itemView, getOnItemClickListener(), getOnItemLongClickListener());
+            super(itemView, onItemClickListener, onItemLongClickListener);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
@@ -63,8 +68,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
-            Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
-                    R.drawable.ic_user).error(R.drawable.ic_user).into(imgAvatar);
+            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_user);
         }
 
     }

@@ -10,7 +10,7 @@ public interface Repository {
 
     LiveData<List<Student>> queryStudents();
 
-    void addStudent(Student student);
+    void insertStudent(Student student);
 
     void deleteStudent(Student student);
 

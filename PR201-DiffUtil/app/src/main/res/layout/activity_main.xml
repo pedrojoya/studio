@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:drawablePadding="@dimen/main_activity_emptyView_drawablePadding"
-        android:drawableTop="@drawable/ic_person_add_black_24dp"
+        android:drawableTop="@drawable/ic_person_add_black_48dp"
         android:text="@string/no_hay_alumnos"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 

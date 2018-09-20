@@ -1,5 +1,7 @@
 package pedrojoya.iessaladillo.es.pr243.data;
 
+import android.arch.lifecycle.LiveData;
+
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr243.data.local.Database;
@@ -7,34 +9,30 @@ import pedrojoya.iessaladillo.es.pr243.data.local.model.Student;
 
 public class RepositoryImpl implements Repository {
 
-    private static RepositoryImpl instance;
-
     private final Database database;
 
-    private RepositoryImpl(Database database) {
+    public RepositoryImpl(Database database) {
         this.database = database;
     }
 
-    public synchronized static RepositoryImpl getInstance(Database database) {
-        if (instance == null) {
-            instance = new RepositoryImpl(database);
-        }
-        return instance;
+    @Override
+    public LiveData<List<Student>> queryStudents() {
+        return database.queryStudents();
     }
 
     @Override
-    public List<Student> getStudents() {
-        return database.getStudents();
-    }
-
-    @Override
-    public void addStudent() {
-        database.addStudent(database.createStudent());
+    public void insertStudent(Student student) {
+        database.insertStudent(student);
     }
 
     @Override
     public void deleteStudent(Student student) {
         database.deleteStudent(student);
+    }
+
+    @Override
+    public void deleteStudents(List<Student> students) {
+        database.deleteStudents(students);
     }
 
 }

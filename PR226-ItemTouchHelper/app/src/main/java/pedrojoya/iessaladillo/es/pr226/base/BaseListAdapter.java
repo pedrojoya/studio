@@ -3,6 +3,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends RecyclerView.Adapter<V> {
 
-    private List<M> data;
+    private List<M> data = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
     private View emptyView;
@@ -33,10 +34,6 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
             checkEmptyViewVisibility();
         }
     };
-
-    public BaseListAdapter(List<M> data) {
-        this.data = data;
-    }
 
     public void submitList(List<M> data) {
         this.data = data;

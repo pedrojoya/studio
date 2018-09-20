@@ -3,12 +3,11 @@ package pedrojoya.iessaladillo.es.pr230.ui.main;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.util.DiffUtil;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import androidx.recyclerview.selection.ItemDetailsLookup;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -18,9 +17,10 @@ import pedrojoya.iessaladillo.es.pr230.base.BaseViewHolder;
 import pedrojoya.iessaladillo.es.pr230.base.PositionalDetailsLookup;
 import pedrojoya.iessaladillo.es.pr230.base.PositionalItemDetails;
 import pedrojoya.iessaladillo.es.pr230.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr230.utils.PicassoUtils;
 
 public class MainActivityListAdapter extends BaseListAdapter<Student, MainActivityListAdapter
-        .ViewHolder> {
+        .ViewHolder, Long> {
 
     private static final DiffUtil.ItemCallback<Student> diffUtilItemCallback = new DiffUtil.ItemCallback<Student>() {
         @Override
@@ -30,7 +30,8 @@ public class MainActivityListAdapter extends BaseListAdapter<Student, MainActivi
 
         @Override
         public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
-            return false;
+            return TextUtils.equals(oldItem.getName(), newItem.getName()) &&
+                    TextUtils.equals(oldItem.getAddress(), newItem.getAddress());
         }
     };
 
@@ -42,14 +43,13 @@ public class MainActivityListAdapter extends BaseListAdapter<Student, MainActivi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false), this);
+                .inflate(R.layout.activity_main_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         // Es muy importante que la posición sea convertida a long, o de lo contrario
         // isSelected() devolverá false.
-        //noinspection unchecked
         viewHolder.bind(getItem(position),
                 selectionTracker != null && selectionTracker.isSelected((long) position));
     }
@@ -60,8 +60,8 @@ public class MainActivityListAdapter extends BaseListAdapter<Student, MainActivi
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-        ViewHolder(View itemView, BaseListAdapter adapter) {
-            super(itemView, adapter);
+        ViewHolder(View itemView) {
+            super(itemView, onItemClickListener);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
@@ -76,9 +76,7 @@ public class MainActivityListAdapter extends BaseListAdapter<Student, MainActivi
             itemView.setActivated(selected);
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
-            Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
-                    R.drawable.ic_person_black_24dp).error(R.drawable.ic_person_black_24dp).into(
-                    imgAvatar);
+            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_person_black_24dp);
         }
 
     }

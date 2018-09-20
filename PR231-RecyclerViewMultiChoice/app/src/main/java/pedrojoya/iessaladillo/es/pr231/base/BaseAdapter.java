@@ -10,14 +10,16 @@ import java.util.List;
 
 import androidx.recyclerview.selection.SelectionTracker;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
-abstract public class BaseAdapter<M, V extends RecyclerView.ViewHolder> extends ListAdapter<M, V> {
+// M for Model, VH for ViewHolder
+@SuppressWarnings("unused")
+abstract public class BaseAdapter<M, VH extends RecyclerView.ViewHolder> extends ListAdapter<M, VH> {
 
     private View emptyView;
-    private OnItemClickListener onItemClickListener;
+    protected OnItemClickListener onItemClickListener;
     protected SelectionTracker selectionTracker;
 
-    public BaseAdapter(DiffUtil.ItemCallback<M> diffUtilItemCallback) {
+    @SuppressWarnings("SameParameterValue")
+    protected BaseAdapter(DiffUtil.ItemCallback<M> diffUtilItemCallback) {
         super(diffUtilItemCallback);
     }
 

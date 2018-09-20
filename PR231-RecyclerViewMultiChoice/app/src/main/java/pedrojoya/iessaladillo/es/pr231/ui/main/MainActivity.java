@@ -3,7 +3,6 @@ package pedrojoya.iessaladillo.es.pr231.ui.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,20 +11,25 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Collections;
 
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
 import pedrojoya.iessaladillo.es.pr231.base.PositionalDetailsLookup;
 import pedrojoya.iessaladillo.es.pr231.base.PositionalItemKeyProvider;
+import pedrojoya.iessaladillo.es.pr231.data.RepositoryImpl;
+import pedrojoya.iessaladillo.es.pr231.data.local.Database;
+import pedrojoya.iessaladillo.es.pr231.utils.SnackbarUtils;
+import pedrojoya.iessaladillo.es.pr231.utils.ToastUtils;
 import pedrojoya.iessaladillo.es.pr331.R;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private TextView lblEmpty;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private MainActivityViewModel viewModel;
     private MainActivityAdapter listAdapter;
     private SelectionTracker<Long> selectionTracker;
@@ -34,9 +38,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        viewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
+        viewModel.getStudents().observe(this, students -> {
+            if (students != null) {
+                Collections.sort(students, (s1, s2) -> s1.getName().compareTo(s2.getName()));
+                listAdapter.submitList(students);
+            }
+        });
         // Debe recuperarse el estado del selectionTracker una vez haya sido creado,
         // por lo que no se puede hacer en onRestoreInstanceState().
         if (savedInstanceState != null) {
@@ -45,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
-
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -68,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        TextView lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+
         listAdapter = new MainActivityAdapter();
         listAdapter.setEmptyView(lblEmpty);
         listAdapter.setOnItemClickListener((v, position) -> {
@@ -80,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
-        listAdapter.submitList(viewModel.getStudents());
         // Creamos el selectionTracker y se lo asignamos al adaptador.
         // DEBE HACERSE SIEMPRE DESPUÉS DE HABER ASIGNADO EL ADAPTADOR AL RECYCLERVIEW.
         setupSelectionTracker();
@@ -100,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
             public void onSelectionChanged() {
                 int selected = selectionTracker.getSelection().size();
                 if (selected > 0) {
-                    Toast.makeText(MainActivity.this,
+                    ToastUtils.toast(MainActivity.this,
                             getResources().getQuantityString(R.plurals.main_activity_selected,
-                                    selected, selected), Toast.LENGTH_SHORT).show();
+                                    selected, selected));
                 }
             }
         });
@@ -116,11 +126,11 @@ public class MainActivity extends AppCompatActivity {
         }
         String message = selectedNames.toString();
         if (!TextUtils.isEmpty(message)) {
-            Snackbar.make(lstStudents, getString(R.string.main_activity_students_selected, message),
-                    Snackbar.LENGTH_SHORT).show();
+            SnackbarUtils.snackbar(lstStudents,
+                    getString(R.string.main_activity_students_selected, message));
         } else {
-            Snackbar.make(lstStudents, getString(R.string.main_activity_no_students_selected),
-                    Snackbar.LENGTH_SHORT).show();
+            SnackbarUtils.snackbar(lstStudents,
+                    getString(R.string.main_activity_no_students_selected));
         }
     }
 

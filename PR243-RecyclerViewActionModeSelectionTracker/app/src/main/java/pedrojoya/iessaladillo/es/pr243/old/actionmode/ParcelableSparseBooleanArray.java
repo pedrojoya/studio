@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.SparseBooleanArray;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("ALL")
 public class ParcelableSparseBooleanArray extends SparseBooleanArray
         implements Parcelable {
 

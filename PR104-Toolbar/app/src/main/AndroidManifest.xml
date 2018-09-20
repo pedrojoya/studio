@@ -11,7 +11,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,9 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecundaryActivity"
+            android:name=".ui.secondary.SecondaryActivity"
             android:label="@string/secundary_activity_title"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

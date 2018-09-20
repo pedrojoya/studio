@@ -78,6 +78,11 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
         return data.get(position);
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
     public void removeItem(int position) {
         data.remove(position);
         notifyItemRemoved(position);
