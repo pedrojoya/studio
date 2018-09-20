@@ -8,18 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import androidx.recyclerview.selection.ItemDetailsLookup;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr243.R;
-import pedrojoya.iessaladillo.es.pr243.base.BaseAdapter;
+import pedrojoya.iessaladillo.es.pr243.base.BaseListAdapter;
 import pedrojoya.iessaladillo.es.pr243.base.BaseViewHolder;
 import pedrojoya.iessaladillo.es.pr243.base.PositionalDetailsLookup;
 import pedrojoya.iessaladillo.es.pr243.base.PositionalItemDetails;
 import pedrojoya.iessaladillo.es.pr243.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr243.utils.PicassoUtils;
 
-public class MainActivityAdapter extends BaseAdapter<Student, MainActivityAdapter.ViewHolder> {
+public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder, Long> {
 
     private static final DiffUtil.ItemCallback<Student> diffUtilItemCallback = new DiffUtil.ItemCallback<Student>() {
         @Override
@@ -28,12 +27,12 @@ public class MainActivityAdapter extends BaseAdapter<Student, MainActivityAdapte
         }
 
         @Override
-        public boolean areContentsTheSame(Student oldItem, Student newItem) {
+        public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
             return false;
         }
     };
 
-    public MainActivityAdapter() {
+    MainActivityAdapter() {
         super(diffUtilItemCallback);
     }
 
@@ -41,22 +40,23 @@ public class MainActivityAdapter extends BaseAdapter<Student, MainActivityAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false), this);
+                .inflate(R.layout.activity_main_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        viewHolder.bind(getItem(position), selectionTracker.isSelected((long) position));
+        viewHolder.bind(getItem(position),
+                selectionTracker != null && selectionTracker.isSelected((long) position));
     }
 
-    static class ViewHolder extends BaseViewHolder implements PositionalDetailsLookup.DetailsProvider {
+    class ViewHolder extends BaseViewHolder implements PositionalDetailsLookup.DetailsProvider {
 
         private final TextView lblName;
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-        ViewHolder(View itemView, MainActivityAdapter adapter) {
-            super(itemView, adapter);
+        ViewHolder(View itemView) {
+            super(itemView, onItemClickListener);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
@@ -66,9 +66,7 @@ public class MainActivityAdapter extends BaseAdapter<Student, MainActivityAdapte
             itemView.setActivated(selected);
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
-            Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
-                    R.drawable.ic_person_black_24dp).error(R.drawable.ic_person_black_24dp).into(
-                    imgAvatar);
+            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_person_black_24dp);
         }
 
         @Override

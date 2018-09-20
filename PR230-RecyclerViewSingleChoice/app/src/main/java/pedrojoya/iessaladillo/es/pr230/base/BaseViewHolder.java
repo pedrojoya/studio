@@ -6,12 +6,13 @@ import android.view.View;
 
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    protected BaseViewHolder(@NonNull View itemView, BaseListAdapter adapter) {
+    protected BaseViewHolder(@NonNull View itemView, BaseListAdapter.OnItemClickListener onItemClickListener) {
         super(itemView);
         itemView.setOnClickListener(v -> {
-            if (adapter.getOnItemClickListener() != null) {
-                adapter.getOnItemClickListener().onItemClick(v, getAdapterPosition());
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, getAdapterPosition());
             }
         });
     }
+
 }

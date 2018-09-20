@@ -3,7 +3,6 @@ package pedrojoya.iessaladillo.es.pr243.ui.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
@@ -15,23 +14,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
 import pedrojoya.iessaladillo.es.pr243.R;
 import pedrojoya.iessaladillo.es.pr243.base.MultiChoiceModeListener;
 import pedrojoya.iessaladillo.es.pr243.base.PositionalDetailsLookup;
 import pedrojoya.iessaladillo.es.pr243.base.PositionalItemKeyProvider;
+import pedrojoya.iessaladillo.es.pr243.data.RepositoryImpl;
+import pedrojoya.iessaladillo.es.pr243.data.local.Database;
 import pedrojoya.iessaladillo.es.pr243.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr243.utils.SnackbarUtils;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private TextView lblEmpty;
 
     private MainActivityViewModel viewModel;
     private MainActivityAdapter listAdapter;
-    private SelectionTracker selectionTracker;
+    private SelectionTracker<Long> selectionTracker;
     private ActionMode actionMode;
     private final MultiChoiceModeListener multiChoiceModeListener = new MultiChoiceModeListener() {
         @Override
@@ -78,9 +82,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        viewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
+        viewModel.getStudents().observe(this, students -> {
+            if (students != null) {
+                Collections.sort(students, (s1, s2) -> s1.getName().compareTo(s2.getName()));
+                listAdapter.submitList(students);
+            }
+        });
         // Debe recuperarse el estado del selectionTracker una vez haya sido creado,
         // por lo que no se puede hacer en onRestoreInstanceState().
         if (savedInstanceState != null) {
@@ -89,12 +100,9 @@ public class MainActivity extends AppCompatActivity {
         if (viewModel.isInActionMode()) {
             actionMode = startSupportActionMode(multiChoiceModeListener);
         }
-     }
+    }
 
     private void initViews() {
-        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
-
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -115,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        TextView lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+
+        lblEmpty.setOnClickListener(v -> addStudent());
         listAdapter = new MainActivityAdapter();
         listAdapter.setEmptyView(lblEmpty);
         listAdapter.setOnItemClickListener(
@@ -124,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
-        listAdapter.submitList(viewModel.getStudents(false));
         // Creamos el selectionTracker y se lo asignamos al adaptador.
         // DEBE HACERSE SIEMPRE DESPUÉS DE HABER ASIGNADO EL ADAPTADOR AL RECYCLERVIEW.
         setupSelectionTracker();
@@ -132,13 +143,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupSelectionTracker() {
-        selectionTracker = new SelectionTracker.Builder<>(
-                "my-position-selection",
-                lstStudents,
-                new PositionalItemKeyProvider(),
-                new PositionalDetailsLookup(lstStudents),
-                StorageStrategy.createLongStorage())
-                .build();
+        selectionTracker = new SelectionTracker.Builder<>("my-position-selection", lstStudents,
+                new PositionalItemKeyProvider(), new PositionalDetailsLookup(lstStudents),
+                StorageStrategy.createLongStorage()).build();
         selectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
             @Override
             public void onSelectionChanged() {
@@ -146,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
                 if (actionMode != null) {
                     if (selectionTracker.hasSelection()) {
                         // Se informa de que ha cambiado la selección.
-                        multiChoiceModeListener.onSelectionChanged(actionMode, selectionTracker
-                                .getSelection().size());
+                        multiChoiceModeListener.onSelectionChanged(actionMode,
+                                selectionTracker.getSelection().size());
                     } else {
                         // Si no hay selección se finaliza el actionMode.
                         actionMode.finish();
@@ -164,24 +171,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addStudent() {
-        viewModel.addStudent();
-        listAdapter.submitList(viewModel.getStudents(true));
-        lstStudents.scrollToPosition(listAdapter.getItemCount() - 1);
+        if (selectionTracker != null) {
+            selectionTracker.clearSelection();
+        }
+        viewModel.insertStudent(Database.newFakeStudent());
     }
 
     private void showStudent(Student student) {
-        Snackbar.make(lstStudents,
-                getString(R.string.main_activity_click_on_student, student.getName()),
-                Snackbar.LENGTH_SHORT).show();
+        SnackbarUtils.snackbar(lstStudents,
+                getString(R.string.main_activity_click_on_student, student.getName()));
     }
 
 
     private void deleteStudents() {
+        ArrayList<Student> studentsToBeDeleted = new ArrayList<>();
         for (Object key : selectionTracker.getSelection()) {
-            viewModel.removeStudent(listAdapter.getItem((int) (long) key));
+            studentsToBeDeleted.add(listAdapter.getItem((int) (long) key));
         }
+        viewModel.deleteStudents(studentsToBeDeleted);
         selectionTracker.clearSelection();
-        listAdapter.submitList(viewModel.getStudents(true));
     }
 
     @Override

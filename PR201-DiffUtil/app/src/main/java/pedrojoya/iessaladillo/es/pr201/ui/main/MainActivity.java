@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressWarnings("FieldCanBeLocal")
     private RecyclerView lstStudents;
-    private View emptyView;
 
     private MainActivityAdapter adapter;
     private MainActivityViewModel viewModel;
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        emptyView = ActivityCompat.requireViewById(this, R.id.emptyView);
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -73,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
+        TextView emptyView = ActivityCompat.requireViewById(this, R.id.emptyView);
+        emptyView.setOnClickListener(v -> addStudent());
         adapter = new MainActivityAdapter(new ArrayList<>());
         adapter.setEmptyView(emptyView);
         adapter.setOnItemClickListener(
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addStudent() {
-        viewModel.addStudent(Database.getInstance().newFakeStudent());
+        viewModel.insertStudent(Database.newFakeStudent());
     }
 
     private void updateStudent(Student student) {

@@ -15,7 +15,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "pedrojoya.iessaladillo.es.pr104.MainActivity"/>
+        className = "pedrojoya.iessaladillo.es.pr104.ui.main.MainActivity"/>
       <point      
         x = "480"      
         y = "160"/>
@@ -23,7 +23,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "pedrojoya.iessaladillo.es.pr104.SecundaryActivity"/>
+        className = "pedrojoya.iessaladillo.es.pr104.ui.secondary.SecondaryActivity"/>
       <point      
         x = "480"      
         y = "1440"/>

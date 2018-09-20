@@ -30,6 +30,7 @@ public class MainActivityAdapter2 extends MultiChoiceModeListAdapter<Student, Ma
         }
     };
 
+    @SuppressWarnings("unused")
     public MainActivityAdapter2() {
         super(diffUtilItemCallback);
     }

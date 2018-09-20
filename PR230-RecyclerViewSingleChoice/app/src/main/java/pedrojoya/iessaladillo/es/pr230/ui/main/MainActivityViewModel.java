@@ -1,9 +1,8 @@
 package pedrojoya.iessaladillo.es.pr230.ui.main;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr230.data.Repository;
@@ -12,22 +11,25 @@ import pedrojoya.iessaladillo.es.pr230.data.local.model.Student;
 class MainActivityViewModel extends ViewModel {
 
     private final Repository repository;
-    private List<Student> students;
+    private LiveData<List<Student>> students;
 
-    public MainActivityViewModel(Repository repository) {
+    MainActivityViewModel(Repository repository) {
         this.repository = repository;
     }
 
-    public List<Student> getStudents() {
+    LiveData<List<Student>> getStudents() {
         if (students == null) {
-            ArrayList<Student> orderedStudents = new ArrayList<>();
-            for (Student s : repository.getStudents()) {
-                orderedStudents.add(new Student(s));
-            }
-            Collections.sort(orderedStudents, (student1, student2) -> student1.getName().compareTo(student2.getName()));
-            students = orderedStudents;
+            students = repository.queryStudents();
         }
         return students;
+    }
+
+    void insertStudent(Student student) {
+        repository.insertStudent(student);
+    }
+
+    void deleteStudent(Student student) {
+        repository.deleteStudent(student);
     }
 
 }

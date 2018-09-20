@@ -12,22 +12,22 @@ class MainActivityViewModel extends ViewModel {
     private final Repository repository;
     private List<Student> students;
 
-    public MainActivityViewModel(Repository repository) {
+    MainActivityViewModel(Repository repository) {
         this.repository = repository;
     }
 
-    public List<Student> getStudents() {
-        if (students == null) {
-            students = repository.getStudents();
+    List<Student> getStudents(boolean forceLoad) {
+        if (students == null || forceLoad) {
+            students = repository.queryStudents();
         }
         return students;
     }
 
-    public void addStudent(Student student) {
-        repository.addStudent(student);
+    void insertStudent(Student student) {
+        repository.insertStudent(student);
     }
 
-    public void deleteStudent(int position) {
-        repository.deleteStudent(position);
+    void deleteStudent(Student student) {
+        repository.deleteStudent(student);
     }
 }

@@ -8,15 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr201.R;
-import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
 import pedrojoya.iessaladillo.es.pr201.base.BaseListAdapter;
 import pedrojoya.iessaladillo.es.pr201.base.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr201.utils.PicassoUtils;
 
 public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder> {
 
@@ -77,6 +76,11 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         holder.bind(getItem(position));
     }
 
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
+    }
+
     class ViewHolder extends BaseViewHolder<Student> {
 
         private final TextView lblName;
@@ -94,8 +98,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
-            Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
-                    R.drawable.ic_person_black_24dp).error(R.drawable.ic_person_black_24dp).into(imgAvatar);
+            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_person_black_24dp);
         }
 
     }

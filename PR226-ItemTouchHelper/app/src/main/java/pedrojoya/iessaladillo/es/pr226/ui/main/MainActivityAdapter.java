@@ -7,21 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr226.R;
 import pedrojoya.iessaladillo.es.pr226.base.BaseListAdapter;
 import pedrojoya.iessaladillo.es.pr226.base.BaseViewHolder;
 import pedrojoya.iessaladillo.es.pr226.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr226.utils.PicassoUtils;
 
+// We don't extend ListAdapter because we want to swap items.
 public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter
         .ViewHolder> {
 
-    public MainActivityAdapter(List<Student> data) {
-        super(data);
+    MainActivityAdapter() {
+        super();
+        setHasStableIds(true);
     }
 
     @NonNull
@@ -34,6 +33,11 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getItem(position));
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -52,9 +56,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
-            Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
-                    R.drawable.ic_person_black_24dp).error(R.drawable.ic_person_black_24dp).into(
-                    imgAvatar);
+            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_person_black_24dp);
         }
 
     }

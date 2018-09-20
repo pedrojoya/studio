@@ -5,8 +5,8 @@ import android.view.View;
 
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    protected BaseViewHolder(View itemView, BaseListAdapter.OnItemClickListener
-            onItemClickListener, BaseListAdapter.OnItemLongClickListener onItemLongClickListener) {
+    protected BaseViewHolder(View itemView, BaseListAdapter.OnItemClickListener onItemClickListener,
+            BaseListAdapter.OnItemLongClickListener onItemLongClickListener) {
         super(itemView);
         if (onItemClickListener != null) {
             itemView.setOnClickListener(v -> {

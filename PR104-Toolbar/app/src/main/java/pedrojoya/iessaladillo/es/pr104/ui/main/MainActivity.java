@@ -1,9 +1,12 @@
-package pedrojoya.iessaladillo.es.pr104;
+package pedrojoya.iessaladillo.es.pr104.ui.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import pedrojoya.iessaladillo.es.pr104.R;
+import pedrojoya.iessaladillo.es.pr104.ui.secondary.SecondaryActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,14 +28,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.mnuNext) {
-            startSecundaryActivity();
+            SecondaryActivity.start(this);
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void startSecundaryActivity() {
-        SecundaryActivity.start(this);
     }
 
 }

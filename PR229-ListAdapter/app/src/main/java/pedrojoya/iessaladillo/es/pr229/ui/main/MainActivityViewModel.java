@@ -14,16 +14,16 @@ public class MainActivityViewModel extends ViewModel implements Repository {
     private int order = 1;
     private final LiveData<List<Student>> students;
 
-    public MainActivityViewModel(Repository respository) {
+    MainActivityViewModel(Repository respository) {
         this.repository = respository;
         students = repository.queryStudents();
     }
 
-    public int getOrder() {
+    int getOrder() {
         return order;
     }
 
-    public void toggleOrder() {
+    void toggleOrder() {
         order = -order;
     }
 
@@ -33,8 +33,8 @@ public class MainActivityViewModel extends ViewModel implements Repository {
     }
 
     @Override
-    public void addStudent(Student student) {
-        repository.addStudent(student);
+    public void insertStudent(Student student) {
+        repository.insertStudent(student);
     }
 
     @Override

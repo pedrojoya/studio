@@ -1,12 +1,14 @@
-package pedrojoya.iessaladillo.es.pr104;
+package pedrojoya.iessaladillo.es.pr104.ui.secondary;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import pedrojoya.iessaladillo.es.pr104.R;
 
-public class SecundaryActivity extends AppCompatActivity {
+
+public class SecondaryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,7 @@ public class SecundaryActivity extends AppCompatActivity {
     }
 
     public static void start(Context context) {
-        context.startActivity(new Intent(context, SecundaryActivity.class));
+        context.startActivity(new Intent(context, SecondaryActivity.class));
     }
 
 }

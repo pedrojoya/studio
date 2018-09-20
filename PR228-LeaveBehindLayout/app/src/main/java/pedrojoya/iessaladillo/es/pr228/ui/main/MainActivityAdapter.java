@@ -2,25 +2,37 @@ package pedrojoya.iessaladillo.es.pr228.ui.main;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr228.R;
-import pedrojoya.iessaladillo.es.pr228.data.local.model.Student;
 import pedrojoya.iessaladillo.es.pr228.base.BaseListAdapter;
 import pedrojoya.iessaladillo.es.pr228.base.BaseViewHolder;
+import pedrojoya.iessaladillo.es.pr228.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr228.utils.PicassoUtils;
 
 public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder> {
 
-    public MainActivityAdapter(List<Student> data) {
-        super(data);
+    private static final DiffUtil.ItemCallback<Student> diffUtilItemCallback = new DiffUtil.ItemCallback<Student>() {
+        @Override
+        public boolean areItemsTheSame(Student oldItem, Student newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(Student oldItem, Student newItem) {
+            return oldItem.getName().equals(newItem.getName()) &&
+                    oldItem.getAddress().equals(newItem.getAddress());
+        }
+    };
+
+    MainActivityAdapter() {
+        super(diffUtilItemCallback);
+        setHasStableIds(true);
     }
 
     @NonNull
@@ -33,6 +45,11 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getItem(position));
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -57,9 +74,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
-            Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
-                    R.drawable.ic_person_black_24dp).error(R.drawable.ic_person_black_24dp).into(
-                    imgAvatar);
+            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_person_black_24dp);
         }
 
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Toolbar</string>
+    <string name="activity_main_mnuSettings">Settings</string>
+    <string name="activity_main_mnuNext">Next</string>
+    <string name="secundary_activity_title">Secundary activity</string>
+    <string name="activity_main_lblTitle">Main activity</string>
+    <string name="activity_secundary_lblTitle">Secundary actividad</string>
+
+</resources>

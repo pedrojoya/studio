@@ -1,9 +1,8 @@
 package pedrojoya.iessaladillo.es.pr243.ui.main;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr243.data.Repository;
@@ -13,39 +12,37 @@ class MainActivityViewModel extends ViewModel {
 
     private boolean inActionMode = false;
     private final Repository repository;
-    private List<Student> students;
+    private LiveData<List<Student>> students;
 
-    public MainActivityViewModel(Repository repository) {
+    MainActivityViewModel(Repository repository) {
         this.repository = repository;
     }
 
-    public List<Student> getStudents(boolean forceLoad) {
-        if (students == null || forceLoad) {
-            ArrayList<Student> orderedStudents = new ArrayList<>();
-            for (Student s : repository.getStudents()) {
-                orderedStudents.add(new Student(s));
-            }
-            Collections.sort(orderedStudents, (student1, student2) -> student1.getName().compareTo(student2.getName()));
-            students = orderedStudents;
+    LiveData<List<Student>> getStudents() {
+        if (students == null) {
+            students = repository.queryStudents();
         }
         return students;
     }
 
-    public boolean isInActionMode() {
-        return inActionMode;
+    void insertStudent(Student student) {
+        repository.insertStudent(student);
     }
 
-    public void setInActionMode(boolean inActionMode) {
-        this.inActionMode = inActionMode;
-    }
-
-    public void addStudent() {
-        repository.addStudent();
-    }
-
-    public void removeStudent(Student student) {
+    @SuppressWarnings("unused")
+    void deleteStudent(Student student) {
         repository.deleteStudent(student);
     }
 
+    boolean isInActionMode() {
+        return inActionMode;
+    }
 
+    void setInActionMode(boolean inActionMode) {
+        this.inActionMode = inActionMode;
+    }
+
+    void deleteStudents(List<Student> students) {
+       repository.deleteStudents(students);
+    }
 }

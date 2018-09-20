@@ -7,8 +7,8 @@ import pedrojoya.iessaladillo.es.pr106.data.local.model.Student;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public interface Repository {
 
-    List<Student> getStudents();
-    void addStudent(Student student);
-    void deleteStudent(int position);
+    List<Student> queryStudents();
+    void insertStudent(Student student);
+    void deleteStudent(Student student);
 
 }

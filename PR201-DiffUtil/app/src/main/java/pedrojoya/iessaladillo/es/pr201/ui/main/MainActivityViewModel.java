@@ -33,8 +33,8 @@ public class MainActivityViewModel extends ViewModel implements Repository {
     }
 
     @Override
-    public void addStudent(Student student) {
-        repository.addStudent(student);
+    public void insertStudent(Student student) {
+        repository.insertStudent(student);
     }
 
     @Override

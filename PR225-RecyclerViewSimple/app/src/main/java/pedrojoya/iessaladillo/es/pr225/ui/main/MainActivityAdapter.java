@@ -8,13 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr225.R;
 import pedrojoya.iessaladillo.es.pr225.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr225.utils.PicassoUtils;
 
 public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapter
         .ViewHolder> {
@@ -69,9 +68,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         void bind(Student student) {
             lblName.setText(student.getName());
             lblAddress.setText(student.getAddress());
-            Picasso.with(imgAvatar.getContext()).load(student.getPhotoUrl()).placeholder(
-                    R.drawable.ic_person_black_24dp).error(R.drawable.ic_person_black_24dp).into(
-                    imgAvatar);
+            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_person_black_24dp);
         }
 
     }

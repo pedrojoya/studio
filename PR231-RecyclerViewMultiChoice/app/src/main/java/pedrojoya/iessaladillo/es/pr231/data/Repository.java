@@ -1,14 +1,15 @@
 package pedrojoya.iessaladillo.es.pr231.data;
 
+import android.arch.lifecycle.LiveData;
+
 import java.util.List;
 
 import pedrojoya.iessaladillo.es.pr231.data.local.model.Student;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
 public interface Repository {
 
-    List<Student> getStudents();
-    void addStudent();
+    LiveData<List<Student>> queryStudents();
+    void insertStudent(Student student);
     void deleteStudent(Student student);
 
 }

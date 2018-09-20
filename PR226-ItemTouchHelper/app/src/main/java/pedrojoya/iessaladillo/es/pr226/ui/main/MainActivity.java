@@ -3,7 +3,6 @@ package pedrojoya.iessaladillo.es.pr226.ui.main;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,13 +13,15 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr226.R;
+import pedrojoya.iessaladillo.es.pr226.data.RepositoryImpl;
+import pedrojoya.iessaladillo.es.pr226.data.local.Database;
 import pedrojoya.iessaladillo.es.pr226.data.local.model.Student;
+import pedrojoya.iessaladillo.es.pr226.utils.SnackbarUtils;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private TextView lblEmptyView;
 
     private MainActivityViewModel viewModel;
     private MainActivityAdapter listAdapter;
@@ -29,15 +30,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+        viewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
         initViews();
+        viewModel.getStudents().observe(this, students -> {
+            listAdapter.submitList(students);
+            lstStudents.smoothScrollToPosition(listAdapter.getItemCount() - 1);
+        });
     }
 
     private void initViews() {
-        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
-
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -58,10 +61,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        listAdapter = new MainActivityAdapter(viewModel.getStudents());
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        TextView lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+
+        lblEmptyView.setOnClickListener(v -> addStudent());
+        listAdapter = new MainActivityAdapter();
         listAdapter.setEmptyView(lblEmptyView);
-        listAdapter.setOnItemClickListener((view, position) ->
-                showStudent(listAdapter.getItem(position)));
+        listAdapter.setOnItemClickListener(
+                (view, position) -> showStudent(listAdapter.getItem(position)));
         lstStudents.setHasFixedSize(true);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -82,24 +89,20 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                        int position = viewHolder.getAdapterPosition();
-                        viewModel.deleteStudent(position);
-                        listAdapter.notifyItemRemoved(position);
+                        viewModel.deleteStudent(
+                                listAdapter.getItem(viewHolder.getAdapterPosition()));
                     }
                 });
         itemTouchHelper.attachToRecyclerView(lstStudents);
     }
 
     private void addStudent() {
-        viewModel.addFakeStudent();
-        listAdapter.notifyItemInserted(listAdapter.getItemCount() - 1);
-        lstStudents.scrollToPosition(listAdapter.getItemCount() - 1);
+        viewModel.insertStudent(Database.newFakeStudent());
     }
 
     private void showStudent(Student student) {
-        Snackbar.make(lstStudents,
-                getString(R.string.main_activity_click_on_student, student.getName()),
-                Snackbar.LENGTH_SHORT).show();
+        SnackbarUtils.snackbar(lstStudents,
+                getString(R.string.main_activity_click_on_student, student.getName()));
     }
 
 }

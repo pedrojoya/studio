@@ -17,7 +17,6 @@ import pedrojoya.iessaladillo.es.pr225.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr225.data.local.Database;
 import pedrojoya.iessaladillo.es.pr225.utils.SnackbarUtils;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;

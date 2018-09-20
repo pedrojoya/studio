@@ -11,8 +11,8 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends ListAdapter<M, V> {
 
-    private OnItemClickListener onItemClickListener;
-    private OnItemLongClickListener onItemLongClickListener;
+    protected OnItemClickListener onItemClickListener;
+    protected OnItemLongClickListener onItemLongClickListener;
     private View emptyView;
 
     public BaseListAdapter(DiffUtil.ItemCallback<M> diffUtilItemCallback) {
