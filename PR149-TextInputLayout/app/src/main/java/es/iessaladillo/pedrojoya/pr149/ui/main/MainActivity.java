@@ -1,14 +1,15 @@
 package es.iessaladillo.pedrojoya.pr149.ui.main;
 
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr149.R;
 import es.iessaladillo.pedrojoya.pr149.utils.ValidationUtils;
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(txtPhone.getText().toString())) {
+                if (!TextUtils.isEmpty(txtPhone.getText())) {
                     if (!ValidationUtils.isValidSpanishPhoneNumber(txtPhone.getText().toString())) {
                         tilPhone.setError(getString(
                                 es.iessaladillo.pedrojoya.pr149.R.string
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(txtEmail.getText().toString())) {
+                if (!TextUtils.isEmpty(txtEmail.getText())) {
                     if (!ValidationUtils.isValidEmail(txtEmail.getText().toString())) {
                         tilEmail.setError(getString(es.iessaladillo.pedrojoya.pr149.R.string.main_activity_invalid_email));
                     } else {

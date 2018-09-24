@@ -5,6 +5,6 @@
     android:id="@+id/imgPhoto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:contentDescription="@string/fragment_photo_imgPhoto"
+    android:contentDescription="@string/photo_imgPhoto"
     android:scaleType="centerCrop"
     app:srcCompat="@drawable/bench"/>

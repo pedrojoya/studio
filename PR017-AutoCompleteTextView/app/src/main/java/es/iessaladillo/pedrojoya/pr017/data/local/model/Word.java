@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr017.data.local.model;
 
+import androidx.annotation.NonNull;
+
 @SuppressWarnings("unused")
 public class Word {
 
@@ -41,7 +43,7 @@ public class Word {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
         return english;
     }
 }

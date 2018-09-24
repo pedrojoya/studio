@@ -1,6 +1,6 @@
 package pedrojoya.iessaladillo.es.pr230.old.singlechoicerecycleradapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 public abstract class SingleChoiceModeViewHolder<M> extends RecyclerView.ViewHolder {

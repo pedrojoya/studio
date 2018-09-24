@@ -28,7 +28,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "androidx.appcompat:appcompat:1.0.0"
     implementation "com.lucasurbas:listitemview:1.0.5"
-    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
 }

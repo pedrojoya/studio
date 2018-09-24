@@ -1,6 +1,6 @@
 package pedrojoya.iessaladillo.es.pr231.base;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import androidx.recyclerview.selection.ItemDetailsLookup;
 

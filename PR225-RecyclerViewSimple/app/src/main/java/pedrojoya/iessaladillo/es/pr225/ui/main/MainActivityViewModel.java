@@ -1,6 +1,6 @@
 package pedrojoya.iessaladillo.es.pr225.ui.main;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 

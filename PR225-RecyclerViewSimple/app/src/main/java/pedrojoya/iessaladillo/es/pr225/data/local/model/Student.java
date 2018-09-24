@@ -1,6 +1,6 @@
 package pedrojoya.iessaladillo.es.pr225.data.local.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class Student {
 

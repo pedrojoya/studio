@@ -1,10 +1,9 @@
 package pedrojoya.iessaladillo.es.pr230.ui.main;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
-
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 import pedrojoya.iessaladillo.es.pr230.data.Repository;
 import pedrojoya.iessaladillo.es.pr230.data.local.model.Student;
 
@@ -24,10 +23,12 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
+    @SuppressWarnings("unused")
     void insertStudent(Student student) {
         repository.insertStudent(student);
     }
 
+    @SuppressWarnings("unused")
     void deleteStudent(Student student) {
         repository.deleteStudent(student);
     }

@@ -1,8 +1,11 @@
 package pedrojoya.iessaladillo.es.pr231.old;
 
-import android.support.v7.app.AppCompatActivity;
+import android.annotation.SuppressLint;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
+@SuppressLint("Registered")
 public class MainActivity2 extends AppCompatActivity {
 
 /*    private RecyclerView lstStudents;

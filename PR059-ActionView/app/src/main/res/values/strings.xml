@@ -3,8 +3,8 @@
 
     <string name="app_name">ActionView</string>
 
-    <string name="activity_main_mnuSearch">Buscar %1$s</string>
-
-    <string name="main_activity_student_clicked">"Clicked on %1$s"</string>
+    <string name="main_mnuSearch">Buscar %1$s</string>
+    <string name="main_student_clicked">"Clicked on %1$s"</string>
+    <string name="main_lblEmpty">No students</string>
 
 </resources>

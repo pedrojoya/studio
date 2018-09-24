@@ -3,21 +3,22 @@
 
     <string name="app_name">ActionBar</string>
 
-    <string name="activity_main_mnuPreferences">Settings</string>
+    <string name="main_mnuPreferences">Settings</string>
 
-    <string name="fragment_photo_mnuOriginal">Original</string>
-    <string name="fragment_photo_mnuGrey">Grey</string>
-    <string name="fragment_photo_mnuSepia">Sepia</string>
-    <string name="fragment_photo_mnuBinary">Binary</string>
-    <string name="fragment_photo_mnuInverted">Inverted</string>
-    <string name="fragment_photo_mnuInfo">Info</string>
-    <string name="fragment_photo_mnuEffect">Effect</string>
-    <string name="fragment_photo_imgPhoto">Photo</string>
+    <string name="photo_mnuOriginal">Original</string>
+    <string name="photo_mnuGrey">Grey</string>
+    <string name="photo_mnuSepia">Sepia</string>
+    <string name="photo_mnuBinary">Binary</string>
+    <string name="photo_mnuInverted">Inverted</string>
+    <string name="photo_mnuInfo">Info</string>
+    <string name="photo_mnuEffect">Effect</string>
+    <string name="photo_imgPhoto">Photo</string>
+    <string name="photo_title">Photo</string>
 
-    <string name="fragment_info_mnuPhoto">Photo</string>
-    <string name="fragment_info_lblInfo">Info</string>
+    <string name="info_title">Info</string>
+    <string name="info_lblInfo">Info</string>
 
-    <string name="activity_preferences_lblMessage">Settings</string>
-    <string name="activity_preferences_title">Settings</string>
+    <string name="preferences_title">Settings</string>
+    <string name="preferences_lblTitle">Settings</string>
 
 </resources>

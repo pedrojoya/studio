@@ -6,12 +6,12 @@
         android:id="@+id/mnuInfo"
         android:icon="@drawable/ic_info_outline_black_24dp"
         android:orderInCategory="100"
-        android:title="@string/fragment_photo_mnuInfo"
+        android:title="@string/photo_mnuInfo"
         app:showAsAction="ifRoom|withText"/>
 
     <item
         android:orderInCategory="100"
-        android:title="@string/fragment_photo_mnuEffect"
+        android:title="@string/photo_mnuEffect"
         app:showAsAction="never">
 
         <menu>
@@ -20,19 +20,19 @@
                 android:checkableBehavior="single">
                 <item
                     android:id="@+id/mnuOriginal"
-                    android:title="@string/fragment_photo_mnuOriginal"/>
+                    android:title="@string/photo_mnuOriginal"/>
                 <item
                     android:id="@+id/mnuGrey"
-                    android:title="@string/fragment_photo_mnuGrey"/>
+                    android:title="@string/photo_mnuGrey"/>
                 <item
                     android:id="@+id/mnuSepia"
-                    android:title="@string/fragment_photo_mnuSepia"/>
+                    android:title="@string/photo_mnuSepia"/>
                 <item
                     android:id="@+id/mnuBinary"
-                    android:title="@string/fragment_photo_mnuBinary"/>
+                    android:title="@string/photo_mnuBinary"/>
                 <item
                     android:id="@+id/mnuInverted"
-                    android:title="@string/fragment_photo_mnuInverted"/>
+                    android:title="@string/photo_mnuInverted"/>
             </group>
 
         </menu>

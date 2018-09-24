@@ -1,6 +1,6 @@
 package pedrojoya.iessaladillo.es.pr243.utils;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;

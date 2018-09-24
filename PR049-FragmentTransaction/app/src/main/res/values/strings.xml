@@ -3,4 +3,5 @@
     <string name="app_name">Fragments</string>
     <string name="activity_detail_title">Detail</string>
     <string name="main_activity_no_item">No item selected</string>
+    <string name="activity_main_lblEmpty">No students</string>
 </resources>

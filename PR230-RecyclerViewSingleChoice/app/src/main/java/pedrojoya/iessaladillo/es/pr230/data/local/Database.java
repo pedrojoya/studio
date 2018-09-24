@@ -1,7 +1,7 @@
 package pedrojoya.iessaladillo.es.pr230.data.local;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.mooveit.library.Fakeit;
 

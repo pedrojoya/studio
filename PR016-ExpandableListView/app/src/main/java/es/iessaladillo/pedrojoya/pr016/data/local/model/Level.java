@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr016.data.local.model;
 
+import androidx.annotation.NonNull;
+
 public class Level {
 
     private long id;
@@ -28,7 +30,7 @@ public class Level {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
         return name;
     }
 

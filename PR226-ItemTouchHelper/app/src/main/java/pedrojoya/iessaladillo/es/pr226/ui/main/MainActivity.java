@@ -1,17 +1,19 @@
 package pedrojoya.iessaladillo.es.pr226.ui.main;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import pedrojoya.iessaladillo.es.pr226.R;
 import pedrojoya.iessaladillo.es.pr226.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr226.data.local.Database;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 (view, position) -> showStudent(listAdapter.getItem(position)));
         lstStudents.setHasFixedSize(true);
         lstStudents.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+                new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
@@ -79,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
                         ItemTouchHelper.RIGHT) {
 
                     @Override
-                    public boolean onMove(RecyclerView recyclerView,
-                            RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                    public boolean onMove(@NonNull RecyclerView recyclerView,
+                            @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder
+                            target) {
                         final int fromPos = viewHolder.getAdapterPosition();
                         final int toPos = target.getAdapterPosition();
                         listAdapter.swapItems(fromPos, toPos);
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                         viewModel.deleteStudent(
                                 listAdapter.getItem(viewHolder.getAdapterPosition()));
                     }

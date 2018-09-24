@@ -11,17 +11,12 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".main.MainActivity">
+            android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".preferences.PreferencesActivity"
-            android:label="@string/activity_preferences_title"
-            android:parentActivityName=".main.MainActivity">
         </activity>
     </application>
 

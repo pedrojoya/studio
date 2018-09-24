@@ -4,5 +4,5 @@
         android:id="@+id/mnuPreferences"
         app:showAsAction="never"
         android:orderInCategory="200"
-        android:title="@string/activity_main_mnuPreferences"/>
+        android:title="@string/main_mnuPreferences"/>
 </menu>

@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr045.ui.main;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 class MainActivityViewModel extends ViewModel {
 

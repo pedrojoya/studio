@@ -1,6 +1,6 @@
 package pedrojoya.iessaladillo.es.pr231.old.multichoice;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 @SuppressWarnings("ALL")

@@ -1,9 +1,11 @@
 package pedrojoya.iessaladillo.es.pr228.base;
 
 import android.graphics.Canvas;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 /*
     Usa elementos del layout como leave-behinds derecho e izquierdo, situados en el fondo. Se
@@ -25,7 +27,7 @@ public abstract class LayoutLeaveBehindCallback extends ItemTouchHelper.SimpleCa
     }
 
     @Override
-    public void onChildDrawOver(Canvas c, RecyclerView recyclerView,
+    public void onChildDrawOver(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
             RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState,
             boolean isCurrentlyActive) {
         // Para que sólo afecte la vista foreground.
@@ -34,13 +36,13 @@ public abstract class LayoutLeaveBehindCallback extends ItemTouchHelper.SimpleCa
     }
 
     @Override
-    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+    public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
         // Para que sólo afecte la vista foreground.
         getDefaultUIUtil().clearView(getForegroundView(viewHolder));
     }
 
     @Override
-    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
             float dX, float dY, int actionState, boolean isCurrentlyActive) {
         // Para que sólo afecte la vista foreground.
         getDefaultUIUtil().onDraw(c, recyclerView, getForegroundView(viewHolder), dX, dY, actionState,
