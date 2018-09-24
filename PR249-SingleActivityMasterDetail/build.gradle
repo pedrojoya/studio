@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha11'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+
+ext {
+    compileSdkVersion = 28
+    minSdkVersion = 21
+}

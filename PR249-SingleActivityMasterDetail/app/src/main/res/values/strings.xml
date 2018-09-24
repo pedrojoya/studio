@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fragments</string>
+    <string name="activity_main_lblEmpty">No students</string>
+    <string name="list_title">Student list</string>
+    <string name="detail_title">Student detail</string>
+</resources>
