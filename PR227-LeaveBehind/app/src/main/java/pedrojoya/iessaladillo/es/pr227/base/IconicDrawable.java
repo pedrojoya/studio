@@ -1,7 +1,7 @@
 package pedrojoya.iessaladillo.es.pr227.base;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class IconicDrawable {

@@ -11,20 +11,20 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name="es.iessaladillo.pedrojoya.pr049.main.MainActivity">
+            android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="es.iessaladillo.pedrojoya.pr049.detail.DetailActivity"
+            android:name=".ui.detail.DetailActivity"
             android:label="@string/activity_detail_title"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
+                android:value=".ui.main.MainActivity" />
         </activity>
     </application>
 </manifest>

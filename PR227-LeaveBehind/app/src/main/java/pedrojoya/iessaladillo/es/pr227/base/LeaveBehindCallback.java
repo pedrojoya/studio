@@ -3,8 +3,10 @@ package pedrojoya.iessaladillo.es.pr227.base;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class LeaveBehindCallback extends ItemTouchHelper.SimpleCallback {
 
@@ -29,7 +31,7 @@ public abstract class LeaveBehindCallback extends ItemTouchHelper.SimpleCallback
     }
 
     @Override
-    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
             float dX, float dY, int actionState, boolean isCurrentlyActive) {
         if (dX < 0 && rightIconicDrawable != null) {
             showRightLeaveBehind(c, viewHolder, dX);

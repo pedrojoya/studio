@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -26,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/activity_student_txtName"
-        android:inputType="textPersonName">
+        android:inputType="textPersonName"
+        tools:ignore="Autofill">
 
         <requestFocus/>
     </EditText>
@@ -43,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/activity_student_txtAge"
-        android:inputType="number"/>
+        android:inputType="number"
+        tools:ignore="Autofill"/>
 
     <Button
         android:id="@+id/btnSend"

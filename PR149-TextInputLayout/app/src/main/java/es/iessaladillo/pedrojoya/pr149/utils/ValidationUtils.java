@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr149.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Patterns;
 
 @SuppressWarnings("BooleanMethodIsAlwaysInverted")

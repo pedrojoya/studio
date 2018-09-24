@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr013"
@@ -10,7 +9,7 @@ android {
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -29,12 +28,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    testImplementation "junit:junit:$rootProject.ext.junit_version"
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_version", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    androidTestImplementation "com.android.support:support-annotations:$rootProject.ext.support_library_version"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.support_test_version"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.support_test_version"
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0-alpha4"
+    androidTestImplementation "androidx.test:runner:1.1.0-alpha4"
+    androidTestImplementation "androidx.test:rules:1.1.0-alpha4"
 }

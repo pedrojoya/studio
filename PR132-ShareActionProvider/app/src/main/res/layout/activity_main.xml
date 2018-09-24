@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
+<FrameLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flContent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ListView
-        android:id="@+id/lstStudents"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <TextView
-        android:id="@+id/lblEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/activity_main_lblEmpty"/>
-
-</merge>
+    android:layout_height="match_parent"
+    tools:ignore="MergeRootFrame" />

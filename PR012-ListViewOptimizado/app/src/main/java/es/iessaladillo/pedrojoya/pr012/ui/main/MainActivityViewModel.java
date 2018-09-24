@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr012.ui.main;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
@@ -17,11 +17,15 @@ public class MainActivityViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public List<Student> getStudents() {
-        if (students == null) {
+    public List<Student> getStudents(boolean forceLoad) {
+        if (students == null || forceLoad) {
             students = repository.queryStudents();
         }
         return students;
+    }
+
+    public void deleteStudent(Student student) {
+        repository.deleteStudent(student);
     }
 
 }

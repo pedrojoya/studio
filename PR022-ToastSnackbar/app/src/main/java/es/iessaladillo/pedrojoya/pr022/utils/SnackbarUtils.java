@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr022.utils;
 
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
 public class SnackbarUtils {

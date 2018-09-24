@@ -18,4 +18,9 @@ public class RepositoryImpl implements Repository {
         return database.queryStudents();
     }
 
+    @Override
+    public void deleteStudent(Student student) {
+        database.deleteStudent(student);
+    }
+
 }

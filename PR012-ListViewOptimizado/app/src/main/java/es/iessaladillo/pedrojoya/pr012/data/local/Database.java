@@ -55,4 +55,8 @@ public class Database {
         students.add(student);
     }
 
+    public void deleteStudent(Student student) {
+        students.remove(student);
+    }
+    
 }

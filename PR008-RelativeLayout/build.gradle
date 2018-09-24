@@ -18,7 +18,7 @@ allprojects {
 
 
 ext {
-    compileSdkVersion = 27
+    compileSdkVersion = 28
     minSdkVersion = 21
 }
 

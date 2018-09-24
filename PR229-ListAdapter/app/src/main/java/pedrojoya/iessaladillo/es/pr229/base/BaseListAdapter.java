@@ -1,8 +1,8 @@
 package pedrojoya.iessaladillo.es.pr229.base;
 
-import android.support.annotation.NonNull;
-import android.support.v7.recyclerview.extensions.ListAdapter;
-import android.support.v7.util.DiffUtil;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import android.view.View;
 
 import java.util.List;

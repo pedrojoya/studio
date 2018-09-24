@@ -1,8 +1,8 @@
 package pedrojoya.iessaladillo.es.pr229.ui.main;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import pedrojoya.iessaladillo.es.pr229.data.Repository;
 

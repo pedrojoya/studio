@@ -1,6 +1,6 @@
 package pedrojoya.iessaladillo.es.pr201.base;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder {

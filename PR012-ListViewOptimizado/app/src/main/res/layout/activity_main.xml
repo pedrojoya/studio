@@ -16,9 +16,12 @@
 
     <TextView
         android:id="@+id/lblEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/activity_main_lblEmpty"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="@dimen/activity_main_lblEmpty_drawablePadding"
+        android:drawableTop="@drawable/ic_person_add_black_48dp"
+        android:text="@string/activity_main_lblEmpty"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </merge>

@@ -15,5 +15,6 @@
     <dimen name="activity_main_item_divider_height">1dp</dimen>
     <dimen name="activity_main_item_divider_marginTop">5dp</dimen>
     <dimen name="activity_main_item_divider_marginBottom">2dp</dimen>
+    <dimen name="activity_main_lblEmpty_drawablePadding">10dp</dimen>
 
 </resources>

@@ -9,4 +9,6 @@ public interface Repository {
 
     List<Student> queryStudents();
 
+    void deleteStudent(Student student);
+
 }

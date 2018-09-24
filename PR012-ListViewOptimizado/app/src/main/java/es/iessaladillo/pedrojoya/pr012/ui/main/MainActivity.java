@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.pr012.ui.main;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ListView;
 
 import es.iessaladillo.pedrojoya.pr012.R;
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lstStudents;
 
     private MainActivityViewModel viewModel;
+    private MainActivityAdapter listAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,19 +33,34 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
+        listAdapter = new MainActivityAdapter(viewModel.getStudents(false));
+        listAdapter.setCallListener((view, position) -> callStudent(listAdapter.getItem(position)));
+        listAdapter.setShowMarksListener((view, position) -> showStudentMarks(listAdapter.getItem(position)));
         lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmpty));
-        MainActivityAdapter adapter = new MainActivityAdapter(viewModel.getStudents());
-        adapter.setCallListener((view, student, position) -> callStudent(student));
-        adapter.setShowMarksListener((view, student, position) -> showStudentMarks(student));
-        lstStudents.setAdapter(adapter);
+        lstStudents.setAdapter(listAdapter);
+        lstStudents.setOnItemClickListener((parent, view, position, id) -> showStudent
+                (listAdapter.getItem(position)));
+        lstStudents.setOnItemLongClickListener((parent, view, position, id) -> {
+            deleteStudent(listAdapter.getItem(position));
+            return true;
+        });
+    }
+
+    private void showStudent(Student student) {
+        ToastUtils.toast(this, student.getName());
+    }
+
+    private void deleteStudent(Student student) {
+        viewModel.deleteStudent(student);
+        listAdapter.submitList(viewModel.getStudents(true));
     }
 
     private void callStudent(Student student) {
-        ToastUtils.toast(this, getString(R.string.main_activity_show_sb_marks, student.getName()));
+        ToastUtils.toast(this, getString(R.string.main_activity_call_sb, student.getName()));
     }
 
     private void showStudentMarks(Student student) {
-        ToastUtils.toast(this, getString(R.string.main_activity_call_sb, student.getName()));
+        ToastUtils.toast(this, getString(R.string.main_activity_show_sb_marks, student.getName()));
     }
 
 }

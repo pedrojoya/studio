@@ -1,14 +1,14 @@
 package pedrojoya.iessaladillo.es.pr106.ui.main;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 
 import pedrojoya.iessaladillo.es.pr106.R;
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         lstStudents.setHasFixedSize(true);
         lstStudents.setAdapter(listAdapter);
         lstStudents.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+                new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
     }
 

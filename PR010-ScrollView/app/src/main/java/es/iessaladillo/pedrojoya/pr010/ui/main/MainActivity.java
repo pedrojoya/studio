@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.pr010.ui.main;
 
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;

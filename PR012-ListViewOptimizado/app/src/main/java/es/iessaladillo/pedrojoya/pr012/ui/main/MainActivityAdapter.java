@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr012.ui.main;
 
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,7 +30,7 @@ class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainActivityAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bind(data.get(position), position);
+        holder.bind(getItem(position), position);
     }
 
     @Override
@@ -47,11 +47,11 @@ class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainActivityAd
     }
 
     interface CallListener {
-        void onCall(View view, Student student, int position);
+        void onCall(View view, int position);
     }
 
     interface ShowMarksListener {
-        void onShowMarks(View view, Student student, int position);
+        void onShowMarks(View view, int position);
     }
 
     class ViewHolder {
@@ -89,12 +89,12 @@ class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainActivityAd
             lblRepeater.setVisibility(student.isRepeater() ? View.VISIBLE : View.INVISIBLE);
             btnCall.setOnClickListener(view -> {
                 if (callListener != null) {
-                    callListener.onCall(view, student, position);
+                    callListener.onCall(view, position);
                 }
             });
             btnMarks.setOnClickListener(view -> {
                 if (showMarksListener != null) {
-                    showMarksListener.onShowMarks(view, student, position);
+                    showMarksListener.onShowMarks(view, position);
                 }
             });
         }

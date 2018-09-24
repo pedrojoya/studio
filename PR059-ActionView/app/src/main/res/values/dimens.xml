@@ -1,3 +1,5 @@
 <resources>
 
+    <dimen name="main_lstStudents_padding">8dp</dimen>
+    <dimen name="main_lblEmpty_drawablePadding">10dp</dimen>
 </resources>

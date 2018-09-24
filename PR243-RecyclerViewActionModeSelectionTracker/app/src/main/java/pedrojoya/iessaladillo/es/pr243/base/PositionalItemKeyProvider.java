@@ -1,7 +1,7 @@
 package pedrojoya.iessaladillo.es.pr243.base;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import androidx.recyclerview.selection.ItemKeyProvider;
 

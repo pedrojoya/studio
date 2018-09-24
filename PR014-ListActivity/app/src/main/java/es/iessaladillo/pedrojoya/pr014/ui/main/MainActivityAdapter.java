@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr014.ui.main;
 
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import android.view.MenuItem;
 import android.view.View;
 

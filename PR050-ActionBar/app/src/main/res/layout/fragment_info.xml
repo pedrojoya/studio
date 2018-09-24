@@ -4,5 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:text="@string/fragment_info_lblInfo"
+    android:text="@string/info_lblInfo"
     android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>

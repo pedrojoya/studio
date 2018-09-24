@@ -8,7 +8,7 @@ public class ConfigurationUtils {
     private ConfigurationUtils() {
     }
 
-    public static boolean hasLandscapeOrientation(Context context) {
+    public static boolean inLandscape(Context context) {
         return context.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
     }

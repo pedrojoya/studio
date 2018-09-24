@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">ShareActionProvider</string>
-    <string name="activity_main_lblEmpty">No hay alumnos en la lista</string>
-    <string name="activity_main_mnuShare">Compartir</string>
+    <string name="main_mnuShare">Share</string>
+    <string name="main_lblEmpty">No students</string>
 
 </resources>

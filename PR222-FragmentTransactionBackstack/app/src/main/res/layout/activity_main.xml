@@ -1,7 +1,18 @@
-<FrameLayout
-    android:id="@+id/flMain"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MergeRootFrame"/>
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/flMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/flDetail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+</LinearLayout>
