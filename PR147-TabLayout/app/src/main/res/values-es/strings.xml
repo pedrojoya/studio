@@ -7,4 +7,6 @@
     <string name="lorem_fragment_share">Compartir</string>
     <string name="lorem_fragment_title">Lorem</string>
     <string name="likes_fragment_title">Me gusta</string>
+    <string name="main_settings">Configuración</string>
+
 </resources>

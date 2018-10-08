@@ -11,4 +11,6 @@
     <string name="main_activity_health_over_voltage">Over voltage</string>
     <string name="main_activity_health_unspecified_failure">Unspecified failure</string>
     <string name="main_activity_health_unknown">Unknown</string>
+    <string name="main_btnNews">News</string>
+    <string name="main_no_activity_to_show_news">No activity to show news</string>
 </resources>

@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr080.ui.main;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr080.R;
 import es.iessaladillo.pedrojoya.pr080.utils.FragmentUtils;
@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (getSupportFragmentManager().findFragmentById(R.id.flContent) == null) {
+        if (savedInstanceState == null) {
             FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
                     MainFragment.newInstance(), TAG_MAIN_FRAGMENT);
         }

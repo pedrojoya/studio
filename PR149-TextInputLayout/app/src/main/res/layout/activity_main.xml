@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tilName"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:hint="@string/activity_main_txtPhone"
             app:counterEnabled="true"
             app:counterMaxLength="@integer/activity_main_txtPhone_maxLength"
             app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
@@ -44,7 +45,6 @@
                 android:id="@+id/txtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/activity_main_txtPhone"
                 android:inputType="phone"
                 android:maxLength="@integer/activity_main_txtPhone_maxLength"/>
 
@@ -56,13 +56,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tilPhone"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:hint="@string/activity_main_txtEmail"
             app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/activity_main_txtEmail"
                 android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tilEmail"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:hint="@string/activity_main_txtPassword"
             app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
             app:passwordToggleContentDescription="@string/activity_main_tilPassword_passwordToggleContentDescription"
             app:passwordToggleEnabled="true">
@@ -79,7 +80,6 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/activity_main_txtPassword"
                 android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>

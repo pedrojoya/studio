@@ -3,18 +3,18 @@ package es.iessaladillo.pedrojoya.pr234.ui.main;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
 import es.iessaladillo.pedrojoya.pr234.R;
 import es.iessaladillo.pedrojoya.pr234.base.YesNoDialogFragment;
+import es.iessaladillo.pedrojoya.pr234.utils.SnackbarUtils;
 
 public class MainFragment extends Fragment implements YesNoDialogFragment.Listener {
 
@@ -23,7 +23,7 @@ public class MainFragment extends Fragment implements YesNoDialogFragment.Listen
 
     private Button btnDelete;
 
-    public static MainFragment newInstance() {
+    static MainFragment newInstance() {
         return new MainFragment();
     }
 
@@ -40,6 +40,7 @@ public class MainFragment extends Fragment implements YesNoDialogFragment.Listen
 
     private void initViews(View view) {
         btnDelete = ViewCompat.requireViewById(view, R.id.btnDelete);
+
         btnDelete.setOnClickListener(v -> showConfirmationDialog());
     }
 
@@ -47,20 +48,18 @@ public class MainFragment extends Fragment implements YesNoDialogFragment.Listen
         YesNoDialogFragment dialogFragment = YesNoDialogFragment.newInstance(
                 getString(R.string.main_fragment_confirm_deletion),
                 getString(R.string.main_fragment_sure), getString(R.string.main_fragment_yes),
-                getString(R.string.main_fragment_no));
-        dialogFragment.setTargetFragment(this, RC_DIALOG_FRAGMENT);
+                getString(R.string.main_fragment_no), this, RC_DIALOG_FRAGMENT);
         dialogFragment.show(requireActivity().getSupportFragmentManager(), TAG_DIALOG_FRAGMENT);
     }
 
     @Override
     public void onPositiveButtonClick(DialogInterface dialog) {
-        Snackbar.make(btnDelete, getString(R.string.main_fragment_delete), Snackbar.LENGTH_SHORT).show();
+        SnackbarUtils.snackbar(btnDelete, getString(R.string.main_fragment_delete));
     }
 
     @Override
     public void onNegativeButtonClick(DialogInterface dialog) {
-        Snackbar.make(btnDelete, getString(R.string.main_fragment_no_delete), Snackbar
-                .LENGTH_SHORT).show();
+        SnackbarUtils.snackbar(btnDelete, getString(R.string.main_fragment_no_delete));
     }
 
 }

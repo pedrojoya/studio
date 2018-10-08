@@ -2,8 +2,8 @@ package es.iessaladillo.pedrojoya.pr140.base;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.ThemedSpinnerAdapter;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;

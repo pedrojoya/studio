@@ -1,27 +1,21 @@
 package es.iessaladillo.pedrojoya.pr211.ui.main;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.annotation.StringRes;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import es.iessaladillo.pedrojoya.pr211.base.Event;
 
-import java.util.List;
+public class MainActivityViewModel extends ViewModel {
 
-import es.iessaladillo.pedrojoya.pr211.data.Repository;
-import es.iessaladillo.pedrojoya.pr211.data.model.Student;
+    private final MutableLiveData<Event<Integer>> infoMessage = new MutableLiveData<>();
 
-class MainActivityViewModel extends ViewModel {
-
-    private final Repository repository;
-    private LiveData<List<Student>> students;
-
-    public MainActivityViewModel(Repository repository) {
-        this.repository = repository;
+    public LiveData<Event<Integer>> getInfoMessage() {
+        return infoMessage;
     }
 
-    public LiveData<List<Student>> getStudents() {
-        if (students == null) {
-            students = repository.getStudents();
-        }
-        return students;
+    public void setInfoMessage(@StringRes int messageResId) {
+        infoMessage.postValue(new Event<>(messageResId));
     }
 
 }

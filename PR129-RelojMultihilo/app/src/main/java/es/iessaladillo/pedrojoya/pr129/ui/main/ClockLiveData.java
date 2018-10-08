@@ -1,11 +1,12 @@
 package es.iessaladillo.pedrojoya.pr129.ui.main;
 
-import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import androidx.lifecycle.LiveData;
 
 public class ClockLiveData extends LiveData<String> {
 
@@ -21,20 +22,21 @@ public class ClockLiveData extends LiveData<String> {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     // Interrupted while sleeping.
-                    Log.d("Mia", "Thread stopped");
+                    Log.d(ClockLiveData.class.getSimpleName(), "Thread stopped");
                     return;
                 }
             }
-            Log.d("Mia", "Thread stopped");
+            Log.d(ClockLiveData.class.getSimpleName(), "Thread stopped");
         });
         thread.start();
-        Log.d("Mia", "Thread started");
+        Log.d(ClockLiveData.class.getSimpleName(), "Thread started");
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void stop() {
         if (isRunning()) {
             thread.interrupt();
-            Log.d("Mia", "Thread interrupted");
+            Log.d(ClockLiveData.class.getSimpleName(), "Thread interrupted");
         }
     }
 

@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option1;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 public class Option1ViewModel extends ViewModel {
 

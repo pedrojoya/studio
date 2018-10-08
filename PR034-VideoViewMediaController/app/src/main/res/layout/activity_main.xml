@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rlRaiz"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rlRoot"
+                android:background="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
     <VideoView
-        android:id="@+id/vvReproductor"
+        android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
         android:layout_centerInParent="true"/>
 
+
     <TextView
-        android:id="@+id/lblSinVideo"
+        android:id="@+id/lblEmptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:gravity="center"
-        android:text="@string/seleccionar_video"
+        android:text="@string/main_select_video"
+        android:layout_below="@+id/toolbar"
         android:layout_centerInParent="true"
         android:textAppearance="?android:textAppearanceSmall"
-        android:background="@color/fondo_sin_video"/>
+        android:background="@color/no_video_background"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 </RelativeLayout>

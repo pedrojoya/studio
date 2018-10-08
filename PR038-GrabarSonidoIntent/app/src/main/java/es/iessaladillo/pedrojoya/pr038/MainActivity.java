@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr038;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioManager;
@@ -13,27 +12,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
-import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
+import com.google.android.material.snackbar.Snackbar;
+import com.livinglifetechway.quickpermissions.annotations.WithPermissions;
 
-@RuntimePermissions
-@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal", "EmptyMethod"})
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 public class MainActivity extends AppCompatActivity implements OnPreparedListener,
         OnCompletionListener {
 
@@ -149,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         //        } catch (Exception e) {
         //            Snackbar.make(skbTime, R.string.no_hay, Snackbar.LENGTH_SHORT).show();
         //        }
-        MainActivityPermissionsDispatcher.selectAudioWithPermissionCheck(this);
+        selectAudio();
     }
 
     @Override
@@ -313,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         return path;
     }
 
-    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    @WithPermissions(permissions = {Manifest.permission.READ_EXTERNAL_STORAGE})
     void selectAudio() {
         Intent i = new Intent(Intent.ACTION_GET_CONTENT);
         i.setType("audio/*");
@@ -322,45 +312,6 @@ public class MainActivity extends AppCompatActivity implements OnPreparedListene
         } catch (Exception e) {
             Snackbar.make(skbTime, R.string.main_activity_no_audio_selection_activity, Snackbar.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
-                grantResults);
-    }
-
-    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void onShowRationale(final PermissionRequest request) {
-    }
-
-    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void onPermissionDenied() {
-        Snackbar.make(btnSelect, R.string.permission_denied, Snackbar.LENGTH_SHORT).show();
-    }
-
-    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void onNeverAskAgain() {
-        Snackbar.make(btnSelect, R.string.permission_neverask, Snackbar.LENGTH_LONG).setAction(
-                R.string.configurar, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startInstalledAppDetailsActivity(MainActivity.this);
-                    }
-                }).show();
-    }
-
-    public static void startInstalledAppDetailsActivity(@NonNull final Activity context) {
-        final Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        intent.setData(Uri.parse("package:" + context.getPackageName()));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        context.startActivity(intent);
     }
 
 }

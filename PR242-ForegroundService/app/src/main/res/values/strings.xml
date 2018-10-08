@@ -2,10 +2,11 @@
 <resources>
 
     <string name="app_name">ForegroundService</string>
-    <string name="fragment_main_emptyView">No students yet</string>
-    <string name="main_activity_exported">File created</string>
-    <string name="main_activity_open">Open</string>
+    <string name="main_lblEmptyView">No students yet</string>
+    <string name="main_exported">List exported to file</string>
+    <string name="main_open">Open</string>
     <string name="export_service_exporting">Exporting student list</string>
     <string name="export_service_progress">%1$d of %2$d</string>
+    <string name="export_service_file_created">Student list exported to file</string>
 
 </resources>

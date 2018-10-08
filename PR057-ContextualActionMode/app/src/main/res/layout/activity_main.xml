@@ -21,7 +21,8 @@
         android:layout_below="@+id/lblStudent"
         android:layout_marginBottom="@dimen/general_activity_margin"
         android:ems="@integer/activity_main_txtStudent_ems"
-        android:inputType="textPersonName">
+        android:inputType="textPersonName"
+        tools:ignore="Autofill">
 
         <requestFocus/>
     </EditText>

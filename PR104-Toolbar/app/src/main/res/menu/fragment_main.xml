@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainActivity">
+    <item
+        android:id="@+id/mnuNext"
+        android:icon="@drawable/ic_exit_to_app_white_24dp"
+        android:title="@string/activity_main_mnuNext"
+        app:showAsAction="ifRoom|withText" />
+</menu>

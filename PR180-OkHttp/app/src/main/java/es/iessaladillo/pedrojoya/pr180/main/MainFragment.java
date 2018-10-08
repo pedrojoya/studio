@@ -1,12 +1,7 @@
 package es.iessaladillo.pedrojoya.pr180.main;
 
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +9,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr180.R;
 import es.iessaladillo.pedrojoya.pr180.base.Event;
 import es.iessaladillo.pedrojoya.pr180.base.RequestState;
 import es.iessaladillo.pedrojoya.pr180.data.remote.HttpClient;
 import es.iessaladillo.pedrojoya.pr180.utils.KeyboardUtils;
+import es.iessaladillo.pedrojoya.pr180.utils.ToastUtils;
 
 public class MainFragment extends Fragment {
 
@@ -30,7 +30,7 @@ public class MainFragment extends Fragment {
     private Button btnSearch;
     @SuppressWarnings("FieldCanBeLocal")
     private Button btnEcho;
-    private MainActivityViewModel viewModel;
+    private MainFragmenViewModel viewModel;
 
     public MainFragment() {
     }
@@ -49,8 +49,8 @@ public class MainFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(requireActivity(),
-                new MainActivityViewModelFactory(HttpClient.getInstance(getContext()))).get(
-                MainActivityViewModel.class);
+                new MainFragmentViewModelFactory(HttpClient.getInstance(getContext()))).get(
+                MainFragmenViewModel.class);
         initViews(getView());
         observeSearch();
         observeEcho();
@@ -81,7 +81,7 @@ public class MainFragment extends Fragment {
     }
 
     private void observeSearch() {
-        viewModel.getSearchLiveData().observe(this, searchRequest -> {
+        viewModel.getSearchLiveData().observe(getViewLifecycleOwner(), searchRequest -> {
             if (searchRequest instanceof RequestState.Error) {
                 showErrorSearching((RequestState.Error) searchRequest);
             } else if (searchRequest instanceof RequestState.Result) {
@@ -99,7 +99,7 @@ public class MainFragment extends Fragment {
     }
 
     private void observeEcho() {
-        viewModel.getEchoLiveData().observe(this, echoRequest -> {
+        viewModel.getEchoLiveData().observe(getViewLifecycleOwner(), echoRequest -> {
             if (echoRequest instanceof RequestState.Error) {
                 showErrorRequestingEcho((RequestState.Error) echoRequest);
             } else if (echoRequest instanceof RequestState.Result) {
@@ -122,7 +122,7 @@ public class MainFragment extends Fragment {
             pbProgress.setVisibility(View.INVISIBLE);
             String message = exception.getMessage();
             if (message == null) message = getString(R.string.main_fragment_error_searching);
-            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
+            ToastUtils.toast(requireContext(), message);
         }
     }
 
@@ -131,14 +131,16 @@ public class MainFragment extends Fragment {
         if (exception != null) {
             pbProgress.setVisibility(View.INVISIBLE);
             String message = exception.getMessage();
-            if (message == null) message = getString(R.string.main_fragment_error_requesting_echo);
-            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
+            if (message == null) {
+                message = getString(R.string.main_fragment_error_requesting_echo);
+            }
+            ToastUtils.toast(requireContext(), message);
         }
     }
 
     private void showResult(String result) {
         pbProgress.setVisibility(View.INVISIBLE);
-        Toast.makeText(requireActivity(), result, Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(requireContext(), result);
     }
 
 }

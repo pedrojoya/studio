@@ -22,20 +22,17 @@ import es.iessaladillo.pedrojoya.pr082.base.RequestState;
 import es.iessaladillo.pedrojoya.pr082.data.remote.VolleyInstance;
 import es.iessaladillo.pedrojoya.pr082.utils.KeyboardUtils;
 
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
 
     private EditText txtName;
     private ProgressBar pbProgress;
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button btnSearch;
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button btnEcho;
     private MainFragmentViewModel viewModel;
 
     public MainFragment() {
     }
 
-    public static MainFragment newInstance() {
+    static MainFragment newInstance() {
         return new MainFragment();
     }
 
@@ -58,8 +55,8 @@ public class MainFragment extends Fragment {
 
     private void initViews(View view) {
         txtName = ViewCompat.requireViewById(view, R.id.txtName);
-        btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
-        btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
+        Button btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
+        Button btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
         pbProgress = ViewCompat.requireViewById(view, R.id.pbProgress);
 
         btnSearch.setOnClickListener(v -> search());

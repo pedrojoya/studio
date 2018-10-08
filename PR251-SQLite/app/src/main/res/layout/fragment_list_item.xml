@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_background_selector"
+    android:minHeight="@dimen/three_lines_tile_height">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/three_lines_avatar_height"
+        android:layout_height="@dimen/three_lines_avatar_height"
+        android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
+        android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
+        android:contentDescription="@string/fragment_main_item_imgAvatar"/>
+
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
+        android:paddingTop="@dimen/three_lines_text_paddingTop"
+        android:textSize="@dimen/three_lines_primary_text_textSize"
+        android:textStyle="bold"
+        tools:text="@tools:sample/full_names"/>
+
+    <TextView
+        android:id="@+id/lblGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblName"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
+        android:textSize="@dimen/three_lines_secundary_text_textSize"
+        android:textStyle="italic"
+        tools:text="@tools:sample/lorem"/>
+
+    <TextView
+        android:id="@+id/lblAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblGrade"
+        android:paddingBottom="@dimen/three_lines_text_paddingBottom"
+        android:paddingStart="@dimen/three_lines_text_paddingLeft"
+        android:paddingEnd="@dimen/three_lines_text_paddingRight"
+        android:textSize="@dimen/three_lines_secundary_text_textSize"
+        tools:text="@tools:sample/cities"/>
+
+</RelativeLayout>

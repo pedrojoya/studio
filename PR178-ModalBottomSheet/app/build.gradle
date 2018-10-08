@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr178"
@@ -34,13 +33,11 @@ allprojects {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    implementation "com.android.support:design:$rootProject.ext.support_library_version"
-    implementation "com.android.support:recyclerview-v7:$rootProject.ext.support_library_version"
-    implementation "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
-    implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview_version"
-    implementation "com.github.moove-it:fakeit:$rootProject.ext.fakeit_version"
-    implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
-    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
-    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "com.google.android.material:material:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "com.squareup.picasso:picasso:2.5.2"
+    implementation "de.hdodenhof:circleimageview:2.2.0"
+    implementation "com.github.moove-it:fakeit:v0.7"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
 }

@@ -11,5 +11,5 @@ In dolor ex, feugiat id ultricies et, lobortis non lorem. Nulla facilisi. Aliqua
 
 Phasellus aliquam aliquam ante eget iaculis. Praesent ultrices feugiat sem, non venenatis nisi. Proin faucibus purus sed velit mollis, a elementum mi dapibus. Mauris in egestas turpis. Duis molestie nisl varius, sollicitudin mauris a, consequat lectus. Nullam quis pulvinar ipsum, at pulvinar magna. Curabitur egestas dolor ligula, sit amet mattis mauris bibendum vitae. Quisque eu risus eget est ultrices varius id quis neque.</string>
     <string name="activity_main_imgHeader">Imagen de cabecera</string>
-    <string name="main_activity_title">Title</string>
+    <string name="main_activity_title">FAB</string>
 </resources>

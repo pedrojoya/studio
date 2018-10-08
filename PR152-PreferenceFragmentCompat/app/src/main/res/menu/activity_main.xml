@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mnuPreferencias"
+        android:id="@+id/mnuSettings"
         app:showAsAction="never"
-        android:title="@string/preferencias"/>
+        android:title="@string/main_settings"/>
 
 </menu>

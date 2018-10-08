@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/lblTitle"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/general_activity_horizontal_margin"
-        android:layout_marginStart="@dimen/general_activity_horizontal_margin"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:text="@string/activity_main_lblTitle"
+        android:layout_marginEnd="@dimen/main_horizontal_margin"
+        android:layout_marginStart="@dimen/main_horizontal_margin"
+        android:layout_marginTop="@dimen/main_vertical_margin"
+        android:text="@string/main_lblTitle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,8 +27,8 @@
         android:id="@+id/scvText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/general_activity_horizontal_margin"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
+        android:layout_marginBottom="@dimen/main_horizontal_margin"
+        android:layout_marginTop="@dimen/main_vertical_margin"
         app:layout_constraintBottom_toTopOf="@+id/llPanel"
         app:layout_constraintLeft_toLeftOf="@+id/lblTitle"
         app:layout_constraintRight_toRightOf="@+id/lblTitle"
@@ -47,10 +49,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/primary_light"
-        android:paddingBottom="@dimen/general_activity_horizontal_margin"
-        android:paddingEnd="@dimen/general_activity_horizontal_margin"
-        android:paddingStart="@dimen/general_activity_vertical_margin"
-        android:paddingTop="@dimen/general_activity_horizontal_margin"
+        android:paddingBottom="@dimen/main_horizontal_margin"
+        android:paddingEnd="@dimen/main_horizontal_margin"
+        android:paddingStart="@dimen/main_vertical_margin"
+        android:paddingTop="@dimen/main_horizontal_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -64,7 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:hint="@string/activity_main_txtMessage"
+            android:hint="@string/main_txtMessage"
+            android:scrollHorizontally="false"
+            android:maxLines="@integer/main_txtMessage_maxLines"
             android:imeOptions="actionDone"
             android:inputType="textImeMultiLine"
             tools:ignore="Autofill">
@@ -77,12 +81,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/general_activity_horizontal_margin"
-            android:clickable="true"
+            android:layout_marginStart="@dimen/main_horizontal_margin"
+            android:contentDescription="@string/main_btnSend"
+            android:padding="@dimen/main_horizontal_margin"
+            android:tint="@color/ic_send_tint"
             android:focusable="true"
-            android:contentDescription="@string/activity_main_btnSend"
-            android:padding="@dimen/general_activity_horizontal_margin"
-            android:src="@drawable/ic_action_send" />
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_send_black_24dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

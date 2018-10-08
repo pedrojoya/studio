@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr169.data.remote;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
 
 import es.iessaladillo.pedrojoya.pr169.BuildConfig;
 import es.iessaladillo.pedrojoya.pr169.base.Event;

@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">IntentService</string>
-    <string name="fragment_main_emptyView">No hay alumnos en la lista</string>
-    <string name="main_activity_exported">Listado exportado</string>
-    <string name="main_activity_open">Abrir</string>
+    <string name="main_lblEmptyView">No students yet</string>
+    <string name="main_exported">List exported to file</string>
+    <string name="main_open">Open</string>
 
 </resources>

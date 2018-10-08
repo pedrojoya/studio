@@ -13,4 +13,5 @@ Phasellus aliquam aliquam ante eget iaculis. Praesent ultrices feugiat sem, non 
     <string name="lorem_fragment_share">Share</string>
     <string name="lorem_fragment_title">Lorem</string>
     <string name="likes_fragment_title">Likes</string>
+    <string name="main_settings">Settings</string>
 </resources>

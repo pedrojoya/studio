@@ -1,32 +1,20 @@
 package es.iessaladillo.pedrojoya.pr211.data.local;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
-
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr211.data.model.Student;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Query;
+import es.iessaladillo.pedrojoya.pr211.base.BaseDao;
+import es.iessaladillo.pedrojoya.pr211.data.local.model.Student;
 
 @Dao
-public interface StudentDao {
-
-    @Insert
-    long insertStudent(Student student);
-
-    @Update
-    int updateStudent(Student student);
-
-    @Delete
-    int deleteStudent(Student student);
+public interface StudentDao extends BaseDao<Student> {
 
     @Query("SELECT * FROM Student WHERE id = :studentId")
-    LiveData<Student> getStudent(long studentId);
+    LiveData<Student> queryStudent(long studentId);
 
     @Query("SELECT * FROM Student ORDER BY name")
-    LiveData<List<Student>> getStudents();
+    LiveData<List<Student>> queryStudents();
 
 }

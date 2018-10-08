@@ -1,13 +1,13 @@
 package pedrojoya.iessaladillo.es.pr229.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.DiffUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.DiffUtil;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr229.R;
 import pedrojoya.iessaladillo.es.pr229.base.BaseListAdapter;
@@ -25,7 +25,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
 
         @Override
         public boolean areContentsTheSame(Student oldItem, Student newItem) {
-            return oldItem.getName().equals(newItem.getName()) &&
+            return oldItem.getPhotoUrl().equals(newItem.getPhotoUrl()) &&
                     oldItem.getAddress().equals(newItem.getAddress());
         }
     };

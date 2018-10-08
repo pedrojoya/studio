@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr030;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -12,18 +11,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.livinglifetechway.quickpermissions.annotations.WithPermissions;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,15 +26,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.DialogFragment;
 import es.iessaladillo.pedrojoya.pr030.utils.FileUtils;
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
-import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
 public class MainActivity extends AppCompatActivity implements PickOrCaptureDialogFragment.Listener {
 
     private static final int RC_CAPTURE = 0;
@@ -108,58 +100,18 @@ public class MainActivity extends AppCompatActivity implements PickOrCaptureDial
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
-                grantResults);
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    @WithPermissions(permissions = {Manifest.permission.READ_EXTERNAL_STORAGE})
     public void select(String photoName) {
         filename = photoName;
         // Select photo from gallery.
-        Intent i = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        i.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_PICK).setDataAndType(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         // Se deshabilita temporalmente el sensor de orientación.
         // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        startActivityForResult(i, RC_SELECT);
+        startActivityForResult(intent, RC_SELECT);
     }
 
-    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void showRationaleForReadExternalStorage(final PermissionRequest request) {
-        new AlertDialog.Builder(this).setMessage(R.string.permission_readexternalstorage_rationale)
-                .setPositiveButton(R.string.permission_allow, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.proceed();
-                    }
-                })
-                .setNegativeButton(R.string.permission_reject, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.cancel();
-                    }
-                })
-                .show();
-    }
-
-    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void showDeniedForReadExternalStorage() {
-        Toast.makeText(this, R.string.permission_unable, Toast.LENGTH_SHORT).show();
-    }
-
-    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void showNeverAskForReadExternalStorage() {
-        Toast.makeText(this, R.string.permission_readexternalstorage_rationale, Toast.LENGTH_SHORT)
-                .show();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    @WithPermissions(permissions = {Manifest.permission.READ_EXTERNAL_STORAGE})
     public void capture(String photoName) {
         filename = photoName;
         // Capture photo.
@@ -167,9 +119,8 @@ public class MainActivity extends AppCompatActivity implements PickOrCaptureDial
         if (i.resolveActivity(getPackageManager()) != null) {
             // Create temp file with date and time in his name.
             File photoFile = FileUtils.createPictureFile(this,
-                    "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss",
-                            Locale.getDefault()).format(new Date()) + "_.jpg",
-                    true, true);
+                    "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(
+                            new Date()) + "_.jpg", true, true);
             if (photoFile != null) {
                 // Save photo file path for later.
                 photoPath = photoFile.getAbsolutePath();
@@ -258,10 +209,10 @@ public class MainActivity extends AppCompatActivity implements PickOrCaptureDial
     @Override
     public void onItemClick(DialogFragment dialog, int which) {
         if (which == OPTION_PICK) {
-            MainActivityPermissionsDispatcher.selectWithPermissionCheck(this, PHOTO_NAME);
+            select(PHOTO_NAME);
 
         } else {
-            MainActivityPermissionsDispatcher.captureWithPermissionCheck(this, PHOTO_NAME);
+            capture(PHOTO_NAME);
         }
     }
 

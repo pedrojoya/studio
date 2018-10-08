@@ -11,8 +11,8 @@
     <dimen name="activity_main_item_card_padding">16dp</dimen>
     <dimen name="activity_main_item_cardView_cardCornerRadius">4dp</dimen>
     <dimen name="activity_main_item_cardView_cardElevation">4dp</dimen>
-    <dimen name="activity_main_lstStudents_dividerHeight">10dp</dimen>
     <dimen name="activity_main_lstStudents_padding">10dp</dimen>
     <dimen name="activity_main_item_divider_height">1dp</dimen>
     <dimen name="activity_main_item_divider_marginTop">5dp</dimen>
+    <dimen name="activity_main_lblEmptyView_drawablePadding">16dp</dimen>
 </resources>

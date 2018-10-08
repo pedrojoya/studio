@@ -1,54 +1,8 @@
-<android.support.design.widget.CoordinatorLayout
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/flContent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lstStudents"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadeScrollbars="false"
-        android:paddingBottom="@dimen/activity_main_lstStudents_padding"
-        android:paddingTop="@dimen/activity_main_lstStudents_padding"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-    <TextView
-        android:id="@+id/lblEmptyView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:drawablePadding="@dimen/activity_main_lblEmptyView_drawablePadding"
-        android:drawableTop="@drawable/ic_person_add_black_48dp"
-        android:text="@string/activity_main_lblEmptyView"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/activity_main_fab_margin"
-        android:layout_marginEnd="@dimen/activity_main_fab_margin"
-        app:srcCompat="@drawable/ic_add_white_24dp"
-        app:layout_behavior="es.iessaladillo.pedrojoya.pr178.ScrollAwareFABBehavior"/>
-
-</android.support.design.widget.CoordinatorLayout>
+    android:layout_height="match_parent"
+    tools:ignore="MergeRootFrame"/>

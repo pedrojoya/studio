@@ -3,21 +3,24 @@ package es.iessaladillo.pedrojoya.pr105.ui.main.option1;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
 import es.iessaladillo.pedrojoya.pr105.R;
+import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
 
 
 public class Option1Fragment extends Fragment {
 
-    private OnToolbarAvailableListener listener;
+    private OnToolbarAvailableListener onToolbarAvailableListener;
+    private OnFragmentShownListener onFragmentShownListener;
     private View fab;
 
     @Override
@@ -30,11 +33,17 @@ public class Option1Fragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initViews(getView());
+        // In order to update the checked menuItem when coming from backstack.
+        informActivity();
     }
 
     private void initViews(View view) {
         setupToolbar(view);
         setupFab(view);
+    }
+
+    private void informActivity() {
+        onFragmentShownListener.onFragmentShown(R.id.mnuOption1);
     }
 
     private void setupFab(View view) {
@@ -48,7 +57,7 @@ public class Option1Fragment extends Fragment {
     }
 
     private void setupToolbar(View view) {
-        listener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
+        onToolbarAvailableListener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
                 getString(R.string.activity_main_option1));
     }
 
@@ -56,10 +65,16 @@ public class Option1Fragment extends Fragment {
     public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
-            listener = (OnToolbarAvailableListener) activity;
-        } catch (Exception e) {
+            onToolbarAvailableListener = (OnToolbarAvailableListener) activity;
+        } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " debe implementar la interfaz OnToolbarAvailableListener");
+        }
+        try {
+            onFragmentShownListener = (OnFragmentShownListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " debe implementar la interfaz OnFragmentShownListener");
         }
     }
 

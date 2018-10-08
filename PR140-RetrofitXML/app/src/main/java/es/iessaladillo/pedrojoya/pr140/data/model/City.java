@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr140.data.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 @SuppressWarnings("unused")
 public class City {

@@ -6,7 +6,6 @@ props.load(new FileInputStream(new File('secrets.properties')))
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr169"
@@ -32,18 +31,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    implementation "com.android.support:design:$rootProject.ext.support_library_version"
-    implementation "com.google.code.gson:gson:$rootProject.ext.gson_version"
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp_version"
-    implementation "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
-    implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
-    debugImplementation "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
-    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
-    implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
-    //noinspection GradleDependency
-    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
-    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.arch_version"
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "com.google.android.material:material:1.0.0"
+    implementation "com.google.code.gson:gson:2.8.5"
+    implementation "com.squareup.retrofit2:retrofit:2.4.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.11.0"
+    implementation "com.facebook.stetho:stetho:1.5.0"
+    implementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
+    debugImplementation "com.readystatesoftware.chuck:library:1.1.0"
+    releaseImplementation "com.readystatesoftware.chuck:library-no-op:1.1.0"
 }

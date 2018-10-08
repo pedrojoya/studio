@@ -3,16 +3,16 @@ package es.iessaladillo.pedrojoya.pr048.ui.main;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import es.iessaladillo.pedrojoya.pr048.R;
 import es.iessaladillo.pedrojoya.pr048.data.model.Student;
 
-
+@SuppressWarnings("WeakerAccess")
 public class StudentsDialogFragment extends DialogFragment {
 
     private Callback mListener = null;

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.v4.content.LocalBroadcastManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,12 +16,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import es.iessaladillo.pedrojoya.pr100.BuildConfig;
+
 public class ExportToTextFileService extends IntentService {
 
     private static final String EXTRA_DATA = "EXTRA_DATA";
     public static final String EXTRA_FILENAME = "EXTRA_FILENAME";
-    public static final String ACTION_EXPORTED =
-            "es.iessaladillo.pedrojoya.pr100.ACTION_EXPORTED";
+    public static final String ACTION_EXPORTED = BuildConfig.APPLICATION_ID + ".ACTION_EXPORTED";
     private static final String SERVICE_NAME = "export";
 
     public ExportToTextFileService() {
@@ -42,14 +43,11 @@ public class ExportToTextFileService extends IntentService {
     }
 
     private void sendResult(File outputFile) {
-        Intent intent = new Intent(ACTION_EXPORTED);
-        intent.putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile));
         LocalBroadcastManager.getInstance(this).sendBroadcast(
-                intent);
+                new Intent(ACTION_EXPORTED).putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile)));
     }
 
-    private void writeListToFile(File outputFile, List<String> items)
-            throws FileNotFoundException {
+    private void writeListToFile(File outputFile, List<String> items) throws FileNotFoundException {
         PrintWriter printWriter = new PrintWriter(outputFile);
         for (String item : items) {
             printWriter.println(item);
@@ -69,17 +67,14 @@ public class ExportToTextFileService extends IntentService {
         }
         //noinspection ResultOfMethodCallIgnored
         rootDir.mkdirs();
-        SimpleDateFormat simpleDataFormat = new SimpleDateFormat(
-                "yyyyMMddHHmm", Locale.getDefault());
-        String filename = baseName
-                + simpleDataFormat.format(new Date()) + ".txt";
+        SimpleDateFormat simpleDataFormat = new SimpleDateFormat("yyyyMMddHHmm",
+                Locale.getDefault());
+        String filename = baseName + simpleDataFormat.format(new Date()) + ".txt";
         return new File(rootDir, filename);
     }
 
     public static void start(Context context, ArrayList<String> data) {
-        Intent intent = new Intent(context, ExportToTextFileService.class);
-        intent.putExtra(EXTRA_DATA, data);
-        context.startService(intent);
+        context.startService(new Intent(context, ExportToTextFileService.class).putExtra(EXTRA_DATA, data));
     }
 
 }

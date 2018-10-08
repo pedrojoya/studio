@@ -1,0 +1,68 @@
+<RelativeLayout
+    android:id="@+id/rlRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+
+    <ProgressBar
+        android:id="@+id/prbBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:indeterminate="false"
+        android:max="@integer/activity_main_prbBar_max"
+        android:padding="@dimen/activity_main_prbBar_padding"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:id="@+id/llButtonBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prbBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_btnCancel"
+            tools:ignore="ButtonStyle"/>
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/general_activity_margin"
+            android:text="@string/activity_main_btnStart"
+            tools:ignore="ButtonStyle"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lblMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llButtonBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/general_activity_margin"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:text="@tools:sample/lorem">
+    </TextView>
+
+    <ProgressBar
+        android:id="@+id/prbCircular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblMessage"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="false"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

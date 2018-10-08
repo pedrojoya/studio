@@ -4,4 +4,6 @@
     <color name="primary_dark">#512DA8</color>
     <color name="primary_light">#D1C4E9</color>
     <color name="accent">#8BC34A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="disabled">#808080</color>
 </resources>

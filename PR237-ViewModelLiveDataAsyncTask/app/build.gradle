@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "es.iessaladillo.pedrojoya.pr237"
@@ -27,7 +26,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_library_version"
-    implementation "android.arch.lifecycle:runtime:$rootProject.ext.arch_version"
-    implementation "android.arch.lifecycle:extensions:$rootProject.ext.arch_version"
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
 }

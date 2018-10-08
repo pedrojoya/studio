@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.pr246_navigation.ui.another;
 
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;

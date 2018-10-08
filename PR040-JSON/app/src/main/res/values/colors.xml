@@ -7,4 +7,5 @@
 
     <color name="activity_main_item_divider">#B6B6B6</color>
     <color name="activity_main_item_lblRepeater_background">#220000FF</color>
+    <color name="white">#FFFFFF</color>
 </resources>

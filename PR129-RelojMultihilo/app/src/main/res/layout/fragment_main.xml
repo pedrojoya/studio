@@ -1,0 +1,28 @@
+<RelativeLayout
+    android:id="@+id/rlRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    tools:context=".ui.main.MainActivity">
+
+    <TextView
+        android:id="@+id/lblTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/activity_main_lblTime_marginBottom"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/activity_main_lblTime_textSize"
+        tools:text="00:00:00"/>
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTime"
+        android:layout_centerHorizontal="true"
+        android:text="@string/activity_main_btnStart"/>
+
+</RelativeLayout>

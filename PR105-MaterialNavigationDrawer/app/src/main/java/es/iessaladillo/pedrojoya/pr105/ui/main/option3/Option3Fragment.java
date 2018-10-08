@@ -3,21 +3,24 @@ package es.iessaladillo.pedrojoya.pr105.ui.main.option3;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
 import es.iessaladillo.pedrojoya.pr105.R;
+import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
 
 
 public class Option3Fragment extends Fragment {
 
-    private OnToolbarAvailableListener listener;
+    private OnToolbarAvailableListener onToolbarAvailableListener;
+    private OnFragmentShownListener onFragmentShownListener;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -34,6 +37,8 @@ public class Option3Fragment extends Fragment {
     private void initViews(View view) {
         setupToolbar(view);
         setupCollapsingToolbar(view);
+        // In order to update the checked menuItem when coming from backstack.
+        informActivity();
     }
 
     private void setupCollapsingToolbar(View view) {
@@ -43,18 +48,28 @@ public class Option3Fragment extends Fragment {
     }
 
     private void setupToolbar(View view) {
-        listener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
+        onToolbarAvailableListener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
                 getString(R.string.activity_main_option3));
+    }
+
+    private void informActivity() {
+        onFragmentShownListener.onFragmentShown(R.id.mnuOption3);
     }
 
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
-            listener = (OnToolbarAvailableListener) activity;
+            onToolbarAvailableListener = (OnToolbarAvailableListener) activity;
         } catch (Exception e) {
             throw new ClassCastException(activity.toString()
                     + " debe implementar la interfaz OnToolbarAvailableListener");
+        }
+        try {
+            onFragmentShownListener = (OnFragmentShownListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " debe implementar la interfaz OnFragmentShownListener");
         }
     }
 

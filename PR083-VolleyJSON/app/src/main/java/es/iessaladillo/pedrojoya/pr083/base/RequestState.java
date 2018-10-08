@@ -1,8 +1,8 @@
 package es.iessaladillo.pedrojoya.pr083.base;
 
-public abstract class RequestState {
+public abstract class RequestState<T> {
 
-    public static final class Error extends RequestState {
+    public static final class Error<T> extends RequestState<T> {
 
         private final Event<Exception> exception;
 
@@ -16,7 +16,7 @@ public abstract class RequestState {
 
     }
 
-    public static final class Loading extends RequestState {
+    public static final class Loading<T> extends RequestState<T> {
 
         private final boolean loading;
 
@@ -30,7 +30,7 @@ public abstract class RequestState {
 
     }
 
-    public static final class Result<T> extends RequestState {
+    public static final class Result<T> extends RequestState<T> {
 
         private final T data;
 

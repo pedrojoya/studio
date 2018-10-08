@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <dimen name="activity_main_margin">16dp</dimen>
-
+    <dimen name="activity_main_fab_margin">16dp</dimen>
+    <dimen name="activity_main_fab_elevation">6dp</dimen>
+    <dimen name="activity_main_fab_pressedTranslationZ">12dp</dimen>
 </resources>

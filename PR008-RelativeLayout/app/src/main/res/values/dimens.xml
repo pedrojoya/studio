@@ -1,5 +1,5 @@
 <resources>
 
-    <dimen name="main_activity_margin">16dp</dimen>
+    <dimen name="main_margin">16dp</dimen>
 
 </resources>

@@ -1,32 +1,35 @@
 package es.iessaladillo.pedrojoya.pr211.ui.main;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr211.R;
+import es.iessaladillo.pedrojoya.pr211.ui.list.ListFragment;
 import es.iessaladillo.pedrojoya.pr211.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG_MAIN_FRAGMENT = "TAG_MAIN_FRAGMENT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbar();
-        loadFragment();
+        if (savedInstanceState == null) {
+            // Load initial fragment.
+            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
+                    ListFragment.newInstance(), ListFragment.class.getSimpleName());
+        }
     }
 
     private void setupToolbar() {
-        setSupportActionBar(findViewById(R.id.toolbar));
+        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
     }
 
-    private void loadFragment() {
-        if (getSupportFragmentManager().findFragmentByTag(TAG_MAIN_FRAGMENT) == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    MainFragment.newInstance(), TAG_MAIN_FRAGMENT);
-        }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
 }

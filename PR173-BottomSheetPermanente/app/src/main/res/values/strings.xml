@@ -9,5 +9,6 @@
     <string name="activity_main_bottom_sheet_lblSubtitle">London</string>
 
     <string name="main_activity_daily_photo">Daily photo</string>
+    <string name="main_no_activity_available">No activity available for this action</string>
 
 </resources>

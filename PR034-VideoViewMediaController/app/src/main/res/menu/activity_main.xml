@@ -6,6 +6,6 @@
         android:id="@+id/mnuVideo"
         android:icon="@android:drawable/ic_menu_camera"
         app:showAsAction="ifRoom"
-        android:title="@string/seleccionar_video" />
+        android:title="@string/main_select_video" />
 
 </menu>

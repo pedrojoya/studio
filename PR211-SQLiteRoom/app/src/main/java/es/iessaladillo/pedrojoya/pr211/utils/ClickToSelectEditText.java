@@ -2,8 +2,8 @@ package es.iessaladillo.pedrojoya.pr211.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatEditText;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatEditText;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;

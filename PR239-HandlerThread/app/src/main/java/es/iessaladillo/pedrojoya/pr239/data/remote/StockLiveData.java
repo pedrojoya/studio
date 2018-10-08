@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr239.data.remote;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 
 public class StockLiveData extends LiveData<Integer> {
 

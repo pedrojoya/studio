@@ -10,14 +10,14 @@
         android:layout_height="0dp"
         android:background="@color/top_left"
         android:gravity="center"
-        android:text="@string/activity_main_top_left"
+        android:text="@string/main_top_left"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/activity_main_top_left_width_percent"
+        app:layout_constraintWidth_percent="@dimen/main_top_left_width_percent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="@dimen/activity_main_top_height_percent"/>
+        app:layout_constraintHeight_percent="@dimen/main_top_height_percent"/>
 
     <TextView
         android:id="@+id/top_right"
@@ -25,13 +25,13 @@
         android:layout_height="0dp"
         android:background="@color/top_right"
         android:gravity="center"
-        android:text="@string/activity_main_top_right"
+        android:text="@string/main_top_right"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/top_left"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="@dimen/activity_main_top_height_percent"/>
+        app:layout_constraintHeight_percent="@dimen/main_top_height_percent"/>
 
     <TextView
         android:id="@+id/middle_left"
@@ -39,14 +39,14 @@
         android:layout_height="0dp"
         android:background="@color/middle_left"
         android:gravity="center"
-        android:text="@string/activity_main_middle_left"
+        android:text="@string/main_middle_left"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/top_left"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/activity_main_middle_left_width_percent"
+        app:layout_constraintWidth_percent="@dimen/main_middle_left_width_percent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="@dimen/activity_main_middle_height_percent"/>
+        app:layout_constraintHeight_percent="@dimen/main_middle_height_percent"/>
 
     <TextView
         android:id="@+id/middle_right"
@@ -54,13 +54,13 @@
         android:layout_height="0dp"
         android:background="@color/middle_right"
         android:gravity="center"
-        android:text="@string/activity_main_middle_right"
+        android:text="@string/main_middle_right"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/top_right"
         app:layout_constraintLeft_toRightOf="@+id/middle_left"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="@dimen/activity_main_middle_height_percent"/>
+        app:layout_constraintHeight_percent="@dimen/main_middle_height_percent"/>
 
     <TextView
         android:id="@+id/bottom_left"
@@ -68,13 +68,13 @@
         android:layout_height="0dp"
         android:background="@color/bottom_left"
         android:gravity="center"
-        android:text="@string/activity_main_bottom_left"
+        android:text="@string/main_bottom_left"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/middle_left"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="@dimen/activity_main_bottom_left_width_percent"/>
+        app:layout_constraintWidth_percent="@dimen/main_bottom_left_width_percent"/>
 
     <TextView
         android:id="@+id/bottom_right"
@@ -82,7 +82,7 @@
         android:layout_height="0dp"
         android:background="@color/bottom_right"
         android:gravity="center"
-        android:text="@string/activity_main_bottom_right"
+        android:text="@string/main_bottom_right"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/middle_right"
         app:layout_constraintLeft_toRightOf="@+id/bottom_left"

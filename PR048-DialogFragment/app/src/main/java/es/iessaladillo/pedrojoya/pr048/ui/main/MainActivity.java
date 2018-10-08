@@ -5,15 +5,15 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
 import es.iessaladillo.pedrojoya.pr048.R;
+import es.iessaladillo.pedrojoya.pr048.ToastUtils;
 import es.iessaladillo.pedrojoya.pr048.base.DatePickerDialogFragment;
 import es.iessaladillo.pedrojoya.pr048.base.DirectSelectionDialogFragment;
 import es.iessaladillo.pedrojoya.pr048.base.MultipleSelectionDialogFragment;
@@ -101,39 +101,35 @@ public class MainActivity extends AppCompatActivity implements OnDateSetListener
     @SuppressLint("DefaultLocale")
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        Toast.makeText(this, getString(R.string.main_activity_selected,
+        ToastUtils.toast(this, getString(R.string.main_activity_selected,
                 String.format("%02d", dayOfMonth) + "/" + String.format("%02d", (monthOfYear + 1))
-                        + "/" + String.format("%04d", year)), Toast.LENGTH_SHORT).show();
+                        + "/" + String.format("%04d", year)));
     }
 
     @SuppressLint("DefaultLocale")
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        Toast.makeText(this, getString(R.string.main_activity_selected,
-                String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, getString(R.string.main_activity_selected,
+                String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute)));
     }
 
     // Positive button on YesNoDialog.
     @Override
     public void onPositiveButtonClick(DialogInterface dialog) {
-        Toast.makeText(this, getString(R.string.main_activity_user_deleted), Toast.LENGTH_SHORT)
-                .show();
+        ToastUtils.toast(this, getString(R.string.main_activity_user_deleted));
     }
 
     // Negative button on YesNoDialog.
     @Override
     public void onNegativeButtonClick(DialogInterface dialog) {
-        Toast.makeText(this, getString(R.string.main_activity_no_delete), Toast.LENGTH_SHORT)
-                .show();
+        ToastUtils.toast(this, getString(R.string.main_activity_no_delete));
     }
 
     // Selection on DirectSelectionDialog. Receives the index of the selected option.
     @Override
     public void onItemSelected(DialogFragment dialog, int which) {
         String[] shifts = getResources().getStringArray(R.array.shifts);
-        Toast.makeText(this, getString(R.string.main_activity_selected, shifts[which]),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, getString(R.string.main_activity_selected, shifts[which]));
     }
 
     @NonNull
@@ -157,8 +153,7 @@ public class MainActivity extends AppCompatActivity implements OnDateSetListener
     @Override
     public void onConfirmSelection(DialogInterface dialog, int which) {
         String[] shifts = getResources().getStringArray(R.array.shifts);
-        Toast.makeText(this, getString(R.string.main_activity_selected, shifts[which]),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, getString(R.string.main_activity_selected, shifts[which]));
     }
 
     // Item selected on SimpleSelectionDialog. Receives the index of the selected
@@ -176,8 +171,7 @@ public class MainActivity extends AppCompatActivity implements OnDateSetListener
         if (mensaje.equals("")) {
             mensaje = getString(R.string.multiple_selection_dialog_no_shift_selected);
         }
-        Toast.makeText(this, getString(R.string.multiple_selection_dialog_selected, mensaje),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, getString(R.string.multiple_selection_dialog_selected, mensaje));
     }
 
     // Item clicked on MultipleSelectionDialog. Receives the index of the option clicked and the
@@ -190,14 +184,13 @@ public class MainActivity extends AppCompatActivity implements OnDateSetListener
     // Click on item in adapter. Receives selected student.
     @Override
     public void onListItemClick(DialogFragment dialog, Student student) {
-        Toast.makeText(this, getString(R.string.main_activity_selected, student.getName()),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, getString(R.string.main_activity_selected, student.getName()));
     }
 
     // Positive button on custom layout dialog.
     @Override
     public void onLoginClick(DialogFragment dialog) {
-        Toast.makeText(this, R.string.main_activity_login, Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, getString(R.string.main_activity_login));
     }
 
     // Neutral button on custom layout dialog.

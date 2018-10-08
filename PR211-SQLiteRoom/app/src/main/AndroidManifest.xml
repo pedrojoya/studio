@@ -22,15 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.student.StudentActivity"
-            android:parentActivityName=".ui.main.MainActivity"
-            android:windowSoftInputMode="adjustResize"
-            tools:ignore="UnusedAttribute">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

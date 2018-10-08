@@ -4,31 +4,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
+import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.iessaladillo.pedrojoya.pr105.R;
+import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
 import es.iessaladillo.pedrojoya.pr105.ui.detail.DetailActivity;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option1.Option1Fragment;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option2.Option2Fragment;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option3.Option3Fragment;
+import es.iessaladillo.pedrojoya.pr105.utils.FragmentUtils;
+import es.iessaladillo.pedrojoya.pr105.utils.PicassoUtils;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnToolbarAvailableListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnToolbarAvailableListener, OnFragmentShownListener {
 
     private static final String PREFERENCES_FILE = "prefs";
     private static final String PREF_NAV_DRAWER_OPENED = "navdrawerOpened";
@@ -45,7 +48,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initViews();
         // if just lunched, select default menu item in drawer.
         if (savedInstanceState == null) {
-            onNavigationItemSelected(navigationView.getMenu().getItem(0));
+            int defaultMnuItemResId = R.id.mnuOption1;
+            MenuItem defaultItem = navigationView.getMenu().findItem(defaultMnuItemResId);
+            if (defaultItem != null) {
+                showOption(defaultItem, false);
+            }
         }
     }
 
@@ -57,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setupNavigationDrawer() {
-        Picasso.with(this).load("http://lorempixel.com/200/200/people/").into(imgProfile);
+        PicassoUtils.loadUrl(imgProfile, "https://picsum.photos/200/200?image=85", R.drawable.background_poly);
         SwitchCompat swDownloadedOnly = (SwitchCompat) navigationView.getMenu().findItem(
                 R.id.mnuDownloaded).getActionView();
         swDownloadedOnly.setOnCheckedChangeListener(
@@ -72,21 +79,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void showOption(int itemId, String title, MenuItem menuItem) {
-        switch (itemId) {
+    private void showOption(MenuItem menuItem, boolean addToBackStack) {
+        switch (menuItem.getItemId()) {
             case R.id.mnuOption1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
-                        new Option1Fragment(), title).commit();
+                if (addToBackStack) {
+                    FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(),
+                            R.id.flContent, new Option1Fragment(),
+                            Option1Fragment.class.getSimpleName(),
+                            Option1Fragment.class.getSimpleName(),
+                            FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                } else {
+                    FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
+                            new Option1Fragment(), Option1Fragment.class.getSimpleName());
+                }
                 menuItem.setChecked(true);
                 break;
             case R.id.mnuOption2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
-                        new Option2Fragment(), title).commit();
+                FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(),
+                        R.id.flContent, new Option2Fragment(),
+                        Option2Fragment.class.getSimpleName(),
+                        Option2Fragment.class.getSimpleName(),
+                        FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 menuItem.setChecked(true);
                 break;
             case R.id.mnuOption3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
-                        new Option3Fragment(), title).commit();
+                FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(),
+                        R.id.flContent, new Option3Fragment(),
+                        Option3Fragment.class.getSimpleName(),
+                        Option3Fragment.class.getSimpleName(),
+                        FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 menuItem.setChecked(true);
                 break;
             case R.id.mnuDetail:
@@ -102,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        showOption(menuItem.getItemId(), menuItem.getTitle().toString(), menuItem);
+        showOption(menuItem, true);
         drawerLayout.closeDrawers();
         return true;
     }
@@ -144,9 +165,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.removeDrawerListener(actionBarDrawerToggle);
         }
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
-                R.string.main_activity_navigation_drawer_open, R.string.main_activity_navigation_drawer_close);
+                R.string.main_activity_navigation_drawer_open,
+                R.string.main_activity_navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
 
+    @Override
+    public void onFragmentShown(int menuItemResId) {
+        MenuItem menuItem = navigationView.getMenu().findItem(menuItemResId);
+        if (menuItem != null) {
+            menuItem.setChecked(true);
+        }
+    }
 }

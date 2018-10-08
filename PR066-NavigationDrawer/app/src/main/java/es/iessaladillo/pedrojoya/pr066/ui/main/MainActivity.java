@@ -1,18 +1,20 @@
 package es.iessaladillo.pedrojoya.pr066.ui.main;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import es.iessaladillo.pedrojoya.pr066.R;
+import es.iessaladillo.pedrojoya.pr066.utils.FragmentUtils;
+import es.iessaladillo.pedrojoya.pr066.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.mnuOption2:
             case R.id.mnuOption3:
             case R.id.mnuOption4:
-                replaceFragment(item.getTitle().toString());
+                showOption(item.getTitle().toString());
                 item.setChecked(true);
                 break;
             case R.id.mnuOption5:
@@ -78,12 +80,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void showOption5Activity() {
-        Toast.makeText(this, R.string.main_activity_show_option5, Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(this, getString(R.string.main_activity_show_option5));
     }
 
-    private void replaceFragment(String title) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.flContent, MainFragment
-                .newInstance(title)).commit();
+    private void showOption(String title) {
+        FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(), R.id.flContent, MainFragment
+                .newInstance(title), MainFragment.class.getSimpleName(),  MainFragment.class
+                .getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
     }
 
 }

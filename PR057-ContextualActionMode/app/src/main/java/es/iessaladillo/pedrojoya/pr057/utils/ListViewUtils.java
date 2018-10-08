@@ -11,9 +11,9 @@ public class ListViewUtils {
     private ListViewUtils() {
     }
 
-    public static List<Object> getSelectedItems(ListView listView, boolean
-            uncheck) {
-        ArrayList<Object> result = new ArrayList<>();
+    // M for Model
+    public static <M> List<M> getSelectedItems(ListView listView, boolean uncheck) {
+        ArrayList<M> result = new ArrayList<>();
         SparseBooleanArray selec = listView.getCheckedItemPositions();
         for (int i = 0; i < selec.size(); i++) {
             // If selected item.
@@ -23,7 +23,8 @@ public class ListViewUtils {
                 if (uncheck) {
                     listView.setItemChecked(position, false);
                 }
-                result.add(listView.getItemAtPosition(selec.keyAt(i)));
+                //noinspection unchecked
+                result.add((M) listView.getItemAtPosition(selec.keyAt(i)));
             }
         }
         return result;

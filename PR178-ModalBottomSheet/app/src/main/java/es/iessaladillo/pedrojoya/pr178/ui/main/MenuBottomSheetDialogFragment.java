@@ -1,23 +1,24 @@
 package es.iessaladillo.pedrojoya.pr178.ui.main;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
 import es.iessaladillo.pedrojoya.pr178.R;
-import es.iessaladillo.pedrojoya.pr178.data.model.Student;
+import es.iessaladillo.pedrojoya.pr178.data.local.model.Student;
+import es.iessaladillo.pedrojoya.pr178.utils.ToastUtils;
 
-public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment implements
-        NavigationView.OnNavigationItemSelectedListener {
+@SuppressWarnings("WeakerAccess")
+public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String ARG_STUDENT = "ARG_STUDENT";
     private static final int SHEET_PEAK_HEIGHT = 650;
@@ -25,7 +26,7 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
     private Student student;
     private NavigationView navigationView;
 
-    static MenuBottomSheetDialogFragment newInstance(Student student) {
+    static MenuBottomSheetDialogFragment newInstance(@NonNull Student student) {
         MenuBottomSheetDialogFragment frg = new MenuBottomSheetDialogFragment();
         Bundle arguments = new Bundle();
         arguments.putParcelable(ARG_STUDENT, student);
@@ -33,8 +34,7 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
         return frg;
     }
 
-    private final BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new
-            BottomSheetBehavior.BottomSheetCallback() {
+    private final BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
 
         @Override
         public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -54,7 +54,7 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bottomsheet, container, false);
+        return inflater.inflate(R.layout.fragment_bottomsheet_menu, container, false);
     }
 
     @Override
@@ -70,24 +70,21 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
     }
 
     private void setupBottomSheet(View view) {
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) view
-                .getParent())
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) view.getParent())
                 .getLayoutParams();
         CoordinatorLayout.Behavior behavior = params.getBehavior();
-        if (behavior != null && behavior instanceof BottomSheetBehavior) {
+        if (behavior instanceof BottomSheetBehavior) {
             BottomSheetBehavior bottomSheetBehavior = (BottomSheetBehavior) behavior;
             bottomSheetBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback);
             // To assure sheet is completely shown.
-            bottomSheetBehavior.setPeekHeight(SHEET_PEAK_HEIGHT);//get the height dynamically
+            bottomSheetBehavior.setPeekHeight(SHEET_PEAK_HEIGHT);
         }
         setupNavigationView();
     }
 
     private void setupNavigationView() {
         navigationView.setNavigationItemSelectedListener(this);
-        if (student != null) {
-            navigationView.getMenu().findItem(R.id.mnuTitle).setTitle(student.getName());
-        }
+        navigationView.getMenu().findItem(R.id.mnuTitle).setTitle(student.getName());
     }
 
     private void obtainArguments() {
@@ -116,21 +113,18 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
     }
 
     private void call() {
-        Toast.makeText(getContext(), getString(R.string.menubottomsheetfragment_call, student
-                        .getName()),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(requireContext(),
+                getString(R.string.menubottomsheetfragment_call, student.getName()));
     }
 
     private void sendMessage() {
-        Toast.makeText(getContext(),
-                getString(R.string.menubottomsheetfragment_send_message, student.getName()),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(requireContext(),
+                getString(R.string.menubottomsheetfragment_send_message, student.getName()));
     }
 
     private void seeNotes() {
-        Toast.makeText(getContext(), getString(R.string.menubottomsheetfragment_see_notes, student
-                        .getName()),
-                Toast.LENGTH_SHORT).show();
+        ToastUtils.toast(requireContext(),
+                getString(R.string.menubottomsheetfragment_see_notes, student.getName()));
     }
 
 }

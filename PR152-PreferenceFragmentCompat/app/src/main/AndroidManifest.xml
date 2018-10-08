@@ -24,7 +24,7 @@
              desde ella misma -->
         <activity
             android:name=".ui.settings.SettingsActivity"
-            android:label="@string/activity_settings_title"
+            android:label="@string/settings_title"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

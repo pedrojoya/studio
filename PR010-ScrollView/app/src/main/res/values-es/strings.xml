@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ScrollView</string>
-    <string name="activity_main_btnSend">Enviar</string>
-    <string name="activity_main_txtMessage">Mensaje</string>
-    <string name="activity_main_lblTitle">Mensajes</string>
-    <string name="main_activity_log_message">[%1$s] %2$s\n\n"</string>
+    <string name="main_btnSend">Enviar</string>
+    <string name="main_txtMessage">Mensaje</string>
+    <string name="main_lblTitle">Mensajes</string>
+    <string name="main_log_message">[%1$s] %2$s\n\n"</string>
 </resources>

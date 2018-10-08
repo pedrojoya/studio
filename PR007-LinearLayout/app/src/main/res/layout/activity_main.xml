@@ -1,67 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llRoot"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/general_activity_vertical_margin"
-    android:paddingRight="@dimen/general_activity_vertical_margin"
-    android:paddingTop="@dimen/general_activity_vertical_margin">
+    android:paddingLeft="@dimen/main_margin"
+    android:paddingRight="@dimen/main_margin"
+    android:paddingTop="@dimen/main_margin">
 
     <TextView
+        android:id="@+id/lblSignIn"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_sign_in" />
+        android:text="@string/main_lblSignIn"/>
 
     <TextView
         android:id="@+id/lblUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:paddingLeft="@dimen/general_edittext_padding"
-        android:paddingRight="@dimen/general_edittext_padding"
-        android:text="@string/activity_main_lblUsername"
+        android:layout_marginTop="@dimen/main_margin"
+        android:paddingLeft="@dimen/main_edittext_padding"
+        android:paddingRight="@dimen/main_edittext_padding"
+        android:text="@string/main_lblUsername"
         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <EditText
         android:id="@+id/txtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/activity_main_txtUsername"
+        android:hint="@string/main_txtUsername"
         android:imeOptions="actionNext"
         android:inputType="text"
-        android:maxLength="@integer/activity_main_txtUsername_maxLength"
+        android:maxLength="@integer/main_txtUsername_maxLength"
         android:maxLines="1"
-        android:paddingTop="@dimen/activity_main_txtUsername_paddingTop"
+        android:paddingTop="@dimen/main_txtUsername_paddingTop"
         tools:ignore="Autofill">
 
-        <requestFocus />
+        <requestFocus/>
     </EditText>
 
     <TextView
         android:id="@+id/lblPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:paddingLeft="@dimen/general_edittext_padding"
-        android:paddingRight="@dimen/general_edittext_padding"
-        android:text="@string/activity_main_lblPassword"
+        android:layout_marginTop="@dimen/main_margin"
+        android:paddingLeft="@dimen/main_edittext_padding"
+        android:paddingRight="@dimen/main_edittext_padding"
+        android:text="@string/main_lblPassword"
         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <EditText
         android:id="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/activity_main_txtPassword"
+        android:hint="@string/main_txtPassword"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
-        android:maxLength="@integer/activity_main_txtUsername_maxLength"
+        android:maxLength="@integer/main_txtUsername_maxLength"
         android:maxLines="1"
-        android:paddingTop="@dimen/activity_main_txtPassword_paddingTop"
+        android:paddingTop="@dimen/main_txtPassword_paddingTop"
         tools:ignore="Autofill"/>
 
     <LinearLayout
+        android:id="@+id/llButtonBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="?android:dividerHorizontal"
@@ -69,11 +73,13 @@
         android:showDividers="middle">
 
         <View
+            android:id="@+id/vLine"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"/>
 
         <LinearLayout
+            android:id="@+id/llButtons"
             style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -84,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/activity_main_btnCancel" />
+                android:text="@string/main_btnCancel"/>
 
             <Button
                 android:id="@+id/btnAccept"
@@ -92,8 +98,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/activity_main_btnAccept" />
+                android:text="@string/main_btnAccept"/>
+
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

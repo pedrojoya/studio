@@ -1,17 +1,16 @@
 package es.iessaladillo.pedrojoya.pr211.data;
 
-import android.arch.lifecycle.LiveData;
-
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr211.data.model.Student;
+import androidx.lifecycle.LiveData;
+import es.iessaladillo.pedrojoya.pr211.data.local.model.Student;
 
 public interface Repository {
 
-    LiveData<List<Student>> getStudents();
-    LiveData<Student> getStudent(long studentId);
-    long addStudent(Student student);
-    int updateStudent(Student student);
-    int deleteStudent(Student student);
+    LiveData<List<Student>> queryStudents();
+    LiveData<Student> queryStudent(long studentId);
+    long insertStudent(Student student);
+    long updateStudent(Student student);
+    long deleteStudent(Student student);
 
 }

@@ -1,6 +1,4 @@
 <resources>
-
-    <dimen name="general_activity_horizontal_margin">8dp</dimen>
-    <dimen name="general_activity_vertical_margin">16dp</dimen>
-
+    <dimen name="main_horizontal_margin">8dp</dimen>
+    <dimen name="main_vertical_margin">16dp</dimen>
 </resources>

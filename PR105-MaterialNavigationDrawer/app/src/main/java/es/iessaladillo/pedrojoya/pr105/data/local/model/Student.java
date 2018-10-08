@@ -1,30 +1,44 @@
 package es.iessaladillo.pedrojoya.pr105.data.local.model;
 
-// Modelo Student.
+import androidx.annotation.NonNull;
+
 public class Student {
 
-    private final String nombre;
-    private final String direccion;
-    private final String urlFoto;
+    private long id;
+    private final String name;
+    private final String address;
+    private final String photoUrl;
 
-    @SuppressWarnings("UnusedParameters")
-    public Student(String nombre, String direccion, int edad, String urlFoto) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.urlFoto = urlFoto;
-
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    public Student(long id, @NonNull String name, String address, String photoUrl) {
+        this.name = name;
+        this.address = address;
+        this.photoUrl = photoUrl;
     }
 
-    public String getUrlFoto() {
-        return urlFoto;
+    public Student(@NonNull String name, String address, String photoUrl) {
+        this(0, name, address, photoUrl);
     }
 
-    public String getDireccion() {
-        return direccion;
+    @SuppressWarnings("unused")
+    public long getId() {
+        return id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

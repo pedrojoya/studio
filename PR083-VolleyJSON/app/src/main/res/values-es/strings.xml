@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VolleyJSON</string>
+    <string name="activity_main_lblEmptyView">No hay alumnos que mostrar</string>
+    <string name="activity_main_item_imgPhoto">Foto del alumno</string>
+    <string name="activity_main_item_btnMarks">Notas</string>
+    <string name="activity_main_item_btnCall">Llamar</string>
+    <string name="activity_main_item_lblRepeater">REP</string>
+    <string name="main_refresh">Recargar</string>
+    <plurals name="main_activity_adapter_years">
+        <item quantity="one">%1$d year old</item>
+        <item quantity="other">%1$d years old</item>
+    </plurals>
+
+</resources>

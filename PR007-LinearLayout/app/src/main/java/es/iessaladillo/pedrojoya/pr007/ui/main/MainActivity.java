@@ -2,8 +2,6 @@ package es.iessaladillo.pedrojoya.pr007.ui.main;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -12,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr007.R;
 import es.iessaladillo.pedrojoya.pr007.utils.ToastUtils;
 
@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         TextView lblUsername = ActivityCompat.requireViewById(this, R.id.lblUsername);
         TextView lblPassword = ActivityCompat.requireViewById(this, R.id.lblPassword);
         txtUsername = ActivityCompat.requireViewById(this, R.id.txtUsername);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void signIn() {
         ToastUtils.toast(this,
-                getString(R.string.main_activity_signing_in, txtUsername.getText().toString()));
+                getString(R.string.main_signing_in, txtUsername.getText().toString()));
     }
 
     private void resetViews() {

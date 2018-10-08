@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr211.utils;
 
 import android.annotation.SuppressLint;
-import android.arch.persistence.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 import android.content.res.AssetManager;
 import android.text.TextUtils;
 import android.util.Log;

@@ -1,12 +1,7 @@
 package es.iessaladillo.pedrojoya.pr080.ui.main;
 
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +11,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr080.R;
-import es.iessaladillo.pedrojoya.pr080.base.RequestState;
 import es.iessaladillo.pedrojoya.pr080.base.Event;
+import es.iessaladillo.pedrojoya.pr080.base.RequestState;
 import es.iessaladillo.pedrojoya.pr080.utils.KeyboardUtils;
 
 public class MainFragment extends Fragment {
@@ -29,7 +29,7 @@ public class MainFragment extends Fragment {
     private Button btnSearch;
     @SuppressWarnings("FieldCanBeLocal")
     private Button btnEcho;
-    private MainActivityViewModel viewModel;
+    private MainFragmentViewModel viewModel;
 
     public MainFragment() {
     }
@@ -47,7 +47,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
         initViews(getView());
         observeSearch();
         observeEcho();
@@ -78,11 +78,11 @@ public class MainFragment extends Fragment {
     }
 
     private void observeSearch() {
-        viewModel.getSearchLiveData().observe(this, searchRequest -> {
+        viewModel.getSearchLiveData().observe(getViewLifecycleOwner(), searchRequest -> {
             if (searchRequest instanceof RequestState.Error) {
                 showErrorSearching((RequestState.Error) searchRequest);
             } else if (searchRequest instanceof RequestState.Result) {
-                RequestState.Result<Event<String>> searchResult = (RequestState.Result<Event<String>>) searchRequest;
+                @SuppressWarnings("unchecked") RequestState.Result<Event<String>> searchResult = (RequestState.Result<Event<String>>) searchRequest;
                 String result = searchResult.getData().getContentIfNotHandled();
                 if (result != null) {
                     showResult(result);
@@ -95,10 +95,11 @@ public class MainFragment extends Fragment {
     }
 
     private void observeEcho() {
-        viewModel.getEchoLiveData().observe(this, echoRequest -> {
+        viewModel.getEchoLiveData().observe(getViewLifecycleOwner(), echoRequest -> {
             if (echoRequest instanceof RequestState.Error) {
                 showErrorRequestingEcho((RequestState.Error) echoRequest);
             } else if (echoRequest instanceof RequestState.Result) {
+                //noinspection unchecked
                 RequestState.Result<Event<String>> echoResult = (RequestState.Result<Event<String>>) echoRequest;
                 String result = echoResult.getData().getContentIfNotHandled();
                 if (result != null) {

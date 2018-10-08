@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr080.data.remote.search;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.os.AsyncTask;
 
 import java.net.HttpURLConnection;

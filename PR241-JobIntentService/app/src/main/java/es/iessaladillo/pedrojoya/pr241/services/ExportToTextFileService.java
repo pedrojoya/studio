@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.JobIntentService;
-import android.support.v4.content.LocalBroadcastManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,13 +15,17 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.JobIntentService;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import es.iessaladillo.pedrojoya.pr241.BuildConfig;
+
 @SuppressWarnings("WeakerAccess")
 public class ExportToTextFileService extends JobIntentService {
 
     private static final String EXTRA_DATA = "EXTRA_DATA";
     public static final String EXTRA_FILENAME = "EXTRA_FILENAME";
-    public static final String ACTION_EXPORTED =
-            "es.iessaladillo.pedrojoya.pr241.ACTION_EXPORTED";
+    public static final String ACTION_EXPORTED = BuildConfig.APPLICATION_ID + ".ACTION_EXPORTED";
     static final int JOB_ID = 1000;
 
     @Override

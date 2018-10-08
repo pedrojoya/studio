@@ -1,7 +1,7 @@
 package es.iessaladillo.pedrojoya.pr234.ui.main;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import es.iessaladillo.pedrojoya.pr234.R;
 

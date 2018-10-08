@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BottomNavigationView</string>
-    <string name="activity_main_nav_mnuFavorites">Favoritos</string>
-    <string name="activity_main_nav_mnuCalendar">Calendario</string>
-    <string name="activity_main_nav_mnuMusic">Música</string>
-    <string name="fragment_main_lblOption">Opción</string>
-    <string name="main_activity_favorites">Favorites</string>
+    <string name="activity_main_nav_mnuFavorites">Favourites</string>
+    <string name="activity_main_nav_mnuCalendar">Calendar</string>
+    <string name="activity_main_nav_mnuMusic">Music</string>
+    <string name="fragment_main_lblOption">Option</string>
+    <string name="main_activity_favorites">Favourites</string>
     <string name="main_activity_calendar">Calendar</string>
     <string name="main_activity_music">Music</string>
     <string name="activity_main_txtLorem" tools:ignore="Typos">Lorem ipsum

@@ -3,24 +3,28 @@ package es.iessaladillo.pedrojoya.pr105.ui.main.option2;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import es.iessaladillo.pedrojoya.pr105.R;
+import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
+import es.iessaladillo.pedrojoya.pr105.ui.main.option2.tab1.Option2Tab1Fragment;
+import es.iessaladillo.pedrojoya.pr105.ui.main.option2.tab2.Option2Tab2Fragment;
 
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -29,7 +33,8 @@ public class Option2Fragment extends Fragment {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton fab;
-    private OnToolbarAvailableListener listener;
+    private OnToolbarAvailableListener onToolbarAvailableListener;
+    private OnFragmentShownListener onFragmentShownListener;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -47,10 +52,16 @@ public class Option2Fragment extends Fragment {
         setupToolbar(view);
         setupFab(view);
         setupViewPager(view);
+        // In order to update the checked menuItem when coming from backstack.
+        informActivity();
+    }
+
+    private void informActivity() {
+        onFragmentShownListener.onFragmentShown(R.id.mnuOption2);
     }
 
     private void setupToolbar(View view) {
-        listener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
+        onToolbarAvailableListener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
                 getString(R.string.activity_main_option2));
     }
 
@@ -58,10 +69,16 @@ public class Option2Fragment extends Fragment {
     public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
-            listener = (OnToolbarAvailableListener) activity;
+            onToolbarAvailableListener = (OnToolbarAvailableListener) activity;
         } catch (Exception e) {
             throw new ClassCastException(activity.toString()
                     + " debe implementar la interfaz OnToolbarAvailableListener");
+        }
+        try {
+            onFragmentShownListener = (OnFragmentShownListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " debe implementar la interfaz OnFragmentShownListener");
         }
     }
 

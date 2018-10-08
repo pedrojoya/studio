@@ -1,11 +1,7 @@
 package es.iessaladillo.pedrojoya.pr010.ui.main;
 
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.core.widget.NestedScrollView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.inputmethod.EditorInfo;
@@ -17,7 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.widget.NestedScrollView;
 import es.iessaladillo.pedrojoya.pr010.R;
+import es.iessaladillo.pedrojoya.pr010.utils.KeyboardUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,26 +27,22 @@ public class MainActivity extends AppCompatActivity {
     private ImageView btnSend;
     private NestedScrollView scvText;
 
-    private SimpleDateFormat mDateFormatter;
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss",
+            Locale.getDefault());
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
-        mDateFormatter = new SimpleDateFormat("HH:mm:ss",
-                Locale.getDefault());
+        setupView();
     }
 
-    private void initViews() {
+    private void setupView() {
         lblText = ActivityCompat.requireViewById(this, R.id.lblText);
         txtMessage = ActivityCompat.requireViewById(this, R.id.txtMessage);
         btnSend = ActivityCompat.requireViewById(this, R.id.btnSend);
         scvText = ActivityCompat.requireViewById(this, R.id.scvText);
 
-        txtMessage.setHorizontallyScrolling(false);
-        txtMessage.setMaxLines(getResources().getInteger(R.integer.main_activity_txtMensaje_maxLines));
-        txtMessage.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         txtMessage.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 sendMessage(txtMessage.getText().toString());
@@ -56,13 +53,11 @@ public class MainActivity extends AppCompatActivity {
         txtMessage.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
@@ -77,17 +72,16 @@ public class MainActivity extends AppCompatActivity {
         doScroll(scvText);
     }
 
-    private void sendMessage(String text) {
+    private void sendMessage(@NonNull String text) {
         if (!TextUtils.isEmpty(text)) {
-            String time = mDateFormatter.format(new Date());
-            lblText.append(getString(R.string.main_activity_log_message, time, text));
+            KeyboardUtils.hideSoftKeyboard(this);
+            lblText.append(getString(R.string.main_log_message, simpleDateFormat.format(new Date()), text));
             txtMessage.setText("");
             doScroll(scvText);
         }
     }
 
-    @SuppressWarnings("SameParameterValue")
-    private void doScroll(final NestedScrollView scv) {
+    private void doScroll(@NonNull final NestedScrollView scv) {
         // Must be posted in order to calculate the end position correctly.
         scv.post(() -> {
             scv.smoothScrollTo(0, scv.getBottom());

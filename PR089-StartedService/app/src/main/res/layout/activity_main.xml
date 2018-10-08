@@ -1,45 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:id="@+id/constraintLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flContent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.iessaladillo.pedrojoya.pr089.ui.main.MainActivity">
-
-    <TextView
-        android:id="@+id/lblInteger"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_main_margin"
-        android:layout_marginTop="@dimen/activity_main_margin"
-        android:text="@string/activity_main_lblInteger"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <EditText
-        android:id="@+id/txtInteger"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_main_margin"
-        android:layout_marginStart="@dimen/activity_main_margin"
-        android:hint="@string/activity_main_txtInteger"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblInteger"/>
-
-    <Button
-        android:id="@+id/btnCalculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_main_margin"
-        android:layout_marginStart="@dimen/activity_main_margin"
-        android:layout_marginTop="@dimen/activity_main_margin"
-        android:text="@string/activity_main_btnCalculate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInteger"/>
-
-</android.support.constraint.ConstraintLayout>
+    tools:ignore="MergeRootFrame" />

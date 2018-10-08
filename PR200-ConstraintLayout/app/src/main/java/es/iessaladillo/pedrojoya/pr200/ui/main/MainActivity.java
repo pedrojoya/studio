@@ -2,9 +2,6 @@ package es.iessaladillo.pedrojoya.pr200.ui.main;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr200.R;
 import es.iessaladillo.pedrojoya.pr200.utils.ToastUtils;
 
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText txtUsername;
     private EditText txtPassword;
-    private Button btnLogin;
+    private Button btnAccept;
     private TextView lblUsername;
     private TextView lblPassword;
 
@@ -28,22 +27,23 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
-        btnLogin = ActivityCompat.requireViewById(this, R.id.btnLogin);
-        btnLogin.setOnClickListener(v -> login());
+    private void setupViews() {
+        btnAccept = ActivityCompat.requireViewById(this, R.id.btnAccept);
         Button btnCancel = ActivityCompat.requireViewById(this, R.id.btnCancel);
-        btnCancel.setOnClickListener(v -> resetViews());
         lblUsername = ActivityCompat.requireViewById(this, R.id.lblUsername);
         lblPassword = ActivityCompat.requireViewById(this, R.id.lblPassword);
         txtUsername = ActivityCompat.requireViewById(this, R.id.txtUsername);
         txtPassword = ActivityCompat.requireViewById(this, R.id.txtPassword);
+
+        btnAccept.setOnClickListener(v -> login());
+        btnCancel.setOnClickListener(v -> resetViews());
         txtUsername.setOnFocusChangeListener(
-                (v, hasFocus) -> setColorOnFocus(lblUsername, hasFocus));
+                (v, hasFocus) -> setTypefaceOnFocus(lblUsername, hasFocus));
         txtPassword.setOnFocusChangeListener(
-                (v, hasFocus) -> setColorOnFocus(lblPassword, hasFocus));
+                (v, hasFocus) -> setTypefaceOnFocus(lblPassword, hasFocus));
         txtUsername.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        setColorOnFocus(lblUsername, true);
+        setTypefaceOnFocus(lblUsername, true);
         checkIsValidForm();
         checkVisibility(txtPassword, lblPassword);
         checkVisibility(txtUsername, lblUsername);
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void login() {
         ToastUtils.toast(this,
-                getString(R.string.main_activity_connected, txtUsername.getText().toString()));
+                getString(R.string.main_signing_in, txtUsername.getText().toString()));
     }
 
     private void resetViews() {
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkIsValidForm() {
-        btnLogin.setEnabled(
+        btnAccept.setEnabled(
                 !TextUtils.isEmpty(txtUsername.getText().toString()) && !TextUtils.isEmpty(
                         txtPassword.getText().toString()));
     }
@@ -109,12 +109,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setColorOnFocus(TextView lbl, boolean hasFocus) {
+    private void setTypefaceOnFocus(TextView lbl, boolean hasFocus) {
         if (hasFocus) {
-            lbl.setTextColor(ContextCompat.getColor(this, R.color.accent));
             lbl.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
-            lbl.setTextColor(ContextCompat.getColor(this, R.color.primary));
             lbl.setTypeface(Typeface.DEFAULT);
         }
     }

@@ -4,10 +4,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 public class YesNoDialogFragment extends DialogFragment {
 
@@ -30,7 +32,7 @@ public class YesNoDialogFragment extends DialogFragment {
     }
 
     public static YesNoDialogFragment newInstance(String title, String message, String yesText,
-            String noText) {
+            String noText, Fragment target, int requestCode) {
         YesNoDialogFragment frg = new YesNoDialogFragment();
         Bundle arguments = new Bundle();
         arguments.putString(ARG_TITLE, title);
@@ -38,6 +40,7 @@ public class YesNoDialogFragment extends DialogFragment {
         arguments.putString(ARG_YES_TEXT, yesText);
         arguments.putString(ARG_NO_TEXT, noText);
         frg.setArguments(arguments);
+        frg.setTargetFragment(target, requestCode);
         return frg;
     }
 
