@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr011.data.Repository;
 
-class MainActivityViewModel extends ViewModel {
+public class MainActivityViewModel extends ViewModel {
 
     private List<String> students;
     @NonNull
@@ -23,12 +23,12 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    void addStudent(@NonNull String student) {
-        repository.addStudent(student);
+    int addStudent(@NonNull String student) {
+        return repository.addStudent(student);
     }
 
-    void deleteStudent(@NonNull String student) {
-        repository.deleteStudent(student);
+    int deleteStudent(@NonNull String student) {
+        return repository.deleteStudent(student);
     }
 
 }

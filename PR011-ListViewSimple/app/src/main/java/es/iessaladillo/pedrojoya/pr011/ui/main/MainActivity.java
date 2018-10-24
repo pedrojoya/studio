@@ -9,10 +9,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr011.R;
-import es.iessaladillo.pedrojoya.pr011.data.RepositoryImpl;
-import es.iessaladillo.pedrojoya.pr011.data.local.Database;
+import es.iessaladillo.pedrojoya.pr011.injection.Injector;
 import es.iessaladillo.pedrojoya.pr011.utils.KeyboardUtils;
 import es.iessaladillo.pedrojoya.pr011.utils.TextViewUtils;
 import es.iessaladillo.pedrojoya.pr011.utils.ToastUtils;
@@ -29,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this,
-                new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
-                MainActivityViewModel.class);
+        viewModel = Injector.getInstance().provideMainActivityViewModel(this);
         setupViews();
         checkInitialState();
     }
@@ -82,10 +78,13 @@ public class MainActivity extends AppCompatActivity {
     private void addStudent() {
         if (isValidForm()) {
             KeyboardUtils.hideSoftKeyboard(this);
-            viewModel.addStudent(txtName.getText().toString());
-            // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
-            listAdapter.notifyDataSetChanged();
-            resetForm();
+            if (viewModel.addStudent(txtName.getText().toString()) > 0) {
+                // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
+                listAdapter.notifyDataSetChanged();
+                resetForm();
+            }  else {
+                ToastUtils.toast(this, getString(R.string.main_error_inserting_student));
+            }
         }
     }
 
@@ -96,9 +95,12 @@ public class MainActivity extends AppCompatActivity {
     private void deleteStudent(String student) {
         KeyboardUtils.hideSoftKeyboard(this);
         if (student != null) {
-            viewModel.deleteStudent(student);
-            // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
-            listAdapter.notifyDataSetChanged();
+            if (viewModel.deleteStudent(student) > 0) {
+                // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
+                listAdapter.notifyDataSetChanged();
+            } else {
+                ToastUtils.toast(this, getString(R.string.main_error_deleting_student));
+            }
         }
     }
 

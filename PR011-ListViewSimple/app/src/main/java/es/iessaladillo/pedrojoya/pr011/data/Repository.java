@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 public interface Repository {
 
     List<String> queryStudents();
-    void addStudent(@NonNull String student);
-    void deleteStudent(@NonNull String student);
+    int addStudent(@NonNull String student);
+    int deleteStudent(@NonNull String student);
 
 }

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Alumnos</string>
-    <string name="main_activity_txtName">Nombre</string>
-    <string name="activity_main_btnAdd">Agregar</string>
-    <string name="activity_main_lblEmptyView">No hay alumnos</string>
+    <string name="main_txtName">Nombre</string>
+    <string name="main_btnAdd">Agregar</string>
+    <string name="main_lblEmptyView">No hay alumnos</string>
+    <string name="main_error_deleting_student">No se pudo eliminar el alumno</string>
+    <string name="main_error_inserting_student">No se pudo insertar el alumno</string>
 </resources>

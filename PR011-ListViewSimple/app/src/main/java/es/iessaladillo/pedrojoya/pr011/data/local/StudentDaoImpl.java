@@ -18,13 +18,13 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public void addStudent(@NonNull String student) {
-        database.insert(Database.TABLE_STUDENTS, student);
+    public int addStudent(@NonNull String student) {
+        return database.insert(Database.TABLE_STUDENTS, student);
     }
 
     @Override
-    public void deleteStudent(@NonNull String student) {
-        database.delete(Database.TABLE_STUDENTS, student);
+    public int deleteStudent(@NonNull String student) {
+        return database.delete(Database.TABLE_STUDENTS, student);
     }
 
 }

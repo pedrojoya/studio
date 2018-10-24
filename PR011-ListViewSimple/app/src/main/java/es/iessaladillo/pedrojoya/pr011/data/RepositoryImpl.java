@@ -3,30 +3,43 @@ package es.iessaladillo.pedrojoya.pr011.data;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import es.iessaladillo.pedrojoya.pr011.data.local.Database;
+import es.iessaladillo.pedrojoya.pr011.data.local.StudentDao;
 
 public class RepositoryImpl implements Repository {
 
-    @NonNull
-    private final Database database;
+    private static volatile RepositoryImpl instance;
 
-    public RepositoryImpl(@NonNull Database database) {
-        this.database = database;
+    @NonNull
+    private final StudentDao studentDao;
+
+    public static RepositoryImpl getInstance(StudentDao studentDao) {
+        if (instance == null) {
+            synchronized (RepositoryImpl.class) {
+                if (instance == null) {
+                    instance = new RepositoryImpl(studentDao);
+                }
+            }
+        }
+        return instance;
+    }
+
+    private RepositoryImpl(@NonNull StudentDao studentDao) {
+        this.studentDao = studentDao;
     }
 
     @Override
     public List<String> queryStudents() {
-        return database.getStudents();
+        return studentDao.queryStudents();
     }
 
     @Override
-    public void addStudent(@NonNull String student) {
-        database.addStudent(student);
+    public int addStudent(@NonNull String student) {
+        return studentDao.addStudent(student);
     }
 
     @Override
-    public void deleteStudent(@NonNull String student) {
-        database.deleteStudent(student);
+    public int deleteStudent(@NonNull String student) {
+        return studentDao.deleteStudent(student);
     }
 
 }

@@ -37,17 +37,17 @@ public class Database {
         }
     }
 
-    public <T> boolean insert(String tableName, T item) {
+    public <T> int insert(String tableName, T item) {
         if (TextUtils.equals(tableName, TABLE_STUDENTS)) {
-            return students.add((String) item);
+            return students.add((String) item) ? 1 : 0;
         } else {
             throw new RuntimeException("Table unkown in database");
         }
     }
 
-    public <T> boolean delete(String tableName, T item) {
+    public <T> int delete(String tableName, T item) {
         if (TextUtils.equals(tableName, TABLE_STUDENTS)) {
-            return students.remove((String) item);
+            return students.remove((String) item) ? 1 : 0;
         } else {
             throw new RuntimeException("Table unkown in database");
         }
