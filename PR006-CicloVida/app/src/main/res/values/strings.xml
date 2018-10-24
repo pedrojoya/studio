@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ciclo de vida</string>
+    <string name="app_name">Activity lifecycle</string>
     <string name="main_activity_oncreate">onCreate\n</string>
     <string name="main_activity_ondestroy">onDestroy\n</string>
     <string name="main_activity_onpause">onPause\n</string>

@@ -3,6 +3,8 @@ package es.iessaladillo.pedrojoya.pr011.data.local;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 public class Database {
 
     private static volatile Database instance;
@@ -28,11 +30,11 @@ public class Database {
         return students;
     }
 
-    public void addStudent(String student) {
+    public void addStudent(@NonNull String student) {
         students.add(student);
     }
 
-    public void deleteStudent(String student) {
+    public void deleteStudent(@NonNull String student) {
         students.remove(student);
     }
 

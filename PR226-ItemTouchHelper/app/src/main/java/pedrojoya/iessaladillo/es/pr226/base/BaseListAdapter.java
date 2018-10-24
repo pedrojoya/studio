@@ -1,16 +1,18 @@
 package pedrojoya.iessaladillo.es.pr226.base;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 // V is ViewModel type, M is Model type.
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends RecyclerView.Adapter<V> {
 
+    @NonNull
     private List<M> data = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
@@ -35,11 +37,12 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
         }
     };
 
-    public void submitList(List<M> data) {
+    public void submitList(@NonNull List<M> data) {
         this.data = data;
         notifyDataSetChanged();
     }
 
+    @NonNull
     public List<M> getList() {
         return data;
     }
@@ -69,7 +72,7 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
 
     @Override
     public final int getItemCount() {
-        return data == null ? 0 : data.size();
+        return data.size();
     }
 
     public M getItem(int position) {
@@ -81,12 +84,12 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
         notifyItemRemoved(position);
     }
 
-    public void addItem(M item) {
+    public void addItem(@NonNull M item) {
         data.add(item);
         notifyItemInserted(data.size() - 1);
     }
 
-    public void insertItem(M item, int position) {
+    public void insertItem(@NonNull M item, int position) {
         data.add(position, item);
         notifyItemInserted(position);
     }
@@ -105,13 +108,11 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
     }
 
     public interface OnItemClickListener {
-        @SuppressWarnings("unused")
-        void onItemClick(View view, int position);
+        void onItemClick(@NonNull View view, int position);
     }
 
     @SuppressWarnings("WeakerAccess")
     public interface OnItemLongClickListener {
-        @SuppressWarnings({"SameReturnValue", "unused"})
-        boolean onItemLongClick(View view, int position);
+        boolean onItemLongClick(@NonNull View view, int position);
     }
 }

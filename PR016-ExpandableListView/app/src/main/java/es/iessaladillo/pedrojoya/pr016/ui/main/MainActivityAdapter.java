@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr016.ui.main;
 
-import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import es.iessaladillo.pedrojoya.pr016.R;
 import es.iessaladillo.pedrojoya.pr016.data.local.model.Student;
 
@@ -27,7 +28,7 @@ class MainActivityAdapter extends BaseExpandableListAdapter {
         private final TextView lblName;
         private final TextView lblGrade;
 
-        ChildViewHolder(View itemView) {
+        ChildViewHolder(@NonNull View itemView) {
             lblName = ViewCompat.requireViewById(itemView, R.id.lblNombre);
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblCurso);
             itemView.setTag(this);
@@ -49,7 +50,7 @@ class MainActivityAdapter extends BaseExpandableListAdapter {
         private final ImageView imgIndicator;
         private final LinearLayout llColumnsHeader;
 
-        GroupViewHolder(View itemView) {
+        GroupViewHolder(@NonNull View itemView) {
             lblLevelHeader = ViewCompat.requireViewById(itemView, R.id.lblLevelHeader);
             imgIndicator = ViewCompat.requireViewById(itemView, R.id.imgIndicator);
             llColumnsHeader = ViewCompat.requireViewById(itemView, R.id.llColumnsHeader);
@@ -76,7 +77,7 @@ class MainActivityAdapter extends BaseExpandableListAdapter {
 
     }
 
-    MainActivityAdapter(List<String> groups, List<List<Student>> children) {
+    MainActivityAdapter(@NonNull List<String> groups, @NonNull List<List<Student>> children) {
         this.groups = groups;
         this.children = children;
     }

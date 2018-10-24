@@ -1,21 +1,23 @@
 package pedrojoya.iessaladillo.es.pr106.ui.main;
 
-import androidx.lifecycle.ViewModel;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import pedrojoya.iessaladillo.es.pr106.data.Repository;
 import pedrojoya.iessaladillo.es.pr106.data.local.model.Student;
 
 class MainActivityViewModel extends ViewModel {
 
+    @NonNull
     private final Repository repository;
     private List<Student> students;
 
-    MainActivityViewModel(Repository repository) {
+    MainActivityViewModel(@NonNull Repository repository) {
         this.repository = repository;
     }
 
+    @NonNull
     List<Student> getStudents(boolean forceLoad) {
         if (students == null || forceLoad) {
             students = repository.queryStudents();
@@ -23,11 +25,11 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    void insertStudent(Student student) {
+    void insertStudent(@NonNull Student student) {
         repository.insertStudent(student);
     }
 
-    void deleteStudent(Student student) {
+    void deleteStudent(@NonNull Student student) {
         repository.deleteStudent(student);
     }
 }

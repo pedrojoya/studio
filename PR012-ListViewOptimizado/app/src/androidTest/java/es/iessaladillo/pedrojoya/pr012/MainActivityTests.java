@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.espresso.matcher.BoundedMatcher;
-import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -20,6 +15,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.InstrumentationRegistry;
+import androidx.test.espresso.matcher.BoundedMatcher;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
 import es.iessaladillo.pedrojoya.pr012.ui.main.MainActivity;
 

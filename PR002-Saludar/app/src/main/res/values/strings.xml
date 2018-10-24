@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Greeting</string>
-
-    <string name="activity_main_lblName">Name</string>
-    <string name="activity_main_btnGreet">Greet</string>
-    <string name="main_activity_polite_mode">Polite mode: Activated</string>
-
-    <string name="main_activity_good_morning">Good morning</string>
-    <string name="main_activity_impolite_mode">Polite mode: Deactivated</string>
-    <string name="main_activity_nice_to_meet_you">. Nice to meet you</string>
+    <string name="main_lblName">Name</string>
+    <string name="main_btnGreet">Greet</string>
+    <string name="main_polite_mode">Polite mode: Activated</string>
+    <string name="main_impolite_mode">Polite mode: Deactivated</string>
+    <string name="main_good_morning">Good morning</string>
+    <string name="main_nice_to_meet_you">. Nice to meet you</string>
 </resources>

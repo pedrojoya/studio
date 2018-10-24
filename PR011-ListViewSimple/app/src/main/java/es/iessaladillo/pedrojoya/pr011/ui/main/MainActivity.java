@@ -1,21 +1,20 @@
 package es.iessaladillo.pedrojoya.pr011.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr011.R;
 import es.iessaladillo.pedrojoya.pr011.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr011.data.local.Database;
+import es.iessaladillo.pedrojoya.pr011.utils.KeyboardUtils;
+import es.iessaladillo.pedrojoya.pr011.utils.TextViewUtils;
 import es.iessaladillo.pedrojoya.pr011.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,40 +32,26 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
+        checkInitialState();
     }
 
-    private void initViews() {
+    private void checkInitialState() {
+        checkIsValidForm();
+    }
+
+    private void setupViews() {
         btnAdd = ActivityCompat.requireViewById(this, R.id.btnAdd);
         txtName = ActivityCompat.requireViewById(this, R.id.txtName);
-        ListView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         btnAdd.setOnClickListener(v -> addStudent());
-        txtName.addTextChangedListener(new TextWatcher() {
+        TextViewUtils.addAfterTextChangedListener(txtName, s -> checkIsValidForm());
+        TextViewUtils.setOnImeActionDoneListener(txtName, (v, event) -> addStudent());
+        setupListView();
+    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                checkIsValidForm();
-            }
-
-        });
-        txtName.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                if (isValidForm()) {
-                    addStudent();
-                }
-                return true;
-            }
-            return false;
-        });
+    private void setupListView() {
+        ListView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
         lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmptyView));
         lstStudents.setOnItemClickListener(
                 (adapterView, view, position, id) -> showStudent(listAdapter.getItem(position)));
@@ -77,12 +62,13 @@ public class MainActivity extends AppCompatActivity {
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 viewModel.getStudents());
         lstStudents.setAdapter(listAdapter);
-        // Initial state
-        checkIsValidForm();
     }
 
     private void showStudent(String student) {
-        ToastUtils.toast(this, student);
+        KeyboardUtils.hideSoftKeyboard(this);
+        if (student != null) {
+            ToastUtils.toast(this, student);
+        }
     }
 
     private void checkIsValidForm() {
@@ -94,17 +80,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addStudent() {
-        viewModel.addStudent(txtName.getText().toString());
-        // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
-        listAdapter.notifyDataSetChanged();
+        if (isValidForm()) {
+            KeyboardUtils.hideSoftKeyboard(this);
+            viewModel.addStudent(txtName.getText().toString());
+            // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
+            listAdapter.notifyDataSetChanged();
+            resetForm();
+        }
+    }
+
+    private void resetForm() {
         txtName.setText("");
-        checkIsValidForm();
     }
 
     private void deleteStudent(String student) {
-        viewModel.deleteStudent(student);
-        // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
-        listAdapter.notifyDataSetChanged();
+        KeyboardUtils.hideSoftKeyboard(this);
+        if (student != null) {
+            viewModel.deleteStudent(student);
+            // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
+            listAdapter.notifyDataSetChanged();
+        }
     }
 
 }

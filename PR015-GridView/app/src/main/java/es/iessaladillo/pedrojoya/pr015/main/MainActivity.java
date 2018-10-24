@@ -1,11 +1,11 @@
 package es.iessaladillo.pedrojoya.pr015.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.GridView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr015.R;
 import es.iessaladillo.pedrojoya.pr015.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr015.data.local.Database;
@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         GridView grdWords = ActivityCompat.requireViewById(this, R.id.grdWords);
+
         listAdapter = new MainActivityAdapter(viewModel.getWords());
         grdWords.setAdapter(listAdapter);
         grdWords.setOnItemClickListener(

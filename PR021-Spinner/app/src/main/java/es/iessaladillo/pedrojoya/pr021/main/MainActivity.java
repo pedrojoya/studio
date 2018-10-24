@@ -1,9 +1,6 @@
 package es.iessaladillo.pedrojoya.pr021.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,6 +8,9 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr021.R;
 import es.iessaladillo.pedrojoya.pr021.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr021.data.local.Database;
@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spnCountry;
     private Button btnShow;
 
-    @SuppressWarnings("FieldCanBeLocal")
     private MainActivityViewModel viewModel;
 
     @Override
@@ -31,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         btnShow = ActivityCompat.requireViewById(this, R.id.btnShow);
         spnCountry = ActivityCompat.requireViewById(this, R.id.spnCountry);
 

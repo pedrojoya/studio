@@ -1,8 +1,6 @@
 package es.iessaladillo.pedrojoya.pr002.ui.main;
 
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -11,6 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr002.R;
 import es.iessaladillo.pedrojoya.pr002.utils.KeyboardUtils;
 import es.iessaladillo.pedrojoya.pr002.utils.ToastUtils;
@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         txtName = ActivityCompat.requireViewById(this, R.id.txtName);
         chkPolite = ActivityCompat.requireViewById(this, R.id.chkPolite);
         btnGreet = ActivityCompat.requireViewById(this, R.id.btnGreet);
@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     }
 
     private void greet() {
-        StringBuilder sb = new StringBuilder(getString(R.string.main_activity_good_morning));
+        StringBuilder sb = new StringBuilder(getString(R.string.main_good_morning));
         if (chkPolite.isChecked()) {
-            sb.append(getString(R.string.main_activity_nice_to_meet_you));
+            sb.append(getString(R.string.main_nice_to_meet_you));
         }
         sb.append(" ").append(txtName.getText());
         KeyboardUtils.hideKeyboard(this);
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        chkPolite.setText(isChecked ? getString(R.string.main_activity_polite_mode) : getString(
-                R.string.main_activity_impolite_mode));
+        chkPolite.setText(isChecked ? getString(R.string.main_polite_mode) : getString(
+                R.string.main_impolite_mode));
     }
 
 }

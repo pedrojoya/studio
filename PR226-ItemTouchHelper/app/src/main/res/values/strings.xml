@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">ItemTouchHelper</string>
-    <string name="activity_main_lblEmpty">No students</string>
-    <string name="activity_main_item_imgAvatar">Avatar</string>
-    <string name="main_activity_click_on_student">Clicked on %1$s</string>
+    <string name="main_lblEmpty">No students</string>
+    <string name="main_item_imgAvatar">Avatar</string>
+    <string name="main_click_on_student">Clicked on %1$s</string>
 
 </resources>

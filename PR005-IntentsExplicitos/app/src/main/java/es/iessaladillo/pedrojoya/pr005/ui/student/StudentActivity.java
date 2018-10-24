@@ -3,16 +3,15 @@ package es.iessaladillo.pedrojoya.pr005.ui.student;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr005.Constants;
 import es.iessaladillo.pedrojoya.pr005.R;
+import es.iessaladillo.pedrojoya.pr005.utils.TextViewUtils;
 
 public class StudentActivity extends AppCompatActivity {
 
@@ -31,7 +30,7 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
         getIntentData();
-        initViews();
+        setupViews();
     }
 
     private void getIntentData() {
@@ -46,49 +45,23 @@ public class StudentActivity extends AppCompatActivity {
         }
     }
 
-    private void initViews() {
+    private void setupViews() {
         btnSend = ActivityCompat.requireViewById(this, R.id.btnSend);
         txtName = ActivityCompat.requireViewById(this, R.id.txtName);
         txtAge = ActivityCompat.requireViewById(this, R.id.txtAge);
 
         txtAge.setText(String.valueOf(Constants.DEFAULT_AGE));
-        txtName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                btnSend.setEnabled(isValidForm());
-            }
-        });
-        txtAge.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                btnSend.setEnabled(isValidForm());
-            }
-        });
+        TextViewUtils.addAfterTextChangedListener(txtName, s -> checkIsValidForm());
+        TextViewUtils.addAfterTextChangedListener(txtAge, s -> checkIsValidForm());
         btnSend.setOnClickListener(v -> {
             createResult();
             finish();
         });
         showStudent();
+    }
+
+    private void checkIsValidForm() {
+        btnSend.setEnabled(isValidForm());
     }
 
     private boolean isValidForm() {

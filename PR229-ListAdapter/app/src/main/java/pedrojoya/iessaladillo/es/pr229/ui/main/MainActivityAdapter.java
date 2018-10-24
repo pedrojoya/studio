@@ -25,7 +25,8 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
 
         @Override
         public boolean areContentsTheSame(Student oldItem, Student newItem) {
-            return oldItem.getPhotoUrl().equals(newItem.getPhotoUrl()) &&
+            return oldItem.getName().equals(newItem.getName()) &&
+                    oldItem.getPhotoUrl().equals(newItem.getPhotoUrl()) &&
                     oldItem.getAddress().equals(newItem.getAddress());
         }
     };
@@ -58,7 +59,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         private final CircleImageView imgAvatar;
 
 
-        ViewHolder(View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView, onItemClickListener, onItemLongClickListener);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
@@ -66,9 +67,11 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         }
 
         void bind(Student student) {
-            lblName.setText(student.getName());
-            lblAddress.setText(student.getAddress());
-            PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_user);
+            if (student != null) {
+                lblName.setText(student.getName());
+                lblAddress.setText(student.getAddress());
+                PicassoUtils.loadUrl(imgAvatar, student.getPhotoUrl(), R.drawable.ic_user);
+            }
         }
 
     }

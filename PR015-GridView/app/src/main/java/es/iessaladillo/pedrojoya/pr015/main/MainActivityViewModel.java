@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.pr015.main;
 
-import androidx.lifecycle.ViewModel;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr015.data.Repository;
 import es.iessaladillo.pedrojoya.pr015.data.local.model.Word;
 
@@ -17,6 +17,7 @@ public class MainActivityViewModel extends ViewModel {
         this.repository = repository;
     }
 
+    @NonNull
     public List<Word> getWords() {
         if (words == null) {
             words = repository.queryWords();

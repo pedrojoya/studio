@@ -1,8 +1,5 @@
 package pedrojoya.iessaladillo.es.pr225.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +7,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr225.R;
 import pedrojoya.iessaladillo.es.pr225.data.local.model.Student;
@@ -18,6 +18,7 @@ import pedrojoya.iessaladillo.es.pr225.utils.PicassoUtils;
 public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapter
         .ViewHolder> {
 
+    @NonNull
     private final List<Student> data;
 
     MainActivityAdapter(@NonNull List<Student> data) {
@@ -58,7 +59,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-        ViewHolder(View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);

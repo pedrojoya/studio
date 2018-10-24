@@ -1,8 +1,6 @@
 package pedrojoya.iessaladillo.es.pr201.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.DiffUtil;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +8,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.DiffUtil;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr201.R;
 import pedrojoya.iessaladillo.es.pr201.base.BaseListAdapter;
@@ -41,17 +42,23 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
 
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldStudents.get(oldItemPosition).getId() == newStudents.get(newItemPosition).getId();
+            return oldStudents.get(oldItemPosition).getId() == newStudents.get(newItemPosition)
+                    .getId();
         }
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldStudents.get(oldItemPosition).equals(newStudents.get(newItemPosition));
+            return TextUtils.equals(oldStudents.get(oldItemPosition).getName(),
+                    newStudents.get(newItemPosition).getName()) && TextUtils.equals(
+                    oldStudents.get(oldItemPosition).getAddress(),
+                    newStudents.get(newItemPosition).getAddress()) && TextUtils.equals(
+                    oldStudents.get(oldItemPosition).getPhotoUrl(),
+                    newStudents.get(newItemPosition).getPhotoUrl());
         }
 
     }
 
-    public MainActivityAdapter(List<Student> data) {
+    MainActivityAdapter(List<Student> data) {
         super(data);
     }
 
@@ -87,11 +94,10 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-
-        ViewHolder(View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView, getOnItemClickListener(), getOnItemLongClickListener());
-            lblName = ViewCompat.requireViewById(itemView, R.id.lblNombre);
-            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblDireccion);
+            lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
+            lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
         }
 

@@ -11,11 +11,11 @@
     android:paddingTop="@dimen/main_margin">
 
     <TextView
-        android:id="@+id/lblSignIn"
+        android:id="@+id/lblLogin"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_lblSignIn"/>
+        android:text="@string/main_lblLogin"/>
 
     <TextView
         android:id="@+id/lblUsername"
@@ -37,10 +37,7 @@
         android:maxLength="@integer/main_txtUsername_maxLength"
         android:maxLines="1"
         android:paddingTop="@dimen/main_txtUsername_paddingTop"
-        tools:ignore="Autofill">
-
-        <requestFocus/>
-    </EditText>
+        tools:ignore="Autofill"/>
 
     <TextView
         android:id="@+id/lblPassword"
@@ -93,12 +90,12 @@
                 android:text="@string/main_btnCancel"/>
 
             <Button
-                android:id="@+id/btnAccept"
+                android:id="@+id/btnLogin"
                 style="?android:buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/main_btnAccept"/>
+                android:text="@string/main_btnLogin"/>
 
         </LinearLayout>
 

@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Count</string>
-
-    <string name="activity_main_btnSave">onSave…</string>
-    <string name="activity_main_btnRetain">onRetain…</string>
-    <string name="activity_main_btnAndroidState">Android-State</string>
-    <string name="activity_main_btnStarter">ActivityStarter</string>
-    <string name="activity_main_btnViewModel">ViewModel</string>
-
-    <string name="activity_count_btnIncrement">Increment</string>
-
-    <string name="save_activity_label">onSaveInstanceState</string>
-    <string name="retain_activity_label">onRetainNonConfigurationInstance</string>
-    <string name="icepick_activity_label">Icepick</string>
-    <string name="starter_activity_label">ActivityStarter</string>
-    <string name="viewmodel_activity_label">ViewModel</string>
-
+    <string name="main_btnSave">onSave…</string>
+    <string name="main_btnRetain">onRetain…</string>
+    <string name="main_btnAndroidState">Android-State</string>
+    <string name="main_btnViewModel">ViewModel</string>
+    <string name="score_btnIncrement">Increment</string>
+    <string name="save_label">onSaveInstanceState</string>
+    <string name="retain_label">onRetainNonConfigurationInstance</string>
+    <string name="state_label">Android-State</string>
+    <string name="viewmodel_label">ViewModel</string>
 </resources>

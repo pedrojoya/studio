@@ -7,15 +7,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
 import pedrojoya.iessaladillo.es.pr106.data.local.model.Student;
 
 public class Database {
 
     private static final String BASE_URL = "https://picsum.photos/200/300?image=";
 
-    private static Database instance;
+    private static volatile Database instance;
+    @NonNull
     private static final Random random = new Random();
 
+    @NonNull
     private final ArrayList<Student> students = new ArrayList<>();
     private long studentsAutoId;
 
@@ -40,6 +43,7 @@ public class Database {
         }
     }
 
+    @NonNull
     public List<Student> queryStudents() {
         ArrayList<Student> sortedList = new ArrayList<>(students);
         Collections.sort(sortedList,
@@ -47,15 +51,16 @@ public class Database {
         return sortedList;
     }
 
-    public synchronized void insertStudent(Student student) {
-        student.setId(++studentsAutoId);
-        students.add(student);
+    public synchronized void insertStudent(@NonNull Student student) {
+            student.setId(++studentsAutoId);
+            students.add(student);
     }
 
-    public void deleteStudent(Student student) {
+    public synchronized void deleteStudent(@NonNull Student student) {
         students.remove(student);
     }
 
+    @NonNull
     public static Student newFakeStudent() {
         return new Student(Fakeit.name().name(), Fakeit.address().streetAddress(),
                 BASE_URL + random.nextInt(1084));

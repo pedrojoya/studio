@@ -10,9 +10,10 @@ import es.iessaladillo.pedrojoya.pr016.data.Repository;
 @SuppressWarnings("WeakerAccess")
 public class MainActivityViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
+    @NonNull
     private final Repository repository;
 
-    public MainActivityViewModelFactory(Repository repository) {
+    public MainActivityViewModelFactory(@NonNull Repository repository) {
         this.repository = repository;
     }
 

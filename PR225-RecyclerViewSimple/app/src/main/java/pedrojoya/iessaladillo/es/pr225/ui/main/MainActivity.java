@@ -1,17 +1,18 @@
 package pedrojoya.iessaladillo.es.pr225.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import pedrojoya.iessaladillo.es.pr225.R;
 import pedrojoya.iessaladillo.es.pr225.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr225.data.local.Database;
@@ -20,24 +21,19 @@ import pedrojoya.iessaladillo.es.pr225.utils.SnackbarUtils;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView lstStudents;
-    private MainActivityViewModel mViewModel;
-    @SuppressWarnings("FieldCanBeLocal")
-    private MainActivityAdapter mAdapter;
+    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this,
+        viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
-        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        TextView lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
-        lblEmpty.setVisibility(View.INVISIBLE);
+    private void setupViews() {
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -46,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar() {
         Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
 
     private void setupFab() {
@@ -58,9 +50,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        mAdapter = new MainActivityAdapter(mViewModel.getStudents());
+        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        TextView lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
+        lblEmpty.setVisibility(View.INVISIBLE);
+        MainActivityAdapter listAdapter = new MainActivityAdapter(viewModel.getStudents());
         lstStudents.setHasFixedSize(true);
-        lstStudents.setAdapter(mAdapter);
+        lstStudents.setAdapter(listAdapter);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());

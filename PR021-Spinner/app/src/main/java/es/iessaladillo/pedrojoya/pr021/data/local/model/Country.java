@@ -1,11 +1,13 @@
 package es.iessaladillo.pedrojoya.pr021.data.local.model;
 
+import androidx.annotation.NonNull;
+
 public class Country {
 
     private final int flagResId;
-    private final String name;
+    @NonNull private final String name;
 
-    public Country(int flagResId, String name) {
+    public Country(int flagResId, @NonNull String name) {
         this.flagResId = flagResId;
         this.name = name;
     }
@@ -14,7 +16,7 @@ public class Country {
         return flagResId;
     }
 
-    public String getName() {
+    @NonNull public String getName() {
         return name;
     }
 }

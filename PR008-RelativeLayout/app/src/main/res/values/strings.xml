@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RelativeLayout</string>
-    <string name="main_lblTitle">Login</string>
+    <string name="main_lblLogin">Login</string>
     <string name="main_lblUsername">Username</string>
     <string name="main_lblPassword">Password</string>
     <string name="main_btnLogin">Login</string>
     <string name="main_btnCancel">Cancel</string>
-    <string name="main_connected">%1$s login…</string>
+    <string name="main_login">%1$s login…</string>
     <string name="main_txtUsername">Username</string>
     <string name="main_txtPassword">Password</string>
 </resources>

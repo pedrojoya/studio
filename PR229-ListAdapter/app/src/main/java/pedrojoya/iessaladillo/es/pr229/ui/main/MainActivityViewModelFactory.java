@@ -8,9 +8,10 @@ import pedrojoya.iessaladillo.es.pr229.data.Repository;
 
 class MainActivityViewModelFactory implements ViewModelProvider.Factory {
 
+    @NonNull
     private final Repository repository;
 
-    public MainActivityViewModelFactory(Repository repository) {
+    MainActivityViewModelFactory(@NonNull Repository repository) {
         this.repository = repository;
     }
 

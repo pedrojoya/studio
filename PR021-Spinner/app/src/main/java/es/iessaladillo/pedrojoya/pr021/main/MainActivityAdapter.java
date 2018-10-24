@@ -1,13 +1,13 @@
 package es.iessaladillo.pedrojoya.pr021.main;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import es.iessaladillo.pedrojoya.pr021.R;
 import es.iessaladillo.pedrojoya.pr021.base.DropDownBaseAdapter;
 import es.iessaladillo.pedrojoya.pr021.data.local.model.Country;
@@ -19,22 +19,22 @@ class MainActivityAdapter extends DropDownBaseAdapter<Country, MainActivityAdapt
     }
 
     @Override
-    protected ViewHolder onCreateCollapsedViewHolder(View itemView) {
+    protected ViewHolder onCreateCollapsedViewHolder(@NonNull View itemView) {
         return new ViewHolder(itemView);
     }
 
     @Override
-    protected void onBindCollapsedViewHolder(ViewHolder holder, int position) {
+    protected void onBindCollapsedViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(data.get(position));
     }
 
     @Override
-    protected ViewHolder onCreateExpandedViewHolder(View itemView) {
+    protected ViewHolder onCreateExpandedViewHolder(@NonNull View itemView) {
         return new ViewHolder(itemView);
     }
 
     @Override
-    protected void onBindExpandedViewHolder(ViewHolder holder, int position) {
+    protected void onBindExpandedViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(data.get(position));
     }
 

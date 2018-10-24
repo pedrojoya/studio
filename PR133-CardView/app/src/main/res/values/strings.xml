@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">CardView</string>
-    <string name="activity_main_card_imgPhoto">Photo</string>
-    <string name="activity_main_lblAddress">Lunahuaná, two hours from the
+    <string name="main_imgPhoto">Photo</string>
+    <string name="main_lblAddress">Lunahuaná, two hours from the
         city of Lima, Peru, is a natural paradise where the sun shines for most of the year.</string>
-    <string name="activity_main_lblDescription">Lima, Peru</string>
-    <string name="activity_main_card_btnShare">Share</string>
-    <string name="activity_main_card_btnExplore">Explore</string>
-    <string name="activity_main_card_lblTitle">Lunahuaná</string>
+    <string name="main_lblDescription">Lima, Peru</string>
+    <string name="main_btnShare">Share</string>
+    <string name="main_btnExplore">Explore</string>
+    <string name="main_lblTitle">Lunahuaná</string>
 </resources>

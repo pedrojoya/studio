@@ -1,17 +1,18 @@
 package es.iessaladillo.pedrojoya.pr011.ui.main;
 
-import androidx.lifecycle.ViewModel;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr011.data.Repository;
 
 class MainActivityViewModel extends ViewModel {
 
     private List<String> students;
+    @NonNull
     private final Repository repository;
 
-    MainActivityViewModel(Repository repository) {
+    MainActivityViewModel(@NonNull Repository repository) {
         this.repository = repository;
     }
 
@@ -22,11 +23,11 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    void addStudent(String student) {
+    void addStudent(@NonNull String student) {
         repository.addStudent(student);
     }
 
-    void deleteStudent(String student) {
+    void deleteStudent(@NonNull String student) {
         repository.deleteStudent(student);
     }
 

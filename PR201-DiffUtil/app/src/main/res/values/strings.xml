@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">DiffUtil</string>
-    <string name="no_hay_alumnos">No hay alumnos</string>
-    <string name="avatar">Avatar</string>
-    <string name="ordenar">Ordenar</string>
+    <string name="main_lblEmptyView">No students yet</string>
+    <string name="main_imgAvatar">Avatar</string>
+    <string name="main_mnuSort">Sort</string>
 
 </resources>

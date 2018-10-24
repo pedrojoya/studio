@@ -1,8 +1,5 @@
 package es.iessaladillo.pedrojoya.pr012.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +7,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import es.iessaladillo.pedrojoya.pr012.R;
 import es.iessaladillo.pedrojoya.pr012.base.AdapterViewBaseAdapter;
 import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
@@ -24,12 +24,12 @@ class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainActivityAd
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(View itemView) {
+    public ViewHolder onCreateViewHolder(@NonNull View itemView) {
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getItem(position), position);
     }
 

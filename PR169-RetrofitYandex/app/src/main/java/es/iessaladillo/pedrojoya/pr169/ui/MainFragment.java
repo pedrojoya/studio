@@ -1,9 +1,7 @@
 package es.iessaladillo.pedrojoya.pr169.ui;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +11,8 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.net.HttpURLConnection;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +27,7 @@ import es.iessaladillo.pedrojoya.pr169.base.RequestState;
 import es.iessaladillo.pedrojoya.pr169.data.models.TranslateResponse;
 import es.iessaladillo.pedrojoya.pr169.data.remote.ApiService;
 import es.iessaladillo.pedrojoya.pr169.util.KeyboardUtils;
+import es.iessaladillo.pedrojoya.pr169.util.TextViewUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -64,30 +65,10 @@ public class MainFragment extends Fragment {
 
         setupToolbar(view);
         setupFab(view);
-        txtWord.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                translate();
-                return true;
-            } else {
-                return false;
-            }
-        });
-        txtWord.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(txtTranslation.getText().toString())) {
-                    txtTranslation.setText("");
-                }
+        TextViewUtils.setOnImeActionListener(txtWord, EditorInfo.IME_ACTION_SEARCH, (v, event) -> translate());
+        TextViewUtils.addAfterTextChangedListener(txtWord, s -> {
+            if (!TextUtils.isEmpty(txtTranslation.getText().toString())) {
+                txtTranslation.setText("");
             }
         });
         // Read-only.
@@ -135,7 +116,7 @@ public class MainFragment extends Fragment {
 
     private void showTranslation(TranslateResponse response) {
         pbTranslating.setVisibility(View.INVISIBLE);
-        if (response.getCode() == 200) {
+        if (response.getCode() == HttpURLConnection.HTTP_OK) {
             txtTranslation.setText(TextUtils.join(",", response.getText()));
         } else {
             showTranslationError();

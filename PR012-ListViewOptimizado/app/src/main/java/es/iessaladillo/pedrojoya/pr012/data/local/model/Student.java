@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr012.data.local.model;
 
+import androidx.annotation.NonNull;
+
 @SuppressWarnings("unused")
 public class Student {
 
@@ -12,7 +14,7 @@ public class Student {
     private final boolean repeater;
 
     @SuppressWarnings("WeakerAccess")
-    public Student(long id, int photo, String name, int age, String level,
+    public Student(long id, int photo, @NonNull String name, int age, String level,
                    String grade, boolean repeater) {
         this.id = id;
         this.photo = photo;
@@ -23,7 +25,7 @@ public class Student {
         this.repeater = repeater;
     }
 
-    public Student(int photo, String name, int age, String level,
+    public Student(int photo, @NonNull String name, int age, String level,
             String grade, boolean repeater) {
         this(0, photo, name, age, level, grade, repeater);
     }

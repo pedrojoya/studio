@@ -1,21 +1,24 @@
 package pedrojoya.iessaladillo.es.pr106.base;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 // M is Model type, VH is ViewHolder type,
 @SuppressWarnings("unused")
 public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends RecyclerView
         .Adapter<VH> {
 
+    @NonNull
     private List<M> data;
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
     private View emptyView;
+    @NonNull
     private final RecyclerView.AdapterDataObserver adapterDataObserver =
             new RecyclerView.AdapterDataObserver() {
                 @Override
@@ -37,11 +40,11 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
                 }
             };
 
-    protected BaseListAdapter(List<M> data) {
+    protected BaseListAdapter(@NonNull List<M> data) {
         this.data = data;
     }
 
-    public void submitList(List<M> data) {
+    public void submitList(@NonNull List<M> data) {
         this.data = data;
         notifyDataSetChanged();
     }
@@ -54,7 +57,7 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
         this.onItemLongClickListener = listener;
     }
 
-    public void setEmptyView(@NonNull View emptyView) {
+    public void setEmptyView(View emptyView) {
         if (this.emptyView != null) {
             unregisterAdapterDataObserver(adapterDataObserver);
         }
@@ -71,7 +74,7 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
 
     @Override
     public final int getItemCount() {
-        return data == null ? 0 : data.size();
+        return data.size();
     }
 
     public M getItem(int position) {

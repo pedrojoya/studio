@@ -1,89 +1,9 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/general_activity_margin"
-        tools:context=".ui.main.MainActivity">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/general_activity_margin"
-            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/activity_main_txtName"
-                android:inputType="textPersonName">
-
-                <requestFocus/>
-            </com.google.android.material.textfield.TextInputEditText>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tilName"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:hint="@string/activity_main_txtPhone"
-            app:counterEnabled="true"
-            app:counterMaxLength="@integer/activity_main_txtPhone_maxLength"
-            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:maxLength="@integer/activity_main_txtPhone_maxLength"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tilPhone"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:hint="@string/activity_main_txtEmail"
-            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tilEmail"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:hint="@string/activity_main_txtPassword"
-            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
-            app:passwordToggleContentDescription="@string/activity_main_tilPassword_passwordToggleContentDescription"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </RelativeLayout>
+    <include layout="@layout/activity_main_content"/>
 
 </androidx.core.widget.NestedScrollView>

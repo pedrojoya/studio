@@ -8,9 +8,10 @@ import pedrojoya.iessaladillo.es.pr225.data.Repository;
 
 class MainActivityViewModelFactory implements Factory {
 
+    @NonNull
     private final Repository repository;
 
-    MainActivityViewModelFactory(Repository repository) {
+    MainActivityViewModelFactory(@NonNull Repository repository) {
         this.repository = repository;
     }
 

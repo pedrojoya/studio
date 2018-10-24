@@ -1,12 +1,7 @@
 package es.iessaladillo.pedrojoya.pr017.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
@@ -14,13 +9,19 @@ import android.webkit.WebViewClient;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
-import es.iessaladillo.pedrojoya.pr017.Constants;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr017.R;
-import es.iessaladillo.pedrojoya.pr017.data.local.Database;
 import es.iessaladillo.pedrojoya.pr017.data.RepositoryImpl;
+import es.iessaladillo.pedrojoya.pr017.data.local.Database;
 import es.iessaladillo.pedrojoya.pr017.utils.KeyboardUtils;
+import es.iessaladillo.pedrojoya.pr017.utils.TextViewUtils;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String BASE_URL =
+            "http://www.wordreference.com/es/translation" + ".asp?tranword=";
 
     private AutoCompleteTextView txtWord;
     private WebView webView;
@@ -35,15 +36,24 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
+        checkInitialState();
     }
 
-    private void initViews() {
+    private void checkInitialState() {
+        checkIsValidForm();
+        if (!TextUtils.isEmpty(viewModel.getLoadedWord())) {
+            searchWord();
+        }
+    }
+
+    private void setupViews() {
         txtWord = ActivityCompat.requireViewById(this, R.id.txtWord);
         webView = ActivityCompat.requireViewById(this, R.id.wvWeb);
         btnTranslate = ActivityCompat.requireViewById(this, R.id.btnTranslate);
 
         txtWord.setAdapter(new MainActivityAdapter(viewModel.getWords()));
+        txtWord.setText(viewModel.getLoadedWord());
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -52,43 +62,23 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        btnTranslate.setOnClickListener(v -> searchWord(txtWord.getText().toString()));
-        txtWord.addTextChangedListener(new TextWatcher() {
+        btnTranslate.setOnClickListener(v -> searchWord());
+        TextViewUtils.addAfterTextChangedListener(txtWord, s -> checkIsValidForm());
+        TextViewUtils.setOnImeActionListener(txtWord, EditorInfo.IME_ACTION_SEARCH,
+                (v, event) -> searchWord());
+    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                checkIsValidForm();
-            }
-
-        });
-        txtWord.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                if (!TextUtils.isEmpty(txtWord.getText().toString().trim())) {
-                    searchWord(txtWord.getText().toString().trim());
-                    return true;
-                }
-            }
-            return false;
-        });
-        // Initial state.
-        checkIsValidForm();
-        if (!TextUtils.isEmpty(viewModel.getLoadedWord())) {
-            searchWord(viewModel.getLoadedWord());
+    private void searchWord() {
+        String word = txtWord.getText().toString().trim();
+        if (isValidForm()) {
+            KeyboardUtils.hideSoftKeyboard(this);
+            viewModel.setLoadedWord(word);
+            webView.loadUrl(BASE_URL + word);
         }
     }
 
-    private void searchWord(String word) {
-        viewModel.setLoadedWord(word);
-        KeyboardUtils.hideKeyboard(this);
-        webView.loadUrl(Constants.BASE_URL + word);
+    private boolean isValidForm() {
+        return !TextUtils.isEmpty(txtWord.getText().toString().trim());
     }
 
     private void checkIsValidForm() {

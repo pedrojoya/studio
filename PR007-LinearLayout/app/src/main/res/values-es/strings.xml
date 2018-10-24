@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LinearLayout</string>
-    <string name="main_lblSignIn">Conexión</string>
-    <string name="main_lblUsername">Nombre de usuario</string>
-    <string name="main_lblPassword">Contraseña</string>
-    <string name="main_btnAccept">Aceptar</string>
+    <string name="main_lblLogin">Login</string>
+    <string name="main_lblUsername">Usuario</string>
+    <string name="main_lblPassword">Clave</string>
+    <string name="main_btnLogin">Login</string>
     <string name="main_btnCancel">Cancelar</string>
-    <string name="main_signing_in">Conectando como %1$s…</string>
-    <string name="main_txtUsername">Nombre de usuario</string>
-    <string name="main_txtPassword">Contraseña</string>
+    <string name="main_login">Conectando como %1$s…</string>
+    <string name="main_txtUsername">Usuario</string>
+    <string name="main_txtPassword">Clave</string>
 </resources>

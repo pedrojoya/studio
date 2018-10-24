@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="general_activity_padding">16dp</dimen>
-    <dimen name="general_vertical_margin">10dp</dimen>
+    <dimen name="main_margin">16dp</dimen>
+    <dimen name="score_margin">16dp</dimen>
 
 </resources>

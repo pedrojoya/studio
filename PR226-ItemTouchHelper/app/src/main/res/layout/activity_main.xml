@@ -26,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
-        android:paddingBottom="@dimen/activity_main_lstStudents_padding"
-        android:paddingTop="@dimen/activity_main_lstStudents_padding"
+        android:paddingBottom="@dimen/main_lstStudents_padding"
+        android:paddingTop="@dimen/main_lstStudents_padding"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <TextView
@@ -35,9 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:drawablePadding="@dimen/activity_main_lblEmpty_drawablePadding"
+        android:drawablePadding="@dimen/main_lblEmpty_drawablePadding"
         android:drawableTop="@drawable/ic_person_add_black_48dp"
-        android:text="@string/activity_main_lblEmpty"
+        android:text="@string/main_lblEmpty"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -45,8 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/activity_main_fab_margin"
-        android:layout_marginEnd="@dimen/activity_main_fab_margin"
+        android:layout_marginBottom="@dimen/main_fab_margin"
+        android:layout_marginEnd="@dimen/main_fab_margin"
         app:srcCompat="@drawable/ic_add_white_24dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

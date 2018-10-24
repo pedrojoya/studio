@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
         viewModel.getStudents().observe(this, students -> {
             listAdapter.submitList(students);
             lstStudents.smoothScrollToPosition(listAdapter.getItemCount() - 1);
         });
     }
 
-    private void initViews() {
+    private void setupViews() {
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showStudent(Student student) {
         SnackbarUtils.snackbar(lstStudents,
-                getString(R.string.main_activity_click_on_student, student.getName()));
+                getString(R.string.main_click_on_student, student.getName()));
     }
 
 }

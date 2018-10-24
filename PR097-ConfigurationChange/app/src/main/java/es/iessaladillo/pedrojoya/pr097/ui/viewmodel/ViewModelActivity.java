@@ -1,32 +1,34 @@
 package es.iessaladillo.pedrojoya.pr097.ui.viewmodel;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr097.R;
 
 public class ViewModelActivity extends AppCompatActivity {
 
-    private TextView lblCount;
+    private TextView lblScore;
 
     private ViewModelActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_count);
-        viewModel = ViewModelProviders.of(this).get(ViewModelActivityViewModel.class);
-        initViews();
-        showCount();
+        setContentView(R.layout.activity_score);
+        viewModel = ViewModelProviders.of(this)
+                .get(ViewModelActivityViewModel.class);
+        setupViews();
+        showScore();
     }
 
-    private void initViews() {
-        lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
+    private void setupViews() {
+        lblScore = ActivityCompat.requireViewById(this, R.id.lblScore);
 
         ActivityCompat.requireViewById(this, R.id.btnIncrement)
                 .setOnClickListener(v -> increment());
@@ -34,14 +36,14 @@ public class ViewModelActivity extends AppCompatActivity {
 
     private void increment() {
         viewModel.increment();
-        showCount();
+        showScore();
     }
 
-    private void showCount() {
-        lblCount.setText(String.valueOf(viewModel.getCount()));
+    private void showScore() {
+        lblScore.setText(String.valueOf(viewModel.getScoreBoard().getScore()));
     }
 
-    public static void start(Context context) {
+    public static void start(@NonNull Context context) {
         context.startActivity(new Intent(context, ViewModelActivity.class));
     }
 

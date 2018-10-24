@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.pr021.main;
 
-import androidx.lifecycle.ViewModel;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr021.data.Repository;
 import es.iessaladillo.pedrojoya.pr021.data.local.model.Country;
 
@@ -11,12 +11,13 @@ import es.iessaladillo.pedrojoya.pr021.data.local.model.Country;
 public class MainActivityViewModel extends ViewModel {
 
     private List<Country> countries;
-    private final Repository repository;
+    @NonNull private final Repository repository;
 
-    public MainActivityViewModel(Repository repository) {
+    public MainActivityViewModel(@NonNull Repository repository) {
         this.repository = repository;
     }
 
+    @NonNull
     public List<Country> getCountries() {
         if (countries == null) {
             countries = repository.queryCountries();

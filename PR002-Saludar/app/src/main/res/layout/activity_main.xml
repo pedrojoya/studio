@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/general_activity_vertical_margin">
+    android:padding="@dimen/main_margin">
 
     <TextView
         android:id="@+id/lblName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:labelFor="@+id/txtName"
-        android:text="@string/activity_main_lblName"/>
+        android:text="@string/main_lblName"/>
 
     <EditText
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text|textPersonName"
-        tools:text="@tools:sample/first_names">
+        tools:text="@tools:sample/first_names"
+        tools:ignore="Autofill">
 
         <requestFocus/>
     </EditText>
@@ -28,15 +29,15 @@
         android:id="@+id/chkPolite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:checked="false"
-        android:text="@string/main_activity_polite_mode"/>
+        android:layout_marginTop="@dimen/main_margin"
+        android:checked="true"
+        android:text="@string/main_polite_mode"/>
 
     <Button
         android:id="@+id/btnGreet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:text="@string/activity_main_btnGreet"/>
+        android:layout_marginTop="@dimen/main_margin"
+        android:text="@string/main_btnGreet"/>
 
 </LinearLayout>

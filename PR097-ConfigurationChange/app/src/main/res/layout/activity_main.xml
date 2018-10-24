@@ -1,48 +1,48 @@
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="@dimen/general_activity_padding">
+    android:padding="@dimen/main_margin">
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/general_vertical_margin"
-        android:text="@string/activity_main_btnSave"/>
+        android:text="@string/main_btnSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/btnRetain"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSave"
-        android:layout_marginBottom="@dimen/general_vertical_margin"
-        android:text="@string/activity_main_btnRetain"/>
+        android:layout_marginTop="@dimen/main_margin"
+        android:text="@string/main_btnRetain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSave"/>
+
+    <Button
+        android:id="@+id/btnState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_margin"
+        android:text="@string/main_btnAndroidState"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRetain"/>
 
     <Button
         android:id="@+id/btnViewModel"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnStarter"
-        android:layout_marginBottom="@dimen/general_vertical_margin"
-        android:text="@string/activity_main_btnViewModel"/>
+        android:text="@string/main_btnViewModel"
+        android:layout_marginTop="@dimen/main_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnState"/>
 
-    <Button
-        android:id="@+id/btnIcepick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRetain"
-        android:layout_marginBottom="@dimen/general_vertical_margin"
-        android:text="@string/activity_main_btnAndroidState"/>
-
-    <Button
-        android:id="@+id/btnStarter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnIcepick"
-        android:layout_marginBottom="@dimen/general_vertical_margin"
-        android:text="@string/activity_main_btnStarter"/>
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

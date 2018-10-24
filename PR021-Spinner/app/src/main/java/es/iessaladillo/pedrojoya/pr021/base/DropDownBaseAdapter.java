@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr021.base;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +7,13 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+
 // T for Model, CVH for Collapsed ViewHolder, EVH for Expanded ViewHolder
 public abstract class DropDownBaseAdapter<T, CVH, EVH> extends BaseAdapter {
 
+    @NonNull
     protected final List<T> data;
     @LayoutRes
     private final int collapsedLayoutResId;
@@ -57,9 +59,9 @@ public abstract class DropDownBaseAdapter<T, CVH, EVH> extends BaseAdapter {
         return position;
     }
 
-    protected abstract CVH onCreateCollapsedViewHolder(View itemView);
+    protected abstract CVH onCreateCollapsedViewHolder(@NonNull View itemView);
 
-    protected abstract void onBindCollapsedViewHolder(CVH holder, int position);
+    protected abstract void onBindCollapsedViewHolder(@NonNull CVH holder, int position);
 
     @SuppressWarnings("unchecked")
     @Override
@@ -78,9 +80,9 @@ public abstract class DropDownBaseAdapter<T, CVH, EVH> extends BaseAdapter {
         return convertView;
     }
 
-    protected abstract EVH onCreateExpandedViewHolder(View itemView);
+    protected abstract EVH onCreateExpandedViewHolder(@NonNull View itemView);
 
-    protected abstract void onBindExpandedViewHolder(EVH holder, int position);
+    protected abstract void onBindExpandedViewHolder(@NonNull EVH holder, int position);
 
 }
 

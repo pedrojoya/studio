@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import es.iessaladillo.pedrojoya.pr015.R;
 import es.iessaladillo.pedrojoya.pr015.data.local.model.Word;
 
@@ -45,16 +46,17 @@ public class Database {
         new Word(R.drawable.furniture, "Furniture", "Mobiliario"))));
     }
 
+    @NonNull
     public List<Word> queryWords() {
         return new ArrayList<>(words);
     }
 
-    public synchronized void insertWord(Word word) {
+    public synchronized void insertWord(@NonNull Word word) {
         word.setId(++wordsAutoId);
         words.add(word);
     }
 
-    public void deleteWord(Word word) {
+    public void deleteWord(@NonNull Word word) {
         words.remove(word);
     }
 

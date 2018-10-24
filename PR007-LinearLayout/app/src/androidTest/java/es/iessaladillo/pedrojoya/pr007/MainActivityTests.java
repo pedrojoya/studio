@@ -48,20 +48,20 @@ public class MainActivityTests {
     @Test
     public void validateBtnAceptarDisabledWhenTxtUsuarioEmpty() {
         onView(withId(R.id.txtUsername)).perform(clearText());
-        onView(withId(R.id.btnAccept)).check(matches(not(isEnabled())));
+        onView(withId(R.id.btnLogin)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnAceptarDisabledWhenTxtEdadEmpty() {
         onView(withId(R.id.txtPassword)).perform(clearText());
-        onView(withId(R.id.btnAccept)).check(matches(not(isEnabled())));
+        onView(withId(R.id.btnLogin)).check(matches(not(isEnabled())));
     }
 
     @Test
     public void validateBtnAceptarEnabledWhenFormularioCorrecto() {
         onView(withId(R.id.txtUsername)).perform(replaceText("Baldomero"));
         onView(withId(R.id.txtPassword)).perform(replaceText("llegateligero"));
-        onView(withId(R.id.btnAccept)).check(matches(isEnabled()));
+        onView(withId(R.id.btnLogin)).check(matches(isEnabled()));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class MainActivityTests {
     public void validateToastShownWhenBtnAceptarPressed() {
         onView(withId(R.id.txtUsername)).perform(replaceText("Baldomero"));
         onView(withId(R.id.txtPassword)).perform(replaceText("llegateligero"), closeSoftKeyboard());
-        onView(withId(R.id.btnAccept)).perform(click());
+        onView(withId(R.id.btnLogin)).perform(click());
         onView(withText("Conectando con el usuario Baldomero…"))
                 .inRoot(withDecorView(Matchers.not(mActivityRule.getActivity()
                         .getWindow().getDecorView()))).check(matches(isDisplayed()));

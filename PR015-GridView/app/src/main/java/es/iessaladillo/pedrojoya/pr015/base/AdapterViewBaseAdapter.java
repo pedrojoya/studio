@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr015.base;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +7,13 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+
 // M for Model, VH for ViewHolder
 public abstract class AdapterViewBaseAdapter<M, VH> extends BaseAdapter {
 
+    @NonNull
     protected final List<M> data;
     @LayoutRes
     private final int layoutResId;
@@ -55,8 +57,8 @@ public abstract class AdapterViewBaseAdapter<M, VH> extends BaseAdapter {
         return position;
     }
 
-    protected abstract VH onCreateViewHolder(View itemView);
+    protected abstract VH onCreateViewHolder(@NonNull View itemView);
 
-    protected abstract void onBindViewHolder(VH holder, int position);
+    protected abstract void onBindViewHolder(@NonNull VH holder, int position);
 
 }

@@ -1,11 +1,11 @@
 package es.iessaladillo.pedrojoya.pr012.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr012.R;
 import es.iessaladillo.pedrojoya.pr012.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr012.data.local.Database;
@@ -27,19 +27,20 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         listAdapter = new MainActivityAdapter(viewModel.getStudents(false));
         listAdapter.setCallListener((view, position) -> callStudent(listAdapter.getItem(position)));
-        listAdapter.setShowMarksListener((view, position) -> showStudentMarks(listAdapter.getItem(position)));
+        listAdapter.setShowMarksListener(
+                (view, position) -> showStudentMarks(listAdapter.getItem(position)));
         lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmpty));
         lstStudents.setAdapter(listAdapter);
-        lstStudents.setOnItemClickListener((parent, view, position, id) -> showStudent
-                (listAdapter.getItem(position)));
+        lstStudents.setOnItemClickListener(
+                (parent, view, position, id) -> showStudent(listAdapter.getItem(position)));
         lstStudents.setOnItemLongClickListener((parent, view, position, id) -> {
             deleteStudent(listAdapter.getItem(position));
             return true;

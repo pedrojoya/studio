@@ -6,24 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
 import pedrojoya.iessaladillo.es.pr225.data.local.model.Student;
 
 public class Database {
 
     private static final String BASE_URL = "https://picsum.photos/100/100?image=";
-    private static Database instance;
+    private static volatile Database instance;
 
+    @NonNull
     private final ArrayList<Student> students = new ArrayList<>();
     private long studentsAutoId;
+    @NonNull
     private final Random random = new Random();
 
     private Database() {
         insertInitialData();
     }
 
-    public synchronized static Database getInstance() {
+    @NonNull
+    public static Database getInstance() {
         if (instance == null) {
-            instance = new Database();
+            synchronized (Database.class) {
+                if (instance == null) {
+                    instance = new Database();
+                }
+            }
         }
         return instance;
     }
@@ -34,17 +42,19 @@ public class Database {
         }
     }
 
+    @NonNull
     public List<Student> queryStudents() {
         return new ArrayList<>(students);
     }
 
     @SuppressWarnings("WeakerAccess")
-    public synchronized void insertStudent(Student student) {
+    public synchronized void insertStudent(@NonNull Student student) {
         student.setId(++studentsAutoId);
         students.add(student);
     }
 
     @SuppressWarnings("WeakerAccess")
+    @NonNull
     public Student newFakeStudent() {
         return new Student(Fakeit.name().name(), Fakeit.address().streetAddress(),
                 BASE_URL + random.nextInt(180));

@@ -3,6 +3,8 @@ package es.iessaladillo.pedrojoya.pr016.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import androidx.annotation.NonNull;
+
 public class CollectionUtils {
 
     public interface Predicate<T> {
@@ -13,7 +15,8 @@ public class CollectionUtils {
         R apply(T t);
     }
 
-    public static <T> Collection<T> filter(Collection<T> col, Predicate<T> predicate) {
+    @NonNull
+    public static <T> Collection<T> filter(@NonNull Collection<T> col, @NonNull Predicate<T> predicate) {
         Collection<T> result = new ArrayList<>();
         for (T element: col) {
             if (predicate.test(element)) {
@@ -23,7 +26,8 @@ public class CollectionUtils {
         return result;
     }
 
-    public static <T, R> Collection<R> map(Collection<T> col, Function<T, R> function) {
+    @NonNull
+    public static <T, R> Collection<R> map(@NonNull Collection<T> col, @NonNull Function<T, R> function) {
         Collection<R> result = new ArrayList<>();
         for (T element: col) {
             result.add(function.apply(element));

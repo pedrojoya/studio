@@ -1,9 +1,9 @@
 package es.iessaladillo.pedrojoya.pr014.ui.main;
 
-import androidx.lifecycle.ViewModel;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr014.data.Repository;
 import es.iessaladillo.pedrojoya.pr014.data.local.model.Student;
 
@@ -11,12 +11,14 @@ import es.iessaladillo.pedrojoya.pr014.data.local.model.Student;
 public class MainActivityViewModel extends ViewModel {
 
     private List<Student> students;
+    @NonNull
     private final Repository repository;
 
-    public MainActivityViewModel(Repository repository) {
+    public MainActivityViewModel(@NonNull Repository repository) {
         this.repository = repository;
     }
 
+    @NonNull
     public List<Student> getStudents(boolean forceLoad) {
         if (students == null || forceLoad) {
             students = repository.queryStudents();
@@ -24,7 +26,7 @@ public class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    public void deleteStudent(Student student) {
+    public void deleteStudent(@NonNull Student student) {
         repository.deleteStudent(student);
     }
 

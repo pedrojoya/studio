@@ -1,12 +1,14 @@
 package pedrojoya.iessaladillo.es.pr106.base;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 // M is Model.
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    protected BaseViewHolder(View itemView, BaseListAdapter.OnItemClickListener onItemClickListener,
+    protected BaseViewHolder(@NonNull View itemView, BaseListAdapter.OnItemClickListener onItemClickListener,
             BaseListAdapter.OnItemLongClickListener onItemLongClickListener) {
         super(itemView);
         if (onItemClickListener != null) {

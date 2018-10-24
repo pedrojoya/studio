@@ -1,19 +1,20 @@
 package pedrojoya.iessaladillo.es.pr229.data;
 
-import androidx.lifecycle.LiveData;
-
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
 
 public interface Repository {
 
+    @NonNull
     LiveData<List<Student>> queryStudents();
 
-    void insertStudent(Student student);
+    void insertStudent(@NonNull Student student);
 
-    void deleteStudent(Student student);
+    void deleteStudent(@NonNull Student student);
 
-    void updateStudent(Student student, Student newStudent);
+    void updateStudent(@NonNull Student student, @NonNull Student newStudent);
 
 }

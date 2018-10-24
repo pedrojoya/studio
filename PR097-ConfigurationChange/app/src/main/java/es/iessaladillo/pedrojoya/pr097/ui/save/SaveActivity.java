@@ -3,59 +3,59 @@ package es.iessaladillo.pedrojoya.pr097.ui.save;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr097.R;
+import es.iessaladillo.pedrojoya.pr097.data.model.ScoreBoard;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class SaveActivity extends AppCompatActivity {
 
-    private static final String STATE_COUNT = "STATE_COUNT";
-    private static final int COUNT_DEFAULT = 0;
+    private static final String STATE_SCOREBOARD = "STATE_SCOREBOARD";
 
-    private TextView lblCount;
+    private TextView lblScore;
 
-    private int count;
+    private ScoreBoard scoreBoard = new ScoreBoard();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_count);
+        setContentView(R.layout.activity_score);
         restoreSavedInstanceState(savedInstanceState);
-        initViews();
-        showCount();
+        setupViews();
+        showScore();
     }
 
     private void restoreSavedInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            count = savedInstanceState.getInt(STATE_COUNT, COUNT_DEFAULT);
+            scoreBoard = savedInstanceState.getParcelable(STATE_SCOREBOARD);
         }
     }
 
-    private void initViews() {
-        lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
+    private void setupViews() {
+        lblScore = ActivityCompat.requireViewById(this, R.id.lblScore);
 
         ActivityCompat.requireViewById(this, R.id.btnIncrement).setOnClickListener(v -> increment());
     }
 
     private void increment() {
-        count++;
-        showCount();
+        scoreBoard.incrementScore();
+        showScore();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_COUNT, count);
+        outState.putParcelable(STATE_SCOREBOARD, scoreBoard);
     }
 
-    private void showCount() {
-        lblCount.setText(String.valueOf(count));
+    private void showScore() {
+        lblScore.setText(String.valueOf(scoreBoard.getScore()));
     }
 
-    public static void start(Context context) {
+    public static void start(@NonNull Context context) {
         context.startActivity(new Intent(context, SaveActivity.class));
     }
 

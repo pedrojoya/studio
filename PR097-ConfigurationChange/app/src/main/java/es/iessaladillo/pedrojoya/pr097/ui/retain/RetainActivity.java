@@ -3,26 +3,28 @@ package es.iessaladillo.pedrojoya.pr097.ui.retain;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr097.R;
+import es.iessaladillo.pedrojoya.pr097.data.model.ScoreBoard;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class RetainActivity extends AppCompatActivity {
 
-    private TextView lblCount;
+    private TextView lblScore;
 
     private State state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_count);
+        setContentView(R.layout.activity_score);
         restoreLastCustomNonConfigurationIntance();
-        initViews();
-        showCount();
+        setupViews();
+        showScore();
     }
 
     private void restoreLastCustomNonConfigurationIntance() {
@@ -32,15 +34,15 @@ public class RetainActivity extends AppCompatActivity {
         }
     }
 
-    private void initViews() {
-        lblCount = ActivityCompat.requireViewById(this, R.id.lblCount);
+    private void setupViews() {
+        lblScore = ActivityCompat.requireViewById(this, R.id.lblScore);
 
         ActivityCompat.requireViewById(this, R.id.btnIncrement).setOnClickListener(v -> increment());
     }
 
     private void increment() {
-        state.increment();
-        showCount();
+        state.getScoreBoard().incrementScore();
+        showScore();
     }
 
     @Override
@@ -48,24 +50,23 @@ public class RetainActivity extends AppCompatActivity {
         return state;
     }
 
-    private void showCount() {
-        lblCount.setText(String.valueOf(state.getCount()));
+    private void showScore() {
+        lblScore.setText(String.valueOf(state.getScoreBoard().getScore()));
     }
 
-    public static void start(Context context) {
+    public static void start(@NonNull Context context) {
         context.startActivity(new Intent(context, RetainActivity.class));
     }
 
     private static class State {
-        private int count = 0;
 
-        int getCount() {
-            return count;
+        private final ScoreBoard scoreBoard = new ScoreBoard();
+
+        @NonNull
+        ScoreBoard getScoreBoard() {
+            return scoreBoard;
         }
 
-        void increment() {
-            count++;
-        }
     }
 
 }

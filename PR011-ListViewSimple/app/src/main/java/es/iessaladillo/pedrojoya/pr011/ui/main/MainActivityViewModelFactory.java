@@ -8,9 +8,10 @@ import es.iessaladillo.pedrojoya.pr011.data.Repository;
 
 class MainActivityViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
+    @NonNull
     private final Repository repository;
 
-    public MainActivityViewModelFactory(Repository repository) {
+    public MainActivityViewModelFactory(@NonNull Repository repository) {
         this.repository = repository;
     }
 

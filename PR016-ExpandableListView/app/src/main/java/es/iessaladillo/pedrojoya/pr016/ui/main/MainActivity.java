@@ -1,18 +1,18 @@
 package es.iessaladillo.pedrojoya.pr016.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr016.R;
-import es.iessaladillo.pedrojoya.pr016.data.local.Database;
 import es.iessaladillo.pedrojoya.pr016.data.RepositoryImpl;
+import es.iessaladillo.pedrojoya.pr016.data.local.Database;
 import es.iessaladillo.pedrojoya.pr016.data.local.model.Level;
 import es.iessaladillo.pedrojoya.pr016.data.local.model.Student;
 import es.iessaladillo.pedrojoya.pr016.utils.CollectionUtils;
@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity implements OnChildClickListe
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(new
                         RepositoryImpl(Database.getInstance()))).get(MainActivityViewModel.class);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         ExpandableListView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         // We won't use default indicators for group or child.

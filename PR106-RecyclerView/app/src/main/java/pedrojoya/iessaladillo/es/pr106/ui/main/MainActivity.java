@@ -1,16 +1,18 @@
 package pedrojoya.iessaladillo.es.pr106.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.widget.TextView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.core.app.ActivityCompat;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import android.widget.TextView;
-
 import pedrojoya.iessaladillo.es.pr106.R;
 import pedrojoya.iessaladillo.es.pr106.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr106.data.local.Database;
@@ -32,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(new
                 RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -44,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar() {
         Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
 
     private void setupFab() {
@@ -79,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
         lstStudents.smoothScrollToPosition(listAdapter.getItemCount() - 1);
     }
 
-    private void showStudent(Student student) {
+    private void showStudent(@NonNull Student student) {
         SnackbarUtils.snackbar(lstStudents,
                 getString(R.string.main_activity_click_on_student, student.getName()));
     }
 
-    private void deleteStudent(Student student) {
+    private void deleteStudent(@NonNull Student student) {
         viewModel.deleteStudent(student);
         listAdapter.submitList(viewModel.getStudents(true));
     }

@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr014.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -9,6 +7,8 @@ import com.lucasurbas.listitemview.ListItemView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import es.iessaladillo.pedrojoya.pr014.R;
 import es.iessaladillo.pedrojoya.pr014.base.AdapterViewBaseAdapter;
 import es.iessaladillo.pedrojoya.pr014.data.local.model.Student;
@@ -20,21 +20,21 @@ public class MainActivityAdapter extends AdapterViewBaseAdapter<Student, MainAct
         void onDelete(MenuItem item, Student student, int position);
     }
 
-    @SuppressWarnings("CanBeFinal")
+    @NonNull
     private final Callback listener;
 
-    public MainActivityAdapter(@NonNull List<Student> data, Callback listener) {
+    public MainActivityAdapter(@NonNull List<Student> data, @NonNull Callback listener) {
         super(data, R.layout.activity_main_item);
         this.listener = listener;
     }
 
     @Override
-    protected ViewHolder onCreateViewHolder(View itemView) {
+    protected ViewHolder onCreateViewHolder(@NonNull View itemView) {
         return new ViewHolder(itemView);
     }
 
     @Override
-    protected void onBindViewHolder(ViewHolder holder, int position) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getItem(position), position);
     }
 

@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr012.data;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import es.iessaladillo.pedrojoya.pr012.data.local.Database;
 import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
 
@@ -14,12 +15,13 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
+    @NonNull
     public List<Student> queryStudents() {
         return database.queryStudents();
     }
 
     @Override
-    public void deleteStudent(Student student) {
+    public void deleteStudent(@NonNull Student student) {
         database.deleteStudent(student);
     }
 

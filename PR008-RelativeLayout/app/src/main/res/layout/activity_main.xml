@@ -10,18 +10,18 @@
     android:paddingTop="@dimen/main_margin">
 
     <TextView
-        android:id="@+id/lblTitle"
+        android:id="@+id/lblLogin"
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="@string/main_lblTitle"/>
+        android:text="@string/main_lblLogin"/>
 
     <TextView
         android:id="@+id/lblUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblTitle"
+        android:layout_below="@+id/lblLogin"
         android:layout_marginTop="@dimen/main_margin"
         android:text="@string/main_lblUsername"
         android:textAppearance="?android:attr/textAppearanceSmall"/>

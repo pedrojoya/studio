@@ -1,9 +1,8 @@
 package es.iessaladillo.pedrojoya.pr149.ui.main;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -11,79 +10,110 @@ import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr149.R;
+import es.iessaladillo.pedrojoya.pr149.utils.KeyboardUtils;
+import es.iessaladillo.pedrojoya.pr149.utils.TextViewUtils;
+import es.iessaladillo.pedrojoya.pr149.utils.ToastUtils;
 import es.iessaladillo.pedrojoya.pr149.utils.ValidationUtils;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextInputLayout tilName;
+    private TextInputEditText txtName;
     private TextInputLayout tilPhone;
     private TextInputEditText txtPhone;
     private TextInputLayout tilEmail;
     private TextInputEditText txtEmail;
+    private TextInputLayout tilPassword;
+    private TextInputEditText txtPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
+        tilName = ActivityCompat.requireViewById(this, R.id.tilName);
+        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
         tilPhone = ActivityCompat.requireViewById(this, R.id.tilPhone);
         txtPhone = ActivityCompat.requireViewById(this, R.id.txtPhone);
         tilEmail = ActivityCompat.requireViewById(this, R.id.tilEmail);
         txtEmail = ActivityCompat.requireViewById(this, R.id.txtEmail);
+        tilPassword = ActivityCompat.requireViewById(this, R.id.tilPassword);
+        txtPassword = ActivityCompat.requireViewById(this, R.id.txtPassword);
+        Button btnSignUp = ActivityCompat.requireViewById(this, R.id.btnSignUp);
+        Button btnReset = ActivityCompat.requireViewById(this, R.id.btnReset);
 
-        txtPhone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        TextViewUtils.addAfterTextChangedListener(txtName, s -> checkIsValidName());
+        TextViewUtils.addAfterTextChangedListener(txtPhone, s -> checkIsValidPhone());
+        TextViewUtils.addAfterTextChangedListener(txtEmail, s -> checkIsValidEmail());
+        TextViewUtils.addAfterTextChangedListener(txtPassword, s -> checkIsValidPassword());
+        TextViewUtils.setOnImeActionDoneListener(txtPassword, (v, event) -> signUp());
+        btnSignUp.setOnClickListener(v -> signUp());
+        btnReset.setOnClickListener(v -> reset());
+    }
 
-            }
+    private void signUp() {
+        KeyboardUtils.hideSoftKeyboard(this);
+        checkIsValidForm();
+        if (isValidForm()) {
+            ToastUtils.toast(this, getString(R.string.main_signing_up));
+        }
+    }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    private void checkIsValidForm() {
+        checkIsValidName();
+        checkIsValidPhone();
+        checkIsValidEmail();
+        checkIsValidPassword();
+    }
 
-            }
+    private boolean isValidForm() {
+        return isValidName() && isValidPhone() && isValidEmail() && isValidPassword();
+    }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(txtPhone.getText())) {
-                    if (!ValidationUtils.isValidSpanishPhoneNumber(txtPhone.getText().toString())) {
-                        tilPhone.setError(getString(
-                                es.iessaladillo.pedrojoya.pr149.R.string
-                                        .main_activity_invalid_phone));
-                    } else {
-                        tilPhone.setErrorEnabled(false);
-                    }
-                } else {
-                    tilPhone.setErrorEnabled(false);
-                }
-            }
-        });
-        txtEmail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    private void reset() {
+        txtName.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
+        txtPassword.setText("");
+    }
 
-            }
+    private boolean isValidName() {
+        return txtName.getText() != null && !TextUtils.isEmpty(txtName.getText().toString());
+    }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    private boolean isValidPhone() {
+        return txtPhone.getText() != null && ValidationUtils.isValidSpanishPhoneNumber(
+                txtPhone.getText().toString());
+    }
 
-            }
+    private boolean isValidEmail() {
+        return txtEmail.getText() != null && ValidationUtils.isValidEmail(
+                txtEmail.getText().toString());
+    }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(txtEmail.getText())) {
-                    if (!ValidationUtils.isValidEmail(txtEmail.getText().toString())) {
-                        tilEmail.setError(getString(es.iessaladillo.pedrojoya.pr149.R.string.main_activity_invalid_email));
-                    } else {
-                        tilEmail.setErrorEnabled(false);
-                    }
-                } else {
-                    tilEmail.setErrorEnabled(false);
-                }
-            }
-        });
+    private boolean isValidPassword() {
+        return txtPassword.getText() != null && !TextUtils.isEmpty(
+                txtPassword.getText().toString());
+    }
+
+    private void checkIsValidName() {
+        tilName.setError(!isValidName() ? getString(R.string.main_required_field) : null);
+    }
+
+    private void checkIsValidPhone() {
+        tilPhone.setError(!isValidPhone() ? getString(R.string.main_invalid_phone) : null);
+    }
+
+    private void checkIsValidEmail() {
+        tilEmail.setError(!isValidEmail() ? getString(R.string.main_invalid_email) : null);
+    }
+
+    private void checkIsValidPassword() {
+        tilPassword.setError(!isValidPassword() ? getString(R.string.main_required_field) : null);
     }
 
 }

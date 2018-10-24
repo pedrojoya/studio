@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr012.data.local;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import es.iessaladillo.pedrojoya.pr012.R;
 import es.iessaladillo.pedrojoya.pr012.data.local.model.Student;
 
@@ -45,17 +46,18 @@ public class Database {
         return instance;
     }
 
+    @NonNull
     public List<Student> queryStudents() {
         return new ArrayList<>(students);
     }
 
     @SuppressWarnings("WeakerAccess")
-    public synchronized void insertStudent(Student student) {
+    public synchronized void insertStudent(@NonNull Student student) {
         student.setId(++studentsAutoId);
         students.add(student);
     }
 
-    public void deleteStudent(Student student) {
+    public void deleteStudent(@NonNull Student student) {
         students.remove(student);
     }
     

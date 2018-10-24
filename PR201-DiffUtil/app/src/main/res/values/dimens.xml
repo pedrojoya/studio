@@ -1,15 +1,8 @@
 <resources>
 
-    <!-- Empty View -->
-    <dimen name="main_activity_emptyView_drawablePadding">10dp</dimen>
-
-    <!-- Fake StatusBar -->
-
-    <!-- FAB -->
-    <dimen name="fab_margin">16dp</dimen>
-
-    <!-- RecyclerView -->
-    <dimen name="main_activity_lstStudents_padding">8dp</dimen>
+    <dimen name="main_lblEmptyView_drawablePadding">10dp</dimen>
+    <dimen name="main_fab_margin">16dp</dimen>
+    <dimen name="main_lstStudents_padding">8dp</dimen>
 
     <!-- Single line with avatar list item -->
     <dimen name="two_line_tile_height">72dp</dimen>
@@ -21,6 +14,6 @@
     <dimen name="two_line_secundary_text_paddingBottom">20dp</dimen>
     <dimen name="two_line_text_paddingLeft">72dp</dimen>
     <dimen name="two_line_text_marginRight">16dp</dimen>
-    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="main_fab_elevation">6dp</dimen>
 
 </resources>

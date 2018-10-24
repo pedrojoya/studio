@@ -1,22 +1,23 @@
 package pedrojoya.iessaladillo.es.pr229.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import pedrojoya.iessaladillo.es.pr229.R;
 import pedrojoya.iessaladillo.es.pr229.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr229.data.local.Database;
@@ -25,10 +26,7 @@ import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
 
 public class MainActivity extends AppCompatActivity {
 
-    @SuppressWarnings("FieldCanBeLocal")
-    private RecyclerView lstStudents;
-
-    private MainActivityAdapter adapter;
+    private MainActivityAdapter listAdapter;
     private MainActivityViewModel viewModel;
     private List<Student> currentStudents;
 
@@ -38,19 +36,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(new RepositoryImpl(Database
                 .getInstance()))).get(MainActivityViewModel.class);
-        initViews();
+        setupViews();
         viewModel.queryStudents().observe(this, students -> {
             currentStudents = students;
             if (currentStudents != null) {
                 List<Student> orderedList = new ArrayList<>(currentStudents);
                 Collections.sort(orderedList,
                         (student1, student2) -> viewModel.getOrder() * student1.getName().compareTo(student2.getName()));
-                adapter.submitList(orderedList);
+                listAdapter.submitList(orderedList);
             }
         });
     }
 
-    private void initViews() {
+    private void setupViews() {
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -59,10 +57,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar() {
         Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
 
     private void setupFab() {
@@ -73,20 +67,20 @@ public class MainActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         TextView emptyView = ActivityCompat.requireViewById(this, R.id.emptyView);
         emptyView.setOnClickListener(v -> addStudent());
-        adapter = new MainActivityAdapter();
-        adapter.setEmptyView(emptyView);
-        adapter.setOnItemClickListener((view, position) ->
-                updateStudent(adapter.getItem(position)));
-        adapter.setOnItemLongClickListener((view, position) -> {
-            deleteStudent(adapter.getItem(position));
+        listAdapter = new MainActivityAdapter();
+        listAdapter.setEmptyView(emptyView);
+        listAdapter.setOnItemClickListener((view, position) ->
+                updateStudent(listAdapter.getItem(position)));
+        listAdapter.setOnItemLongClickListener((view, position) -> {
+            deleteStudent(listAdapter.getItem(position));
             return true;
         });
-        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        RecyclerView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
         lstStudents.setHasFixedSize(true);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
-        lstStudents.setAdapter(adapter);
+        lstStudents.setAdapter(listAdapter);
     }
 
     private void addStudent() {
@@ -116,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Student> orderedList = new ArrayList<>(currentStudents);
                 Collections.sort(orderedList,
                         (student1, student2) -> viewModel.getOrder() * student1.getName().compareTo(student2.getName()));
-                adapter.submitList(orderedList);
+                listAdapter.submitList(orderedList);
             }
         }
         return super.onOptionsItemSelected(item);

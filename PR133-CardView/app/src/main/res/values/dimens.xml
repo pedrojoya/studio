@@ -1,9 +1,8 @@
 <resources>
-    <dimen name="general_activity_margin">16dp</dimen>
-
-    <dimen name="activity_main_card_cardCornerRadius">2dp</dimen>
-    <dimen name="activity_main_card_cardElevation">5dp</dimen>
-    <dimen name="activity_main_card_margin">4dp</dimen>
-    <dimen name="activity_main_card_divider_height">1dp</dimen>
-    <dimen name="activity_main_card_lblTitle_margin">8dp</dimen>
+    <dimen name="main_margin">16dp</dimen>
+    <dimen name="main_card_cardCornerRadius">2dp</dimen>
+    <dimen name="main_card_cardElevation">5dp</dimen>
+    <dimen name="main_card_margin">4dp</dimen>
+    <dimen name="main_card_divider_height">1dp</dimen>
+    <dimen name="main_card_lblTitle_margin">8dp</dimen>
 </resources>

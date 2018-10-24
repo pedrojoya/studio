@@ -1,11 +1,11 @@
 package es.iessaladillo.pedrojoya.pr014.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr014.R;
 import es.iessaladillo.pedrojoya.pr014.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr014.data.local.Database;
@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         ListView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
         lstStudents.setEmptyView(ActivityCompat.requireViewById(this, R.id.lblEmptyView));

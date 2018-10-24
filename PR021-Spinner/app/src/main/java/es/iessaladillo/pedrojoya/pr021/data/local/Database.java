@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import es.iessaladillo.pedrojoya.pr021.R;
 import es.iessaladillo.pedrojoya.pr021.data.local.model.Country;
 
@@ -11,6 +12,7 @@ public class Database {
 
     private static volatile Database instance;
 
+    @NonNull
     private final ArrayList<Country> countries;
 
     private Database() {
@@ -24,6 +26,7 @@ public class Database {
                 new Country(R.drawable.pt, "Portugal")));
     }
 
+    @NonNull
     public static Database getInstance() {
         if (instance == null) {
             synchronized (Database.class) {
@@ -35,8 +38,9 @@ public class Database {
         return instance;
     }
 
+    @NonNull
     public List<Country> queryCountries() {
-        return countries;
+        return new ArrayList<>(countries);
     }
 
 }

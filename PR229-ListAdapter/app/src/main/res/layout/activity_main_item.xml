@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
         android:layout_marginTop="@dimen/two_line_avatar_marginTop"
-        android:contentDescription="@string/activity_main_item_imgAvatar"
+        android:contentDescription="@string/main_item_imgAvatar"
         app:srcCompat="@drawable/ic_person_black_24dp"/>
 
     <TextView
@@ -48,7 +48,7 @@
         android:paddingLeft="@dimen/two_line_text_paddingLeft"
         android:paddingRight="@dimen/two_line_text_paddingLeft"
         android:paddingStart="@dimen/two_line_text_paddingLeft"
-        android:textSize="@dimen/activity_main_item_lblAddress_textSize"
+        android:textSize="@dimen/main_item_lblAddress_textSize"
         tools:text="@tools:sample/cities"/>
 
 </RelativeLayout>

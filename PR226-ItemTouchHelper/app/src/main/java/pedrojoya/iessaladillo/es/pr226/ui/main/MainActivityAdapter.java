@@ -1,12 +1,12 @@
 package pedrojoya.iessaladillo.es.pr226.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr226.R;
 import pedrojoya.iessaladillo.es.pr226.base.BaseListAdapter;
@@ -46,7 +46,7 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-        ViewHolder(View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView, getOnItemClickListener(), getOnItemLongClickListener());
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);

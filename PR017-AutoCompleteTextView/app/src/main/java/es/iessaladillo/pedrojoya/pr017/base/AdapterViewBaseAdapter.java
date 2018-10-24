@@ -1,8 +1,5 @@
 package es.iessaladillo.pedrojoya.pr017.base;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,10 +9,16 @@ import android.widget.Filterable;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import es.iessaladillo.pedrojoya.pr017.utils.ViewGroupUtils;
+
 // M for Model, VH for ViewHolder
 public abstract class AdapterViewBaseAdapter<M, VH> extends BaseAdapter implements Filterable {
 
+    @NonNull
     private List<M> data;
+    @NonNull
     private final List<M> original;
     @LayoutRes
     private final int layoutResId;
@@ -34,8 +37,7 @@ public abstract class AdapterViewBaseAdapter<M, VH> extends BaseAdapter implemen
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         VH viewHolder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent,
-                    false);
+            convertView = ViewGroupUtils.inflate(parent, layoutResId);
             viewHolder = onCreateViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -60,21 +62,21 @@ public abstract class AdapterViewBaseAdapter<M, VH> extends BaseAdapter implemen
         return position;
     }
 
-    protected abstract VH onCreateViewHolder(View itemView);
+    protected abstract VH onCreateViewHolder(@NonNull View itemView);
 
-    protected abstract void onBindViewHolder(VH holder, int position);
+    protected abstract void onBindViewHolder(@NonNull VH holder, int position);
 
     protected void setFilterPredicate(FilterPredicate<M> filterPredicate) {
         this.filterPredicate = filterPredicate;
     }
 
-    private void submitFilteredList(List<M> filteredList) {
+    private void submitFilteredList(@NonNull List<M> filteredList) {
         data = filteredList;
         notifyDataSetChanged();
     }
 
     protected interface FilterPredicate<T> {
-        boolean test(T item, CharSequence constraint);
+        boolean test(@NonNull T item, CharSequence constraint);
     }
 
     @NonNull

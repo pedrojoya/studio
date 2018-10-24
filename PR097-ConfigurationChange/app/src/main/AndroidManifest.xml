@@ -4,6 +4,7 @@
           xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,27 +22,22 @@
         </activity>
         <activity
             android:name=".ui.save.SaveActivity"
-            android:label="@string/save_activity_label"
+            android:label="@string/save_label"
             android:parentActivityName=".ui.main.MainActivity">
         </activity>
         <activity
             android:name=".ui.retain.RetainActivity"
-            android:label="@string/retain_activity_label"
+            android:label="@string/retain_label"
             android:parentActivityName=".ui.main.MainActivity">
         </activity>
         <activity
             android:name=".ui.state.AndroidStateActivity"
-            android:label="@string/icepick_activity_label"
-            android:parentActivityName=".ui.main.MainActivity">
-        </activity>
-        <activity
-            android:name=".ui.starter.StarterActivity"
-            android:label="@string/starter_activity_label"
+            android:label="@string/state_label"
             android:parentActivityName=".ui.main.MainActivity">
         </activity>
         <activity
             android:name=".ui.viewmodel.ViewModelActivity"
-            android:label="@string/viewmodel_activity_label"
+            android:label="@string/viewmodel_label"
             android:parentActivityName=".ui.main.MainActivity"/>
     </application>
 
