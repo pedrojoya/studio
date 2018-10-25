@@ -13,6 +13,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
+    @NonNull
     public List<String> queryStudents() {
         return database.selectAll(Database.TABLE_STUDENTS);
     }

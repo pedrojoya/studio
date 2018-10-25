@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 public interface StudentDao {
 
+    @NonNull
     List<String> queryStudents();
 
     int addStudent(@NonNull String student);

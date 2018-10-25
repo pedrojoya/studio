@@ -78,13 +78,10 @@ public class MainActivity extends AppCompatActivity {
     private void addStudent() {
         if (isValidForm()) {
             KeyboardUtils.hideSoftKeyboard(this);
-            if (viewModel.addStudent(txtName.getText().toString()) > 0) {
-                // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
-                listAdapter.notifyDataSetChanged();
-                resetForm();
-            }  else {
-                ToastUtils.toast(this, getString(R.string.main_error_inserting_student));
-            }
+            viewModel.addStudent(txtName.getText().toString());
+            // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
+            listAdapter.notifyDataSetChanged();
+            resetForm();
         }
     }
 
@@ -95,12 +92,9 @@ public class MainActivity extends AppCompatActivity {
     private void deleteStudent(String student) {
         KeyboardUtils.hideSoftKeyboard(this);
         if (student != null) {
-            if (viewModel.deleteStudent(student) > 0) {
-                // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
-                listAdapter.notifyDataSetChanged();
-            } else {
-                ToastUtils.toast(this, getString(R.string.main_error_deleting_student));
-            }
+            viewModel.deleteStudent(student);
+            // ArrayAdapter always scroll to bottom on notifyDataSetChanged.
+            listAdapter.notifyDataSetChanged();
         }
     }
 

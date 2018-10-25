@@ -28,6 +28,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
+    @NonNull
     public List<String> queryStudents() {
         return studentDao.queryStudents();
     }

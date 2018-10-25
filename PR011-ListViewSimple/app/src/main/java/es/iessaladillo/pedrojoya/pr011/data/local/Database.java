@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 public class Database {
 
     public static final String TABLE_STUDENTS = "STUDENTS";
@@ -28,10 +30,11 @@ public class Database {
         return instance;
     }
 
+    @NonNull
     public <T> List<T> selectAll(String tableName) {
         if (TextUtils.equals(tableName, TABLE_STUDENTS)) {
             //noinspection unchecked
-            return (List<T>) students;
+            return (List<T>) new ArrayList<>(students);
         } else {
             throw new RuntimeException("Table unkown in database");
         }
@@ -47,7 +50,7 @@ public class Database {
 
     public <T> int delete(String tableName, T item) {
         if (TextUtils.equals(tableName, TABLE_STUDENTS)) {
-            return students.remove((String) item) ? 1 : 0;
+            return students.remove(item) ? 1 : 0;
         } else {
             throw new RuntimeException("Table unkown in database");
         }
