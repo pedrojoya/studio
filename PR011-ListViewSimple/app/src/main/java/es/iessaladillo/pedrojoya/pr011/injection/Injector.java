@@ -1,8 +1,12 @@
 package es.iessaladillo.pedrojoya.pr011.injection;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
+import es.iessaladillo.pedrojoya.pr011.base.MessageManager;
+import es.iessaladillo.pedrojoya.pr011.base.ToastManager;
 import es.iessaladillo.pedrojoya.pr011.data.Repository;
 import es.iessaladillo.pedrojoya.pr011.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr011.data.local.Database;
@@ -46,6 +50,11 @@ public class Injector {
     public MainActivityViewModel provideMainActivityViewModel(@NonNull FragmentActivity activity) {
         return ViewModelProviders.of(activity, provideMainActivityViewModelFactory()).get(
                 MainActivityViewModel.class);
+    }
+
+    @NonNull
+    public MessageManager provideMessageManager(Context context) {
+        return new ToastManager(context);
     }
 
 }

@@ -3,9 +3,11 @@ package es.iessaladillo.pedrojoya.pr011.data.local;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
+
 
 public class Database {
 
@@ -19,6 +21,11 @@ public class Database {
         students = new ArrayList<>();
     }
 
+    /**
+     * Returns the singleton instance of the Database
+     *
+     * @return The singleton instance of the Database
+     */
     public static Database getInstance() {
         if (instance == null) {
             synchronized (Database.class) {
@@ -50,6 +57,7 @@ public class Database {
 
     public <T> int delete(String tableName, T item) {
         if (TextUtils.equals(tableName, TABLE_STUDENTS)) {
+            //noinspection SuspiciousMethodCalls
             return students.remove(item) ? 1 : 0;
         } else {
             throw new RuntimeException("Table unkown in database");

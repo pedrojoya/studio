@@ -16,8 +16,8 @@ public class MainActivityViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    List<String> getStudents() {
-        if (students == null) {
+    List<String> getStudents(boolean forceLoad) {
+        if (students == null || forceLoad) {
             students = repository.queryStudents();
         }
         return students;

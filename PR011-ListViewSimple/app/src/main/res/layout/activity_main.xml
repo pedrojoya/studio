@@ -21,7 +21,6 @@
             android:paddingLeft="@dimen/general_activity_horizontal_margin"
             android:paddingRight="@dimen/general_activity_horizontal_margin"
             android:scrollbarStyle="outsideOverlay"
-            android:transcriptMode="alwaysScroll"
             tools:listitem="@android:layout/simple_list_item_1" />
 
         <TextView

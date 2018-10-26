@@ -3,6 +3,4 @@
     <string name="main_txtName">Name</string>
     <string name="main_btnAdd">Add</string>
     <string name="main_lblEmptyView">No students yet</string>
-    <string name="main_error_deleting_student">Error deleting student</string>
-    <string name="main_error_inserting_student">Error inserting student</string>
 </resources>

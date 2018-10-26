@@ -49,7 +49,7 @@ public class MainActivityViewModelTest {
     }
 
     @Test
-    public void deleteStudent() {
+    public void testDeleteStudent() {
         String studentToDelete = "German";
 
         viewModel.deleteStudent(studentToDelete);
