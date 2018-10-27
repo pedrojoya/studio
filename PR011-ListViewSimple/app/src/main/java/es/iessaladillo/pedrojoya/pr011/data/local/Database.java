@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 
 public class Database {
@@ -59,6 +60,16 @@ public class Database {
         if (TextUtils.equals(tableName, TABLE_STUDENTS)) {
             //noinspection SuspiciousMethodCalls
             return students.remove(item) ? 1 : 0;
+        } else {
+            throw new RuntimeException("Table unkown in database");
+        }
+    }
+
+    @VisibleForTesting
+    public <T> void deleteAll(String tableName) {
+        if (TextUtils.equals(tableName, TABLE_STUDENTS)) {
+            //noinspection SuspiciousMethodCalls
+            students.clear();
         } else {
             throw new RuntimeException("Table unkown in database");
         }

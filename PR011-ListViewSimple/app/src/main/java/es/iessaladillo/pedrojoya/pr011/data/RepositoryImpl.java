@@ -12,6 +12,10 @@ public class RepositoryImpl implements Repository {
     @NonNull
     private final StudentDao studentDao;
 
+    private RepositoryImpl(@NonNull StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
+
     public static RepositoryImpl getInstance(StudentDao studentDao) {
         if (instance == null) {
             synchronized (RepositoryImpl.class) {
@@ -21,10 +25,6 @@ public class RepositoryImpl implements Repository {
             }
         }
         return instance;
-    }
-
-    private RepositoryImpl(@NonNull StudentDao studentDao) {
-        this.studentDao = studentDao;
     }
 
     @Override

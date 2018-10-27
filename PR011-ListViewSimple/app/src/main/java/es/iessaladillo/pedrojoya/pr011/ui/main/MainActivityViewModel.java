@@ -23,12 +23,12 @@ public class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    int addStudent(@NonNull String student) {
-        return repository.addStudent(student);
+    void addStudent(@NonNull String student) {
+        repository.addStudent(student);
     }
 
-    int deleteStudent(@NonNull String student) {
-        return repository.deleteStudent(student);
+    void deleteStudent(@NonNull String student) {
+        repository.deleteStudent(student);
     }
 
 }

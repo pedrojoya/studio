@@ -33,7 +33,7 @@ public class MainActivityViewModelTest {
         List<String> testStudents = Arrays.asList("Baldo", "Mero");
         when(repository.queryStudents()).thenReturn(testStudents);
 
-        List<String> students = viewModel.getStudents();
+        List<String> students = viewModel.getStudents(true);
 
         Mockito.verify(repository).queryStudents();
         assertThat(students, contains("Baldo", "Mero"));
