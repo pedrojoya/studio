@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import es.iessaladillo.pedrojoya.pr011.data.Repository;
 
-class MainActivityViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+public class MainActivityViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     @NonNull
     private final Repository repository;

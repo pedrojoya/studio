@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr011.data.Repository;
 
-class MainActivityViewModel extends ViewModel {
+public class MainActivityViewModel extends ViewModel {
 
     private List<String> students;
     @NonNull
@@ -16,8 +16,8 @@ class MainActivityViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    List<String> getStudents() {
-        if (students == null) {
+    List<String> getStudents(boolean forceLoad) {
+        if (students == null || forceLoad) {
             students = repository.queryStudents();
         }
         return students;

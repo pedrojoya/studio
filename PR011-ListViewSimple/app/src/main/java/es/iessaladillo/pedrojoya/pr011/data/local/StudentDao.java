@@ -1,18 +1,16 @@
-package es.iessaladillo.pedrojoya.pr011.data;
+package es.iessaladillo.pedrojoya.pr011.data.local;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 
-public interface Repository {
+public interface StudentDao {
 
     @NonNull
     List<String> queryStudents();
 
-    @SuppressWarnings("UnusedReturnValue")
     int addStudent(@NonNull String student);
 
-    @SuppressWarnings("UnusedReturnValue")
     int deleteStudent(@NonNull String student);
 
 }

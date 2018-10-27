@@ -9,7 +9,8 @@
         android:allowBackup="false"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.main.MainActivity">
+            android:name=".ui.main.MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

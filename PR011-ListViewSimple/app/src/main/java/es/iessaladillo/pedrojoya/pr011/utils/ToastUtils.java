@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 
 public class ToastUtils {
 
+    private ToastUtils() {
+    }
+
     public static void toast(@NonNull Context context, @NonNull String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
