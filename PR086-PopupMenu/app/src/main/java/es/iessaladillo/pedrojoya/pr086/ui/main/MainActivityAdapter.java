@@ -1,10 +1,7 @@
-package es.iessaladillo.pedrojoya.pr086.main;
+package es.iessaladillo.pedrojoya.pr086.ui.main;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +12,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import es.iessaladillo.pedrojoya.pr086.R;
 import es.iessaladillo.pedrojoya.pr086.data.model.Student;
+import es.iessaladillo.pedrojoya.pr086.utils.PopupMenuUtils;
 
 class MainActivityAdapter extends BaseAdapter {
 
@@ -91,20 +91,20 @@ class MainActivityAdapter extends BaseAdapter {
             imgPopupMenu = ViewCompat.requireViewById(itemView, R.id.imgPopupMenu);
         }
 
+        private void showPopup(Student student, View v) {
+            PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+            popupMenu.inflate(R.menu.activity_main_item_popup);
+            popupMenu.setOnMenuItemClickListener(menuItem -> onMenuItemClick(student, menuItem));
+            PopupMenuUtils.enableIcons(popupMenu);
+            popupMenu.show();
+        }
+
         void bind(Student student) {
             lblName.setText(student.getName());
             lblPhone.setText(student.getPhone());
             lblAddress.setText(student.getAddress());
             lblGrade.setText(student.getGrade());
             imgPopupMenu.setOnClickListener(v -> showPopup(student, v));
-        }
-
-        private void showPopup(Student student, View v) {
-            PopupMenu popup = new PopupMenu(v.getContext(), v);
-            MenuInflater menuInflater = popup.getMenuInflater();
-            menuInflater.inflate(R.menu.activity_main_item_popup, popup.getMenu());
-            popup.setOnMenuItemClickListener(menuItem -> onMenuItemClick(student, menuItem));
-            popup.show();
         }
 
         private boolean onMenuItemClick(Student student, MenuItem menuItem) {

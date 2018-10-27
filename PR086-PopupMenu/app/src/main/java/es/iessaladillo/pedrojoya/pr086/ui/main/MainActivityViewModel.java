@@ -1,6 +1,6 @@
-package es.iessaladillo.pedrojoya.pr086.main;
+package es.iessaladillo.pedrojoya.pr086.ui.main;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 import java.util.Arrays;
 import java.util.List;

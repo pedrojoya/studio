@@ -1,12 +1,12 @@
-package es.iessaladillo.pedrojoya.pr086.main;
+package es.iessaladillo.pedrojoya.pr086.ui.main;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr086.R;
 import es.iessaladillo.pedrojoya.pr086.data.model.Student;
 
@@ -15,20 +15,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     @SuppressWarnings("FieldCanBeLocal")
     private ListView lstStudents;
 
-    private MainActivityViewModel mViewModel;
+    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        initViews();
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
 
-        lstStudents.setAdapter(new MainActivityAdapter(this, mViewModel.getStudents(), this));
+        lstStudents.setAdapter(new MainActivityAdapter(this, viewModel.getStudents(), this));
         lstStudents.setOnItemClickListener(
                 (adapterView, view, position, id) -> showStudent(position));
     }
