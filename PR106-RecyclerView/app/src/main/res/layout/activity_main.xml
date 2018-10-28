@@ -28,6 +28,7 @@
         android:fadeScrollbars="false"
         android:paddingBottom="@dimen/activity_main_lstStudents_padding"
         android:paddingTop="@dimen/activity_main_lstStudents_padding"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <TextView

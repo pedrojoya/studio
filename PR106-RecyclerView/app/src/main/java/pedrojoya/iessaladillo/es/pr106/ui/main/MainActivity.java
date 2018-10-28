@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import pedrojoya.iessaladillo.es.pr106.R;
 import pedrojoya.iessaladillo.es.pr106.data.RepositoryImpl;
@@ -66,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
         listAdapter.setEmptyView(lblEmpty);
         lstStudents.setHasFixedSize(true);
         lstStudents.setAdapter(listAdapter);
+        /* Done in layout xml
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        */
         lstStudents.setItemAnimator(new DefaultItemAnimator());
     }
 
