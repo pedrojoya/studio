@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 
 import androidx.test.espresso.intent.matcher.UriMatchers;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.runner.AndroidJUnit4;
 import es.iessaladillo.pedrojoya.PR004.ui.main.MainActivity;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -31,7 +31,7 @@ public class MainActivityTests {
     public IntentsTestRule<MainActivity> mActivityRule = new IntentsTestRule(MainActivity.class);
 
     @Test
-    public void validateNavegar() {
+    public void shouldNavigate() {
         onView(withId(R.id.btnShowInBrowser)).perform(click());
         intended(allOf(
                 //toPackage("com.android.browser"),
@@ -42,7 +42,7 @@ public class MainActivityTests {
     }
 
     @Test
-    public void validateBuscar() {
+    public void shouldWebSearch() {
         onView(withId(R.id.btnSearch)).perform(click());
         intended(allOf(
                 //toPackage("com.android.quicksearchbox"),
@@ -53,7 +53,7 @@ public class MainActivityTests {
     }
 
     @Test
-    public void validateMarcar() {
+    public void shouldDial() {
         onView(withId(R.id.btnDial)).perform(click());
         intended(allOf(
                 //toPackage("com.android.dialer"),
@@ -64,7 +64,7 @@ public class MainActivityTests {
     }
 
     @Test
-    public void validateMostrarMapa() {
+    public void shouldShowInMap() {
         onView(withId(R.id.btnShowInMap)).perform(click());
         intended(allOf(
                 //toPackage("com.google.android.apps.maps")
@@ -75,7 +75,7 @@ public class MainActivityTests {
     }
 
     @Test
-    public void validateBuscarMapa() {
+    public void shouldSearchInMap() {
         onView(withId(R.id.btnSearchInMap)).perform(click());
         intended(allOf(
                 //toPackage("com.google.android.apps.maps")
@@ -86,7 +86,7 @@ public class MainActivityTests {
     }
 
     @Test
-    public void validateMostrarContactos() {
+    public void shouldShowContacts() {
         onView(withId(R.id.btnShowContacts)).perform(click());
         intended(allOf(
                 //toPackage("com.android.contacts")
