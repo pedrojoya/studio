@@ -9,6 +9,10 @@ import android.net.Uri;
 
 import java.util.List;
 
+import static android.content.ContentResolver.SCHEME_CONTENT;
+import static android.webkit.WebView.SCHEME_GEO;
+import static android.webkit.WebView.SCHEME_TEL;
+
 public class IntentsUtils {
 
     private IntentsUtils() {
@@ -33,20 +37,23 @@ public class IntentsUtils {
     }
 
     public static Intent newDialIntent(String phoneNumber) {
-        return new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber.trim()));
+        return new Intent(Intent.ACTION_DIAL,
+            Uri.parse(SCHEME_TEL + phoneNumber.trim()));
     }
 
     public static Intent newShowInMapIntent(double longit, double lat, int zoom) {
         return new Intent(Intent.ACTION_VIEW,
-                Uri.parse("geo:" + longit + "," + lat + "?z=" + zoom));
+            Uri.parse("geo:" + longit + "," + lat + "?z=" + zoom));
     }
 
     public static Intent newSearchInMapIntent(String text) {
-        return new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + text));
+        return new Intent(Intent.ACTION_VIEW,
+            Uri.parse(SCHEME_GEO + text.trim()));
     }
 
     public static Intent newContactsIntent() {
-        return new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"));
+        return new Intent(Intent.ACTION_VIEW,
+            Uri.parse(SCHEME_CONTENT + "://contacts/people/"));
     }
 
 }
