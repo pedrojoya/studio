@@ -2,6 +2,7 @@ package pedrojoya.iessaladillo.es.pr106.base;
 
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,38 +15,12 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
         .Adapter<VH> {
 
     @NonNull
-    private List<M> data;
+    private List<M> data = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
-    private View emptyView;
-    @NonNull
-    private final RecyclerView.AdapterDataObserver adapterDataObserver =
-            new RecyclerView.AdapterDataObserver() {
-                @Override
-                public void onChanged() {
-                    super.onChanged();
-                    checkEmptyViewVisibility();
-                }
 
-                @Override
-                public void onItemRangeInserted(int positionStart, int itemCount) {
-                    super.onItemRangeInserted(positionStart, itemCount);
-                    checkEmptyViewVisibility();
-                }
-
-                @Override
-                public void onItemRangeRemoved(int positionStart, int itemCount) {
-                    super.onItemRangeRemoved(positionStart, itemCount);
-                    checkEmptyViewVisibility();
-                }
-            };
-
-    protected BaseListAdapter(@NonNull List<M> data) {
-        this.data = data;
-    }
-
-    public void submitList(@NonNull List<M> data) {
-        this.data = data;
+    public void submitList(@NonNull List<M> newData) {
+        data = newData;
         notifyDataSetChanged();
     }
 
@@ -55,21 +30,6 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
 
     public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         this.onItemLongClickListener = listener;
-    }
-
-    public void setEmptyView(View emptyView) {
-        if (this.emptyView != null) {
-            unregisterAdapterDataObserver(adapterDataObserver);
-        }
-        this.emptyView = emptyView;
-        registerAdapterDataObserver(adapterDataObserver);
-        checkEmptyViewVisibility();
-    }
-
-    private void checkEmptyViewVisibility() {
-        if (emptyView != null) {
-            emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
-        }
     }
 
     @Override
@@ -114,10 +74,6 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
         return onItemLongClickListener;
     }
 
-    public View getEmptyView() {
-        return emptyView;
-    }
-
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
@@ -126,4 +82,5 @@ public abstract class BaseListAdapter<M, VH extends BaseViewHolder> extends Recy
         @SuppressWarnings("SameReturnValue")
         boolean onItemLongClick(View view, int position);
     }
+
 }

@@ -1,9 +1,12 @@
 package pedrojoya.iessaladillo.es.pr106.ui.main;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,29 +14,33 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import pedrojoya.iessaladillo.es.pr106.R;
+import pedrojoya.iessaladillo.es.pr106.base.MessageManager;
+import pedrojoya.iessaladillo.es.pr106.base.SnackbarManager;
 import pedrojoya.iessaladillo.es.pr106.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr106.data.local.Database;
 import pedrojoya.iessaladillo.es.pr106.data.local.model.Student;
-import pedrojoya.iessaladillo.es.pr106.utils.SnackbarUtils;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView lstStudents;
-
     private MainActivityViewModel viewModel;
     private MainActivityAdapter listAdapter;
+    private TextView lblEmptyView;
+    private MessageManager messageManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(new
-                RepositoryImpl(Database.getInstance()))).get(
-                MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(this,
+            new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
+            MainActivityViewModel.class);
+        lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmptyView);
+        messageManager = new SnackbarManager(lblEmptyView);
         setupViews();
+        loadData(false);
     }
 
     private void setupViews() {
@@ -53,39 +60,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        TextView lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
-        lblEmpty.setOnClickListener(view -> addStudent());
-        listAdapter = new MainActivityAdapter(viewModel.getStudents(false));
-        listAdapter.setOnItemClickListener((view, position) -> showStudent(listAdapter.getItem(position)));
+        listAdapter = new MainActivityAdapter();
+        listAdapter.setOnItemClickListener(
+            (view, position) -> showStudent(listAdapter.getItem(position)));
         listAdapter.setOnItemLongClickListener((view, position) -> {
             deleteStudent(listAdapter.getItem(position));
             return true;
         });
-        listAdapter.setEmptyView(lblEmpty);
+        RecyclerView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
+        lblEmptyView.setOnClickListener(view -> addStudent());
         lstStudents.setHasFixedSize(true);
         lstStudents.setAdapter(listAdapter);
-        /* Done in layout xml
-        lstStudents.setLayoutManager(
-                new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        */
+        lstStudents.setLayoutManager(new GridLayoutManager(this,
+            getResources().getInteger(R.integer.main_lstStudents_columns)));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
     }
 
     private void addStudent() {
         viewModel.insertStudent(Database.newFakeStudent());
-        listAdapter.submitList(viewModel.getStudents(true));
-        lstStudents.smoothScrollToPosition(listAdapter.getItemCount() - 1);
+        loadData(true);
     }
 
     private void showStudent(@NonNull Student student) {
-        SnackbarUtils.snackbar(lstStudents,
-                getString(R.string.main_activity_click_on_student, student.getName()));
+        messageManager.showMessage(getString(R.string.main_click_on_student, student.getName()));
     }
 
     private void deleteStudent(@NonNull Student student) {
         viewModel.deleteStudent(student);
-        listAdapter.submitList(viewModel.getStudents(true));
+        loadData(true);
+    }
+
+    private void loadData(boolean forceLoad) {
+        List<Student> students = viewModel.getStudents(forceLoad);
+        listAdapter.submitList(students);
+        lblEmptyView.setVisibility(students.size() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
 }
