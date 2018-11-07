@@ -11,9 +11,9 @@
     <dimen name="two_line_text_paddingLeft">72dp</dimen>
     <dimen name="two_line_text_marginRight">16dp</dimen>
 
-    <dimen name="activity_main_lblEmpty_drawablePadding">10dp</dimen>
-    <dimen name="activity_main_lstStudents_padding">8dp</dimen>
-    <dimen name="activity_main_fab_margin">16dp</dimen>
-    <dimen name="activity_main_item_lblAddress_textSize">14sp</dimen>
+    <dimen name="main_lblEmpty_drawablePadding">10dp</dimen>
+    <dimen name="main_lstStudents_padding">8dp</dimen>
+    <dimen name="main_fab_margin">16dp</dimen>
+    <dimen name="main_item_lblAddress_textSize">14sp</dimen>
 
 </resources>

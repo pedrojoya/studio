@@ -6,22 +6,28 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import pedrojoya.iessaladillo.es.pr225.R;
+import pedrojoya.iessaladillo.es.pr225.base.MessageManager;
+import pedrojoya.iessaladillo.es.pr225.base.SnackbarManager;
 import pedrojoya.iessaladillo.es.pr225.data.RepositoryImpl;
 import pedrojoya.iessaladillo.es.pr225.data.local.Database;
-import pedrojoya.iessaladillo.es.pr225.utils.SnackbarUtils;
+import pedrojoya.iessaladillo.es.pr225.data.local.model.Student;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView lstStudents;
     private MainActivityViewModel viewModel;
+    private MainActivityAdapter listAdapter;
+    private TextView lblEmptyView;
+    private MessageManager messageManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
+        lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmptyView);
+        messageManager = new SnackbarManager(lblEmptyView);
         setupViews();
+        loadData();
+
     }
 
     private void setupViews() {
@@ -45,24 +55,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFab() {
-        FloatingActionButton fabAccion = ActivityCompat.requireViewById(this, R.id.fab);
-        fabAccion.setOnClickListener(view -> addStudent());
+        FloatingActionButton fab = ActivityCompat.requireViewById(this, R.id.fab);
+        fab.setOnClickListener(view -> addStudent());
     }
 
     private void setupRecyclerView() {
-        lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
-        TextView lblEmpty = ActivityCompat.requireViewById(this, R.id.lblEmpty);
-        lblEmpty.setVisibility(View.INVISIBLE);
-        MainActivityAdapter listAdapter = new MainActivityAdapter(viewModel.getStudents());
+        listAdapter = new MainActivityAdapter();
+        RecyclerView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
         lstStudents.setHasFixedSize(true);
-        lstStudents.setAdapter(listAdapter);
         lstStudents.setLayoutManager(
-                new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+                new GridLayoutManager(this, getResources().getInteger(R.integer.main_columns)));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
+        lstStudents.setAdapter(listAdapter);
+    }
+
+    private void loadData() {
+        List<Student> students = viewModel.getStudents();
+        listAdapter.submitList(students);
+        lblEmptyView.setVisibility(students.size() == 0 ? View.VISIBLE : View.INVISIBLE);
     }
 
     private void addStudent() {
-        SnackbarUtils.snackbar(lstStudents, getString(R.string.activity_main_fabClicked));
+        messageManager.showMessage(getString(R.string.main_fabClicked));
     }
 
 }

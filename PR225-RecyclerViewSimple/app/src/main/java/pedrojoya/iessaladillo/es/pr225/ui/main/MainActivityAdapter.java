@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -19,10 +20,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         .ViewHolder> {
 
     @NonNull
-    private final List<Student> data;
+    private List<Student> data = new ArrayList<>();
 
-    MainActivityAdapter(@NonNull List<Student> data) {
-        this.data = data;
+    MainActivityAdapter() {
         setHasStableIds(true);
     }
 
@@ -44,13 +44,18 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     }
 
     @SuppressWarnings("WeakerAccess")
-    public Student getItem(int position) {
+    Student getItem(int position) {
         return data.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         return getItem(position).getId();
+    }
+
+    public void submitList(List<Student> newData) {
+        data = newData;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
