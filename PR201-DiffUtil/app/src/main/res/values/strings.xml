@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">DiffUtil</string>
+
     <string name="main_lblEmptyView">No students yet</string>
     <string name="main_imgAvatar">Avatar</string>
     <string name="main_mnuSort">Sort</string>
