@@ -2,6 +2,7 @@ package pedrojoya.iessaladillo.es.pr201.base;
 
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -15,11 +16,7 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
     protected OnItemClickListener onItemClickListener;
     protected OnItemLongClickListener onItemLongClickListener;
     @NonNull
-    private List<M> data;
-
-    public BaseListAdapter(@NonNull List<M> data) {
-        this.data = data;
-    }
+    private List<M> data = new ArrayList<>();
 
     public void submitList(@NonNull List<M> newData) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(

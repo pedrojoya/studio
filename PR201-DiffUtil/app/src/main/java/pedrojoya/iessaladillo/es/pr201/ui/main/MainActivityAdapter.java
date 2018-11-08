@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -19,10 +17,6 @@ import pedrojoya.iessaladillo.es.pr201.utils.PicassoUtils;
 
 public final class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter
 .ViewHolder> {
-
-    MainActivityAdapter(List<Student> data) {
-        super(data);
-    }
 
     @NonNull
     @Override

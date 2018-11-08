@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -59,7 +57,7 @@ public final class MainActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmptyView);
         lblEmptyView.setOnClickListener(v -> addStudent());
-        listAdapter = new MainActivityAdapter(new ArrayList<>());
+        listAdapter = new MainActivityAdapter();
         listAdapter.setOnItemClickListener(
             (view, position) -> updateStudent(listAdapter.getItem(position)));
         listAdapter.setOnItemLongClickListener((view, position) -> {
