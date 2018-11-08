@@ -1,6 +1,5 @@
 <resources>
 
-    <!-- Single line with avatar list item -->
     <dimen name="two_line_tile_height">72dp</dimen>
     <dimen name="two_line_avatar_width">40dp</dimen>
     <dimen name="two_line_avatar_height">40dp</dimen>
@@ -14,6 +13,7 @@
     <dimen name="main_lblEmpty_drawablePadding">10dp</dimen>
     <dimen name="main_lstStudents_padding">8dp</dimen>
     <dimen name="main_fab_margin">16dp</dimen>
+
     <dimen name="main_item_lblAddress_textSize">14sp</dimen>
 
 </resources>

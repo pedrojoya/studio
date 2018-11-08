@@ -4,49 +4,60 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import pedrojoya.iessaladillo.es.pr229.data.Repository;
 import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
 
-public class MainActivityViewModel extends ViewModel implements Repository {
+final class MainActivityViewModel extends ViewModel {
 
     @NonNull
     private final Repository repository;
-    private int order = 1;
     @NonNull
-    private final LiveData<List<Student>> students;
+    private final MutableLiveData<Boolean> descLiveData = new MutableLiveData<>();
+    @NonNull
+    private final LiveData<List<Student>> studentsLiveData;
+    @NonNull
+    private final LiveData<Boolean> emptyListLiveData;
 
     MainActivityViewModel(@NonNull Repository respository) {
         this.repository = respository;
-        students = repository.queryStudents();
-    }
-
-    int getOrder() {
-        return order;
+        studentsLiveData = Transformations.switchMap(descLiveData, repository::queryStudentsOrderedByName);
+        emptyListLiveData = Transformations.map(studentsLiveData,
+            students -> students == null || students.size() == 0);
+        descLiveData.postValue(false);
     }
 
     void toggleOrder() {
-        order = -order;
+        Boolean isDescendentBoxed = descLiveData.getValue();
+        boolean isDescedent = isDescendentBoxed == null ? false : isDescendentBoxed;
+        descLiveData.postValue(!isDescedent);
     }
 
-    @Override
     @NonNull
-    public LiveData<List<Student>> queryStudents() {
-        return students;
+    LiveData<List<Student>> getStudents() {
+        return studentsLiveData;
     }
 
-    @Override
-    public void insertStudent(@NonNull Student student) {
+    @NonNull
+    LiveData<Boolean> isListEmpty() {
+        return emptyListLiveData;
+    }
+
+    boolean isInDescendentOrder() {
+        return descLiveData.getValue() != null && descLiveData.getValue();
+    }
+
+    void insertStudent(@NonNull Student student) {
         repository.insertStudent(student);
     }
 
-    @Override
-    public void deleteStudent(@NonNull Student student) {
+    void deleteStudent(@NonNull Student student) {
         repository.deleteStudent(student);
     }
 
-    @Override
-    public void updateStudent(@NonNull Student student, @NonNull Student newStudent) {
+    void updateStudent(@NonNull Student student, @NonNull Student newStudent) {
         repository.updateStudent(student, newStudent);
     }
 

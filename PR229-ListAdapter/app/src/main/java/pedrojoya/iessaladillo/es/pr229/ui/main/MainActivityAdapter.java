@@ -1,5 +1,6 @@
 package pedrojoya.iessaladillo.es.pr229.ui.main;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,24 +16,23 @@ import pedrojoya.iessaladillo.es.pr229.base.BaseViewHolder;
 import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
 import pedrojoya.iessaladillo.es.pr229.utils.PicassoUtils;
 
-public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder> {
-
-    private static final DiffUtil.ItemCallback<Student> diffUtilItemCallback = new DiffUtil.ItemCallback<Student>() {
-        @Override
-        public boolean areItemsTheSame(Student oldItem, Student newItem) {
-            return oldItem.getId() == newItem.getId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(Student oldItem, Student newItem) {
-            return oldItem.getName().equals(newItem.getName()) &&
-                    oldItem.getPhotoUrl().equals(newItem.getPhotoUrl()) &&
-                    oldItem.getAddress().equals(newItem.getAddress());
-        }
-    };
+public final class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter
+.ViewHolder> {
 
     MainActivityAdapter() {
-        super(diffUtilItemCallback);
+        super(new DiffUtil.ItemCallback<Student>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+                return oldItem.getId() == newItem.getId();
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+                return TextUtils.equals(oldItem.getName(), newItem.getName()) && TextUtils.equals(
+                    oldItem.getAddress(), newItem.getAddress()) && TextUtils.equals(oldItem.getPhotoUrl(),
+                    newItem.getPhotoUrl());
+            }
+        });
     }
 
     @NonNull

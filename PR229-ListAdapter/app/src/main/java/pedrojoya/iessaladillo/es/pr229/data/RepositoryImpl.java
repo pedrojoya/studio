@@ -9,16 +9,17 @@ import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
 
 public class RepositoryImpl implements Repository {
 
+    @NonNull
     private final Database database;
 
-    public RepositoryImpl(Database database) {
+    public RepositoryImpl(@NonNull Database database) {
         this.database = database;
     }
 
     @Override
     @NonNull
-    public LiveData<List<Student>> queryStudents() {
-        return database.queryStudents();
+    public LiveData<List<Student>> queryStudentsOrderedByName(boolean desc) {
+        return database.queryStudentsOrderedByName(desc);
     }
 
     @Override

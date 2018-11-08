@@ -3,6 +3,7 @@ package pedrojoya.iessaladillo.es.pr229.data.local;
 import com.mooveit.library.Fakeit;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -23,10 +24,25 @@ public class Database {
     private final ArrayList<Student> students = new ArrayList<>();
     @NonNull
     private final MutableLiveData<List<Student>> studentsLiveData = new MutableLiveData<>();
-    private long studentsAutoId;
+    private final MutableLiveData<List<Student>> studentsLiveDataDesc = new MutableLiveData<>();
+    private int studentsAutoId = 1;
 
     private Database() {
+        updateLiveDatas();
         insertInitialData();
+    }
+
+    private void updateLiveDatas() {
+        studentsLiveData.postValue(orderByName(students, false));
+        studentsLiveDataDesc.postValue(orderByName(students, true));
+    }
+
+    private List<Student> orderByName(List<Student> students, boolean desc) {
+        List<Student> orderedList = new ArrayList<>(students);
+        Collections.sort(orderedList,
+            (student1, student2) -> (desc ? -1 : 1) * student1.getName().compareTo
+                (student2.getName()));
+        return orderedList;
     }
 
     private void insertInitialData() {
@@ -35,6 +51,7 @@ public class Database {
         }
     }
 
+    @NonNull
     public static Database getInstance() {
         if (instance == null) {
             synchronized (Database.class) {
@@ -47,34 +64,33 @@ public class Database {
     }
 
     @NonNull
-    public LiveData<List<Student>> queryStudents() {
-        studentsLiveData.setValue(new ArrayList<>(students));
-        return studentsLiveData;
+    public LiveData<List<Student>> queryStudentsOrderedByName(boolean desc) {
+        return desc ? studentsLiveDataDesc : studentsLiveData;
     }
 
     public synchronized void insertStudent(@NonNull Student student) {
         student.setId(++studentsAutoId);
         students.add(student);
-        studentsLiveData.setValue(new ArrayList<>(students));
+        updateLiveDatas();
     }
 
     public synchronized void deleteStudent(@NonNull Student student) {
         students.remove(student);
-        studentsLiveData.setValue(new ArrayList<>(students));
+        updateLiveDatas();
     }
 
-    public synchronized void updateStudent(@NonNull Student student, @NonNull Student newStudent) {
+    public synchronized void updateStudent(@NonNull Student student, Student newStudent) {
         int index = students.indexOf(student);
         if (index >= 0) {
             students.set(index, newStudent);
         }
-        studentsLiveData.setValue(new ArrayList<>(students));
+        updateLiveDatas();
     }
 
     @NonNull
     public static Student newFakeStudent() {
         return new Student(0, Fakeit.name().name(), Fakeit.address().streetAddress(),
-                BASE_URL + random.nextInt(1084));
+            BASE_URL + random.nextInt(1084));
     }
 
 }

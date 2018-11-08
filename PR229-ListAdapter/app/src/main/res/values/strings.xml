@@ -2,8 +2,10 @@
 <resources>
 
     <string name="app_name">ListAdapter</string>
+
     <string name="main_lblEmpty">No students</string>
-    <string name="main_item_imgAvatar">Avatar</string>
     <string name="main_mnuSort">Sort</string>
+
+    <string name="main_item_imgAvatar">Avatar</string>
 
 </resources>

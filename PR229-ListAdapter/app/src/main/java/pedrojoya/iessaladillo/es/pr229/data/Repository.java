@@ -8,8 +8,7 @@ import pedrojoya.iessaladillo.es.pr229.data.local.model.Student;
 
 public interface Repository {
 
-    @NonNull
-    LiveData<List<Student>> queryStudents();
+    @NonNull LiveData<List<Student>> queryStudentsOrderedByName(boolean desc);
 
     void insertStudent(@NonNull Student student);
 

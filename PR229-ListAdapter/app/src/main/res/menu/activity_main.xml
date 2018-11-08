@@ -4,6 +4,6 @@
     <item
         android:id="@+id/mnuSort"
         android:title="@string/main_mnuSort"
-        android:icon="@drawable/ic_sort_by_alpha"
+        android:icon="@drawable/ic_sort_descending_white_24dp"
         app:showAsAction="ifRoom"/>
 </menu>
