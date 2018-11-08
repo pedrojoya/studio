@@ -15,7 +15,7 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
     protected OnItemClickListener onItemClickListener;
     protected OnItemLongClickListener onItemLongClickListener;
     @NonNull
-    private final List<M> data;
+    private List<M> data;
 
     public BaseListAdapter(@NonNull List<M> data) {
         this.data = data;
@@ -24,8 +24,7 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
     public void submitList(@NonNull List<M> newData) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(
             new BaseDiffUtilCallback(data, newData), true);
-        data.clear();
-        getList().addAll(newData);
+        data = newData;
         diffResult.dispatchUpdatesTo(this);
     }
 

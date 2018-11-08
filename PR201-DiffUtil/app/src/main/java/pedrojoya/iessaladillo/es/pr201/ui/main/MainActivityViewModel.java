@@ -14,6 +14,7 @@ final class MainActivityViewModel extends ViewModel {
 
     @NonNull
     private final Repository repository;
+    @NonNull
     private final MutableLiveData<Boolean> descLiveData = new MutableLiveData<>();
     @NonNull
     private final LiveData<List<Student>> studentsLiveData;
@@ -22,7 +23,7 @@ final class MainActivityViewModel extends ViewModel {
 
     MainActivityViewModel(@NonNull Repository respository) {
         this.repository = respository;
-        studentsLiveData = Transformations.switchMap(descLiveData, repository::queryStudents);
+        studentsLiveData = Transformations.switchMap(descLiveData, repository::queryStudentsOrderedByName);
         emptyListLiveData = Transformations.map(studentsLiveData,
             students -> students == null || students.size() == 0);
         descLiveData.postValue(false);
@@ -35,7 +36,7 @@ final class MainActivityViewModel extends ViewModel {
     }
 
     @NonNull
-    LiveData<List<Student>> queryStudents() {
+    LiveData<List<Student>> getStudents() {
         return studentsLiveData;
     }
 

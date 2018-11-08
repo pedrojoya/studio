@@ -18,8 +18,8 @@ public class RepositoryImpl implements Repository {
 
     @Override
     @NonNull
-    public LiveData<List<Student>> queryStudents(boolean desc) {
-        return database.queryStudentsOrderByName(desc);
+    public LiveData<List<Student>> queryStudentsOrderedByName(boolean desc) {
+        return database.queryStudentsOrderedByName(desc);
     }
 
     @Override

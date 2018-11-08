@@ -75,7 +75,7 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     private void observeStudents() {
-        viewModel.queryStudents().observe(this, students -> listAdapter.submitList(students));
+        viewModel.getStudents().observe(this, students -> listAdapter.submitList(students));
         viewModel.isListEmpty().observe(this, empty ->
             lblEmptyView.setVisibility(empty ? View.VISIBLE : View.INVISIBLE));
     }
@@ -103,6 +103,7 @@ public final class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuSort) {
             toggleOrder();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

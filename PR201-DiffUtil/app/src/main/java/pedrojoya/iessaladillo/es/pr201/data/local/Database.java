@@ -63,7 +63,7 @@ public class Database {
     }
 
     @NonNull
-    public LiveData<List<Student>> queryStudentsOrderByName(boolean desc) {
+    public LiveData<List<Student>> queryStudentsOrderedByName(boolean desc) {
         return desc ? studentsLiveDataDesc : studentsLiveData;
     }
 
