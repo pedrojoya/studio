@@ -15,7 +15,7 @@ public abstract class BaseListAdapter<M, V extends BaseViewHolder> extends Recyc
     protected OnItemClickListener onItemClickListener;
     protected OnItemLongClickListener onItemLongClickListener;
     @NonNull
-    private List<M> data;
+    private final List<M> data;
 
     public BaseListAdapter(@NonNull List<M> data) {
         this.data = data;

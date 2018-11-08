@@ -15,7 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import pedrojoya.iessaladillo.es.pr201.R;
 import pedrojoya.iessaladillo.es.pr201.data.RepositoryImpl;
@@ -68,7 +68,8 @@ public final class MainActivity extends AppCompatActivity {
         });
         RecyclerView lstStudents = ActivityCompat.requireViewById(this, R.id.lstStudents);
         lstStudents.setHasFixedSize(true);
-        lstStudents.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        lstStudents.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R
+            .integer.main_lstStudents_columns)));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
     }
