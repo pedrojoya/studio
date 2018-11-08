@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 import pedrojoya.iessaladillo.es.pr201.data.Repository;
 import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
 
-class MainActivityViewModel extends ViewModel {
+final class MainActivityViewModel extends ViewModel {
 
     @NonNull
     private final Repository repository;

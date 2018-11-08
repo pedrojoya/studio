@@ -23,7 +23,7 @@ import pedrojoya.iessaladillo.es.pr201.data.local.Database;
 import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
 
 
-public class MainActivity extends AppCompatActivity {
+public final class MainActivity extends AppCompatActivity {
 
     private MainActivityAdapter listAdapter;
     private MainActivityViewModel viewModel;
@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         lblEmptyView = ActivityCompat.requireViewById(this, R.id.lblEmptyView);
         lblEmptyView.setOnClickListener(v -> addStudent());
         listAdapter = new MainActivityAdapter(new ArrayList<>());
-//        listAdapter.setEmptyView(lblEmptyView);
         listAdapter.setOnItemClickListener(
             (view, position) -> updateStudent(listAdapter.getItem(position)));
         listAdapter.setOnItemLongClickListener((view, position) -> {

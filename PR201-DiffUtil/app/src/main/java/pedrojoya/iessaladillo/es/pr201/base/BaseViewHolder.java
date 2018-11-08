@@ -5,11 +5,11 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder {
+public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
-    protected BaseViewHolder(@NonNull View itemView, BaseListAdapter.OnItemClickListener
-            onItemClickListener,
-            BaseListAdapter.OnItemLongClickListener onItemLongClickListener) {
+    protected BaseViewHolder(@NonNull View itemView,
+        BaseListAdapter.OnItemClickListener onItemClickListener,
+        BaseListAdapter.OnItemLongClickListener onItemLongClickListener) {
         super(itemView);
         if (onItemClickListener != null) {
             itemView.setOnClickListener(v -> {
@@ -20,7 +20,6 @@ public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder {
         }
         if (onItemLongClickListener != null) {
             itemView.setOnLongClickListener(v -> {
-                //noinspection SimplifiableIfStatement
                 if (getAdapterPosition() != RecyclerView.NO_POSITION) {
                     return onItemLongClickListener.onItemLongClick(v, getAdapterPosition());
                 }

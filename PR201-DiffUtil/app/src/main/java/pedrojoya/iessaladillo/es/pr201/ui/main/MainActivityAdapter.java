@@ -10,7 +10,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.DiffUtil;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr201.R;
 import pedrojoya.iessaladillo.es.pr201.base.BaseListAdapter;
@@ -18,64 +17,19 @@ import pedrojoya.iessaladillo.es.pr201.base.BaseViewHolder;
 import pedrojoya.iessaladillo.es.pr201.data.local.model.Student;
 import pedrojoya.iessaladillo.es.pr201.utils.PicassoUtils;
 
-public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter.ViewHolder> {
-
-    class DiffStudentsCallback extends DiffUtil.Callback {
-
-        private final List<Student> oldStudents;
-        private final List<Student> newStudents;
-
-        DiffStudentsCallback(List<Student> oldStudents, List<Student> newStudents) {
-            this.oldStudents = oldStudents;
-            this.newStudents = newStudents;
-        }
-
-        @Override
-        public int getOldListSize() {
-            return oldStudents == null ? 0 : oldStudents.size();
-        }
-
-        @Override
-        public int getNewListSize() {
-            return newStudents == null ? 0 : newStudents.size();
-        }
-
-        @Override
-        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldStudents.get(oldItemPosition).getId() == newStudents.get(newItemPosition)
-                    .getId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return TextUtils.equals(oldStudents.get(oldItemPosition).getName(),
-                    newStudents.get(newItemPosition).getName()) && TextUtils.equals(
-                    oldStudents.get(oldItemPosition).getAddress(),
-                    newStudents.get(newItemPosition).getAddress()) && TextUtils.equals(
-                    oldStudents.get(oldItemPosition).getPhotoUrl(),
-                    newStudents.get(newItemPosition).getPhotoUrl());
-        }
-
-    }
+public final class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAdapter
+.ViewHolder> {
 
     MainActivityAdapter(List<Student> data) {
         super(data);
-    }
-
-    @Override
-    public void submitList(@NonNull List<Student> newList) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(
-                new DiffStudentsCallback(getList(), newList), true);
-        getList().clear();
-        getList().addAll(newList);
-        diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main_item, parent, false));
+            .inflate(R.layout.activity_main_item, parent, false), onItemClickListener,
+            onItemLongClickListener);
     }
 
     @Override
@@ -88,14 +42,27 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         return getItem(position).getId();
     }
 
-    class ViewHolder extends BaseViewHolder<Student> {
+    @Override
+    protected boolean areContentsTheSame(Student oldItem, Student newItem) {
+        return oldItem.getId() == newItem.getId();
+    }
+
+    @Override
+    protected boolean areItemsTheSame(Student oldItem, Student newItem) {
+        return TextUtils.equals(oldItem.getName(), newItem.getName()) && TextUtils.equals(
+            oldItem.getAddress(), newItem.getAddress()) && TextUtils.equals(oldItem.getPhotoUrl(),
+            newItem.getPhotoUrl());
+    }
+
+    static final class ViewHolder extends BaseViewHolder {
 
         private final TextView lblName;
         private final TextView lblAddress;
         private final CircleImageView imgAvatar;
 
-        ViewHolder(@NonNull View itemView) {
-            super(itemView, getOnItemClickListener(), getOnItemLongClickListener());
+        ViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener,
+            OnItemLongClickListener onItemLongClickListener) {
+            super(itemView, onItemClickListener, onItemLongClickListener);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
@@ -108,6 +75,5 @@ public class MainActivityAdapter extends BaseListAdapter<Student, MainActivityAd
         }
 
     }
-
 
 }
