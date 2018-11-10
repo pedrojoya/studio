@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/mnuSort"
+        android:icon="@drawable/ic_sort_white_24dp"
+        android:title="@string/main_mnuSort"
+        app:showAsAction="ifRoom|withText"/>
+    <item
+        android:id="@+id/mnuSaveOrder"
+        android:icon="@drawable/ic_check_white_24dp"
+        android:title="@string/main_mnuSaveOrder"
+        app:showAsAction="ifRoom|withText"
+        android:visible="false"
+        tools:visible="true"/>
+</menu>

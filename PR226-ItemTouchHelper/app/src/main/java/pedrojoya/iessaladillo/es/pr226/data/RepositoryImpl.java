@@ -19,7 +19,7 @@ public class RepositoryImpl implements Repository {
     @Override
     @NonNull
     public LiveData<List<Student>> getStudents() {
-        return database.queryStudents();
+        return database.queryStudentsSortedByOrder();
     }
 
     @Override
@@ -30,6 +30,11 @@ public class RepositoryImpl implements Repository {
     @Override
     public void deleteStudent(@NonNull Student student) {
         database.deleteStudent(student);
+    }
+
+    @Override
+    public void updateStudents(@NonNull List<Student> students) {
+        database.updateStudentsSettingOrder(students);
     }
 
 }

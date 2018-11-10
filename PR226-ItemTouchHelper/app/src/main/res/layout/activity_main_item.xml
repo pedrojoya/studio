@@ -25,7 +25,7 @@
         style="@style/Base.TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@+id/imgDrag"
         android:layout_alignParentStart="true"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
         android:paddingEnd="@dimen/two_line_text_paddingLeft"
@@ -39,7 +39,7 @@
         android:id="@+id/lblAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@+id/imgDrag"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/lblName"
         android:layout_marginEnd="@dimen/two_line_text_marginRight"
@@ -50,5 +50,30 @@
         android:paddingStart="@dimen/two_line_text_paddingLeft"
         android:textSize="@dimen/main_item_lblAddress_textSize"
         tools:text="@tools:sample/cities"/>
+
+    <ImageView
+        android:id="@+id/imgDrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/main_item_imgDrag"
+        android:src="@drawable/ic_drag_black_24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/two_line_text_marginRight"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/lblOrder"
+        android:layout_width="@dimen/main_lblOrder_width"
+        android:layout_height="@dimen/main_lblOrder_width"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/two_line_text_marginRight"
+        android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+        android:background="@drawable/order_background"
+        tools:text="1"/>
 
 </RelativeLayout>

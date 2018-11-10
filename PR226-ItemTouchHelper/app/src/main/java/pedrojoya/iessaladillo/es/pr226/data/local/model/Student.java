@@ -6,12 +6,14 @@ public class Student {
     private final String name;
     private final String address;
     private final String photoUrl;
+    private long order;
 
-    public Student(long id, String name, String address, String photoUrl) {
+    public Student(long id, String name, String address, String photoUrl, long order) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.photoUrl = photoUrl;
+        this.order = order;
     }
 
     public long getId() {
@@ -34,6 +36,13 @@ public class Student {
         return name;
     }
 
+    public long getOrder() {
+        return order;
+    }
+
+    public void setOrder(long order) {
+        this.order = order;
+    }
 
 }
 

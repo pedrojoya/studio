@@ -15,5 +15,9 @@
     <dimen name="main_lstStudents_padding">8dp</dimen>
     <dimen name="main_fab_margin">16dp</dimen>
     <dimen name="main_item_lblAddress_textSize">14sp</dimen>
+    <dimen name="main_lblOrder_width">32dp</dimen>
+
+    <dimen name="order_background_padding">4dp</dimen>
+    <dimen name="main_lstStudents_paddingBottom">64dp</dimen>
 
 </resources>

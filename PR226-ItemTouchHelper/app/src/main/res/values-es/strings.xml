@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ItemTouchHelper</string>
+
     <string name="main_lblEmpty">No hay alumnos</string>
-    <string name="main_item_imgAvatar">Avatar</string>
     <string name="main_click_on_student">Ha hecho click sobre %1$s</string>
+    <string name="main_mnuSort">Ordenar</string>
+    <string name="main_mnuSaveOrder">Guardar</string>
+
+    <string name="main_item_imgAvatar">Avatar</string>
+    <string name="main_item_imgDrag">Arrastrar</string>
+
 </resources>

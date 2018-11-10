@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
-        android:paddingBottom="@dimen/main_lstStudents_padding"
+        android:paddingBottom="@dimen/main_lstStudents_paddingBottom"
         android:paddingTop="@dimen/main_lstStudents_padding"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 

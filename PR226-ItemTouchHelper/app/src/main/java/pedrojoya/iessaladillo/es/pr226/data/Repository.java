@@ -12,5 +12,6 @@ public interface Repository {
     LiveData<List<Student>> getStudents();
     void insertStudent(@NonNull Student student);
     void deleteStudent(@NonNull Student student);
+    void updateStudents(@NonNull List<Student> students);
 
 }
