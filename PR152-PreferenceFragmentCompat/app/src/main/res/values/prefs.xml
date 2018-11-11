@@ -83,7 +83,7 @@
     <string name="prefDifficulty_key" translatable="false">prefDifficulty</string>
     <string name="prefDifficulty_title">Difficulty</string>
     <integer name="prefDifficulty_min">1</integer>
-    <integer name="prefDifficulty_max">5</integer>
+    <integer name="prefDifficulty_max">4</integer>
     <integer name="prefDifficulty_seekBarIncrement">1</integer>
     <integer name="prefDifficulty_defaultValue">3</integer>
 

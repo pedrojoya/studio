@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr152.old;
+package es.iessaladillo.pedrojoya.pr152.deprecated;
 
 import android.os.Bundle;
 import androidx.core.view.ViewCompat;

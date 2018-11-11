@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.preference.EditTextPreference
+        android:dialogTitle="@string/prefCatchPhrase_dialogTitle"
+        android:icon="@drawable/ic_text_fields_black_24dp"
+        android:key="@string/prefCatchPhrase_key"
+        app:useSimpleSummaryProvider="true"
+        android:summary="@string/prefCatchPhrase_summary"
+        android:title="@string/prefCatchPhrase_title"/>
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="@bool/prefNetworkMode_defaultValue"
+        android:icon="@drawable/ic_network_wifi_black_24dp"
+        android:key="@string/prefNetworkMode_key"
+        android:summaryOff="@string/prefNetworkMode_summaryOff"
+        android:summaryOn="@string/prefNetworkMode_summaryOn"
+        android:switchTextOff="@string/prefNetworkMode_switchTextOff"
+        android:switchTextOn="@string/prefNetworkMode_switchTextOn"
+        android:title="@string/prefNetworkMode_title"/>
+
+    <androidx.preference.SeekBarPreference
+        app:min="@integer/prefDifficulty_min"
+        app:seekBarIncrement="@integer/prefDifficulty_seekBarIncrement"
+        app:adjustable="true"
+        app:showSeekBarValue="true"
+        android:icon="@drawable/ic_gauge_high_black_24dp"
+        android:defaultValue="@integer/prefDifficulty_defaultValue"
+        android:key="@string/prefDifficulty_key"
+        android:max="@integer/prefDifficulty_max"
+        android:title="@string/prefDifficulty_title"/>
+
+</androidx.preference.PreferenceScreen>

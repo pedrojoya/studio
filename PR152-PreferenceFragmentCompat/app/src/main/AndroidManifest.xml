@@ -22,10 +22,6 @@
         </activity>
         <!-- No establecer android:parentActivityName porque será llamada
              desde ella misma -->
-        <activity
-            android:name=".ui.settings.SettingsActivity"
-            android:label="@string/settings_title"
-            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

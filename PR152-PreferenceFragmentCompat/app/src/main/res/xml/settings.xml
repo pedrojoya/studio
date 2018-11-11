@@ -21,6 +21,7 @@
             android:entries="@array/prefConnectionType_entries"
             android:entryValues="@array/prefConnectionType_entryValues"
             android:icon="@drawable/ic_network_wifi_black_24dp"
+            app:useSimpleSummaryProvider="true"
             android:key="@string/prefConnectionType_key"
             android:title="@string/prefConnectionType_title"/>
 
@@ -30,6 +31,7 @@
             android:entries="@array/prefLanguage_entries"
             android:entryValues="@array/prefLanguage_entryValues"
             android:icon="@drawable/ic_language_black_24dp"
+            app:useSimpleSummaryProvider="true"
             android:key="@string/prefLanguage_key"
             android:title="@string/prefLanguage_title"/>
 
@@ -53,7 +55,6 @@
             android:entryValues="@array/prefShifts_entryValues"
             android:icon="@drawable/ic_rotate_right_black_24dp"
             android:key="@string/prefShifts_key"
-            android:summary="@string/prefShifts_summary"
             android:title="@string/prefShifts_title"/>
 
         <androidx.preference.Preference
@@ -65,39 +66,13 @@
                 android:data="http://www.iessaladillo.es"/>
         </androidx.preference.Preference>
 
-        <androidx.preference.PreferenceScreen
-            android:key="@string/prefOthers_key"
-            android:title="@string/prefOthers_title">
-
-            <androidx.preference.EditTextPreference
-                android:dialogTitle="@string/prefCatchPhrase_dialogTitle"
-                android:icon="@drawable/ic_text_fields_black_24dp"
-                android:key="@string/prefCatchPhrase_key"
-                android:summary="@string/prefCatchPhrase_summary"
-                android:title="@string/prefCatchPhrase_title"/>
-
-            <androidx.preference.SwitchPreferenceCompat
-                android:defaultValue="@bool/prefNetworkMode_defaultValue"
-                android:icon="@drawable/ic_network_wifi_black_24dp"
-                android:key="@string/prefNetworkMode_key"
-                android:summaryOff="@string/prefNetworkMode_summaryOff"
-                android:summaryOn="@string/prefNetworkMode_summaryOn"
-                android:switchTextOff="@string/prefNetworkMode_switchTextOff"
-                android:switchTextOn="@string/prefNetworkMode_switchTextOn"
-                android:title="@string/prefNetworkMode_title"/>
-
-            <!-- Icon displayed incorrectly -->
-            <androidx.preference.SeekBarPreference
-                android:defaultValue="@integer/prefDifficulty_defaultValue"
-                android:key="@string/prefDifficulty_key"
-                android:max="@integer/prefDifficulty_max"
-                android:title="@string/prefDifficulty_title"
-                app:min="@integer/prefDifficulty_min"
-                app:seekBarIncrement="@integer/prefDifficulty_seekBarIncrement"
-                app:showSeekBarValue="false"/>
-
-        </androidx.preference.PreferenceScreen>
-
     </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.Preference
+        android:persistent="false"
+        android:key="@string/prefOthers_key"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/prefOthers_title"
+        app:fragment="es.iessaladillo.pedrojoya.pr152.ui.settings.SettingsOthers"/>
 
 </androidx.preference.PreferenceScreen>
