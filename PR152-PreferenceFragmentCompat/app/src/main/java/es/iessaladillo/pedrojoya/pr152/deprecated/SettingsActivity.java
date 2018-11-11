@@ -1,16 +1,19 @@
-package es.iessaladillo.pedrojoya.pr152.ui.settings;
+package es.iessaladillo.pedrojoya.pr152.deprecated;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
-import androidx.appcompat.widget.Toolbar;
-
 import es.iessaladillo.pedrojoya.pr152.R;
 
+@SuppressWarnings("ALL")
+@SuppressLint("Registered")
 public class SettingsActivity extends AppCompatActivity implements PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
     private static final String EXTRA_PREFERENCE_SCREEN_KEY = "EXTRA_PREFERENCE_SCREEN_KEY";
