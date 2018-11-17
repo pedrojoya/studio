@@ -1,0 +1,8 @@
+<ImageView
+    android:id="@+id/imgPhoto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/main_imgPhoto"
+    android:scaleType="centerCrop"
+    android:src="@drawable/bench"/>

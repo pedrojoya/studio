@@ -2,19 +2,19 @@
 <resources>
     <string name="app_name">Menú de opciones</string>
 
-    <string name="activity_main_mnuGrey">Escala de grises</string>
-    <string name="activity_main_mnuSepia">Sepia</string>
-    <string name="activity_main_mnuBinary">Binario</string>
-    <string name="activity_main_mnuInverted">Invertido</string>
-    <string name="activity_main_imgPhoto">Foto</string>
-    <string name="activity_main_mnuOriginal">Original</string>
-    <string name="activity_main_mnuInfo">Info</string>
-    <string name="activity_main_mnuActions">Acciones</string>
-    <string name="activity_main_mnuDelete">Eliminar</string>
-    <string name="activity_main_mnuEdit">Editar</string>
-
-    <string name="main_activity_info">Info</string>
-    <string name="main_activity_edit">Editar</string>
-    <string name="main_activity_delete">Eliminar</string>
-    <string name="activity_main_mnuVisible">Visible</string>
+    <string name="main_mnuGrey">Escala de grises</string>
+    <string name="main_mnuSepia">Sepia</string>
+    <string name="main_mnuBinary">Binario</string>
+    <string name="main_mnuInverted">Invertido</string>
+    <string name="main_imgPhoto">Foto</string>
+    <string name="main_mnuOriginal">Original</string>
+    <string name="main_mnuInfo">Info</string>
+    <string name="main_mnuActions">Acciones</string>
+    <string name="main_mnuDelete">Eliminar</string>
+    <string name="main_mnuEdit">Editar</string>
+    <string name="main_info">Info</string>
+    <string name="main_edit">Editar</string>
+    <string name="main_delete">Eliminar</string>
+    <string name="main_mnuVisible">Visible</string>
+    <string name="main_settings">Configuración</string>
 </resources>

@@ -1,8 +1,8 @@
-<ImageView
-    android:id="@+id/imgPhoto"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flContent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:contentDescription="@string/activity_main_imgPhoto"
-    android:scaleType="centerCrop"
-    android:src="@drawable/bench"/>
+    tools:ignore="MergeRootFrame" />

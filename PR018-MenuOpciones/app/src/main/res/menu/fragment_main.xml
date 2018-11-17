@@ -1,0 +1,46 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnuInfo"
+        android:icon="@drawable/ic_info_outline_black_24dp"
+        android:title="@string/main_mnuInfo"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/mnuVisible"
+        android:title="@string/main_mnuVisible"
+        android:checkable="true"/>
+    <item
+        android:id="@+id/mnuActions"
+        android:title="@string/main_mnuActions">
+        <menu>
+            <item
+                android:id="@+id/mnuEdit"
+                android:title="@string/main_mnuEdit"
+                android:icon="@drawable/ic_edit_black_24dp"/>
+            <item
+                android:id="@+id/mnuDelete"
+                android:title="@string/main_mnuDelete"
+                android:icon="@drawable/ic_delete_black_24dp"/>
+        </menu>
+    </item>
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/mnuOriginal"
+            android:title="@string/main_mnuOriginal"/>
+        <item
+            android:id="@+id/mnuGrey"
+            android:title="@string/main_mnuGrey"/>
+        <item
+            android:id="@+id/mnuSepia"
+            android:title="@string/main_mnuSepia"/>
+        <item
+            android:id="@+id/mnuBinary"
+            android:title="@string/main_mnuBinary"/>
+        <item
+            android:id="@+id/mnuInverted"
+            android:title="@string/main_mnuInverted"/>
+    </group>
+
+</menu>
