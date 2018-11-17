@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import es.iessaldillo.pedrojoya.pr191.R;
 
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
 
     private static final String ARG_OPTION = "ARG_OPTION";
@@ -37,8 +38,12 @@ public class MainFragment extends Fragment {
     }
 
     private void obtainArguments() {
-        if (getArguments() != null) {
-            option = getArguments().getString(ARG_OPTION);
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            option = arguments.getString(ARG_OPTION);
+        }
+        if (arguments == null || option == null) {
+            throw new RuntimeException("MainFragment must receive and argument with key ARG_OPTION");
         }
     }
 
@@ -51,10 +56,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
+        setupViews(getView());
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         setupToolbar();
         TextView lblOption = ViewCompat.requireViewById(view, R.id.lblOption);
         lblOption.setText(option);

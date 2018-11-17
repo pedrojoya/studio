@@ -17,35 +17,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
         // Initially favourites option.
         if (savedInstanceState == null) {
             showFavorites();
         }
     }
 
-    private void initViews() {
+    private void setupViews() {
         ActivityCompat.requireViewById(this, R.id.btnFavourites).setOnClickListener(
-                v -> showFavorites());
+            v -> showFavorites());
         ActivityCompat.requireViewById(this, R.id.btnCalendar).setOnClickListener(
-                v -> showCalendar());
+            v -> showCalendar());
         ActivityCompat.requireViewById(this, R.id.btnMusic).setOnClickListener(v -> showMusic());
     }
 
     private void showFavorites() {
         FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                MainFragment.newInstance(getString(R.string.main_activity_favorites)),
-                TAG_FAVOURITES);
+            MainFragment.newInstance(getString(R.string.main_favorites)), TAG_FAVOURITES);
     }
 
     private void showCalendar() {
         FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                MainFragment.newInstance(getString(R.string.main_activity_calendar)), TAG_CALENDAR);
+            MainFragment.newInstance(getString(R.string.main_calendar)), TAG_CALENDAR);
     }
 
     private void showMusic() {
         FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                MainFragment.newInstance(getString(R.string.main_activity_music)), TAG_MUSIC);
+            MainFragment.newInstance(getString(R.string.main_music)), TAG_MUSIC);
     }
 
 }
