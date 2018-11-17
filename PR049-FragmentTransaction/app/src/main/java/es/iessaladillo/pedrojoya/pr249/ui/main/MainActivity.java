@@ -1,16 +1,16 @@
-package es.iessaladillo.pedrojoya.pr049.ui.main;
+package es.iessaladillo.pedrojoya.pr249.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
-import es.iessaladillo.pedrojoya.pr049.R;
-import es.iessaladillo.pedrojoya.pr049.data.RepositoryImpl;
-import es.iessaladillo.pedrojoya.pr049.data.local.Database;
-import es.iessaladillo.pedrojoya.pr049.ui.detail.DetailActivity;
-import es.iessaladillo.pedrojoya.pr049.ui.detail.DetailFragment;
-import es.iessaladillo.pedrojoya.pr049.utils.ConfigurationUtils;
-import es.iessaladillo.pedrojoya.pr049.utils.FragmentUtils;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import es.iessaladillo.pedrojoya.pr249.R;
+import es.iessaladillo.pedrojoya.pr249.data.RepositoryImpl;
+import es.iessaladillo.pedrojoya.pr249.data.local.Database;
+import es.iessaladillo.pedrojoya.pr249.ui.detail.DetailActivity;
+import es.iessaladillo.pedrojoya.pr249.ui.detail.DetailFragment;
+import es.iessaladillo.pedrojoya.pr249.utils.ConfigurationUtils;
+import es.iessaladillo.pedrojoya.pr249.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.Callback {
 

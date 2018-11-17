@@ -1,30 +1,31 @@
-package es.iessaladillo.pedrojoya.pr049.ui.main;
+package es.iessaladillo.pedrojoya.pr249.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.selection.SelectionPredicates;
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
-import es.iessaladillo.pedrojoya.pr049.R;
-import es.iessaladillo.pedrojoya.pr049.base.PositionalDetailsLookup;
-import es.iessaladillo.pedrojoya.pr049.base.PositionalItemKeyProvider;
-import es.iessaladillo.pedrojoya.pr049.utils.ConfigurationUtils;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import es.iessaladillo.pedrojoya.pr249.R;
+import es.iessaladillo.pedrojoya.pr249.base.PositionalDetailsLookup;
+import es.iessaladillo.pedrojoya.pr249.base.PositionalItemKeyProvider;
+import es.iessaladillo.pedrojoya.pr249.utils.ConfigurationUtils;
 
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
 
-    // Comunication interface with activity.
     public interface Callback {
         void onItemSelected(String item);
     }
@@ -35,7 +36,7 @@ public class MainFragment extends Fragment {
     private MainFragmentAdapter listAdapter;
     private SelectionTracker<Long> selectionTracker;
 
-    public static MainFragment newInstance() {
+    static MainFragment newInstance() {
         return new MainFragment();
     }
 
@@ -65,7 +66,7 @@ public class MainFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
-        initViews(getView());
+        setupViews(getView());
         listAdapter.submitList(viewModel.getStudents(false));
         // Can't restore selectionTracker state on onRestoreInstanceState, because
         // selectionTracker isn't created yet.
@@ -78,7 +79,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         setupRecyclerView(view);
     }
 
@@ -100,6 +101,7 @@ public class MainFragment extends Fragment {
         lstItems.setLayoutManager(
                 new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         lstItems.setItemAnimator(new DefaultItemAnimator());
+        lstItems.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         lstItems.setAdapter(listAdapter);
         setupSelectionTracker();
         listAdapter.setSelectionTracker(selectionTracker);

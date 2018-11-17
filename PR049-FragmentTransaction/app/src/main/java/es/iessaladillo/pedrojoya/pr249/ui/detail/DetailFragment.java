@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr049.ui.detail;
+package es.iessaladillo.pedrojoya.pr249.ui.detail;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import es.iessaladillo.pedrojoya.pr049.R;
+import es.iessaladillo.pedrojoya.pr249.R;
 
 public class DetailFragment extends Fragment {
 

@@ -1,13 +1,13 @@
-package es.iessaladillo.pedrojoya.pr049.ui.detail;
+package es.iessaladillo.pedrojoya.pr249.ui.detail;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import es.iessaladillo.pedrojoya.pr049.R;
-import es.iessaladillo.pedrojoya.pr049.utils.ConfigurationUtils;
-import es.iessaladillo.pedrojoya.pr049.utils.FragmentUtils;
+import es.iessaladillo.pedrojoya.pr249.R;
+import es.iessaladillo.pedrojoya.pr249.utils.ConfigurationUtils;
+import es.iessaladillo.pedrojoya.pr249.utils.FragmentUtils;
 
 public class DetailActivity extends AppCompatActivity {
 

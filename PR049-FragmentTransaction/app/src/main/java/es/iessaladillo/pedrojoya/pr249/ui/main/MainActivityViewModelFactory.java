@@ -1,10 +1,10 @@
-package es.iessaladillo.pedrojoya.pr049.ui.main;
+package es.iessaladillo.pedrojoya.pr249.ui.main;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import es.iessaladillo.pedrojoya.pr049.data.Repository;
+import es.iessaladillo.pedrojoya.pr249.data.Repository;
 
 @SuppressWarnings("WeakerAccess")
 public class MainActivityViewModelFactory implements ViewModelProvider.Factory {

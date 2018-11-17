@@ -1,8 +1,8 @@
-package es.iessaladillo.pedrojoya.pr049.data;
+package es.iessaladillo.pedrojoya.pr249.data;
 
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr049.data.local.Database;
+import es.iessaladillo.pedrojoya.pr249.data.local.Database;
 
 public class RepositoryImpl implements Repository {
 

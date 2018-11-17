@@ -1,20 +1,20 @@
-package es.iessaladillo.pedrojoya.pr049.ui.main;
+package es.iessaladillo.pedrojoya.pr249.ui.main;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.DiffUtil;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.selection.ItemDetailsLookup;
-import es.iessaladillo.pedrojoya.pr049.base.BaseListAdapter;
-import es.iessaladillo.pedrojoya.pr049.base.BaseViewHolder;
-import es.iessaladillo.pedrojoya.pr049.base.PositionalDetailsLookup;
-import es.iessaladillo.pedrojoya.pr049.base.PositionalItemDetails;
+import androidx.recyclerview.widget.DiffUtil;
+import es.iessaladillo.pedrojoya.pr249.base.BaseListAdapter;
+import es.iessaladillo.pedrojoya.pr249.base.BaseViewHolder;
+import es.iessaladillo.pedrojoya.pr249.base.PositionalDetailsLookup;
+import es.iessaladillo.pedrojoya.pr249.base.PositionalItemDetails;
 
 public class MainFragmentAdapter extends BaseListAdapter<String, MainFragmentAdapter.ViewHolder, Long> {
 
