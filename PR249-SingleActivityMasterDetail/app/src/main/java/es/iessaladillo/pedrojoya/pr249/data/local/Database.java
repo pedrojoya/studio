@@ -17,7 +17,8 @@ public class Database {
     private void insertInitialData() {
         students.addAll(
                 Arrays.asList("Baldomero", "Sergio", "Pablo", "Rodolfo", "Atanasio", "Gervasio",
-                        "Prudencia", "Oswaldo", "Gumersindo", "Gerardo", "Rodrigo", "Óscar"));
+                        "Prudencia", "Oswaldo", "Gumersindo", "Gerardo", "Rodrigo", "Óscar",
+                    "Filomeno", "Fulgencio", "Ambrosio"));
     }
 
     public List<String> queryStudents() {

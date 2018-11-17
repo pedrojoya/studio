@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -16,14 +18,14 @@ import es.iessaladillo.pedrojoya.pr249.R;
 
 public class DetailFragment extends Fragment {
 
-    private static final String EXTRA_ITEM = "EXTRA_ITEM";
+    private static final String ARG_ITEM = "ARG_ITEM";
 
     private String item;
 
     public static DetailFragment newInstance(String item) {
         DetailFragment fragment = new DetailFragment();
         Bundle arguments = new Bundle();
-        arguments.putString(EXTRA_ITEM, item);
+        arguments.putString(ARG_ITEM, item);
         fragment.setArguments(arguments);
         return fragment;
     }
@@ -35,8 +37,12 @@ public class DetailFragment extends Fragment {
     }
 
     private void obtainArguments() {
-        if (getArguments() != null) {
-            item = getArguments().getString(EXTRA_ITEM);
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            item = arguments.getString(ARG_ITEM);
+        }
+        if (arguments == null || item == null) {
+            throw new RuntimeException("Fragment must receive an argument with key ARG_ITEM");
         }
     }
 
@@ -49,13 +55,13 @@ public class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
+        Objects.requireNonNull(getView());
+        setupViews(getView());
     }
 
-    private void initViews(View view) {
+    private void setupViews(@NonNull View view) {
         setupToolbar();
         TextView lblItem = ViewCompat.requireViewById(view, R.id.lblItem);
-
         lblItem.setText(item);
     }
 

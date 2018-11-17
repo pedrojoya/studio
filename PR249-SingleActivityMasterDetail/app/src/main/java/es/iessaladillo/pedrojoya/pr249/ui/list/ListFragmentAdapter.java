@@ -6,32 +6,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import es.iessaladillo.pedrojoya.pr249.base.BaseListAdapter;
 import es.iessaladillo.pedrojoya.pr249.base.BaseViewHolder;
 
-public class ListFragmentAdapter extends BaseListAdapter<String, ListFragmentAdapter.ViewHolder, Long> {
+public class ListFragmentAdapter extends BaseListAdapter<String, ListFragmentAdapter.ViewHolder> {
 
-    private static final DiffUtil.ItemCallback<String> diffUtilItemCallback = new DiffUtil.ItemCallback<String>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull String oldItem, @NonNull String newItem) {
-            return TextUtils.equals(oldItem, newItem);
-        }
+    ListFragmentAdapter() {
+        super(new DiffUtil.ItemCallback<String>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull String oldItem, @NonNull String newItem) {
+                return TextUtils.equals(oldItem, newItem);
+            }
 
-        @Override
-        public boolean areContentsTheSame(@NonNull String oldItem, @NonNull String newItem) {
-            return TextUtils.equals(oldItem, newItem);
-        }
-    };
-    @LayoutRes
-    private final int layoutResId;
-
-    ListFragmentAdapter(@LayoutRes int layoutResId) {
-        super(diffUtilItemCallback);
-        this.layoutResId = layoutResId;
+            @Override
+            public boolean areContentsTheSame(@NonNull String oldItem, @NonNull String newItem) {
+                return TextUtils.equals(oldItem, newItem);
+            }
+        });
     }
 
     @NonNull
@@ -39,7 +33,7 @@ public class ListFragmentAdapter extends BaseListAdapter<String, ListFragmentAda
     public ListFragmentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
             int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(layoutResId, parent, false));
+                .inflate(android.R.layout.simple_list_item_1, parent, false));
     }
 
     @Override

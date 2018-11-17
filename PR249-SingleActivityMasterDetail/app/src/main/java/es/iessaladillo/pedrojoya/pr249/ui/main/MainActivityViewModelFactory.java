@@ -11,7 +11,7 @@ public class MainActivityViewModelFactory implements ViewModelProvider.Factory {
 
     private final Repository repository;
 
-    public MainActivityViewModelFactory(Repository repository) {
+    public MainActivityViewModelFactory(@NonNull Repository repository) {
         this.repository = repository;
     }
 

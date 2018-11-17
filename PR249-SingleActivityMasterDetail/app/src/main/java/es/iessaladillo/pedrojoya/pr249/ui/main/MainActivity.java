@@ -1,6 +1,8 @@
 package es.iessaladillo.pedrojoya.pr249.ui.main;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onIt
     }
 
     @Override
-    public void onItemSelected(String item) {
+    public void onItemSelected(@NonNull String item) {
         FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(),
                 R.id.flContent, DetailFragment.newInstance(item),
                 DetailFragment.class.getSimpleName(), DetailFragment.class.getSimpleName(),
@@ -35,4 +37,5 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onIt
         onBackPressed();
         return true;
     }
+
 }
