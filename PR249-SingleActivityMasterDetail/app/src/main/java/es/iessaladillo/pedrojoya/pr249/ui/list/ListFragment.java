@@ -53,6 +53,12 @@ public class ListFragment extends Fragment {
     }
 
     @Override
+    public void onDetach() {
+        listener = null;
+        super.onDetach();
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(requireActivity(),
