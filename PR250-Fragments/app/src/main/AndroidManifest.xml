@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="es.iessaldillo.pedrojoya.pr191">
+    package="es.iessaldillo.pedrojoya.pr250">
 
     <application
         android:allowBackup="true"

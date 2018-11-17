@@ -1,4 +1,4 @@
-package es.iessaldillo.pedrojoya.pr191.main;
+package es.iessaldillo.pedrojoya.pr250.main;
 
 
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import es.iessaldillo.pedrojoya.pr191.R;
+import es.iessaldillo.pedrojoya.pr250.R;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
