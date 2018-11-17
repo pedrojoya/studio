@@ -1,5 +1,5 @@
 <resources>
 
-    <dimen name="fragment_main_lstItems_padding">8dp</dimen>
-    <dimen name="fragment_main_lblEmpty_drawablePadding">10dp</dimen>
+    <dimen name="list_lstItems_padding">8dp</dimen>
+    <dimen name="list_lblEmpty_drawablePadding">10dp</dimen>
 </resources>

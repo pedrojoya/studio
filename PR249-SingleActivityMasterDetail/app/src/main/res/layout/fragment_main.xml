@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
-        android:paddingBottom="@dimen/fragment_main_lstItems_padding"
-        android:paddingTop="@dimen/fragment_main_lstItems_padding"/>
+        android:paddingBottom="@dimen/list_lstItems_padding"
+        android:paddingTop="@dimen/list_lstItems_padding"/>
 
     <TextView
         android:id="@+id/lblEmptyView"
@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="?attr/actionBarSize"
-        android:drawablePadding="@dimen/fragment_main_lblEmpty_drawablePadding"
+        android:drawablePadding="@dimen/list_lblEmpty_drawablePadding"
         android:drawableTop="@drawable/ic_person_add_black_48dp"
-        android:text="@string/activity_main_lblEmpty"
+        android:text="@string/list_lblEmptyView"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 </FrameLayout>
