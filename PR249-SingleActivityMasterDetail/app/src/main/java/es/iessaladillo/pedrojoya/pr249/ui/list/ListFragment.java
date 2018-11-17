@@ -23,15 +23,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr249.R;
 import es.iessaladillo.pedrojoya.pr249.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr249.data.local.Database;
-import es.iessaladillo.pedrojoya.pr249.ui.main.MainActivityViewModel;
-import es.iessaladillo.pedrojoya.pr249.ui.main.MainActivityViewModelFactory;
 
 public class ListFragment extends Fragment {
 
     private TextView lblEmptyView;
     private ListFragmentAdapter listAdapter;
     private ListFragment.onItemSelectedListener listener;
-    private MainActivityViewModel viewModel;
+    private ListFragmentViewModel viewModel;
 
     public static ListFragment newInstance() {
         return new ListFragment();
@@ -58,8 +56,8 @@ public class ListFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(requireActivity(),
-            new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
-            MainActivityViewModel.class);
+            new ListFragmentViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
+            ListFragmentViewModel.class);
         Objects.requireNonNull(getView());
         setupViews(getView());
         refreshData();
