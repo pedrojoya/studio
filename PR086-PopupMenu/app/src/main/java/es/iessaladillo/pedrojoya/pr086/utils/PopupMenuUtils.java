@@ -14,6 +14,7 @@ public class PopupMenuUtils {
         Object menuHelper;
         Class[] argTypes;
         try {
+            @SuppressWarnings("JavaReflectionMemberAccess")
             Field fMenuHelper = PopupMenu.class.getDeclaredField("mPopup");
             fMenuHelper.setAccessible(true);
             menuHelper = fMenuHelper.get(popupMenu);

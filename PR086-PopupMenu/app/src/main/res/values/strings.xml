@@ -9,5 +9,19 @@
 
     <string name="main_activity_click_on">Click on %1$s</string>
     <string name="main_activity_call_sb">Call %1$s</string>
-    <string name="main_activity_send_message_to">Send message to %1$s</string>
+    <string name="main_send_message_to">Send message to %1$s</string>
+
+    <string name="main_lblEmptyView">No students</string>
+    <string name="main_item_imgPhoto">Photo</string>
+    <string name="main_item_btnMarks">Marks</string>
+    <string name="main_item_btnAssignments">Assignments</string>
+    <string name="main_item_lblRepeater">REP</string>
+    <string name="main_show_marks">Show %1$s\'s marks</string>
+    <string name="main_show_assignments">Show %1$s\'s assignments</string>
+
+    <plurals name="main_adapter_years">
+        <item quantity="one">%1$d year old</item>
+        <item quantity="other">%1$d years old</item>
+    </plurals>
+
 </resources>
