@@ -96,7 +96,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
         private final TextView lblGrade;
         private final TextView lblAge;
         private final TextView lblRepeater;
-        private final Button btnCall;
+        private final Button btnAssignments;
         private final Button btnMarks;
         private final ImageView imgPopupMenu;
 
@@ -107,7 +107,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
             lblAge = ViewCompat.requireViewById(itemView, R.id.lblAge);
             lblRepeater = ViewCompat.requireViewById(itemView, R.id.lblRepeater);
-            btnCall = ViewCompat.requireViewById(itemView, R.id.btnAssignments);
+            btnAssignments = ViewCompat.requireViewById(itemView, R.id.btnAssignments);
             btnMarks = ViewCompat.requireViewById(itemView, R.id.btnMarks);
             imgPopupMenu = ViewCompat.requireViewById(itemView, R.id.imgPopupMenu);
         }
@@ -124,7 +124,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
                 R.color.accent) : ContextCompat.getColor(lblAge.getContext(),
                 R.color.primary_text));
             lblRepeater.setVisibility(student.isRepeater() ? View.VISIBLE : View.INVISIBLE);
-            btnCall.setOnClickListener(v -> {
+            btnAssignments.setOnClickListener(v -> {
                 if (onShowAssignmentsListener != null) {
                     onShowAssignmentsListener.onCall(getAdapterPosition());
                 }
