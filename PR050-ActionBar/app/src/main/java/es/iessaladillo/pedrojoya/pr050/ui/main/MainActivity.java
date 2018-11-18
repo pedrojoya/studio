@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import es.iessaladillo.pedrojoya.pr050.R;
 import es.iessaladillo.pedrojoya.pr050.ui.info.InfoFragment;
 import es.iessaladillo.pedrojoya.pr050.ui.photo.PhotoFragment;
-import es.iessaladillo.pedrojoya.pr050.ui.preferences.PreferencesFragment;
+import es.iessaladillo.pedrojoya.pr050.ui.preferences.PreferencesActivity;
 import es.iessaladillo.pedrojoya.pr050.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity implements PhotoFragment.Callback {
@@ -52,14 +52,7 @@ public class MainActivity extends AppCompatActivity implements PhotoFragment.Cal
     }
 
     private void showPreferences() {
-        // Only if it's not the current fragment.
-        if (getSupportFragmentManager().findFragmentByTag(PreferencesFragment.class.getSimpleName())
-                == null) {
-            FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(), R.id.flContent,
-                    PreferencesFragment.newInstance(), PreferencesFragment.class.getSimpleName(),
-                    PreferencesFragment.class.getSimpleName(),
-                    FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        }
+        PreferencesActivity.start(this);
     }
 
     @Override
