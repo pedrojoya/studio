@@ -14,20 +14,18 @@ import es.iessaladillo.pedrojoya.pr059.base.BaseViewHolder;
 
 public class MainFragmentAdapter extends BaseListAdapter<String, MainFragmentAdapter.ViewHolder> {
 
-    private static final DiffUtil.ItemCallback<String> diffUtilItemCallback = new DiffUtil.ItemCallback<String>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull String oldItem, @NonNull String newItem) {
-            return TextUtils.equals(oldItem, newItem);
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull String oldItem, @NonNull String newItem) {
-            return TextUtils.equals(oldItem, newItem);
-        }
-    };
-
     MainFragmentAdapter() {
-        super(diffUtilItemCallback);
+        super(new DiffUtil.ItemCallback<String>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull String oldItem, @NonNull String newItem) {
+                return TextUtils.equals(oldItem, newItem);
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull String oldItem, @NonNull String newItem) {
+                return TextUtils.equals(oldItem, newItem);
+            }
+        });
         setFilterPredicate((item, constraint) -> item.toUpperCase()
                 .contains(constraint.toString().toUpperCase()));
     }

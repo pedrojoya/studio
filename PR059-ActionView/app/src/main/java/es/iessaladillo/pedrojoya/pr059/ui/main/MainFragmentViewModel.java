@@ -2,27 +2,30 @@ package es.iessaladillo.pedrojoya.pr059.ui.main;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr059.data.Repository;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragmentViewModel extends ViewModel {
 
-    private String searchQuery;
+    private final MutableLiveData<String> searchQuery = new MutableLiveData<>();
+    private final LiveData<List<String>> students;
     private boolean searchViewExpanded;
-    private List<String> students;
-    private final Repository repository;
 
     public MainFragmentViewModel(Repository repository) {
-        this.repository = repository;
+        students = Transformations.switchMap(searchQuery, repository::queryStudents);
+        searchQuery.postValue("");
     }
 
     public String getSearchQuery() {
-        return searchQuery;
+        return searchQuery.getValue();
     }
 
-    public void setSearchQuery(String searchQuery) {
-        this.searchQuery = searchQuery;
+    public void setSearchQuery(String criteria) {
+        searchQuery.postValue(criteria);
     }
 
     public boolean isSearchViewExpanded() {
@@ -33,10 +36,8 @@ public class MainFragmentViewModel extends ViewModel {
         this.searchViewExpanded = searchViewExpanded;
     }
 
-    public List<String> getStudents() {
-        if (students == null) {
-            students = repository.queryStudents();
-        }
+    public LiveData<List<String>> getStudents() {
         return students;
     }
+
 }

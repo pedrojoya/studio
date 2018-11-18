@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.pr059.data;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import es.iessaladillo.pedrojoya.pr059.data.local.Database;
 
 public class RepositoryImpl implements Repository {
@@ -13,8 +14,8 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public List<String> queryStudents() {
-        return database.queryStudents();
+    public LiveData<List<String>> queryStudents(String criteria) {
+        return database.queryStudents(criteria);
     }
 
 }

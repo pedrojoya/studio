@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 public class Database {
 
     private static Database instance;
@@ -20,10 +23,6 @@ public class Database {
                         "Prudencia", "Oswaldo", "Gumersindo", "Gerardo", "Rodrigo", "Óscar"));
     }
 
-    public List<String> queryStudents() {
-        return new ArrayList<>(students);
-    }
-
     public static Database getInstance() {
         if (instance == null) {
             synchronized (Database.class) {
@@ -33,6 +32,18 @@ public class Database {
             }
         }
         return instance;
+    }
+
+    public LiveData<List<String>> queryStudents(String criteria) {
+        List<String> result = new ArrayList<>();
+        for (String student: students) {
+            if (student.toUpperCase().contains(criteria.toUpperCase())) {
+                result.add(student);
+            }
+        }
+        MutableLiveData<List<String>> resultLiveData = new MutableLiveData<>();
+        resultLiveData.postValue(result);
+        return resultLiveData;
     }
 
 }

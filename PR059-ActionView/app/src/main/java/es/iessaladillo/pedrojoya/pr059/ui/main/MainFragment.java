@@ -34,6 +34,7 @@ public class MainFragment extends Fragment {
     private RecyclerView lstStudents;
     private SearchView searchView;
     private MenuItem mnuSearch;
+    private TextView lblEmptyView;
 
     public MainFragment() {
     }
@@ -56,11 +57,19 @@ public class MainFragment extends Fragment {
         viewModel = ViewModelProviders.of(this,
                 new MainFragmentViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainFragmentViewModel.class);
-        initViews(getView());
+        setupViews(getView());
+        observeStudents();
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         setupRecyclerView(view);
+    }
+
+    private void observeStudents() {
+        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
+            listAdapter.submitList(students);
+            lblEmptyView.setVisibility(students.size() > 0 ? View.INVISIBLE : View.VISIBLE);
+        });
     }
 
     @Override
@@ -92,7 +101,7 @@ public class MainFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String query) {
                 // filter adapter when text is changed
-                listAdapter.getFilter().filter(query);
+                // listAdapter.getFilter().filter(query);
                 viewModel.setSearchQuery(query);
                 return false;
             }
@@ -119,9 +128,8 @@ public class MainFragment extends Fragment {
     private void setupRecyclerView(View view) {
         lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
 
-        TextView lblEmpty = ViewCompat.requireViewById(view, R.id.lblEmpty);
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
         listAdapter = new MainFragmentAdapter();
-        listAdapter.setEmptyView(lblEmpty);
         listAdapter.setOnItemClickListener(
                 (v, position) -> showStudent(listAdapter.getItem(position)));
         lstStudents.setHasFixedSize(true);
@@ -129,7 +137,6 @@ public class MainFragment extends Fragment {
                 new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
-        listAdapter.submitList(viewModel.getStudents());
     }
 
     private void showStudent(String student) {

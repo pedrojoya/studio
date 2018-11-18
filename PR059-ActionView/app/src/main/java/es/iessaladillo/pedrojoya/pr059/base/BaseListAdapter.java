@@ -15,37 +15,22 @@ import androidx.recyclerview.widget.ListAdapter;
 abstract public class BaseListAdapter<M, VH extends BaseViewHolder> extends ListAdapter<M, VH>
         implements Filterable {
 
-    private View emptyView;
     protected OnItemClickListener onItemClickListener;
     private List<M> original;
     private FilterPredicate<M> filterPredicate;
 
-    @SuppressWarnings("SameParameterValue")
     protected BaseListAdapter(DiffUtil.ItemCallback<M> diffUtilItemCallback) {
         super(diffUtilItemCallback);
     }
 
     @Override
     public void submitList(List<M> list) {
-        checkEmptyViewVisibility(list == null ? 0 : list.size());
         original = list;
         super.submitList(list);
     }
 
     private void submitFilteredList(List<M> list) {
-        checkEmptyViewVisibility(list == null ? 0 : list.size());
         super.submitList(list);
-    }
-
-    public void setEmptyView(@NonNull View emptyView) {
-        this.emptyView = emptyView;
-        checkEmptyViewVisibility(getItemCount());
-    }
-
-    private void checkEmptyViewVisibility(int size) {
-        if (emptyView != null) {
-            emptyView.setVisibility(size == 0 ? View.VISIBLE : View.INVISIBLE);
-        }
     }
 
     @Override
