@@ -2,7 +2,8 @@ package es.iessaladillo.pedrojoya.pr050.ui.photo;
 
 import androidx.lifecycle.ViewModel;
 
-class PhotoFragmentViewModel extends ViewModel {
+@SuppressWarnings("WeakerAccess")
+public class PhotoFragmentViewModel extends ViewModel {
 
     private int effectId;
 

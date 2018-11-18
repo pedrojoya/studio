@@ -23,9 +23,7 @@ import es.iessaladillo.pedrojoya.pr050.utils.BitmapUtils;
 
 public class PhotoFragment extends Fragment {
 
-    // Communication interface.
     public interface Callback {
-
         void onInfoClicked();
     }
 
