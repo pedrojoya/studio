@@ -27,6 +27,7 @@ public class CustomLayoutDialogFragment extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        setCancelable(false);
         AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
         b.setTitle(R.string.custom_layout_dialog_title);
         b.setView(LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_login, null));

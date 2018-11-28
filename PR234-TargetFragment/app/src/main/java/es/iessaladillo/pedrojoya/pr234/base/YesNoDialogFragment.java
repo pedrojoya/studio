@@ -48,6 +48,7 @@ public class YesNoDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         obtainArguments();
+        setCancelable(false);
     }
 
     private void obtainArguments() {

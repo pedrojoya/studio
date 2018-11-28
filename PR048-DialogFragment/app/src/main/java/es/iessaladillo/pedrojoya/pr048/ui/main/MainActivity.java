@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity implements OnDateSetListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
+    private void setupViews() {
         ActivityCompat.requireViewById(this, R.id.btnDatePicker).setOnClickListener(v -> showDatePickerDialog());
         ActivityCompat.requireViewById(this, R.id.btnTimePicker).setOnClickListener(v -> showTimePickerDialog());
         ActivityCompat.requireViewById(this, R.id.btnYesNoAlert).setOnClickListener(v -> showConfirmDeletionDialog());

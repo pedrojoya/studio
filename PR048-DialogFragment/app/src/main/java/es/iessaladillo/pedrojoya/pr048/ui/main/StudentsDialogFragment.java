@@ -26,6 +26,7 @@ public class StudentsDialogFragment extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        setCancelable(false);
         AlertDialog.Builder b = new AlertDialog.Builder(requireActivity());
         b.setTitle(R.string.adapter_dialog_student);
         mStudents = createStudentList();

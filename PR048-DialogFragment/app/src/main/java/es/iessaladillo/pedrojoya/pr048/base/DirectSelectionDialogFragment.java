@@ -35,6 +35,7 @@ public class DirectSelectionDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         obtainArguments();
+        setCancelable(false);
     }
 
 

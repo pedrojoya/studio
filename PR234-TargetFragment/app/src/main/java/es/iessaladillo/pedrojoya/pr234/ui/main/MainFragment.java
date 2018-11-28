@@ -35,10 +35,10 @@ public class MainFragment extends Fragment implements YesNoDialogFragment.Listen
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
+        setupViews(getView());
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         btnDelete = ViewCompat.requireViewById(view, R.id.btnDelete);
 
         btnDelete.setOnClickListener(v -> showConfirmationDialog());
