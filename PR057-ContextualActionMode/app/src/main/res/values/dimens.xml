@@ -1,5 +1,19 @@
 <resources>
-    <dimen name="general_activity_margin">8dp</dimen>
+    <dimen name="main_lstStudents_padding">10dp</dimen>
+    <dimen name="main_lblEmptyView_drawablePadding">8dp</dimen>
+    <dimen name="main_fab_margin">16dp</dimen>
 
-    <dimen name="activity_main_item_lblSubject_padding">10dp</dimen>
+    <dimen name="main_item_imgPhoto_width">81dp</dimen>
+    <dimen name="main_item_imgPhoto_height">108dp</dimen>
+    <dimen name="main_item_lblRepeater_textSize">10sp</dimen>
+    <dimen name="main_item_lblRepeater_verticalPadding">5dp</dimen>
+    <dimen name="main_item_lblRepeater_horizontalPadding">40dp</dimen>
+    <dimen name="main_item_lblRepeater_translationX">-35dp</dimen>
+    <dimen name="main_item_lblRepeater_translationY">5dp</dimen>
+    <dimen name="main_item_rlCard__padding">8dp</dimen>
+    <dimen name="main_item_card_padding">16dp</dimen>
+    <dimen name="main_item_cardView_cardCornerRadius">4dp</dimen>
+    <dimen name="main_item_cardView_cardElevation">4dp</dimen>
+    <dimen name="main_item_divider_height">1dp</dimen>
+    <dimen name="main_item_divider_marginTop">5dp</dimen>
 </resources>

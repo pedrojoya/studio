@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ContextualActionMode</string>
-    <string name="activity_main_lblStudent">Alumno</string>
-    <string name="activity_main_lblSubjects">Asignaturas</string>
-    <string name="activity_main_mnuDelete">Eliminar</string>
-    <string name="main_activity_evaluate_student">Evaluar %1$s</string>
-    <string name="main_activity_evaluate_subjects">Evaluar asignaturas %1$s</string>
-    <string name="activity_main_mnuEvaluate">Evaluar</string>
-    <string name="main_activity_number_of_number">%1$d of %2$d</string>
+    <string name="app_name">PopupMenu</string>
+    <string name="main_send_message_to">Enviar mensaje a %1$s</string>
+    <string name="main_activity_call_sb">Llamar a %1$s</string>
+    <string name="activity_main_item_popup_mnuSendMessage">Enviar mensaje</string>
+    <string name="activity_main_item_imgPopupMenu">Menú emergente</string>
+    <string name="activity_main_item_popup_mnuCall">Llamar</string>
+    <string name="main_activity_click_on">Click en %1$s</string>
+
+    <string name="main_lblEmptyView">No students</string>
+    <string name="main_item_imgPhoto">Photo</string>
+    <string name="main_item_btnMarks">Marks</string>
+    <string name="main_item_btnAssignments">Assignments</string>
+    <string name="main_item_lblRepeater">REP</string>
+    <string name="main_show_marks">Notas de %1$s\</string>
+    <string name="main_show_assignments">Tareas de %1$s</string>
+
+    <plurals name="main_adapter_years">
+        <item quantity="one">%1$d year old</item>
+        <item quantity="other">%1$d years old</item>
+    </plurals>
+
 </resources>

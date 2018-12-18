@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ContextualActionMode</string>
-    <string name="activity_main_lblStudent">Student</string>
-    <string name="activity_main_lblSubjects">Subjects</string>
-    <string name="activity_main_mnuDelete">Delete</string>
-    <string name="activity_main_mnuEvaluate">Evaluate</string>
-    <string name="main_activity_number_of_number">%1$d of %2$d</string>
-    <string name="main_activity_evaluate_student">Evaluate %1$s</string>
-    <string name="main_activity_evaluate_subjects">Evaluate subjects %1$s</string>
-    <plurals name="main_activity_subjects_deleted">
-        <item quantity="one">%1$d subject deleted</item>
-        <item quantity="other">%1$d subjects deleted</item>
+
+    <string name="activity_main_item_imgPopupMenu">Popup menu</string>
+
+    <string name="activity_main_item_popup_mnuCall">Call</string>
+    <string name="activity_main_item_popup_mnuSendMessage">Send message</string>
+
+    <string name="main_activity_click_on">Click on %1$s</string>
+    <string name="main_activity_call_sb">Call %1$s</string>
+    <string name="main_send_message_to">Send message to %1$s</string>
+
+    <string name="main_lblEmptyView">No students</string>
+    <string name="main_item_imgPhoto">Photo</string>
+    <string name="main_item_btnMarks">Marks</string>
+    <string name="main_item_btnAssignments">Assignments</string>
+    <string name="main_item_lblRepeater">REP</string>
+    <string name="main_show_marks">Show %1$s\'s marks</string>
+    <string name="main_show_assignments">Show %1$s\'s assignments</string>
+
+    <plurals name="main_adapter_years">
+        <item quantity="one">%1$d year old</item>
+        <item quantity="other">%1$d years old</item>
     </plurals>
+
 </resources>

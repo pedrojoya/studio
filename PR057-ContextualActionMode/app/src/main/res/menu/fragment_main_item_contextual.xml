@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mnuCall"
+        app:showAsAction="ifRoom|withText"
+        android:icon="@drawable/ic_call_white_24dp"
+        android:title="@string/activity_main_item_popup_mnuCall"/>
+    <item
+        android:id="@+id/mnuSendMessage"
+        app:showAsAction="ifRoom|withText"
+        android:icon="@drawable/ic_send_white_24dp"
+        android:title="@string/activity_main_item_popup_mnuSendMessage" />
+
+</menu>
