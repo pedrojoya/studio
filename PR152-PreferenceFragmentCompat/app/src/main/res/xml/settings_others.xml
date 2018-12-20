@@ -11,6 +11,13 @@
         android:summary="@string/prefCatchPhrase_summary"
         android:title="@string/prefCatchPhrase_title"/>
 
+    <androidx.preference.EditTextPreference
+        android:dialogTitle="@string/prefPassword_dialogTitle"
+        android:icon="@drawable/ic_textbox_password_black_24dp"
+        android:key="@string/prefPassword_key"
+        android:summary="@string/prefPassword_summary"
+        android:title="@string/prefPassword_title"/>
+
     <androidx.preference.SwitchPreferenceCompat
         android:defaultValue="@bool/prefNetworkMode_defaultValue"
         android:icon="@drawable/ic_network_wifi_black_24dp"

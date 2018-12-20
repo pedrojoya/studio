@@ -72,6 +72,11 @@
     <string name="prefCatchPhrase_summary">Company catch phrase</string>
     <string name="prefCatchPhrase_dialogTitle">Company catch phrase</string>
 
+    <string name="prefPassword_key" translatable="false">prefPassword</string>
+    <string name="prefPassword_title">Password</string>
+    <string name="prefPassword_summary">****</string>
+    <string name="prefPassword_dialogTitle">Secret password</string>
+
     <string name="prefNetworkMode_key" translatable="false">prefNetworkMode</string>
     <string name="prefNetworkMode_title">Network mode</string>
     <string name="prefNetworkMode_summaryOn">Yes</string>

@@ -30,7 +30,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupActionBar();
-        onSharedPreferenceChangeListener = this::updateIcon;
+
         // TODO: It should update summary automatically but it doesn't
         //setupMultiListSummaryProvider();
         onMultiListChangeListener = this::updateMultiListSummary;
@@ -78,8 +78,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private void updateIcons() {
         updateIcon(getPreferenceScreen().getSharedPreferences(), getString(R.string.prefSync_key));
-        updateIcon(getPreferenceScreen().getSharedPreferences(),
-            getString(R.string.prefConnectionType_key));
+        updateIcon(getPreferenceScreen().getSharedPreferences(), getString(R.string.prefConnectionType_key));
     }
 
     private void updateIcon(SharedPreferences sharedPreferences, String key) {
@@ -100,8 +99,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @SuppressWarnings("unused")
     private void updateMultiListSummary(SharedPreferences sharedPreferences, String key) {
         if (TextUtils.equals(key, getString(R.string.prefShifts_key))) {
-            MultiSelectListPreference preference = (MultiSelectListPreference) findPreference(
-                getString(R.string.prefShifts_key));
+            MultiSelectListPreference preference = findPreference(getString(R.string.prefShifts_key));
             String summary = preference.getValues().isEmpty() ? getString(
                 R.string.prefShifts_summary) : preference.getValues().toString();
             preference.setSummary(summary);

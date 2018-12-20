@@ -3,9 +3,11 @@ package es.iessaladillo.pedrojoya.pr152.ui.settings;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.inputmethod.EditorInfo;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import es.iessaladillo.pedrojoya.pr152.R;
@@ -24,6 +26,7 @@ public class SettingsOthers extends PreferenceFragmentCompat {
         super.onActivityCreated(savedInstanceState);
         setupActionBar();
         onSharedPreferenceChangeListener = this::updateIcon;
+        setupPasswordPreference();
         // Set icons according to current settings.
         updateIcons();
     }
@@ -34,6 +37,16 @@ public class SettingsOthers extends PreferenceFragmentCompat {
             actionBar.setTitle(getString(R.string.prefOthers_title));
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    private void setupPasswordPreference() {
+        EditTextPreference preference = findPreference(getString(R.string.prefPassword_key));
+        if (preference != null) {
+            preference.setOnBindEditTextListener(editText -> {
+                editText.setInputType(EditorInfo.TYPE_CLASS_TEXT | EditorInfo
+                    .TYPE_TEXT_VARIATION_PASSWORD);
+            });
         }
     }
 
