@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr145.ui.main;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -20,20 +21,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbar();
-        // Load initial fragment
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    MainFragment.newInstance(), MainFragment.class.getSimpleName());
+            loadInitialFragment();
         }
     }
 
     private void setupToolbar() {
         Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout = ActivityCompat.requireViewById(this,
-                R.id.collapsingToolbar);
+            R.id.collapsingToolbar);
 
         setSupportActionBar(toolbar);
         collapsingToolbarLayout.setTitle(getString(R.string.main_activity_title));
+    }
+
+    private void loadInitialFragment() {
+        FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
+                MainFragment.newInstance(), MainFragment.class.getSimpleName());
     }
 
     @Override
@@ -45,9 +49,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuSettings) {
+            showSettings();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showSettings() {
+        Toast.makeText(this, getString(R.string.activity_main_mnuSettings), Toast.LENGTH_SHORT).show();
     }
 
 }
