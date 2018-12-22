@@ -48,24 +48,27 @@ public class PhotoFragment extends Fragment {
         viewModel = ViewModelProviders.of(requireActivity(), new MainActivityViewModelFactory(R.id
                 .mnuOriginal))
                 .get(MainActivityViewModel.class);
-        initViews(getView());
+        setupViews(requireView());
+        observeEffect();
     }
 
-    private void initViews(View view) {
+    private void observeEffect() {
+        viewModel.getEffectResId().observe(getViewLifecycleOwner(), this::setCorrectBitmap);
+    }
+
+    private void setupViews(View view) {
         imgPhoto = ViewCompat.requireViewById(view, R.id.imgPhoto);
 
-        setCorrectBitmap(viewModel.getEffectResId());
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.fragment_photo, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Dependiendo del item pulsado realizo la acción deseada.
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuFilter:
                 showPopupMenu(requireActivity().findViewById(R.id.mnuFilter));
@@ -82,7 +85,13 @@ public class PhotoFragment extends Fragment {
         MenuInflater menuInflater = popup.getMenuInflater();
         menuInflater.inflate(R.menu.fragment_photo_popup, popup.getMenu());
         popup.setOnMenuItemClickListener(this::onPopupMenuItemClick);
-        popup.getMenu().findItem(viewModel.getEffectResId()).setChecked(true);
+        Integer currentEffectResId = viewModel.getEffectResId().getValue();
+        if (currentEffectResId != null) {
+            MenuItem item = popup.getMenu().findItem(currentEffectResId);
+            if (item != null) {
+                item.setChecked(true);
+            }
+        }
         popup.show();
     }
 
@@ -90,7 +99,6 @@ public class PhotoFragment extends Fragment {
     private boolean onPopupMenuItemClick(MenuItem item) {
         viewModel.setEffectResId(item.getItemId());
         item.setChecked(true);
-        setCorrectBitmap(item.getItemId());
         viewModel.setEffectResId(item.getItemId());
         return true;
     }

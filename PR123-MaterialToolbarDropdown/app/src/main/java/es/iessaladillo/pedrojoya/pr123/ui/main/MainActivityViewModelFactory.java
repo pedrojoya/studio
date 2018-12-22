@@ -19,4 +19,5 @@ public class MainActivityViewModelFactory implements ViewModelProvider.Factory {
         //noinspection unchecked
         return (T) new MainActivityViewModel(defaultEffectResId);
     }
+
 }

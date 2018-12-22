@@ -35,23 +35,24 @@ public class InfoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(requireActivity(), new MainActivityViewModelFactory(R
                 .id.mnuOriginal)).get(MainActivityViewModel.class);
-        initViews(getView());
+        setupViews(requireView());
+        observeLikes();
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         lblLikes = ViewCompat.requireViewById(view, R.id.lblLikes);
         ImageView imgLike = ViewCompat.requireViewById(view, R.id.imgLike);
 
-        showLikes();
-        imgLike.setOnClickListener(v -> {
-            viewModel.incrementLikes();
-            showLikes();
-        });
+        imgLike.setOnClickListener(v -> viewModel.incrementLikes());
     }
 
-    private void showLikes() {
+    private void observeLikes() {
+        viewModel.getLikes().observe(getViewLifecycleOwner(), this::showLikes);
+    }
+
+    private void showLikes(int likes) {
         lblLikes.setText(getResources().getQuantityString(R.plurals.info_fragment_likes,
-                viewModel.getLikes(), viewModel.getLikes()));
+                likes, likes));
     }
 
 }
