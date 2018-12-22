@@ -1,15 +1,8 @@
 <resources>
-    <dimen name="activity_main_lblLorem_padding">20dp</dimen>
-    <dimen name="activity_main_appbarLayout_height">256dp</dimen>
-    <dimen name="activity_main_collapsingToolbar_expandedTitleMarginStart">
-        32dp
-    </dimen>
-    <dimen name="activity_main_collapsingToolbar_expandedTitleMarginBottom">
-        40dp
-    </dimen>
-    <dimen name="activity_main_fab_margin">16dp</dimen>
-    <dimen name="activity_main_imgHeader_collapseParallaxMultiplier"
-          format="float">
-        0.3
-    </dimen>
+    <dimen name="main_lblLorem_padding">20dp</dimen>
+    <dimen name="main_appbarLayout_height">256dp</dimen>
+    <dimen name="main_collapsingToolbar_expandedTitleMarginStart">32dp</dimen>
+    <dimen name="main_collapsingToolbar_expandedTitleMarginBottom">40dp</dimen>
+    <dimen name="main_fab_margin">16dp</dimen>
+    <dimen name="main_imgHeader_collapseParallaxMultiplier" format="float">0.3</dimen>
 </resources>

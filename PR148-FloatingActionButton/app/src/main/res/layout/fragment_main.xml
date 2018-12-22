@@ -6,7 +6,7 @@
     android:id="@+id/svLorem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_main_fab_margin"
+    android:paddingTop="@dimen/main_fab_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main">
 
@@ -14,8 +14,8 @@
         android:id="@+id/lblLorem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/activity_main_lblLorem_padding"
-        android:text="@string/activity_main_lblLorem"/>
+        android:padding="@dimen/main_lblLorem_padding"
+        android:text="@string/main_lblLorem"/>
 
 </androidx.core.widget.NestedScrollView>
 
