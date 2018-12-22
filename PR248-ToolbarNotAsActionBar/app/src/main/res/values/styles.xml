@@ -1,34 +1,19 @@
 <resources>
 
-    <!-- App theme. Must inherit form Theme.AppCompat -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- ActionBar color -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!-- Status bar color -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!-- Accent color (contrast) -->
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- Some other color attributes
-        <item name="colorControlNormal">Normal color</item>
-        <item name="colorControlActivated">Activated color</item>
-        <item name="android:textColorPrimary">Text color</item>
-        <item name="android:textColorHint">Hint color</item>
-        For more: https://gist.github.com/boxme/1fec2a44cc46fad221ee -->
-        <!-- Activate Roboto font (for API 16+)
-        <item name="android:fontFamily">sans-serif</item> -->
     </style>
 
-    <!-- Theme for activities with Toolbar -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!-- Dark background toolbar -->
     <style name="AppTheme.AppBarOverlay"
            parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <!-- Light background overflow menu -->
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>
