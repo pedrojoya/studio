@@ -18,15 +18,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbar();
-        // Load initial fragment.
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    MainFragment.newInstance(), MainFragment.class.getSimpleName());
+            loadInitialFragment();
         }
     }
 
     private void setupToolbar() {
         setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
+    }
+
+    private void loadInitialFragment() {
+        FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
+            MainFragment.newInstance(), MainFragment.class.getSimpleName());
     }
 
     @Override
