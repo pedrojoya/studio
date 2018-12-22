@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/fragment_info_margin"
-        android:text="@string/fragment_info_lblTitle"
+        android:layout_marginTop="@dimen/info_margin"
+        android:text="@string/info_lblTitle"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/fragment_info_margin"
+        android:layout_marginTop="@dimen/info_margin"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         tools:text="0"/>
 
@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblLikes"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/fragment_info_margin"
+        android:layout_marginTop="@dimen/info_margin"
         android:background="@drawable/ic_thumb_up_black_24dp"
-        android:contentDescription="@string/fragment_info_imgLike"/>
+        android:contentDescription="@string/info_imgLike"/>
 
 </RelativeLayout>

@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar() {
         Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout = ActivityCompat.requireViewById(this,
-            R.id.collapsingToolbar);
+            R.id.collapsingToolbarLayout);
 
         setSupportActionBar(toolbar);
-        collapsingToolbarLayout.setTitle(getString(R.string.main_activity_title));
+        collapsingToolbarLayout.setTitle(getString(R.string.main_title));
     }
 
     private void loadInitialFragment() {
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSettings() {
-        Toast.makeText(this, getString(R.string.activity_main_mnuSettings), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.main_mnuSettings), Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Toolbar Dropdown</string>
-    <string name="fragment_photo_mnuFilter">Filter</string>
-    <string name="fragment_photo_imgPhoto">Fotografía</string>
-    <string name="fragment_info_lblTitle">Bench, by Simon Funk</string>
-    <string name="fragment_info_imgLike">Me gusta</string>
-    <string name="activity_main_mnuOriginal">Original</string>
-    <string name="activity_main_mnuGrey">Grey</string>
-    <string name="activity_main_mnuSepia">Sepia</string>
-    <string name="activity_main_mnuBinary">Binary</string>
-    <string name="activity_main_mnuInverted">Inverted</string>
-    <plurals name="info_fragment_likes">
+
+    <string name="photo_mnuFilter">Filter</string>
+    <string name="photo_imgPhoto">Fotografía</string>
+    <string name="photo_mnuOriginal">Original</string>
+    <string name="photo_mnuGrey">Grey</string>
+    <string name="photo_mnuSepia">Sepia</string>
+    <string name="photo_mnuBinary">Binary</string>
+    <string name="photo_mnuInverted">Inverted</string>
+
+    <string name="info_lblTitle">Bench, by Simon Funk</string>
+    <string name="info_imgLike">Me gusta</string>
+    <plurals name="info_likes">
         <item quantity="one">%1$d like</item>
         <item quantity="other">%1$d likes</item>
     </plurals>
-
 </resources>

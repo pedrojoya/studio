@@ -4,6 +4,6 @@
       tools:context=".ui.main.MainActivity">
     <item
         android:id="@+id/mnuSettings"
-        android:title="@string/activity_main_mnuSettings"
+        android:title="@string/main_mnuSettings"
         app:showAsAction="never"/>
 </menu>

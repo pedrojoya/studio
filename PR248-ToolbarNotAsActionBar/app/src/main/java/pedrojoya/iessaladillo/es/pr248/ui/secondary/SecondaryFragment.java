@@ -37,7 +37,7 @@ public class SecondaryFragment extends Fragment {
 
     private void setupToolbar(View view) {
         Toolbar toolbar = ViewCompat.requireViewById(view, R.id.toolbar);
-        toolbar.setTitle(R.string.secundary_title);
+        toolbar.setTitle(R.string.secondary_title);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
         toolbar.inflateMenu(R.menu.fragment_secondary);

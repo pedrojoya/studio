@@ -4,18 +4,18 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/mnuOriginal"
-            android:title="@string/activity_main_mnuOriginal"/>
+            android:title="@string/photo_mnuOriginal"/>
         <item
             android:id="@+id/mnuGrey"
-            android:title="@string/activity_main_mnuGrey"/>
+            android:title="@string/photo_mnuGrey"/>
         <item
             android:id="@+id/mnuSepia"
-            android:title="@string/activity_main_mnuSepia"/>
+            android:title="@string/photo_mnuSepia"/>
         <item
             android:id="@+id/mnuBinary"
-            android:title="@string/activity_main_mnuBinary"/>
+            android:title="@string/photo_mnuBinary"/>
         <item
             android:id="@+id/mnuInverted"
-            android:title="@string/activity_main_mnuInverted"/>
+            android:title="@string/photo_mnuInverted"/>
     </group>
 </menu>

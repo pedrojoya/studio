@@ -14,6 +14,7 @@ public class MainFragment extends Fragment {
 
     public MainFragment() { }
 
+    @SuppressWarnings("WeakerAccess")
     public static MainFragment newInstance() {
         return new MainFragment();
     }

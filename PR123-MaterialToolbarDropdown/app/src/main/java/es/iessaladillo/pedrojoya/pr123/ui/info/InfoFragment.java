@@ -51,7 +51,7 @@ public class InfoFragment extends Fragment {
     }
 
     private void showLikes(int likes) {
-        lblLikes.setText(getResources().getQuantityString(R.plurals.info_fragment_likes,
+        lblLikes.setText(getResources().getQuantityString(R.plurals.info_likes,
                 likes, likes));
     }
 

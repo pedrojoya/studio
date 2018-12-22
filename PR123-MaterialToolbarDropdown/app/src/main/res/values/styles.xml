@@ -23,4 +23,5 @@
     <style name="SpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
         <item name="android:textColor">@android:color/black</item>
     </style>
+
 </resources>

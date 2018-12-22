@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_main_appbarLayout_height"
+        android:layout_height="@dimen/main_appbarLayout_height"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -19,19 +19,19 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="@dimen/activity_main_collapsingToolbarLayout_titleMarginStart"
+            app:expandedTitleMarginStart="@dimen/main_collapsingToolbarLayout_titleMarginStart"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/imgHeader"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/activity_main_imgHeader"
+                android:contentDescription="@string/main_imgHeader"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/photo"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="@dimen/activity_main_imgHeader_collapseParallaxMultiplier"/>
+                app:layout_collapseParallaxMultiplier="@dimen/main_imgHeader_collapseParallaxMultiplier"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

@@ -5,7 +5,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr146.R;
 import es.iessaladillo.pedrojoya.pr146.utils.FragmentUtils;
@@ -17,17 +16,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbar();
-        // Load initial fragment
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    MainFragment.newInstance(), MainFragment.class.getSimpleName());
+            loadInitialFragment();
         }
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
+        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
+    }
 
-        setSupportActionBar(toolbar);
+    private void loadInitialFragment() {
+        FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
+            MainFragment.newInstance(), MainFragment.class.getSimpleName());
     }
 
     @Override
