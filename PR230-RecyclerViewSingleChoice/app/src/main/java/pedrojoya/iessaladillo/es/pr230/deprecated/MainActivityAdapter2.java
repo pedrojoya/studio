@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr230.old;
+package pedrojoya.iessaladillo.es.pr230.deprecated;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
@@ -14,8 +14,8 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pedrojoya.iessaladillo.es.pr230.R;
 import pedrojoya.iessaladillo.es.pr230.data.local.model.Student;
-import pedrojoya.iessaladillo.es.pr230.old.singlechoicerecycleradapter.SingleChoiceModeListAdapter;
-import pedrojoya.iessaladillo.es.pr230.old.singlechoicerecycleradapter.SingleChoiceModeViewHolder;
+import pedrojoya.iessaladillo.es.pr230.deprecated.singlechoicerecycleradapter.SingleChoiceModeListAdapter;
+import pedrojoya.iessaladillo.es.pr230.deprecated.singlechoicerecycleradapter.SingleChoiceModeViewHolder;
 
 @SuppressWarnings("unused")
 public class MainActivityAdapter2 extends SingleChoiceModeListAdapter<Student, MainActivityAdapter2

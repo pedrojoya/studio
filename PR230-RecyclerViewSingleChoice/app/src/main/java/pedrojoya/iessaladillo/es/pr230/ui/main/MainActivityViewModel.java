@@ -23,14 +23,4 @@ class MainActivityViewModel extends ViewModel {
         return students;
     }
 
-    @SuppressWarnings("unused")
-    void insertStudent(Student student) {
-        repository.insertStudent(student);
-    }
-
-    @SuppressWarnings("unused")
-    void deleteStudent(Student student) {
-        repository.deleteStudent(student);
-    }
-
 }

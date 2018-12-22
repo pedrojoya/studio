@@ -1,14 +1,13 @@
 package pedrojoya.iessaladillo.es.pr230.data.local;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import com.mooveit.library.Fakeit;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import pedrojoya.iessaladillo.es.pr230.data.local.model.Student;
 
 public class Database {
@@ -48,14 +47,10 @@ public class Database {
         return studentsLiveData;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public synchronized void insertStudent(Student student) {
         student.setId(++studentsAutoId);
         students.add(student);
-        studentsLiveData.setValue(new ArrayList<>(students));
-    }
-
-    public void deleteStudent(Student student) {
-        students.remove(student);
         studentsLiveData.setValue(new ArrayList<>(students));
     }
 

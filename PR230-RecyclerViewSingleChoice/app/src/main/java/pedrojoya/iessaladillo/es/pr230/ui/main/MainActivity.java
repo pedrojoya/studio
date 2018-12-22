@@ -43,21 +43,21 @@ public class MainActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this,
                 new MainActivityViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainActivityViewModel.class);
-        initViews();
+        setupViews();
         viewModel.getStudents().observe(this, students -> {
             if (students != null) {
                 Collections.sort(students, (s1, s2) -> s1.getName().compareTo(s2.getName()));
                 listAdapter.submitList(students);
             }
         });
-        // Debe recuperarse el estado del selectionTracker una vez haya sido creado,
-        // por lo que no se puede hacer en onRestoreInstanceState().
+        // selectionTracker state must be restored once it has been created, so we can't do it
+        // in onRestoreInstanceState().
         if (savedInstanceState != null) {
             selectionTracker.onRestoreInstanceState(savedInstanceState);
         }
     }
 
-    private void initViews() {
+    private void setupViews() {
         setupToolbar();
         setupRecyclerView();
         setupFab();
@@ -93,9 +93,8 @@ public class MainActivity extends AppCompatActivity {
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
-
-        // Creamos el selectionTracker y se lo asignamos al adaptador.
-        // DEBE HACERSE SIEMPRE DESPUÉS DE HABER ASIGNADO EL ADAPTADOR AL RECYCLERVIEW.
+        // Creation of selectionTracker and its assigment to the adapter must be always done
+        // after assigning the adapter to the recyclerview.
         setupSelectionTracker();
         listAdapter.setSelectionTracker(selectionTracker);
     }
@@ -103,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupSelectionTracker() {
         selectionTracker = new SelectionTracker.Builder<>("lstStudentsSelection", lstStudents,
                 new PositionalItemKeyProvider(), new PositionalDetailsLookup(lstStudents),
-                // Las claves son long.
+                // Long keys.
                 StorageStrategy.createLongStorage())
-                // Selección simple
+                // Simple selection
                 .withSelectionPredicate(SelectionPredicates.createSelectSingleAnything()).build();
         selectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
             @Override
@@ -141,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        // We must save selectionTracker state on configuration change.
         selectionTracker.onSaveInstanceState(outState);
     }
 

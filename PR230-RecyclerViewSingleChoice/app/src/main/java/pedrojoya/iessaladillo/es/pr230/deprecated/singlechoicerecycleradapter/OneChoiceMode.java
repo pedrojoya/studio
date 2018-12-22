@@ -1,4 +1,4 @@
-package pedrojoya.iessaladillo.es.pr230.old.singlechoicerecycleradapter;
+package pedrojoya.iessaladillo.es.pr230.deprecated.singlechoicerecycleradapter;
 
 import android.os.Bundle;
 

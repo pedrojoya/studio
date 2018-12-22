@@ -1,9 +1,8 @@
 package pedrojoya.iessaladillo.es.pr230.data;
 
-import androidx.lifecycle.LiveData;
-
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import pedrojoya.iessaladillo.es.pr230.data.local.Database;
 import pedrojoya.iessaladillo.es.pr230.data.local.model.Student;
 
@@ -18,16 +17,6 @@ public class RepositoryImpl implements Repository {
     @Override
     public LiveData<List<Student>> queryStudents() {
         return database.queryStudents();
-    }
-
-    @Override
-    public void insertStudent(Student student) {
-        database.insertStudent(student);
-    }
-
-    @Override
-    public void deleteStudent(Student student) {
-        database.deleteStudent(student);
     }
 
 }
