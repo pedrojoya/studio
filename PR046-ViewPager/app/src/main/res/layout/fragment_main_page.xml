@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblPage"
         android:layout_centerHorizontal="true"
-        android:text="@string/activity_main_page_btnShow"/>
+        android:text="@string/main_page_btnShow"/>
 
 </RelativeLayout>

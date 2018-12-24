@@ -1,28 +1,22 @@
 package es.iessaladillo.pedrojoya.pr045.ui.main;
 
-import android.content.Context;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import es.iessaladillo.pedrojoya.pr045.R;
 
-class MainActivityAdapter extends PagerAdapter {
+class MainFragmentAdapter extends PagerAdapter {
 
     private static final int NUMBER_OF_PAGES = 5;
-
-    private final LayoutInflater layoutInflater;
-
-    public MainActivityAdapter(Context context) {
-        layoutInflater = LayoutInflater.from(context);
-    }
 
     @Override
     public int getCount() {
@@ -32,7 +26,9 @@ class MainActivityAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup collection, int position) {
-        View view = layoutInflater.inflate(R.layout.activity_main_page, collection, false);
+        View view = LayoutInflater.from(collection.getContext()).inflate(R.layout
+                .fragment_main_page,
+            collection, false);
         setupPage(view, position);
         collection.addView(view, 0);
         return view;
@@ -47,7 +43,8 @@ class MainActivityAdapter extends PagerAdapter {
     }
 
     private void show(View view, int position) {
-        Toast.makeText(view.getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+        Snackbar.make(view, view.getContext().getString(R.string.main_message, position),
+            Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
