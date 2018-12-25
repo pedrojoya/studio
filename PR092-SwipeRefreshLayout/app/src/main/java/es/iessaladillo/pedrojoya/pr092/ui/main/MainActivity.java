@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupToolbar();
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.container, new MainFragment());
+            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent, new MainFragment());
         }
     }
 
