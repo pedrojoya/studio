@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:padding="@dimen/fragment_lorem_lblLorem_padding"
+            android:padding="@dimen/lorem_lblLorem_padding"
             android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             tools:text="0"/>
 

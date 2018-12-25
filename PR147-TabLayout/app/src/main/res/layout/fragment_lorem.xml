@@ -11,7 +11,7 @@
         android:id="@+id/lblLorem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/fragment_lorem_lblLorem_padding"
-        android:text="@string/fragment_lorem_lblLorem" />
+        android:padding="@dimen/lorem_lblLorem_padding"
+        android:text="@string/lorem_lblLorem" />
 
 </androidx.core.widget.NestedScrollView>

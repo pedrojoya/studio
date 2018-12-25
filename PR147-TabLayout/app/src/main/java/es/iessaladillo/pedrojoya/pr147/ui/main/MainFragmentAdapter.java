@@ -1,31 +1,33 @@
 package es.iessaladillo.pedrojoya.pr147.ui.main;
 
 import android.content.Context;
+
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
+import androidx.fragment.app.FragmentPagerAdapter;
 import es.iessaladillo.pedrojoya.pr147.R;
 import es.iessaladillo.pedrojoya.pr147.ui.likes.LikesFragment;
 import es.iessaladillo.pedrojoya.pr147.ui.lorem.LoremFragment;
-import es.iessaladillo.pedrojoya.pr147.base.CachedFragmentPagerAdapter;
 
-class MainActivityAdapter extends CachedFragmentPagerAdapter {
+class MainFragmentAdapter extends FragmentPagerAdapter {
 
     private static final int FRAGMENT_COUNT = 2;
 
     private final Context context;
-    private final int[] titleResIds = {R.string.lorem_fragment_title, R.string
-            .likes_fragment_title};
+    private final int[] titleResIds = {R.string.lorem_title, R.string
+            .likes_title};
     private final int[] iconResIds = {R.drawable.ic_share_white_24dp, R.drawable
             .ic_thumb_up_white_24dp};
 
-    public MainActivityAdapter(FragmentManager fm, Context context) {
+    MainFragmentAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context.getApplicationContext();
     }
 
     @Override
+    @NonNull
     public Fragment getItem(int position) {
         if (position == 0) {
             return LoremFragment.newInstance();
@@ -45,7 +47,7 @@ class MainActivityAdapter extends CachedFragmentPagerAdapter {
     }
 
     @DrawableRes
-    public int getPageIcon(int position) {
+    int getPageIcon(int position) {
         return iconResIds[position];
     }
 

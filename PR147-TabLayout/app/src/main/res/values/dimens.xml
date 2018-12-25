@@ -1,5 +1,4 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="fragment_lorem_lblLorem_padding">20dp</dimen>
-    <dimen name="activity_main_fab_margin">16dp</dimen>
+    <dimen name="lorem_lblLorem_padding">20dp</dimen>
+    <dimen name="main_fab_margin">16dp</dimen>
 </resources>
