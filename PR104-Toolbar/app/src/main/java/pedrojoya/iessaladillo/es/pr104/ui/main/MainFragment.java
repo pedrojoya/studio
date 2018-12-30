@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import pedrojoya.iessaladillo.es.pr104.R;
 import pedrojoya.iessaladillo.es.pr104.ui.secondary.SecondaryFragment;
-import pedrojoya.iessaladillo.es.pr104.utils.FragmentUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -62,16 +61,18 @@ public class MainFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuNext) {
-            showSecondaryFragment();
+            navigateToSecondary();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void showSecondaryFragment() {
-        FragmentUtils.replaceFragmentAddToBackstack(requireActivity()
-                .getSupportFragmentManager(), R.id.flContent, SecondaryFragment.newInstance()
-                , SecondaryFragment.class.getSimpleName(), SecondaryFragment.class
-                        .getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+    private void navigateToSecondary() {
+        requireFragmentManager().beginTransaction()
+            .replace(R.id.flContent, SecondaryFragment.newInstance(), SecondaryFragment.class.getSimpleName())
+            .addToBackStack(SecondaryFragment.class.getSimpleName())
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit();
     }
+
 }

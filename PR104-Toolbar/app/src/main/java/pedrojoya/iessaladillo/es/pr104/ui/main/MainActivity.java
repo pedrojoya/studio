@@ -3,12 +3,11 @@ package pedrojoya.iessaladillo.es.pr104.ui.main;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import pedrojoya.iessaladillo.es.pr104.R;
-import pedrojoya.iessaladillo.es.pr104.utils.FragmentUtils;
-import pedrojoya.iessaladillo.es.pr104.utils.ToastUtils;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,11 +17,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbar();
-        // Load initial fragment.
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    MainFragment.newInstance(), MainFragment.class.getSimpleName());
+            navigateToStartFragment();
         }
+    }
+
+    private void navigateToStartFragment() {
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.flContent, MainFragment.newInstance(), MainFragment.class.getSimpleName())
+            .commit();
     }
 
     private void setupToolbar() {
@@ -41,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.mnuSettings) {
-            showSettings();
+            navigateToSettings();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void showSettings() {
-        ToastUtils.toast(this, getString(R.string.main_settings));
+    private void navigateToSettings() {
+        Toast.makeText(this, getString(R.string.main_settings), Toast.LENGTH_SHORT).show();
     }
 
     @Override
