@@ -12,10 +12,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import es.iessaldillo.pedrojoya.pr191.R;
-import es.iessaldillo.pedrojoya.pr191.base.OnFragmentShownListener;
 import es.iessaldillo.pedrojoya.pr191.utils.FragmentUtils;
 
-public class MainActivity extends AppCompatActivity implements OnFragmentShownListener {
+public class MainActivity extends AppCompatActivity {
 
     private static final String STATE_CURRENT_ITEM_ID = "STATE_CURRENT_ITEM_ID";
     private static final String STATE_FAB_IS_HIDDEN = "STATE_FAB_IS_HIDDEN";
@@ -135,9 +134,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentShownLi
     }
 
     @Override
-    public void onFragmentShown(int menuItemResId) {
-        // Needed in case we come from backstack.
-        bottomNavigationView.setSelectedItemId(menuItemResId);
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        if (fragment instanceof MainFragment) {
+            ((MainFragment) fragment).setOnFragmentShownListener(menuItemResId ->
+                bottomNavigationView.setSelectedItemId(menuItemResId));
+        }
     }
 
 }

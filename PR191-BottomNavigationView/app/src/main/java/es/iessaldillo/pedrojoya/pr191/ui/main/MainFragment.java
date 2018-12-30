@@ -1,7 +1,6 @@
 package es.iessaldillo.pedrojoya.pr191.ui.main;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -50,6 +49,16 @@ public class MainFragment extends Fragment {
         obtainArguments();
     }
 
+    public void setOnFragmentShownListener(OnFragmentShownListener onFragmentShownListener) {
+        this.onFragmentShownListener = onFragmentShownListener;
+    }
+
+    @Override
+    public void onDetach() {
+        onFragmentShownListener = null;
+        super.onDetach();
+    }
+
     private void obtainArguments() {
         if (getArguments() != null) {
             optionMenuResId = getArguments().getInt(ARG_OPTION_MENU_RES_ID);
@@ -66,12 +75,12 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
+        setupViews(getView());
         // In order to update the checked menuItem when coming from backstack.
         informActivity();
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         TextView lblOption = ViewCompat.requireViewById(view, R.id.lblOption);
         lblOption.setText(optionTitle);
         setupFab();
@@ -99,17 +108,5 @@ public class MainFragment extends Fragment {
     private void informActivity() {
         onFragmentShownListener.onFragmentShown(optionMenuResId);
     }
-
-    @Override
-    public void onAttach(Context activity) {
-        super.onAttach(activity);
-        try {
-            onFragmentShownListener = (OnFragmentShownListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " debe implementar la interfaz OnFragmentShownListener");
-        }
-    }
-
 
 }
