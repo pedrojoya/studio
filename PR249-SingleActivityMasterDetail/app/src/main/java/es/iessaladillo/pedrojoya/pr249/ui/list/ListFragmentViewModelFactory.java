@@ -21,4 +21,5 @@ public class ListFragmentViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         return (T) new ListFragmentViewModel(repository);
     }
+
 }

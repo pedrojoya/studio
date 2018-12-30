@@ -11,17 +11,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr249.R;
-import es.iessaladillo.pedrojoya.pr249.base.EventObserver;
 import es.iessaladillo.pedrojoya.pr249.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr249.data.local.Database;
-import es.iessaladillo.pedrojoya.pr249.ui.detail.DetailFragment;
 
 public class ListFragment extends Fragment {
 
@@ -47,7 +44,6 @@ public class ListFragment extends Fragment {
             ListFragmentViewModel.class);
         setupViews(requireView());
         observeStudents();
-        observeNavigation();
     }
 
     private void setupViews(@NonNull View view) {
@@ -68,11 +64,11 @@ public class ListFragment extends Fragment {
         RecyclerView lstItems = ViewCompat.requireViewById(view, R.id.lstItems);
         lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
 
-        listAdapter = new ListFragmentAdapter(viewModel);
+        listAdapter = new ListFragmentAdapter();
         lstItems.setHasFixedSize(true);
-        lstItems.setLayoutManager(
-            new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        lstItems.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        lstItems.setLayoutManager(new LinearLayoutManager(getContext()));
+        lstItems.addItemDecoration(
+            new DividerItemDecoration(requireContext(),  DividerItemDecoration.VERTICAL));
         lstItems.setItemAnimator(new DefaultItemAnimator());
         lstItems.setAdapter(listAdapter);
     }
@@ -80,22 +76,8 @@ public class ListFragment extends Fragment {
     private void observeStudents() {
         viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
             listAdapter.submitList(students);
-            lblEmptyView.setVisibility(students.size() > 0 ? View.INVISIBLE: View.VISIBLE);
+            lblEmptyView.setVisibility(students.size() > 0 ? View.INVISIBLE : View.VISIBLE);
         });
-    }
-
-    private void observeNavigation() {
-        viewModel.getNavigateToDetail().observe(getViewLifecycleOwner(),
-            new EventObserver<>(this::navigateToDetail));
-    }
-
-    private void navigateToDetail(String item) {
-        requireFragmentManager()
-            .beginTransaction()
-            .replace(R.id.flContent, DetailFragment.newInstance(item), DetailFragment.class.getSimpleName())
-            .addToBackStack(DetailFragment.class.getSimpleName())
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit();
     }
 
 }
