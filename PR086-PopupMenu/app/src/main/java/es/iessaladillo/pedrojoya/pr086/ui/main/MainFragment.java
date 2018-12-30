@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
@@ -19,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr086.R;
+import es.iessaladillo.pedrojoya.pr086.base.EventObserver;
 import es.iessaladillo.pedrojoya.pr086.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr086.data.local.Database;
 import es.iessaladillo.pedrojoya.pr086.data.local.model.Student;
@@ -44,15 +43,11 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Objects.requireNonNull(getView());
         viewModel = ViewModelProviders.of(this,
             new MainFragmentViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
             MainFragmentViewModel.class);
-        setupViews(getView());
-        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
-            listAdapter.submitList(students);
-            lblEmptyView.setVisibility(students.size() > 0 ? View.INVISIBLE : View.VISIBLE);
-        });
+        setupViews(requireView());
+        observeViewModel();
     }
 
     private void setupViews(View view) {
@@ -65,15 +60,7 @@ public class MainFragment extends Fragment {
         lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
 
         lblEmptyView.setOnClickListener(v -> viewModel.addStudent(Database.newFakeStudent()));
-        listAdapter = new MainFragmentAdapter();
-        listAdapter.setOnItemClickListener(
-            (v, position) -> showStudent(listAdapter.getItem(position)));
-        listAdapter.setOnShowAssignmentsListener(
-            position -> showAssignments(listAdapter.getItem(position)));
-        listAdapter.setOnShowMarksListener(position -> showMarks(listAdapter.getItem(position)));
-        listAdapter.setOnCallListener(position -> call(listAdapter.getItem(position)));
-        listAdapter.setOnSendMessageListener(
-            position -> sendMessage(listAdapter.getItem(position)));
+        listAdapter = new MainFragmentAdapter(viewModel);
         lstStudents.setHasFixedSize(true);
         lstStudents.setLayoutManager(new GridLayoutManager(requireContext(),
             getResources().getInteger(R.integer.main_lstStudents_columns)));
@@ -94,7 +81,6 @@ public class MainFragment extends Fragment {
                     viewModel.deleteStudent(listAdapter.getItem(viewHolder.getAdapterPosition()));
                 }
             });
-        // Se enlaza con el RecyclerView.
         itemTouchHelper.attachToRecyclerView(lstStudents);
     }
 
@@ -102,6 +88,31 @@ public class MainFragment extends Fragment {
         ViewCompat.requireViewById(view, R.id.fab).setOnClickListener(
             v -> viewModel.addStudent(Database.newFakeStudent()));
 
+    }
+
+    private void observeViewModel() {
+        observeStudents();
+        observeNavigation();
+    }
+
+    private void observeStudents() {
+        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
+            listAdapter.submitList(students);
+            lblEmptyView.setVisibility(students.size() > 0 ? View.INVISIBLE : View.VISIBLE);
+        });
+    }
+
+    private void observeNavigation() {
+        viewModel.getNavigateToStudentDetail().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showStudent));
+        viewModel.getNavigateToStudentAssignments().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showAssignments));
+        viewModel.getNavigateToStudentMarks().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMarks));
+        viewModel.getNavigateToCallStudent().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::call));
+        viewModel.getNavigateToSendMessageToStudent().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::sendMessage));
     }
 
     private void showStudent(Student student) {
@@ -116,18 +127,18 @@ public class MainFragment extends Fragment {
             .show();
     }
 
-    public void showMarks(Student student) {
+    private void showMarks(Student student) {
         Toast.makeText(requireContext(), getString(R.string.main_show_marks, student.getName()),
             Toast.LENGTH_SHORT).show();
     }
 
-    public void call(Student student) {
+    private void call(Student student) {
         Toast.makeText(requireContext(),
             getString(R.string.main_activity_call_sb, student.getName()), Toast.LENGTH_SHORT)
             .show();
     }
 
-    public void sendMessage(Student student) {
+    private void sendMessage(Student student) {
         Toast.makeText(requireContext(),
             getString(R.string.main_send_message_to, student.getName()), Toast.LENGTH_SHORT).show();
     }

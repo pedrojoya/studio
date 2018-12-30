@@ -14,21 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr086.R;
-import es.iessaladillo.pedrojoya.pr086.base.BaseListAdapter;
-import es.iessaladillo.pedrojoya.pr086.base.BaseViewHolder;
 import es.iessaladillo.pedrojoya.pr086.data.local.model.Student;
 import es.iessaladillo.pedrojoya.pr086.utils.PicassoUtils;
 import es.iessaladillo.pedrojoya.pr086.utils.PopupMenuUtils;
 
-class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.ViewHolder> {
+class MainFragmentAdapter extends ListAdapter<Student, MainFragmentAdapter.ViewHolder> {
 
-    private OnShowAssignmentsListener onShowAssignmentsListener;
-    private OnShowMarksListener onShowMarksListener;
-    private OnCallListener onCallListener;
-    private OnSendMessageListener onSendMessageListener;
+    private final MainFragmentViewModel viewModel;
 
-    MainFragmentAdapter() {
+    MainFragmentAdapter(@NonNull MainFragmentViewModel viewModel) {
         super(new DiffUtil.ItemCallback<Student>() {
             @Override
             public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
@@ -43,6 +40,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
                     && oldItem.isRepeater() == newItem.isRepeater();
             }
         });
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -57,39 +55,12 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
         holder.bind(getItem(position));
     }
 
-    void setOnShowAssignmentsListener(OnShowAssignmentsListener onShowAssignmentsListener) {
-        this.onShowAssignmentsListener = onShowAssignmentsListener;
+    @Override
+    public Student getItem(int position) {
+        return super.getItem(position);
     }
 
-    void setOnShowMarksListener(OnShowMarksListener onShowMarksListener) {
-        this.onShowMarksListener = onShowMarksListener;
-    }
-
-    public void setOnCallListener(OnCallListener onCallListener) {
-        this.onCallListener = onCallListener;
-    }
-
-    public void setOnSendMessageListener(OnSendMessageListener onSendMessageListener) {
-        this.onSendMessageListener = onSendMessageListener;
-    }
-
-    interface OnShowAssignmentsListener {
-        void onCall(int position);
-    }
-
-    interface OnShowMarksListener {
-        void onShowMarks(int position);
-    }
-
-    interface OnCallListener {
-        void onCall(int position);
-    }
-
-    interface OnSendMessageListener {
-        void onSendMessage(int position);
-    }
-
-    class ViewHolder extends BaseViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView imgPhoto;
         private final TextView lblName;
@@ -101,7 +72,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
         private final ImageView imgPopupMenu;
 
         ViewHolder(View itemView) {
-            super(itemView, onItemClickListener);
+            super(itemView);
             imgPhoto = ViewCompat.requireViewById(itemView, R.id.imgPhoto);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
@@ -110,6 +81,8 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
             btnAssignments = ViewCompat.requireViewById(itemView, R.id.btnAssignments);
             btnMarks = ViewCompat.requireViewById(itemView, R.id.btnMarks);
             imgPopupMenu = ViewCompat.requireViewById(itemView, R.id.imgPopupMenu);
+
+            itemView.setOnClickListener(v -> viewModel.showStudent(getItem(getAdapterPosition())));
         }
 
         void bind(Student student) {
@@ -124,39 +97,31 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
                 R.color.accent) : ContextCompat.getColor(lblAge.getContext(),
                 R.color.primary_text));
             lblRepeater.setVisibility(student.isRepeater() ? View.VISIBLE : View.INVISIBLE);
-            btnAssignments.setOnClickListener(v -> {
-                if (onShowAssignmentsListener != null) {
-                    onShowAssignmentsListener.onCall(getAdapterPosition());
-                }
-            });
-            btnMarks.setOnClickListener(v -> {
-                if (onShowMarksListener != null) {
-                    onShowMarksListener.onShowMarks(getAdapterPosition());
-                }
-            });
-            imgPopupMenu.setOnClickListener(v -> showPopup(getAdapterPosition(), v));
+            btnAssignments.setOnClickListener(v -> viewModel.showAssignments(getItem(getAdapterPosition())));
+            btnMarks.setOnClickListener(v -> viewModel.showMarks(getItem(getAdapterPosition())));
+            imgPopupMenu.setOnClickListener(this::showPopup);
         }
 
-        private boolean onMenuItemClick(int position, MenuItem menuItem) {
+        private void showPopup(View v) {
+            PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+            popupMenu.inflate(R.menu.activity_main_item_popup);
+            popupMenu.setOnMenuItemClickListener(this::onMenuItemClick);
+            PopupMenuUtils.enableIcons(popupMenu);
+            popupMenu.show();
+        }
+
+        private boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.mnuCall:
-                    onCallListener.onCall(position);
+                    viewModel.call(getItem(getAdapterPosition()));
                     break;
                 case R.id.mnuSendMessage:
-                    onSendMessageListener.onSendMessage(position);
+                    viewModel.sendMessage(getItem(getAdapterPosition()));
                     break;
                 default:
                     return false;
             }
             return true;
-        }
-
-        private void showPopup(int position, View v) {
-            PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-            popupMenu.inflate(R.menu.activity_main_item_popup);
-            popupMenu.setOnMenuItemClickListener(menuItem -> onMenuItemClick(position, menuItem));
-            PopupMenuUtils.enableIcons(popupMenu);
-            popupMenu.show();
         }
 
     }
