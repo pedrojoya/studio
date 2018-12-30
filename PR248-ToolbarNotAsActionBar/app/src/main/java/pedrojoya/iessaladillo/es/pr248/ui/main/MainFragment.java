@@ -4,17 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import pedrojoya.iessaladillo.es.pr248.R;
 import pedrojoya.iessaladillo.es.pr248.ui.secondary.SecondaryFragment;
-import pedrojoya.iessaladillo.es.pr248.utils.FragmentUtils;
-import pedrojoya.iessaladillo.es.pr248.utils.ToastUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -46,25 +44,25 @@ public class MainFragment extends Fragment {
         toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.mnuNext:
-                    showSecondaryFragment();
+                    navigateToSecondary();
                     return true;
                 case R.id.mnuSettings:
-                    showSettings();
+                    navigateToSettings();
                 default:
                     return false;
             }
         });
     }
 
-    private void showSecondaryFragment() {
-        FragmentUtils.replaceFragmentAddToBackstack(requireActivity().getSupportFragmentManager(),
-                R.id.flContent, SecondaryFragment.newInstance(),
-                SecondaryFragment.class.getSimpleName(), SecondaryFragment.class.getSimpleName(),
-                FragmentTransaction.TRANSIT_NONE);
+    private void navigateToSecondary() {
+        requireFragmentManager().beginTransaction()
+            .replace(R.id.flContent, SecondaryFragment.newInstance(), SecondaryFragment.class.getSimpleName())
+            .addToBackStack(SecondaryFragment.class.getSimpleName())
+            .commit();
     }
 
-    private void showSettings() {
-        ToastUtils.toast(getContext(), getString(R.string.main_settings));
+    private void navigateToSettings() {
+        Toast.makeText(requireContext(), getString(R.string.main_settings), Toast.LENGTH_SHORT).show();
     }
 
 }

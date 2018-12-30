@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import pedrojoya.iessaladillo.es.pr248.R;
-import pedrojoya.iessaladillo.es.pr248.utils.ToastUtils;
 
 public class SecondaryFragment extends Fragment {
 
@@ -42,13 +42,13 @@ public class SecondaryFragment extends Fragment {
         toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
         toolbar.inflateMenu(R.menu.fragment_secondary);
         toolbar.setOnMenuItemClickListener(item -> {
-            showSettings();
+            navigateToSettings();
             return true;
         });
     }
 
-    private void showSettings() {
-        ToastUtils.toast(getContext(), getString(R.string.main_settings));
+    private void navigateToSettings() {
+        Toast.makeText(requireContext(), getString(R.string.main_settings), Toast.LENGTH_SHORT).show();
     }
 
 }
