@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.pr050.ui.photo;
 
-import android.content.Context;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,20 +16,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr050.R;
+import es.iessaladillo.pedrojoya.pr050.ui.info.InfoFragment;
 import es.iessaladillo.pedrojoya.pr050.utils.BitmapUtils;
 
 public class PhotoFragment extends Fragment {
 
-    public interface Callback {
-        void onInfoClicked();
-    }
+    private PhotoFragmentViewModel viewModel;
 
     private ImageView imgPhoto;
-
-    private PhotoFragmentViewModel viewModel;
-    private Callback listener;
 
     public static PhotoFragment newInstance() {
         return new PhotoFragment();
@@ -44,60 +40,72 @@ public class PhotoFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+        Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_photo, container, false);
-    }
-
-    @Override
-    public void onAttach(Context activity) {
-        super.onAttach(activity);
-        try {
-            listener = (Callback) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(
-                    activity.toString() + " must implement PhotoFragment.Callback");
-        }
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(PhotoFragmentViewModel.class);
-        initViews(getView());
+        viewModel = ViewModelProviders.of(this, new PhotoFragmentViewModelFactory(R.id.mnuOriginal))
+            .get(PhotoFragmentViewModel.class);
+        setupViews(requireView());
+        observeEffectId();
+    }
+
+    private void setupViews(View view) {
+        imgPhoto = ViewCompat.requireViewById(view, R.id.imgPhoto);
+
+        setupActionBar();
+    }
+
+    private void setupActionBar() {
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setTitle(R.string.photo_title);
+        }
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.fragment_photo, menu);
-        menu.findItem(viewModel.getEffectId()).setChecked(true);
+        Integer effectId = viewModel.getEffectId().getValue();
+        if (effectId != null) {
+            menu.findItem(effectId).setChecked(true);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuInfo:
-                listener.onInfoClicked();
+                navigateToInfo();
                 return true;
             case R.id.mnuOriginal:
             case R.id.mnuGrey:
             case R.id.mnuSepia:
             case R.id.mnuBinary:
             case R.id.mnuInverted:
-                viewModel.setEffectId(item.getItemId());
                 item.setChecked(true);
-                setCorrectBitmap(item.getItemId());
+                viewModel.setEffectId(item.getItemId());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void initViews(View view) {
-        imgPhoto = ViewCompat.requireViewById(view, R.id.imgPhoto);
+    private void observeEffectId() {
+        viewModel.getEffectId().observe(getViewLifecycleOwner(), this::setCorrectBitmap);
+    }
 
-        setupActionBar();
-        setCorrectBitmap(viewModel.getEffectId());
+    private void navigateToInfo() {
+        requireFragmentManager().beginTransaction().replace(R.id.flContent,
+            InfoFragment.newInstance(), InfoFragment.class.getSimpleName()).addToBackStack(
+            InfoFragment.class.getSimpleName()).setTransition(
+            FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+
     }
 
     private void setCorrectBitmap(@IdRes int itemId) {
@@ -107,28 +115,20 @@ public class PhotoFragment extends Fragment {
                 break;
             case R.id.mnuGrey:
                 imgPhoto.getDrawable().setColorFilter(
-                        new ColorMatrixColorFilter(BitmapUtils.getGreyColorMatrix()));
+                    new ColorMatrixColorFilter(BitmapUtils.getGreyColorMatrix()));
                 break;
             case R.id.mnuSepia:
                 imgPhoto.getDrawable().setColorFilter(
-                        new ColorMatrixColorFilter(BitmapUtils.getSepiaColorMatrix()));
+                    new ColorMatrixColorFilter(BitmapUtils.getSepiaColorMatrix()));
                 break;
             case R.id.mnuBinary:
                 imgPhoto.getDrawable().setColorFilter(
-                        new ColorMatrixColorFilter(BitmapUtils.getBinaryColorMatrix()));
+                    new ColorMatrixColorFilter(BitmapUtils.getBinaryColorMatrix()));
                 break;
             case R.id.mnuInverted:
                 imgPhoto.getDrawable().setColorFilter(
-                        new ColorMatrixColorFilter(BitmapUtils.getInvertedColorMatrix()));
+                    new ColorMatrixColorFilter(BitmapUtils.getInvertedColorMatrix()));
                 break;
-        }
-    }
-
-    private void setupActionBar() {
-        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(false);
-            actionBar.setTitle(R.string.photo_title);
         }
     }
 

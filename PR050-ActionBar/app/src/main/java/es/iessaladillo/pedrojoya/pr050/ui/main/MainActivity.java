@@ -7,23 +7,25 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import es.iessaladillo.pedrojoya.pr050.R;
-import es.iessaladillo.pedrojoya.pr050.ui.info.InfoFragment;
 import es.iessaladillo.pedrojoya.pr050.ui.photo.PhotoFragment;
 import es.iessaladillo.pedrojoya.pr050.ui.preferences.PreferencesActivity;
-import es.iessaladillo.pedrojoya.pr050.utils.FragmentUtils;
 
-public class MainActivity extends AppCompatActivity implements PhotoFragment.Callback {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Load initial fragment.
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(), R.id.flContent,
-                    PhotoFragment.newInstance(), PhotoFragment.class.getSimpleName(),
-                    PhotoFragment.class.getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            navigateToStartFragment();
         }
+    }
+
+    private void navigateToStartFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
+            PhotoFragment.newInstance(), PhotoFragment.class.getSimpleName()).addToBackStack(
+            PhotoFragment.class.getSimpleName()).setTransition(
+            FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements PhotoFragment.Cal
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuPreferences:
-                showPreferences();
+                navigateToPreferences();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -44,14 +46,7 @@ public class MainActivity extends AppCompatActivity implements PhotoFragment.Cal
         return true;
     }
 
-    @Override
-    public void onInfoClicked() {
-        FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(), R.id.flContent,
-                InfoFragment.newInstance(), InfoFragment.class.getSimpleName(),
-                InfoFragment.class.getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-    }
-
-    private void showPreferences() {
+    private void navigateToPreferences() {
         PreferencesActivity.start(this);
     }
 
