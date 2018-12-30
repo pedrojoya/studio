@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr059.R;
 import es.iessaladillo.pedrojoya.pr059.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr059.data.local.Database;
-import es.iessaladillo.pedrojoya.pr059.utils.ToastUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -130,17 +129,11 @@ public class MainFragment extends Fragment {
 
         lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
         listAdapter = new MainFragmentAdapter();
-        listAdapter.setOnItemClickListener(
-                (v, position) -> showStudent(listAdapter.getItem(position)));
         lstStudents.setHasFixedSize(true);
         lstStudents.setLayoutManager(
                 new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
-    }
-
-    private void showStudent(String student) {
-        ToastUtils.toast(getContext(), getString(R.string.main_student_clicked, student));
     }
 
     static MainFragment newInstance() {

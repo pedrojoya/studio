@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import es.iessaladillo.pedrojoya.pr059.R;
-import es.iessaladillo.pedrojoya.pr059.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,11 +11,15 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Load initial fragment.
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    MainFragment.newInstance(), MainFragment.class.getSimpleName());
+            navigateToStartFragment();
         }
+    }
+
+    private void navigateToStartFragment() {
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.flContent, MainFragment.newInstance(), MainFragment.class.getSimpleName())
+            .commit();
     }
 
 }

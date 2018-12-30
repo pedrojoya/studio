@@ -1,6 +1,5 @@
-package es.iessaladillo.pedrojoya.pr059.base;
+package es.iessaladillo.pedrojoya.pr059.deprecated;
 
-import android.view.View;
 import android.widget.Filter;
 import android.widget.Filterable;
 
@@ -10,12 +9,13 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 // M for Model, VH for ViewHolder, K for selection tracker Key.
-abstract public class BaseListAdapter<M, VH extends BaseViewHolder> extends ListAdapter<M, VH>
+@SuppressWarnings("ALL")
+abstract public class BaseListAdapter<M, VH extends RecyclerView.ViewHolder> extends ListAdapter<M, VH>
         implements Filterable {
 
-    protected OnItemClickListener onItemClickListener;
     private List<M> original;
     private FilterPredicate<M> filterPredicate;
 
@@ -36,15 +36,6 @@ abstract public class BaseListAdapter<M, VH extends BaseViewHolder> extends List
     @Override
     public M getItem(int position) {
         return super.getItem(position);
-    }
-
-    @SuppressWarnings("unused")
-    public OnItemClickListener getOnItemClickListener() {
-        return onItemClickListener;
-    }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
     }
 
     protected interface FilterPredicate<T> {
@@ -83,10 +74,6 @@ abstract public class BaseListAdapter<M, VH extends BaseViewHolder> extends List
                 }
             }
         };
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(View v, int position);
     }
 
 }
