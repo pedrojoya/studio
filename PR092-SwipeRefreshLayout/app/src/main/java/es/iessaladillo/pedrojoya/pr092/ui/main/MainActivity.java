@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr092.R;
-import es.iessaladillo.pedrojoya.pr092.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,8 +14,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupToolbar();
         if (savedInstanceState == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent, new MainFragment());
+            navigateToStartFragment();
         }
+    }
+
+    private void navigateToStartFragment() {
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.flContent, MainFragment.newInstance(), MainFragment.class.getSimpleName())
+            .commit();
     }
 
     private void setupToolbar() {

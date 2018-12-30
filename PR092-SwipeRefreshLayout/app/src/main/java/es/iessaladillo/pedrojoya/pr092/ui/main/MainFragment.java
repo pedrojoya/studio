@@ -36,7 +36,8 @@ public class MainFragment extends Fragment {
     private MainFragmentViewModel viewModel;
     private TextView lblEmptyView;
 
-    public MainFragment() {
+    public static Fragment newInstance() {
+        return new MainFragment();
     }
 
     @Override
