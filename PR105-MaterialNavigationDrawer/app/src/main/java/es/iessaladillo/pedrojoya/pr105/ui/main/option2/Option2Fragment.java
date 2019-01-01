@@ -10,20 +10,16 @@ import android.view.ViewGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import es.iessaladillo.pedrojoya.pr105.R;
-import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
+import es.iessaladillo.pedrojoya.pr105.ui.main.MainActivityViewModel;
+import es.iessaladillo.pedrojoya.pr105.ui.main.MainActivityViewModelFactory;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option2.tab1.Option2Tab1Fragment;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option2.tab2.Option2Tab2Fragment;
 
@@ -31,7 +27,6 @@ import es.iessaladillo.pedrojoya.pr105.ui.main.option2.tab2.Option2Tab2Fragment;
 public class Option2Fragment extends Fragment {
 
     private OnToolbarAvailableListener onToolbarAvailableListener;
-    private OnFragmentShownListener onFragmentShownListener;
 
     private FloatingActionButton fab;
 
@@ -49,8 +44,10 @@ public class Option2Fragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupViews(requireView());
+        MainActivityViewModel activityViewModel = ViewModelProviders.of(requireActivity(),
+            new MainActivityViewModelFactory()).get(MainActivityViewModel.class);
         // In order to update the checked menuItem when coming from backstack.
-        onFragmentShownListener.onFragmentShown(R.id.mnuOption2);
+        activityViewModel.setCurrentOption(R.id.mnuOption2);
     }
 
     private void setupViews(View view) {
@@ -75,12 +72,6 @@ public class Option2Fragment extends Fragment {
             throw new ClassCastException(
                 activity.toString() + " debe implementar la interfaz OnToolbarAvailableListener");
         }
-        try {
-            onFragmentShownListener = (OnFragmentShownListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(
-                activity.toString() + " debe implementar la interfaz OnFragmentShownListener");
-        }
     }
 
     private void setupFab(View view) {
@@ -91,7 +82,7 @@ public class Option2Fragment extends Fragment {
         ViewPager viewPager = ViewCompat.requireViewById(view, R.id.viewPager);
         TabLayout tabLayout = ViewCompat.requireViewById(view, R.id.tabLayout);
 
-        final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        final Option2ViewPagerAdapter viewPagerAdapter = new Option2ViewPagerAdapter(getChildFragmentManager());
         viewPagerAdapter.addFragment(new Option2Tab1Fragment(),
             getString(R.string.option2_fragment_students), R.drawable.ic_face_white_24dp)
             .addFragment(new Option2Tab2Fragment(), getString(R.string.option2_fragment_data),
@@ -125,46 +116,6 @@ public class Option2Fragment extends Fragment {
 
             }
         });
-    }
-
-    static class ViewPagerAdapter extends FragmentPagerAdapter {
-
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
-        private final List<Integer> mFragmentIcons = new ArrayList<>();
-
-        ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        ViewPagerAdapter addFragment(Fragment fragment, String title, @DrawableRes int resIdIcon) {
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
-            mFragmentIcons.add(resIdIcon);
-            return this;
-        }
-
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "  " + mFragmentTitles.get(position);
-        }
-
-        @DrawableRes
-        int getPageIcon(int position) {
-            return mFragmentIcons.get(position);
-        }
-
     }
 
 }

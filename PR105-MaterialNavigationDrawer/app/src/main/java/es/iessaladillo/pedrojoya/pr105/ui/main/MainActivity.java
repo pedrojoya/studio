@@ -20,9 +20,9 @@ import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.iessaladillo.pedrojoya.pr105.R;
-import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
 import es.iessaladillo.pedrojoya.pr105.ui.detail.DetailActivity;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option1.Option1Fragment;
@@ -31,7 +31,7 @@ import es.iessaladillo.pedrojoya.pr105.ui.main.option3.Option3Fragment;
 import es.iessaladillo.pedrojoya.pr105.utils.PicassoUtils;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnToolbarAvailableListener, OnFragmentShownListener {
+public class MainActivity extends AppCompatActivity implements OnToolbarAvailableListener {
 
     private static final String PREFERENCES_FILE = "prefs";
     private static final String PREF_NAV_DRAWER_OPENED = "navdrawerOpened";
@@ -40,12 +40,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private CircleImageView imgProfile;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory()).get(
+            MainActivityViewModel.class);
         setupViews();
+        observeCurrentOption();
         if (savedInstanceState == null) {
             navigateToStartOption();
         }
@@ -57,6 +61,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgProfile = ViewCompat.requireViewById(navigationView.getHeaderView(0), R.id.imgProfile);
 
         setupNavigationDrawer();
+        addOnBackPressedCallback(this::closeDrawerIfOpen);
+    }
+
+    private boolean closeDrawerIfOpen() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        }
+        return false;
     }
 
     private void setupNavigationDrawer() {
@@ -68,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             (buttonView, isChecked) -> Toast.makeText(MainActivity.this,
                 isChecked ? getString(R.string.main_activity_downloaded_only) : getString(
                     R.string.main_activity_also_not_downloaded), Toast.LENGTH_SHORT).show());
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this::onNavItemSelected);
         if (!readShownPreference()) {
             drawerLayout.openDrawer(GravityCompat.START);
             saveShownPreference();
@@ -76,29 +89,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void navigateToStartOption() {
-        int defaultMnuItemResId = R.id.mnuOption1;
-        MenuItem defaultItem = navigationView.getMenu().findItem(defaultMnuItemResId);
-        if (defaultItem != null) {
-            navigateToOption(defaultItem);
-        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
+            Option1Fragment.newInstance(), Option1Fragment.class.getSimpleName()).setTransition(
+            FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
     }
 
     private void navigateToOption(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.mnuOption1:
-                replaceFragment(Option1Fragment.newInstance(), Option1Fragment.class.getSimpleName());
-                menuItem.setChecked(true);
-                break;
-            case R.id.mnuOption2:
-                replaceFragment(Option2Fragment.newInstance(), Option2Fragment.class.getSimpleName());
-                menuItem.setChecked(true);
-                break;
-            case R.id.mnuOption3:
-                replaceFragment(Option3Fragment.newInstance(), Option3Fragment.class.getSimpleName());
-                menuItem.setChecked(true);
-                break;
-            case R.id.mnuDetail:
-                DetailActivity.start(this);
+        Integer currentOption = viewModel.getCurrentOption().getValue();
+        if (currentOption == null || currentOption != menuItem.getItemId()) {
+            switch (menuItem.getItemId()) {
+                case R.id.mnuOption1:
+                    replaceFragment(Option1Fragment.newInstance(),
+                        Option1Fragment.class.getSimpleName());
+                    menuItem.setChecked(true);
+                    break;
+                case R.id.mnuOption2:
+                    replaceFragment(Option2Fragment.newInstance(),
+                        Option2Fragment.class.getSimpleName());
+                    menuItem.setChecked(true);
+                    break;
+                case R.id.mnuOption3:
+                    replaceFragment(Option3Fragment.newInstance(),
+                        Option3Fragment.class.getSimpleName());
+                    menuItem.setChecked(true);
+                    break;
+                case R.id.mnuDetail:
+                    DetailActivity.start(this);
+            }
         }
     }
 
@@ -112,24 +129,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(
+            item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    @SuppressWarnings("SameReturnValue")
+    private boolean onNavItemSelected(@NonNull MenuItem menuItem) {
         navigateToOption(menuItem);
         drawerLayout.closeDrawers();
         return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = ActivityCompat.requireViewById(this, R.id.drawerLayout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     private void saveShownPreference() {
@@ -165,12 +173,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
     }
 
-    @Override
-    public void onFragmentShown(int menuItemResId) {
-        MenuItem menuItem = navigationView.getMenu().findItem(menuItemResId);
-        if (menuItem != null) {
-            menuItem.setChecked(true);
-        }
+    private void observeCurrentOption() {
+        viewModel.getCurrentOption().observe(this, option -> {
+            MenuItem menuItem = navigationView.getMenu().findItem(option);
+            if (menuItem != null) {
+                menuItem.setChecked(true);
+            }
+        });
     }
 
 }

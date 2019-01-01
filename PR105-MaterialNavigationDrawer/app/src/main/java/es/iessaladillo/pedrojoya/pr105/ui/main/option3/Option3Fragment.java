@@ -15,15 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr105.R;
-import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
+import es.iessaladillo.pedrojoya.pr105.ui.main.MainActivityViewModel;
+import es.iessaladillo.pedrojoya.pr105.ui.main.MainActivityViewModelFactory;
 
 
 public class Option3Fragment extends Fragment {
 
     private OnToolbarAvailableListener onToolbarAvailableListener;
-    private OnFragmentShownListener onFragmentShownListener;
 
     private FloatingActionButton fab;
 
@@ -41,8 +42,10 @@ public class Option3Fragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupViews(requireView());
+        MainActivityViewModel activityViewModel = ViewModelProviders.of(requireActivity(),
+            new MainActivityViewModelFactory()).get(MainActivityViewModel.class);
         // In order to update the checked menuItem when coming from backstack.
-        onFragmentShownListener.onFragmentShown(R.id.mnuOption3);
+        activityViewModel.setCurrentOption(R.id.mnuOption3);
     }
 
     private void setupViews(View view) {
@@ -69,12 +72,6 @@ public class Option3Fragment extends Fragment {
         } catch (Exception e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnToolbarAvailableListener interface");
-        }
-        try {
-            onFragmentShownListener = (OnFragmentShownListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentShownListener interface");
         }
     }
 

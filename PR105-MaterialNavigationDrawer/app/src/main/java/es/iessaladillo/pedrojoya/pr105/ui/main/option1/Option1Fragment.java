@@ -13,15 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr105.R;
-import es.iessaladillo.pedrojoya.pr105.base.OnFragmentShownListener;
 import es.iessaladillo.pedrojoya.pr105.base.OnToolbarAvailableListener;
+import es.iessaladillo.pedrojoya.pr105.ui.main.MainActivityViewModel;
+import es.iessaladillo.pedrojoya.pr105.ui.main.MainActivityViewModelFactory;
 
 
 public class Option1Fragment extends Fragment {
 
     private OnToolbarAvailableListener onToolbarAvailableListener;
-    private OnFragmentShownListener onFragmentShownListener;
     private View fab;
 
     public static Option1Fragment newInstance() {
@@ -30,7 +31,7 @@ public class Option1Fragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+        Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_option1, container, false);
     }
 
@@ -38,8 +39,10 @@ public class Option1Fragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupViews(requireView());
+        MainActivityViewModel activityViewModel = ViewModelProviders.of(requireActivity(),
+            new MainActivityViewModelFactory()).get(MainActivityViewModel.class);
         // In order to update the checked menuItem when coming from backstack.
-        onFragmentShownListener.onFragmentShown(R.id.mnuOption1);
+        activityViewModel.setCurrentOption(R.id.mnuOption1);
     }
 
     private void setupViews(View view) {
@@ -70,14 +73,8 @@ public class Option1Fragment extends Fragment {
         try {
             onToolbarAvailableListener = (OnToolbarAvailableListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnToolbarAvailableListener interface");
-        }
-        try {
-            onFragmentShownListener = (OnFragmentShownListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentShownListener interface");
+            throw new ClassCastException(
+                activity.toString() + " must implement OnToolbarAvailableListener interface");
         }
     }
 
