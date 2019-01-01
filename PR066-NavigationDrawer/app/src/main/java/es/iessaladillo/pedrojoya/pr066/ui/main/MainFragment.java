@@ -2,24 +2,27 @@ package es.iessaladillo.pedrojoya.pr066.ui.main;
 
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
 import es.iessaladillo.pedrojoya.pr066.R;
 
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
 
     private static final String ARG_OPTION = "ARG_OPTION";
 
     private String option;
 
-    public static MainFragment newInstance(String option) {
+    static MainFragment newInstance(String option) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
         args.putString(ARG_OPTION, option);
@@ -30,9 +33,8 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            option = getArguments().getString(ARG_OPTION);
-        }
+        Objects.requireNonNull(getArguments());
+        option = getArguments().getString(ARG_OPTION);
     }
 
     @Override
@@ -43,10 +45,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
+        setupViews(requireView());
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         TextView lblText = ViewCompat.requireViewById(view, R.id.lblText);
         lblText.setText(option);
     }

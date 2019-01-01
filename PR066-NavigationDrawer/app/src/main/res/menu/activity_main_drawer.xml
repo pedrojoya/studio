@@ -9,11 +9,11 @@
         <item
             android:id="@+id/mnuOption1"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/activity_main_mnuOption1"/>
+            android:title="@string/main_mnuOption1"/>
         <item
             android:id="@+id/mnuOption2"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/activity_main_mnuOption2"/>
+            android:title="@string/main_mnuOption2"/>
     </group>
     <group
         android:id="@+id/mnuGroup2"
@@ -21,20 +21,20 @@
         <item
             android:id="@+id/mnuOption3"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/activity_main_mnuOption3"/>
+            android:title="@string/main_mnuOption3"/>
         <item
             android:id="@+id/mnuOption4"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/activity_main_mnuOption4"/>
+            android:title="@string/main_mnuOption4"/>
     </group>
     <item
         android:id="@+id/mnuOthers"
-        android:title="@string/activity_main_mnuOthers">
+        android:title="@string/main_mnuOthers">
         <menu>
             <item
                 android:id="@+id/mnuOption5"
                 android:icon="@drawable/ic_menu_share"
-                android:title="@string/activity_main_mnuOption5"/>
+                android:title="@string/main_mnuOption5"/>
         </menu>
     </item>
 </menu>

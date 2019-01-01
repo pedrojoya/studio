@@ -1,20 +1,20 @@
 package es.iessaladillo.pedrojoya.pr066.ui.main;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationView;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.view.MenuItem;
-
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 import es.iessaladillo.pedrojoya.pr066.R;
-import es.iessaladillo.pedrojoya.pr066.utils.FragmentUtils;
-import es.iessaladillo.pedrojoya.pr066.utils.ToastUtils;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
         // if just lunched, select default menu item in drawer.
         if (savedInstanceState == null) {
             onNavigationItemSelected(navigationView.getMenu().getItem(0));
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void initViews() {
+    private void setupViews() {
         setupToolbar();
         setupNavigationDrawer();
     }
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setupNavigationDrawer() {
         drawer = ActivityCompat.requireViewById(this, R.id.drawerLayout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.main_open_navigation_drawer, R.string.main_close_navigation_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView = ActivityCompat.requireViewById(this, R.id.navigationView);
@@ -69,24 +69,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.mnuOption2:
             case R.id.mnuOption3:
             case R.id.mnuOption4:
-                showOption(item.getTitle().toString());
+                navigateToOption(item.getTitle().toString());
                 item.setChecked(true);
                 break;
             case R.id.mnuOption5:
-                showOption5Activity();
+                navigateToOption5Activity();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void showOption5Activity() {
-        ToastUtils.toast(this, getString(R.string.main_activity_show_option5));
+    private void navigateToOption5Activity() {
+        Toast.makeText(this, getString(R.string.main_navigateToOption5), Toast.LENGTH_SHORT).show();
     }
 
-    private void showOption(String title) {
-        FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(), R.id.flContent, MainFragment
-                .newInstance(title), MainFragment.class.getSimpleName(),  MainFragment.class
-                .getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+    private void navigateToOption(String title) {
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.flContent, MainFragment.newInstance(title), MainFragment.class.getSimpleName())
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit();
     }
 
 }
