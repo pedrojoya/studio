@@ -1,49 +1,53 @@
 package es.iessaladillo.pedrojoya.pr105.ui.detail;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.widget.NestedScrollView;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr105.R;
 
 
-@SuppressWarnings("FieldCanBeLocal")
 public class DetailActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
-    private NestedScrollView nestedScrollView;
-    private FloatingActionButton fabAccion;
+    private FloatingActionButton fab;
+
+    public static void start(Context context) {
+        context.startActivity(new Intent(context, DetailActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        initViews();
+        setupViews();
     }
 
-    private void initViews() {
-        toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
+    private void setupViews() {
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = ActivityCompat.requireViewById(this,
+            R.id.collapsingToolbar);
+        fab = ActivityCompat.requireViewById(this, R.id.fab);
+
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
         }
-        collapsingToolbarLayout = ActivityCompat.requireViewById(this, R.id.collapsingToolbar);
         collapsingToolbarLayout.setTitle(getTitle());
-        nestedScrollView = ActivityCompat.requireViewById(this, R.id.nestedScrollView);
-        fabAccion = ActivityCompat.requireViewById(this, R.id.fab);
-        fabAccion.setOnClickListener(view -> showMessage());
+        fab.setOnClickListener(view -> showMessage());
     }
 
     private void showMessage() {
-        Snackbar.make(nestedScrollView, R.string.detail_activity_fab_clicked, Snackbar.LENGTH_SHORT)
-                .show();
+        Snackbar.make(fab, R.string.detail_activity_fab_clicked, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -51,4 +55,5 @@ public class DetailActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
 }

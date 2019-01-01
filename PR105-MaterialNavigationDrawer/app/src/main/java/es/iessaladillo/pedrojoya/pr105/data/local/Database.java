@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import es.iessaladillo.pedrojoya.pr105.data.local.model.Student;
 
 
@@ -17,11 +19,20 @@ public class Database {
     private static Database instance;
     private static final Random random = new Random();
 
-    private final ArrayList<Student> students = new ArrayList<>();
-    private long studentsAutoId;
+    private final ArrayList<Student> _students = new ArrayList<>();
+    private final MutableLiveData<List<Student>> studentsLiveData = new MutableLiveData<>();
+    private int studentsAutoId;
 
     private Database() {
         insertInitialData();
+        updateLiveData();
+    }
+
+    private void updateLiveData() {
+        ArrayList<Student> sortedList = new ArrayList<>(_students);
+        Collections.sort(sortedList,
+            (student1, student2) -> student1.getName().compareTo(student2.getName()));
+        studentsLiveData.postValue(sortedList);
     }
 
     public static Database getInstance() {
@@ -36,29 +47,21 @@ public class Database {
     }
 
     private void insertInitialData() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 15; i++) {
             insertStudent(newFakeStudent());
         }
     }
 
-    public List<Student> queryStudents() {
-        ArrayList<Student> sortedList = new ArrayList<>(students);
-        Collections.sort(sortedList,
-                (student1, student2) -> student1.getName().compareTo(student2.getName()));
-        return sortedList;
+    public LiveData<List<Student>> queryStudents() {
+        return studentsLiveData;
     }
 
-    public synchronized void insertStudent(Student student) {
+    private synchronized void insertStudent(Student student) {
         student.setId(++studentsAutoId);
-        students.add(student);
+        _students.add(student);
     }
 
-    public void deleteStudent(Student student) {
-        students.remove(student);
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    public static Student newFakeStudent() {
+    private Student newFakeStudent() {
         return new Student(Fakeit.name().name(), Fakeit.address().streetAddress(),
                 BASE_URL + random.nextInt(1084));
     }

@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import es.iessaladillo.pedrojoya.pr105.R;
@@ -22,6 +25,12 @@ public class Option3Fragment extends Fragment {
     private OnToolbarAvailableListener onToolbarAvailableListener;
     private OnFragmentShownListener onFragmentShownListener;
 
+    private FloatingActionButton fab;
+
+    public static Option3Fragment newInstance() {
+        return new Option3Fragment();
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -31,45 +40,41 @@ public class Option3Fragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
-    }
-
-    private void initViews(View view) {
-        setupToolbar(view);
-        setupCollapsingToolbar(view);
+        setupViews(requireView());
         // In order to update the checked menuItem when coming from backstack.
-        informActivity();
-    }
-
-    private void setupCollapsingToolbar(View view) {
-        CollapsingToolbarLayout collapsingToolbarLayout = ViewCompat.requireViewById(view,
-                R.id.collapsingToolbar);
-        collapsingToolbarLayout.setTitle(getString(R.string.activity_main_option3));
-    }
-
-    private void setupToolbar(View view) {
-        onToolbarAvailableListener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
-                getString(R.string.activity_main_option3));
-    }
-
-    private void informActivity() {
         onFragmentShownListener.onFragmentShown(R.id.mnuOption3);
     }
 
+    private void setupViews(View view) {
+        CollapsingToolbarLayout collapsingToolbarLayout = ViewCompat.requireViewById(view,
+            R.id.collapsingToolbar);
+        Toolbar toolbar = ViewCompat.requireViewById(view, R.id.toolbar);
+        fab = ViewCompat.requireViewById(view, R.id.fab);
+
+        collapsingToolbarLayout.setTitle(getString(R.string.activity_main_option3));
+        toolbar.setTitle(getString(R.string.activity_main_option3));
+        onToolbarAvailableListener.onToolbarAvailable(toolbar);
+        fab.setOnClickListener(v -> showMessage());
+    }
+
+    private void showMessage() {
+        Snackbar.make(fab, R.string.detail_activity_fab_clicked, Snackbar.LENGTH_SHORT).show();
+    }
+
     @Override
-    public void onAttach(Context activity) {
+    public void onAttach(@NonNull Context activity) {
         super.onAttach(activity);
         try {
             onToolbarAvailableListener = (OnToolbarAvailableListener) activity;
         } catch (Exception e) {
             throw new ClassCastException(activity.toString()
-                    + " debe implementar la interfaz OnToolbarAvailableListener");
+                    + " must implement OnToolbarAvailableListener interface");
         }
         try {
             onFragmentShownListener = (OnFragmentShownListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " debe implementar la interfaz OnFragmentShownListener");
+                    + " must implement OnFragmentShownListener interface");
         }
     }
 

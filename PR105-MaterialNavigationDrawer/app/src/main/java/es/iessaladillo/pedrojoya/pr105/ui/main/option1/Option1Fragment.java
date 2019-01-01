@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import es.iessaladillo.pedrojoya.pr105.R;
@@ -23,6 +24,10 @@ public class Option1Fragment extends Fragment {
     private OnFragmentShownListener onFragmentShownListener;
     private View fab;
 
+    public static Option1Fragment newInstance() {
+        return new Option1Fragment();
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -32,49 +37,47 @@ public class Option1Fragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
+        setupViews(requireView());
         // In order to update the checked menuItem when coming from backstack.
-        informActivity();
+        onFragmentShownListener.onFragmentShown(R.id.mnuOption1);
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         setupToolbar(view);
         setupFab(view);
     }
 
-    private void informActivity() {
-        onFragmentShownListener.onFragmentShown(R.id.mnuOption1);
-    }
-
     private void setupFab(View view) {
         fab = ViewCompat.requireViewById(view, R.id.fab);
+
         fab.setOnClickListener(v -> showMessage());
     }
 
     private void showMessage() {
-        Snackbar.make(fab, R.string.option1_fragment_fab_clicked, Snackbar.LENGTH_SHORT)
-                .show();
+        Snackbar.make(fab, R.string.option1_fragment_fab_clicked, Snackbar.LENGTH_SHORT).show();
     }
 
     private void setupToolbar(View view) {
-        onToolbarAvailableListener.onToolbarAvailable(ViewCompat.requireViewById(view, R.id.toolbar),
-                getString(R.string.activity_main_option1));
+        Toolbar toolbar = ViewCompat.requireViewById(view, R.id.toolbar);
+
+        toolbar.setTitle(getString(R.string.activity_main_option1));
+        onToolbarAvailableListener.onToolbarAvailable(toolbar);
     }
 
     @Override
-    public void onAttach(Context activity) {
+    public void onAttach(@NonNull Context activity) {
         super.onAttach(activity);
         try {
             onToolbarAvailableListener = (OnToolbarAvailableListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " debe implementar la interfaz OnToolbarAvailableListener");
+                    + " must implement OnToolbarAvailableListener interface");
         }
         try {
             onFragmentShownListener = (OnFragmentShownListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " debe implementar la interfaz OnFragmentShownListener");
+                    + " must implement OnFragmentShownListener interface");
         }
     }
 

@@ -21,9 +21,11 @@
             android:icon="@drawable/ic_forum_black_24dp"
             android:title="@string/activity_main_option3"/>
         <item
+            android:id="@+id/mnuOption4"
             android:icon="@drawable/ic_event_black_24dp"
             android:title="@string/activity_main_option4"/>
         <item
+            android:id="@+id/mnuOption5"
             android:icon="@drawable/ic_event_black_24dp"
             android:title="@string/activity_main_option5"/>
     </group>

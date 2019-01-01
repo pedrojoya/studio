@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr105.ui.main;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.iessaladillo.pedrojoya.pr105.R;
@@ -27,7 +28,6 @@ import es.iessaladillo.pedrojoya.pr105.ui.detail.DetailActivity;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option1.Option1Fragment;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option2.Option2Fragment;
 import es.iessaladillo.pedrojoya.pr105.ui.main.option3.Option3Fragment;
-import es.iessaladillo.pedrojoya.pr105.utils.FragmentUtils;
 import es.iessaladillo.pedrojoya.pr105.utils.PicassoUtils;
 
 
@@ -45,33 +45,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
-        // if just lunched, select default menu item in drawer.
+        setupViews();
         if (savedInstanceState == null) {
-            int defaultMnuItemResId = R.id.mnuOption1;
-            MenuItem defaultItem = navigationView.getMenu().findItem(defaultMnuItemResId);
-            if (defaultItem != null) {
-                showOption(defaultItem, false);
-            }
+            navigateToStartOption();
         }
     }
 
-    private void initViews() {
+    private void setupViews() {
         drawerLayout = ActivityCompat.requireViewById(this, R.id.drawerLayout);
         navigationView = ActivityCompat.requireViewById(this, R.id.navigationView);
         imgProfile = ViewCompat.requireViewById(navigationView.getHeaderView(0), R.id.imgProfile);
+
         setupNavigationDrawer();
     }
 
     private void setupNavigationDrawer() {
-        PicassoUtils.loadUrl(imgProfile, "https://picsum.photos/200/200?image=85", R.drawable.background_poly);
+        PicassoUtils.loadUrl(imgProfile, "https://picsum.photos/200/200?image=85",
+            R.drawable.background_poly);
         SwitchCompat swDownloadedOnly = (SwitchCompat) navigationView.getMenu().findItem(
-                R.id.mnuDownloaded).getActionView();
+            R.id.mnuDownloaded).getActionView();
         swDownloadedOnly.setOnCheckedChangeListener(
-                (buttonView, isChecked) -> Toast.makeText(MainActivity.this,
-                        isChecked ? getString(R.string.main_activity_downloaded_only) : getString(
-                                R.string.main_activity_also_not_downloaded), Toast.LENGTH_SHORT)
-                        .show());
+            (buttonView, isChecked) -> Toast.makeText(MainActivity.this,
+                isChecked ? getString(R.string.main_activity_downloaded_only) : getString(
+                    R.string.main_activity_also_not_downloaded), Toast.LENGTH_SHORT).show());
         navigationView.setNavigationItemSelectedListener(this);
         if (!readShownPreference()) {
             drawerLayout.openDrawer(GravityCompat.START);
@@ -79,51 +75,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void showOption(MenuItem menuItem, boolean addToBackStack) {
+    private void navigateToStartOption() {
+        int defaultMnuItemResId = R.id.mnuOption1;
+        MenuItem defaultItem = navigationView.getMenu().findItem(defaultMnuItemResId);
+        if (defaultItem != null) {
+            navigateToOption(defaultItem);
+        }
+    }
+
+    private void navigateToOption(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.mnuOption1:
-                if (addToBackStack) {
-                    FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(),
-                            R.id.flContent, new Option1Fragment(),
-                            Option1Fragment.class.getSimpleName(),
-                            Option1Fragment.class.getSimpleName(),
-                            FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                } else {
-                    FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                            new Option1Fragment(), Option1Fragment.class.getSimpleName());
-                }
+                replaceFragment(Option1Fragment.newInstance(), Option1Fragment.class.getSimpleName());
                 menuItem.setChecked(true);
                 break;
             case R.id.mnuOption2:
-                FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(),
-                        R.id.flContent, new Option2Fragment(),
-                        Option2Fragment.class.getSimpleName(),
-                        Option2Fragment.class.getSimpleName(),
-                        FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                replaceFragment(Option2Fragment.newInstance(), Option2Fragment.class.getSimpleName());
                 menuItem.setChecked(true);
                 break;
             case R.id.mnuOption3:
-                FragmentUtils.replaceFragmentAddToBackstack(getSupportFragmentManager(),
-                        R.id.flContent, new Option3Fragment(),
-                        Option3Fragment.class.getSimpleName(),
-                        Option3Fragment.class.getSimpleName(),
-                        FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                replaceFragment(Option3Fragment.newInstance(), Option3Fragment.class.getSimpleName());
                 menuItem.setChecked(true);
                 break;
             case R.id.mnuDetail:
-                startActivity(new Intent(this, DetailActivity.class));
+                DetailActivity.start(this);
         }
+    }
+
+    private void replaceFragment(Fragment fragment, String tag) {
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.flContent, fragment, tag)
+            .addToBackStack(tag)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(
-                item);
+        return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        showOption(menuItem, true);
+        navigateToOption(menuItem);
         drawerLayout.closeDrawers();
         return true;
     }
@@ -138,10 +132,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
     private void saveShownPreference() {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
-                PREFERENCES_FILE, Context.MODE_PRIVATE);
+            PREFERENCES_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(PREF_NAV_DRAWER_OPENED, true);
         editor.apply();
@@ -149,24 +142,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private boolean readShownPreference() {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
-                PREFERENCES_FILE, Context.MODE_PRIVATE);
+            PREFERENCES_FILE, Context.MODE_PRIVATE);
         return sharedPref.getBoolean(PREF_NAV_DRAWER_OPENED, false);
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
-    public void onToolbarAvailable(Toolbar toolbar, String title) {
+    public void onToolbarAvailable(Toolbar toolbar) {
         setSupportActionBar(toolbar);
-        setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        }
         if (actionBarDrawerToggle != null) {
             drawerLayout.removeDrawerListener(actionBarDrawerToggle);
         }
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
-                R.string.main_activity_navigation_drawer_open,
-                R.string.main_activity_navigation_drawer_close);
+            R.string.main_activity_navigation_drawer_open,
+            R.string.main_activity_navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
@@ -178,4 +172,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             menuItem.setChecked(true);
         }
     }
+
 }

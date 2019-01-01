@@ -14,7 +14,7 @@ Integer et sagittis dui. Donec a accumsan libero. Fusce cursus tincidunt purus, 
     <string name="activity_main_option1">Option 1</string>
     <string name="activity_main_option2">Option 2</string>
     <string name="activity_main_option3">Option 3</string>
-    <string name="activity_main_option4">it does nothing</string>
+    <string name="activity_main_option4">It does nothing</string>
     <string name="activity_main_option5">It does nothing</string>
     <string name="activity_main_mnuDetail">Detail</string>
     <string name="activity_main_mnuOthers">Other options</string>

@@ -21,10 +21,8 @@ import es.iessaladillo.pedrojoya.pr105.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr105.data.local.Database;
 
 
-@SuppressWarnings("FieldCanBeLocal")
 public class Option2Tab1Fragment extends Fragment {
 
-    private RecyclerView lstStudents;
     private FloatingActionButton fab;
 
     private Option2Tab1Adapter listAdapter;
@@ -41,33 +39,37 @@ public class Option2Tab1Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this, new Option2Tab1ViewModelFactory(new RepositoryImpl
                 (Database.getInstance()))).get(Option2Tab1ViewModel.class);
-        initViews(getView());
+        setupViews(requireView());
+        observeStudents();
     }
 
-    private void initViews(View view) {
+    private void observeStudents() {
+        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> listAdapter.submitList(students));
+    }
+
+    private void setupViews(View view) {
         setupFab();
         setupRecyclerView(view);
     }
 
     private void setupRecyclerView(View view) {
-        listAdapter = new Option2Tab1Adapter(viewModel.getStudents(false));
-        lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
+        RecyclerView lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
+
+        listAdapter = new Option2Tab1Adapter();
         lstStudents.setHasFixedSize(true);
         lstStudents.setAdapter(listAdapter);
-        lstStudents.setLayoutManager(
-                new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false));
+        lstStudents.setLayoutManager(new LinearLayoutManager(requireActivity()));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void setupFab() {
-        fab = ViewCompat.requireViewById(getParentFragment().getView(), R.id.fab);
+        fab = ViewCompat.requireViewById(requireParentFragment().requireView(), R.id.fab);
+
         fab.setOnClickListener(v -> showMessage());
     }
 
     private void showMessage() {
-        Snackbar.make(fab, R.string.option2_tab1_fragment_fab_clicked, Snackbar.LENGTH_SHORT)
-                .show();
+        Snackbar.make(fab, R.string.option2_tab1_fragment_fab_clicked, Snackbar.LENGTH_SHORT).show();
     }
 
 }

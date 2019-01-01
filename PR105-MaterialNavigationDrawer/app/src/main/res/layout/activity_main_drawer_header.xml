@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/activity_main_drawer_rlDrawerHeaderRoot_height"
     android:background="@drawable/background_poly"
-    android:paddingStart="@dimen/activity_main_drawer_rlDrawerHeaderRoot_padding"
-    android:paddingEnd="@dimen/activity_main_drawer_rlDrawerHeaderRoot_padding"
-    android:paddingBottom="@dimen/activity_main_drawer_rlDrawerHeaderRoot_padding"
+    android:padding="@dimen/activity_main_drawer_rlDrawerHeaderRoot_padding"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     tools:ignore="Overdraw">
 

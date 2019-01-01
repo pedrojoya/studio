@@ -9,7 +9,7 @@ class Option2Tab1ViewModelFactory implements Factory {
 
     private final Repository repository;
 
-    public Option2Tab1ViewModelFactory(Repository repository) {
+    Option2Tab1ViewModelFactory(Repository repository) {
         this.repository = repository;
     }
 
