@@ -5,26 +5,27 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import es.iessaladillo.pedrojoya.pr178.R;
 import es.iessaladillo.pedrojoya.pr178.data.local.model.Student;
-import es.iessaladillo.pedrojoya.pr178.utils.ToastUtils;
 
 @SuppressWarnings("WeakerAccess")
-public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
     private static final String ARG_STUDENT = "ARG_STUDENT";
     private static final int SHEET_PEAK_HEIGHT = 650;
 
     private Student student;
-    private NavigationView navigationView;
 
     static MenuBottomSheetDialogFragment newInstance(@NonNull Student student) {
         MenuBottomSheetDialogFragment frg = new MenuBottomSheetDialogFragment();
@@ -34,56 +35,55 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
         return frg;
     }
 
-    private final BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
-
-        @Override
-        public void onStateChanged(@NonNull View bottomSheet, int newState) {
-            if (newState == BottomSheetBehavior.STATE_HIDDEN
-                    || newState == BottomSheetBehavior.STATE_SETTLING) {
-                dismiss();
-            }
-
-        }
-
-        @Override
-        public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-        }
-
-    };
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+        Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_bottomsheet_menu, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Objects.requireNonNull(getArguments());
         obtainArguments();
-        initViews(getView());
+        setupViews(requireView());
     }
 
-    private void initViews(View view) {
-        navigationView = ViewCompat.requireViewById(view, R.id.navigationView);
+    private void setupViews(View view) {
         setupBottomSheet(view);
     }
 
     private void setupBottomSheet(View view) {
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) view.getParent())
-                .getLayoutParams();
-        CoordinatorLayout.Behavior behavior = params.getBehavior();
-        if (behavior instanceof BottomSheetBehavior) {
-            BottomSheetBehavior bottomSheetBehavior = (BottomSheetBehavior) behavior;
-            bottomSheetBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback);
+            .getLayoutParams();
+        BottomSheetBehavior bottomSheetBehavior = (BottomSheetBehavior) params.getBehavior();
+        if (bottomSheetBehavior != null) {
+            bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+
+                @Override
+                public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                    if (newState == BottomSheetBehavior.STATE_HIDDEN
+                        || newState == BottomSheetBehavior.STATE_SETTLING) {
+                        dismiss();
+                    }
+
+                }
+
+                @Override
+                public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                }
+
+            });
             // To assure sheet is completely shown.
             bottomSheetBehavior.setPeekHeight(SHEET_PEAK_HEIGHT);
         }
-        setupNavigationView();
+        setupNavigationView(view);
     }
 
-    private void setupNavigationView() {
-        navigationView.setNavigationItemSelectedListener(this);
+    private void setupNavigationView(View view) {
+        NavigationView navigationView = ViewCompat.requireViewById(view, R.id.navigationView);
+
+        navigationView.setNavigationItemSelectedListener(this::onNavItemSelected);
         navigationView.getMenu().findItem(R.id.mnuTitle).setTitle(student.getName());
     }
 
@@ -93,38 +93,39 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment imp
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuCall:
                 call();
-                dismiss();
-                return true;
+                break;
             case R.id.mnuSendMessage:
                 sendMessage();
-                dismiss();
-                return true;
+                break;
             case R.id.mnuNotes:
                 seeNotes();
-                dismiss();
-                return true;
+                break;
+            default:
+                return false;
         }
-        return false;
+        dismiss();
+        return true;
     }
 
     private void call() {
-        ToastUtils.toast(requireContext(),
-                getString(R.string.menubottomsheetfragment_call, student.getName()));
+        Toast.makeText(requireContext(), getString(R.string.bottomsheet_call, student.getName()),
+            Toast.LENGTH_SHORT).show();
     }
 
     private void sendMessage() {
-        ToastUtils.toast(requireContext(),
-                getString(R.string.menubottomsheetfragment_send_message, student.getName()));
+        Toast.makeText(requireContext(),
+            getString(R.string.bottomsheet_send_message, student.getName()), Toast.LENGTH_SHORT)
+            .show();
     }
 
     private void seeNotes() {
-        ToastUtils.toast(requireContext(),
-                getString(R.string.menubottomsheetfragment_see_notes, student.getName()));
+        Toast.makeText(requireContext(),
+            getString(R.string.bottomsheet_see_notes, student.getName()), Toast.LENGTH_SHORT)
+            .show();
     }
 
 }

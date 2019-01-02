@@ -4,11 +4,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="activated">#C5CAE9</color>
-
-    <color name="actionModeBackground">#757575</color>
-
-    <color name="flat_pressed">#66999999</color>
-    <color name="flat_normal">#FFF</color>
 
 </resources>

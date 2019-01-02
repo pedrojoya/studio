@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mnuTitle"
-        android:title="@string/fragment_bottomsheet_options">
+        android:title="@string/bottomsheet_options">
         <menu>
             <item
                 android:id="@+id/mnuCall"
                 android:icon="@drawable/ic_contact_phone_black_24dp"
-                android:title="@string/fragment_bottomsheet_mnuCall"/>
+                android:title="@string/bottomsheet_mnuCall"/>
             <item
                 android:id="@+id/mnuSendMessage"
                 android:icon="@drawable/ic_message_black_24dp"
-                android:title="@string/fragment_bottomsheet_mnuSendMessage"/>
+                android:title="@string/bottomsheet_mnuSendMessage"/>
             <item
                 android:id="@+id/mnuNotes"
                 android:icon="@drawable/ic_dashboard_black_24dp"
-                android:title="@string/fragment_bottomsheet_mnuNotes"/>
+                android:title="@string/bottomsheet_mnuNotes"/>
         </menu>
     </item>
 

@@ -2,17 +2,17 @@
 <resources>
     <string name="app_name">BottomSheetDialogFragment</string>
 
-    <string name="activity_main_lblEmptyView">No students</string>
-    <string name="activity_main_item_imgAvatar">Avatar</string>
+    <string name="main_lblEmptyView">No students</string>
+    <string name="main_item_imgAvatar">Avatar</string>
 
-    <string name="fragment_bottomsheet_mnuCall">Call</string>
-    <string name="fragment_bottomsheet_mnuSendMessage">Send message</string>
-    <string name="fragment_bottomsheet_mnuNotes">See notes</string>
-    <string name="fragment_bottomsheet_options">Options</string>
+    <string name="bottomsheet_mnuCall">Call</string>
+    <string name="bottomsheet_mnuSendMessage">Send message</string>
+    <string name="bottomsheet_mnuNotes">See notes</string>
+    <string name="bottomsheet_options">Options</string>
 
-    <string name="menubottomsheetfragment_call">Call %1$s</string>
-    <string name="menubottomsheetfragment_send_message">Send message to
+    <string name="bottomsheet_call">Call %1$s</string>
+    <string name="bottomsheet_send_message">Send message to
         %1$s</string>
-    <string name="menubottomsheetfragment_see_notes">See notes for %1$s</string>
+    <string name="bottomsheet_see_notes">See notes for %1$s</string>
 
 </resources>

@@ -22,13 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr178.R;
 import es.iessaladillo.pedrojoya.pr178.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr178.data.local.Database;
-import es.iessaladillo.pedrojoya.pr178.data.local.model.Student;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
 
     private MainFragmentViewModel viewModel;
     private MainFragmentAdapter listAdapter;
+    private TextView lblEmptyView;
 
     static MainFragment newInstance() {
         return new MainFragment();
@@ -47,12 +47,14 @@ public class MainFragment extends Fragment {
         viewModel = ViewModelProviders.of(this,
                 new MainFragmentViewModelFactory(new RepositoryImpl(Database.getInstance()))).get(
                 MainFragmentViewModel.class);
-        initViews(getView());
-        viewModel.getStudents().observe(getViewLifecycleOwner(),
-                students -> listAdapter.submitList(students));
+        setupViews(requireView());
+        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
+            listAdapter.submitList(students);
+            lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+        });
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         setupToolbar(view);
         setupRecyclerView(view);
         setupFab(view);
@@ -60,6 +62,7 @@ public class MainFragment extends Fragment {
 
     private void setupFab(View view) {
         FloatingActionButton fab = ViewCompat.requireViewById(view, R.id.fab);
+
         fab.setOnClickListener(v -> viewModel.addStudent(Database.newFakeStudent()));
     }
 
@@ -70,31 +73,23 @@ public class MainFragment extends Fragment {
 
     private void setupRecyclerView(View view) {
         RecyclerView lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
-        TextView lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
 
         listAdapter = new MainFragmentAdapter();
-        listAdapter.setOnItemClickListener(
-                (v, position) -> showBottomSheetDialogFragment(listAdapter.getItem(position)));
-        listAdapter.setEmptyView(lblEmptyView);
         lstStudents.setHasFixedSize(true);
-        lstStudents.setLayoutManager(
-                new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+        lstStudents.setLayoutManager(new LinearLayoutManager(requireContext()));
         lstStudents.addItemDecoration(
                 new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.RIGHT) {
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
                     @Override
                     public boolean onMove(@NonNull RecyclerView recyclerView,
                             @NonNull RecyclerView.ViewHolder viewHolder,
                             @NonNull RecyclerView.ViewHolder target) {
-                        final int fromPos = viewHolder.getAdapterPosition();
-                        final int toPos = target.getAdapterPosition();
-                        listAdapter.swapItems(fromPos, toPos);
-                        return true;
+                        return false;
                     }
 
                     @Override
@@ -105,14 +100,6 @@ public class MainFragment extends Fragment {
                     }
                 });
         itemTouchHelper.attachToRecyclerView(lstStudents);
-
-    }
-
-    private void showBottomSheetDialogFragment(Student student) {
-        MenuBottomSheetDialogFragment dialogFragment = MenuBottomSheetDialogFragment.newInstance(
-                student);
-        dialogFragment.show(requireFragmentManager(),
-                MenuBottomSheetDialogFragment.class.getSimpleName());
     }
 
 }

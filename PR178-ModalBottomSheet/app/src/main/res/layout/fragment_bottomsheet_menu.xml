@@ -5,7 +5,7 @@
     android:id="@+id/flSheetRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/fragment_bottomsheet_flBottomSheetRoot">
+    android:paddingBottom="@dimen/bottomsheet_flBottomSheetRoot">
 
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"

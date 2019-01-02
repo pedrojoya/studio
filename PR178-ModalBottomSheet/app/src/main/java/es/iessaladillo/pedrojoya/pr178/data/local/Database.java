@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.pr178.data.local;
 import com.mooveit.library.Fakeit;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -43,19 +44,24 @@ public class Database {
     }
 
     public LiveData<List<Student>> queryStudents() {
-        studentsLiveData.setValue(new ArrayList<>(students));
         return studentsLiveData;
     }
 
     public void insertStudent(Student student) {
         student.setId(++studentsAutoId);
         students.add(student);
-        studentsLiveData.setValue(new ArrayList<>(students));
+        updateLiveData();
+    }
+
+    private void updateLiveData() {
+        ArrayList<Student> newList = new ArrayList<>(students);
+        Collections.sort(newList, (student1, student2) -> student1.getName().compareTo(student2.getName()));
+        studentsLiveData.setValue(newList);
     }
 
     public void deleteStudent(Student student) {
         students.remove(student);
-        studentsLiveData.setValue(new ArrayList<>(students));
+        updateLiveData();
     }
 
     public static Student newFakeStudent() {

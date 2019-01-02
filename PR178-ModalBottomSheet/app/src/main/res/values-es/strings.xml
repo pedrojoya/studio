@@ -2,16 +2,16 @@
 <resources>
     <string name="app_name">BottomSheetDialogFragment</string>
 
-    <string name="activity_main_lblEmptyView">No hay alumnos</string>
-    <string name="activity_main_item_imgAvatar">Avatar</string>
+    <string name="main_lblEmptyView">No hay alumnos</string>
+    <string name="main_item_imgAvatar">Avatar</string>
 
-    <string name="fragment_bottomsheet_mnuCall">Llamar</string>
-    <string name="fragment_bottomsheet_mnuSendMessage">Enviar mensaje</string>
-    <string name="fragment_bottomsheet_mnuNotes">Ver notas</string>
-    <string name="fragment_bottomsheet_options">Opciones</string>
+    <string name="bottomsheet_mnuCall">Llamar</string>
+    <string name="bottomsheet_mnuSendMessage">Enviar mensaje</string>
+    <string name="bottomsheet_mnuNotes">Ver notas</string>
+    <string name="bottomsheet_options">Opciones</string>
 
-    <string name="menubottomsheetfragment_call">Llamar a %1$s</string>
-    <string name="menubottomsheetfragment_send_message">Enviar mensaje a %1$s</string>
-    <string name="menubottomsheetfragment_see_notes">Ver notas de %1$s</string>
+    <string name="bottomsheet_call">Llamar a %1$s</string>
+    <string name="bottomsheet_send_message">Enviar mensaje a %1$s</string>
+    <string name="bottomsheet_see_notes">Ver notas de %1$s</string>
 
 </resources>

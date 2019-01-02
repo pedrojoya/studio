@@ -4,16 +4,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- Necesario para mostrar modo contextual sobre toolbar -->
-        <item name="windowActionModeOverlay">true</item>
-        <item name="actionModeBackground">@drawable/cab_background</item>
-        <!-- Fondo para elementos activados -->
-        <item name="selectableItemBackground">
-            @drawable/activity_main_item_background
-        </item>
-        <item name="android:selectableItemBackground">
-            @drawable/activity_main_item_background
-        </item>
     </style>
 
     <style name="AppTheme.NoActionBar">
