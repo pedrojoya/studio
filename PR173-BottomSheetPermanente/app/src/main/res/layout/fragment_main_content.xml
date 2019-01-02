@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:contentDescription="@string/activity_main_bottom_sheet_lblTitle"
+    android:contentDescription="@string/main_bottom_sheet_lblTitle"
     android:scaleType="centerCrop"
     android:src="@drawable/photo"
     tools:context="es.iessaladillo.pedrojoya.pr173.ui.main.MainActivity"

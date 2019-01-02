@@ -17,7 +17,7 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_main_fab_margin"
+            android:layout_margin="@dimen/main_fab_margin"
             android:src="@drawable/ic_search_white_24dp"
             app:layout_anchor="@+id/rlPanel"
             app:layout_anchorGravity="top|end"/>

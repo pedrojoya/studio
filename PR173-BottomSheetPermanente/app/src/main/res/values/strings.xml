@@ -3,12 +3,12 @@
 
     <string name="app_name">Permanent BottomSheet</string>
 
-    <string name="activity_main_bottom_sheet_lblTitle">Natural History Museum</string>
-    <string name="activity_main_bottom_sheet_imgDetail">Open detail</string>
-    <string name="activity_main_bottom_sheet_lblDetail">The Natural History Museum in London is a museum of natural history that exhibits a vast range of specimens from various segments of natural history. It is one of three major museums on Exhibition Road in South Kensington, the others being the Science Museum and the Victoria and Albert Museum. The Natural History Museum\'s main frontage, however, is on Cromwell Road.</string>
-    <string name="activity_main_bottom_sheet_lblSubtitle">London</string>
+    <string name="main_bottom_sheet_lblTitle">Natural History Museum</string>
+    <string name="main_bottom_sheet_imgDetail">Open detail</string>
+    <string name="main_bottom_sheet_lblDetail">The Natural History Museum in London is a museum of natural history that exhibits a vast range of specimens from various segments of natural history. It is one of three major museums on Exhibition Road in South Kensington, the others being the Science Museum and the Victoria and Albert Museum. The Natural History Museum\'s main frontage, however, is on Cromwell Road.</string>
+    <string name="main_bottom_sheet_lblSubtitle">London</string>
 
-    <string name="main_activity_daily_photo">Daily photo</string>
+    <string name="main_daily_photo">Daily photo</string>
     <string name="main_no_activity_available">No activity available for this action</string>
 
 </resources>

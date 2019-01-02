@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,7 +20,6 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr173.R;
-import es.iessaladillo.pedrojoya.pr173.utils.ToastUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -46,30 +46,21 @@ public class MainFragment extends Fragment {
         final int bsbInitialState = BottomSheetBehavior.STATE_COLLAPSED;
         viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(bsbInitialState))
                 .get(MainFragmentViewModel.class);
-        initViews(getView());
+        setupViews(requireView());
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         RelativeLayout rlPanel = ViewCompat.requireViewById(view, R.id.rlPanel);
-        bsb = BottomSheetBehavior.from(rlPanel);
-        setupDetailIcon(view);
-        setupBottomSheet();
-        setupFab(view);
-    }
-
-    private void setupDetailIcon(View view) {
         imgDetail = ViewCompat.requireViewById(view, R.id.imgDetail);
-        imgDetail.setOnClickListener(v -> expandOrCollapseBottomSheet());
-    }
-
-    private void setupFab(View view) {
         FloatingActionButton fab = ViewCompat.requireViewById(view, R.id.fab);
+
+        bsb = BottomSheetBehavior.from(rlPanel);
+        setupBottomSheet();
+        imgDetail.setOnClickListener(v -> expandOrCollapseBottomSheet());
         fab.setOnClickListener(v -> searchDailyPhoto());
     }
 
     private void setupBottomSheet() {
-        //bsb.setPeekHeight(getResources().getDimensionPixelSize(R.dimen
-        // .bottomSheet_peekHeight));
         bsb.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -100,11 +91,11 @@ public class MainFragment extends Fragment {
 
     private void searchDailyPhoto() {
         Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-        intent.putExtra(SearchManager.QUERY, getString(R.string.main_activity_daily_photo));
+        intent.putExtra(SearchManager.QUERY, getString(R.string.main_daily_photo));
         try {
             startActivity(intent);
         } catch (ActivityNotFoundException exception) {
-            ToastUtils.toast(requireContext(), getString(R.string.main_no_activity_available));
+            Toast.makeText(requireContext(), getString(R.string.main_no_activity_available), Toast.LENGTH_SHORT).show();
         }
     }
 

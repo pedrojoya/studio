@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_main_fab_margin">16dp</dimen>
-    <dimen name="activity_main_bottom_sheet_rlPanel_padding">16dp</dimen>
-    <dimen name="activity_main_bottom_sheet_rlPanel_peekHeight">80dp</dimen>
+    <dimen name="main_fab_margin">16dp</dimen>
+    <dimen name="main_bottom_sheet_rlPanel_padding">16dp</dimen>
+    <dimen name="main_bottom_sheet_rlPanel_peekHeight">80dp</dimen>
 </resources>

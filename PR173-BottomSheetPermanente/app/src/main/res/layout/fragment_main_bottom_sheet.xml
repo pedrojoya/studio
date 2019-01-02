@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/translucent_grey"
-    android:padding="@dimen/activity_main_bottom_sheet_rlPanel_padding"
-    app:behavior_hideable="true"
-    app:behavior_peekHeight="@dimen/activity_main_bottom_sheet_rlPanel_peekHeight"
+    android:padding="@dimen/main_bottom_sheet_rlPanel_padding"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="@dimen/main_bottom_sheet_rlPanel_peekHeight"
     app:layout_behavior="@string/bottom_sheet_behavior"
     tools:ignore="Overdraw">
 
@@ -20,7 +20,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/imgDetail"
-        android:text="@string/activity_main_bottom_sheet_lblTitle"
+        android:text="@string/main_bottom_sheet_lblTitle"
         android:textColor="@android:color/white"/>
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/lblTitle"
         android:layout_toStartOf="@+id/imgDetail"
-        android:text="@string/activity_main_bottom_sheet_lblSubtitle"
+        android:text="@string/main_bottom_sheet_lblSubtitle"
         android:textColor="@android:color/white"/>
 
     <ImageView
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/lblSubtitle"
         android:layout_alignParentEnd="true"
-        android:contentDescription="@string/activity_main_bottom_sheet_imgDetail"
+        android:contentDescription="@string/main_bottom_sheet_imgDetail"
         android:src="@drawable/ic_arrow_drop_up_white_24dp"/>
 
     <TextView
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblSubtitle"
-        android:padding="@dimen/activity_main_bottom_sheet_rlPanel_padding"
-        android:text="@string/activity_main_bottom_sheet_lblDetail"
+        android:padding="@dimen/main_bottom_sheet_rlPanel_padding"
+        android:text="@string/main_bottom_sheet_lblDetail"
         android:textColor="@android:color/white"/>
 </RelativeLayout>
