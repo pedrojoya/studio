@@ -21,11 +21,11 @@ public class DbHelper extends SQLiteOpenHelper {
         assetManager = context.getAssets();
     }
 
-    // Application context to avoid memory leaks.
     public static DbHelper getInstance(Context context) {
         if (instance == null) {
             synchronized (DbHelper.class) {
                 if (instance == null) {
+                    // Use application context to avoid memory leaks.
                     instance = new DbHelper(context.getApplicationContext());
                 }
             }

@@ -1,12 +1,13 @@
 package es.iessaladillo.pedrojoya.pr251.ui.main;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentTransaction;
 import es.iessaladillo.pedrojoya.pr251.R;
 import es.iessaladillo.pedrojoya.pr251.ui.list.ListFragment;
-import es.iessaladillo.pedrojoya.pr251.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,14 +17,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupToolbar();
         if (savedInstanceState == null) {
-            // Load initial fragment.
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    ListFragment.newInstance(), ListFragment.class.getSimpleName());
+            navigateToStartFragment();
         }
     }
 
+    private void navigateToStartFragment() {
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.flContent, ListFragment.newInstance(), ListFragment.class.getSimpleName())
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+            .commit();
+    }
+
     private void setupToolbar() {
-        setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
+        Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        setSupportActionBar(toolbar);
     }
 
     @Override

@@ -13,33 +13,34 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr251.R;
-import es.iessaladillo.pedrojoya.pr251.base.BaseListAdapter;
-import es.iessaladillo.pedrojoya.pr251.base.BaseViewHolder;
 import es.iessaladillo.pedrojoya.pr251.data.local.model.Student;
+import es.iessaladillo.pedrojoya.pr251.ui.student.StudentFragment;
 
-public class ListFragmentAdapter extends BaseListAdapter<Student, ListFragmentAdapter.ViewHolder> {
+public class ListFragmentAdapter extends ListAdapter<Student, ListFragmentAdapter.ViewHolder> {
 
     private final TextDrawable.IBuilder drawableBuilder;
-    private static final DiffUtil.ItemCallback<Student> diffUtilItemCallback = new DiffUtil.ItemCallback<Student>() {
-        @Override
-        public boolean areItemsTheSame(Student oldItem, Student newItem) {
-            return oldItem.getId() == newItem.getId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(Student oldItem, Student newItem) {
-            return TextUtils.equals(oldItem.getName(), newItem.getName()) && TextUtils.equals(
-                    oldItem.getAddress(), newItem.getAddress()) && TextUtils.equals(
-                    oldItem.getGrade(), newItem.getGrade());
-        }
-    };
-
 
     ListFragmentAdapter() {
-        super(diffUtilItemCallback);
+        super(new DiffUtil.ItemCallback<Student>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+                return oldItem.getId() == newItem.getId();
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+                return TextUtils.equals(oldItem.getName(), newItem.getName()) && TextUtils.equals(
+                    oldItem.getAddress(), newItem.getAddress()) && TextUtils.equals(
+                    oldItem.getGrade(), newItem.getGrade());
+            }
+        });
         drawableBuilder = TextDrawable.builder()
                 .beginConfig()
                 .width(100)
@@ -62,19 +63,24 @@ public class ListFragmentAdapter extends BaseListAdapter<Student, ListFragmentAd
         viewHolder.bind(getItem(position));
     }
 
-    class ViewHolder extends BaseViewHolder {
+    @Override
+    public Student getItem(int position) {
+        return super.getItem(position);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView lblName;
         private final TextView lblAddress;
         private final ImageView imgAvatar;
-
         private final TextView lblGrade;
 
         ViewHolder(View itemView) {
-            super(itemView, onItemClickListener, onItemLongClickListener);
+            super(itemView);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
+            itemView.setOnClickListener(v -> navigateToEditStudent(getItem(getAdapterPosition())));
         }
 
         void bind(Student student) {
@@ -85,6 +91,14 @@ public class ListFragmentAdapter extends BaseListAdapter<Student, ListFragmentAd
                     itemView.isActivated() ? "\u2713" : student.getName().substring(0, 1),
                     itemView.isActivated() ? Color.GRAY : ColorGenerator.MATERIAL.getColor(
                             student.getName())));
+        }
+
+        private void navigateToEditStudent(Student student) {
+            ((AppCompatActivity) itemView.getContext()).getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContent, StudentFragment.newInstance(student.getId()), StudentFragment.class.getSimpleName())
+                .addToBackStack(StudentFragment.class.getSimpleName())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
         }
 
     }

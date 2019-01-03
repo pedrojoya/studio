@@ -47,30 +47,30 @@ public class StudentDao {
         long id = bd.insert(DbContract.Student.TABLE_NAME, null, contentValues);
         dbHelper.close();
         // Notify observers.
-        (new QueryStudentsTask()).execute();
+        new QueryStudentsTask().execute();
         return id;
     }
 
     // Return number of students deleted.
-    public long deleteStudent(@NonNull Student student) {
+    public int deleteStudent(@NonNull Student student) {
         SQLiteDatabase bd = dbHelper.getWritableDatabase();
-        long deleted = bd.delete(DbContract.Student.TABLE_NAME,
+        int deleted = bd.delete(DbContract.Student.TABLE_NAME,
                 DbContract.Student._ID + " = " + student.getId(), null);
         dbHelper.close();
         // Notify observers.
-        (new QueryStudentsTask()).execute();
+        new QueryStudentsTask().execute();
         return deleted;
     }
 
     // Return number of students updated.
-    public long updateStudent(Student student) {
+    public int updateStudent(Student student) {
         SQLiteDatabase bd = dbHelper.getWritableDatabase();
         ContentValues valores = student.toContentValues();
-        long updated = bd.update(DbContract.Student.TABLE_NAME, valores,
+        int updated = bd.update(DbContract.Student.TABLE_NAME, valores,
                 DbContract.Student._ID + " = " + student.getId(), null);
         dbHelper.close();
         // Notify observers.
-        (new QueryStudentsTask()).execute();
+        new QueryStudentsTask().execute();
         return updated;
     }
 
