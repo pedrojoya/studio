@@ -3,29 +3,29 @@
 
     <string name="app_name">PermissionsDispatcher</string>
 
-    <string name="activity_main_rbInternal">Almacenamiento interno</string>
-    <string name="activity_main_rbPersonalExternal">Almacenamiento externo propio</string>
-    <string name="activity_main_rbPublicExternal">Almacenamiento externo público</string>
-    <string name="activity_main_rbInternalCache">Caché en almacenamiento interno</string>
-    <string name="activity_main_rbExternalCache">Caché en almacenamiento externo</string>
-    <string name="activity_main_lblSource">Fichero origen</string>
-    <string name="activity_main_rbRaw">res/raw/lorem.txt</string>
-    <string name="activity_main_rbAsset">/assets/audio.mp3</string>
-    <string name="activity_main_lblDestination">Carpeta de destino</string>
-    <string name="activity_main_btnDuplicate">Crear copia de archivo</string>
+    <string name="main_rbInternal">Almacenamiento interno</string>
+    <string name="main_rbPersonalExternal">Almacenamiento externo propio</string>
+    <string name="main_rbPublicExternal">Almacenamiento externo público</string>
+    <string name="main_rbInternalCache">Caché en almacenamiento interno</string>
+    <string name="main_rbExternalCache">Caché en almacenamiento externo</string>
+    <string name="main_lblSource">Fichero origen</string>
+    <string name="main_rbRaw">res/raw/lorem.txt</string>
+    <string name="main_rbAsset">/assets/audio.mp3</string>
+    <string name="main_lblDestination">Carpeta de destino</string>
+    <string name="main_btnDuplicate">Crear copia de archivo</string>
 
-    <string name="main_activity_file_duplicated">Generado %1$s</string>
-    <string name="main_activity_open">Abrir</string>
-    <string name="main_activity_configure">Configurar</string>
-    <string name="main_activity_error_permission_required">No se pudo realizar
+    <string name="main_file_duplicated">Generado %1$s</string>
+    <string name="main_open">Abrir</string>
+    <string name="main_configure">Configurar</string>
+    <string name="main_error_permission_required">No se pudo realizar
         la acción al no ser concedido el permiso necesario</string>
-    <string name="main_activity_action_permission_required">Acción no
+    <string name="main_action_permission_required">Acción no
         disponible si no se concede permiso</string>
-    <string name="main_activity_permission_required_explanation">Para poder
+    <string name="main_permission_required_explanation">Para poder
         realizar la
         acción de
         almacenar un archivo en almacenamiento externo es necesario que conceda el permiso de escritura en almacenamiento externo</string>
-    <string name="main_activity_permission_required">Permiso requerido</string>
-    <string name="main_activity_error_opening_file">No se pudo abrir el fichero</string>
+    <string name="main_permission_required">Permiso requerido</string>
+    <string name="main_error_opening_file">No se pudo abrir el fichero</string>
 
 </resources>

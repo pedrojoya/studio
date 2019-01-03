@@ -15,8 +15,7 @@ public class FileUtils {
     }
 
     public static void copyFile(InputStream inputStream, File outputFile) throws IOException {
-        BufferedInputStream reader;
-        reader = new BufferedInputStream(inputStream);
+        BufferedInputStream reader = new BufferedInputStream(inputStream);
         FileOutputStream outputStream = new FileOutputStream(outputFile);
         BufferedOutputStream writer = new BufferedOutputStream(outputStream);
         byte[] array = new byte[BUFFER_SIZE];

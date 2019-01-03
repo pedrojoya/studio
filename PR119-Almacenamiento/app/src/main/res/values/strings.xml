@@ -3,29 +3,29 @@
 
     <string name="app_name">Storage</string>
 
-    <string name="activity_main_rbInternal">Internal storage</string>
-    <string name="activity_main_rbPersonalExternal">Personal
+    <string name="main_rbInternal">Internal storage</string>
+    <string name="main_rbPersonalExternal">Personal
         external storage</string>
-    <string name="activity_main_rbPublicExternal">Public external storage</string>
-    <string name="activity_main_rbInternalCache">Internal storage cache</string>
-    <string name="activity_main_rbExternalCache">External storage cache</string>
-    <string name="activity_main_lblSource">Source file</string>
-    <string name="activity_main_rbRaw">res/raw/lorem.txt</string>
-    <string name="activity_main_rbAsset">/assets/audio.mp3</string>
-    <string name="activity_main_lblDestination">Destination folder</string>
-    <string name="activity_main_btnDuplicate">Duplicate file</string>
+    <string name="main_rbPublicExternal">Public external storage</string>
+    <string name="main_rbInternalCache">Internal storage cache</string>
+    <string name="main_rbExternalCache">External storage cache</string>
+    <string name="main_lblSource">Source file</string>
+    <string name="main_rbRaw">res/raw/lorem.txt</string>
+    <string name="main_rbAsset">/assets/audio.mp3</string>
+    <string name="main_lblDestination">Destination folder</string>
+    <string name="main_btnDuplicate">Duplicate file</string>
 
-    <string name="main_activity_file_duplicated">%1$s duplicated</string>
-    <string name="main_activity_open">Open</string>
-    <string name="main_activity_configure">Configure</string>
-    <string name="main_activity_error_permission_required">Action can\'t be
+    <string name="main_file_duplicated">%1$s duplicated</string>
+    <string name="main_open">Open</string>
+    <string name="main_configure">Configure</string>
+    <string name="main_error_permission_required">Action can\'t be
         done without the required permission</string>
-    <string name="main_activity_action_permission_required">Action not
+    <string name="main_action_permission_required">Action not
         available without required permission</string>
-    <string name="main_activity_permission_required_explanation">We the
+    <string name="main_permission_required_explanation">We the
         external storage write access permission to duplicate the file to
         external storage</string>
-    <string name="main_activity_permission_required">Permission required</string>
-    <string name="main_activity_error_opening_file">Error opening the file</string>
+    <string name="main_permission_required">Permission required</string>
+    <string name="main_error_opening_file">Error opening the file</string>
 
 </resources>
