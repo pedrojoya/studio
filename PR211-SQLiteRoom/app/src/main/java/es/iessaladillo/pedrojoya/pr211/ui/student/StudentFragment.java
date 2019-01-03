@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,7 +23,6 @@ import es.iessaladillo.pedrojoya.pr211.R;
 import es.iessaladillo.pedrojoya.pr211.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr211.data.local.AppDatabase;
 import es.iessaladillo.pedrojoya.pr211.data.local.model.Student;
-import es.iessaladillo.pedrojoya.pr211.ui.main.MainActivityViewModel;
 import es.iessaladillo.pedrojoya.pr211.utils.ClickToSelectEditText;
 import es.iessaladillo.pedrojoya.pr211.utils.KeyboardUtils;
 
@@ -79,19 +77,16 @@ public class StudentFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MainActivityViewModel activityViewModel = ViewModelProviders.of(requireActivity()).get(
-                MainActivityViewModel.class);
         viewModel = ViewModelProviders.of(this, new StudentFragmentViewModelFactory(
                 new RepositoryImpl(AppDatabase.getInstance(
-                        requireContext().getApplicationContext()).studentDao()),
-                activityViewModel)).get(StudentFragmentViewModel.class);
-        initViews(getView());
+                        requireContext().getApplicationContext()).studentDao()))).get(StudentFragmentViewModel.class);
+        setupViews(requireView());
         if (editMode) {
             viewModel.getStudent(studentId).observe(getViewLifecycleOwner(), this::showStudent);
         }
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         tilName = ViewCompat.requireViewById(view, R.id.tilName);
         tilGrade = ViewCompat.requireViewById(view, R.id.tilGrade);
         tilPhone = ViewCompat.requireViewById(view, R.id.tilPhone);
@@ -123,7 +118,6 @@ public class StudentFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
             actionBar.setTitle(
                     editMode ? R.string.student_fragment_edit_student : R.string.student_fragment_add_student);
         }
@@ -136,12 +130,6 @@ public class StudentFragment extends Fragment {
         spnGrade.setOnItemSelectedListener((item, selectedIndex) -> spnGrade.setText(item));
     }
 
-    private void showErrorLoadingStudentAndFinish() {
-        Toast.makeText(requireActivity(), R.string.student_fragment_error_loading_student,
-                Toast.LENGTH_LONG).show();
-        requireActivity().finish();
-    }
-
     private void saveStudent() {
         if (isValidForm()) {
             Student student = createStudent();
@@ -149,7 +137,7 @@ public class StudentFragment extends Fragment {
                 student.setId(studentId);
                 viewModel.updateStudent(student);
             } else {
-                viewModel.addStudent(student);
+                viewModel.insertStudent(student);
             }
             KeyboardUtils.hideSoftKeyboard(requireActivity());
             requireActivity().onBackPressed();
@@ -157,17 +145,17 @@ public class StudentFragment extends Fragment {
     }
 
     private boolean isValidForm() {
-        boolean valido = true;
+        boolean valid = true;
         if (!checkRequiredEditText(txtName, tilName)) {
-            valido = false;
+            valid = false;
         }
         if (!checkRequiredEditText(spnGrade, tilGrade)) {
-            valido = false;
+            valid = false;
         }
         if (!checkRequiredEditText(txtPhone, tilPhone)) {
-            valido = false;
+            valid = false;
         }
-        return valido;
+        return valid;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
@@ -195,7 +183,6 @@ public class StudentFragment extends Fragment {
         student.setName(txtName.getText().toString());
         student.setPhone(txtPhone.getText().toString());
         student.setAddress(txtAddress.getText().toString());
-        //noinspection ConstantConditions
         student.setGrade(spnGrade.getText().toString());
         return student;
     }

@@ -2,12 +2,13 @@ package es.iessaladillo.pedrojoya.pr211.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatEditText;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListAdapter;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatEditText;
 
 @SuppressWarnings("unchecked")
 public class ClickToSelectEditText<T> extends AppCompatEditText {
@@ -56,8 +57,7 @@ public class ClickToSelectEditText<T> extends AppCompatEditText {
         });
     }
 
-    @SuppressWarnings("WeakerAccess")
-    public void showDialog(View view) {
+    private void showDialog(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle(mHint);
         builder.setAdapter(mSpinnerAdapter, (dialogInterface, selectedIndex) -> {

@@ -4,24 +4,24 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import es.iessaladillo.pedrojoya.pr211.data.Repository;
-import es.iessaladillo.pedrojoya.pr211.ui.main.MainActivityViewModel;
 
 class StudentFragmentViewModelFactory implements ViewModelProvider.Factory {
 
     private final Repository repository;
-    private final MainActivityViewModel activityViewModel;
 
-    public StudentFragmentViewModelFactory(Repository repository,
-            MainActivityViewModel activityViewModel) {
+    StudentFragmentViewModelFactory(Repository repository) {
         this.repository = repository;
-        this.activityViewModel = activityViewModel;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        //noinspection unchecked
-        return (T) new StudentFragmentViewModel(repository, activityViewModel);
+        if (modelClass.isAssignableFrom(StudentFragmentViewModel.class)) {
+            return (T) new StudentFragmentViewModel(repository);
+        } else {
+            throw new IllegalArgumentException("Wrong viewModelClass");
+        }
     }
 
 }

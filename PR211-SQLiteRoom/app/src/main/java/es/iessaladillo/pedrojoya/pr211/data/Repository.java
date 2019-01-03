@@ -9,8 +9,8 @@ public interface Repository {
 
     LiveData<List<Student>> queryStudents();
     LiveData<Student> queryStudent(long studentId);
-    long insertStudent(Student student);
-    long updateStudent(Student student);
-    long deleteStudent(Student student);
+    void insertStudent(Student student);
+    void updateStudent(Student student);
+    void deleteStudent(Student student);
 
 }

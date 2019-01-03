@@ -23,21 +23,16 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr211.R;
-import es.iessaladillo.pedrojoya.pr211.base.Event;
 import es.iessaladillo.pedrojoya.pr211.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr211.data.local.AppDatabase;
-import es.iessaladillo.pedrojoya.pr211.data.local.model.Student;
-import es.iessaladillo.pedrojoya.pr211.ui.main.MainActivityViewModel;
 import es.iessaladillo.pedrojoya.pr211.ui.student.StudentFragment;
-import es.iessaladillo.pedrojoya.pr211.utils.FragmentUtils;
-import es.iessaladillo.pedrojoya.pr211.utils.SnackbarUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class ListFragment extends Fragment {
 
     private ListFragmentAdapter listAdapter;
     private ListFragmentViewModel viewModel;
-    private FloatingActionButton fab;
+    private TextView lblEmptyView;
 
     public static ListFragment newInstance() {
         return new ListFragment();
@@ -52,25 +47,16 @@ public class ListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MainActivityViewModel activityViewModel = ViewModelProviders.of(requireActivity()).get(
-                MainActivityViewModel.class);
         viewModel = ViewModelProviders.of(this, new ListFragmentViewModelFactory(new RepositoryImpl(
-                AppDatabase.getInstance(requireContext().getApplicationContext()).studentDao()),
-                activityViewModel)).get(ListFragmentViewModel.class);
-        initViews(getView());
-        activityViewModel.getInfoMessage().observe(getViewLifecycleOwner(), this::showMessage);
-        viewModel.getStudents(false).observe(getViewLifecycleOwner(),
-                students -> listAdapter.submitList(students));
+                AppDatabase.getInstance(requireContext().getApplicationContext()).studentDao()))).get(ListFragmentViewModel.class);
+        setupViews(requireView());
+        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
+            listAdapter.submitList(students);
+            lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+        });
     }
 
-    private void showMessage(Event<Integer> messageEvent) {
-        Integer messageResId = messageEvent.getContentIfNotHandled();
-        if (messageResId != null) {
-            SnackbarUtils.snackbar(fab, getString(messageResId));
-        }
-    }
-
-    private void initViews(View view) {
+    private void setupViews(View view) {
         setupToolbar();
         setupFab();
         setupRecyclerView(view);
@@ -85,24 +71,21 @@ public class ListFragment extends Fragment {
     }
 
     private void setupFab() {
-        fab = ActivityCompat.requireViewById(requireActivity(), R.id.fab);
+        FloatingActionButton fab = ActivityCompat.requireViewById(requireActivity(), R.id.fab);
         fab.setImageResource(R.drawable.ic_add_white_24dp);
-        fab.setOnClickListener(v -> addStudent());
+        fab.setOnClickListener(v -> navigateToAddStudent());
     }
 
     private void setupRecyclerView(View view) {
-        TextView lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
         RecyclerView lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
 
-        lblEmptyView.setOnClickListener(v -> addStudent());
+        lblEmptyView.setOnClickListener(v -> navigateToAddStudent());
         lstStudents.setHasFixedSize(true);
         listAdapter = new ListFragmentAdapter();
-        listAdapter.setOnItemClickListener(
-                (v, position) -> editStudent(listAdapter.getItem(position)));
-        listAdapter.setEmptyView(lblEmptyView);
         lstStudents.setAdapter(listAdapter);
         lstStudents.setLayoutManager(
-                new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false));
+                new LinearLayoutManager(requireActivity()));
         lstStudents.addItemDecoration(
                 new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
@@ -119,26 +102,18 @@ public class ListFragment extends Fragment {
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder,
                             int direction) {
-                        deleteStudent(listAdapter.getItem(viewHolder.getAdapterPosition()));
+                        viewModel.deleteStudent(listAdapter.getItem(viewHolder.getAdapterPosition()));
                     }
                 });
         itemTouchHelper.attachToRecyclerView(lstStudents);
     }
 
-    private void addStudent() {
-        FragmentUtils.replaceFragmentAddToBackstack(requireFragmentManager(), R.id.flContent,
-                StudentFragment.newInstance(), StudentFragment.class.getSimpleName(),
-                StudentFragment.class.getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-    }
-
-    private void editStudent(Student student) {
-        FragmentUtils.replaceFragmentAddToBackstack(requireFragmentManager(), R.id.flContent,
-                StudentFragment.newInstance(student.getId()), StudentFragment.class.getSimpleName(),
-                StudentFragment.class.getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-    }
-
-    private void deleteStudent(Student student) {
-        viewModel.deleteStudent(student);
+    private void navigateToAddStudent() {
+        requireFragmentManager().beginTransaction()
+            .replace(R.id.flContent, StudentFragment.newInstance(), StudentFragment.class.getSimpleName())
+            .addToBackStack(StudentFragment.class.getSimpleName())
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit();
     }
 
 }

@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.pr211.data;
 
+import android.os.AsyncTask;
+
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -25,18 +27,18 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public long insertStudent(Student student) {
-        return studentDao.insert(student)[0];
+    public void insertStudent(Student student) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.insert(student));
     }
 
     @Override
-    public long updateStudent(Student student) {
-        return studentDao.update(student);
+    public void updateStudent(Student student) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.update(student));
     }
 
     @Override
-    public long deleteStudent(Student student) {
-        return studentDao.delete(student);
+    public void deleteStudent(Student student) {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.delete(student));
     }
 
 }

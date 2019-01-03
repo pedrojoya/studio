@@ -9,7 +9,7 @@ import androidx.room.Update;
 public interface BaseDao<M> {
 
     @Insert
-    long[] insert(M... model);
+    long insert(M model);
 
     @Update
     int update(M... model);

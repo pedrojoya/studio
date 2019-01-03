@@ -13,8 +13,14 @@ public class Student {
     private String grade;
     private String address;
 
-    public Student() {
+    public Student(String name, String phone, String grade, String address) {
+        this.name = name;
+        this.phone = phone;
+        this.grade = grade;
+        this.address = address;
     }
+
+    public Student() { }
 
     public long getId() {
         return id;
