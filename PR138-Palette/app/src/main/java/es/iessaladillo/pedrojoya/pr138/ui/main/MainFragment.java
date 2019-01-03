@@ -32,7 +32,7 @@ import es.iessaladillo.pedrojoya.pr138.R;
 public class MainFragment extends Fragment {
 
     private static final String BASE_URL = "https://picsum.photos/400/200?image=";
-
+    private final Random random = new Random();
     private Toolbar toolbar;
     private ImageView imgPhoto;
     private TextView lblVibrant;
@@ -41,30 +41,32 @@ public class MainFragment extends Fragment {
     private TextView lblMuted;
     private TextView lblLightMuted;
     private TextView lblDarkMuted;
-
     private Palette palette;
-    private final Random random = new Random();
 
     static MainFragment newInstance() {
         return new MainFragment();
     }
 
+    private static void setStatusBarColor(Window window, int color) {
+        window.setStatusBarColor(color);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup parent,
-            @Nullable Bundle savedInstanceState) {
+        @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, parent, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews(getView());
+        setupViews(requireView());
         // Load initial photo.
         loadPhoto();
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         toolbar = ViewCompat.requireViewById(view, R.id.toolbar);
         imgPhoto = ViewCompat.requireViewById(view, R.id.imgPhoto);
         lblVibrant = ViewCompat.requireViewById(view, R.id.lblVibrant);
@@ -86,16 +88,16 @@ public class MainFragment extends Fragment {
 
     private void loadPhoto() {
         Picasso.with(requireContext()).load(BASE_URL + random.nextInt(180)).into(imgPhoto,
-                new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        obtainPalette();
-                    }
+            new Callback() {
+                @Override
+                public void onSuccess() {
+                    obtainPalette();
+                }
 
-                    @Override
-                    public void onError() {
-                    }
-                });
+                @Override
+                public void onError() {
+                }
+            });
     }
 
     private void obtainPalette() {
@@ -154,10 +156,6 @@ public class MainFragment extends Fragment {
         Drawable background = view.getBackground();
         if (background instanceof ColorDrawable) color = ((ColorDrawable) background).getColor();
         return color;
-    }
-
-    private static void setStatusBarColor(Window window, int color) {
-        window.setStatusBarColor(color);
     }
 
 }

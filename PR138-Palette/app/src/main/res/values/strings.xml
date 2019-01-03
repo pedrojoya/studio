@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Palette</string>
 
-    <string name="activity_main_imgPhoto">Imagen</string>
-    <string name="activity_main_lblVibrant">Vibrante</string>
-    <string name="activity_main_lblMuted">Apagado</string>
-    <string name="activity_main_lblLightVibrant">Vibrante claro</string>
-    <string name="activity_main_lblDarkVibrant">Vibrante oscuro</string>
-    <string name="activity_main_lblLightMuted">Apagado claro</string>
-    <string name="activity_main_lblDarkMuted">Apagado oscuro</string>
+    <string name="main_imgPhoto">Imagen</string>
+    <string name="main_lblVibrant">Vibrante</string>
+    <string name="main_lblMuted">Apagado</string>
+    <string name="main_lblLightVibrant">Vibrante claro</string>
+    <string name="main_lblDarkVibrant">Vibrante oscuro</string>
+    <string name="main_lblLightMuted">Apagado claro</string>
+    <string name="main_lblDarkMuted">Apagado oscuro</string>
 </resources>
