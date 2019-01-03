@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
-import androidx.annotation.NonNull;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 
 public class IntentsUtils {
 
@@ -24,10 +26,14 @@ public class IntentsUtils {
         context.startActivity(intent);
     }
 
-    public static Intent newViewFileIntent(File file, String mimeType) {
+    public static Intent newViewFileIntent(Context context, File file, String
+        mimeType) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), mimeType);
+        intent.setDataAndType(
+            FileProvider.getUriForFile(context, "es.iessaladillo.pedrojoya.pr188.provider", file)
+            , mimeType);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         return intent;
     }
 
