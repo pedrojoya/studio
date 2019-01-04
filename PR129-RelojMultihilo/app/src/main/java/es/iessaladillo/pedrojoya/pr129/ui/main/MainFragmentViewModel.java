@@ -8,15 +8,15 @@ import es.iessaladillo.pedrojoya.pr129.data.ClockLiveData;
 @SuppressWarnings("WeakerAccess")
 public class MainFragmentViewModel extends ViewModel {
 
-    private final ClockLiveData clockLiveData = new ClockLiveData();
+    private final ClockLiveData clock = new ClockLiveData();
     private final MutableLiveData<Boolean> running = new MutableLiveData<>();
 
     public MainFragmentViewModel() {
         running.setValue(false);
     }
 
-    public ClockLiveData getClockLiveData() {
-        return clockLiveData;
+    public ClockLiveData getClock() {
+        return clock;
     }
 
     public LiveData<Boolean> getRunning() {
@@ -26,16 +26,16 @@ public class MainFragmentViewModel extends ViewModel {
     void startOrStop() {
         if (running.getValue() != null && running.getValue()) {
             running.setValue(false);
-            clockLiveData.stop();
+            clock.stop();
         } else {
             running.setValue(true);
-            clockLiveData.start();
+            clock.start();
         }
     }
 
     @Override
     protected void onCleared() {
-        clockLiveData.stop();
+        clock.stop();
         super.onCleared();
     }
 

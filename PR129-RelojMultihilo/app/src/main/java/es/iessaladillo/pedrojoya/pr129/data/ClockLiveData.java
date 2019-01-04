@@ -14,6 +14,11 @@ public class ClockLiveData extends LiveData<String> {
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
     private Thread thread;
 
+    public ClockLiveData() {
+        super();
+        postValue(simpleDateFormat.format(new Date()));
+    }
+
     public void start() {
         if (thread == null || !thread.isAlive())
         thread = new Thread(() -> {

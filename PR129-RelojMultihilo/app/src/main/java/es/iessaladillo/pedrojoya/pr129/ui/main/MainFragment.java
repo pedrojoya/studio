@@ -7,10 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
@@ -25,7 +21,6 @@ public class MainFragment extends Fragment {
     private Button btnStart;
 
     private MainFragmentViewModel viewModel;
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
     static MainFragment newInstance() {
         return new MainFragment();
@@ -51,17 +46,16 @@ public class MainFragment extends Fragment {
         lblTime = ViewCompat.requireViewById(view, R.id.lblTime);
         btnStart = ViewCompat.requireViewById(view, R.id.btnStart);
 
-        lblTime.setText(simpleDateFormat.format(new Date()));
         btnStart.setOnClickListener(v -> viewModel.startOrStop());
     }
 
     private void observeRunning() {
-        viewModel.getRunning().observe(this, running ->
+        viewModel.getRunning().observe(getViewLifecycleOwner(), running ->
             btnStart.setText(running ? R.string.main_btnStop : R.string.main_btnStart));
     }
 
     private void observeClock() {
-        viewModel.getClockLiveData().observe(getViewLifecycleOwner(), time -> lblTime.setText(time));
+        viewModel.getClock().observe(getViewLifecycleOwner(), time -> lblTime.setText(time));
     }
 
 }
