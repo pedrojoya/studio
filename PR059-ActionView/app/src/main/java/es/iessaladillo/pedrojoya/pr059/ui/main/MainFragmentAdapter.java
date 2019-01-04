@@ -50,7 +50,11 @@ public class MainFragmentAdapter extends ListAdapter<String, MainFragmentAdapter
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             text1 = ViewCompat.requireViewById(itemView, android.R.id.text1);
-            itemView.setOnClickListener(v -> navigateToDetail(getItem(getAdapterPosition())));
+            itemView.setOnClickListener(v -> {
+                if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    navigateToDetail(getItem(getAdapterPosition()));
+                }
+            });
         }
 
         void bind(String student) {

@@ -81,7 +81,11 @@ public class ListFragmentAdapter extends ListAdapter<Student, ListFragmentAdapte
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
-            itemView.setOnClickListener(v -> navigateToEditStudent(getItem(getAdapterPosition())));
+            itemView.setOnClickListener(v -> {
+                if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    navigateToEditStudent(getItem(getAdapterPosition()));
+                }
+            });
         }
 
         void bind(Student student) {

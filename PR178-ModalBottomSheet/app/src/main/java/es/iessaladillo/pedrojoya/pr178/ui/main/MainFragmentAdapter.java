@@ -62,8 +62,11 @@ public class MainFragmentAdapter extends ListAdapter<Student, MainFragmentAdapte
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
             imgAvatar = ViewCompat.requireViewById(itemView, R.id.imgAvatar);
-            itemView.setOnClickListener(
-                v -> showBottomSheetDialogFragment(getItem(getAdapterPosition())));
+            itemView.setOnClickListener(v -> {
+                if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    showBottomSheetDialogFragment(getItem(getAdapterPosition()));
+                }
+            });
         }
 
         void bind(Student student) {
