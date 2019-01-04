@@ -38,10 +38,8 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     private static void insertInitialData() {
-        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
-            instance.studentDao().insert(
-                new Student("Baldomero", "666666666", "2º CFGS DAM", "La casa de Baldo"));
-        });
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> instance.studentDao().insert(
+            new Student("Baldomero", "666666666", "2º CFGS DAM", "La casa de Baldo")));
     }
 
 }

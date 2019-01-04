@@ -32,10 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/general_fab_margin"
-        android:layout_marginEnd="@dimen/general_fab_margin"
+        android:layout_marginBottom="@dimen/main_fab_margin"
+        android:layout_marginEnd="@dimen/main_fab_margin"
         android:src="@drawable/ic_add_white_24dp"
-        app:elevation="@dimen/general_fab_elevation"
-        app:pressedTranslationZ="@dimen/general_fab_pressedTranslationZ"/>
+        app:elevation="@dimen/main_fab_elevation"
+        app:pressedTranslationZ="@dimen/main_fab_pressedTranslationZ"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

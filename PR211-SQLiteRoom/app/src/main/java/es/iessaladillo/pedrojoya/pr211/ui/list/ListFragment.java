@@ -50,6 +50,10 @@ public class ListFragment extends Fragment {
         viewModel = ViewModelProviders.of(this, new ListFragmentViewModelFactory(new RepositoryImpl(
                 AppDatabase.getInstance(requireContext().getApplicationContext()).studentDao()))).get(ListFragmentViewModel.class);
         setupViews(requireView());
+        observeStudents();
+    }
+
+    private void observeStudents() {
         viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
             listAdapter.submitList(students);
             lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);

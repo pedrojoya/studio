@@ -5,14 +5,14 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/general_activity_margin"
+    android:padding="@dimen/main_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ImageView
         android:id="@+id/imgName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/fragment_student_txtName"
+        android:contentDescription="@string/student_txtName"
         android:src="@drawable/ic_face_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/tilName"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,8 @@
         android:id="@+id/tilName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/general_activity_margin"
-        android:hint="@string/fragment_student_txtName"
+        android:layout_marginStart="@dimen/main_margin"
+        android:hint="@string/student_txtName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgName"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,12 +40,11 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <ImageView
         android:id="@+id/imgGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/fragment_student_imgGrade"
+        android:contentDescription="@string/student_imgGrade"
         android:src="@drawable/ic_create_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/tilGrade"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,18 +54,20 @@
         android:id="@+id/tilGrade"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/general_activity_margin"
-        android:layout_marginTop="@dimen/general_activity_margin"
-        android:hint="@string/fragment_student_imgGrade"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:hint="@string/student_imgGrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgGrade"
         app:layout_constraintTop_toBottomOf="@+id/tilName">
 
-        <es.iessaladillo.pedrojoya.pr211.utils.ClickToSelectEditText
+        <es.iessaladillo.pedrojoya.pr211.views.SpinnerEditText
             android:id="@+id/txtGrade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_drop_down"
+            android:hint="@string/student_imgGrade"
+            app:entries="@array/grades"
             android:imeOptions="actionNext"
             android:inputType="none"/>
 
@@ -77,7 +78,7 @@
         android:id="@+id/imgPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/fragment_student_imgPhone"
+        android:contentDescription="@string/student_imgPhone"
         android:src="@drawable/ic_phone_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/tilPhone"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,9 +88,9 @@
         android:id="@+id/tilPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/general_activity_margin"
-        android:layout_marginTop="@dimen/general_activity_margin"
-        android:hint="@string/fragment_student_imgPhone"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:hint="@string/student_imgPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgPhone"
         app:layout_constraintTop_toBottomOf="@+id/tilGrade">
@@ -108,7 +109,7 @@
         android:id="@+id/imgAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/fragment_student_imgAddress"
+        android:contentDescription="@string/student_imgAddress"
         android:src="@drawable/ic_home_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/tilAddress"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,9 +119,9 @@
         android:id="@+id/tilAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/general_activity_margin"
-        android:layout_marginTop="@dimen/general_activity_margin"
-        android:hint="@string/fragment_student_imgAddress"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:hint="@string/student_imgAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAddress"
         app:layout_constraintTop_toBottomOf="@+id/tilPhone">

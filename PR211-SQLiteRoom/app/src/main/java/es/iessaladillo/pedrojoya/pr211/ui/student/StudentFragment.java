@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,8 +22,8 @@ import es.iessaladillo.pedrojoya.pr211.R;
 import es.iessaladillo.pedrojoya.pr211.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr211.data.local.AppDatabase;
 import es.iessaladillo.pedrojoya.pr211.data.local.model.Student;
-import es.iessaladillo.pedrojoya.pr211.utils.ClickToSelectEditText;
 import es.iessaladillo.pedrojoya.pr211.utils.KeyboardUtils;
+import es.iessaladillo.pedrojoya.pr211.views.SpinnerEditText;
 
 @SuppressWarnings({"unchecked", "unused"})
 public class StudentFragment extends Fragment {
@@ -32,7 +31,7 @@ public class StudentFragment extends Fragment {
     private static final String EXTRA_STUDENT_ID = "EXTRA_STUDENT_ID";
 
     private EditText txtName;
-    private ClickToSelectEditText<String> spnGrade;
+    private SpinnerEditText<String> spnGrade;
     private EditText txtPhone;
     private EditText txtAddress;
     private TextInputLayout tilName;
@@ -105,7 +104,6 @@ public class StudentFragment extends Fragment {
             }
             return false;
         });
-        loadGrades();
     }
 
     private void setupFab() {
@@ -119,15 +117,8 @@ public class StudentFragment extends Fragment {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(
-                    editMode ? R.string.student_fragment_edit_student : R.string.student_fragment_add_student);
+                editMode ? R.string.student_edit_student : R.string.student_add_student);
         }
-    }
-
-    private void loadGrades() {
-        ArrayAdapter<CharSequence> gradesAdapter = ArrayAdapter.createFromResource(
-                requireActivity(), R.array.grades, android.R.layout.simple_list_item_1);
-        spnGrade.setAdapter(gradesAdapter);
-        spnGrade.setOnItemSelectedListener((item, selectedIndex) -> spnGrade.setText(item));
     }
 
     private void saveStudent() {
@@ -162,7 +153,7 @@ public class StudentFragment extends Fragment {
     private boolean checkRequiredEditText(EditText txt, TextInputLayout til) {
         if (TextUtils.isEmpty(txt.getText().toString())) {
             til.setErrorEnabled(true);
-            til.setError(getString(R.string.student_fragment_required_field));
+            til.setError(getString(R.string.student_required_field));
             return false;
         } else {
             til.setErrorEnabled(false);
@@ -183,6 +174,7 @@ public class StudentFragment extends Fragment {
         student.setName(txtName.getText().toString());
         student.setPhone(txtPhone.getText().toString());
         student.setAddress(txtAddress.getText().toString());
+        //noinspection ConstantConditions
         student.setGrade(spnGrade.getText().toString());
         return student;
     }

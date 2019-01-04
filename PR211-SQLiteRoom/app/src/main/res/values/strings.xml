@@ -3,25 +3,16 @@
 
     <string name="app_name">SQLiteRoom</string>
 
-    <string name="fragment_main_lblEmptyView">No students</string>
-    <string name="fragment_main_item_imgAvatar">avatar</string>
+    <string name="list_lblEmptyView">No students</string>
+    <string name="list_item_imgAvatar">avatar</string>
 
-    <string name="fragment_student_txtName">Name</string>
-    <string name="fragment_student_imgGrade">Grade</string>
-    <string name="fragment_student_imgPhone">Phone</string>
-    <string name="fragment_student_imgAddress">Address</string>
+    <string name="student_txtName">Name</string>
+    <string name="student_imgGrade">Grade</string>
+    <string name="student_imgPhone">Phone</string>
+    <string name="student_imgAddress">Address</string>
 
-    <string name="student_fragment_student_added">Student added successfully</string>
-    <string name="student_fragment_error_adding_student">Error adding student</string>
-    <string name="student_fragment_student_updated">Student updated successfully</string>
-    <string name="student_fragment_error_updating_student">Error updating student</string>
-    <string name="student_fragment_error_loading_student">Error loading student</string>
-
-    <string name="student_fragment_edit_student">Update</string>
-    <string name="student_fragment_add_student">Add</string>
-    <string name="student_fragment_required_field">Required field</string>
-
-    <string name="main_fragment_student_deleted">Student deleted successfully</string>
-    <string name="main_fragment_error_deleting_student">Error deleting student</string>
+    <string name="student_edit_student">Update</string>
+    <string name="student_add_student">Add</string>
+    <string name="student_required_field">Required field</string>
 
 </resources>

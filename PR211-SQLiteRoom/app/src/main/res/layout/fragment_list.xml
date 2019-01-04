@@ -18,9 +18,9 @@
         android:layout_gravity="center"
         android:drawableTop="@drawable/ic_person_add_black_24dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:drawablePadding="@dimen/fragment_main_lblEmptyView_drawablePadding"
+        android:drawablePadding="@dimen/list_lblEmptyView_drawablePadding"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:text="@string/fragment_main_lblEmptyView"/>
+        android:text="@string/list_lblEmptyView"/>
 
 </FrameLayout>
 
