@@ -1,4 +1,4 @@
 <resources>
-    <dimen name="activity_main_lblTime_textSize">40sp</dimen>
-    <dimen name="activity_main_lblTime_marginBottom">40dp</dimen>
+    <dimen name="main_lblTime_textSize">40sp</dimen>
+    <dimen name="main_lblTime_marginBottom">40dp</dimen>
 </resources>

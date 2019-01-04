@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RelojMultihilo</string>
-    <string name="activity_main_btnStart">Iniciar</string>
-    <string name="activity_main_btnStop">Parar</string>
+    <string name="app_name">Clock</string>
+    <string name="main_btnStart">Start</string>
+    <string name="main_btnStop">Stop</string>
 
 </resources>

@@ -39,11 +39,12 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
-        setupViews(view);
-        viewModel.getClockLiveData().observe(getViewLifecycleOwner(), this::updateTime);
+        setupViews(requireView());
+        observeRunning();
+        observeClock();
     }
 
     private void setupViews(View view) {
@@ -51,29 +52,16 @@ public class MainFragment extends Fragment {
         btnStart = ViewCompat.requireViewById(view, R.id.btnStart);
 
         lblTime.setText(simpleDateFormat.format(new Date()));
-        btnStart.setText(
-                viewModel.isClockRunning() ? R.string.activity_main_btnStop : R.string.activity_main_btnStart);
-        btnStart.setOnClickListener(v -> {
-            if (btnStart.getText().toString().equals(getString(R.string.activity_main_btnStart))) {
-                start();
-            } else {
-                stop();
-            }
-        });
+        btnStart.setOnClickListener(v -> viewModel.startOrStop());
     }
 
-    private void start() {
-        viewModel.start();
-        btnStart.setText(R.string.activity_main_btnStop);
+    private void observeRunning() {
+        viewModel.getRunning().observe(this, running ->
+            btnStart.setText(running ? R.string.main_btnStop : R.string.main_btnStart));
     }
 
-    private void stop() {
-        viewModel.stop();
-        btnStart.setText(R.string.activity_main_btnStart);
-    }
-
-    private void updateTime(String time) {
-        lblTime.setText(time);
+    private void observeClock() {
+        viewModel.getClockLiveData().observe(getViewLifecycleOwner(), time -> lblTime.setText(time));
     }
 
 }

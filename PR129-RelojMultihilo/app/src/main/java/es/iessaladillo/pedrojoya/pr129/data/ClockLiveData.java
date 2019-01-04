@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr129.ui.main;
+package es.iessaladillo.pedrojoya.pr129.data;
 
 import android.util.Log;
 
@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import androidx.lifecycle.LiveData;
 
+@SuppressWarnings("WeakerAccess")
 public class ClockLiveData extends LiveData<String> {
 
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
@@ -32,7 +33,6 @@ public class ClockLiveData extends LiveData<String> {
         Log.d(ClockLiveData.class.getSimpleName(), "Thread started");
     }
 
-    @SuppressWarnings("WeakerAccess")
     public void stop() {
         if (isRunning()) {
             thread.interrupt();
