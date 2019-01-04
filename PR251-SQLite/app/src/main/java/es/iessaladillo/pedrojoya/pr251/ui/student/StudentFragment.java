@@ -119,7 +119,7 @@ public class StudentFragment extends Fragment {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(
-                editMode ? R.string.student_fragment_edit_student : R.string.student_fragment_add_student);
+                editMode ? R.string.student_edit_student : R.string.student_add_student);
         }
     }
 
@@ -155,7 +155,7 @@ public class StudentFragment extends Fragment {
     private boolean checkRequiredEditText(EditText txt, TextInputLayout til) {
         if (TextUtils.isEmpty(txt.getText().toString())) {
             til.setErrorEnabled(true);
-            til.setError(getString(R.string.student_fragment_required_field));
+            til.setError(getString(R.string.student_required_field));
             return false;
         } else {
             til.setErrorEnabled(false);

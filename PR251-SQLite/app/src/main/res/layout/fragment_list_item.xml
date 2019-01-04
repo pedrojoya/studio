@@ -14,7 +14,7 @@
         android:layout_height="@dimen/three_lines_avatar_height"
         android:layout_marginStart="@dimen/three_lines_avatar_marginLeft"
         android:layout_marginTop="@dimen/three_lines_avatar_marginTop"
-        android:contentDescription="@string/fragment_main_item_imgAvatar"/>
+        android:contentDescription="@string/list_item_imgAvatar"/>
 
     <TextView
         android:id="@+id/lblName"

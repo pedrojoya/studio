@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="fragment_main_lblEmptyView_drawablePadding">16dp</dimen>
+    <dimen name="list_lblEmptyView_drawablePadding">16dp</dimen>
 
     <dimen name="three_lines_tile_height">88dp</dimen>
     <dimen name="three_lines_text_paddingLeft">72dp</dimen>
@@ -13,8 +13,8 @@
     <dimen name="three_lines_avatar_marginLeft">16dp</dimen>
     <dimen name="three_lines_avatar_marginTop">20dp</dimen>
 
-    <dimen name="general_fab_margin">16dp</dimen>
-    <dimen name="general_fab_elevation">6dp</dimen>
-    <dimen name="general_fab_pressedTranslationZ">12dp</dimen>
-    <dimen name="general_activity_margin">16dp</dimen>
+    <dimen name="main_fab_margin">16dp</dimen>
+    <dimen name="main_fab_elevation">6dp</dimen>
+    <dimen name="main_fab_pressedTranslationZ">12dp</dimen>
+    <dimen name="main_margin">16dp</dimen>
 </resources>

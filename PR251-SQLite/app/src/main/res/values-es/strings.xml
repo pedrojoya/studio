@@ -3,16 +3,16 @@
 
     <string name="app_name">SQLite</string>
 
-    <string name="fragment_main_lblEmptyView">No hay alumnos</string>
-    <string name="fragment_main_item_imgAvatar">avatar</string>
+    <string name="list_lblEmptyView">No hay alumnos</string>
+    <string name="list_item_imgAvatar">avatar</string>
 
-    <string name="fragment_student_txtName">Nombre</string>
-    <string name="fragment_student_imgGrade">Curso</string>
-    <string name="fragment_student_imgPhone">Teléfono</string>
-    <string name="fragment_student_imgAddress">Dirección</string>
+    <string name="student_txtName">Nombre</string>
+    <string name="student_imgGrade">Curso</string>
+    <string name="student_imgPhone">Teléfono</string>
+    <string name="student_imgAddress">Dirección</string>
 
-    <string name="student_fragment_edit_student">Actualizar alumno</string>
-    <string name="student_fragment_add_student">Agregar alumno</string>
-    <string name="student_fragment_required_field">Campo obligatorio</string>
+    <string name="student_edit_student">Actualizar alumno</string>
+    <string name="student_add_student">Agregar alumno</string>
+    <string name="student_required_field">Campo obligatorio</string>
 
 </resources>
