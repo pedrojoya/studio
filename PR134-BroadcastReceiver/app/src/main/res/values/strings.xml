@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Battery</string>
+    <string name="main_lblLevel">Load level</string>
+    <string name="main_loading">Loading</string>
+    <string name="main_plugged_usb">by USB</string>
+    <string name="main_plugged_ac">plugged in</string>
+    <string name="main_health_cold">Cold</string>
+    <string name="main_health_dead">Dead</string>
+    <string name="main_health_good">Good heath</string>
+    <string name="main_health_overheat">Overheat</string>
+    <string name="main_health_over_voltage">Over voltage</string>
+    <string name="main_health_unspecified_failure">Unspecified failure</string>
+    <string name="main_health_unknown">Unknown</string>
+</resources>
