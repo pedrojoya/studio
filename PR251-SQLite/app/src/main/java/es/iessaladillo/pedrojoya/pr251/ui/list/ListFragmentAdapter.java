@@ -42,24 +42,23 @@ public class ListFragmentAdapter extends ListAdapter<Student, ListFragmentAdapte
             }
         });
         drawableBuilder = TextDrawable.builder()
-                .beginConfig()
-                .width(100)
-                .height(100)
-                .toUpperCase()
-                .endConfig()
-                .round();
+            .beginConfig()
+            .width(100)
+            .height(100)
+            .toUpperCase()
+            .endConfig()
+            .round();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_list_item, parent, false));
+            .inflate(R.layout.fragment_list_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListFragmentAdapter.ViewHolder viewHolder,
-            int position) {
+    public void onBindViewHolder(@NonNull ListFragmentAdapter.ViewHolder viewHolder, int position) {
         viewHolder.bind(getItem(position));
     }
 
@@ -80,7 +79,11 @@ public class ListFragmentAdapter extends ListAdapter<Student, ListFragmentAdapte
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
             lblAddress = ViewCompat.requireViewById(itemView, R.id.lblAddress);
-            itemView.setOnClickListener(v -> navigateToEditStudent(getItem(getAdapterPosition())));
+            itemView.setOnClickListener(v -> {
+                if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    navigateToEditStudent(getItem(getAdapterPosition()));
+                }
+            });
         }
 
         void bind(Student student) {
@@ -88,14 +91,16 @@ public class ListFragmentAdapter extends ListAdapter<Student, ListFragmentAdapte
             lblGrade.setText(student.getGrade());
             lblAddress.setText(student.getAddress());
             imgAvatar.setImageDrawable(drawableBuilder.build(
-                    itemView.isActivated() ? "\u2713" : student.getName().substring(0, 1),
-                    itemView.isActivated() ? Color.GRAY : ColorGenerator.MATERIAL.getColor(
-                            student.getName())));
+                itemView.isActivated() ? "\u2713" : student.getName().substring(0, 1),
+                itemView.isActivated() ? Color.GRAY : ColorGenerator.MATERIAL.getColor(
+                    student.getName())));
         }
 
         private void navigateToEditStudent(Student student) {
-            ((AppCompatActivity) itemView.getContext()).getSupportFragmentManager().beginTransaction()
-                .replace(R.id.flContent, StudentFragment.newInstance(student.getId()), StudentFragment.class.getSimpleName())
+            ((AppCompatActivity) itemView.getContext()).getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flContent, StudentFragment.newInstance(student.getId()),
+                    StudentFragment.class.getSimpleName())
                 .addToBackStack(StudentFragment.class.getSimpleName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
