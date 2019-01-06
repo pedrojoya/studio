@@ -1,9 +1,7 @@
 package es.iessaladillo.pedrojoya.pr080.data.remote.echo;
 
-public class EchoDataSource {
+public interface EchoDataSource {
 
-    public EchoRequest requestEcho(String text) {
-        return new EchoRequest(text);
-    }
+    EchoRequest requestEcho(String text);
 
 }

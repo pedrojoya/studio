@@ -19,8 +19,8 @@ import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr080.R;
 import es.iessaladillo.pedrojoya.pr080.base.Event;
 import es.iessaladillo.pedrojoya.pr080.data.RepositoryImpl;
-import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoDataSource;
-import es.iessaladillo.pedrojoya.pr080.data.remote.search.SearchDataSource;
+import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoDataSourceImpl;
+import es.iessaladillo.pedrojoya.pr080.data.remote.search.SearchDataSourceImpl;
 import es.iessaladillo.pedrojoya.pr080.utils.KeyboardUtils;
 
 @SuppressWarnings("WeakerAccess")
@@ -48,7 +48,7 @@ public class MainFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(
-            new RepositoryImpl(new SearchDataSource(), new EchoDataSource()))).get(
+            new RepositoryImpl(new SearchDataSourceImpl(), new EchoDataSourceImpl()))).get(
             MainFragmentViewModel.class);
         setupViews(requireView());
         observeSearchResult();
