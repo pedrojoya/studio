@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_main_margin"
+        android:layout_marginBottom="@dimen/main_margin"
         android:indeterminate="false"
-        android:max="@integer/activity_main_steps"
-        android:padding="@dimen/activity_main_prbBar_padding"
+        android:max="@integer/main_steps"
+        android:padding="@dimen/main_prbBar_padding"
         android:visibility="invisible"/>
 
     <LinearLayout
@@ -23,22 +23,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/prbBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_main_margin"
+        android:layout_marginBottom="@dimen/main_margin"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/activity_main_btnCancel"
+            android:text="@string/main_btnCancel"
+            android:enabled="false"
             tools:ignore="ButtonStyle"/>
 
         <Button
             android:id="@+id/btnStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_main_margin"
-            android:text="@string/activity_main_btnStart"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:text="@string/main_btnStart"
             tools:ignore="ButtonStyle"/>
 
     </LinearLayout>
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/llButtonBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/activity_main_margin"
+        android:layout_marginBottom="@dimen/main_margin"
         android:visibility="invisible"
         tools:text="@tools:sample/lorem">
     </TextView>
@@ -61,7 +62,7 @@
         android:layout_below="@+id/lblMessage"
         android:layout_centerHorizontal="true"
         android:indeterminate="false"
-        android:max="@integer/activity_main_steps"
+        android:max="@integer/main_steps"
         android:visibility="invisible"/>
 
 </RelativeLayout>

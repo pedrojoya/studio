@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,8 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr237.R;
+import es.iessaladillo.pedrojoya.pr237.base.Event;
+import es.iessaladillo.pedrojoya.pr237.base.Resource;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -35,19 +38,19 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup parent,
-            @Nullable Bundle savedInstanceState) {
+        @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, parent, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
-        setuptViews(view);
-        viewModel.getTask().observe(getViewLifecycleOwner(), this::updateViews);
+        setupViews(requireView());
+        observeWorkingTask();
     }
 
-    private void setuptViews(View view) {
+    private void setupViews(View view) {
         prbBar = ViewCompat.requireViewById(view, R.id.prbBar);
         lblMessage = ViewCompat.requireViewById(view, R.id.lblMessage);
         prbCircle = ViewCompat.requireViewById(view, R.id.prbCircle);
@@ -55,26 +58,45 @@ public class MainFragment extends Fragment {
         btnCancel = ViewCompat.requireViewById(view, R.id.btnCancel);
 
         btnStart.setOnClickListener(v -> viewModel.startWorking(MAX_STEPS));
-        btnCancel.setOnClickListener(v -> cancel());
-        updateViews(0);
+        btnCancel.setOnClickListener(v -> viewModel.cancelWorking());
     }
 
-    private void cancel() {
-        viewModel.cancelWorking();
+    private void observeWorkingTask() {
+        viewModel.getWorkingTask().observe(getViewLifecycleOwner(), resource -> {
+            updateViews(resource);
+            if (resource.hasError()) {
+                showError(resource.getException());
+            } else if (resource.hasSuccess()) {
+                showSuccess(resource.getData());
+            }
+        });
     }
 
-    @SuppressWarnings("SameParameterValue")
-    private void updateViews(int step) {
-        boolean working = step > 0 && step < MAX_STEPS && viewModel.isWorking();
-        if (!working) {
-            lblMessage.setText("");
+    private void updateViews(Resource<Event<String>> resource) {
+        lblMessage.setText(resource.isLoading() ? getString(R.string.main_lblMessage,
+            resource.getProgress(), MAX_STEPS) : "");
+        btnStart.setEnabled(!resource.isLoading());
+        btnCancel.setEnabled(resource.isLoading());
+        prbBar.setVisibility(resource.isLoading() ? View.VISIBLE : View.INVISIBLE);
+        if (resource.isLoading()) {
+            prbBar.setProgress(resource.getProgress());
         }
-        prbBar.setProgress(step);
-        lblMessage.setText(getString(R.string.activity_main_lblMessage, step, MAX_STEPS));
-        btnStart.setEnabled(!working);
-        btnCancel.setEnabled(working);
-        prbBar.setVisibility(working ? View.VISIBLE : View.INVISIBLE);
-        lblMessage.setVisibility(working ? View.VISIBLE : View.INVISIBLE);
-        prbCircle.setVisibility(working ? View.VISIBLE : View.INVISIBLE);
+        lblMessage.setVisibility(resource.isLoading() ? View.VISIBLE : View.INVISIBLE);
+        prbCircle.setVisibility(resource.isLoading() ? View.VISIBLE : View.INVISIBLE);
     }
+
+    private void showError(Event<Exception> exceptionEvent) {
+        Exception exception = exceptionEvent.getContentIfNotHandled();
+        if (exception != null) {
+            Toast.makeText(requireContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showSuccess(Event<String> messageEvent) {
+        String message = messageEvent.getContentIfNotHandled();
+        if (message != null) {
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
