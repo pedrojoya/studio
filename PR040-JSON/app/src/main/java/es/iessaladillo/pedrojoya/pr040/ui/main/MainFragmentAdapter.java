@@ -13,30 +13,28 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr040.R;
-import es.iessaladillo.pedrojoya.pr040.base.BaseListAdapter;
-import es.iessaladillo.pedrojoya.pr040.base.BaseViewHolder;
-import es.iessaladillo.pedrojoya.pr040.data.model.Student;
+import es.iessaladillo.pedrojoya.pr040.data.remote.model.Student;
 
-class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.ViewHolder> {
+class MainFragmentAdapter extends ListAdapter<Student, MainFragmentAdapter.ViewHolder> {
 
-    private static final DiffUtil.ItemCallback<Student> diffUtilItemCallback = new DiffUtil.ItemCallback<Student>() {
-        @Override
-        public boolean areItemsTheSame(Student oldItem, Student newItem) {
-            return TextUtils.equals(oldItem.getName(), newItem.getName());
-        }
+    MainFragmentAdapter() {
+        super(new DiffUtil.ItemCallback<Student>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+                return TextUtils.equals(oldItem.getName(), newItem.getName());
+            }
 
-        @Override
-        public boolean areContentsTheSame(Student oldItem, Student newItem) {
-            return TextUtils.equals(oldItem.getName(), newItem.getName()) && TextUtils.equals(
+            @Override
+            public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+                return TextUtils.equals(oldItem.getName(), newItem.getName()) && TextUtils.equals(
                     oldItem.getAddress(), newItem.getAddress()) && TextUtils.equals(
                     oldItem.getGrade(), newItem.getGrade())
                     && oldItem.isRepeater() == newItem.isRepeater();
-        }
-    };
-
-    MainFragmentAdapter() {
-        super(diffUtilItemCallback);
+            }
+        });
     }
 
     @NonNull
@@ -51,7 +49,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
         holder.bind(getItem(position));
     }
 
-    class ViewHolder extends BaseViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView imgPhoto;
         private final TextView lblName;
@@ -60,7 +58,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
         private final TextView lblRepeater;
 
         ViewHolder(View itemView) {
-            super(itemView, onItemClickListener, onItemLongClickListener);
+            super(itemView);
             imgPhoto = ViewCompat.requireViewById(itemView, R.id.imgPhoto);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
             lblGrade = ViewCompat.requireViewById(itemView, R.id.lblGrade);
@@ -73,7 +71,7 @@ class MainFragmentAdapter extends BaseListAdapter<Student, MainFragmentAdapter.V
             lblGrade.setText(student.getGrade());
             lblAge.setText(lblAge.getContext()
                     .getResources()
-                    .getQuantityString(R.plurals.main_activity_adapter_years, student.getAge(),
+                    .getQuantityString(R.plurals.main_item_years, student.getAge(),
                             student.getAge()));
             Picasso.with(imgPhoto.getContext()).load(student.getPhoto()).placeholder(
                     R.drawable.placeholder).error(R.drawable.placeholder).into(imgPhoto);

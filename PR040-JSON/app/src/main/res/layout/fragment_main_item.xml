@@ -6,23 +6,23 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/activity_main_item_cardView_cardCornerRadius"
-    app:cardElevation="@dimen/activity_main_item_cardView_cardElevation"
+    app:cardCornerRadius="@dimen/main_item_cardView_cardCornerRadius"
+    app:cardElevation="@dimen/main_item_cardView_cardElevation"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:id="@+id/rlCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_main_item_rlCard__padding">
+        android:padding="@dimen/main_item_rlCard__padding">
 
         <ImageView
             android:id="@+id/imgPhoto"
-            android:layout_width="@dimen/activity_main_item_imgPhoto_width"
-            android:layout_height="@dimen/activity_main_item_imgPhoto_height"
+            android:layout_width="@dimen/main_item_imgPhoto_width"
+            android:layout_height="@dimen/main_item_imgPhoto_height"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:contentDescription="@string/activity_main_item_imgPhoto"
+            android:contentDescription="@string/main_item_imgPhoto"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
             tools:src="@tools:sample/avatars"/>
@@ -35,8 +35,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/imgPhoto"
-            android:paddingLeft="@dimen/activity_main_item_card_padding"
-            android:paddingRight="@dimen/activity_main_item_card_padding"
+            android:paddingLeft="@dimen/main_item_card_padding"
+            android:paddingRight="@dimen/main_item_card_padding"
             tools:students="@tools:sample/full_names"/>
 
         <TextView
@@ -47,8 +47,8 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/lblName"
             android:layout_toEndOf="@+id/imgPhoto"
-            android:paddingLeft="@dimen/activity_main_item_card_padding"
-            android:paddingRight="@dimen/activity_main_item_card_padding"
+            android:paddingLeft="@dimen/main_item_card_padding"
+            android:paddingRight="@dimen/main_item_card_padding"
             tools:students="@tools:sample/lorem"/>
 
         <TextView
@@ -59,19 +59,19 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/lblGrade"
             android:layout_toEndOf="@+id/imgPhoto"
-            android:paddingLeft="@dimen/activity_main_item_card_padding"
-            android:paddingRight="@dimen/activity_main_item_card_padding"
+            android:paddingLeft="@dimen/main_item_card_padding"
+            android:paddingRight="@dimen/main_item_card_padding"
             tools:students="@tools:sample/date/ddmmyy"/>
 
         <View
             android:id="@+id/divider"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/activity_main_item_divider_height"
+            android:layout_height="@dimen/main_item_divider_height"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/lblAge"
-            android:layout_marginTop="@dimen/activity_main_item_divider_marginTop"
+            android:layout_marginTop="@dimen/main_item_divider_marginTop"
             android:layout_toEndOf="@+id/imgPhoto"
-            android:background="@color/activity_main_item_divider"/>
+            android:background="@color/main_item_divider"/>
 
         <Button
             android:id="@+id/btnMarks"
@@ -79,9 +79,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/divider"
-            android:layout_marginStart="@dimen/activity_main_item_card_padding"
+            android:layout_marginStart="@dimen/main_item_card_padding"
             android:layout_toStartOf="@id/btnCall"
-            android:text="@string/activity_main_item_btnMarks"/>
+            android:text="@string/main_item_btnMarks"/>
 
         <Button
             android:id="@+id/btnCall"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/divider"
-            android:text="@string/activity_main_item_btnCall"/>
+            android:text="@string/main_item_btnCall"/>
 
         <TextView
             android:id="@+id/lblRepeater"
@@ -98,17 +98,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@color/activity_main_item_lblRepeater_background"
-            android:paddingBottom="@dimen/activity_main_item_lblRepeater_verticalPadding"
-            android:paddingLeft="@dimen/activity_main_item_lblRepeater_horizontalPadding"
-            android:paddingRight="@dimen/activity_main_item_lblRepeater_horizontalPadding"
-            android:paddingTop="@dimen/activity_main_item_lblRepeater_verticalPadding"
-            android:rotation="@integer/activity_main_item_lblRepeater_rotation"
-            android:text="@string/activity_main_item_lblRepeater"
+            android:background="@color/main_item_lblRepeater_background"
+            android:paddingBottom="@dimen/main_item_lblRepeater_verticalPadding"
+            android:paddingLeft="@dimen/main_item_lblRepeater_horizontalPadding"
+            android:paddingRight="@dimen/main_item_lblRepeater_horizontalPadding"
+            android:paddingTop="@dimen/main_item_lblRepeater_verticalPadding"
+            android:rotation="@integer/main_item_lblRepeater_rotation"
+            android:text="@string/main_item_lblRepeater"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/activity_main_item_lblRepeater_textSize"
-            android:translationX="@dimen/activity_main_item_lblRepeater_translationX"
-            android:translationY="@dimen/activity_main_item_lblRepeater_translationY"/>
+            android:textSize="@dimen/main_item_lblRepeater_textSize"
+            android:translationX="@dimen/main_item_lblRepeater_translationX"
+            android:translationY="@dimen/main_item_lblRepeater_translationY"/>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -9,7 +9,7 @@ class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
 
     private final Repository repository;
 
-    public MainFragmentViewModelFactory(Repository repository) {
+    MainFragmentViewModelFactory(Repository repository) {
         this.repository = repository;
     }
 
@@ -17,7 +17,11 @@ class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new MainFragmentViewModel(repository);
+        if (modelClass.isAssignableFrom(MainFragmentViewModel.class)) {
+            return (T) new MainFragmentViewModel(repository);
+        } else {
+            throw new IllegalArgumentException(("Wrong modelViewClass"));
+        }
     }
 
 }

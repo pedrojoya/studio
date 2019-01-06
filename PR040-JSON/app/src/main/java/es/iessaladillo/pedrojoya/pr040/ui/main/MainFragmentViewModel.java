@@ -5,36 +5,31 @@ import android.annotation.SuppressLint;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
-import es.iessaladillo.pedrojoya.pr040.base.RequestState;
+import es.iessaladillo.pedrojoya.pr040.base.Resource;
 import es.iessaladillo.pedrojoya.pr040.data.Repository;
-import es.iessaladillo.pedrojoya.pr040.data.model.Student;
+import es.iessaladillo.pedrojoya.pr040.data.remote.model.Student;
 
 @SuppressLint("StaticFieldLeak")
 class MainFragmentViewModel extends ViewModel {
 
-    private LiveData<RequestState<List<Student>>> studentsRequest;
-    private final Repository repository;
+    private final LiveData<Resource<List<Student>>> students;
+    private final MutableLiveData<Boolean> queryStudentsTrigger = new MutableLiveData<>();
 
     MainFragmentViewModel(Repository repository) {
-        this.repository = repository;
+        students = Transformations.switchMap(queryStudentsTrigger,
+            query -> repository.queryStudents());
+        refreshStudents();
     }
 
-    LiveData<RequestState<List<Student>>> getStudents() {
-        if (studentsRequest == null) {
-            refreshStudents();
-        }
-        return studentsRequest;
+    LiveData<Resource<List<Student>>> getStudents() {
+        return students;
     }
 
     void refreshStudents() {
-        studentsRequest = repository.getStudents();
-    }
-
-    @Override
-    protected void onCleared() {
-        repository.cancel();
-        super.onCleared();
+        queryStudentsTrigger.postValue(true);
     }
 
 }
