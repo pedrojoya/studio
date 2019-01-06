@@ -18,45 +18,47 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr080.R;
 import es.iessaladillo.pedrojoya.pr080.base.Event;
-import es.iessaladillo.pedrojoya.pr080.base.RequestState;
+import es.iessaladillo.pedrojoya.pr080.data.RepositoryImpl;
+import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoDataSource;
+import es.iessaladillo.pedrojoya.pr080.data.remote.search.SearchDataSource;
 import es.iessaladillo.pedrojoya.pr080.utils.KeyboardUtils;
 
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
+
+    private MainFragmentViewModel viewModel;
 
     private EditText txtName;
     private ProgressBar pbProgress;
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button btnSearch;
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button btnEcho;
-    private MainFragmentViewModel viewModel;
 
     public MainFragment() {
     }
 
-    public static MainFragment newInstance() {
+    static MainFragment newInstance() {
         return new MainFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+        Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
-        initViews(getView());
-        observeSearch();
-        observeEcho();
+        viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(
+            new RepositoryImpl(new SearchDataSource(), new EchoDataSource()))).get(
+            MainFragmentViewModel.class);
+        setupViews(requireView());
+        observeSearchResult();
+        observeEchoResult();
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         txtName = ViewCompat.requireViewById(view, R.id.txtName);
-        btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
-        btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
+        Button btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
+        Button btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
         pbProgress = ViewCompat.requireViewById(view, R.id.pbProgress);
 
         btnSearch.setOnClickListener(v -> search());
@@ -77,64 +79,58 @@ public class MainFragment extends Fragment {
         viewModel.requestEcho(text);
     }
 
-    private void observeSearch() {
-        viewModel.getSearchLiveData().observe(getViewLifecycleOwner(), searchRequest -> {
-            if (searchRequest instanceof RequestState.Error) {
-                showErrorSearching((RequestState.Error) searchRequest);
-            } else if (searchRequest instanceof RequestState.Result) {
-                @SuppressWarnings("unchecked") RequestState.Result<Event<String>> searchResult = (RequestState.Result<Event<String>>) searchRequest;
-                String result = searchResult.getData().getContentIfNotHandled();
-                if (result != null) {
-                    showResult(result);
-                }
-            } else if (searchRequest instanceof RequestState.Loading) {
-                RequestState.Loading searchLoading = (RequestState.Loading) searchRequest;
-                pbProgress.setVisibility(searchLoading.isLoading() ? View.VISIBLE : View.INVISIBLE);
+    private void observeSearchResult() {
+        viewModel.getSearchResultLiveData().observe(getViewLifecycleOwner(), resource -> {
+            if (resource.isLoading()) {
+                pbProgress.setVisibility(View.VISIBLE);
+            } else if (resource.hasError()) {
+                showErrorSearching(resource.getException());
+            } else if (resource.hasSuccess()) {
+                showResult(resource.getData());
             }
         });
     }
 
-    private void observeEcho() {
-        viewModel.getEchoLiveData().observe(getViewLifecycleOwner(), echoRequest -> {
-            if (echoRequest instanceof RequestState.Error) {
-                showErrorRequestingEcho((RequestState.Error) echoRequest);
-            } else if (echoRequest instanceof RequestState.Result) {
-                //noinspection unchecked
-                RequestState.Result<Event<String>> echoResult = (RequestState.Result<Event<String>>) echoRequest;
-                String result = echoResult.getData().getContentIfNotHandled();
-                if (result != null) {
-                    showResult(result);
-                }
-            } else if (echoRequest instanceof RequestState.Loading) {
-                RequestState.Loading echoLoading = (RequestState.Loading) echoRequest;
-                pbProgress.setVisibility(echoLoading.isLoading() ? View.VISIBLE : View.INVISIBLE);
+    private void observeEchoResult() {
+        viewModel.getEchoResultLiveData().observe(getViewLifecycleOwner(), resource -> {
+            if (resource.isLoading()) {
+                pbProgress.setVisibility(View.VISIBLE);
+            } else if (resource.hasError()) {
+                showErrorRequestingEcho(resource.getException());
+            } else if (resource.hasSuccess()) {
+                showResult(resource.getData());
             }
         });
     }
 
-    private void showErrorSearching(RequestState.Error searchError) {
-        Exception exception = searchError.getException().getContentIfNotHandled();
+    private void showErrorSearching(Event<Exception> exceptionEvent) {
+        Exception exception = exceptionEvent.getContentIfNotHandled();
         if (exception != null) {
             pbProgress.setVisibility(View.INVISIBLE);
             String message = exception.getMessage();
-            if (message == null) message = getString(R.string.main_fragment_error_searching);
+            if (message == null) message = getString(R.string.main_error_searching);
             Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void showErrorRequestingEcho(RequestState.Error echoError) {
-        Exception exception = echoError.getException().getContentIfNotHandled();
+    private void showErrorRequestingEcho(Event<Exception> exceptionEvent) {
+        Exception exception = exceptionEvent.getContentIfNotHandled();
         if (exception != null) {
             pbProgress.setVisibility(View.INVISIBLE);
             String message = exception.getMessage();
-            if (message == null) message = getString(R.string.main_fragment_error_requesting_echo);
+            if (message == null) message = getString(R.string.main_error_requesting_echo);
             Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void showResult(String result) {
-        pbProgress.setVisibility(View.INVISIBLE);
-        Toast.makeText(requireActivity(), result, Toast.LENGTH_SHORT).show();
+    private void showResult(Event<String> result) {
+        String message = result.getContentIfNotHandled();
+        if (message != null) {
+            pbProgress.setVisibility(View.INVISIBLE);
+            Toast.makeText(requireContext(),
+                !TextUtils.isEmpty(message) ? message : getString(R.string.main_no_results),
+                Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

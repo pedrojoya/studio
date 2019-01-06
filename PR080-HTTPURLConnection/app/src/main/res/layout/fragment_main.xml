@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/fragment_main_margin"
+    android:padding="@dimen/main_margin"
     tools:context=".ui.main.MainActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="@string/fragment_main_lblName"
+        android:text="@string/main_lblName"
         android:labelFor="@id/txtName"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/lblName"
-        android:layout_marginTop="@dimen/fragment_main_margin"
+        android:layout_marginTop="@dimen/main_margin"
         android:inputType="textPersonName"
         tools:ignore="Autofill">
 
@@ -35,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtName"
-        android:layout_marginTop="@dimen/fragment_main_margin"
-        android:text="@string/fragment_main_btnSearch"/>
+        android:layout_marginTop="@dimen/main_margin"
+        android:text="@string/main_btnSearch"/>
 
     <Button
         android:id="@+id/btnEcho"
@@ -45,7 +45,7 @@
         android:layout_alignTop="@+id/btnSearch"
         android:layout_below="@+id/txtName"
         android:layout_toEndOf="@+id/btnSearch"
-        android:text="@string/fragment_main_btnEcho"/>
+        android:text="@string/main_btnEcho"/>
 
     <ProgressBar
         android:id="@+id/pbProgress"

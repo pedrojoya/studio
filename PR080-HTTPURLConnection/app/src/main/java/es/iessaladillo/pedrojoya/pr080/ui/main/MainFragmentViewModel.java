@@ -1,39 +1,41 @@
 package es.iessaladillo.pedrojoya.pr080.ui.main;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import es.iessaladillo.pedrojoya.pr080.base.Event;
+import es.iessaladillo.pedrojoya.pr080.base.Resource;
+import es.iessaladillo.pedrojoya.pr080.data.Repository;
 
-import es.iessaladillo.pedrojoya.pr080.base.RequestState;
-import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoLiveData;
-import es.iessaladillo.pedrojoya.pr080.data.remote.search.SearchLiveData;
+class MainFragmentViewModel extends ViewModel {
 
-@SuppressWarnings("WeakerAccess")
-public class MainFragmentViewModel extends ViewModel {
+    private final MutableLiveData<String> searchTextLiveData = new MutableLiveData<>();
+    private final LiveData<Resource<Event<String>>> searchResultLiveData;
+    private final MutableLiveData<String> echoTextLiveData = new MutableLiveData<>();
+    private final LiveData<Resource<Event<String>>> echoResultLiveData;
 
-    private final SearchLiveData searchLiveData = new SearchLiveData();
-    private final EchoLiveData echoLiveData = new EchoLiveData();
-
-    public LiveData<RequestState> getSearchLiveData() {
-        return searchLiveData;
+    MainFragmentViewModel(Repository repository) {
+        searchResultLiveData =
+            Transformations.switchMap(searchTextLiveData, repository::search);
+        echoResultLiveData =
+            Transformations.switchMap(echoTextLiveData, repository::requestEcho);
     }
 
-    public LiveData<RequestState> getEchoLiveData() {
-        return echoLiveData;
+    void search(String searchText) {
+        searchTextLiveData.setValue(searchText);
     }
 
-    public void search(String text) {
-        searchLiveData.search(text);
+    void requestEcho(String text) {
+        echoTextLiveData.setValue(text);
     }
 
-    public void requestEcho(String text) {
-        echoLiveData.requestEcho(text);
+    LiveData<Resource<Event<String>>> getSearchResultLiveData() {
+        return searchResultLiveData;
     }
 
-    @Override
-    protected void onCleared() {
-        searchLiveData.cancel();
-        echoLiveData.cancel();
-        super.onCleared();
+    LiveData<Resource<Event<String>>> getEchoResultLiveData() {
+        return echoResultLiveData;
     }
 
 }
