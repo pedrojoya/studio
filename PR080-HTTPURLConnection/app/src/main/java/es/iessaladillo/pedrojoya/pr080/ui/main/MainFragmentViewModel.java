@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import es.iessaladillo.pedrojoya.pr080.base.Call;
 import es.iessaladillo.pedrojoya.pr080.base.Event;
 import es.iessaladillo.pedrojoya.pr080.base.Resource;
 import es.iessaladillo.pedrojoya.pr080.data.Repository;
-import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoRequest;
-import es.iessaladillo.pedrojoya.pr080.data.remote.search.SearchRequest;
 
 class MainFragmentViewModel extends ViewModel {
 
@@ -17,8 +16,8 @@ class MainFragmentViewModel extends ViewModel {
     private final MutableLiveData<String> echoTextLiveData = new MutableLiveData<>();
     private final LiveData<Resource<Event<String>>> echoResultLiveData;
 
-    private SearchRequest previousSearchTask;
-    private EchoRequest previousEchoTask;
+    private Call<Resource<Event<String>>> previousSearchTask;
+    private Call<Resource<Event<String>>> previousEchoTask;
 
     MainFragmentViewModel(Repository repository) {
         searchResultLiveData =

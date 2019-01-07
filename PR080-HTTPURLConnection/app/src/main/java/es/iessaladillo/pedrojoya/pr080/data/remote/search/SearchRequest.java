@@ -4,12 +4,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import es.iessaladillo.pedrojoya.pr080.base.AsyncLiveTask;
+import es.iessaladillo.pedrojoya.pr080.base.Call;
 import es.iessaladillo.pedrojoya.pr080.base.Event;
 import es.iessaladillo.pedrojoya.pr080.base.Resource;
 import es.iessaladillo.pedrojoya.pr080.utils.NetworkUtils;
 
-public class SearchRequest extends AsyncLiveTask<Resource<Event<String>>> {
+class SearchRequest extends Call<Resource<Event<String>>> {
 
     private final String text;
 

@@ -8,12 +8,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import es.iessaladillo.pedrojoya.pr080.base.AsyncLiveTask;
+import es.iessaladillo.pedrojoya.pr080.base.Call;
 import es.iessaladillo.pedrojoya.pr080.base.Event;
 import es.iessaladillo.pedrojoya.pr080.base.Resource;
 import es.iessaladillo.pedrojoya.pr080.utils.NetworkUtils;
 
-public class EchoRequest extends AsyncLiveTask<Resource<Event<String>>> {
+class EchoRequest extends Call<Resource<Event<String>>> {
 
     private static final String KEY_NAME = "nombre";
     private static final String KEY_DATE = "fecha";

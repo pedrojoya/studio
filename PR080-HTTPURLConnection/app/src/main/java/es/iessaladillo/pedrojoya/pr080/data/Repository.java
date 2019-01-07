@@ -1,11 +1,12 @@
 package es.iessaladillo.pedrojoya.pr080.data;
 
-import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoRequest;
-import es.iessaladillo.pedrojoya.pr080.data.remote.search.SearchRequest;
+import es.iessaladillo.pedrojoya.pr080.base.Call;
+import es.iessaladillo.pedrojoya.pr080.base.Event;
+import es.iessaladillo.pedrojoya.pr080.base.Resource;
 
 public interface Repository {
 
-    SearchRequest search(String text);
-    EchoRequest requestEcho(String text);
+    Call<Resource<Event<String>>> search(String text);
+    Call<Resource<Event<String>>> requestEcho(String text);
 
 }

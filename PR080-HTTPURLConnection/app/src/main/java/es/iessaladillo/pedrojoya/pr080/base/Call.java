@@ -8,7 +8,7 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class AsyncLiveTask<T> extends LiveData<T> {
+public abstract class Call<T> extends LiveData<T> {
 
     @SuppressLint("StaticFieldLeak")
     private final AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
@@ -24,7 +24,7 @@ public abstract class AsyncLiveTask<T> extends LiveData<T> {
         }
     };
 
-    protected AsyncLiveTask() {
+    protected Call() {
         asyncTask.execute();
     }
 
@@ -32,8 +32,9 @@ public abstract class AsyncLiveTask<T> extends LiveData<T> {
     protected abstract void doAsync();
 
     @SuppressWarnings("EmptyMethod")
+
     @MainThread
-    protected abstract void doOnCancelled();
+    protected void doOnCancelled() { }
 
     public void cancel(boolean mayInterruptIfRunning) {
         asyncTask.cancel(mayInterruptIfRunning);
