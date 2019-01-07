@@ -18,7 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import es.iessaladillo.pedrojoya.pr040.R;
@@ -75,7 +75,8 @@ public class MainFragment extends Fragment {
 
         listAdapter = new MainFragmentAdapter();
         lstStudents.setHasFixedSize(true);
-        lstStudents.setLayoutManager(new LinearLayoutManager(requireContext()));
+        lstStudents.setLayoutManager(new GridLayoutManager(requireContext(),
+            requireContext().getResources().getInteger(R.integer.main_lstStudents_columns)));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
     }
