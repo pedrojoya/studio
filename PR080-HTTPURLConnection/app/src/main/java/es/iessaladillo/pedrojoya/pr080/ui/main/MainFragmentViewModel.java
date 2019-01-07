@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 import es.iessaladillo.pedrojoya.pr080.base.Event;
 import es.iessaladillo.pedrojoya.pr080.base.Resource;
 import es.iessaladillo.pedrojoya.pr080.data.Repository;
+import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoRequest;
+import es.iessaladillo.pedrojoya.pr080.data.remote.search.SearchRequest;
 
 class MainFragmentViewModel extends ViewModel {
 
@@ -15,11 +17,22 @@ class MainFragmentViewModel extends ViewModel {
     private final MutableLiveData<String> echoTextLiveData = new MutableLiveData<>();
     private final LiveData<Resource<Event<String>>> echoResultLiveData;
 
+    private SearchRequest previousSearchTask;
+    private EchoRequest previousEchoTask;
+
     MainFragmentViewModel(Repository repository) {
         searchResultLiveData =
-            Transformations.switchMap(searchTextLiveData, repository::search);
+            Transformations.switchMap(searchTextLiveData, searchText -> {
+                cancelPreviousSearchTask();
+                previousSearchTask = repository.search(searchText);
+                return previousSearchTask;
+            });
         echoResultLiveData =
-            Transformations.switchMap(echoTextLiveData, repository::requestEcho);
+            Transformations.switchMap(echoTextLiveData, echoText -> {
+                cancelPreviousEchoTask();
+                previousEchoTask = repository.requestEcho(echoText);
+                return previousEchoTask;
+            });
     }
 
     void search(String searchText) {
@@ -36,6 +49,25 @@ class MainFragmentViewModel extends ViewModel {
 
     LiveData<Resource<Event<String>>> getEchoResultLiveData() {
         return echoResultLiveData;
+    }
+
+    private void cancelPreviousSearchTask() {
+        if (previousSearchTask != null) {
+            previousSearchTask.cancel(true);
+        }
+    }
+
+    private void cancelPreviousEchoTask() {
+        if (previousEchoTask != null) {
+            previousEchoTask.cancel(true);
+        }
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        cancelPreviousSearchTask();
+        cancelPreviousEchoTask();
     }
 
 }
