@@ -15,18 +15,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadeScrollbars="false"
-            android:paddingBottom="@dimen/activity_main_lstStudents_padding"
-            android:paddingTop="@dimen/activity_main_lstStudents_padding"/>
+            android:paddingBottom="@dimen/main_lstStudents_padding"
+            android:paddingTop="@dimen/main_lstStudents_padding"/>
 
         <TextView
             android:id="@+id/lblEmptyView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawablePadding="@dimen/activity_main_lblEmptyView_drawablePadding"
+            android:drawablePadding="@dimen/main_lblEmptyView_drawablePadding"
             android:drawableTop="@drawable/ic_person_add_black_24dp"
             android:gravity="center"
-            android:text="@string/activity_main_lblEmptyView"/>
+            android:text="@string/main_lblEmptyView"/>
 
     </FrameLayout>
 

@@ -1,12 +1,11 @@
 package es.iessaladillo.pedrojoya.pr195.main;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
-
 import es.iessaladillo.pedrojoya.pr195.data.Repository;
 
-class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
+public class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
 
     private final Repository repository;
 
@@ -18,7 +17,11 @@ class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new MainFragmentViewModel(repository);
+        if (modelClass.isAssignableFrom(MainFragmentViewModel.class)) {
+            return (T) new MainFragmentViewModel(repository);
+        } else {
+            throw new IllegalArgumentException(("Wrong modelViewClass"));
+        }
     }
 
 }
