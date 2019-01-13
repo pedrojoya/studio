@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -17,16 +18,13 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import es.iessaladillo.pedrojoya.pr083.R;
-import es.iessaladillo.pedrojoya.pr083.base.Event;
-import es.iessaladillo.pedrojoya.pr083.base.RequestState;
-import es.iessaladillo.pedrojoya.pr083.data.RepositoryImpl;
+import es.iessaladillo.pedrojoya.pr083.base.EventObserver;
 import es.iessaladillo.pedrojoya.pr083.data.model.Student;
-import es.iessaladillo.pedrojoya.pr083.data.remote.VolleyInstance;
-import es.iessaladillo.pedrojoya.pr083.utils.ToastUtils;
+import es.iessaladillo.pedrojoya.pr083.di.Injector;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -35,6 +33,7 @@ public class MainFragment extends Fragment {
 
     private MainFragmentAdapter listAdapter;
     private MainFragmentViewModel viewModel;
+    private TextView lblEmptyView;
 
     static MainFragment newInstance() {
         return new MainFragment();
@@ -49,36 +48,34 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup parent,
-            @Nullable Bundle savedInstanceState) {
+        @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, parent, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(
-                RepositoryImpl.getInstance(
-                        VolleyInstance.getInstance(requireContext()).getRequestQueue()))).get(
-                MainFragmentViewModel.class);
-        setupViews(view);
-        observeStudentsLiveData();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(this,
+            Injector.provideMainFragmentViewModelFactory(requireContext())).get(
+            MainFragmentViewModel.class);
+        setupViews(requireView());
+        observeStudents();
 
     }
 
     private void setupViews(View view) {
-        setupListView(view);
+        setupRecyclerView(view);
         setupPanel(view);
     }
 
-    private void setupListView(View view) {
+    private void setupRecyclerView(View view) {
         RecyclerView lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
-        TextView lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
 
         listAdapter = new MainFragmentAdapter();
-        listAdapter.setEmptyView(lblEmptyView);
         lstStudents.setHasFixedSize(true);
-        lstStudents.setLayoutManager(
-                new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+        lstStudents.setLayoutManager(new GridLayoutManager(requireContext(),
+            requireContext().getResources().getInteger(R.integer.main_lstStudents_columns)));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.setAdapter(listAdapter);
     }
@@ -87,48 +84,36 @@ public class MainFragment extends Fragment {
         swlPanel = ViewCompat.requireViewById(view, R.id.swlPanel);
 
         swlPanel.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light, android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+            android.R.color.holo_green_light, android.R.color.holo_orange_light,
+            android.R.color.holo_red_light);
         swlPanel.setOnRefreshListener(() -> viewModel.refreshStudents());
+    }
+
+    private void observeStudents() {
+        viewModel.getLoading().observe(getViewLifecycleOwner(),
+            loading -> swlPanel.post(() -> swlPanel.setRefreshing(loading)));
+        viewModel.getMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showErrorLoadingStudents));
+        viewModel.getStudents().observe(getViewLifecycleOwner(), this::showStudents);
     }
 
     private void showStudents(List<Student> students) {
         listAdapter.submitList(students);
-        swlPanel.post(() -> swlPanel.setRefreshing(false));
+        lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
     }
 
-    private void showErrorLoadingStudents(Event<Exception> event) {
-        swlPanel.setRefreshing(false);
-        Exception exception = event.getContentIfNotHandled();
-        if (exception != null) {
-            ToastUtils.toast(requireContext(), exception.getMessage());
-        }
-    }
-
-    private void observeStudentsLiveData() {
-        viewModel.getStudents().observe(getViewLifecycleOwner(), request -> {
-            if (request != null) {
-                if (request instanceof RequestState.Loading) {
-                    swlPanel.post(() -> swlPanel.setRefreshing(
-                            ((RequestState.Loading) request).isLoading()));
-                } else if (request instanceof RequestState.Error) {
-                    showErrorLoadingStudents(
-                            ((RequestState.Error<List<Student>>) request).getException());
-                } else if (request instanceof RequestState.Result) {
-                    showStudents(((RequestState.Result<List<Student>>) request).getData());
-                }
-            }
-        });
+    private void showErrorLoadingStudents(String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_main, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.mnuRefresh) {
             viewModel.refreshStudents();
             return true;

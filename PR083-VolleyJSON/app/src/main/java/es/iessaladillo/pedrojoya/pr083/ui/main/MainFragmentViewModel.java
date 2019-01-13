@@ -3,35 +3,51 @@ package es.iessaladillo.pedrojoya.pr083.ui.main;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import es.iessaladillo.pedrojoya.pr083.base.RequestState;
+import es.iessaladillo.pedrojoya.pr083.base.Event;
 import es.iessaladillo.pedrojoya.pr083.data.Repository;
 import es.iessaladillo.pedrojoya.pr083.data.model.Student;
 
 class MainFragmentViewModel extends ViewModel {
 
-    private LiveData<RequestState<List<Student>>> studentsRequest;
+    private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    private final MutableLiveData<Event<String>> message = new MutableLiveData<>();
+    private final MutableLiveData<List<Student>> students = new MutableLiveData<>();
     private final Repository repository;
 
     MainFragmentViewModel(Repository repository) {
         this.repository = repository;
+        refreshStudents();
     }
 
-    LiveData<RequestState<List<Student>>> getStudents() {
-        if (studentsRequest == null) {
-            refreshStudents();
-        }
-        return studentsRequest;
+    public LiveData<Boolean> getLoading() {
+        return loading;
+    }
+
+    public LiveData<Event<String>> getMessage() {
+        return message;
+    }
+
+    LiveData<List<Student>> getStudents() {
+        return students;
     }
 
     void refreshStudents() {
-        studentsRequest = repository.getStudents();
-    }
+        loading.setValue(true);
+        repository.queryStudents(new Repository.Callback<List<Student>>() {
+            @Override
+            public void onFailure(Exception exception) {
+                message.setValue(new Event<>(exception.getMessage()));
+                loading.setValue(false);
+            }
 
-    @Override
-    protected void onCleared() {
-        repository.cancel();
-        super.onCleared();
+            @Override
+            public void onResponse(List<Student> result) {
+                students.setValue(result);
+                loading.setValue(false);
+            }
+        });
     }
 
 }

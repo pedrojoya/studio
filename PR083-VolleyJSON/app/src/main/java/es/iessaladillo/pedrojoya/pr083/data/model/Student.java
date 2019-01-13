@@ -1,35 +1,24 @@
 package es.iessaladillo.pedrojoya.pr083.data.model;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+// Data layer model
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class Student {
-
-    public static final String KEY_NAME = "name";
-    public static final String KEY_ADDRESS = "address";
-    public static final String KEY_PHONE = "phone";
-    public static final String KEY_GRADE = "grade";
-    public static final String KEY_REPEATER = "repeater";
-    public static final String KEY_AGE = "age";
-    public static final String KEY_PHOTO = "photo";
 
     private String photo;
     private String name;
     private int age;
     private String grade;
-    private String address;
     private String phone;
     private boolean repeater;
 
-    public Student(JSONObject jsonObject) throws JSONException {
-        name = jsonObject.getString(Student.KEY_NAME);
-        address = jsonObject.getString(Student.KEY_ADDRESS);
-        phone = jsonObject.getString(Student.KEY_PHONE);
-        grade = jsonObject.getString(Student.KEY_GRADE);
-        repeater = jsonObject.getBoolean(Student.KEY_REPEATER);
-        age = jsonObject.getInt(Student.KEY_AGE);
-        photo = jsonObject.getString(Student.KEY_PHOTO);
+    public Student(String photo, String name, int age, String grade, String phone,
+        boolean repeater) {
+        this.photo = photo;
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+        this.phone = phone;
+        this.repeater = repeater;
     }
 
     public Student() { }
@@ -64,14 +53,6 @@ public class Student {
 
     public void setGrade(String grade) {
         this.grade = grade;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {
