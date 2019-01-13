@@ -1,7 +1,8 @@
-package es.iessaladillo.pedrojoya.pr040.data.remote.model;
+package es.iessaladillo.pedrojoya.pr040.data.remote.dto;
 
+// Remote Student model
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class Student {
+public class StudentDto {
 
     private String photo;
     private String name;
@@ -11,7 +12,7 @@ public class Student {
     private String phone;
     private boolean repeater;
 
-    public Student() { }
+    public StudentDto() { }
 
     public String getPhoto() {
         return photo;

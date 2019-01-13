@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr040.R;
-import es.iessaladillo.pedrojoya.pr040.data.remote.model.Student;
+import es.iessaladillo.pedrojoya.pr040.data.model.Student;
 
 class MainFragmentAdapter extends ListAdapter<Student, MainFragmentAdapter.ViewHolder> {
 
@@ -30,7 +30,6 @@ class MainFragmentAdapter extends ListAdapter<Student, MainFragmentAdapter.ViewH
             @Override
             public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
                 return TextUtils.equals(oldItem.getName(), newItem.getName()) && TextUtils.equals(
-                    oldItem.getAddress(), newItem.getAddress()) && TextUtils.equals(
                     oldItem.getGrade(), newItem.getGrade())
                     && oldItem.isRepeater() == newItem.isRepeater();
             }
@@ -41,7 +40,7 @@ class MainFragmentAdapter extends ListAdapter<Student, MainFragmentAdapter.ViewH
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_main_item, parent, false));
+            .inflate(R.layout.fragment_main_item, parent, false));
     }
 
     @Override
@@ -70,14 +69,13 @@ class MainFragmentAdapter extends ListAdapter<Student, MainFragmentAdapter.ViewH
             lblName.setText(student.getName());
             lblGrade.setText(student.getGrade());
             lblAge.setText(lblAge.getContext()
-                    .getResources()
-                    .getQuantityString(R.plurals.main_item_years, student.getAge(),
-                            student.getAge()));
+                .getResources()
+                .getQuantityString(R.plurals.main_item_years, student.getAge(), student.getAge()));
             Picasso.with(imgPhoto.getContext()).load(student.getPhoto()).placeholder(
-                    R.drawable.placeholder).error(R.drawable.placeholder).into(imgPhoto);
+                R.drawable.placeholder).error(R.drawable.placeholder).into(imgPhoto);
             lblAge.setTextColor(student.getAge() < 18 ? ContextCompat.getColor(lblAge.getContext(),
-                    R.color.accent) : ContextCompat.getColor(lblAge.getContext(),
-                    R.color.primary_text));
+                R.color.accent) : ContextCompat.getColor(lblAge.getContext(),
+                R.color.primary_text));
             lblRepeater.setVisibility(student.isRepeater() ? View.VISIBLE : View.INVISIBLE);
         }
 

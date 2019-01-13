@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr040.base;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Event<T> {
 
     private final T content;

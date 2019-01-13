@@ -2,12 +2,19 @@ package es.iessaladillo.pedrojoya.pr040.data.remote;
 
 import java.util.List;
 
-import es.iessaladillo.pedrojoya.pr040.base.Call;
-import es.iessaladillo.pedrojoya.pr040.base.Resource;
-import es.iessaladillo.pedrojoya.pr040.data.remote.model.Student;
+import es.iessaladillo.pedrojoya.pr040.data.remote.dto.StudentDto;
 
 public interface ApiService {
 
-    Call<Resource<List<Student>>> getStudents();
+    void getStudents(Callback<List<StudentDto>> callback);
+
+    // Callback interface for communication with client layer.
+    interface Callback<T> {
+
+        void onFailure(Exception exception);
+
+        void onResponse(T result);
+
+    }
 
 }

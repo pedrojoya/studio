@@ -22,10 +22,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import es.iessaladillo.pedrojoya.pr040.R;
-import es.iessaladillo.pedrojoya.pr040.base.Event;
-import es.iessaladillo.pedrojoya.pr040.data.RepositoryImpl;
-import es.iessaladillo.pedrojoya.pr040.data.remote.ApiServiceImpl;
-import es.iessaladillo.pedrojoya.pr040.data.remote.model.Student;
+import es.iessaladillo.pedrojoya.pr040.base.EventObserver;
+import es.iessaladillo.pedrojoya.pr040.data.model.Student;
+import es.iessaladillo.pedrojoya.pr040.di.Injector;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -56,8 +55,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this,
-            new MainFragmentViewModelFactory(new RepositoryImpl(new ApiServiceImpl()))).get(
+        viewModel = ViewModelProviders.of(this, Injector.provideMainFragmentViewModelFactory()).get(
             MainFragmentViewModel.class);
         setupViews(requireView());
         observeStudents();
@@ -91,29 +89,20 @@ public class MainFragment extends Fragment {
     }
 
     private void observeStudents() {
-        viewModel.getStudents().observe(getViewLifecycleOwner(), resource -> {
-            if (resource.isLoading()) {
-                swlPanel.post(() -> swlPanel.setRefreshing(true));
-            } else if (resource.hasError()) {
-                showErrorLoadingStudents(resource.getException());
-            } else if (resource.hasSuccess()) {
-                showStudents(resource.getData());
-            }
-        });
+        viewModel.getLoading().observe(getViewLifecycleOwner(),
+            loading -> swlPanel.post(() -> swlPanel.setRefreshing(loading)));
+        viewModel.getMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showErrorLoadingStudents));
+        viewModel.getStudents().observe(getViewLifecycleOwner(), this::showStudents);
     }
 
     private void showStudents(List<Student> students) {
         listAdapter.submitList(students);
-        lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE: View.INVISIBLE);
-        swlPanel.post(() -> swlPanel.setRefreshing(false));
+        lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
     }
 
-    private void showErrorLoadingStudents(Event<Exception> event) {
-        swlPanel.setRefreshing(false);
-        Exception exception = event.getContentIfNotHandled();
-        if (exception != null) {
-            Toast.makeText(requireContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+    private void showErrorLoadingStudents(String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import es.iessaladillo.pedrojoya.pr040.data.Repository;
 
-class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
+public class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
 
     private final Repository repository;
 
-    MainFragmentViewModelFactory(Repository repository) {
+    public MainFragmentViewModelFactory(Repository repository) {
         this.repository = repository;
     }
 
