@@ -1,24 +1,27 @@
 package es.iessaladillo.pedrojoya.pr194.ui.main;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
+import es.iessaladillo.pedrojoya.pr194.data.Repository;
 
-import es.iessaladillo.pedrojoya.pr194.data.remote.Api;
+public class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
 
-class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
+    private final Repository repository;
 
-    private final Api api;
-
-    MainFragmentViewModelFactory(Api api) {
-        this.api = api;
+    public MainFragmentViewModelFactory(Repository repository) {
+        this.repository = repository;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        //noinspection unchecked
-        return (T) new MainFragmentViewModel(api);
+        if (modelClass.isAssignableFrom(MainFragmentViewModel.class)) {
+            return (T) new MainFragmentViewModel(repository);
+        } else {
+            throw new IllegalArgumentException(("Wrong modelViewClass"));
+        }
     }
 
 }

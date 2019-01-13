@@ -1,55 +1,20 @@
 package es.iessaladillo.pedrojoya.pr194.data.remote;
 
-import android.content.Context;
+import java.util.List;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.readystatesoftware.chuck.ChuckInterceptor;
+import es.iessaladillo.pedrojoya.pr194.data.remote.dto.StudentDto;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+public interface ApiService {
 
-public class ApiService {
+    void getStudents(Callback<List<StudentDto>> callback);
 
-    private static final String BASE_URL = "http://www.informaticasaladillo.es/";
+    // Callback interface for communication with client layer.
+    interface Callback<T> {
 
-    private static ApiService instance;
-    private Api api;
+        void onFailure(Exception exception);
 
-    public static synchronized ApiService getInstance(Context context) {
-        if (instance == null) {
-            synchronized (ApiService.class) {
-                if (instance == null) {
-                    instance = new ApiService(context.getApplicationContext());
-                }
-            }
-        }
-        return instance;
-    }
+        void onResponse(T result);
 
-    private ApiService(Context context) {
-        buildAPIService(context);
-    }
-
-    private void buildAPIService(Context context) {
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.addInterceptor(httpLoggingInterceptor);
-        builder.addInterceptor(new StethoInterceptor());
-        builder.addInterceptor(new ChuckInterceptor(context));
-        OkHttpClient okHttpClient = builder.build();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        api = retrofit.create(Api.class);
-    }
-
-    public Api getApi() {
-        return api;
     }
 
 }

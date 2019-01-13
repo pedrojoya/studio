@@ -1,27 +1,18 @@
-package es.iessaladillo.pedrojoya.pr194.data.model;
+package es.iessaladillo.pedrojoya.pr194.data.remote.dto;
 
-// Data layer model
+// Remote Student model
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class Student {
+public class StudentDto {
 
     private String photo;
     private String name;
     private int age;
     private String grade;
+    private String address;
     private String phone;
     private boolean repeater;
 
-    public Student(String photo, String name, int age, String grade, String phone,
-        boolean repeater) {
-        this.photo = photo;
-        this.name = name;
-        this.age = age;
-        this.grade = grade;
-        this.phone = phone;
-        this.repeater = repeater;
-    }
-
-    public Student() { }
+    public StudentDto() { }
 
     public String getPhoto() {
         return photo;
@@ -53,6 +44,14 @@ public class Student {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {

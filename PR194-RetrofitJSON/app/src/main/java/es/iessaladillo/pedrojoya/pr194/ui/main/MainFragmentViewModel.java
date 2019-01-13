@@ -1,34 +1,53 @@
 package es.iessaladillo.pedrojoya.pr194.ui.main;
 
-import android.annotation.SuppressLint;
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import es.iessaladillo.pedrojoya.pr194.base.Event;
+import es.iessaladillo.pedrojoya.pr194.data.Repository;
+import es.iessaladillo.pedrojoya.pr194.data.model.Student;
 
-import es.iessaladillo.pedrojoya.pr194.base.RequestState;
-import es.iessaladillo.pedrojoya.pr194.data.remote.Api;
-import es.iessaladillo.pedrojoya.pr194.data.remote.StudentsLiveData;
-
-@SuppressLint("StaticFieldLeak")
 class MainFragmentViewModel extends ViewModel {
 
-    private final StudentsLiveData studentsLiveData;
+    private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    private final MutableLiveData<Event<String>> message = new MutableLiveData<>();
+    private final MutableLiveData<List<Student>> students = new MutableLiveData<>();
+    private final Repository repository;
 
-    public MainFragmentViewModel(Api api) {
-        studentsLiveData = new StudentsLiveData(api);
+    MainFragmentViewModel(Repository repository) {
+        this.repository = repository;
+        refreshStudents();
     }
 
-    public LiveData<RequestState> getStudents() {
-        return studentsLiveData;
+    public LiveData<Boolean> getLoading() {
+        return loading;
     }
 
-    public void forceLoadStudents() {
-        studentsLiveData.loadData();
+    public LiveData<Event<String>> getMessage() {
+        return message;
     }
 
-    @Override
-    protected void onCleared() {
-        studentsLiveData.cancel();
-        super.onCleared();
+    LiveData<List<Student>> getStudents() {
+        return students;
+    }
+
+    void refreshStudents() {
+        loading.setValue(true);
+        repository.queryStudents(new Repository.Callback<List<Student>>() {
+            @Override
+            public void onFailure(Exception exception) {
+                message.setValue(new Event<>(exception.getMessage()));
+                loading.setValue(false);
+            }
+
+            @Override
+            public void onResponse(List<Student> result) {
+                students.setValue(result);
+                loading.setValue(false);
+            }
+        });
     }
 
 }
