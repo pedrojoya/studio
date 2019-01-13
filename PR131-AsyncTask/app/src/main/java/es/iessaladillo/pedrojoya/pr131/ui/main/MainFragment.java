@@ -39,9 +39,9 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setupViews(view);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setupViews(requireView());
     }
 
     private void setupViews(View view) {
@@ -84,6 +84,7 @@ public class MainFragment extends Fragment {
             lblMessage.setText("");
         }
         prbBar.setProgress(step);
+        // AQUI SE PRODUCIRÍA UN ERROR SI NO USÁRAMOS WeakReference.
         lblMessage.setText(getString(R.string.activity_main_lblMessage, step,
                 getResources().getInteger(R.integer.activity_main_steps)));
         btnStart.setEnabled(!working);
@@ -95,6 +96,8 @@ public class MainFragment extends Fragment {
 
     public static class Task extends AsyncTask<Integer, Integer, Integer> {
 
+        // SI NO USÁRAMOS WeakReference SINO DIRECTAMENTE EL FRAGMENTO,
+        // SE PRODUCIRÍA UN ERROR CUANDO onCancelled LLAMARA A updateViews().
         private final WeakReference<MainFragment> mainFragmentWeakReference;
         private Integer maxSteps;
 
