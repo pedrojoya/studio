@@ -6,9 +6,9 @@ public class Resource<T> {
 
     private final Resource.Status status;
     private final T data;
-    private final Event<Exception> exception;
+    private final Exception exception;
 
-    private Resource(Status status, T data, Event<Exception> exception) {
+    private Resource(Status status, T data, Exception exception) {
         this.status = status;
         this.data = data;
         this.exception = exception;
@@ -35,7 +35,7 @@ public class Resource<T> {
         return data;
     }
 
-    public Event<Exception> getException() {
+    public Exception getException() {
         return exception;
     }
 
@@ -44,7 +44,7 @@ public class Resource<T> {
     }
 
     public static <T> Resource<T> error(Exception exception) {
-        return new Resource<>(Status.ERROR, null, new Event<>(exception));
+        return new Resource<>(Status.ERROR, null, exception);
     }
 
     public static <T> Resource<T> loading() {

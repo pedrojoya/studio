@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import es.iessaladillo.pedrojoya.pr180.base.Resource;
+import es.iessaladillo.pedrojoya.pr180.data.remote.HttpClient;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -27,12 +28,12 @@ public class PhotoDataSourceImpl implements PhotoDataSource {
     }
 
     @Override
-    public LiveData<Resource<Bitmap>> loadPhoto(String photoUrl) {
+    public LiveData<Resource<Bitmap>> loadPhoto(String photoUrl, String tag) {
         MutableLiveData<Resource<Bitmap>> result = new MutableLiveData<>();
         result.postValue(Resource.loading());
         try {
             URL url = URI.create(photoUrl).toURL();
-            Request request = new Request.Builder().url(url).build();
+            Request request = new Request.Builder().url(url).tag(tag).build();
             Call echoCall = okHttpClient.newCall(request);
             echoCall.enqueue(new Callback() {
                 @Override
@@ -43,12 +44,6 @@ public class PhotoDataSourceImpl implements PhotoDataSource {
                 @Override
                 public void onResponse(@NonNull Call call,
                     @NonNull Response response) throws IOException {
-                    // Simulate latency
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     if (response.isSuccessful()) {
                         ResponseBody responseBody = response.body();
                         if (responseBody != null) {
@@ -66,6 +61,11 @@ public class PhotoDataSourceImpl implements PhotoDataSource {
             result.postValue(Resource.error(e));
         }
         return result;
+    }
+
+    @Override
+    public void cancel(String tag) {
+        HttpClient.cancelCallsWithTag(okHttpClient, tag);
     }
 
 }

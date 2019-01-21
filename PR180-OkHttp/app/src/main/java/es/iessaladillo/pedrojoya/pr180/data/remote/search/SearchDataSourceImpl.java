@@ -7,8 +7,8 @@ import java.net.URLEncoder;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import es.iessaladillo.pedrojoya.pr180.base.Event;
 import es.iessaladillo.pedrojoya.pr180.base.Resource;
+import es.iessaladillo.pedrojoya.pr180.data.remote.HttpClient;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -24,15 +24,15 @@ public class SearchDataSourceImpl implements SearchDataSource {
         this.okHttpClient = okHttpClient;
     }
 
-    public LiveData<Resource<Event<String>>> search(String text) {
-        MutableLiveData<Resource<Event<String>>> result = new MutableLiveData<>();
+    public LiveData<Resource<String>> search(String text, String tag) {
+        MutableLiveData<Resource<String>> result = new MutableLiveData<>();
         result.postValue(Resource.loading());
         try {
             URL url = new URL(
-                "https://www.google.es/search?hl=es&q=\"" + URLEncoder.encode(text,
-                    "UTF-8") + "\"");
+                "https://www.google.es/search?hl=es&q=\"" + URLEncoder.encode(text, "UTF-8")
+                    + "\"");
             Request request = new Request.Builder().url(url).header("User-Agent",
-                "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5" + ".1)").build();
+                "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5" + ".1)").tag(tag).build();
             Call echoCall = okHttpClient.newCall(request);
             echoCall.enqueue(new Callback() {
                 @Override
@@ -43,21 +43,15 @@ public class SearchDataSourceImpl implements SearchDataSource {
                 @Override
                 public void onResponse(@NonNull Call call,
                     @NonNull Response response) throws IOException {
-                    // Simulate latency
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     if (response.isSuccessful()) {
                         ResponseBody responseBody = response.body();
                         if (responseBody != null) {
                             String content = responseBody.string().trim();
-                            result.postValue(Resource.success(new Event<>(extractResultFromContent(content))));
+                            result.postValue(
+                                Resource.success(extractResultFromContent(content)));
                         }
                     } else {
-                        result.postValue(
-                            Resource.error(new Exception(response.message())));
+                        result.postValue(Resource.error(new Exception(response.message())));
                     }
                 }
             });
@@ -79,6 +73,11 @@ public class SearchDataSourceImpl implements SearchDataSource {
             resultado = contenido.substring(ini + 16, fin);
         }
         return resultado;
+    }
+
+    @Override
+    public void cancel(String tag) {
+        HttpClient.cancelCallsWithTag(okHttpClient, tag);
     }
 
 }

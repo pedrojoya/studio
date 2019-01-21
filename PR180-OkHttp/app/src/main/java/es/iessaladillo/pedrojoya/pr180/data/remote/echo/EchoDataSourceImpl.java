@@ -9,8 +9,8 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import es.iessaladillo.pedrojoya.pr180.base.Event;
 import es.iessaladillo.pedrojoya.pr180.base.Resource;
+import es.iessaladillo.pedrojoya.pr180.data.remote.HttpClient;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -35,14 +35,14 @@ public class EchoDataSourceImpl implements EchoDataSource {
         this.okHttpClient = okHttpClient;
     }
 
-    public LiveData<Resource<Event<String>>> requestEcho(String text) {
-        MutableLiveData<Resource<Event<String>>> result = new MutableLiveData<>();
+    public LiveData<Resource<String>> requestEcho(String text, String tag) {
+        MutableLiveData<Resource<String>> result = new MutableLiveData<>();
         result.postValue(Resource.loading());
         try {
             URL url = new URL(BASE_URL);
             RequestBody formBody = new FormBody.Builder().addEncoded(KEY_NAME, text).addEncoded(
                 KEY_DATE, simpleDateFormat.format(new Date())).build();
-            Request request = new Request.Builder().url(url).post(formBody).build();
+            Request request = new Request.Builder().url(url).post(formBody).tag(tag).build();
             Call echoCall = okHttpClient.newCall(request);
             echoCall.enqueue(new Callback() {
                 @Override
@@ -53,21 +53,14 @@ public class EchoDataSourceImpl implements EchoDataSource {
                 @Override
                 public void onResponse(@NonNull Call call,
                     @NonNull Response response) throws IOException {
-                    // Simulate latency
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     if (response.isSuccessful()) {
                         ResponseBody responseBody = response.body();
                         if (responseBody != null) {
                             String content = responseBody.string().trim();
-                            result.postValue(Resource.success(new Event<>(content)));
+                            result.postValue(Resource.success(content));
                         }
                     } else {
-                        result.postValue(
-                            Resource.error(new Exception(response.message())));
+                        result.postValue(Resource.error(new Exception(response.message())));
                     }
                 }
             });
@@ -75,6 +68,11 @@ public class EchoDataSourceImpl implements EchoDataSource {
             result.postValue(Resource.error(e));
         }
         return result;
+    }
+
+    @Override
+    public void cancel(String tag) {
+        HttpClient.cancelCallsWithTag(okHttpClient, tag);
     }
 
 }

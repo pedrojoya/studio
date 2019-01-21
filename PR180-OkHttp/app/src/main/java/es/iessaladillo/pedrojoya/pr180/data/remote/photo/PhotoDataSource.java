@@ -7,6 +7,7 @@ import es.iessaladillo.pedrojoya.pr180.base.Resource;
 
 public interface PhotoDataSource {
 
-    LiveData<Resource<Bitmap>> loadPhoto(String photoUrl);
+    LiveData<Resource<Bitmap>> loadPhoto(String photoUrl, String tag);
 
+    void cancel(String tag);
 }
