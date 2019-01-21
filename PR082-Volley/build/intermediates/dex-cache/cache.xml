@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/pre-dexed/debug/classes-beb42b30834f17f5fde4b30e2a2ec488197b492f.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-c0c786b7818a78e2ec5a27e3fd87b03663f7ef49.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.16/d8f5b9114ebe0f76de7fbf55e950540959ce4ff8/library-1.0.16.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d8f5b9114ebe0f76de7fbf55e950540959ce4ff8">
+        <dex dex="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/pre-dexed/debug/library-1.0.16-ca003baeeee5fa7192a8599c91acb001e673928c.jar" />
+    </item>
+    <item
+        jar="/Applications/adt-bundle-mac-x86_64-20140624/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-b1c46bc93b4097f34ac94406659df5be532e3461.jar" />
+    </item>
+    <item
+        jar="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/pedro/studio/PR082-VolleyString/app/build/intermediates/pre-dexed/debug/classes-b23f6bb88a05b20b4ecf34a120b9794d1577b8cd.jar" />
+    </item>
+
+</items>

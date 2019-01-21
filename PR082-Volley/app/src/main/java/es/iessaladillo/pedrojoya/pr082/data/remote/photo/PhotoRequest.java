@@ -12,9 +12,10 @@ class PhotoRequest extends ImageRequest {
     private static final int PHOTO_MAX_WIDTH = 300;
     private static final int PHOTO_MAX_HEIGHT = 300;
 
-    PhotoRequest(String url, Listener<Bitmap> listener, ErrorListener errorListener) {
+    PhotoRequest(String url, String tag, Listener<Bitmap> listener, ErrorListener errorListener) {
         super(url, listener, PHOTO_MAX_WIDTH, PHOTO_MAX_HEIGHT, ImageView.ScaleType.CENTER_CROP,
             Bitmap.Config.ALPHA_8, errorListener);
+        setTag(tag);
     }
 
 

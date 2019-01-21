@@ -10,9 +10,11 @@ import java.util.Map;
 class SearchRequest extends StringRequest {
 
 
-    SearchRequest(String nombre, Listener<String> listener, ErrorListener errorListener) {
+    SearchRequest(String nombre, String tag, Listener<String> listener,
+        ErrorListener errorListener) {
         super(Method.GET, "https://www.google.es/search?hl=es&q=\""
                 + nombre + "\"", listener, errorListener);
+        setTag(tag);
     }
 
     @Override

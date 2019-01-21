@@ -10,7 +10,6 @@ import java.util.Map;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import es.iessaladillo.pedrojoya.pr082.base.Event;
 import es.iessaladillo.pedrojoya.pr082.base.Resource;
 
 public class EchoDataSourceImpl implements EchoDataSource {
@@ -27,21 +26,26 @@ public class EchoDataSourceImpl implements EchoDataSource {
         this.requestQueue = requestQueue;
     }
 
-    public LiveData<Resource<Event<String>>> requestEcho(String text) {
-        MutableLiveData<Resource<Event<String>>> result = new MutableLiveData<>();
+    public LiveData<Resource<String>> requestEcho(String text, String tag) {
+        MutableLiveData<Resource<String>> result = new MutableLiveData<>();
         try {
             result.postValue(Resource.loading());
             Map<String, String> params = new HashMap<>();
             params.put(KEY_NAME, text);
             params.put(KEY_DATE, simpleDateFormat.format(new Date()));
-            requestQueue.add(new EchoRequest(params,
-                response -> result.postValue(Resource.success(new Event<>(response.trim()))),
+            requestQueue.add(new EchoRequest(params, tag,
+                response -> result.postValue(Resource.success(response.trim())),
                 volleyError -> result.postValue(
                     Resource.error(new Exception(volleyError.getMessage())))));
         } catch (Exception e) {
             result.postValue(Resource.error(e));
         }
         return result;
+    }
+
+    @Override
+    public void cancel(String tag) {
+        requestQueue.cancelAll(tag);
     }
 
 }

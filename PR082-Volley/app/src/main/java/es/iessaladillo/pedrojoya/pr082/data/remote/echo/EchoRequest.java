@@ -12,8 +12,10 @@ class EchoRequest extends StringRequest {
 
     private final Map<String, String> params;
 
-    EchoRequest(Map<String, String> params, Listener<String> listener, ErrorListener errorListener) {
+    EchoRequest(Map<String, String> params, String tag, Listener<String> listener,
+        ErrorListener errorListener) {
         super(Method.POST, BASE_URL, listener, errorListener);
+        setTag(tag);
         this.params = params;
     }
 

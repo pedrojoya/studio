@@ -6,7 +6,6 @@ import java.net.URLEncoder;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import es.iessaladillo.pedrojoya.pr082.base.Event;
 import es.iessaladillo.pedrojoya.pr082.base.Resource;
 
 public class SearchDataSourceImpl implements SearchDataSource {
@@ -17,19 +16,23 @@ public class SearchDataSourceImpl implements SearchDataSource {
         this.requestQueue = requestQueue;
     }
 
-    public LiveData<Resource<Event<String>>> search(String text) {
-        MutableLiveData<Resource<Event<String>>> result = new MutableLiveData<>();
+    public LiveData<Resource<String>> search(String text, String tag) {
+        MutableLiveData<Resource<String>> result = new MutableLiveData<>();
         result.postValue(Resource.loading());
         try {
-            requestQueue.add(new SearchRequest(URLEncoder.encode(text, "UTF-8"),
-                response -> result.postValue(
-                    Resource.success(new Event<>(extractResultFromContent(response)))),
+            requestQueue.add(new SearchRequest(URLEncoder.encode(text, "UTF-8"), tag,
+                response -> result.postValue(Resource.success(extractResultFromContent(response))),
                 volleyError -> result.postValue(
                     Resource.error(new Exception(volleyError.getMessage())))));
         } catch (Exception e) {
             result.postValue(Resource.error(e));
         }
         return result;
+    }
+
+    @Override
+    public void cancel(String tag) {
+        requestQueue.cancelAll(tag);
     }
 
     private String extractResultFromContent(String contenido) {
