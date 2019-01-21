@@ -1,5 +1,5 @@
 <resources>
 
-    <dimen name="fragment_main_margin">16dp</dimen>
+    <dimen name="main_margin">16dp</dimen>
 
 </resources>

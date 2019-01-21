@@ -1,6 +1,7 @@
 package es.iessaladillo.pedrojoya.pr180.main;
 
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,54 +20,68 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr180.R;
 import es.iessaladillo.pedrojoya.pr180.base.Event;
-import es.iessaladillo.pedrojoya.pr180.base.RequestState;
+import es.iessaladillo.pedrojoya.pr180.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr180.data.remote.HttpClient;
+import es.iessaladillo.pedrojoya.pr180.data.remote.echo.EchoDataSourceImpl;
+import es.iessaladillo.pedrojoya.pr180.data.remote.photo.PhotoDataSourceImpl;
+import es.iessaladillo.pedrojoya.pr180.data.remote.search.SearchDataSourceImpl;
 import es.iessaladillo.pedrojoya.pr180.utils.KeyboardUtils;
-import es.iessaladillo.pedrojoya.pr180.utils.ToastUtils;
+import okhttp3.OkHttpClient;
 
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
+
+    private static final String BASE_URL = "https://picsum.photos/100/100?image=";
+
+    private MainFragmentViewModel viewModel;
 
     private EditText txtName;
     private ProgressBar pbProgress;
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button btnSearch;
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button btnEcho;
-    private MainFragmenViewModel viewModel;
+    private EditText txtPhotoNumber;
+    private ImageView imgPhoto;
 
     public MainFragment() {
     }
 
-    public static MainFragment newInstance() {
+    static MainFragment newInstance() {
         return new MainFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+        Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(requireActivity(),
-                new MainFragmentViewModelFactory(HttpClient.getInstance(getContext()))).get(
-                MainFragmenViewModel.class);
-        initViews(getView());
-        observeSearch();
-        observeEcho();
+        OkHttpClient okHttpClient = HttpClient.getInstance(requireContext());
+        viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(
+            new RepositoryImpl(new SearchDataSourceImpl(okHttpClient),
+                new EchoDataSourceImpl(okHttpClient), new PhotoDataSourceImpl(okHttpClient)))).get(
+            MainFragmentViewModel.class);
+        setupViews(requireView());
+        observeSearchResult();
+        observeEchoResult();
+        observeLoadPhotoResult();
     }
 
-    private void initViews(View view) {
+    private void setupViews(View view) {
         txtName = ViewCompat.requireViewById(view, R.id.txtName);
-        btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
-        btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
+        Button btnSearch = ViewCompat.requireViewById(view, R.id.btnSearch);
+        Button btnEcho = ViewCompat.requireViewById(view, R.id.btnEcho);
         pbProgress = ViewCompat.requireViewById(view, R.id.pbProgress);
+        Button btnLoadPhoto = ViewCompat.requireViewById(view, R.id.btnLoadPhoto);
+        txtPhotoNumber = ViewCompat.requireViewById(view, R.id.txtPhotoNumber);
+        imgPhoto = ViewCompat.requireViewById(view, R.id.imgPhoto);
 
         btnSearch.setOnClickListener(v -> search());
         btnEcho.setOnClickListener(v -> echo());
+        btnLoadPhoto.setOnClickListener(v -> loadPhoto());
+
     }
+
 
     private void search() {
         String text = txtName.getText().toString();
@@ -80,67 +97,85 @@ public class MainFragment extends Fragment {
         viewModel.requestEcho(text);
     }
 
-    private void observeSearch() {
-        viewModel.getSearchLiveData().observe(getViewLifecycleOwner(), searchRequest -> {
-            if (searchRequest instanceof RequestState.Error) {
-                showErrorSearching((RequestState.Error) searchRequest);
-            } else if (searchRequest instanceof RequestState.Result) {
-                @SuppressWarnings("unchecked")
-                RequestState.Result<Event<String>> searchResult = (RequestState.Result<Event<String>>) searchRequest;
-                String result = searchResult.getData().getContentIfNotHandled();
-                if (result != null) {
-                    showResult(result);
-                }
-            } else if (searchRequest instanceof RequestState.Loading) {
-                RequestState.Loading searchLoading = (RequestState.Loading) searchRequest;
-                pbProgress.setVisibility(searchLoading.isLoading() ? View.VISIBLE : View.INVISIBLE);
+    private void loadPhoto() {
+        try {
+            int photoNumber = Integer.parseInt(txtPhotoNumber.getText().toString());
+            String photoUrl = BASE_URL + photoNumber;
+            KeyboardUtils.hideSoftKeyboard(requireActivity());
+            viewModel.loadPhoto(photoUrl);
+        } catch (NumberFormatException ignored) {
+        }
+    }
+
+    private void observeSearchResult() {
+        viewModel.getSearchResultLiveData().observe(getViewLifecycleOwner(), resource -> {
+            if (resource.isLoading()) {
+                pbProgress.setVisibility(View.VISIBLE);
+            } else if (resource.hasError()) {
+                showErrorSearching(resource.getException());
+            } else if (resource.hasSuccess()) {
+                showResult(resource.getData());
             }
         });
     }
 
-    private void observeEcho() {
-        viewModel.getEchoLiveData().observe(getViewLifecycleOwner(), echoRequest -> {
-            if (echoRequest instanceof RequestState.Error) {
-                showErrorRequestingEcho((RequestState.Error) echoRequest);
-            } else if (echoRequest instanceof RequestState.Result) {
-                @SuppressWarnings("unchecked")
-                RequestState.Result<Event<String>> echoResult = (RequestState.Result<Event<String>>) echoRequest;
-                String result = echoResult.getData().getContentIfNotHandled();
-                if (result != null) {
-                    showResult(result);
-                }
-            } else if (echoRequest instanceof RequestState.Loading) {
-                RequestState.Loading echoLoading = (RequestState.Loading) echoRequest;
-                pbProgress.setVisibility(echoLoading.isLoading() ? View.VISIBLE : View.INVISIBLE);
+    private void observeEchoResult() {
+        viewModel.getEchoResultLiveData().observe(getViewLifecycleOwner(), resource -> {
+            if (resource.isLoading()) {
+                pbProgress.setVisibility(View.VISIBLE);
+            } else if (resource.hasError()) {
+                showErrorRequestingEcho(resource.getException());
+            } else if (resource.hasSuccess()) {
+                showResult(resource.getData());
             }
         });
     }
 
-    private void showErrorSearching(RequestState.Error searchError) {
-        Exception exception = searchError.getException().getContentIfNotHandled();
-        if (exception != null) {
-            pbProgress.setVisibility(View.INVISIBLE);
-            String message = exception.getMessage();
-            if (message == null) message = getString(R.string.main_fragment_error_searching);
-            ToastUtils.toast(requireContext(), message);
-        }
-    }
-
-    private void showErrorRequestingEcho(RequestState.Error echoError) {
-        Exception exception = echoError.getException().getContentIfNotHandled();
-        if (exception != null) {
-            pbProgress.setVisibility(View.INVISIBLE);
-            String message = exception.getMessage();
-            if (message == null) {
-                message = getString(R.string.main_fragment_error_requesting_echo);
+    private void observeLoadPhotoResult() {
+        viewModel.getPhotoLiveData().observe(getViewLifecycleOwner(), resource -> {
+            if (resource.isLoading()) {
+                pbProgress.setVisibility(View.VISIBLE);
+            } else if (resource.hasError()) {
+                showErrorRequestingEcho(resource.getException());
+            } else if (resource.hasSuccess()) {
+                showPhoto(resource.getData());
             }
-            ToastUtils.toast(requireContext(), message);
+        });
+    }
+
+    private void showErrorSearching(Event<Exception> exceptionEvent) {
+        Exception exception = exceptionEvent.getContentIfNotHandled();
+        if (exception != null) {
+            pbProgress.setVisibility(View.INVISIBLE);
+            String message = exception.getMessage();
+            if (message == null) message = getString(R.string.main_error_searching);
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void showResult(String result) {
+    private void showErrorRequestingEcho(Event<Exception> exceptionEvent) {
+        Exception exception = exceptionEvent.getContentIfNotHandled();
+        if (exception != null) {
+            pbProgress.setVisibility(View.INVISIBLE);
+            String message = exception.getMessage();
+            if (message == null) message = getString(R.string.main_error_requesting_echo);
+            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showResult(Event<String> result) {
+        String message = result.getContentIfNotHandled();
+        if (message != null) {
+            pbProgress.setVisibility(View.INVISIBLE);
+            Toast.makeText(requireContext(),
+                !TextUtils.isEmpty(message) ? message : getString(R.string.main_no_results),
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showPhoto(Bitmap bitmap) {
         pbProgress.setVisibility(View.INVISIBLE);
-        ToastUtils.toast(requireContext(), result);
+        imgPhoto.setImageBitmap(bitmap);
     }
 
 }

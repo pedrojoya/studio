@@ -3,8 +3,8 @@ package es.iessaladillo.pedrojoya.pr180.main;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.fragment.app.FragmentTransaction;
 import es.iessaladillo.pedrojoya.pr180.R;
-import es.iessaladillo.pedrojoya.pr180.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,9 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (getSupportFragmentManager().findFragmentById(R.id.flContent) == null) {
-            FragmentUtils.replaceFragment(getSupportFragmentManager(), R.id.flContent,
-                    MainFragment.newInstance(), TAG_MAIN_FRAGMENT);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContent, MainFragment.newInstance(), TAG_MAIN_FRAGMENT)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
         }
     }
 
