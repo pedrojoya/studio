@@ -15,7 +15,8 @@ public class RepositoryImpl implements Repository {
     private final EchoDataSource echoDataSource;
     private final PhotoDataSource photoDataSource;
 
-    public RepositoryImpl(SearchDataSource searchDataSource, EchoDataSource echoDataSource,
+    public RepositoryImpl(SearchDataSource searchDataSource,
+        EchoDataSource echoDataSource,
         PhotoDataSource photoDataSource) {
         this.searchDataSource = searchDataSource;
         this.echoDataSource = echoDataSource;
