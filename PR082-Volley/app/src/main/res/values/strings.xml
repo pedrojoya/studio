@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Volley</string>
+    <string name="main_lblName">Name</string>
+    <string name="main_btnSearch">Search</string>
+    <string name="main_btnEcho">Echo</string>
+    <string name="main_error_requesting_echo">Error requesting echo</string>
+    <string name="main_error_searching">Error searching</string>
+    <string name="main_no_results">No results</string>
+    <string name="main_lblPhoto">Photo</string>
+    <string name="main_lblPhotoUrl" translatable="false">https://picsum.photos/100/100?image=</string>
+    <string name="main_imgPhoto">Photo</string>
+    <string name="main_btnLoadPhoto">Load photo</string>
+
+</resources>
