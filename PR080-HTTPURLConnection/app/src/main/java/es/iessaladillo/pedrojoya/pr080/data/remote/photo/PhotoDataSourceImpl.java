@@ -30,7 +30,7 @@ public class PhotoDataSourceImpl implements PhotoDataSource {
                     new HttpRequest.Builder(url)
                         .setTimeout(5000)
                         .build();
-                httpClient.sendAsync(httpRequest, new HttpResponse.Callback() {
+                httpClient.enqueue(httpRequest, new HttpResponse.Callback() {
                     @Override
                     public void onFailure(HttpRequest httpRequest, IOException exception) {
                         result.postValue(Resource.error(exception));

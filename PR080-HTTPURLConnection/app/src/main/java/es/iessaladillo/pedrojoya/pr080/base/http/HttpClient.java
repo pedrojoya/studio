@@ -16,15 +16,15 @@ import java.util.Map;
 public class HttpClient {
 
     @SuppressWarnings("unused")
-    public HttpResponse send(HttpRequest httpRequest) {
-        return doRequest(httpRequest);
+    public HttpResponse execute(HttpRequest httpRequest) {
+        return sendRequest(httpRequest);
     }
 
-    public void sendAsync(HttpRequest httpRequest, HttpResponse.Callback callback) {
+    public void enqueue(HttpRequest httpRequest, HttpResponse.Callback callback) {
         new SendAsyncTask(httpRequest, callback).execute();
     }
 
-    private HttpResponse doRequest(HttpRequest httpRequest) {
+    private HttpResponse sendRequest(HttpRequest httpRequest) {
         HttpURLConnection httpURLConnection = null;
         HttpResponse httpResponse;
         try {
@@ -109,7 +109,7 @@ public class HttpClient {
 
         @Override
         protected HttpResponse doInBackground(Void... voids) {
-            return doRequest(httpRequest);
+            return sendRequest(httpRequest);
         }
 
 

@@ -32,7 +32,7 @@ public class SearchDataSourceImpl implements SearchDataSource {
                     .setTimeout(5000)
                     .addHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)")
                     .build();
-                httpClient.sendAsync(httpRequest, new HttpResponse.Callback() {
+                httpClient.enqueue(httpRequest, new HttpResponse.Callback() {
                     @Override
                     public void onFailure(HttpRequest httpRequest, IOException exception) {
                         result.postValue(Resource.error(exception));

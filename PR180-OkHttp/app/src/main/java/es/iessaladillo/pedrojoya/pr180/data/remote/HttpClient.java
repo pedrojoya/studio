@@ -2,8 +2,7 @@ package es.iessaladillo.pedrojoya.pr180.data.remote;
 
 import android.content.Context;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.readystatesoftware.chuck.ChuckInterceptor;
+import com.ashokvarma.gander.GanderInterceptor;
 
 import okhttp3.OkHttpClient;
 
@@ -22,8 +21,9 @@ public class HttpClient {
     }
 
     private static OkHttpClient buildOkHttpClient(Context context) {
-        return new OkHttpClient.Builder().addNetworkInterceptor(
-                new StethoInterceptor()).addInterceptor(new ChuckInterceptor(context)).build();
+        return new OkHttpClient.Builder()
+            .addInterceptor(new GanderInterceptor(context))
+            .build();
     }
 
 }

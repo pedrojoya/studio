@@ -29,7 +29,7 @@ import es.iessaladillo.pedrojoya.pr080.utils.KeyboardUtils;
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
 
-    private static final String BASE_URL = "https://picsum.photos/100/100?image=";
+    private static final String BASE_URL = "https://picsum.photos/300/300?image=";
 
     private MainFragmentViewModel viewModel;
 

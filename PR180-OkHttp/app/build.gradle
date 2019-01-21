@@ -27,13 +27,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttp_version"
-    implementation "com.facebook.stetho:stetho:$rootProject.ext.stetho_version"
-    implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stetho_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01"
+    implementation "androidx.fragment:fragment:1.1.0-alpha03"
+    implementation "com.squareup.okhttp3:okhttp:3.12.1"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
 
-    debugImplementation "com.readystatesoftware.chuck:library:$rootProject.ext.chuck_version"
-    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$rootProject.ext.chuck_version"
+    debugImplementation 'com.ashokvarma.android:gander:1.4.0'
+    releaseImplementation 'com.ashokvarma.android:gander-no-op:1.4.0'
 }

@@ -1,16 +1,16 @@
 package es.iessaladillo.pedrojoya.pr180.data.remote.echo;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.annotation.NonNull;
-
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import es.iessaladillo.pedrojoya.pr180.base.Event;
-import es.iessaladillo.pedrojoya.pr180.base.RequestState;
+import es.iessaladillo.pedrojoya.pr180.base.Resource;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -20,39 +20,42 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class EchoLiveData extends MutableLiveData<RequestState> {
+public class EchoDataSourceImpl implements EchoDataSource {
 
+    private static final String BASE_URL = "http://www.informaticasaladillo.es/echo.php";
     private static final String KEY_NAME = "nombre";
     private static final String KEY_DATE = "fecha";
 
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-            "dd/MM/yyyy " + "HH:mm:ss", Locale.getDefault());
-    private final OkHttpClient okHttpClient;
-    private Call echoCall;
+        "dd/MM/yyyy " + "HH:mm:ss", Locale.getDefault());
 
-    public EchoLiveData(OkHttpClient okHttpClient) {
+    private final OkHttpClient okHttpClient;
+
+    public EchoDataSourceImpl(OkHttpClient okHttpClient) {
         this.okHttpClient = okHttpClient;
     }
 
-    public void requestEcho(String text) {
+    public LiveData<Resource<Event<String>>> requestEcho(String text) {
+        MutableLiveData<Resource<Event<String>>> result = new MutableLiveData<>();
+        result.postValue(Resource.loading());
         try {
-            postValue(new RequestState.Loading(true));
-            URL url = new URL("http://www.informaticasaladillo.es/echo.php");
+            URL url = new URL(BASE_URL);
             RequestBody formBody = new FormBody.Builder().addEncoded(KEY_NAME, text).addEncoded(
-                    KEY_DATE, simpleDateFormat.format(new Date())).build();
+                KEY_DATE, simpleDateFormat.format(new Date())).build();
             Request request = new Request.Builder().url(url).post(formBody).build();
-            echoCall = okHttpClient.newCall(request);
+            Call echoCall = okHttpClient.newCall(request);
             echoCall.enqueue(new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    postValue(new RequestState.Error(new Event<>(e)));
+                    result.postValue(Resource.error(e));
                 }
 
                 @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                public void onResponse(@NonNull Call call,
+                    @NonNull Response response) throws IOException {
                     // Simulate latency
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -60,23 +63,18 @@ public class EchoLiveData extends MutableLiveData<RequestState> {
                         ResponseBody responseBody = response.body();
                         if (responseBody != null) {
                             String content = responseBody.string().trim();
-                            postValue(new RequestState.Result<>(new Event<>(content)));
+                            result.postValue(Resource.success(new Event<>(content)));
                         }
                     } else {
-                        postValue(new RequestState.Error(new Event<>(new Exception(response.message()))));
+                        result.postValue(
+                            Resource.error(new Exception(response.message())));
                     }
                 }
             });
         } catch (Exception e) {
-            postValue(new RequestState.Error(new Event<>(e)));
+            result.postValue(Resource.error(e));
         }
-    }
-
-    public void cancel() {
-        if (echoCall != null) {
-            echoCall.cancel();
-            echoCall = null;
-        }
+        return result;
     }
 
 }

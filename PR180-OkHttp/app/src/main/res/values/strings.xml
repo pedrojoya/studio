@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Googleame</string>
-    <string name="fragment_main_lblName">Nombre</string>
-    <string name="fragment_main_btnSearch">Buscar</string>
-    <string name="fragment_main_btnEcho">Eco</string>
-    <string name="main_fragment_error_requesting_echo">Error solicitando
-        eco</string>
-    <string name="main_fragment_error_searching">Error en la búsqueda</string>
+    <string name="app_name">OkHttp</string>
+    <string name="main_lblName">Name</string>
+    <string name="main_btnSearch">Search</string>
+    <string name="main_btnEcho">Echo</string>
+    <string name="main_error_requesting_echo">Error requesting echo</string>
+    <string name="main_error_searching">Error searching</string>
+    <string name="main_no_results">No results</string>
+    <string name="main_lblPhoto">Photo</string>
+    <string name="main_lblPhotoUrl" translatable="false">https://picsum.photos/300/300?image
+        =</string>
+    <string name="main_imgPhoto">Photo</string>
+    <string name="main_btnLoadPhoto">Load photo</string>
 
 </resources>

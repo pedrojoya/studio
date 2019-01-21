@@ -9,7 +9,8 @@
     <string name="main_error_searching">Error searching</string>
     <string name="main_no_results">No results</string>
     <string name="main_lblPhoto">Photo</string>
-    <string name="main_lblPhotoUrl" translatable="false">https://picsum.photos/100/100?image=</string>
+    <string name="main_lblPhotoUrl" translatable="false">https://picsum.photos/300/300?image
+        =</string>
     <string name="main_imgPhoto">Photo</string>
     <string name="main_btnLoadPhoto">Load photo</string>
 
