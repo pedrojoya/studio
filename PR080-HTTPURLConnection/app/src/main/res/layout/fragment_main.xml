@@ -1,6 +1,7 @@
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/rlRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,20 +12,21 @@
         android:id="@+id/lblName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/main_lblName"
         android:labelFor="@id/txtName"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:text="@string/main_lblName"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/lblName"
-        android:layout_marginTop="@dimen/main_margin"
         android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblName"
         tools:ignore="Autofill">
 
         <requestFocus/>
@@ -34,26 +36,88 @@
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtName"
         android:layout_marginTop="@dimen/main_margin"
-        android:text="@string/main_btnSearch"/>
+        android:text="@string/main_btnSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"/>
 
     <Button
         android:id="@+id/btnEcho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnSearch"
-        android:layout_below="@+id/txtName"
-        android:layout_toEndOf="@+id/btnSearch"
-        android:text="@string/main_btnEcho"/>
+        android:text="@string/main_btnEcho"
+        app:layout_constraintStart_toEndOf="@+id/btnSearch"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"
+        app:layout_constraintTop_toTopOf="@+id/btnSearch"/>
 
     <ProgressBar
         android:id="@+id/pbProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/btnSearch"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_toEndOf="@+id/btnEcho"
         android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/btnEcho"
+        app:layout_constraintTop_toTopOf="@+id/btnSearch"
         tools:visibility="visible"/>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/lblPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_margin"
+        android:text="@string/main_lblPhoto"
+        android:labelFor="@+id/txtPhotoNumber"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch"
+        />
+
+    <EditText
+        android:id="@+id/txtPhotoNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:maxLength="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblPhotoUrl"
+        app:layout_constraintTop_toBottomOf="@+id/lblPhoto"
+        tools:ignore="Autofill"/>
+
+    <TextView
+        android:id="@+id/lblPhotoUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_lblPhotoUrl"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtPhotoNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblPhoto"/>
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/main_margin"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/main_imgPhoto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLoadPhoto"
+        tools:srcCompat="@tools:sample/avatars"/>
+
+    <Button
+        android:id="@+id/btnLoadPhoto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_margin"
+        android:text="@string/main_btnLoadPhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhotoNumber"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
