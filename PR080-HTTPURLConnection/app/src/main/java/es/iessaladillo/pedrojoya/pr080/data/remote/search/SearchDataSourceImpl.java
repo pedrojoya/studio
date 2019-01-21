@@ -9,35 +9,44 @@ import java.nio.charset.StandardCharsets;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import es.iessaladillo.pedrojoya.pr080.base.Event;
 import es.iessaladillo.pedrojoya.pr080.base.Resource;
+import es.iessaladillo.pedrojoya.pr080.base.http.HttpCall;
+import es.iessaladillo.pedrojoya.pr080.base.http.HttpCallback;
 import es.iessaladillo.pedrojoya.pr080.base.http.HttpClient;
 import es.iessaladillo.pedrojoya.pr080.base.http.HttpRequest;
 import es.iessaladillo.pedrojoya.pr080.base.http.HttpResponse;
 
 public class SearchDataSourceImpl implements SearchDataSource {
 
+    private final HttpClient httpClient;
+
+    public SearchDataSourceImpl(HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
+
     @Override
-    public LiveData<Resource<Event<String>>> search(String text) {
-        MutableLiveData<Resource<Event<String>>> result = new MutableLiveData<>();
+    public LiveData<Resource<String>> search(String text, String tag) {
+        MutableLiveData<Resource<String>> result = new MutableLiveData<>();
         result.postValue(Resource.loading());
         try {
             URL url = URI.create(
                 "https://www.google.es/search?hl=es&q=" + URLEncoder.encode(text, "UTF-8")).toURL();
-            HttpClient httpClient = new HttpClient();
-            HttpRequest httpRequest = new HttpRequest.Builder(url).setTimeout(5000).addHeader(
-                "User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)").build();
-            httpClient.enqueue(httpRequest, new HttpResponse.Callback() {
+            HttpRequest httpRequest = new HttpRequest.Builder(url).setTimeout(5000)
+                .addHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)")
+                .setTag(tag)
+                .build();
+            HttpCall searchHttpCall = httpClient.newCall(httpRequest);
+            searchHttpCall.enqueue(new HttpCallback() {
                 @Override
-                public void onFailure(HttpRequest httpRequest, IOException exception) {
+                public void onFailure(HttpCall httpCall, IOException exception) {
                     result.postValue(Resource.error(exception));
                 }
 
                 @Override
-                public void onResponse(HttpRequest httpRequest, HttpResponse httpResponse) {
+                public void onResponse(HttpCall httpCall, HttpResponse httpResponse) {
                     if (httpResponse.getCode() == HttpURLConnection.HTTP_OK) {
-                        result.postValue(Resource.success(new Event<>(extractResultFromContent(
-                            new String(httpResponse.getBody(), StandardCharsets.UTF_8)))));
+                        result.postValue(Resource.success(extractResultFromContent(
+                            new String(httpResponse.getBody(), StandardCharsets.UTF_8))));
                     } else {
                         result.postValue(Resource.error(new Exception(httpResponse.getMessage())));
                     }
@@ -47,6 +56,11 @@ public class SearchDataSourceImpl implements SearchDataSource {
             result.postValue(Resource.error(e));
         }
         return result;
+    }
+
+    @Override
+    public void cancel(String tag) {
+        httpClient.cancel(tag);
     }
 
     private String extractResultFromContent(String content) {

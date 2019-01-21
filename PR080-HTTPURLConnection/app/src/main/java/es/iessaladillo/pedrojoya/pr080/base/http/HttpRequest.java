@@ -15,6 +15,7 @@ public class HttpRequest {
     private final Map<String, String> headers;
     private final int timeout;
     private final Map<String, String> formUrlEncodedBody;
+    private final String tag;
 
     private HttpRequest(Builder builder) {
         this.url = builder.url;
@@ -22,6 +23,7 @@ public class HttpRequest {
         this.headers = builder.headers;
         this.timeout = builder.timeout;
         this.formUrlEncodedBody = builder.formUrlEncodedBody;
+        this.tag = builder.tag;
     }
 
     public String getMethod() {
@@ -44,6 +46,10 @@ public class HttpRequest {
         return formUrlEncodedBody;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
     public static class Builder {
 
         private final URL url;
@@ -51,6 +57,7 @@ public class HttpRequest {
         private final Map<String, String> headers = new LinkedHashMap<>();
         private int timeout = 0;
         private Map<String, String> formUrlEncodedBody;
+        private String tag;
 
         public Builder(URL url) {
             this.url = url;
@@ -68,6 +75,11 @@ public class HttpRequest {
 
         public Builder setTimeout(int timeoutMillis) {
             timeout = timeoutMillis;
+            return this;
+        }
+
+        public Builder setTag(String tag) {
+            this.tag = tag;
             return this;
         }
 

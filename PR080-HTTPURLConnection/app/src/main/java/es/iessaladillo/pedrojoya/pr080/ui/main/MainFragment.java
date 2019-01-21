@@ -19,7 +19,8 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr080.R;
-import es.iessaladillo.pedrojoya.pr080.base.Event;
+import es.iessaladillo.pedrojoya.pr080.base.EventObserver;
+import es.iessaladillo.pedrojoya.pr080.base.http.HttpClient;
 import es.iessaladillo.pedrojoya.pr080.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoDataSourceImpl;
 import es.iessaladillo.pedrojoya.pr080.data.remote.photo.PhotoDataSourceImpl;
@@ -54,14 +55,16 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        HttpClient httpClient = HttpClient.getInstance();
         viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(
-            new RepositoryImpl(new SearchDataSourceImpl(), new EchoDataSourceImpl(),
-                new PhotoDataSourceImpl()))).get(
+            new RepositoryImpl(new SearchDataSourceImpl(httpClient),
+                new EchoDataSourceImpl(httpClient), new PhotoDataSourceImpl(httpClient)))).get(
             MainFragmentViewModel.class);
         setupViews(requireView());
-        observeSearchResult();
-        observeEchoResult();
-        observeLoadPhotoResult();
+        observeLoading();
+        observeErrorMessage();
+        observeSuccessMessage();
+        observePhoto();
     }
 
     private void setupViews(View view) {
@@ -79,6 +82,24 @@ public class MainFragment extends Fragment {
 
     }
 
+    private void observeLoading() {
+        viewModel.loading().observe(getViewLifecycleOwner(),
+            loading -> pbProgress.setVisibility(loading ? View.VISIBLE : View.INVISIBLE));
+    }
+
+    private void observeErrorMessage() {
+        viewModel.errorMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessage));
+    }
+
+    private void observeSuccessMessage() {
+        viewModel.successMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessage));
+    }
+
+    private void observePhoto() {
+        viewModel.photo().observe(getViewLifecycleOwner(), this::showPhoto);
+    }
 
     private void search() {
         String text = txtName.getText().toString();
@@ -104,70 +125,8 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void observeSearchResult() {
-        viewModel.getSearchResultLiveData().observe(getViewLifecycleOwner(), resource -> {
-            if (resource.isLoading()) {
-                pbProgress.setVisibility(View.VISIBLE);
-            } else if (resource.hasError()) {
-                showErrorSearching(resource.getException());
-            } else if (resource.hasSuccess()) {
-                showResult(resource.getData());
-            }
-        });
-    }
-
-    private void observeEchoResult() {
-        viewModel.getEchoResultLiveData().observe(getViewLifecycleOwner(), resource -> {
-            if (resource.isLoading()) {
-                pbProgress.setVisibility(View.VISIBLE);
-            } else if (resource.hasError()) {
-                showErrorRequestingEcho(resource.getException());
-            } else if (resource.hasSuccess()) {
-                showResult(resource.getData());
-            }
-        });
-    }
-
-    private void observeLoadPhotoResult() {
-        viewModel.getPhotoLiveData().observe(getViewLifecycleOwner(), resource -> {
-            if (resource.isLoading()) {
-                pbProgress.setVisibility(View.VISIBLE);
-            } else if (resource.hasError()) {
-                showErrorRequestingEcho(resource.getException());
-            } else if (resource.hasSuccess()) {
-                showPhoto(resource.getData());
-            }
-        });
-    }
-
-    private void showErrorSearching(Event<Exception> exceptionEvent) {
-        Exception exception = exceptionEvent.getContentIfNotHandled();
-        if (exception != null) {
-            pbProgress.setVisibility(View.INVISIBLE);
-            String message = exception.getMessage();
-            if (message == null) message = getString(R.string.main_error_searching);
-            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void showErrorRequestingEcho(Event<Exception> exceptionEvent) {
-        Exception exception = exceptionEvent.getContentIfNotHandled();
-        if (exception != null) {
-            pbProgress.setVisibility(View.INVISIBLE);
-            String message = exception.getMessage();
-            if (message == null) message = getString(R.string.main_error_requesting_echo);
-            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void showResult(Event<String> result) {
-        String message = result.getContentIfNotHandled();
-        if (message != null) {
-            pbProgress.setVisibility(View.INVISIBLE);
-            Toast.makeText(requireContext(),
-                !TextUtils.isEmpty(message) ? message : getString(R.string.main_no_results),
-                Toast.LENGTH_SHORT).show();
-        }
+    private void showMessage(String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void showPhoto(Bitmap bitmap) {

@@ -32,12 +32,4 @@ public class HttpResponse {
         return exception;
     }
 
-    @SuppressWarnings("unused")
-    public interface Callback {
-
-        void onFailure(HttpRequest httpRequest, IOException exception);
-
-        void onResponse(HttpRequest httpRequest, HttpResponse httpResponse);
-
-    }
 }

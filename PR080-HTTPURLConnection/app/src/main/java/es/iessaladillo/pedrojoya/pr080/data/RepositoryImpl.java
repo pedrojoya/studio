@@ -3,7 +3,6 @@ package es.iessaladillo.pedrojoya.pr080.data;
 import android.graphics.Bitmap;
 
 import androidx.lifecycle.LiveData;
-import es.iessaladillo.pedrojoya.pr080.base.Event;
 import es.iessaladillo.pedrojoya.pr080.base.Resource;
 import es.iessaladillo.pedrojoya.pr080.data.remote.echo.EchoDataSource;
 import es.iessaladillo.pedrojoya.pr080.data.remote.photo.PhotoDataSource;
@@ -24,18 +23,33 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public LiveData<Resource<Event<String>>> search(String text) {
-        return searchDataSource.search(text);
+    public LiveData<Resource<String>> search(String text, String tag) {
+        return searchDataSource.search(text, tag);
     }
 
     @Override
-    public LiveData<Resource<Event<String>>> requestEcho(String text) {
-        return echoDataSource.requestEcho(text);
+    public LiveData<Resource<String>> requestEcho(String text, String tag) {
+        return echoDataSource.requestEcho(text, tag);
     }
 
     @Override
-    public LiveData<Resource<Bitmap>> loadPhoto(String photoUrl) {
-        return photoDataSource.loadPhoto(photoUrl);
+    public LiveData<Resource<Bitmap>> loadPhoto(String photoUrl, String tag) {
+        return photoDataSource.loadPhoto(photoUrl, tag);
+    }
+
+    @Override
+    public void cancelSearchRequest(String tag) {
+        searchDataSource.cancel(tag);
+    }
+
+    @Override
+    public void cancelEchoRequest(String tag) {
+        echoDataSource.cancel(tag);
+    }
+
+    @Override
+    public void cancelPhotoRequest(String tag) {
+        photoDataSource.cancel(tag);
     }
 
 }
