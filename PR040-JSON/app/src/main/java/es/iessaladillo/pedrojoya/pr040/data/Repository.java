@@ -2,19 +2,14 @@ package es.iessaladillo.pedrojoya.pr040.data;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import es.iessaladillo.pedrojoya.pr040.base.Resource;
 import es.iessaladillo.pedrojoya.pr040.data.model.Student;
 
 public interface Repository {
 
-    void queryStudents(Callback<List<Student>> callback);
+    LiveData<Resource<List<Student>>> queryStudents(String tag);
 
-    // Callback interface for communiation with client layer.
-    interface Callback<T> {
-
-        void onFailure(Exception exception);
-
-        void onResponse(T result);
-
-    }
+    void cancel(String tag);
 
 }

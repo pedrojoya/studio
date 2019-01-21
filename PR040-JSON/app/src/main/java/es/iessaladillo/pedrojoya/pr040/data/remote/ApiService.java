@@ -2,19 +2,13 @@ package es.iessaladillo.pedrojoya.pr040.data.remote;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import es.iessaladillo.pedrojoya.pr040.base.Resource;
 import es.iessaladillo.pedrojoya.pr040.data.remote.dto.StudentDto;
 
 public interface ApiService {
 
-    void getStudents(Callback<List<StudentDto>> callback);
+    LiveData<Resource<List<StudentDto>>> getStudents(String tag);
 
-    // Callback interface for communication with client layer.
-    interface Callback<T> {
-
-        void onFailure(Exception exception);
-
-        void onResponse(T result);
-
-    }
-
+    void cancel(String tag);
 }
