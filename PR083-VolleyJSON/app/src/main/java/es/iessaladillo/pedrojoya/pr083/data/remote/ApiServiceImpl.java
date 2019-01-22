@@ -2,7 +2,6 @@ package es.iessaladillo.pedrojoya.pr083.data.remote;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -15,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import es.iessaladillo.pedrojoya.pr083.base.Resource;
 import es.iessaladillo.pedrojoya.pr083.data.model.Student;
 import es.iessaladillo.pedrojoya.pr083.data.remote.dto.StudentDto;
 
@@ -32,30 +34,21 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public void getStudents(ApiService.Callback<List<StudentDto>> callback) {
-        //sendGetStudentsJsonRequest(BASE_URL + "students", callback);
-        sendGetStudentsGsonRequest(BASE_URL + "students", callback);
-    }
-
-    // Just for demo purpose
-    private void sendGetStudentsJsonRequest(String url, ApiService.Callback<List<StudentDto>> callback) {
-        JsonArrayRequest request = new JsonArrayRequest(url, response -> {
-            try {
-                callback.onResponse(parseJson(response));
-            } catch (Exception e) {
-                callback.onFailure(e);
-            }
-        }, error -> callback.onFailure(new Exception(error.getMessage())));
+    public LiveData<Resource<List<StudentDto>>> getStudents(String tag) {
+        MutableLiveData<Resource<List<StudentDto>>> result = new MutableLiveData<>();
+        result.setValue(Resource.loading());
+        GsonArrayRequest<List<StudentDto>> request = new GsonArrayRequest<>(Request.Method.GET,
+            BASE_URL + "students", studentListType,
+            studentDtoList -> result.setValue(Resource.success(studentDtoList)),
+            error -> result.setValue(Resource.error(new Exception(error.getMessage()))), gson, tag);
         requestQueue.add(request);
+        return result;
     }
 
-    private void sendGetStudentsGsonRequest(String url, ApiService.Callback<List<StudentDto>> callback) {
-        GsonArrayRequest<List<StudentDto>> request = new GsonArrayRequest<>(Request.Method.GET, url,
-            studentListType, callback::onResponse, error -> callback.onFailure(new Exception
-            (error.getMessage())), gson);
-        requestQueue.add(request);
+    @Override
+    public void cancel(String tag) {
+        requestQueue.cancelAll(tag);
     }
-
 
     // Just for demo purpose
     private ArrayList<Student> parseWithGson(String content) throws JsonSyntaxException {

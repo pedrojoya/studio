@@ -55,8 +55,8 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this,
-            Injector.provideMainFragmentViewModelFactory(requireContext())).get(
+        viewModel =
+            ViewModelProviders.of(this, Injector.provideMainFragmentViewModelFactory(requireContext())).get(
             MainFragmentViewModel.class);
         setupViews(requireView());
         observeStudents();

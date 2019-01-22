@@ -19,11 +19,12 @@ class GsonArrayRequest<T> extends Request<T> {
 
     @SuppressWarnings("SameParameterValue")
     GsonArrayRequest(int method, String url, Type type, Listener<T> listener,
-        ErrorListener errorListener, Gson gson) {
+        ErrorListener errorListener, Gson gson, String tag) {
         super(method, url, errorListener);
         this.type = type;
         this.listener = listener;
         this.gson = gson;
+        setTag(tag);
     }
 
     @Override

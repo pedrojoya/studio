@@ -2,10 +2,12 @@ package es.iessaladillo.pedrojoya.pr083.data;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
+import es.iessaladillo.pedrojoya.pr083.base.Resource;
 import es.iessaladillo.pedrojoya.pr083.data.mapper.StudentMapper;
 import es.iessaladillo.pedrojoya.pr083.data.model.Student;
 import es.iessaladillo.pedrojoya.pr083.data.remote.ApiService;
-import es.iessaladillo.pedrojoya.pr083.data.remote.dto.StudentDto;
 
 public class RepositoryImpl implements Repository {
 
@@ -31,18 +33,21 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void queryStudents(Callback<List<Student>> callback) {
-        apiservice.getStudents(new ApiService.Callback<List<StudentDto>>() {
-            @Override
-            public void onFailure(Exception exception) {
-                callback.onFailure(exception);
-            }
-
-            @Override
-            public void onResponse(List<StudentDto> result) {
-                callback.onResponse(studentMapper.map(result));
+    public LiveData<Resource<List<Student>>> queryStudents(String tag) {
+        return Transformations.map(apiservice.getStudents(tag), resource -> {
+            if (resource.isLoading()) {
+                return Resource.loading();
+            } else if (resource.hasError()) {
+                return Resource.error(resource.getException());
+            } else {
+                return Resource.success(studentMapper.map(resource.getData()));
             }
         });
+    }
+
+    @Override
+    public void cancel(String tag) {
+        apiservice.cancel(tag);
     }
 
 }
