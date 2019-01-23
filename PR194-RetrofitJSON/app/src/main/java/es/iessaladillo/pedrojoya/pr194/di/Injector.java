@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.ashokvarma.gander.GanderInterceptor;
 
+import java.util.concurrent.TimeUnit;
+
+import es.iessaladillo.pedrojoya.pr194.base.TagCallFactory;
 import es.iessaladillo.pedrojoya.pr194.data.Repository;
 import es.iessaladillo.pedrojoya.pr194.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr194.data.mapper.StudentMapper;
@@ -16,6 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Injector {
 
     private Injector() { }
+
+    private static OkHttpClient okHttpClient;
 
     public static MainFragmentViewModelFactory provideMainFragmentViewModelFactory(Context context) {
         return new MainFragmentViewModelFactory(getRepository(context));
@@ -30,12 +35,14 @@ public class Injector {
     }
 
     private static ApiServiceImpl getApiService(Context context) {
-        return ApiServiceImpl.getInstance(provideApi(context));
+        return ApiServiceImpl.getInstance(provideApi(context), provideOkHttpClient(context));
     }
 
     private static ApiServiceImpl.Api provideApi(Context context) {
+        OkHttpClient okHttpClient = provideOkHttpClient(context);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://my-json-server.typicode.com/pedrojoya/jsonserver/")
-            .client(provideOkHttpClient(context))
+            .client(okHttpClient)
+            .callFactory(new TagCallFactory(okHttpClient))
             .addConverterFactory(GsonConverterFactory.create())
             .build();
         return retrofit.create(ApiServiceImpl.Api.class);
@@ -46,8 +53,17 @@ public class Injector {
     }
 
     private static OkHttpClient provideOkHttpClient(Context context) {
-        return new OkHttpClient.Builder()
-            .addInterceptor(provideGanderInterceptor(context)).build();
+        if (okHttpClient == null) {
+            synchronized (Injector.class) {
+                if (okHttpClient == null) {
+                    okHttpClient = new OkHttpClient.Builder()
+                        .addInterceptor(provideGanderInterceptor(context))
+                        .callTimeout(5, TimeUnit.SECONDS)
+                        .build();
+                }
+            }
+        }
+        return okHttpClient;
     }
 
 }
