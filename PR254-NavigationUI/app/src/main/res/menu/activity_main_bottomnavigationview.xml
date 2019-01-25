@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mainDestination"
+        android:icon="@drawable/ic_camera_black_24dp"
+        android:title="@string/main_title"
+        android:menuCategory="secondary"/>
+    <item
+        android:id="@+id/galleryDestination"
+        android:icon="@drawable/ic_gallery_black_24dp"
+        android:title="@string/gallery_title"
+        android:menuCategory="secondary"/>
+    <item
+        android:id="@+id/slideshowDestination"
+        android:icon="@drawable/ic_slideshow_black_24dp"
+        android:title="@string/slideshow_title"
+        android:menuCategory="secondary"/>
+</menu>

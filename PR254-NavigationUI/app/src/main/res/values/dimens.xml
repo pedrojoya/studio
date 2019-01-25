@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="slideshow_lblLorem_padding">16dp</dimen>
+    <dimen name="slideshow_lblLorem_textSize">20sp</dimen>
+    <dimen name="gallery_margin">8dp</dimen>
+    <dimen name="margin_correction">112dp</dimen>
+</resources>
