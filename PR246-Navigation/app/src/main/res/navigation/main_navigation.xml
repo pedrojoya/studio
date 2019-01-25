@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/option1Fragment">
+    android:id="@+id/main_navigation"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:startDestination="@id/destMainFragment">
 
     <fragment
-        android:id="@+id/option1Fragment"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option1.Option1Fragment"
-        android:label="Option 1"
-        tools:layout="@layout/option1_fragment">
+        android:id="@+id/destMainFragment"
+        android:name="es.iessaladillo.pedrojoya.pr246.main.MainFragment"
+        android:label="@string/main_title"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/actionMainToDetail"
+            app:destination="@id/destDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/actionMainToSettings"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/actionMainToAnother"
-            app:destination="@id/anotherActivity"
-            app:popUpToInclusive="false"/>
-        <action
-            android:id="@+id/actionOption1ToOption1a"
-            app:destination="@id/option1aFragment" />
+            app:destination="@id/destAnotherActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment
-        android:id="@+id/option1aFragment"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option1.Option1aFragment"
-        android:label="option1a_fragment"
-        tools:layout="@layout/option1a_fragment" >
+        android:id="@+id/destDetailFragment"
+        android:name="es.iessaladillo.pedrojoya.pr246.detail.DetailFragment"
+        android:label="@string/detail_title"
+        tools:layout="@layout/fragment_detail">
         <argument
-            android:name="counter"
-            android:defaultValue="0"/>
+            android:name="name"
+            app:argType="string"/>
     </fragment>
     <fragment
-        android:id="@+id/option2Fragment"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option2.Option2Fragment"
-        android:label="Option 2"
-        tools:layout="@layout/option2_fragment"/>
-    <fragment
-        android:id="@+id/option3Fragment"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.main.option3.Option3Fragment"
-        android:label="Option 3"
-        tools:layout="@layout/option3_fragment"/>
+        android:id="@+id/settingsFragment"
+        android:name="es.iessaladillo.pedrojoya.pr246.settings.SettingsFragment"
+        android:label="@string/settings_title"
+        tools:layout="@layout/fragment_settings"/>
     <activity
-        android:id="@+id/anotherActivity"
-        android:name="es.iessaladillo.pedrojoya.pr246_navigation.ui.another.AnotherActivity"
-        android:label="Another activity"
-        tools:layout="@layout/another_activity">
+        android:id="@+id/destAnotherActivity"
+        android:name="es.iessaladillo.pedrojoya.pr246.another.AnotherActivity"
+        android:label="AnotherActivity"
+        tools:layout="@layout/activity_another">
         <argument
-            android:name="counter"
-            android:defaultValue="0"/>
+            android:name="name"
+            app:argType="string"/>
     </activity>
+
 
 </navigation>

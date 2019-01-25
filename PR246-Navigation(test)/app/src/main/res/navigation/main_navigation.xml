@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/option1Fragment">
+
+    <fragment
+        android:id="@+id/option1Fragment"
+        android:name="es.iessaladillo.pedrojoya.pr246.ui.main.option1.Option1Fragment"
+        android:label="Option 1"
+        tools:layout="@layout/option1_fragment">
+        <action
+            android:id="@+id/actionMainToAnother"
+            app:destination="@id/anotherActivity"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/actionOption1ToOption1a"
+            app:destination="@id/option1aFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/option1aFragment"
+        android:name="es.iessaladillo.pedrojoya.pr246.ui.main.option1.Option1aFragment"
+        android:label="option1a_fragment"
+        tools:layout="@layout/option1a_fragment" >
+        <argument
+            android:name="counter"
+            android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/option2Fragment"
+        android:name="es.iessaladillo.pedrojoya.pr246.ui.main.option2.Option2Fragment"
+        android:label="Option 2"
+        tools:layout="@layout/option2_fragment"/>
+    <fragment
+        android:id="@+id/option3Fragment"
+        android:name="es.iessaladillo.pedrojoya.pr246.ui.main.option3.Option3Fragment"
+        android:label="Option 3"
+        tools:layout="@layout/option3_fragment"/>
+    <activity
+        android:id="@+id/anotherActivity"
+        android:name="es.iessaladillo.pedrojoya.pr246.ui.another.SettingsActivity"
+        android:label="Another activity"
+        tools:layout="@layout/another_activity">
+        <argument
+            android:name="counter"
+            android:defaultValue="0"/>
+    </activity>
+
+</navigation>
