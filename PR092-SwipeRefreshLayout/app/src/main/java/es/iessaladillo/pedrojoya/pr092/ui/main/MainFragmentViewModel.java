@@ -3,44 +3,36 @@ package es.iessaladillo.pedrojoya.pr092.ui.main;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
-import es.iessaladillo.pedrojoya.pr092.base.RequestState;
 import es.iessaladillo.pedrojoya.pr092.data.Repository;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragmentViewModel extends ViewModel {
 
-    private final LiveData<List<String>> data;
-    private final MutableLiveData<Boolean> refreshing = new MutableLiveData<>();
-    private final LiveData<RequestState<List<String>>> refreshState;
-    private final Repository repository;
+    private final MutableLiveData<Boolean> queryLogsTrigger = new MutableLiveData<>();
+    private final LiveData<List<String>> logs;
+    private final MediatorLiveData<Boolean> refreshing = new MediatorLiveData<>();
 
     public MainFragmentViewModel(Repository repository) {
-        this.repository = repository;
-        data = repository.queryLogs();
-        refreshState = Transformations.switchMap(refreshing, active -> repository.refreshLogs());
+        logs = Transformations.switchMap(queryLogsTrigger, query -> repository.queryLogs());
+        refreshing.addSource(queryLogsTrigger, query -> refreshing.setValue(true));
+        refreshing.addSource(logs, data -> refreshing.setValue(false));
+        refresh();
     }
 
     public void refresh() {
-        refreshing.setValue(true);
+        queryLogsTrigger.setValue(true);
     }
 
-    public LiveData<List<String>> getData() {
-        return data;
+    public LiveData<List<String>> getLogs() {
+        return logs;
     }
 
-    public LiveData<RequestState<List<String>>> getRefreshState() {
-        return refreshState;
+    public LiveData<Boolean> getRefreshing() {
+        return refreshing;
     }
-
-    @SuppressWarnings("EmptyMethod")
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        repository.cancelRefresh();
-    }
-
 
 }

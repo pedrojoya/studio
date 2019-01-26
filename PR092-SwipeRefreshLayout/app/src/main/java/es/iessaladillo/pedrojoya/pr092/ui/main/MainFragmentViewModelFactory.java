@@ -13,10 +13,10 @@ class MainFragmentViewModelFactory implements ViewModelProvider.Factory {
         this.repository = repository;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        //noinspection unchecked
         return (T) new MainFragmentViewModel(repository);
     }
 
