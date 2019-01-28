@@ -8,6 +8,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 
+import es.iessaladillo.pedrojoya.pr102.reminder.ReminderReceiver;
+
+@SuppressWarnings("WeakerAccess")
 public class App extends Application {
 
     @Override
@@ -20,7 +23,8 @@ public class App extends Application {
 
     @TargetApi(Build.VERSION_CODES.O)
     private void setupNotificationChannel() {
-        NotificationChannel notificationChannel = new NotificationChannel(Constants.MAIN_CHANNEL_ID,
+        NotificationChannel notificationChannel =
+            new NotificationChannel(ReminderReceiver.MAIN_CHANNEL_ID,
                 getString(R.string.main_activity_channel_name),
                 NotificationManager.IMPORTANCE_HIGH);
         notificationChannel.setDescription(getString(R.string.main_activity_channel_description));

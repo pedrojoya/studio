@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer name="activity_main_txtInterval_ems">4</integer>
-    <integer name="activity_main_txtInterval_maxLength">7</integer>
-</resources>

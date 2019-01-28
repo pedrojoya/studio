@@ -1,16 +1,18 @@
-package es.iessaladillo.pedrojoya.pr102.ui.main;
+package es.iessaladillo.pedrojoya.pr102.ui.edit;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -19,32 +21,44 @@ import es.iessaladillo.pedrojoya.pr102.R;
 import es.iessaladillo.pedrojoya.pr102.base.TimePickerDialogFragment;
 import es.iessaladillo.pedrojoya.pr102.reminder.ReminderScheduler;
 
-public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+public class EditActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
-    private TextView txtMessage;
-    private TextView txtWhen;
-    private Calendar when;
-    private MainActivityViewModel viewModel;
+    private String message;
+    private Calendar when = Calendar.getInstance();
+    private EditText txtMessage;
+    private EditText txtWhen;
+    private EditActivityViewModel viewModel;
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY HH:mm",
         Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_edit);
+        Objects.requireNonNull(getIntent());
+        if (!getIntent().hasExtra(ReminderScheduler.EXTRA_WHEN)) {
+            throw new IllegalArgumentException("When must be passed as extra");
+        }
+        getIntentData(getIntent());
         viewModel = ViewModelProviders.of(this,
-            new MainActivityViewModelFactory(ReminderScheduler.getInstance(getApplication()))).get(
-            MainActivityViewModel.class);
+            new EditActivityViewModelFactory(ReminderScheduler.getInstance(getApplication()))).get(
+            EditActivityViewModel.class);
         setupViews();
+    }
+
+    private void getIntentData(Intent intent) {
+        message = intent.getStringExtra(ReminderScheduler.EXTRA_MESSAGE);
+        when.setTimeInMillis(intent.getLongExtra(ReminderScheduler.EXTRA_WHEN, 0));
     }
 
     private void setupViews() {
         txtMessage = ActivityCompat.requireViewById(this, R.id.txtMessage);
         txtWhen = ActivityCompat.requireViewById(this, R.id.txtWhen);
-        Button btnCreateAlarm = ActivityCompat.requireViewById(this, R.id.btnCreateReminder);
-        Button btnCreateClockAlarm = ActivityCompat.requireViewById(this, R.id.btnCreateClockAlarm);
-        Button btnSendToClockApp = ActivityCompat.requireViewById(this, R.id.btnSendToClockApp);
+        Button btnRescheduleReminder = ActivityCompat.requireViewById(this, R.id.btnRescheduleReminder);
+        Button btnCancelReminder = ActivityCompat.requireViewById(this, R.id.btnCancelReminder);
 
+        txtMessage.setText(message);
+        txtWhen.setText(simpleDateFormat.format(when.getTime()));
         txtWhen.setInputType(InputType.TYPE_NULL);
         txtWhen.setKeyListener(null);
         txtWhen.setOnFocusChangeListener((v, hasFocus) -> {
@@ -53,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             }
         });
         txtWhen.setOnClickListener(v -> showTimePickerDialog());
-        btnCreateAlarm.setOnClickListener(v -> createAlarm());
-        btnCreateClockAlarm.setOnClickListener(v -> createClockAlarm());
-        btnSendToClockApp.setOnClickListener(v -> sendToClockApp());
+
+        btnRescheduleReminder.setOnClickListener(v -> reschedule());
+        btnCancelReminder.setOnClickListener(v -> cancel());
     }
 
     private void showTimePickerDialog() {
@@ -69,25 +83,15 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         }
     }
 
-    private void createAlarm() {
+    private void reschedule() {
         String message = txtMessage.getText().toString();
         if (!TextUtils.isEmpty(message) && when != null) {
-            viewModel.createReminder(message, when);
+            viewModel.rescheduleReminder(message, when);
         }
     }
 
-    private void createClockAlarm() {
-        String message = txtMessage.getText().toString();
-        if (!TextUtils.isEmpty(message) && when != null) {
-            viewModel.createClockAlarm(message, when);
-        }
-    }
-
-    private void sendToClockApp() {
-        String message = txtMessage.getText().toString();
-        if (!TextUtils.isEmpty(message) && when != null) {
-            viewModel.sendToClockApp(message, when);
-        }
+    private void cancel() {
+        viewModel.cancelReminder();
     }
 
     @Override

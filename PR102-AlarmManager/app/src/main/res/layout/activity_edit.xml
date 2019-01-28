@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,37 +54,22 @@
         tools:ignore="Autofill"/>
 
     <Button
-        android:id="@+id/btnCreateReminder"
+        android:id="@+id/btnRescheduleReminder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/main_margin"
-        android:text="@string/main_btnCreateReminder"
-        app:layout_constraintEnd_toStartOf="@+id/btnCreateClockAlarm"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:text="@string/edit_btnRescheduleReminder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtWhen"/>
 
     <Button
-        android:id="@+id/btnCreateClockAlarm"
+        android:id="@+id/btnCancelReminder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/main_btnCreateClockAlarm"
-        app:layout_constraintEnd_toStartOf="@+id/btnSendToClockApp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnCreateReminder"
-        app:layout_constraintTop_toTopOf="@+id/btnCreateReminder"/>
+        android:text="@string/main_btnCancelReminder"
+        app:layout_constraintStart_toEndOf="@+id/btnRescheduleReminder"
+        app:layout_constraintTop_toTopOf="@+id/btnRescheduleReminder"/>
 
-    <Button
-        android:id="@+id/btnSendToClockApp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/main_btnSendToClockApp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnCreateClockAlarm"
-        app:layout_constraintTop_toTopOf="@+id/btnCreateClockAlarm"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

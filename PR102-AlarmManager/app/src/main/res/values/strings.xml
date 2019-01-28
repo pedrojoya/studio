@@ -2,13 +2,19 @@
 <resources>
 
     <string name="app_name">AlarmManager</string>
-    <string name="main_activity_important_warning">Aviso importante</string>
-    <string name="activity_main_lblMessage">Mensaje</string>
-    <string name="activity_main_lblInterval">Intervalo (ms)</string>
-    <string name="activity_main_lblTurnOn">Avisar</string>
-    <string name="activity_main_txtMessage">Quillo, ponte ya a currar!!!</string>
-    <string name="activity_main_txtInterval">5000</string>
+    <string name="main_important_warning">Aviso importante</string>
+    <string name="main_lblMessage">Message</string>
+    <string name="main_lblWhen">When</string>
     <string name="main_activity_channel_name">Main channel</string>
     <string name="main_activity_channel_description">Main notification channel for the app</string>
+    <string name="main_btnCreateReminder">Create reminder</string>
+    <string name="warning_lblMessage">Message</string>
+    <string name="main_btnCreateClockAlarm">Create clock alarm</string>
+    <string name="main_btnSendToClockApp">Send to clock app</string>
+    <string name="edit_btnRescheduleReminder">Reschedule</string>
+    <string name="main_btnCancelReminder">Cancel</string>
+    <string name="edit_title">Update reminder</string>
+    <string name="main_title">Create Reminder</string>
+    <string name="reminder_title">Reminder</string>
 
 </resources>
