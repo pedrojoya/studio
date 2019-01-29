@@ -22,19 +22,22 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import es.iessaladillo.pedrojoya.pr242.BuildConfig;
-import es.iessaladillo.pedrojoya.pr242.Constants;
 import es.iessaladillo.pedrojoya.pr242.R;
+import es.iessaladillo.pedrojoya.pr242.base.Resource;
 
 @SuppressWarnings("WeakerAccess")
 public class ExportToTextFileService extends IntentService {
 
+    public static final String CHANNEL_ID = "foreground_service";
     private static final String EXTRA_DATA = "EXTRA_DATA";
-    public static final String EXTRA_FILENAME = "EXTRA_FILENAME";
-    public static final String ACTION_EXPORTED = BuildConfig.APPLICATION_ID + ".ACTION_EXPORTED";
     private static final int PROGRESS_NOTIF_ID = 100;
     private static final int RESULT_NOTIF_ID = 101;
+
+    private static final MutableLiveData<Resource<Uri>> _result = new MutableLiveData<>();
+    public static final LiveData<Resource<Uri>> result = _result;
 
     private NotificationCompat.Builder builder;
 
@@ -51,14 +54,16 @@ public class ExportToTextFileService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         if (intent != null) {
+            _result.postValue(Resource.loading());
+            File outputFile = createFile();
             try {
-                File outputFile = createFile();
+                Thread.sleep(5000);
                 writeListToFile(outputFile, intent.getStringArrayListExtra(EXTRA_DATA));
-                sendResult(outputFile);
                 showResultNotification(outputFile);
             } catch (FileNotFoundException | InterruptedException e) {
-                e.printStackTrace();
+                _result.postValue(Resource.error(e));
             }
+            _result.postValue(Resource.success(Uri.fromFile(outputFile)));
         }
         stopForeground(true);
     }
@@ -68,7 +73,7 @@ public class ExportToTextFileService extends IntentService {
                 FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileprovider",
                         outputFile), "text/plain").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        builder = new NotificationCompat.Builder(this, Constants.CHANNEL_ID).setOngoing(true)
+        builder = new NotificationCompat.Builder(this, CHANNEL_ID).setOngoing(true)
                 .setSmallIcon(R.drawable.ic_file_download_black_24dp)
                 .setTicker(getString(R.string.export_service_exporting))
                 .setContentTitle(getString(R.string.export_service_exporting))
@@ -84,7 +89,7 @@ public class ExportToTextFileService extends IntentService {
     }
 
     private Notification buildForegroundNotification() {
-        builder = new NotificationCompat.Builder(this, Constants.CHANNEL_ID).setOngoing(true)
+        builder = new NotificationCompat.Builder(this, CHANNEL_ID).setOngoing(true)
                 .setSmallIcon(R.drawable.ic_file_download_black_24dp)
                 .setTicker(getString(R.string.export_service_exporting))
                 .setContentTitle(getString(R.string.export_service_exporting))
@@ -95,20 +100,14 @@ public class ExportToTextFileService extends IntentService {
         return builder.build();
     }
 
-    private void sendResult(File outputFile) {
-        Intent intent = new Intent(ACTION_EXPORTED);
-        intent.putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile));
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-    }
-
     private void writeListToFile(File outputFile, List<String> items) throws FileNotFoundException, InterruptedException {
-        PrintWriter printWriter = new PrintWriter(outputFile);
-        for (int i = 0; i < items.size(); i++) {
-            Thread.sleep(100);
-            updateForegroundNotification(i + 1, items.size());
-            printWriter.println(items.get(i));
+        try (PrintWriter printWriter = new PrintWriter(outputFile)) {
+            for (int i = 0, max = items.size(); i < items.size(); i++) {
+                Thread.sleep(100);
+                updateForegroundNotification(i + 1, max);
+                printWriter.println(items.get(i));
+            }
         }
-        printWriter.close();
     }
 
     private void updateForegroundNotification(int current, int max) {
@@ -135,9 +134,9 @@ public class ExportToTextFileService extends IntentService {
         return new File(rootDir, filename);
     }
 
-    public static void start(Context context, ArrayList<String> data) {
+    public static void start(Context context, List<String> data) {
         Intent intent = new Intent(context, ExportToTextFileService.class);
-        intent.putExtra(EXTRA_DATA, data);
+        intent.putExtra(EXTRA_DATA, new ArrayList<>(data));
         ContextCompat.startForegroundService(context, intent);
     }
 
