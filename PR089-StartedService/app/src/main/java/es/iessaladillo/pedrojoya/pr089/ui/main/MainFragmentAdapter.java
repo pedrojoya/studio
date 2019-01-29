@@ -1,22 +1,32 @@
 package es.iessaladillo.pedrojoya.pr089.ui.main;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr089.R;
-import es.iessaladillo.pedrojoya.pr089.base.BaseListAdapter;
-import es.iessaladillo.pedrojoya.pr089.base.BaseViewHolder;
 
-public class MainFragmentAdapter extends BaseListAdapter<String, MainFragmentAdapter.ViewHolder> {
+public class MainFragmentAdapter extends ListAdapter<String, MainFragmentAdapter.ViewHolder> {
 
-    MainFragmentAdapter(List<String> data) {
-        super(data);
+    MainFragmentAdapter() {
+        super(new DiffUtil.ItemCallback<String>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull String oldItem, @NonNull String newItem) {
+                return TextUtils.equals(oldItem, newItem);
+            }
+
+            @Override
+            public boolean areContentsTheSame(@NonNull String oldItem, @NonNull String newItem) {
+                return true;
+            }
+        });
     }
 
     @NonNull
@@ -31,12 +41,12 @@ public class MainFragmentAdapter extends BaseListAdapter<String, MainFragmentAda
         holder.bind(getItem(position));
     }
 
-    class ViewHolder extends BaseViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView lblName;
 
         ViewHolder(View itemView) {
-            super(itemView, onItemClickListener, onItemLongClickListener);
+            super(itemView);
             lblName = ViewCompat.requireViewById(itemView, R.id.lblName);
         }
 

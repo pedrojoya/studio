@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Started Service</string>
+    <string name="app_name">StartedService</string>
     <string name="main_lblEmptyView">No students yet</string>
     <string name="main_exported">List exported to file</string>
     <string name="main_open">Open</string>
+    <string name="main_no_app_to_show_file">No app can show the file content</string>
 
 </resources>

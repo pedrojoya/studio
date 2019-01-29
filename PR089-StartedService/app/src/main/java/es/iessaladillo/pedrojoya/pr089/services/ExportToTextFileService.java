@@ -16,16 +16,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import es.iessaladillo.pedrojoya.pr089.BuildConfig;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import es.iessaladillo.pedrojoya.pr089.base.Resource;
 
 public class ExportToTextFileService extends Service {
 
     private static final String EXTRA_DATA = "EXTRA_DATA";
-    public static final String EXTRA_FILENAME = "EXTRA_FILENAME";
-    public static final String ACTION_EXPORTED = BuildConfig.APPLICATION_ID + ".ACTION_EXPORTED";
+
+    private static final MutableLiveData<Resource<Uri>> _result = new MutableLiveData<>();
+    public static final LiveData<Resource<Uri>> result = _result;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -60,27 +61,23 @@ public class ExportToTextFileService extends Service {
     }
 
     private void saveToFile(ArrayList<String> students) {
+        _result.postValue(Resource.loading());
+        File outputFile = createFile();
         try {
-            TimeUnit.SECONDS.sleep(5);
-            File outputFile = createFile();
+            Thread.sleep(5000);
             writeListToFile(outputFile, students);
-            sendResult(outputFile);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException | InterruptedException e) {
+            _result.postValue(Resource.error(e));
         }
-    }
-
-    private void sendResult(File outputFile) {
-        LocalBroadcastManager.getInstance(this).sendBroadcast(
-                new Intent(ACTION_EXPORTED).putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile)));
+        _result.postValue(Resource.success(Uri.fromFile(outputFile)));
     }
 
     private void writeListToFile(File outputFile, List<String> items) throws FileNotFoundException {
-        PrintWriter printWriter = new PrintWriter(outputFile);
-        for (String item : items) {
-            printWriter.println(item);
+        try (PrintWriter printWriter = new PrintWriter(outputFile)) {
+            for (String item : items) {
+                printWriter.println(item);
+            }
         }
-        printWriter.close();
     }
 
     private File createFile() {
@@ -101,8 +98,8 @@ public class ExportToTextFileService extends Service {
         return new File(rootDir, filename);
     }
 
-    public static void start(Context context, ArrayList<String> data) {
-        context.startService(new Intent(context, ExportToTextFileService.class).putExtra(EXTRA_DATA, data));
+    public static void start(Context context, List<String> data) {
+        context.startService(new Intent(context, ExportToTextFileService.class).putExtra(EXTRA_DATA, new ArrayList<>(data)));
     }
 
 }

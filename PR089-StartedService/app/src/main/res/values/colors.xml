@@ -3,7 +3,4 @@
     <color name="primary">#673AB7</color>
     <color name="primary_dark">#512DA8</color>
     <color name="accent">#8BC34A</color>
-    <!-- Colores para la Action Mode Contexual -->
-    <color name="actionModeBackground">#757575</color>
-    <color name="actionMenuTextColor">#FFF</color>
 </resources>
