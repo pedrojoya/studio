@@ -1,17 +1,23 @@
 package es.iessaladillo.pedrojoya.pr100.ui.main;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.livinglifetechway.quickpermissions.annotations.WithPermissions;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +34,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr100.BuildConfig;
 import es.iessaladillo.pedrojoya.pr100.R;
-import es.iessaladillo.pedrojoya.pr100.base.Event;
+import es.iessaladillo.pedrojoya.pr100.base.EventObserver;
 import es.iessaladillo.pedrojoya.pr100.services.ExportToTextFileService;
 
 @SuppressWarnings("WeakerAccess")
@@ -38,6 +44,8 @@ public class MainFragment extends Fragment {
     private MainFragmentAdapter listAdapter;
 
     private RecyclerView lstStudents;
+    private TextView lblEmptyView;
+    private ProgressBar progressBar;
 
     static MainFragment newInstance() {
         return new MainFragment();
@@ -46,16 +54,21 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup parent,
-            @Nullable Bundle savedInstanceState) {
+        @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, parent, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(MainFragmentViewModel.class);
-        setupViews(view);
-        viewModel.getExportedLiveData().observe(getViewLifecycleOwner(), this::showSnackBar);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(
+            new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.alumnos))))).get(
+            MainFragmentViewModel.class);
+        setupViews(requireView());
+        observeStudents();
+        observeLoading();
+        observeUri();
+        observeErrorMessage();
     }
 
     private void setupViews(View view) {
@@ -71,68 +84,90 @@ public class MainFragment extends Fragment {
 
     private void setupFab(View view) {
         ViewCompat.requireViewById(view, R.id.btnExport).setOnClickListener(v -> export());
+        progressBar = ViewCompat.requireViewById(view, R.id.progressBar);
     }
 
     private void setupRecyclerView(View view) {
         lstStudents = ViewCompat.requireViewById(view, R.id.lstStudents);
-        listAdapter = new MainFragmentAdapter(viewModel.getStudents());
-        listAdapter.setEmptyView(ViewCompat.requireViewById(view, R.id.emptyView));
+        lblEmptyView = ViewCompat.requireViewById(view, R.id.lblEmptyView);
+
+        listAdapter = new MainFragmentAdapter();
         lstStudents.setHasFixedSize(true);
-        lstStudents.setLayoutManager(
-                new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+        lstStudents.setLayoutManager(new LinearLayoutManager(requireContext()));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         lstStudents.addItemDecoration(
-                new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL));
+            new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL));
         lstStudents.setAdapter(listAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
-                    @Override
-                    public boolean onMove(@NonNull RecyclerView recyclerView,
-                            @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                        return false;
-                    }
+                @Override
+                public boolean onMove(@NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    @NonNull RecyclerView.ViewHolder target) {
+                    return false;
+                }
 
-                    @Override
-                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        deleteStudent(viewHolder.getAdapterPosition());
-                    }
-                });
+                @Override
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                    viewModel.deleteStudent(viewHolder.getAdapterPosition());
+                }
+            });
         itemTouchHelper.attachToRecyclerView(lstStudents);
     }
 
-    private void deleteStudent(int position) {
-        viewModel.deleteStudent(position);
-        listAdapter.notifyItemRemoved(position);
+    private void observeStudents() {
+        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
+            listAdapter.submitList(students);
+            lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+        });
     }
 
-    private void showSnackBar(Event<Uri> uriEvent) {
-        Uri uri = uriEvent.getContentIfNotHandled();
-        if (uri != null) {
-            Snackbar.make(lstStudents, R.string.main_exported, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.main_open, v -> showFile(uri))
-                    .show();
-        }
+    private void observeUri() {
+        viewModel.getUri().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showSnackBar));
+    }
+
+    private void observeLoading() {
+        viewModel.getLoading().observe(getViewLifecycleOwner(),
+            loading -> progressBar.setVisibility(loading ? View.VISIBLE : View.INVISIBLE));
+    }
+
+    private void observeErrorMessage() {
+        viewModel.getErrorMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showErrorMessage));
+    }
+
+    private void showSnackBar(Uri uri) {
+        Snackbar.make(lstStudents, R.string.main_exported, Snackbar.LENGTH_LONG).setAction(
+            R.string.main_open, v -> showFile(uri)).show();
     }
 
     private void showFile(Uri uri) {
         if (uri != null && uri.getPath() != null) {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW).setDataAndType(
-                        FileProvider.getUriForFile(requireContext(),
-                                BuildConfig.APPLICATION_ID + ".fileprovider",
-                                new File(uri.getPath())), "text/plain")
-                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION));
-            } catch (Exception e) {
-                e.printStackTrace();
+                    FileProvider.getUriForFile(requireContext(),
+                        BuildConfig.APPLICATION_ID + ".fileprovider", new File(uri.getPath())),
+                    "text/plain").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION));
+            } catch (ActivityNotFoundException e) {
+                Snackbar.make(lstStudents, getString(R.string.main_no_app_to_show_file),
+                    Snackbar.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void showErrorMessage(String message) {
+        Snackbar.make(lstStudents, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @SuppressWarnings("WeakerAccess")
     @WithPermissions(permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE})
     public void export() {
-        ExportToTextFileService.start(requireContext(), viewModel.getStudents());
+        List<String> currentStudents = viewModel.getStudents().getValue();
+        if (currentStudents != null) {
+            ExportToTextFileService.start(requireContext(), new ArrayList<>(currentStudents));
+        }
     }
 
 }

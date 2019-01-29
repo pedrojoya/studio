@@ -14,17 +14,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import es.iessaladillo.pedrojoya.pr100.BuildConfig;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import es.iessaladillo.pedrojoya.pr100.base.Resource;
 
 public class ExportToTextFileService extends IntentService {
 
     private static final String EXTRA_DATA = "EXTRA_DATA";
-    public static final String EXTRA_FILENAME = "EXTRA_FILENAME";
-    public static final String ACTION_EXPORTED = BuildConfig.APPLICATION_ID + ".ACTION_EXPORTED";
     private static final String SERVICE_NAME = "export";
+
+    private static final MutableLiveData<Resource<Uri>> _result = new MutableLiveData<>();
+    public static final LiveData<Resource<Uri>> result = _result;
 
     public ExportToTextFileService() {
         super(SERVICE_NAME);
@@ -32,27 +33,23 @@ public class ExportToTextFileService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        _result.postValue(Resource.loading());
+        File outputFile = createFile();
         try {
-            TimeUnit.SECONDS.sleep(5);
-            File outputFile = createFile();
+            Thread.sleep(5000);
             writeListToFile(outputFile, intent.getStringArrayListExtra(EXTRA_DATA));
-            sendResult(outputFile);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException | InterruptedException e) {
+            _result.postValue(Resource.error(e));
         }
-    }
-
-    private void sendResult(File outputFile) {
-        LocalBroadcastManager.getInstance(this).sendBroadcast(
-                new Intent(ACTION_EXPORTED).putExtra(EXTRA_FILENAME, Uri.fromFile(outputFile)));
+        _result.postValue(Resource.success(Uri.fromFile(outputFile)));
     }
 
     private void writeListToFile(File outputFile, List<String> items) throws FileNotFoundException {
-        PrintWriter printWriter = new PrintWriter(outputFile);
-        for (String item : items) {
-            printWriter.println(item);
+        try (PrintWriter printWriter = new PrintWriter(outputFile)) {
+            for (String item : items) {
+                printWriter.println(item);
+            }
         }
-        printWriter.close();
     }
 
     private File createFile() {
