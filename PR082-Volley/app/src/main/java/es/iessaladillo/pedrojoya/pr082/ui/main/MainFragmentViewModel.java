@@ -29,9 +29,6 @@ class MainFragmentViewModel extends ViewModel {
     private final MediatorLiveData<Event<String>> errorMessage = new MediatorLiveData<>();
     private final MediatorLiveData<Event<String>> sucessMessage = new MediatorLiveData<>();
     private final MediatorLiveData<Bitmap> photo = new MediatorLiveData<>();
-    private boolean searchLoading;
-    private boolean echoLoading;
-    private boolean photoLoading;
 
     MainFragmentViewModel(Repository repository) {
         this.repository = repository;
@@ -54,18 +51,17 @@ class MainFragmentViewModel extends ViewModel {
     }
 
     private void setupLoadingTransformation() {
-        loading.addSource(searchResultLiveData, searchResource -> {
-            searchLoading = searchResource.isLoading();
-            loading.setValue(searchLoading || echoLoading || photoLoading);
-        });
-        loading.addSource(echoResultLiveData, echoResource -> {
-            echoLoading = echoResource.isLoading();
-            loading.setValue(searchLoading || echoLoading || photoLoading);
-        });
-        loading.addSource(photoLiveData, photoResource -> {
-            photoLoading = photoResource.isLoading();
-            loading.setValue(searchLoading || echoLoading || photoLoading);
-        });
+        loading.addSource(searchResultLiveData, searchResource -> loading.setValue(calculateLoading()));
+        loading.addSource(echoResultLiveData, echoResource -> loading.setValue(calculateLoading()));
+        loading.addSource(photoLiveData, photoResource -> loading.setValue(calculateLoading()));
+    }
+
+    private boolean calculateLoading() {
+        return
+            (searchResultLiveData.getValue() != null && searchResultLiveData.getValue().isLoading())
+                || (echoResultLiveData.getValue() != null && echoResultLiveData.getValue()
+                .isLoading()) || (photoLiveData.getValue() != null && photoLiveData.getValue()
+                .isLoading());
     }
 
     private void setupErrorMessageTransformation() {
