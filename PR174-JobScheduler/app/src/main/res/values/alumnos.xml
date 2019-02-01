@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alumnos">
+        <item>Baldomero</item>
+        <item>Germán Ginés</item>
+        <item>Godolfredo</item>
+        <item>Atanasio</item>
+        <item>Rigoberto</item>
+        <item>Filomeno</item>
+        <item>Fulgencio</item>
+        <item>Armando</item>
+        <item>Gumersindo</item>
+        <item>Rodolfo</item>
+        <item>Casimiro</item>
+        <item>Dionisio</item>
+        <item>Emiliano</item>
+        <item>Rafael</item>
+        <item>Gilberto</item>
+        <item>Maximiliano</item>
+        <item>Daniel</item>
+        <item>Manuel</item>
+        <item>Juan Carlos</item>
+        <item>Marco Antonio</item>
+        <item>César</item>
+        <item>Augusto</item>
+        <item>Federico</item>
+        <item>Diocesano</item>
+        <item>Héctor</item>
+        <item>Carlos</item>
+    </string-array>
+</resources>

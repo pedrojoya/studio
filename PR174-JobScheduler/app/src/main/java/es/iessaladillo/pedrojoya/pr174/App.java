@@ -4,7 +4,9 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.os.Build;
+import android.graphics.Color;
+
+import es.iessaladillo.pedrojoya.pr174.services.ExportToTextFileService;
 
 @SuppressWarnings("WeakerAccess")
 public class App extends Application {
@@ -16,14 +18,17 @@ public class App extends Application {
     }
 
     private void createChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(
+                Context.NOTIFICATION_SERVICE);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel notificationChannel = new NotificationChannel(
-                    AppConstants.CHANNEL_ID,
-                    getString(R.string.app_main_channel_name),
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            notificationChannel.setDescription(getString(R.string.app_main_channel_name));
-            NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                ExportToTextFileService.CHANNEL_ID, "Foreground service", importance);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setVibrationPattern(
+                new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(notificationChannel);
             }

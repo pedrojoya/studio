@@ -2,13 +2,11 @@
 <resources>
 
     <string name="app_name">JobScheduler</string>
-    <string name="activity_main_lblMessage">Message</string>
-    <string name="activity_main_lblInternval">Interval (ms)</string>
-    <string name="activity_main_lblSchedule">Schedule</string>
-    <string name="activity_main_txtMessage">It\'s working time!!!</string>
-    <string name="aviso_importante">Important message</string>
-    <string name="main_activity_reminder_scheduled">Job scheduled: %d</string>
-    <string name="main_activity_error_scheduling">Error scheduling the job</string>
-    <string name="app_main_channel_name">Main channel</string>
+    <string name="main_lblEmptyView">No students yet</string>
+    <string name="main_exported">List exported to file</string>
+    <string name="main_open">Open</string>
+    <string name="main_no_app_to_show_file">No app can show the file content</string>
+    <string name="export_service_exporting">Exporting student list</string>
+    <string name="export_service_file_created">Student list exported to file</string>
 
 </resources>
