@@ -14,5 +14,11 @@
     <string name="student_edit_student">Update</string>
     <string name="student_add_student">Add</string>
     <string name="student_required_field">Required field</string>
+    <string name="list_deleted_successfully">Student deleted successfully</string>
+    <string name="list_error_deleting">Error deleting student</string>
+    <string name="student_error_inserting">Error inserting student</string>
+    <string name="student_inserted_successfully">Student added successfully</string>
+    <string name="student_error_updating">Error updating student</string>
+    <string name="student_updated_successfully">Student updated successfully</string>
 
 </resources>

@@ -1,89 +1,86 @@
 package es.iessaladillo.pedrojoya.pr211.data.local.model;
 
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(indices = {@Index(value = {"name"}, unique = true)})
 public class Student {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private long id;
-    private String name;
-    private String phone;
-    private String grade;
-    private String address;
+    @ColumnInfo(name = "name")
+    @NonNull
+    private final String name;
+    @ColumnInfo(name = "phone")
+    @NonNull
+    private final String phone;
+    @ColumnInfo(name = "grade")
+    @NonNull
+    private final String grade;
+    @ColumnInfo(name = "address")
+    private final String address;
 
-    public Student(String name, String phone, String grade, String address) {
+    public Student(long id, @NonNull String name, @NonNull String phone, @NonNull String grade,
+        String address) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.grade = grade;
         this.address = address;
     }
 
-    public Student() { }
+    @Ignore
+    public Student(@NonNull String name, @NonNull String phone, @NonNull String grade,
+        String address) {
+        this.name = name;
+        this.phone = phone;
+        this.grade = grade;
+        this.address = address;
+    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    @NonNull
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
+    @NonNull
     public String getGrade() {
         return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Student student = (Student) o;
-
-        if (id != student.id) return false;
-        if (name != null ? !name.equals(student.name) : student.name != null) return false;
-        if (phone != null ? !phone.equals(student.phone) : student.phone != null) return false;
-        //noinspection SimplifiableIfStatement
-        if (grade != null ? !grade.equals(student.grade) : student.grade != null) return false;
-        return address != null ? address.equals(student.address) : student.address == null;
+        return id == student.id && Objects.equals(name, student.name) && Objects.equals(phone,
+            student.phone) && Objects.equals(grade, student.grade) && Objects.equals(address,
+            student.address);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (grade != null ? grade.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, phone, grade, address);
     }
+
 }

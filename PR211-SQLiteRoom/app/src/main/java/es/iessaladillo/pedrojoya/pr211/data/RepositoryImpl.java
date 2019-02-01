@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import es.iessaladillo.pedrojoya.pr211.base.Resource;
 import es.iessaladillo.pedrojoya.pr211.data.local.StudentDao;
 import es.iessaladillo.pedrojoya.pr211.data.local.model.Student;
 
@@ -26,19 +28,48 @@ public class RepositoryImpl implements Repository {
         return studentDao.queryStudent(studentId);
     }
 
-    @Override
-    public void insertStudent(Student student) {
-        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.insert(student));
+    public LiveData<Resource<Long>> insertStudent(Student student) {
+        MutableLiveData<Resource<Long>> result = new MutableLiveData<>();
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            result.postValue(Resource.loading());
+            try {
+                long id = studentDao.insert(student);
+                result.postValue(Resource.success(id));
+            } catch (Exception e) {
+                result.postValue(Resource.error(e));
+            }
+        });
+        return result;
     }
 
     @Override
-    public void updateStudent(Student student) {
-        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.update(student));
+    public LiveData<Resource<Integer>> updateStudent(Student student) {
+        MutableLiveData<Resource<Integer>> result = new MutableLiveData<>();
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            result.postValue(Resource.loading());
+            try {
+                int updated = studentDao.update(student);
+                result.postValue(Resource.success(updated));
+            } catch (Exception e) {
+                result.postValue(Resource.error(e));
+            }
+        });
+        return result;
     }
 
     @Override
-    public void deleteStudent(Student student) {
-        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> studentDao.delete(student));
+    public LiveData<Resource<Integer>> deleteStudent(Student student) {
+        MutableLiveData<Resource<Integer>> result = new MutableLiveData<>();
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            result.postValue(Resource.loading());
+            try {
+                int deleted = studentDao.delete(student);
+                result.postValue(Resource.success(deleted));
+            } catch (Exception e) {
+                result.postValue(Resource.error(e));
+            }
+        });
+        return result;
     }
 
 }

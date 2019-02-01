@@ -5,6 +5,8 @@
 
     <string name="list_lblEmptyView">No hay alumnos</string>
     <string name="list_item_imgAvatar">avatar</string>
+    <string name="list_deleted_successfully">Alumno borrado correctamente</string>
+    <string name="list_error_deleting">Error al borrar el alumno</string>
 
     <string name="student_txtName">Nombre</string>
     <string name="student_imgGrade">Curso</string>
@@ -14,5 +16,10 @@
     <string name="student_edit_student">Actualizar</string>
     <string name="student_add_student">Agregar</string>
     <string name="student_required_field">Campo obligatorio</string>
+
+    <string name="student_error_inserting">Error al insertar el alumno</string>
+    <string name="student_inserted_successfully">Alumno agregado correctamente</string>
+    <string name="student_error_updating">Error al actualizar el alumno</string>
+    <string name="student_updated_successfully">Alumno actualizado correctamente</string>
 
 </resources>

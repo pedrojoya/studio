@@ -9,6 +9,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr211.R;
+import es.iessaladillo.pedrojoya.pr211.base.EventObserver;
 import es.iessaladillo.pedrojoya.pr211.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr211.data.local.AppDatabase;
 import es.iessaladillo.pedrojoya.pr211.data.local.model.Student;
@@ -69,20 +72,23 @@ public class StudentFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+        Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_student, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new StudentFragmentViewModelFactory(
-                new RepositoryImpl(AppDatabase.getInstance(
-                        requireContext().getApplicationContext()).studentDao()))).get(StudentFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(this,
+            new StudentFragmentViewModelFactory(requireActivity().getApplication(),
+                new RepositoryImpl(AppDatabase.getInstance(requireContext().getApplicationContext())
+                    .studentDao()))).get(StudentFragmentViewModel.class);
         setupViews(requireView());
         if (editMode) {
             viewModel.getStudent(studentId).observe(getViewLifecycleOwner(), this::showStudent);
         }
+        observeSuccessMessage();
+        observeErrorMessage();
     }
 
     private void setupViews(View view) {
@@ -121,17 +127,40 @@ public class StudentFragment extends Fragment {
         }
     }
 
+    private void observeSuccessMessage() {
+        viewModel.getSuccessMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessageAndFinish));
+    }
+
+    private void observeErrorMessage() {
+        viewModel.getErrorMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessage));
+    }
+
+    private void showMessageAndFinish(String message) {
+        Snackbar.make(txtName, message, Snackbar.LENGTH_SHORT).addCallback(
+            new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                @Override
+                public void onDismissed(Snackbar transientBottomBar, int event) {
+                    super.onDismissed(transientBottomBar, event);
+                    requireActivity().onBackPressed();
+                }
+            }).show();
+    }
+
+    private void showMessage(String message) {
+        Snackbar.make(txtName, message, Snackbar.LENGTH_SHORT).show();
+    }
+
     private void saveStudent() {
         if (isValidForm()) {
             Student student = createStudent();
             if (editMode) {
-                student.setId(studentId);
                 viewModel.updateStudent(student);
             } else {
                 viewModel.insertStudent(student);
             }
             KeyboardUtils.hideSoftKeyboard(requireActivity());
-            requireActivity().onBackPressed();
         }
     }
 
@@ -170,13 +199,9 @@ public class StudentFragment extends Fragment {
     }
 
     private Student createStudent() {
-        Student student = new Student();
-        student.setName(txtName.getText().toString());
-        student.setPhone(txtPhone.getText().toString());
-        student.setAddress(txtAddress.getText().toString());
         //noinspection ConstantConditions
-        student.setGrade(spnGrade.getText().toString());
-        return student;
+        return new Student(studentId, txtName.getText().toString(), txtPhone.getText().toString(),
+            spnGrade.getText().toString(), txtAddress.getText().toString());
     }
 
 }
