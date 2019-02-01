@@ -1,11 +1,8 @@
 package es.iessaladillo.pedrojoya.pr251.data.local;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import es.iessaladillo.pedrojoya.pr251.data.local.model.Student;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class StudentDao {
 
     private static StudentDao instance;
@@ -40,59 +37,74 @@ public class StudentDao {
 
     // CRUD (Create-Read-Update-Delete) of student table
 
-    // Returns student _id or -1 in of error.
+    // Returns student _id or -1 if error inserting.
     public long insertStudent(@NonNull Student student) {
-        SQLiteDatabase bd = dbHelper.getWritableDatabase();
-        ContentValues contentValues = student.toContentValues();
-        long id = bd.insert(DbContract.Student.TABLE_NAME, null, contentValues);
-        dbHelper.close();
-        // Notify observers.
-        new QueryStudentsTask().execute();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long id = db.insertOrThrow(DbContract.Student.TABLE_NAME, null, student.toContentValues());
+        updateStudentsLiveData();
         return id;
     }
 
     // Return number of students deleted.
     public int deleteStudent(@NonNull Student student) {
-        SQLiteDatabase bd = dbHelper.getWritableDatabase();
-        int deleted = bd.delete(DbContract.Student.TABLE_NAME,
-                DbContract.Student._ID + " = " + student.getId(), null);
-        dbHelper.close();
-        // Notify observers.
-        new QueryStudentsTask().execute();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int deleted = db.delete(DbContract.Student.TABLE_NAME,
+            DbContract.Student._ID + " = " + student.getId(), null);
+        updateStudentsLiveData();
         return deleted;
     }
 
     // Return number of students updated.
     public int updateStudent(Student student) {
-        SQLiteDatabase bd = dbHelper.getWritableDatabase();
-        ContentValues valores = student.toContentValues();
-        int updated = bd.update(DbContract.Student.TABLE_NAME, valores,
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int updated = db.update(DbContract.Student.TABLE_NAME, student.toContentValues(),
                 DbContract.Student._ID + " = " + student.getId(), null);
-        dbHelper.close();
-        // Notify observers.
-        new QueryStudentsTask().execute();
+        updateStudentsLiveData();
         return updated;
+    }
+
+    // Updates students LiveData in order to notify observers.
+    private void updateStudentsLiveData() {
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            SQLiteDatabase bd = dbHelper.getReadableDatabase();
+            List<Student> students;
+            try (Cursor cursor = bd.query(
+                DbContract.Student.TABLE_NAME, DbContract.Student.ALL_FIELDS, null, null, null,
+                null, DbContract.Student.NAME)) {
+                students = mapStudentsFromCursor(cursor);
+            }
+            studentsLiveData.postValue(students);
+        });
     }
 
     // Return a live data with student data.
     public LiveData<Student> queryStudent(long id) {
         MutableLiveData<Student> studentLiveData = new MutableLiveData<>();
-        (new QueryStudentTask(id, studentLiveData)).execute();
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Student student = null;
+            try (Cursor cursor = db.query(true,
+                DbContract.Student.TABLE_NAME, DbContract.Student.ALL_FIELDS,
+                DbContract.Student._ID + " = " + id, null, null, null, null, null)) {
+                if (cursor.moveToFirst()) {
+                    student = mapStudentFromCursor(cursor);
+                }
+            }
+            studentLiveData.postValue(student);
+        });
         return studentLiveData;
     }
 
     // Return a live data with all students, ordered alphabetically.
     public LiveData<List<Student>> queryStudents() {
-        (new QueryStudentsTask()).execute();
+        updateStudentsLiveData();
         return studentsLiveData;
     }
 
-    private ArrayList<Student> mapStudentsFromCursor(Cursor cursor) {
+    private List<Student> mapStudentsFromCursor(Cursor cursor) {
         ArrayList<Student> students = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
+        while (cursor.moveToNext()) {
             students.add(mapStudentFromCursor(cursor));
-            cursor.moveToNext();
         }
         return students;
     }
@@ -104,67 +116,8 @@ public class StudentDao {
         student.setGrade(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.GRADE)));
         student.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.PHONE)));
         student.setAddress(
-                cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.ADDRESS)));
+            cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.ADDRESS)));
         return student;
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private class QueryStudentsTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            requeryStudents();
-            return null;
-        }
-
-        // Query all students, ordered alphabetically, and updates studentsLiveData.
-        private void requeryStudents() {
-            ArrayList<Student> students = new ArrayList<>();
-            SQLiteDatabase bd = dbHelper.getWritableDatabase();
-            Log.i(StudentDao.class.getSimpleName(), "Querying students");
-            Cursor cursor = bd.query(DbContract.Student.TABLE_NAME, DbContract.Student.ALL_FIELDS, null,
-                    null, null, null, DbContract.Student.NAME);
-            if (cursor != null) {
-                students = mapStudentsFromCursor(cursor);
-                cursor.close();
-            }
-            dbHelper.close();
-            studentsLiveData.postValue(students);
-        }
-
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private class QueryStudentTask extends AsyncTask<Void, Void, Void> {
-
-        private final long id;
-        private final MutableLiveData<Student> studentMutableLiveData;
-
-        private QueryStudentTask(long id, MutableLiveData<Student> studentMutableLiveData) {
-            this.id = id;
-            this.studentMutableLiveData = studentMutableLiveData;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            queryStudent(id);
-            return null;
-        }
-
-        // Return student or null if it doesn't exist.
-        private void queryStudent(long id) {
-            SQLiteDatabase bd = dbHelper.getWritableDatabase();
-            Cursor cursor = bd.query(true, DbContract.Student.TABLE_NAME, DbContract.Student.ALL_FIELDS,
-                    DbContract.Student._ID + " = " + id, null, null, null, null, null);
-            Student student = null;
-            if (cursor != null) {
-                cursor.moveToFirst();
-                student = mapStudentFromCursor(cursor);
-            }
-            dbHelper.close();
-            studentMutableLiveData.postValue(student);
-        }
-
     }
 
 }

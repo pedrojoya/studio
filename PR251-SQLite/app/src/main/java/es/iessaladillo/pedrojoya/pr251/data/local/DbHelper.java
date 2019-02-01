@@ -1,14 +1,17 @@
 package es.iessaladillo.pedrojoya.pr251.data.local;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
-import androidx.annotation.NonNull;
+import android.text.TextUtils;
 
-import es.iessaladillo.pedrojoya.pr251.utils.DatabaseUtils;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Locale;
+
+import androidx.annotation.NonNull;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -33,10 +36,8 @@ public class DbHelper extends SQLiteOpenHelper {
         return instance;
     }
 
-    // Called by the framewrok on API >= 16 to configure database, after creating database file
-    // and opening database, and before calling onCreate.
+    // Called after creating database file and opening database, and before calling onCreate.
     @Override
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void onConfigure(SQLiteDatabase db) {
         super.onConfigure(db);
         // Enable database log.
@@ -47,21 +48,54 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        DatabaseUtils.executeSqlFromAssetsFile(db, DbContract.DB_VERSION, assetManager);
+        try {
+            executeSqlFromAssetsFile(db, DbContract.DB_VERSION, assetManager);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading .sql file in Assets");
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop tables (NOT IN PRODUCTION!!!).
         db.execSQL(DbContract.Student.DROP_TABLE_QUERY);
-        DatabaseUtils.executeSqlFromAssetsFile(db, DbContract.DB_VERSION, assetManager);
+        try {
+            executeSqlFromAssetsFile(db, DbContract.DB_VERSION, assetManager);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading .sql file in Assets");
+        }
     }
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop tables (NOT IN PRODUCTION!!!).
         db.execSQL(DbContract.Student.DROP_TABLE_QUERY);
-        DatabaseUtils.executeSqlFromAssetsFile(db, DbContract.DB_VERSION, assetManager);
+        try {
+            executeSqlFromAssetsFile(db, DbContract.DB_VERSION, assetManager);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading .sql file in Assets");
+        }
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void executeSqlFromAssetsFile(SQLiteDatabase db, int version,
+        AssetManager assetManager) throws IOException {
+        final String filename = String.format(Locale.getDefault(), "%d.sql", version);
+        final StringBuilder statement = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(
+            new InputStreamReader(assetManager.open(filename)))) {
+            for (String line; (line = reader.readLine()) != null; ) {
+                // Ignore empty lines and SQL comments. Otherwise add to sentence.
+                if (!TextUtils.isEmpty(line) && !line.startsWith("--")) {
+                    statement.append(line.trim());
+                }
+                // If valid SQL sentence, execute it and reset sentence.
+                if (line.endsWith(";")) {
+                    db.execSQL(statement.toString());
+                    statement.setLength(0);
+                }
+            }
+        }
     }
 
 }

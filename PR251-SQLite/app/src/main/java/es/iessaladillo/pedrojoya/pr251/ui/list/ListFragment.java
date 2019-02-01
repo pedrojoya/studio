@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import es.iessaladillo.pedrojoya.pr251.R;
+import es.iessaladillo.pedrojoya.pr251.base.EventObserver;
 import es.iessaladillo.pedrojoya.pr251.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr251.data.local.DbHelper;
 import es.iessaladillo.pedrojoya.pr251.data.local.StudentDao;
@@ -48,15 +50,29 @@ public class ListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new ListFragmentViewModelFactory(new RepositoryImpl(
-            StudentDao.getInstance(
-                DbHelper.getInstance(requireContext().getApplicationContext()))))).get(
+        viewModel = ViewModelProviders.of(this,
+            new ListFragmentViewModelFactory(requireActivity().getApplication(), new RepositoryImpl(
+                StudentDao.getInstance(
+                    DbHelper.getInstance(requireContext().getApplicationContext()))))).get(
             ListFragmentViewModel.class);
         setupViews(requireView());
-        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
-            listAdapter.submitList(students);
-            lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
-        });
+        observeStudents();
+        observeSuccessMessage();
+        observeErrorMessage();
+    }
+
+    private void observeSuccessMessage() {
+        viewModel.getSuccessMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessage));
+    }
+
+    private void observeErrorMessage() {
+        viewModel.getErrorMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessage));
+    }
+
+    private void showMessage(String message) {
+        Snackbar.make(lblEmptyView, message, Snackbar.LENGTH_SHORT).show();
     }
 
     private void setupViews(View view) {
@@ -87,8 +103,7 @@ public class ListFragment extends Fragment {
         lstStudents.setHasFixedSize(true);
         listAdapter = new ListFragmentAdapter();
         lstStudents.setAdapter(listAdapter);
-        lstStudents.setLayoutManager(
-            new LinearLayoutManager(requireActivity()));
+        lstStudents.setLayoutManager(new LinearLayoutManager(requireActivity()));
         lstStudents.addItemDecoration(
             new DividerItemDecoration(requireActivity(), LinearLayoutManager.VERTICAL));
         lstStudents.setItemAnimator(new DefaultItemAnimator());
@@ -110,12 +125,18 @@ public class ListFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(lstStudents);
     }
 
+    private void observeStudents() {
+        viewModel.getStudents().observe(getViewLifecycleOwner(), students -> {
+            listAdapter.submitList(students);
+            lblEmptyView.setVisibility(students.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+        });
+    }
+
     private void navigateToAddStudent() {
-        requireFragmentManager().beginTransaction()
-            .replace(R.id.flContent, StudentFragment.newInstance(), StudentFragment.class.getSimpleName())
-            .addToBackStack(StudentFragment.class.getSimpleName())
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit();
+        requireFragmentManager().beginTransaction().replace(R.id.flContent,
+            StudentFragment.newInstance(), StudentFragment.class.getSimpleName()).addToBackStack(
+            StudentFragment.class.getSimpleName()).setTransition(
+            FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
     }
 
 }

@@ -11,7 +11,8 @@ public class DbContract {
     private DbContract() {
     }
 
-    // Students table.
+    // Student table.
+    @SuppressWarnings("WeakerAccess")
     public abstract static class Student implements BaseColumns {
         public static final String TABLE_NAME = "students";
         public static final String NAME = "name";

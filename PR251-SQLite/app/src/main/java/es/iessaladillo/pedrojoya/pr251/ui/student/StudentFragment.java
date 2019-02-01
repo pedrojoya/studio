@@ -9,6 +9,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr251.R;
+import es.iessaladillo.pedrojoya.pr251.base.EventObserver;
 import es.iessaladillo.pedrojoya.pr251.data.RepositoryImpl;
 import es.iessaladillo.pedrojoya.pr251.data.local.DbHelper;
 import es.iessaladillo.pedrojoya.pr251.data.local.StudentDao;
@@ -77,14 +80,17 @@ public class StudentFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new StudentFragmentViewModelFactory(
-            new RepositoryImpl(StudentDao.getInstance(
-                DbHelper.getInstance(requireContext().getApplicationContext()))))).get(
+        viewModel = ViewModelProviders.of(this,
+            new StudentFragmentViewModelFactory(requireActivity().getApplication(),
+                new RepositoryImpl(StudentDao.getInstance(
+                    DbHelper.getInstance(requireContext().getApplicationContext()))))).get(
             StudentFragmentViewModel.class);
         setupViews(requireView());
         if (editMode) {
             viewModel.getStudent(studentId).observe(getViewLifecycleOwner(), this::showStudent);
         }
+        observeSuccessMessage();
+        observeErrorMessage();
     }
 
     private void setupViews(View view) {
@@ -123,6 +129,31 @@ public class StudentFragment extends Fragment {
         }
     }
 
+    private void observeSuccessMessage() {
+        viewModel.getSuccessMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessageAndFinish));
+    }
+
+    private void observeErrorMessage() {
+        viewModel.getErrorMessage().observe(getViewLifecycleOwner(),
+            new EventObserver<>(this::showMessage));
+    }
+
+    private void showMessageAndFinish(String message) {
+        Snackbar.make(txtName, message, Snackbar.LENGTH_SHORT).addCallback(
+            new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                @Override
+                public void onDismissed(Snackbar transientBottomBar, int event) {
+                    super.onDismissed(transientBottomBar, event);
+                    requireActivity().onBackPressed();
+                }
+            }).show();
+    }
+
+    private void showMessage(String message) {
+        Snackbar.make(txtName, message, Snackbar.LENGTH_SHORT).show();
+    }
+
     private void saveStudent() {
         if (isValidForm()) {
             Student student = createStudent();
@@ -133,22 +164,21 @@ public class StudentFragment extends Fragment {
                 viewModel.insertStudent(student);
             }
             KeyboardUtils.hideSoftKeyboard(requireActivity());
-            requireActivity().onBackPressed();
         }
     }
 
     private boolean isValidForm() {
-        boolean valido = true;
+        boolean valid = true;
         if (!checkRequiredEditText(txtName, tilName)) {
-            valido = false;
+            valid = false;
         }
         if (!checkRequiredEditText(spnGrade, tilGrade)) {
-            valido = false;
+            valid = false;
         }
         if (!checkRequiredEditText(txtPhone, tilPhone)) {
-            valido = false;
+            valid = false;
         }
-        return valido;
+        return valid;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")

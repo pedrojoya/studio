@@ -33,14 +33,14 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
-    implementation "com.google.android.material:material:1.1.0-alpha02"
+    implementation "com.google.android.material:material:1.1.0-alpha03"
     implementation "androidx.recyclerview:recyclerview:1.1.0-alpha01"
     implementation "com.facebook.stetho:stetho:1.5.0"
     implementation "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"
     implementation "de.hdodenhof:circleimageview:2.2.0"
     implementation "com.squareup.picasso:picasso:2.5.2"
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02"
     implementation "androidx.fragment:fragment:1.1.0-alpha03"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.1"
