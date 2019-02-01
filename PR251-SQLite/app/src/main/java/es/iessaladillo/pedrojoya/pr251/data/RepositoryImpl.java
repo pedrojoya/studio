@@ -64,8 +64,8 @@ public class RepositoryImpl implements Repository {
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
             result.postValue(Resource.loading());
             try {
-                int updated = studentDao.deleteStudent(student);
-                result.postValue(Resource.success(updated));
+                int deleted = studentDao.deleteStudent(student);
+                result.postValue(Resource.success(deleted));
             } catch (Exception e) {
                 result.postValue(Resource.error(e));
             }

@@ -158,7 +158,6 @@ public class StudentFragment extends Fragment {
         if (isValidForm()) {
             Student student = createStudent();
             if (editMode) {
-                student.setId(studentId);
                 viewModel.updateStudent(student);
             } else {
                 viewModel.insertStudent(student);
@@ -201,14 +200,13 @@ public class StudentFragment extends Fragment {
         txtAddress.setText(student.getAddress());
     }
 
+    @SuppressWarnings("ConstantConditions")
     private Student createStudent() {
-        Student student = new Student();
-        student.setName(txtName.getText().toString());
-        student.setPhone(txtPhone.getText().toString());
-        student.setAddress(txtAddress.getText().toString());
-        //noinspection ConstantConditions
-        student.setGrade(spnGrade.getText().toString());
-        return student;
+        return new Student(studentId,
+            txtName.getText().toString(),
+            txtPhone.getText().toString(),
+            spnGrade.getText().toString(),
+            txtAddress.getText().toString());
     }
 
 }

@@ -2,57 +2,50 @@ package es.iessaladillo.pedrojoya.pr251.data.local.model;
 
 import android.content.ContentValues;
 
+import androidx.annotation.NonNull;
 import es.iessaladillo.pedrojoya.pr251.data.local.DbContract;
 
 public class Student {
 
-    private long id;
-    private String name;
-    private String phone;
-    private String grade;
-    private String address;
+    private final long id;
+    @NonNull
+    private final String name;
+    @NonNull
+    private final String phone;
+    @NonNull
+    private final String grade;
+    private final String address;
 
-    public Student() {
+    public Student(long id, @NonNull String name, @NonNull String phone, @NonNull String grade,
+        String address) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.grade = grade;
+        this.address = address;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    @NonNull
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
+    @NonNull
     public String getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public ContentValues toContentValues() {

@@ -58,7 +58,7 @@ public class StudentDao {
     public int updateStudent(Student student) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         int updated = db.update(DbContract.Student.TABLE_NAME, student.toContentValues(),
-                DbContract.Student._ID + " = " + student.getId(), null);
+            DbContract.Student._ID + " = " + student.getId(), null);
         updateStudentsLiveData();
         return updated;
     }
@@ -68,9 +68,8 @@ public class StudentDao {
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
             SQLiteDatabase bd = dbHelper.getReadableDatabase();
             List<Student> students;
-            try (Cursor cursor = bd.query(
-                DbContract.Student.TABLE_NAME, DbContract.Student.ALL_FIELDS, null, null, null,
-                null, DbContract.Student.NAME)) {
+            try (Cursor cursor = bd.query(DbContract.Student.TABLE_NAME,
+                DbContract.Student.ALL_FIELDS, null, null, null, null, DbContract.Student.NAME)) {
                 students = mapStudentsFromCursor(cursor);
             }
             studentsLiveData.postValue(students);
@@ -83,9 +82,9 @@ public class StudentDao {
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             Student student = null;
-            try (Cursor cursor = db.query(true,
-                DbContract.Student.TABLE_NAME, DbContract.Student.ALL_FIELDS,
-                DbContract.Student._ID + " = " + id, null, null, null, null, null)) {
+            try (Cursor cursor = db.query(true, DbContract.Student.TABLE_NAME,
+                DbContract.Student.ALL_FIELDS, DbContract.Student._ID + " = " + id, null, null,
+                null, null, null)) {
                 if (cursor.moveToFirst()) {
                     student = mapStudentFromCursor(cursor);
                 }
@@ -110,14 +109,11 @@ public class StudentDao {
     }
 
     private Student mapStudentFromCursor(Cursor cursor) {
-        Student student = new Student();
-        student.setId(cursor.getLong(cursor.getColumnIndexOrThrow(DbContract.Student._ID)));
-        student.setName(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.NAME)));
-        student.setGrade(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.GRADE)));
-        student.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.PHONE)));
-        student.setAddress(
+        return new Student(cursor.getLong(cursor.getColumnIndexOrThrow(DbContract.Student._ID)),
+            cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.NAME)),
+            cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.GRADE)),
+            cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.PHONE)),
             cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.ADDRESS)));
-        return student;
     }
 
 }
