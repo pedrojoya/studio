@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WorkManager</string>
+    <string name="main_lblEmptyView">No students yet</string>
+    <string name="main_exported">List exported to file</string>
+    <string name="main_open">Open</string>
+    <string name="main_no_app_to_show_file">No app can show the file content</string>
+    <string name="export_service_exporting">Exporting student list</string>
+    <string name="export_service_file_created">Student list exported to file</string>
+
+</resources>
