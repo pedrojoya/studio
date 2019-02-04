@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">pr257</string>
+
+    <string name="main_title">MainFragment</string>
+    <string name="main_lblName">Name</string>
+    <string name="main_btnDetail">Detail</string>
+    <string name="main_settings">Settings</string>
+
+    <string name="detail_title">DetailFragment</string>
+    <string name="detail_lblName">Name</string>
+
+    <string name="settings_title">SettingsFragment</string>
+    <string name="settings_lblSettings">Settings</string>
+    <string name="main_btnAnother">Another</string>
+    <string name="main_activity_title">MainActivity</string>
+    <string name="another_activity_title">AnotherActivity</string>
+</resources>
