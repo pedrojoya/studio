@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "pedrojoya.iessaladillo.es.pr106"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
+    implementation "com.google.android.material:material:1.1.0-alpha03"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha01"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.squareup.picasso:picasso:2.5.2"
+    implementation "de.hdodenhof:circleimageview:2.2.0"
+    implementation "com.github.moove-it:fakeit:v0.7"
+    implementation "androidx.fragment:fragment:1.1.0-alpha03"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02"
+    implementation "androidx.room:room-runtime:2.1.0-alpha04"
+    annotationProcessor "androidx.room:room-compiler:2.1.0-alpha04"
+    implementation "androidx.paging:paging-runtime:2.1.0"
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.1"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.1"
+}
