@@ -65,7 +65,7 @@ public class MainFragmentV2 extends Fragment {
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             tab.setText(titleResIds[position]);
             tab.setIcon(iconResIds[position]);
-        });
+        }).attach();
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

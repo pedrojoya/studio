@@ -3,10 +3,11 @@ package es.iessaladillo.pedrojoya.pr147.ui.main;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import es.iessaladillo.pedrojoya.pr147.R;
-import es.iessaladillo.pedrojoya.pr147.utils.ToastUtils;
+import es.iessaladillo.pedrojoya.pr147.ui.main.v2.MainFragmentV2;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadInitialFragment() {
         getSupportFragmentManager().beginTransaction()
-            .replace(R.id.flContent, MainFragment.newInstance(), MainFragment.class.getSimpleName())
+            .replace(R.id.flContent, MainFragmentV2.newInstance(),
+                MainFragmentV2.class.getSimpleName())
             .commit();
     }
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSettings() {
-        ToastUtils.toast(this, getString(R.string.main_settings));
+        Toast.makeText(this, getString(R.string.main_settings), Toast.LENGTH_SHORT).show();
     }
 
 }
