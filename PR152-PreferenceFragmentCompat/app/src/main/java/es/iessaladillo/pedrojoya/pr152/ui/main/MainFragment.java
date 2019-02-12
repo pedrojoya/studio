@@ -24,7 +24,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import es.iessaladillo.pedrojoya.pr152.R;
 import es.iessaladillo.pedrojoya.pr152.ui.settings.SettingsFragment;
-import es.iessaladillo.pedrojoya.pr152.utils.FragmentUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -56,7 +55,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setupViews(getView());
+        setupViews(requireView());
         settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         onSharePreferencesChangeListener = (sharedPreferences, key) -> showSettings();
         showSettings();
@@ -143,9 +142,12 @@ public class MainFragment extends Fragment {
     }
 
     private void showSettingsFragment() {
-        FragmentUtils.replaceFragmentAddToBackstack(requireFragmentManager(), R.id.flContent,
-            SettingsFragment.newInstance(), SettingsFragment.class.getSimpleName(),
-            SettingsFragment.class.getSimpleName(), FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        requireFragmentManager().beginTransaction()
+            .replace(R.id.flContent,
+                SettingsFragment.newInstance(), SettingsFragment.class.getSimpleName())
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .addToBackStack(SettingsFragment.class.getSimpleName())
+            .commit();
     }
 
 }

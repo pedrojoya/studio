@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.EditTextPreference;
 import androidx.preference.MultiSelectListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -14,8 +13,8 @@ import es.iessaladillo.pedrojoya.pr152.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener;
-    private SharedPreferences.OnSharedPreferenceChangeListener onMultiListChangeListener;
+    private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener =
+        this::updateIcon;
 
     public static SettingsFragment newInstance() {
         return new SettingsFragment();
@@ -30,19 +29,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupActionBar();
-
-        // TODO: It should update summary automatically but it doesn't
-        //setupMultiListSummaryProvider();
-        onMultiListChangeListener = this::updateMultiListSummary;
-        updateMultiListSummary(getPreferenceScreen().getSharedPreferences(),
-            getString(R.string.prefShifts_key));
+        setupMultiListSummaryProvider();
         // Initial state
         updateIcons();
     }
 
-    @SuppressWarnings("unused")
     private void setupMultiListSummaryProvider() {
-        EditTextPreference.SimpleSummaryProvider.getInstance();
         Preference prefShifts = findPreference(getString(R.string.prefShifts_key));
         prefShifts.setSummaryProvider(
             (Preference.SummaryProvider<MultiSelectListPreference>) preference -> preference.getValues()
@@ -63,16 +55,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(
             onSharedPreferenceChangeListener);
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(
-            onMultiListChangeListener);
     }
 
     @Override
     public void onPause() {
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(
             onSharedPreferenceChangeListener);
-        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(
-            onMultiListChangeListener);
         super.onPause();
     }
 
