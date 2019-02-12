@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr045.ui.main;
+package es.iessaladillo.pedrojoya.pr045.ui.main.v1;
 
 import android.os.Parcelable;
 import android.view.LayoutInflater;

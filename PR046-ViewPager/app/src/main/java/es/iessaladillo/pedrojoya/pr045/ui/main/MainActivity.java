@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import es.iessaladillo.pedrojoya.pr045.R;
+import es.iessaladillo.pedrojoya.pr045.ui.main.v2.MainFragmentV2;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,9 +18,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadInitialFragment() {
-        getSupportFragmentManager().beginTransaction()
-            .replace(R.id.flContent, MainFragment.newInstance(), MainFragment.class.getSimpleName())
-            .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
+            MainFragmentV2.newInstance(), MainFragmentV2.class.getSimpleName()).commit();
     }
 
 }

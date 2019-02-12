@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr045.ui.main;
+package es.iessaladillo.pedrojoya.pr045.ui.main.v1;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ public class MainFragment extends Fragment {
 
     private static final int DEFAULT_PAGE = 2;
 
-    static Fragment newInstance() {
+    public static Fragment newInstance() {
         return new MainFragment();
     }
 

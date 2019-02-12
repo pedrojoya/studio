@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.pr147.ui.main;
+package es.iessaladillo.pedrojoya.pr147.ui.main.v1;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +19,7 @@ import es.iessaladillo.pedrojoya.pr147.R;
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
 
-    static MainFragment newInstance() {
+    public static MainFragment newInstance() {
         return new MainFragment();
     }
 
