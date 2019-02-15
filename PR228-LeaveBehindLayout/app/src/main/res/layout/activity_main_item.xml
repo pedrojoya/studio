@@ -20,7 +20,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/activity_main_margin"
-            app:srcCompat="@drawable/ic_archive_white_24dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_archive_black_24dp"
             android:contentDescription="@string/activity_main_archive"/>
 
         <TextView
@@ -49,7 +50,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/activity_main_margin"
-            app:srcCompat="@drawable/ic_delete_white_24dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_delete_black_24dp"
             android:contentDescription="@string/activity_main_delete"/>
 
         <TextView
@@ -75,7 +77,8 @@
         android:background="@color/item_background"
         android:foreground="?attr/selectableItemBackground"
         android:minHeight="@dimen/two_line_tile_height"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UnusedAttribute">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvatar"

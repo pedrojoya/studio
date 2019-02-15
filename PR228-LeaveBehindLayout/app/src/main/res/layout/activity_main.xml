@@ -47,6 +47,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/activity_main_fab_margin"
         android:layout_marginEnd="@dimen/activity_main_fab_margin"
-        app:srcCompat="@drawable/ic_add_white_24dp"/>
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_add_black_24dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
