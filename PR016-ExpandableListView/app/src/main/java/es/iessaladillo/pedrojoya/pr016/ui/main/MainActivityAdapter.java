@@ -66,10 +66,10 @@ class MainActivityAdapter extends BaseExpandableListAdapter {
             } else {
                 imgIndicator.setVisibility(View.VISIBLE);
                 if (isExpanded) {
-                    imgIndicator.setImageResource(R.drawable.ic_expand_less_white_24dp);
+                    imgIndicator.setImageResource(R.drawable.ic_expand_less_black_24dp);
                     llColumnsHeader.setVisibility(View.VISIBLE);
                 } else {
-                    imgIndicator.setImageResource(R.drawable.ic_expand_more_white_24dp);
+                    imgIndicator.setImageResource(R.drawable.ic_expand_more_black_24dp);
                     llColumnsHeader.setVisibility(View.GONE);
                 }
             }
