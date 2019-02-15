@@ -6,7 +6,7 @@
         android:id="@+id/mnuSearch"
         android:title="@string/main_mnuSearch"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        android:icon="@drawable/ic_search_white_24dp"
+        android:icon="@drawable/ic_search_black_24dp"
         app:iconTint="@color/white"
         app:showAsAction="always|collapseActionView"/>
 </menu>

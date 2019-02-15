@@ -8,4 +8,5 @@
     <color name="main_item_lblRepeater_background">#220000FF</color>
     <color name="actionModeBackground">#757575</color>
     <color name="actionMenuTextColor">#FFF</color>
+    <color name="white">#FFFFFF</color>
 </resources>

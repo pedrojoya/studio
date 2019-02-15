@@ -30,7 +30,7 @@ public class InfoFragment extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setIcon(R.drawable.ic_arrow_back_white_24dp);
+            actionBar.setIcon(R.drawable.ic_arrow_back_black_24dp);
             actionBar.setTitle(R.string.info_title);
         }
     }

@@ -34,16 +34,17 @@ allprojects {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:1.0.2"
-    implementation "com.google.android.material:material:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
+    implementation "com.google.android.material:material:1.1.0-alpha03"
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
-    implementation "com.google.android.material:material:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "androidx.fragment:fragment:1.1.0-alpha04"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
+    implementation "com.google.android.material:material:1.1.0-alpha03"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha02"
     implementation "com.squareup.picasso:picasso:2.5.2"
     implementation "de.hdodenhof:circleimageview:2.2.0"
     implementation "com.github.moove-it:fakeit:v0.7"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:1.6.1"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.6.1"
