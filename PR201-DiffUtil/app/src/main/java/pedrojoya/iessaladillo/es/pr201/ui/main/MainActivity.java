@@ -110,8 +110,8 @@ public final class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem mnuSort = menu.findItem(R.id.mnuSort);
         boolean desc = viewModel.isInDescendentOrder();
-        mnuSort.setIcon(desc ? R.drawable.ic_sort_ascending_white_24dp : R.drawable
-            .ic_sort_descending_white_24dp);
+        mnuSort.setIcon(desc ? R.drawable.ic_sort_ascending_black_24dp : R.drawable
+            .ic_sort_descending_black_24dp);
         return super.onPrepareOptionsMenu(menu);
     }
 
