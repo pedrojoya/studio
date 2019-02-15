@@ -17,7 +17,7 @@
         android:layout_marginStart="@dimen/two_line_avatar_marginLeft"
         android:layout_marginTop="@dimen/two_line_avatar_marginTop"
         android:contentDescription="@string/fragment_tab1_item_imgAvatar"
-        app:srcCompat="@drawable/ic_done_white_24dp"
+        app:srcCompat="@drawable/ic_done_black_24dp"
         tools:src="@tools:sample/avatars"/>
 
     <TextView

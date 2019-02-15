@@ -57,7 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin_right"
-        app:srcCompat="@drawable/ic_message_white_24dp"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_message_black_24dp"
         app:layout_anchor="@id/appbarLayout"
         app:layout_anchorGravity="bottom|right|end"/>
 

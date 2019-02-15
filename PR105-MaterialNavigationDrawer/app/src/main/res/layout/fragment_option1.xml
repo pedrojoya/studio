@@ -46,6 +46,7 @@
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin"
         app:layout_behavior="es.iessaladillo.pedrojoya.pr105.base.ScrollAwareFabBehavior"
-        app:srcCompat="@drawable/ic_done_white_24dp"/>
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_done_black_24dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

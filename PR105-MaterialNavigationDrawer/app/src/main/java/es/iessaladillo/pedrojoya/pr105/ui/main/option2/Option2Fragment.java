@@ -84,9 +84,9 @@ public class Option2Fragment extends Fragment {
 
         final Option2ViewPagerAdapter viewPagerAdapter = new Option2ViewPagerAdapter(getChildFragmentManager());
         viewPagerAdapter.addFragment(new Option2Tab1Fragment(),
-            getString(R.string.option2_fragment_students), R.drawable.ic_face_white_24dp)
+            getString(R.string.option2_fragment_students), R.drawable.ic_face_black_24dp)
             .addFragment(new Option2Tab2Fragment(), getString(R.string.option2_fragment_data),
-                R.drawable.ic_message_white_24dp);
+                R.drawable.ic_message_black_24dp);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         // Show icons in tabs.

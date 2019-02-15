@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements OnToolbarAvailabl
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            //actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
         if (actionBarDrawerToggle != null) {
             drawerLayout.removeDrawerListener(actionBarDrawerToggle);
