@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -21,7 +22,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaladillo.pedrojoya.pr018.R;
 import es.iessaladillo.pedrojoya.pr018.utils.BitmapUtils;
-import es.iessaladillo.pedrojoya.pr018.utils.ToastUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -89,7 +89,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.fragment_main, menu);
         menu.findItem(viewModel.getEffectId()).setChecked(true);
         menu.findItem(R.id.mnuVisible).setChecked(viewModel.isVisible());
@@ -97,7 +97,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
         if (menu.findItem(R.id.mnuInverted).isChecked()) {
             menu.findItem(R.id.mnuActions).setEnabled(false);
         }
@@ -105,10 +105,10 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuInfo:
-                ToastUtils.toast(requireContext(), R.string.main_info);
+                Toast.makeText(requireContext(), R.string.main_info, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.mnuVisible:
                 viewModel.toggleVisibility();
@@ -116,10 +116,10 @@ public class MainFragment extends Fragment {
                 imgPhoto.setVisibility(viewModel.isVisible() ? View.VISIBLE : View.INVISIBLE);
                 return true;
             case R.id.mnuEdit:
-                ToastUtils.toast(requireContext(), R.string.main_edit);
+                Toast.makeText(requireContext(), R.string.main_edit, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.mnuDelete:
-                ToastUtils.toast(requireContext(), R.string.main_delete);
+                Toast.makeText(requireContext(), R.string.main_delete, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.mnuOriginal:
             case R.id.mnuGrey:

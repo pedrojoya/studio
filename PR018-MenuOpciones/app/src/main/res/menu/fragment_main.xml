@@ -4,8 +4,9 @@
     <item
         android:id="@+id/mnuInfo"
         android:icon="@drawable/ic_info_outline_black_24dp"
+        app:iconTint="@color/white"
         android:title="@string/main_mnuInfo"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom|withText"/>
     <item
         android:id="@+id/mnuVisible"
         android:title="@string/main_mnuVisible"
