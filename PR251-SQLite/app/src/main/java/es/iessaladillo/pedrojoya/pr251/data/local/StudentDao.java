@@ -111,8 +111,8 @@ public class StudentDao {
     private Student mapStudentFromCursor(Cursor cursor) {
         return new Student(cursor.getLong(cursor.getColumnIndexOrThrow(DbContract.Student._ID)),
             cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.NAME)),
-            cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.GRADE)),
             cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.PHONE)),
+            cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.GRADE)),
             cursor.getString(cursor.getColumnIndexOrThrow(DbContract.Student.ADDRESS)));
     }
 

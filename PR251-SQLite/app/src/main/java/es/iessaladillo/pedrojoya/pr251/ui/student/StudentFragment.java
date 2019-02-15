@@ -35,7 +35,7 @@ public class StudentFragment extends Fragment {
     private static final String EXTRA_STUDENT_ID = "EXTRA_STUDENT_ID";
 
     private EditText txtName;
-    private SpinnerEditText<String> spnGrade;
+    private SpinnerEditText<String> txtGrade;
     private EditText txtPhone;
     private EditText txtAddress;
     private TextInputLayout tilName;
@@ -99,7 +99,7 @@ public class StudentFragment extends Fragment {
         tilPhone = ViewCompat.requireViewById(view, R.id.tilPhone);
         TextInputLayout tilAddress = ViewCompat.requireViewById(view, R.id.tilAddress);
         txtName = ViewCompat.requireViewById(view, R.id.txtName);
-        spnGrade = ViewCompat.requireViewById(view, R.id.txtGrade);
+        txtGrade = ViewCompat.requireViewById(view, R.id.txtGrade);
         txtPhone = ViewCompat.requireViewById(view, R.id.txtPhone);
         txtAddress = ViewCompat.requireViewById(view, R.id.txtAddress);
 
@@ -116,7 +116,7 @@ public class StudentFragment extends Fragment {
 
     private void setupFab() {
         FloatingActionButton fab = requireActivity().findViewById(R.id.fab);
-        fab.setImageResource(R.drawable.ic_save_white_24dp);
+        fab.setImageResource(R.drawable.ic_save_black_24dp);
         fab.setOnClickListener(v -> saveStudent());
     }
 
@@ -171,7 +171,7 @@ public class StudentFragment extends Fragment {
         if (!checkRequiredEditText(txtName, tilName)) {
             valid = false;
         }
-        if (!checkRequiredEditText(spnGrade, tilGrade)) {
+        if (!checkRequiredEditText(txtGrade, tilGrade)) {
             valid = false;
         }
         if (!checkRequiredEditText(txtPhone, tilPhone)) {
@@ -195,7 +195,7 @@ public class StudentFragment extends Fragment {
 
     private void showStudent(Student student) {
         txtName.setText(student.getName());
-        spnGrade.setText(student.getGrade());
+        txtGrade.setText(student.getGrade());
         txtPhone.setText(student.getPhone());
         txtAddress.setText(student.getAddress());
     }
@@ -205,7 +205,7 @@ public class StudentFragment extends Fragment {
         return new Student(studentId,
             txtName.getText().toString(),
             txtPhone.getText().toString(),
-            spnGrade.getText().toString(),
+            txtGrade.getText().toString(),
             txtAddress.getText().toString());
     }
 

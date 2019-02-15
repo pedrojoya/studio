@@ -91,7 +91,7 @@ public class ListFragment extends Fragment {
 
     private void setupFab() {
         FloatingActionButton fab = ActivityCompat.requireViewById(requireActivity(), R.id.fab);
-        fab.setImageResource(R.drawable.ic_add_white_24dp);
+        fab.setImageResource(R.drawable.ic_add_black_24dp);
         fab.setOnClickListener(v -> navigateToAddStudent());
     }
 

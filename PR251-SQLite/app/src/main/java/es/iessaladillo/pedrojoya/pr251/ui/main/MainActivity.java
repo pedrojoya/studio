@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupToolbar() {
         Toolbar toolbar = ActivityCompat.requireViewById(this, R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         setSupportActionBar(toolbar);
     }
 
