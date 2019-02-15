@@ -1,13 +1,14 @@
 package pedrojoya.iessaladillo.es.pr104.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import pedrojoya.iessaladillo.es.pr104.R;
+import pedrojoya.iessaladillo.es.pr104.ui.settings.SettingsActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupToolbar() {
         setSupportActionBar(ActivityCompat.requireViewById(this, R.id.toolbar));
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-        }
     }
 
     @Override
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void navigateToSettings() {
-        Toast.makeText(this, getString(R.string.main_settings), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 
     @Override
