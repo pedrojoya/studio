@@ -5,6 +5,7 @@
     <item
         android:id="@+id/mnuInfo"
         android:icon="@drawable/ic_info_outline_black_24dp"
+        app:iconTint="@color/white"
         android:orderInCategory="100"
         android:title="@string/photo_mnuInfo"
         app:showAsAction="ifRoom|withText"/>
