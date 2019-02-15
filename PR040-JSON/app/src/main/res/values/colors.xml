@@ -6,4 +6,5 @@
     <color name="primary_text">#212121</color>
     <color name="main_item_divider">#B6B6B6</color>
     <color name="main_item_lblRepeater_background">#220000FF</color>
+    <color name="white">#FFFFFF</color>
 </resources>
