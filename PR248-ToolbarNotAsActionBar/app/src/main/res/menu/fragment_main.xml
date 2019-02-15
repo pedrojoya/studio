@@ -4,7 +4,8 @@
     tools:context=".ui.main.MainActivity">
     <item
         android:id="@+id/mnuNext"
-        android:icon="@drawable/ic_exit_to_app_white_24dp"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        app:iconTint="@color/white"
         android:title="@string/main_mnuNext"
         app:showAsAction="ifRoom|withText" />
     <item
