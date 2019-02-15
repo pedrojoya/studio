@@ -28,8 +28,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
-    implementation "com.google.android.material:material:1.1.0-alpha02"
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
+    implementation "com.google.android.material:material:1.1.0-alpha03"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.squareup.retrofit2:retrofit:2.4.0"
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
@@ -38,8 +38,8 @@ dependencies {
     implementation "com.facebook.stetho:stetho:1.5.0"
     implementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
     implementation "com.squareup.picasso:picasso:2.5.2"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01"
-    implementation "androidx.fragment:fragment:1.1.0-alpha03"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02"
+    implementation "androidx.fragment:fragment:1.1.0-alpha04"
 
     debugImplementation 'com.ashokvarma.android:gander:1.4.0'
     releaseImplementation 'com.ashokvarma.android:gander-no-op:1.4.0'

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JSON</string>
+    <string name="app_name">RetrofitJSON</string>
     <string name="main_lblEmptyView">No hay alumnos</string>
     <string name="main_item_imgPhoto">Foto</string>
     <string name="main_item_btnMarks">Notas</string>
