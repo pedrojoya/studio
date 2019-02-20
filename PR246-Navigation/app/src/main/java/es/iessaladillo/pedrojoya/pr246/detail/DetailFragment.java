@@ -18,13 +18,13 @@ public class DetailFragment extends Fragment {
 
     private String name;
 
-    public DetailFragment() { }
+    public DetailFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DetailFragmentArgs detailFragmentArgs = es.iessaladillo.pedrojoya.pr246.detail.DetailFragmentArgs
-            .fromBundle(requireArguments());
+        DetailFragmentArgs detailFragmentArgs = DetailFragmentArgs.fromBundle(requireArguments());
         name = detailFragmentArgs.getName();
     }
 

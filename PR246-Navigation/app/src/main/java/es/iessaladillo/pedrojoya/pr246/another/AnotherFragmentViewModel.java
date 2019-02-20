@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr246.another;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,10 +13,8 @@ class AnotherFragmentViewModel extends ViewModel {
         return _name;
     }
 
-    AnotherFragmentViewModel(@NonNull Bundle arguments) {
-        AnotherFragmentArgs anotherFragmentArgs =
-            AnotherFragmentArgs.fromBundle(arguments);
-        _name.setValue(anotherFragmentArgs.getName());
+    AnotherFragmentViewModel(@NonNull String initialName) {
+        _name.setValue(initialName);
     }
 
 }

@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
@@ -21,7 +19,8 @@ public class AnotherFragment extends Fragment {
     private AnotherFragmentViewModel viewModel;
     private TextView lblName;
 
-    public AnotherFragment() { }
+    public AnotherFragment() {
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -32,9 +31,10 @@ public class AnotherFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        AnotherFragmentArgs anotherFragmentArgs = AnotherFragmentArgs.fromBundle(
+            requireArguments());
         viewModel = ViewModelProviders.of(this,
-            new AnotherFragmentViewModelFactory(
-                Objects.requireNonNull(requireActivity().getIntent().getExtras())))
+            new AnotherFragmentViewModelFactory(anotherFragmentArgs.getName()))
             .get(AnotherFragmentViewModel.class);
         setupViews(requireView());
         observeName();

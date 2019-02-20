@@ -1,17 +1,15 @@
 package es.iessaladillo.pedrojoya.pr246.another;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 class AnotherFragmentViewModelFactory implements ViewModelProvider.Factory {
 
-    private final Bundle arguments;
+    private final String initialName;
 
-    AnotherFragmentViewModelFactory(Bundle arguments) {
-        this.arguments = arguments;
+    AnotherFragmentViewModelFactory(@NonNull String initialName) {
+        this.initialName = initialName;
     }
 
     @SuppressWarnings("unchecked")
@@ -19,7 +17,7 @@ class AnotherFragmentViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(AnotherFragmentViewModel.class)) {
-            return (T) new AnotherFragmentViewModel(arguments);
+            return (T) new AnotherFragmentViewModel(initialName);
         } else {
             throw new IllegalArgumentException("Wrong viewModel class");
         }
