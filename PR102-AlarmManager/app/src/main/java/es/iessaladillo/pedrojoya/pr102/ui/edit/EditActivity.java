@@ -1,7 +1,6 @@
 package es.iessaladillo.pedrojoya.pr102.ui.edit;
 
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -12,24 +11,24 @@ import android.widget.TimePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProviders;
+import es.iessaladillo.pedrojoya.pr102.IntentsUtils;
 import es.iessaladillo.pedrojoya.pr102.R;
 import es.iessaladillo.pedrojoya.pr102.base.TimePickerDialogFragment;
 import es.iessaladillo.pedrojoya.pr102.reminder.ReminderScheduler;
 
 public class EditActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY HH:mm",
+        Locale.getDefault());
     private String message;
     private Calendar when = Calendar.getInstance();
     private EditText txtMessage;
     private EditText txtWhen;
     private EditActivityViewModel viewModel;
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY HH:mm",
-        Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +42,16 @@ public class EditActivity extends AppCompatActivity implements TimePickerDialog.
     }
 
     private void getIntentData() {
-        Intent intent = Objects.requireNonNull(getIntent());
-        message =
-            Objects.requireNonNull(intent.getStringExtra(ReminderScheduler.EXTRA_MESSAGE));
-        when.setTimeInMillis(intent.getLongExtra(ReminderScheduler.EXTRA_WHEN, 0));
+        message = IntentsUtils.requireStringExtra(getIntent(), ReminderScheduler.EXTRA_MESSAGE);
+        when.setTimeInMillis(
+            IntentsUtils.requireLongExtra(getIntent(), ReminderScheduler.EXTRA_WHEN));
     }
 
     private void setupViews() {
         txtMessage = ActivityCompat.requireViewById(this, R.id.txtMessage);
         txtWhen = ActivityCompat.requireViewById(this, R.id.txtWhen);
-        Button btnRescheduleReminder = ActivityCompat.requireViewById(this, R.id.btnRescheduleReminder);
+        Button btnRescheduleReminder = ActivityCompat.requireViewById(this,
+            R.id.btnRescheduleReminder);
         Button btnCancelReminder = ActivityCompat.requireViewById(this, R.id.btnCancelReminder);
 
         txtMessage.setText(message);

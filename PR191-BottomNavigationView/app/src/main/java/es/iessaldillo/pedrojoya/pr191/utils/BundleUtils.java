@@ -2,6 +2,8 @@ package es.iessaldillo.pedrojoya.pr191.utils;
 
 import android.os.Bundle;
 
+import java.util.Objects;
+
 public class BundleUtils {
 
     private BundleUtils() { }
@@ -17,7 +19,7 @@ public class BundleUtils {
         if (bundle == null || !bundle.containsKey(key)) {
             throw new IllegalArgumentException();
         }
-        return bundle.getString(key);
+        return Objects.requireNonNull(bundle.getString(key));
     }
 
 }
