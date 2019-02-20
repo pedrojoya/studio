@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.Objects;
-
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,10 +49,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Objects.requireNonNull(getView());
         viewModel = ViewModelProviders.of(this, new MainFragmentViewModelFactory(R.id.mnuOriginal))
             .get(MainFragmentViewModel.class);
-        setupViews(getView());
+        setupViews(requireView());
     }
 
     private void setupViews(@NonNull View view) {
