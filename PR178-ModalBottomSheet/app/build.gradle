@@ -40,5 +40,6 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:2.2.0"
     implementation "com.github.moove-it:fakeit:v0.7"
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02"
+    implementation "androidx.core:core:1.1.0-alpha04"
     implementation "androidx.fragment:fragment:1.1.0-alpha04"
 }

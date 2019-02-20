@@ -11,13 +11,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import es.iessaladillo.pedrojoya.pr178.R;
 import es.iessaladillo.pedrojoya.pr178.data.local.model.Student;
+import es.iessaladillo.pedrojoya.pr178.utils.BundleUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment {
@@ -44,7 +43,7 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        student = Objects.requireNonNull(requireArguments().getParcelable(ARG_STUDENT));
+        student = (Student) BundleUtils.requireParcelable(requireArguments(), ARG_STUDENT);
         setupViews(requireView());
     }
 
