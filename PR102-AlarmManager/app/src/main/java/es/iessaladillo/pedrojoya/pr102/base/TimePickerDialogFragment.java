@@ -24,8 +24,8 @@ public class TimePickerDialogFragment extends DialogFragment {
     private boolean is24Hour;
 
     @SuppressWarnings("unused")
-    public static DatePickerDialogFragment newInstance(int hours, int minutes, boolean is24Hour) {
-        DatePickerDialogFragment frg = new DatePickerDialogFragment();
+    public static TimePickerDialogFragment newInstance(int hours, int minutes, boolean is24Hour) {
+        TimePickerDialogFragment frg = new TimePickerDialogFragment();
         Bundle arguments = new Bundle();
         arguments.putInt(ARG_HOURS, hours);
         arguments.putInt(ARG_MINUTES, minutes);
@@ -65,7 +65,7 @@ public class TimePickerDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Context activity) {
+    public void onAttach(@NonNull Context activity) {
         super.onAttach(activity);
         try {
             if (getTargetFragment() != null) {

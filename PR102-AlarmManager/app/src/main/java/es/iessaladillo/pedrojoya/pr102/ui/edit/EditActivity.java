@@ -35,19 +35,17 @@ public class EditActivity extends AppCompatActivity implements TimePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        Objects.requireNonNull(getIntent());
-        if (!getIntent().hasExtra(ReminderScheduler.EXTRA_WHEN)) {
-            throw new IllegalArgumentException("When must be passed as extra");
-        }
-        getIntentData(getIntent());
+        getIntentData();
         viewModel = ViewModelProviders.of(this,
             new EditActivityViewModelFactory(ReminderScheduler.getInstance(getApplication()))).get(
             EditActivityViewModel.class);
         setupViews();
     }
 
-    private void getIntentData(Intent intent) {
-        message = intent.getStringExtra(ReminderScheduler.EXTRA_MESSAGE);
+    private void getIntentData() {
+        Intent intent = Objects.requireNonNull(getIntent());
+        message =
+            Objects.requireNonNull(intent.getStringExtra(ReminderScheduler.EXTRA_MESSAGE));
         when.setTimeInMillis(intent.getLongExtra(ReminderScheduler.EXTRA_WHEN, 0));
     }
 
