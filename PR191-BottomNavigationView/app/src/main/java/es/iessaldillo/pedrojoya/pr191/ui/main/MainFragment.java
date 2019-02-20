@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Objects;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -21,6 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import es.iessaldillo.pedrojoya.pr191.R;
+import es.iessaldillo.pedrojoya.pr191.utils.BundleUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -58,10 +57,9 @@ public class MainFragment extends Fragment {
     }
 
     private void obtainArguments() {
-        Objects.requireNonNull(getArguments());
-        optionMenuResId = getArguments().getInt(ARG_OPTION_MENU_RES_ID);
-        optionIconResId = getArguments().getInt(ARG_OPTION_ICON_RES_ID);
-        optionTitle = getArguments().getString(ARG_OPTION_TITLE);
+        optionMenuResId = BundleUtils.requireInt(requireArguments(), ARG_OPTION_MENU_RES_ID);
+        optionIconResId = BundleUtils.requireInt(requireArguments(), ARG_OPTION_ICON_RES_ID);
+        optionTitle = BundleUtils.requireString(requireArguments(), ARG_OPTION_TITLE);
     }
 
     @Override
