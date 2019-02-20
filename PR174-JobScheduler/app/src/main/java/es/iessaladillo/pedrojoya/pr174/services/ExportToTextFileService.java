@@ -50,8 +50,8 @@ public class ExportToTextFileService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        Objects.requireNonNull(params.getExtras());
-        Objects.requireNonNull(params.getExtras().getStringArray(EXTRA_DATA));
+        PersistableBundle extras = Objects.requireNonNull(params.getExtras());
+        String[] data = Objects.requireNonNull(extras.getStringArray(EXTRA_DATA));
         _result.postValue(Resource.loading());
         File outputFile = createFile();
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
@@ -59,7 +59,7 @@ public class ExportToTextFileService extends JobService {
                 Thread.sleep(5000);
                 //noinspection ConstantConditions
                 writeListToFile(outputFile,
-                    Arrays.asList(params.getExtras().getStringArray(EXTRA_DATA)));
+                    Arrays.asList(data));
                 showResultNotification(outputFile);
             } catch (FileNotFoundException | InterruptedException e) {
                 _result.postValue(Resource.error(e));
