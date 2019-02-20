@@ -44,8 +44,7 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Objects.requireNonNull(getArguments());
-        obtainArguments();
+        student = Objects.requireNonNull(requireArguments().getParcelable(ARG_STUDENT));
         setupViews(requireView());
     }
 
@@ -54,9 +53,11 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment {
     }
 
     private void setupBottomSheet(View view) {
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) view.getParent())
+        CoordinatorLayout.LayoutParams params =
+            (CoordinatorLayout.LayoutParams) ((View) view.getParent())
             .getLayoutParams();
-        BottomSheetBehavior bottomSheetBehavior = (BottomSheetBehavior) params.getBehavior();
+        BottomSheetBehavior bottomSheetBehavior =
+            (BottomSheetBehavior) params.getBehavior();
         if (bottomSheetBehavior != null) {
             bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 
@@ -85,12 +86,6 @@ public class MenuBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
         navigationView.setNavigationItemSelectedListener(this::onNavItemSelected);
         navigationView.getMenu().findItem(R.id.mnuTitle).setTitle(student.getName());
-    }
-
-    private void obtainArguments() {
-        if (getArguments() != null) {
-            student = getArguments().getParcelable(ARG_STUDENT);
-        }
     }
 
     public boolean onNavItemSelected(@NonNull MenuItem item) {
