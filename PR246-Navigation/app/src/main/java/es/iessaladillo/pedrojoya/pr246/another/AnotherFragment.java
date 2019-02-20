@@ -32,10 +32,10 @@ public class AnotherFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Objects.requireNonNull(requireActivity().getIntent().getExtras());
         viewModel = ViewModelProviders.of(this,
-            new AnotherFragmentViewModelFactory(requireActivity().getIntent().getExtras())).get(
-            AnotherFragmentViewModel.class);
+            new AnotherFragmentViewModelFactory(
+                Objects.requireNonNull(requireActivity().getIntent().getExtras())))
+            .get(AnotherFragmentViewModel.class);
         setupViews(requireView());
         observeName();
     }

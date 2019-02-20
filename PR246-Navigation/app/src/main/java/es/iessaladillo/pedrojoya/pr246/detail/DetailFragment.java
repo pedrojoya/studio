@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
@@ -25,9 +23,8 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Objects.requireNonNull(getArguments());
-        es.iessaladillo.pedrojoya.pr246.detail.DetailFragmentArgs detailFragmentArgs = es.iessaladillo.pedrojoya.pr246.detail.DetailFragmentArgs
-            .fromBundle(getArguments());
+        DetailFragmentArgs detailFragmentArgs = es.iessaladillo.pedrojoya.pr246.detail.DetailFragmentArgs
+            .fromBundle(requireArguments());
         name = detailFragmentArgs.getName();
     }
 

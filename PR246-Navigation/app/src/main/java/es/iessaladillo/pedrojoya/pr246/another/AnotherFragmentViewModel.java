@@ -16,7 +16,8 @@ class AnotherFragmentViewModel extends ViewModel {
     }
 
     AnotherFragmentViewModel(@NonNull Bundle arguments) {
-        AnotherFragmentArgs anotherFragmentArgs = AnotherFragmentArgs.fromBundle(arguments);
+        AnotherFragmentArgs anotherFragmentArgs =
+            AnotherFragmentArgs.fromBundle(arguments);
         _name.setValue(anotherFragmentArgs.getName());
     }
 
