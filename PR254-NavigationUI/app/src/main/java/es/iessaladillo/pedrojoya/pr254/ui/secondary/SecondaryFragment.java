@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
@@ -21,8 +19,8 @@ public class SecondaryFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Objects.requireNonNull(getArguments());
-        SecondaryFragmentArgs secondaryFragmentArgs = SecondaryFragmentArgs.fromBundle(getArguments());
+        SecondaryFragmentArgs secondaryFragmentArgs =
+            SecondaryFragmentArgs.fromBundle(requireArguments());
         message = secondaryFragmentArgs.getMessage();
     }
 
