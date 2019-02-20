@@ -33,8 +33,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Objects.requireNonNull(getArguments());
-        option = getArguments().getString(ARG_OPTION);
+        option = Objects.requireNonNull(requireArguments().getString(ARG_OPTION));
     }
 
     @Override
@@ -51,6 +50,7 @@ public class MainFragment extends Fragment {
     private void setupViews(View view) {
         TextView lblText = ViewCompat.requireViewById(view, R.id.lblText);
         lblText.setText(option);
+        requireActivity().setTitle(option);
     }
 
 }
