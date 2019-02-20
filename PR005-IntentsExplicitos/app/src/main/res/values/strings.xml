@@ -2,16 +2,17 @@
 <resources>
     <string name="app_name">Explicit Intents</string>
 
-    <string name="activity_main_lblTitle">Student data</string>
-    <string name="activity_main_lblData">(not available)</string>
-    <string name="activity_main_btnRequest">Request</string>
+    <string name="main_lblTitle">Student data</string>
+    <string name="main_lblData">(not available)</string>
+    <string name="main_btnRequest">Request</string>
+    <string name="main_student_data">Name: %1$s\nAge: %2$d</string>
+    <string name="main_invalid_name">Enter the name</string>
+    <string name="main_invalid_age">Invalid age</string>
 
-    <string name="activity_student_lblName">Name</string>
-    <string name="activity_student_lblAge">Age</string>
-    <string name="activity_student_btnSend">Send</string>
-    <string name="activity_student_txtName">(full name)</string>
-    <string name="activity_student_txtAge">(age)</string>
+    <string name="student_lblName">Name</string>
+    <string name="student_lblAge">Age</string>
+    <string name="student_btnSend">Send</string>
+    <string name="student_txtName">(full name)</string>
+    <string name="student_txtAge">(age)</string>
 
-    <string name="main_activity_student_data">Name: %1$s\nAge: %2$d</string>
-    
 </resources>

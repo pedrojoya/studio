@@ -4,28 +4,28 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:padding="@dimen/general_activity_vertical_margin">
+              android:padding="@dimen/main_vertical_margin">
 
     <TextView
         android:id="@+id/lblTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:text="@string/activity_main_lblTitle"
+        android:layout_marginTop="@dimen/main_vertical_margin"
+        android:text="@string/main_lblTitle"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/lblName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:text="@string/activity_student_lblName"/>
+        android:layout_marginTop="@dimen/main_vertical_margin"
+        android:text="@string/student_lblName"/>
 
     <EditText
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/activity_student_txtName"
+        android:hint="@string/student_txtName"
         android:inputType="textPersonName"
         tools:ignore="Autofill">
 
@@ -36,14 +36,14 @@
         android:id="@+id/lblAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:text="@string/activity_student_lblAge"/>
+        android:layout_marginTop="@dimen/main_vertical_margin"
+        android:text="@string/student_lblAge"/>
 
     <EditText
         android:id="@+id/txtAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/activity_student_txtAge"
+        android:hint="@string/student_txtAge"
         android:inputType="number"
         android:digits="0123456789"
         tools:ignore="Autofill"/>
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/general_activity_vertical_margin"
-        android:text="@string/activity_student_btnSend"/>
+        android:layout_marginTop="@dimen/main_vertical_margin"
+        android:text="@string/student_btnSend"/>
 
 </LinearLayout>

@@ -3,27 +3,26 @@ package es.iessaladillo.pedrojoya.pr005.ui.student;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import es.iessaladillo.pedrojoya.pr005.Constants;
 import es.iessaladillo.pedrojoya.pr005.R;
-import es.iessaladillo.pedrojoya.pr005.utils.TextViewUtils;
+import es.iessaladillo.pedrojoya.pr005.utils.IntentsUtils;
 
 public class StudentActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "EXTRA_NAME";
     public static final String EXTRA_AGE = "EXTRA_AGE";
 
+    private static final int MAX_AGE = 150;
+
     private EditText txtName;
     private EditText txtAge;
-    private Button btnSend;
 
-    private String name = "";
-    private int age = Constants.DEFAULT_AGE;
+    private String name;
+    private int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,40 +33,41 @@ public class StudentActivity extends AppCompatActivity {
     }
 
     private void getIntentData() {
-        Intent intent = getIntent();
-        if (intent != null) {
-            if (intent.hasExtra(EXTRA_NAME)) {
-                name = intent.getStringExtra(EXTRA_NAME);
-            }
-            if (intent.hasExtra(EXTRA_AGE)) {
-                age = intent.getIntExtra(EXTRA_AGE, Constants.DEFAULT_AGE);
-            }
-        }
+        name = IntentsUtils.requireStringExtra(getIntent(), EXTRA_NAME);
+        age = IntentsUtils.requireIntExtra(getIntent(), EXTRA_AGE);
     }
 
     private void setupViews() {
-        btnSend = ActivityCompat.requireViewById(this, R.id.btnSend);
+        Button btnSend = ActivityCompat.requireViewById(this, R.id.btnSend);
         txtName = ActivityCompat.requireViewById(this, R.id.txtName);
         txtAge = ActivityCompat.requireViewById(this, R.id.txtAge);
 
-        txtAge.setText(String.valueOf(Constants.DEFAULT_AGE));
-        TextViewUtils.addAfterTextChangedListener(txtName, s -> checkIsValidForm());
-        TextViewUtils.addAfterTextChangedListener(txtAge, s -> checkIsValidForm());
-        btnSend.setOnClickListener(v -> {
-            createResult();
-            finish();
-        });
+        btnSend.setOnClickListener(v -> send());
         showStudent();
     }
 
-    private void checkIsValidForm() {
-        btnSend.setEnabled(isValidForm());
+    private boolean isValidForm() {
+        boolean validName = isValidName();
+        boolean validAge = isValidAge();
+        return validName && validAge;
     }
 
-    private boolean isValidForm() {
-        return !TextUtils.isEmpty(txtName.getText().toString()) && !TextUtils.isEmpty(
-                txtAge.getText().toString()) && Integer.parseInt(txtAge.getText().toString())
-                <= Constants.MAX_AGE;
+    private boolean isValidName() {
+        boolean valid = !txtName.getText().toString().trim().isEmpty();
+        txtName.setError(valid ? null : getString(R.string.main_invalid_name));
+        return valid;
+    }
+
+    private boolean isValidAge() {
+        boolean valid;
+        try {
+            int age = Integer.parseInt(txtAge.getText().toString());
+            valid = age >= 0 && age <= MAX_AGE;
+        } catch (NumberFormatException e) {
+            valid = false;
+        }
+        txtAge.setError(valid ? null : getString(R.string.main_invalid_age));
+        return valid;
     }
 
     private void showStudent() {
@@ -75,17 +75,17 @@ public class StudentActivity extends AppCompatActivity {
         txtAge.setText(String.valueOf(age));
     }
 
-    private void createResult() {
-        Intent result = new Intent();
-        result.putExtra(EXTRA_NAME, txtName.getText().toString());
-        int age;
-        try {
-            age = Integer.parseInt(txtAge.getText().toString());
-        } catch (NumberFormatException e) {
-            age = Constants.DEFAULT_AGE;
+    private void send() {
+        if (isValidForm()) {
+            setActivityResult();
+            finish();
         }
-        result.putExtra(EXTRA_AGE, age);
-        this.setResult(RESULT_OK, result);
+    }
+
+    private void setActivityResult() {
+        setResult(RESULT_OK,
+            new Intent().putExtra(EXTRA_NAME, txtName.getText().toString()).putExtra(EXTRA_AGE,
+                Integer.parseInt(txtAge.getText().toString())));
     }
 
     @Override

@@ -2,21 +2,22 @@ package es.iessaladillo.pedrojoya.pr005.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.TextView;
 
-import es.iessaladillo.pedrojoya.pr005.Constants;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr005.R;
 import es.iessaladillo.pedrojoya.pr005.ui.student.StudentActivity;
+import es.iessaladillo.pedrojoya.pr005.utils.IntentsUtils;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_STUDENT = 1;
 
     // NOTE: These two fiels should be saved on configuration change (not explained yet)
-    private String name;
-    private int age = Constants.DEFAULT_AGE;
+    private String name = "Baldomero";
+    private int age = 45;
 
     private TextView lblData;
 
@@ -24,12 +25,15 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
+        showStudent();
     }
 
-    private void initViews() {
-        ActivityCompat.requireViewById(this, R.id.btnRequest).setOnClickListener(v -> requestData());
+    private void setupViews() {
+        Button btnRequest = ActivityCompat.requireViewById(this, R.id.btnRequest);
         lblData = ActivityCompat.requireViewById(this, R.id.lblData);
+
+        btnRequest.setOnClickListener(v -> requestData());
     }
 
     private void requestData() {
@@ -44,16 +48,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getReturnData(Intent intent) {
-        if (intent != null) {
-            if (intent.hasExtra(StudentActivity.EXTRA_NAME)) {
-                name = intent.getStringExtra(StudentActivity.EXTRA_NAME);
-            }
-            if (intent.hasExtra(StudentActivity.EXTRA_AGE)) {
-                age = intent.getIntExtra(StudentActivity.EXTRA_AGE,
-                        Constants.DEFAULT_AGE);
-            }
-        }
-        lblData.setText(getString(R.string.main_activity_student_data, name, age));
+        name = IntentsUtils.requireStringExtra(intent, StudentActivity.EXTRA_NAME);
+        age = IntentsUtils.requireIntExtra(intent, StudentActivity.EXTRA_AGE);
+        showStudent();
+    }
+
+    private void showStudent() {
+        lblData.setText(getString(R.string.main_student_data, name, age));
     }
 
 }
