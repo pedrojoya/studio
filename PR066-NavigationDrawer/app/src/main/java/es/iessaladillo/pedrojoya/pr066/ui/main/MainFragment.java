@@ -7,13 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import es.iessaladillo.pedrojoya.pr066.R;
+import es.iessaladillo.pedrojoya.pr066.utils.BundleUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment {
@@ -33,7 +32,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        option = Objects.requireNonNull(requireArguments().getString(ARG_OPTION));
+        option = BundleUtils.requireString(requireArguments(), ARG_OPTION);
     }
 
     @Override
