@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="student_txtAge_maxLenght">3</integer>
+</resources>

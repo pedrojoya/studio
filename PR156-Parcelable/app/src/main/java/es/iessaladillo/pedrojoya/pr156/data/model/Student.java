@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 public class Student implements Parcelable {
 
-    public static final int DEFAULT_AGE = 18;
-
     private String name;
     private int age;
 

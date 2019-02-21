@@ -2,19 +2,22 @@ package es.iessaladillo.pedrojoya.pr156.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr156.R;
 import es.iessaladillo.pedrojoya.pr156.data.model.Student;
 import es.iessaladillo.pedrojoya.pr156.ui.student.StudentActivity;
+import es.iessaladillo.pedrojoya.pr156.utils.IntentsUtils;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_STUDENT = 1;
 
-    private Student student = new Student("", Student.DEFAULT_AGE);
+    // This object should be preserved and restored on configuration change.
+    private Student student = new Student("Baldomero", 45);
 
     private TextView lblData;
 
@@ -22,14 +25,15 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        setupViews();
+        showStudent();
     }
 
-    private void initViews() {
-        ActivityCompat.requireViewById(this, R.id.btnRequest).setOnClickListener(
-                v -> requestData());
-
+    private void setupViews() {
+        Button btnRequest = ActivityCompat.requireViewById(this, R.id.btnRequest);
         lblData = ActivityCompat.requireViewById(this, R.id.lblData);
+
+        btnRequest.setOnClickListener(v -> requestData());
     }
 
     private void requestData() {
@@ -44,9 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void obtainResponseData(Intent intent) {
-        if (intent != null && intent.hasExtra(StudentActivity.EXTRA_STUDENT)) {
-            student = intent.getParcelableExtra(StudentActivity.EXTRA_STUDENT);
-        }
+        student = (Student) IntentsUtils.requireParcelableExtra(intent, StudentActivity.EXTRA_STUDENT);
         showStudent();
     }
 

@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/activity_student_txtAge"
         android:inputType="number"
+        android:maxLength="@integer/student_txtAge_maxLenght"
         tools:ignore="Autofill"/>
 
     <Button
