@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="@dimen/main_vertical_margin">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/app_margin">
 
     <TextView
-        android:id="@+id/lblTitle"
+        android:id="@+id/lblName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_lblTitle"
-        android:textStyle="bold"/>
+        android:labelFor="@+id/txtName"
+        android:text="@string/main_lblName"/>
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        tools:ignore="Autofill"/>
 
     <TextView
-        android:id="@+id/lblData"
-        android:layout_width="wrap_content"
+        android:id="@+id/lblBirthDate"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/main_vertical_margin"
-        android:text="@string/main_lblData"/>
+        android:layout_marginTop="@dimen/app_margin"
+        android:labelFor="@+id/txtSignUpDate"
+        android:text="@string/main_lblSignUpDate"/>
+
+    <EditText
+        android:id="@+id/txtSignUpDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+        android:inputType="date"
+        android:focusable="false"
+        android:singleLine="true"
+        tools:ignore="Autofill,TextFields"/>
 
     <Button
-        android:id="@+id/btnRequest"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnShow"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/main_vertical_margin"
-        android:text="@string/main_btnRequest"/>
+        android:layout_marginTop="@dimen/app_margin"
+        android:text="@string/main_btnShow"/>
 
 </LinearLayout>

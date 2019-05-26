@@ -2,59 +2,83 @@ package es.iessaladillo.pedrojoya.pr005.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import es.iessaladillo.pedrojoya.pr005.R;
-import es.iessaladillo.pedrojoya.pr005.ui.student.StudentActivity;
+import es.iessaladillo.pedrojoya.pr005.ui.calendar.CalendarActivity;
 import es.iessaladillo.pedrojoya.pr005.utils.IntentsUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RC_STUDENT = 1;
+    private static final int RC_CALENDAR = 1;
 
-    // NOTE: These two fiels should be saved on configuration change (not explained yet)
-    private String name = "Baldomero";
-    private int age = 45;
+    private EditText txtName;
+    private EditText txtSignUpDate;
 
-    private TextView lblData;
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private LocalDate signUpDate = LocalDate.now();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupViews();
-        showStudent();
+        showSignUpDate();
     }
 
     private void setupViews() {
-        Button btnRequest = ActivityCompat.requireViewById(this, R.id.btnRequest);
-        lblData = ActivityCompat.requireViewById(this, R.id.lblData);
+        txtName = ActivityCompat.requireViewById(this, R.id.txtName);
+        txtSignUpDate = ActivityCompat.requireViewById(this, R.id.txtSignUpDate);
+        Button btnShow = ActivityCompat.requireViewById(this, R.id.btnShow);
 
-        btnRequest.setOnClickListener(v -> requestData());
+        txtSignUpDate.setOnClickListener(v -> requestBirthDate());
+        btnShow.setOnClickListener(v -> showData());
     }
 
-    private void requestData() {
-        StudentActivity.startForResult(this, RC_STUDENT, name, age);
+    private void showData() {
+        if (isValidForm()) {
+            Toast.makeText(this,
+                getString(R.string.main_message, txtName.getText(), txtSignUpDate.getText()),
+                Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isValidForm() {
+        return !TextUtils.isEmpty(txtName.getText().toString()) && !TextUtils.isEmpty(
+            txtSignUpDate.getText().toString());
+    }
+
+    private void requestBirthDate() {
+        CalendarActivity.startForResult(this, RC_CALENDAR, signUpDate.getDayOfMonth(),
+            signUpDate.getMonthValue(), signUpDate.getYear());
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == RC_STUDENT) {
-            getReturnData(data);
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK && requestCode == RC_CALENDAR && intent != null) {
+            getReturnData(intent);
         }
     }
 
     private void getReturnData(Intent intent) {
-        name = IntentsUtils.requireStringExtra(intent, StudentActivity.EXTRA_NAME);
-        age = IntentsUtils.requireIntExtra(intent, StudentActivity.EXTRA_AGE);
-        showStudent();
+        int day = IntentsUtils.requireIntExtra(intent, CalendarActivity.EXTRA_DAY);
+        int month = IntentsUtils.requireIntExtra(intent, CalendarActivity.EXTRA_MONTH);
+        int year = IntentsUtils.requireIntExtra(intent, CalendarActivity.EXTRA_YEAR);
+        signUpDate = LocalDate.of(year, month, day);
+        showSignUpDate();
     }
 
-    private void showStudent() {
-        lblData.setText(getString(R.string.main_student_data, name, age));
+    private void showSignUpDate() {
+        txtSignUpDate.setText(dateTimeFormatter.format(signUpDate));
     }
 
 }

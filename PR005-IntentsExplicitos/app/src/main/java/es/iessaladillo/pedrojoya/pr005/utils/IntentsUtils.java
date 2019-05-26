@@ -15,6 +15,7 @@ public class IntentsUtils {
         return intent.getIntExtra(key, 0);
     }
 
+    @SuppressWarnings("unused")
     public static String requireStringExtra(Intent intent, String key) {
         if (intent == null || !intent.hasExtra(key)) {
             throw new IllegalArgumentException();
