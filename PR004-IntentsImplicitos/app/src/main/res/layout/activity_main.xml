@@ -3,45 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/general_activity_vertical_margin"
-    android:paddingLeft="@dimen/general_activity_horizontal_margin"
-    android:paddingRight="@dimen/general_activity_horizontal_margin"
-    android:paddingTop="@dimen/general_activity_vertical_margin" >
+    android:paddingBottom="@dimen/main_vertical_margin"
+    android:paddingLeft="@dimen/main_horizontal_margin"
+    android:paddingRight="@dimen/main_horizontal_margin"
+    android:paddingTop="@dimen/main_vertical_margin" >
 
     <Button
         android:id="@+id/btnShowInBrowser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_btnShowInBrowser" />
+        android:text="@string/main_btnShowInBrowser" />
 
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_btnSearch" />
+        android:text="@string/main_btnSearch" />
 
     <Button
         android:id="@+id/btnDial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_btnDial" />
+        android:text="@string/main_btnDial" />
 
     <Button
         android:id="@+id/btnShowInMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_btnShowInMap" />
+        android:text="@string/main_btnShowInMap" />
 
     <Button
         android:id="@+id/btnSearchInMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_btnSearchInMap" />
+        android:text="@string/main_btnSearchInMap" />
 
     <Button
         android:id="@+id/btnShowContacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_showContacts" />
+        android:text="@string/main_showContacts" />
 
 </LinearLayout>

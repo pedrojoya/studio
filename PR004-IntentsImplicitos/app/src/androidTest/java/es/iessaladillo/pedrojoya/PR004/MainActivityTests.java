@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.PR004;
+package es.iessaladillo.pedrojoya.pr004;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import androidx.test.espresso.intent.matcher.UriMatchers;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
-import es.iessaladillo.pedrojoya.PR004.ui.main.MainActivity;
+import es.iessaladillo.pedrojoya.pr004.ui.main.MainActivity;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

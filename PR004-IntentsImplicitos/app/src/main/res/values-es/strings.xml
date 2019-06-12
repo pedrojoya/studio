@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Intents Implícitos</string>
-    <string name="activity_main_btnShowInBrowser">Mostrar en el navegador</string>
-    <string name="activity_main_btnSearch">Buscar</string>
-    <string name="activity_main_btnDial">Marcar</string>
-    <string name="activity_main_btnShowInMap">Mostrar en mapa</string>
-    <string name="activity_main_btnSearchInMap">Buscar en mapa</string>
-    <string name="activity_main_showContacts">Mostrar contactos</string>
-    <string name="main_activity_no_web_browser">No hay ningún navegador disponible</string>
-    <string name="main_activity_no_web_search">No hay ningún buscador web disponible</string>
-    <string name="main_activity_no_dial_app">No hay ninguna aplicación de marcación</string>
-    <string name="main_activity_no_maps_app">No hay ninguna aplicación de mapas</string>
-    <string name="main_activity_no_contacts_app">No hay ninguna aplicación de contactos</string>
-    <string name="main_activity_no_connection">No hay conexión a Internet</string>
+    <string name="main_btnShowInBrowser">Mostrar en el navegador</string>
+    <string name="main_btnSearch">Buscar</string>
+    <string name="main_btnDial">Marcar</string>
+    <string name="main_btnShowInMap">Mostrar en mapa</string>
+    <string name="main_btnSearchInMap">Buscar en mapa</string>
+    <string name="main_showContacts">Mostrar contactos</string>
+    <string name="main_no_web_browser">No hay ningún navegador disponible</string>
+    <string name="main_no_web_search">No hay ningún buscador web disponible</string>
+    <string name="main_no_dial_app">No hay ninguna aplicación de marcación</string>
+    <string name="main_no_maps_app">No hay ninguna aplicación de mapas</string>
+    <string name="main_no_contacts_app">No hay ninguna aplicación de contactos</string>
 </resources>

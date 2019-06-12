@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Implicit Intents</string>
-	<string name="activity_main_btnShowInBrowser">Show in browser</string>
-	<string name="activity_main_btnSearch">Search</string>
-	<string name="activity_main_btnDial">Dial</string>
-	<string name="activity_main_btnShowInMap">Show in map</string>
-	<string name="activity_main_btnSearchInMap">Search in map</string>
-	<string name="activity_main_showContacts">Show Contacts</string>
-	<string name="main_activity_no_web_browser">No web browser app</string>
-	<string name="main_activity_no_web_search">No web search app</string>
-	<string name="main_activity_no_dial_app">No dial app</string>
-	<string name="main_activity_no_maps_app">No maps app</string>
-	<string name="main_activity_no_contacts_app">No contacts app</string>
-	<string name="main_activity_no_connection">No Internet connection available</string>
-
+	<string name="main_btnShowInBrowser">Show in browser</string>
+	<string name="main_btnSearch">Search</string>
+	<string name="main_btnDial">Dial</string>
+	<string name="main_btnShowInMap">Show in map</string>
+	<string name="main_btnSearchInMap">Search in map</string>
+	<string name="main_showContacts">Show Contacts</string>
+	<string name="main_no_web_browser">No web browser app</string>
+	<string name="main_no_web_search">No web search app</string>
+	<string name="main_no_dial_app">No dial app</string>
+	<string name="main_no_maps_app">No maps app</string>
+	<string name="main_no_contacts_app">No contacts app</string>
 </resources>

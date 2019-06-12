@@ -1,29 +1,17 @@
-package es.iessaladillo.pedrojoya.PR004.utils;
+package es.iessaladillo.pedrojoya.pr004.utils;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
-
-import java.util.List;
 
 import static android.content.ContentResolver.SCHEME_CONTENT;
 import static android.webkit.WebView.SCHEME_GEO;
 import static android.webkit.WebView.SCHEME_TEL;
 
+@SuppressWarnings("unused")
 public class IntentsUtils {
 
     private IntentsUtils() {
-    }
-
-    // Is any activity available to use the intent.
-    public static boolean isActivityAvailable(Context ctx, Intent intent) {
-        final PackageManager packageManager = ctx.getApplicationContext().getPackageManager();
-        List<ResolveInfo> appList = packageManager.queryIntentActivities(intent,
-                PackageManager.MATCH_DEFAULT_ONLY);
-        return appList.size() > 0;
     }
 
     public static Intent newViewUriIntent(Uri uri) {
